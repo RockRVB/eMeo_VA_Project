@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="VTMACloseTrans">
+  <Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for closing transaction"/>
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start" shield="0" videoarea="false" homeVisible="0" callVisible="0" endflag="0">
+      <Forward event="OnConfirm" targetID="ID_SendFlowCloseTrans"/>
+    </Start>
+	<VTMAActBusinessFlow ID="ID_SendFlowCloseTrans" UI="" CurrentStep="" FlowStatus="-1" timeout="50000">
+      <DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+    </VTMAActBusinessFlow>
+	<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+    <End ID="9999" comment="End">
+    </End>
+  </Activities>
+</Workflow>

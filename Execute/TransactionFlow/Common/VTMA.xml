@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="VTMA">
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for inquiry"/>
+	<DataPool>
+  </DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_VTMAAPIList"/>
+		</Start>
+		<VTMAAPIList ID="ID_VTMAAPIList" UI="UI_VTMA_API_menu">
+			<Forward event="OnTimeout" targetID="ID_VTMAAPIList"/>
+			<Forward event="OnCancel" targetID="ID_VTMAAPIList"/>
+			<Forward event="OnGetOnlineAgentInfo" targetID="ID_Set_GetOnlineAgentInfo"/>
+			<Forward event="OnSendDeviceStatusInfo" targetID="ID_VTMARequestTransViaRestful"/>
+			<Forward event="OnSendDeviceBusinessFlow" targetID="ID_VTMARequestTransViaRestful"/>
+			<Forward event="OnCallRemoteTeller" targetID="ID_VTMARequestTransViaRestful"/>
+			<Forward event="OnCallVedioConnect" targetID="ID_VTMARequestTransViaRestful"/>
+			<Forward event="OnScanPassport" targetID="ID_VTMARequestTransViaRestful"/>
+			<Forward event="OnCustomerInfo" targetID="ID_VTMARequestTransViaRestful"/>
+			<Forward event="OnScanSign" targetID="ID_VTMARequestTransViaRestful"/>
+		</VTMAAPIList>
+		<SetData ID="ID_Set_GetOnlineAgentInfo" saveBuffer="{VTMA.send.tranType,0}" value="GetOnlineAgentInfo">
+			<Forward event="OnConfirm" targetID="ID_VTMARequestTransViaRestful"/>
+		</SetData>
+		<VTMARequestTransViaRestful ID="ID_VTMARequestTransViaRestful" UI="UI_waiting" transType="TerminalDataCache={VTMA.send.tranType}" transFormat="json">
+			<States>
+				<State name="PackFail" UI="UI_general_error"/>
+				<State name="ConnectFail" UI="UI_general_error"/>
+				<State name="SendFail" UI="UI_general_error"/>
+				<State name="ReceiveFail" UI="UI_general_error"/>
+				<State name="ReceiveTimeout" UI="UI_general_error"/>
+				<State name="NetworkFail" UI="UI_general_error"/>
+				<State name="UnpackFail" UI="UI_general_error"/>
+				<State name="HardwareError" UI="UI_general_error"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_VTMAAPIList"/>
+			<Forward event="OnPackFail" targetID="ID_VTMAAPIList"/>
+			<Forward event="OnConnectFail" targetID="ID_VTMAAPIList"/>
+			<Forward event="OnSendFail" targetID="ID_VTMAAPIList"/>
+			<Forward event="OnReceiveFail" targetID="ID_VTMAAPIList"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_VTMAAPIList"/>
+			<Forward event="OnNetworkFail" targetID="ID_VTMAAPIList"/>
+			<Forward event="OnUnpackFail" targetID="ID_VTMAAPIList"/>
+			<Forward event="OnHostRefuse" targetID="ID_VTMAAPIList"/>
+		</VTMARequestTransViaRestful>
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+    </End>
+		<End ID="ID_TryAgain" fallBack="ID_ICMoreAppSelectForMainMenu" comment="End">
+    </End>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

@@ -1,0 +1,1 @@
+require(["config/config","main"],function(){require(["swiper"],function(){var b=document.body.offsetWidth/1920*110;var a=new Swiper(".card_kind_list",{nextButton:".swiper-button-next",prevButton:".swiper-button-prev",slidesPerView:3,centeredSlides:false,spaceBetween:b,})})});

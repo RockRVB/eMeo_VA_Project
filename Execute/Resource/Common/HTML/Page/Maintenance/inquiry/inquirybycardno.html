@@ -1,0 +1,73 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>按卡号查询</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/maintenance/cn.css" />
+<script src="../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../js/jquery-ui.min.js"></script>
+<script src="../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../js/maintenance/common/global.js"></script>
+<script src="../../../js/maintenance/component/components.js"></script>
+<script src="../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../js/maintenance/ui/custom-ui.js"></script>
+</head>
+
+<body>
+<!--界面容器-->
+<div class="wrapper inquiry-by-card-no">
+	<div class="g-margin-wrapper"> 
+		<!--左边-->
+		<div class="g-left-wrapper">
+			<div class="g-left"> 
+				<!--卡号容器-->
+				<div class="card-no-wrapper"> 
+					<span id="STATIC_TITLE" type="STATIC_TXT" ids="IDS_LastEightNumbersDmenu_173">请输入卡号后八位：</span> 
+					<input id="INPUT_CARDNUM" type="text" class="input-text input-sheet"  value="" maxlength="8" validchars = "0123456789" style="width: 90.75px !important;">
+				</div>
+				
+				<!--开始时间文字-->
+				<div class="g-start-text"> <span id="STATIC_1" type="STATIC_TXT" ids="IDS_InputDmenu_173">请输入起始日期：</span> </div>
+				<!--开始日期-->
+				<div class="g-start-date">
+					<input id="INPUT_SYEAR" type="text" class="input-text"  value="" maxlength="4" validchars = "0123456789">
+					<span id="STATIC_SYEAR" type="STATIC_TXT" class="g-datetime-span" ids="IDS_YearDmenu_173a">年</span>
+					<input id="INPUT_SMONTH" type="text" class="input-text"  value="" maxlength="2" validchars = "0123456789">
+					<span id="STATIC_SMONTH" type="STATIC_TXT" class="g-datetime-span" ids="IDS_MonthDmenu_173a">月</span>
+					<input id="INPUT_SDAY" type="text" class="input-text"  value="" maxlength="2" validchars = "0123456789">
+					<span id="STATIC_SDAY" type="STATIC_TXT" class="g-datetime-span" ids="IDS_DayDmenu_173a">日</span> </div>
+				
+				
+				<!--结束时间文字-->
+				<div class="g-end-text"> <span id="STATIC_2" type="STATIC_TXT" ids="IDS_InputEndDateDmenu_173">请输入结束日期：</span> </div>
+				<!--结束日期-->
+				<div class="g-end-date">
+					<input id="INPUT_EYEAR" type="text" class="input-text"  value="" maxlength="4" validchars = "0123456789">
+					<span id="STATIC_EYEAR" type="STATIC_TXT" class="g-datetime-span" ids="IDS_YearDmenu_173b">年</span>
+					<input id="INPUT_EMONTH" type="text" class="input-text"  value="" maxlength="2" validchars = "0123456789">
+					<span id="STATIC_EMONTH" type="STATIC_TXT" class="g-datetime-span" ids="IDS_MonthDmenu_173b">月</span>
+					<input id="INPUT_EDAY" type="text" class="input-text"  value="" maxlength="2" validchars = "0123456789">
+					<span id="STATIC_EDAY" type="STATIC_TXT" class="g-datetime-span" ids="IDS_DayDmenu_173b">日</span> </div>
+
+			</div>
+			<!--出错提示-->
+			<div class="g-prompt"> <span id="STATIC_PROMPT" type="STATIC_TXT">请输入帐号的后8位</span> </div>
+		</div>
+		<!--右边-->
+		<div class="g-right"> 
+			<!--键盘-->
+			<div id="KEYBOARD_NUMBER_1" type="KEYBOARD_NUMBER" class="keyboard-number"> 
+				<!--键盘操作提示-->
+				<div id="keyboard-tip" class="keyboard-tip clear none" ids="IDS_KeyboardTip">按00键可以在输入框和键盘之间切换</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

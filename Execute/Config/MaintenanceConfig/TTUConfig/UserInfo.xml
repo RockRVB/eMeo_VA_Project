@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<UserRole>
+  <RecordItem>
+    <UserID>111</UserID>
+    <RoleID>1</RoleID>
+    <UserPwd>1UahcvHzhDo=</UserPwd>
+    <Default>1</Default>
+  </RecordItem>
+  <RecordItem>
+    <UserID>222</UserID>
+    <RoleID>2</RoleID>
+    <UserPwd>1UahcvHzhDo=</UserPwd>
+    <Default>1</Default>
+  </RecordItem>
+</UserRole>

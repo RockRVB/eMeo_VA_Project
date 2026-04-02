@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!--  Device Fault Status Information Field
+		*  When the status Description is '8' - Device Fault. 
+		-->
+	<Data>
+		<!-- Field Separator  -->	
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Error Severity.  Standard code.-->
+		<Item key="e3" value="r" size="1" restriction="Mandatory"/>
+		<Item key="e3" value="[Msg.Solicited.{0}.Status]" size="1" restriction="Mandatory"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/> 
+		<Item key="[MDS_2]" value="[Device.{0}.MDS]" size="1" restriction="[Options.F2.MDSStatusToNetwork]"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>		
+		<Item key="r2" value="[Msg.RolloverCount.Position1]" size="3" restriction="Mandatory"/>
+		<Item key="r2" value="[Msg.RolloverCount.Position2]" size="3" restriction="Mandatory"/>
+		<Item key="r2" value="[Msg.RolloverCount.Position3]" size="3" restriction="Mandatory"/>
+		<Item key="r2" value="[Msg.RolloverCount.Position4]" size="3" restriction="Mandatory"/>
+	</Data>
+</Root>

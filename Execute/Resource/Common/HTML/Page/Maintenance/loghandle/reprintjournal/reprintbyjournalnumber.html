@@ -1,0 +1,63 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>按流水号补打流水</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../../css/maintenance/cn.css" />
+<script src="../../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../../js/jquery-ui.min.js"></script>
+<script src="../../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../../js/maintenance/common/global.js"></script>
+<script src="../../../../js/maintenance/component/components.js"></script>
+<script src="../../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../../js/maintenance/ui/maintenance/loghandle/reprintjournal/reprintbyjournalnumber.js"></script>
+</head>
+
+<body>
+<!--界面容器-->
+<div class="wrapper reprint-by-journal-number">
+	<div class="g-margin-wrapper"> 
+		<!--左边-->
+		<div class="g-left-wrapper">
+			<div class="g-left"> 
+				<div class="journal-row"> <span id="STATIC_TITLE" type="STATIC_TXT" class="left-label" ids="IDS_StartingSerialNumbersMenu_513">请输入开始流水号:</span>
+					<input id="INPUT_SERIALNO_BEGIN" type="text" class="input-text"  value="" maxlength="8" validchars="0123456789">
+				</div>
+				<div class="journal-row"> <span id="STATIC_TITLE2" type="STATIC_TXT" class="left-label" ids="IDS_ClosingSerialNumbersMenu_513">请输入结束流水号:</span>
+					<input id="INPUT_SERIALNO_END" type="text" class="input-text"  value="" maxlength="8" validchars="0123456789">
+				</div>
+				
+				<!--结束时间文字-->
+				<div class="g-end-text"> <span id="STATIC_1" type="STATIC_TXT" ids="IDS_EnterDateMenu_513">请输入日期:</span> </div>
+				<!--结束日期-->
+				<div class="g-end-date">
+					<input id="INPUT_YEAR" type="text" class="input-text"  value="" maxlength="4" validchars = "0123456789">
+					<span id="STATIC_YEAR" type="STATIC_TXT" class="g-datetime-span" ids="IDS_YearMenu_513">年</span>
+					<input id="INPUT_MONTH" type="text" class="input-text"  value="" maxlength="2" validchars = "0123456789">
+					<span id="STATIC_MONTH" type="STATIC_TXT" class="g-datetime-span" ids="IDS_MonthMenu_513">月</span>
+					<input id="INPUT_DAY" type="text" class="input-text"  value="" maxlength="2" validchars = "0123456789">
+					<span id="STATIC_DAY" type="STATIC_TXT" class="g-datetime-span" ids="IDS_DayMenu_513">日</span> </div>
+				<!--时间提示-->
+				<div class="g-datetime-tip"> <span id="STATIC_PS" type="STATIC_TXT" ids="IDS_TreatedMenu_513">*空白作为0处理</span> </div>
+			</div>
+			<!--出错提示-->
+			<div class="g-prompt"> <span id="STATIC_PROMPT" type="STATIC_TXT"></span> </div>
+		</div>
+		<!--右边-->
+		<div class="g-right"> 
+			<!--键盘-->
+			<div id="KEYBOARD_NUMBER_1" type="KEYBOARD_NUMBER" class="keyboard-number"> 
+				<!--键盘操作提示-->
+				<div id="keyboard-tip" class="keyboard-tip clear none" ids="IDS_KeyboardTip">按00键可以在输入框和键盘之间切换</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>角色登陆页面</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<link rel="stylesheet" type="text/css" href="../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../thirdparty/bootstrap/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/maintenance/global.css" />
+<script type="text/javascript" src="../../../js/jquery-3.7.0.min.js"></script>
+<script type="text/javascript" src="../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<!--界面容器-->
+<div class="wrapper"> 
+	<!--居中显示-->
+	<div class="loginrole"> 
+		<!--左边-->
+		<div class="loginrole-left">
+			
+				<!--左边标签区域-->
+				<div class="loginrole-left-zone">
+					<div>
+						<label id="STATIC_ROLE_LABEL" ids="IDS_UserLogin_role"  class="loginrole-user-label">用户:</label>
+						<button id="FUN_1" type="button" class="button-login-toggle selected"> <span class="tip"></span> <span class="button-text" >银行管理员</span> </button>
+					</div>
+					<div class="loginrole-vertical-space1">
+						<label class="loginrole-label-hidden"></label>
+						<button id="FUN_2" type="button" class="button-login-toggle"> <span class="tip"></span> <span class="button-text" >系统管理员</span> </button>
+					</div>
+					
+					<div class="loginrole-vertical-space2">
+						<label for="INPUT_PASSWORD" id="STATIC_PASSWORD_LABEL" ids="IDS_PasswordLogin_role"  class="loginrole-password-label">密码:</label>
+						<input type="password" class="form-control loginrole-password" id="INPUT_PASSWORD">
+					</div>
+				</div>
+			
+			<!--登录和退出按钮-->
+			<div class="clear loginrole-vertical-space3">
+				<button id="KEYBOARD_ENTER" type="button" class="button-red loginrole-horizontal-space1"> <span class="tip"></span> <span ids="" class="button-text" >登 录</span> </button>
+				<button id="FUN_QUIT" type="button" class="button-red loginrole-horizontal-space2"> <span class="tip"></span> <span ids="" class="button-text" >退 出</span> </button>
+			</div>
+			<!--登陆提示文字-->
+			<div class="loginrole-vertical-space4">
+			 <div> <span id="STATIC_ROLEDESP"  class="loginrole-description">此用户为银行操作员 主要负责ATM日常操作，清机加钞功能</span></div>
+				<div class="loginrole-vertical-space5"> <span id="STATIC_PROMPT"  class="loginrole-prompt">请输入密码</span> </div>
+			 </div>
+		</div>
+		<!--右边-->
+		<div class="loginrole-right"> 
+			<!--键盘-->
+			<div id="keyboard" class="keyboard">
+				<ul>
+					<li>
+						<button type="button" class="button-keyboard"> <span class="tip"></span> <span class="button-text">1</span> </button>
+					</li>
+					<li>
+						<button type="button" class="button-keyboard"> <span class="tip"></span> <span class="button-text">2</span> </button>
+					</li>
+					<li>
+						<button type="button" class="button-keyboard"> <span class="tip"></span> <span class="button-text">3</span> </button>
+					</li>
+					<li>
+						<button type="button" class="button-keyboard"> <span class="tip"></span> <span class="button-text">4</span> </button>
+					</li>
+					<li>
+						<button type="button" class="button-keyboard"> <span class="tip"></span> <span class="button-text">5</span> </button>
+					</li>
+					<li>
+						<button type="button" class="button-keyboard"> <span class="tip"></span> <span class="button-text">6</span> </button>
+					</li>
+					<li>
+						<button type="button" class="button-keyboard"> <span class="tip"></span> <span class="button-text">7</span> </button>
+					</li>
+					<li>
+						<button type="button" class="button-keyboard"> <span class="tip"></span> <span class="button-text">8</span> </button>
+					</li>
+					<li>
+						<button type="button" class="button-keyboard"> <span class="tip"></span> <span class="button-text">9</span> </button>
+					</li>
+					<li>
+						<button type="button" class="button-keyboard"> <span class="tip"></span> <span class="button-text">0</span> </button>
+					</li>
+					<li>
+						<button type="button" class="button-keyboard disabled"> <span class="tip"></span> <span class="button-text"></span> </button>
+					</li>
+					<li>
+						<button id="button-keyboard-alter" type="button" class="button-keyboard"> <span class="tip"></span> <span class="button-text"><span ids="IDS_ALTER">更正</span></span> </button>
+					</li>
+				</ul>
+				<!--键盘操作提示-->
+				<div class="keyboard-tip clear none" ids="">按00键可以在输入框和键盘之间切换</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

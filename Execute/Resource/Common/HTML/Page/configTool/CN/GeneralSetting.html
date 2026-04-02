@@ -1,0 +1,462 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+    <script defer type="text/javascript" src="../../../js/configTool/ShowResource.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../css/configTool/ConfigEditing.css" />
+    <script type="text/javascript">
+        function show() {
+
+            var p1 = document.getElementById("SelectData");
+            var p2 = document.getElementById("NumberNDC");
+            var p3 = document.getElementById("NumberDDC");
+            var p4 = document.getElementById("Protocol");
+
+            if (1 == p4.value) {
+                p2.style.display = "none";
+                if (p3.value.toString().length == "9") {
+                    p1.selectedIndex = 0;
+                    p3.disabled = false;
+                }
+                else {
+                    p1.selectedIndex = 1;
+                    p3.disabled = true;
+                }
+            }
+            if (0 == p4.value) {
+                p3.style.display = "none";
+                if (p2.value.toString().length == "9") {
+                    p1.selectedIndex = 0;
+                    p2.disabled = false;
+                }
+                else {
+                    p1.selectedIndex = 1;
+                    p2.disabled = true;
+                }
+            }
+            //lijian加，加载EPPType数据
+            LoadEPPTypeData();
+        }
+
+        function show2() {
+            var p1 = document.getElementById("SelectData");
+            var p2 = document.getElementById("NumberNDC");
+            var p3 = document.getElementById("NumberDDC");
+            var p4 = document.getElementById("Protocol");
+
+            if (1 == p4.value) {
+                if (p1.selectedIndex == 0) {
+                    p3.disabled = false;
+                }
+                else {
+                    p3.disabled = true;
+                }
+            }
+            if (0 == p4.value) {
+                if (p1.selectedIndex == 0) {
+                    p2.disabled = false;
+                }
+                else {
+                    p2.disabled = true;
+                }
+            }
+        }
+
+        function CalculateLUNO() {
+            var p0 = document.getElementById("SelectData");
+            var p2 = document.getElementById("NumberNDC");
+            var p3 = document.getElementById("NumberDDC");
+            var p4 = document.getElementById("Protocol");
+
+            if (p0.selectedIndex == 1) {
+                if (0 == p4.value) {
+                    p2.value = "";
+                }
+                if (1 == p4.value) {
+                    p3.value = "";
+                }
+            }
+        }
+        function LoadEPPTypeData() {
+            //var EPPMode = document.getElementById("TTU_EPPMode");
+            var EPPMode = document.getElementById("TwinScreen_eppMode");
+            var oSelect = document.getElementById("Select_EPPType");
+            if (EPPMode.value == "1") {
+                oSelect.value = "EPP-PCI";
+            } else {
+                oSelect.value = "EPP";
+            }
+        }
+        function ChangeEPPType() {
+            /// <summary>修改EPP类型触发的事件</summary>
+            var oSelect = document.getElementById("Select_EPPType");
+            //alert(oSelect.value);
+            var oterminateKeys = document.getElementById("terminateKeys");
+            var oTTU_EPPMode = document.getElementById("TTU_EPPMode");
+            var oTwinScreen_eppMode = document.getElementById("TwinScreen_eppMode");
+            if (oSelect.value == "EPP-PCI") {
+                oterminateKeys.value = "CANCEL,ENTER";
+                //oTTU_EPPMode.value = "1";
+                oTwinScreen_eppMode.value = "1";
+            }
+            else if (oSelect.value = "EPP") {
+                oterminateKeys.value = "CANCEL";
+                //oTTU_EPPMode.value = "0";
+                oTwinScreen_eppMode.value = "0";
+            }
+        }
+    </script>
+</head>
+<body onload="show()">
+    <div id="Div2">
+        <form method="post">
+        <div class="btnDIV">
+            <input id="Submit1" type="submit" value="Cancel" tag="OnCancel">
+            <input id="Submit2" type="submit" value="Submit" tag="OnConfirm" onclick="CalculateLUNO()">
+        </div>
+        <br />
+        <div class="contentDIV">
+            <fieldset name="Group10">
+                <legend class="FontSize">EPP Types</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <label>EPP Types</label>
+                        </td>
+                        <td>
+                            <select id="Select_EPPType" type="select" onchange="ChangeEPPType()">
+                                <option value="EPP">EPP</option>
+                                <option value="EPP-PCI">EPP-PCI</option>
+                            </select>
+                            <input id="terminateKeys" type="text" style="display:none" content="{Binding terminateKeys file=Config\KeyConfig.xml xpath=/Config/InputPin mode=2}" />
+                            <!--<input id="TTU_EPPMode" type="text" style="display:none" content="{Binding EPPMode file=TransactionFlow\Common\TTU.xml xpath=/Workflow/Activities/CheckPINModeTTU mode=2}" />-->
+                            <input id="TwinScreen_eppMode" type="text" style="display:none" content="{Binding eppMode file=TransactionFlow\Common\TwinScreen.xml xpath=/Workflow/Activities/CheckPINMode mode=2}" />
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset name="Group0">
+                <legend class="FontSize">System</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <label>ATM Series:</label>
+                        </td>
+                        <td>
+                            <input id="InputType" type="text" disabled="disabled" content="{Binding ATMType file=Config\TerminalConfig.xml xpath=/Config/Terminal mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>ATM Number:</label>
+                        </td>
+                        <td>
+                            <input id="InputType3" type="text" content="{Binding ATMNumber file=Config\TerminalConfig.xml xpath=/Config/Terminal mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Bank Number:</label>
+                        </td>
+                        <td>
+                            <input id="InputType1" type="text" content="{Binding bankNumber file=Config\TerminalConfig.xml xpath=/Config/Terminal mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Branch Number:</label>
+                        </td>
+                        <td>
+                            <input id="InputType2" type="text" content="{Binding branchNumber file=Config\TerminalConfig.xml xpath=/Config/Terminal mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Security Data:</label>
+                        </td>
+                        <td>
+                            <select id="SelectData" type="select" onchange="show2()">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Machine No.:</label>
+                        </td>
+                        <td>
+                            <!--获得当前协议0：NDC 1：DDC -->
+                            <input id="Protocol" style="display: none" type="text" content="{Binding value file=eCATConfigTool\Tools\eCATToolConfig.xml xpath=/Config/CurrentProtocol/Protocol mode=2}" />
+                            <!--修改NDC的LUNO-->
+                            <input id="NumberNDC" type="text" content="{Binding value file=XDC\NDC\Scripts\Param\DataParm.xml xpath=/Root/Data/Item[@key='machineNumber'] mode=2}"
+                                maxlength="9" />
+                            <!--修改DDC的LUNO-->
+                            <input id="NumberDDC" type="text" content="{Binding value file=XDC\DDC\Scripts\Param\DataParm.xml xpath=/Root/Data/Item[@key='machineNumber'] mode=2}"
+                                maxlength="9" />
+                        </td>
+                    </tr>
+                    <tr style="display: none">
+                        <td>
+                            <label>LUNO:</label>
+                        </td>
+                        <td>
+                            <input id="InputCalulateLUNO" type="text" style="display: none" content="{Binding value file=Config\XDC\DownLoad\ConfigParameters.xml xpath=/Root/ParameterCtr/Item[@key='LUNO'] mode=2}">
+                            <input id="InputLUNO" type="text">
+                            <input id="XMLLUNO" type="text" style="display: none" content="{Binding value file=Config\XDC\DownLoad\ConfigParameters.xml xpath=/Root/ParameterCtr/Item[@key='LUNO'] mode=2}">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset name="Group2">
+                <legend class="FontSize">Time Setting</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <label>Page:</label>
+                        </td>
+                        <td>
+                            <input id="Text1" type="text" content="{Binding timeout file=Config\GeneralConfig.xml xpath=/Config/Timeout/Page mode=2}">
+                            ms
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Take Card:</label>
+                        </td>
+                        <td>
+                            <input id="Text2" type="text" content="{Binding timeout file=Config\GeneralConfig.xml xpath=/Config/Timeout/TakeCard mode=2}">
+                            ms
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Take Cash:</label>
+                        </td>
+                        <td>
+                            <input id="Text3" type="text" content="{Binding timeout file=Config\GeneralConfig.xml xpath=/Config/Timeout/TakeCash mode=2}">
+                            ms
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Interpose Cash:</label>
+                        </td>
+                        <td>
+                            <input id="Text4" type="text" content="{Binding timeout file=Config\GeneralConfig.xml xpath=/Config/Timeout/InterposeCash mode=2}">
+                            ms
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Continue Interpose Cash:</label>
+                        </td>
+                        <td>
+                            <input id="Text5" type="text" content="{Binding timeout file=Config\GeneralConfig.xml xpath=/Config/Timeout/ContinueInterposeCash mode=2}">
+                            ms
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Reject Cash:</label>
+                        </td>
+                        <td>
+                            <input id="Text6" type="text" content="{Binding timeout file=Config\GeneralConfig.xml xpath=/Config/Timeout/RejectCash mode=2}">
+                            ms
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Transaction Packet:</label>
+                        </td>
+                        <td>
+                            <input id="Text7" type="text" content="{Binding timeout file=Config\GeneralConfig.xml xpath=/Config/Timeout/Trans mode=2}">
+                            ms
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Status Packet:</label>
+                        </td>
+                        <td>
+                            <input id="Text8" type="text" content="{Binding timeout file=Config\GeneralConfig.xml xpath=/Config/Timeout/Status mode=2}">
+                            ms
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                SignIn Interval:</label>
+                        </td>
+                        <td>
+                            <input id="Text9" type="text" content="{Binding timeout file=Config\GeneralConfig.xml xpath=/Config/Timeout/SignIn mode=2}">
+                            ms
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                EnterService Interval:</label>
+                        </td>
+                        <td>
+                            <input id="Text10" type="text" content="{Binding timeout file=Config\GeneralConfig.xml xpath=/Config/Timeout/EnterService mode=2}">
+                            ms
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                Root Interval:</label>
+                        </td>
+                        <td>
+                            <input id="Text11" type="text" content="{Binding timeout file=Config\GeneralConfig.xml xpath=/Config/Timeout/Reboot mode=2}">
+                            hr
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                Cancel Interpose Cash:</label>
+                        </td>
+                        <td>
+                            <input id="Text12" type="text" content="{Binding timeout file=Config\GeneralConfig.xml xpath=/Config/Timeout/CancelInterposeCash mode=2}">
+                            ms
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <!--<fieldset id="Group3">
+		    <legend class="FontSize">Amount Limit</legend>
+		    <table>
+			    <tr>
+                    <td>				    
+				        <Label>Withdrawal</Label>
+				    </td>
+				    <td><input id="Text13" type="text"></td>
+			    </tr>
+			
+			    <tr>
+                    <td>				
+				       <Label>Transfer</Label>
+				    </td>
+				    <td><input id="Text14" type="text"></td>
+			    </tr>
+		    </table>
+	    </fieldset>-->
+            <fieldset id="Group4">
+                <legend class="FontSize">Language</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <label>Display</label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" selectvalue="{Binding UI file=Config\GeneralConfig.xml xpath=/Config/Language  mode=2}">
+                                <option value="CN" selected="selected">Chinese</option>
+                                <option value="EN">English</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Maintenance</label>
+                        </td>
+                        <td>
+                            <select id="Select2" type="select" selectvalue="{Binding Maintenance file=Config\GeneralConfig.xml xpath=/Config/Language  mode=2}">
+                                <option value="CN">Chinese</option>
+                                <option value="EN">English</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>JPTR</label>
+                        </td>
+                        <td>
+                            <select id="Select3" type="select" selectvalue="{Binding JPTR file=Config\GeneralConfig.xml xpath=/Config/Language  mode=2}">
+                                <option value="CN">Chinese</option>
+                                <option value="EN">English</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>RPTR</label>
+                        </td>
+                        <td>
+                            <select id="Select4" type="select" selectvalue="{Binding RPTR file=Config\GeneralConfig.xml xpath=/Config/Language mode=2}">
+                                <option value="CN">Chinese</option>
+                                <option value="EN">English</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset id="Group5">
+                <legend class="FontSize">Door</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <input id="Checkbox1" type="checkbox" state="{Binding enableOperatorSwitch file=Config\GeneralConfig.xml xpath=/Config/Door mode=2}">
+                            Operator Switch
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Checkbox2" type="checkbox" state="{Binding enableCabinet file=Config\GeneralConfig.xml xpath=/Config/Door mode=2}">
+                            Cabinet
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Checkbox3" type="checkbox" state="{Binding enableSafeDoor file=Config\GeneralConfig.xml xpath=/Config/Door mode=2}">
+                            SafeDoor
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset name="Group6">
+                <legend class="FontSize">Others</legend>
+                <table>
+                    <!--<tr>
+				<td>
+					<Label>EPP Mode</Label>
+				</td>
+				<td colspan="2">
+				 	<input id="textBox110" type="text" content="{Binding eppMode file=TransactionFlow\Common\TwinScreen.xml xpath=/Workflow/Activities/CheckPINMode[@ID='ID_CheckPINMode'] mode=2}"/>
+				</td>	
+			    </tr>-->
+                    <tr>
+                        <td>
+                            <label>Front Screen</label>
+                        </td>
+                        <td>
+                            <input id="textBox115" type="text" content="{Binding frontScreen file=Config\GeneralConfig.xml xpath=/Config/TwinScreen mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>TopMost</label>
+                        </td>
+                        <td>
+                            <input id="textBox116" type="text" content="{Binding topmost file=Config\GeneralConfig.xml xpath=/Config/UI mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>eCATKeeper</label>
+                        </td>
+                        <td>
+                            <input id="textBox117" type="text" content="{Binding enable file=Config\GeneralConfig.xml xpath=/Config/eCATKeeper mode=2}" />
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <br>
+        </div>
+        <br />
+        </form>
+    </div>
+</body>
+</html>

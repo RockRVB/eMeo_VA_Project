@@ -1,0 +1,1494 @@
+/*1、导入css文件,位置：../Resource/HTML/css/config/config.css，在里面输入@import url("skin.css");即可*/
+
+
+/*2、导入成功后，找到对应的skin.css文件，更改对应的样式，每个样式都有对应的注释、具体哪个页面*/
+
+
+/*3、更换的图片应该放在一个新的文件夹里面，以防替换出现不必要的问题。新建一个文件夹并命名，位置：如果是“中文”的图片，应放在../Resource/Image/CN文件夹下，否则，放在../Resource/ImageEN文件夹下*/
+
+
+/*整个项目文字颜色有几种，具体可根据需要来调*/
+
+
+/*文字颜色的修改--开始*/
+
+
+/*更换方式：将#xxxxxx后6位值改变,即：color:#;也可以使用颜色的英文名称，如red，用英文名称不需要加#，即：color:red*/
+
+
+/*换肤*/
+
+
+/*焦点色（鼠标聚集时显示的颜色、突出文字显示的颜色）*/
+
+.card_container_title ul li.step_current div,
+
+/*步骤———当前步骤文字颜色*/
+
+.card_container .card_container_title ul li.step_finish div,
+
+/*步骤———已完成的步骤文字颜色*/
+
+.authenticationFailed_tip p span,
+
+/*开卡业务———身份验证失败页面“次数”文字颜色*/
+
+.transaction_result .transaction_result_tip span,
+
+/*开卡业务——点钞结果页面“点钞结果钞票张数数字、钞票面额数字、钞票总额数字”的文字颜色*/
+
+.generateaccount_info span,
+
+/*开卡业务——生成账户页面“卡号数字”的文字颜色*/
+
+.black_bg_title span,
+
+/*开卡业务——上屏拍照页面“x秒”文字颜色*/
+
+.moneytype_row.total,
+
+/*存款业务——点钞结果页面“总计”的文字颜色*/
+
+.business_container .transaction_result .count_res_contain span,
+
+/*无卡存款——确认您的存款信息页面“账号”文字的颜色*/
+
+.business_container .transaction_result .transaction_res_contain span,
+
+/*查询业务——存款信息页面"账户余额数字和可用余额数字"的文字颜色*/
+
+.button_container .cancel_button
+/*透明按钮的文字颜色（也是全部取消按钮的文字颜色class="cancel_button“）*/
+
+{
+	color: #99cccc;
+}
+
+
+/*辅助色(大部分文字的颜色)*/
+
+
+/* .business_title的文字颜色（包括的页面有如下：）*/
+
+
+/*
+ * 开卡业务———请选择您要开设的账户类型页面“请选择您要办理的业务”标题文字颜色、
+ * 开卡业务———“客服人员将采集您的面部信息，请抬头正视屏幕上方摄像头”文字颜色、
+ * 开卡业务——“正在确认您的身份，请稍后...”
+ * 开卡业务—— 办卡协议页面“办卡协议” ,
+ * 开卡业务——放入钞票页面"请把面额为X元的钞票放入存款口内" 
+ * 开卡业务——"审核通过，请把打印表单放入回收口中"
+ * 开卡业务——“请取回您的表单，并在签名处签名”
+ * 开卡业务——“请把表单放入表单扫描口” 
+ * 开卡业务——取回身份证页面“信息读取完毕，请取回您的身份证” 
+ * 
+ * 存款业务——插入银行卡页面“请插入您的银行卡”
+ * 存款业务——输入密码页面“请输入银行卡交易密码”，
+ * 存款业务——放入钞票页面“请把钞票叠放整齐放入存钞口内，放入后请按“确认”键”
+ * 存款业务——凭条提示页面“请拿好您的凭条”  
+ * 存款业务——正在点钞“操作正在进行，请稍后...”
+ * 
+ * 所有提示页面
+ * */
+
+.count_down_time,
+
+/*右上角倒计时*/
+
+.authenticationFailed_result .authenticationFiled_title,
+
+/*开卡业务———身份验证失败页面“身份验证失败”标题文字颜色*/
+
+.authenticationFailed_result .authenticationFailed_tip,
+
+/*开卡业务———身份验证失败页面“您拍摄的照片未能与身份证照片匹配，您还可以重拍次”文字颜色*/
+
+.error_result .authentication_title,
+
+/*开卡业务———身份验证成功页面“身份验证成功”文字颜色*/
+
+.business_title,
+.transaction_result .transaction_result_title,
+
+/*开卡业务——点钞结果页面“点钞结果”标题的文字颜色*/
+
+.transaction_result .transaction_result_tip,
+
+/*开卡业务——点钞结果页面“点钞结果钞票张数、钞票面额、钞票总额”的文字颜色*/
+
+.card_input_container .card_input_container_tit,
+
+/*开卡业务——录入信息页面“请您核实并完善一下信息（其中带（）标志的字段为必填项”的文字颜色*/
+
+.card_input_container .card_input_container_group .card_input_con .card_input_con_group input,
+
+/*开卡业务——录入信息页面“输入框内容”的文字颜色*/
+
+.job_container,
+
+/*开卡业务——录入信息页面“职业类型选项”的文字颜色*/
+
+.generateaccount_title,
+
+/*开卡业务——生成账户页面“正在生成账户”标题的文字颜色*/
+
+.generateaccount_info,
+
+/*开卡业务——生成账户页面“卡号、开卡日期”的文字颜色*/
+
+.set_password_right,
+
+/*开卡业务——输入密码页面“请设置银行卡交易密码、请再次输入银行卡交易密码”的文字颜色*/
+
+.black_bg_title,
+
+/*开卡业务——上屏拍照页面“请将头像置于框内，并停留xx开始拍照”文字颜色*/
+
+.transaction_title,
+
+/*存款业务——点钞结果页面“点钞结果”标题的文字颜色*/
+
+.moneytype_row,
+
+/*存款业务——点钞结果页面“中间部分内容”的文字颜色*/
+
+.business_container .transaction_result .transaction_res_contain,
+
+/*存款业务——凭条提示页面“请问是否需要打印凭条”的文字颜色*/
+
+.error_result,
+
+/*提示页面——交易成功，设备故障，无法打印凭条*/
+
+.business_container .transaction_result .count_res_contain,
+
+/*无卡存款——请确认您的存款信息页面“账号标题和户名信息”文字的颜色*/
+
+.business_container .input_acount_contain .business_con_acount,
+
+/*无卡存款——请确认您要存入的卡号页面“输入框”文字的颜色*/
+
+.transaction_details_contain .transaction_details_con_body .transac_detail_tr table,
+
+/*查询业务——账户详细信息页面"内容"的文字颜色*/
+
+.date_select_container .date_container_main .date_select_group .date_select_group_tit,
+
+/*查询业务——账户详细信息页面"点击历史明细时显示层的时间标题：开始时间和结束时间"的文字颜色*/
+
+.date_select_container .date_button_group div,
+
+/*查询业务——账户详细信息页面"点击历史明细时显示层按钮"的文字颜色*/
+
+.date_select_container .date_select_group .date_select_group_con .mbsc-mobiscroll-dark .dwfl .dw-li.dw-v,
+
+/*查询业务——账户详细信息页面"点击历史明细时显示层的选择的日期"的文字颜色*/
+
+.other_amount_countain span,
+
+/*取款业务——选择金额页面“其他金额”标题的文字颜色*/
+
+.button_container_footer .forword_button,
+
+/*蓝色按钮文字颜色 class="forword_button"*/
+
+.button_container .enter_button,
+
+/*蓝色按钮文字颜色 class="enter_button"*/
+
+.button_container .other_button,
+/*蓝色+模糊感按钮文字颜色 class="other_button"*/
+
+.card_scan_container .photo_area
+/*证件扫描——请将您的身份证、房产证分别放入证件扫描口，摆好后请按拍照键文字颜色*/
+{
+	color: #000000;
+}
+
+
+/*步骤（1、2、3、4、5···）数字的文字颜色（阅读协议页面、身份验证失败页面）*/
+
+.card_container .card_container_title ul li em {
+	color: #181818;
+}
+
+
+/*其它未读步骤的文字颜色*/
+
+.card_container .card_container_title ul li div
+/*步骤———其它步骤文字颜色*/
+
+{
+	color: #767676;
+}
+
+
+/*功能模块的文字颜色（首页、办理其他业务页面）*/
+
+.menu_lis li .menu_lis_dl,
+
+/*首页业务文字颜色*/
+
+.submenu_lis li .submenu_lis_dl,
+
+/*开卡业务———请选择您要开设的账户类型页面业务文字颜色*/
+
+.card_input_container .card_input_container_group .card_input_con .card_input_con_group div,
+
+/*开卡业务——录入信息页面“每个信息的标题：例：姓名、性别···”的颜色*/
+
+.agreement_container .card_input_container_group,
+
+/*开卡业务——办卡协议页面"协议内容"的文字颜色*/
+
+.transaction_details_contain .transaction_details_con_body .transac_detail_th,
+
+/*查询业务——账户详细信息页面"底部显示完整年月日"的文字颜色*/
+
+.date_select_container .date_select_group .date_select_group_text {
+	color: #6a6a65;
+}
+
+
+/*(错误)提示信息的文字颜色*/
+
+.card_input_container .card_input_container_tit span,
+
+/*开卡业务——录入信息页面“*”的颜色*/
+
+.notmatch_tip div,
+
+/*开卡业务——输入密码页面“错误提示”的文字颜色*/
+
+.error_tips,
+.business_container .machine_panel.password_panel .password_panel_tip em,
+
+/*输入银行卡交易密码页面"输入密码长度不够，请重新输入"的文字颜色*/
+
+.error_msg_tips
+/*开卡业务———信息录入”带“*”标志的字段不能为空的文字颜色“*/
+
+{
+	color: #FF3737;
+}
+
+
+/*取款业务——选择金额页面“选择的金额”的文字颜色*/
+
+.money_panel .money_panel_lis li div,
+
+/*账户交易详情标题（最近交易、当日交易、历史交易）*/
+
+.transaction_details_contain .transaction_details_con_head div {
+	color: #F5F5F5;
+}
+
+
+/*输入框的文字颜色（请选择或输入取款金额页面、请输入您要存入的卡号页面）*/
+
+.other_amount_countain input
+/*取款业务——选择金额"输入框内容"的文字颜色*/
+
+{
+	color: #868483;
+}
+
+
+/*文字颜色的修改--结束*/
+
+
+/*背景图更换--开始*/
+
+
+/*更换方式：更换图片路径url，注意路径问题*/
+
+
+/*背景图*/
+
+body.all_bg {
+	background: #111 url('../../../Image/CN/Change/bg.jpg') no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*logo*/
+
+.index_top .logo {
+	background: url('../../../Image/CN/Index/logo.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*切换语言*/
+
+
+/*未选择语言的下划线*/
+
+.index_top .language_select div {
+	background: url('../../../Image/CN/Index/wire_chinese_english_shift_unchecked.png') center bottom no-repeat;
+}
+
+
+/*选择中文的下划线背景图*/
+
+.index_top .language_select.cn div:nth-child(1) {
+	background: url('../../../Image/CN/Index/wire_chinese_english_shift_checked.png') center bottom no-repeat;
+}
+
+
+/*选择英文的下划线背景图*/
+
+.index_top .language_select.en div:nth-child(2) {
+	background: url('../../../Image/CN/Index/wire_chinese_english_shift_checked.png') center bottom no-repeat;
+}
+
+
+/*分割线*/
+
+.home_line {
+	background: url('../../../Image/CN/Index/home_page_cutting_line.png') no-repeat;
+}
+
+
+/*第二、第三条分割线*/
+
+.menu_lis {
+	background: url('../../../Image/CN/Index/home_page_cutting_line.png') no-repeat center bottom;
+	background-size: 100% auto !important;
+}
+
+
+/*“开卡业务”的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_card {
+	background: url('../../../Image/CN/Change/1_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“开卡业务”时的图标或者鼠标移到“开卡业务”时显示的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_card:hover,
+.menu_lis li .menu_lis_dl div.menu_card:active {
+	color: #e59eda;
+	/*鼠标移上去时或者点击是的文字颜色*/
+	background: url('../../../Image/CN/Change/1.png') no-repeat center top;
+}
+
+
+/*“投资理财”的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_save {
+	background: url('../../../Image/CN/Change/2_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“投资理财”时的图标或者鼠标移到“投资理财”时显示的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_save:hover,
+.menu_lis li .menu_lis_dl div.menu_save:active {
+	color: #e59eda;
+	/*鼠标移上去时或者点击是的文字颜色*/
+	background: url('../../../Image/CN/Change/2.png') no-repeat center top;
+}
+
+
+/*“贷款业务”的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_loan {
+	background: url('../../../Image/CN/Change/3_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“贷款业务”时的图标或者鼠标移到“贷款业务”时显示的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_loan:hover,
+.menu_lis li .menu_lis_dl div.menu_loan:active {
+	color: #e59eda;
+	/*鼠标移上去时或者点击是的文字颜色*/
+	background: url('../../../Image/CN/Change/3.png') no-repeat center top;
+}
+
+
+/*签订协议的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_idea {
+	background: url('../../../Image/CN/Change/4_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“签订协议”时的图标或者鼠标移到“签订协议”时显示的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_idea:hover,
+.menu_lis li .menu_lis_dl div.menu_idea:active {
+	color: #e59eda;
+	/*鼠标移上去时或者点击是的文字颜色*/
+	background: url('../../../Image/CN/Change/4.png') no-repeat center top;
+}
+
+
+/*“现金业务”的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_cash {
+	background: url('../../../Image/CN/Change/5_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“现金业务”时的图标或者鼠标移到“现金业务”时显示的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_cash:hover,
+.menu_lis li .menu_lis_dl div.menu_cash:active {
+	color: #e59eda;
+	/*鼠标移上去时或者点击是的文字颜色*/
+	background: url('../../../Image/CN/Change/5.png') no-repeat center top;
+}
+
+
+/*“资料修改”的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_info {
+	background: url('../../../Image/CN/Change/6_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“资料修改”时的图标或者鼠标移到“资料修改”时显示的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_info:hover,
+.menu_lis li .menu_lis_dl div.menu_info:active {
+	color: #e59eda;
+	/*鼠标移上去时或者点击是的文字颜色*/
+	background: url('../../../Image/CN/Change/6.png') no-repeat center top;
+}
+
+
+/*“转账业务”的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_trans {
+	background: url('../../../Image/CN/Index/icon_transfer_service_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“转账业务”时的图标或者鼠标移到“转账业务”时显示的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_trans:hover,
+.menu_lis li .menu_lis_dl div.menu_trans:active {
+	color: #e59eda;
+	/*鼠标移上去时或者点击是的文字颜色*/
+	background: url('../../../Image/CN/Index/icon_transfer_service_check.png') no-repeat center top;
+}
+
+
+/*“开UKey”的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_ukey {
+	background: url('../../../Image/CN/Index/icon_transact_ukey_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“开UKey”时的图标或者鼠标移到“开UKey”时显示的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_ukey:hover,
+.menu_lis li .menu_lis_dl div.menu_ukey:active {
+	color: #e59eda;
+	/*鼠标移上去时或者点击是的文字颜色*/
+	background: url('../../../Image/CN/Index/icon_transact_ukey_check.png') no-repeat center top;
+}
+
+
+/*“查询业务”的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_query {
+	background: url('../../../Image/CN/Index/icon_query_service_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“查询业务”时的图标或者鼠标移到“查询业务”时显示的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_query:hover,
+.menu_lis li .menu_lis_dl div.menu_query:active {
+	color: #e59eda;
+	/*鼠标移上去时或者点击是的文字颜色*/
+	background: url('../../../Image/CN/Index/icon_query_service_check.png') no-repeat center top;
+}
+
+
+/*“存折补登”的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_passbook {
+	background: url('../../../Image/CN/Index/icon_retroactive_passbook_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“存折补登”时的图标或者鼠标移到“存折补登”时显示的图标*/
+
+.menu_lis li .menu_lis_dl div.menu_passbook:hover,
+.menu_lis li .menu_lis_dl div.menu_passbook:active {
+	color: #e59eda;
+	/*鼠标移上去时或者点击是的文字颜色*/
+	background: url('../../../Image/CN/Index/icon_retroactive_passbook_check.png') no-repeat center top;
+}
+
+
+/*点击某个功能时的图标或者鼠标移到某个功能时显示的文字和下划线*/
+
+.menu_lis li .menu_lis_dl:hover,
+.menu_lis li .menu_lis_dl:active {
+	color: #e59eda;
+	border-bottom: 2px solid #e59eda;
+}
+
+
+/*返回首页图标*/
+
+.home_btn {
+	background: url('../../../Image/CN/Index/icon_page.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*语音图标*/
+
+/*.call_btn {
+	background: url('../../../Image/CN/Index/icon_voice_service.png') no-repeat;
+	background-size: 100% 100%;
+}*/
+
+
+/**
+ * 取款业务 
+ */
+
+
+/*分割线*/
+
+.submenu_lis {
+	background: url('../../../Image/CN/Index/home_page_cutting_line.png') no-repeat center bottom;
+	background-size: 100% auto !important;
+}
+
+
+/*“查询”功能的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_query {
+	background: url('../../../Image/CN/Index/icon_inquire_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“查询”时的图标或者鼠标移到“查询”时显示的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_query:hover,
+.submenu_lis li .submenu_lis_dl div.sub_query:active {
+	/*鼠标移上去时或者点击时的图片颜色*/
+	background: url('../../../Image/CN/Index/icon_inquire_check.png') no-repeat center top;
+}
+
+
+/*“取款”功能的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_withdraw {
+	background: url('../../../Image/CN/Index/icon_withdrawal_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“取款”时的图标或者鼠标移到“取款”时显示的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_withdraw:hover,
+.submenu_lis li .submenu_lis_dl div.sub_withdraw:active {
+	/*鼠标移上去时或者点击时的图片颜色*/
+	background: url('../../../Image/CN/Index/icon_withdrawal_check.png') no-repeat center top;
+}
+
+
+/*“存款”功能的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_save {
+	background: url('../../../Image/CN/Index/icon_deposit_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“存款”时的图标或者鼠标移到“存款”时显示的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_save:hover,
+.submenu_lis li .submenu_lis_dl div.sub_save:active {
+	/*鼠标移上去时或者点击时的图片颜色*/
+	background: url('../../../Image/CN/Index/icon_deposit_check.png') no-repeat center top;
+}
+
+
+/*“无卡存款”功能的图标*/
+
+.submenu_lis li .submenu_lis_dl div.no_card_save {
+	background: url('../../../Image/CN/Index/icon_no_card_deposit_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“无卡存款”时的图标或者鼠标移到“无卡存款”时显示的图标*/
+
+.submenu_lis li .submenu_lis_dl div.no_card_save:hover,
+.submenu_lis li .submenu_lis_dl div.no_card_save:active {
+	/*鼠标移上去时或者点击时的图片颜色*/
+	background: url('../../../Image/CN/Index/icon_no_card_deposit_check.png') no-repeat center top;
+}
+
+
+/*“投资理财”功能的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_invest {
+	background: url('../../../Image/CN/Index/icon_other_business_investment_and_financing_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“投资理财”时的图标或者鼠标移到“投资理财”时显示的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_invest:hover,
+.submenu_lis li .submenu_lis_dl div.sub_invest:active {
+	/*鼠标移上去时或者点击时的图片颜色*/
+	background: url('../../../Image/CN/Index/icon_other_business_investment_and_financing_check.png') no-repeat center top;
+}
+
+
+/*“转账”功能的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_trans {
+	background: url('../../../Image/CN/Index/icon_other_business_transfer_accounts_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“转账”时的图标或者鼠标移到“转账”时显示的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_trans:hover,
+.submenu_lis li .submenu_lis_dl div.sub_trans:active {
+	/*鼠标移上去时或者点击时的图片颜色*/
+	background: url('../../../Image/CN/Index/icon_other_business_transfer_accounts_check.png') no-repeat center top;
+}
+
+
+/*“改密”功能的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_changpwd {
+	background: url('../../../Image/CN/Index/icon_change_password2.png') no-repeat center top;
+}
+
+
+/*点击“改密”时的图标或者鼠标移到“改密”时显示的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_changpwd:hover,
+.submenu_lis li .submenu_lis_dl div.sub_changpwd:active {
+	/*鼠标移上去时或者点击是的文字颜色*/
+	background: url('../../../Image/CN/Index/icon_change_password2_check.png') no-repeat center top;
+}
+
+
+/*“信用卡”功能的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_credit {
+	background: url('../../../Image/CN/Change/1_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“信用卡”时的图标或者鼠标移到“信用卡”时显示的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_credit:hover,
+.submenu_lis li .submenu_lis_dl div.sub_credit:active {
+	/*鼠标移上去时或者点击时的图片颜色*/
+	background: url('../../../Image/CN/Change/1.png') no-repeat center top;
+}
+
+
+/*“借记卡”功能的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_debit {
+	background: url('../../../Image/CN/Change/2_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“借记卡”时的图标或者鼠标移到“借记卡”时显示的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_debit:hover,
+.submenu_lis li .submenu_lis_dl div.sub_debit:active {
+	/*鼠标移上去时或者点击时的图片颜色*/
+	background: url('../../../Image/CN/Change/2.png') no-repeat center top;
+}
+
+
+/*“理财卡”功能的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_financing {
+	background: url('../../../Image/CN/Change/3_uncheck.png') no-repeat center top;
+}
+
+
+/*点击“理财卡”时的图标或者鼠标移到“理财卡”时显示的图标*/
+
+.submenu_lis li .submenu_lis_dl div.sub_financing:hover,
+.submenu_lis li .submenu_lis_dl div.sub_financing:active {
+	/*鼠标移上去时或者点击时的图片颜色*/
+	background: url('../../../Image/CN/Change/3.png') no-repeat center top;
+}
+
+
+/*鼠标移上去时或者点击时下划线的颜色*/
+
+.submenu_lis li .submenu_lis_dl:hover,
+.submenu_lis li .submenu_lis_dl:active {
+	color: #e59eda;
+	border-bottom: 2px solid #e59eda;
+}
+
+
+/* ---------动画GIF开始 ---------*/
+
+
+/*插入银行卡页面*/
+
+
+/*“插入银行卡”的动画图*/
+
+.machine_panel.slot {
+	background: url('../../../Image/CN/Animal/insertcard.gif') no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*请取回您的银行卡页面*/
+
+
+/*“取回银行卡”的动画图*/
+
+.machine_panel.card_out {
+	background: url('../../../Image/CN/Animal/takecard.gif') no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*请拿好您的凭条页面*/
+
+.machine_panel.receipt {
+  background: url('../../../Image/CN/Animal/takereceipt.gif') no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*“存入钞票”动画图*/
+
+.machine_panel.cash_in {
+  background: url('../../../Image/CN/Animal/cashin.gif') no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*“取出钞票”动画图*/
+
+.machine_panel.cash_out {
+  background: url('../../../Image/CN/Animal/cashout.gif') no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/* ---------动画GIF结束 ---------*/
+
+
+/*----------------请输入旧密码、输入银行卡交易密码页面开始----------------*/
+
+
+/*输入银行卡交易密码的背景图*/
+
+.machine_panel.password_panel {
+	background: url('../../../Image/CN/Withdraw/bg_edit_password_box_equipment.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*密码输入错误的提示的图标*/
+
+.machine_panel.password_panel .password_panel_tip em {
+	background: url('../../../Image/CN/Withdraw/icon_wrong.png') no-repeat;
+	background-size: auto 100% !important;
+}
+
+/*输入密码的动画*/
+.machine_panel.password_panel .pwd_animal {
+	background: url('../../../Image/CN/Animal/inputpin_1.gif') no-repeat;
+	background-size: 100% 100%;
+}
+
+/*“请稍后”的背景图*/
+
+.waiting_contain .waiting_animate {
+	background: url(../../../Image/CN/Change/loading.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*取款交易完成页面*/
+
+
+/*“打钩”的图标*/
+
+.transaction_result .transaction_title {
+	background: url('../../../Image/CN/Change/ok.png') no-repeat;
+	background-size: auto 100%;
+}
+
+
+/*（无卡存款）请输入您要存入的卡号页面*/
+
+
+/*卡号输入框背景图*/
+
+.input_acount_contain .business_con_acount {
+	background: url('../../../Image/CN/Withdraw/edit_amount_keyboard_uncheck.png') no-repeat;
+	background-size: 100% 100% !important;
+}
+
+
+/*点击“卡号输入框”显示的背景图或者输入移到输入框时显示的背景图*/
+
+.input_acount_contain .business_con_acount:hover,
+.input_acount_contain .business_con_acount:active,
+.input_acount_contain .business_con_acount:focus {
+	background: url('../../../Image/CN/Withdraw/edit_amount_keyboard_check.png') no-repeat;
+}
+
+
+/*底部按钮*/
+
+.button_container .cancel_button {
+	background: url('../../../Image/CN/Withdraw/btn_not_print.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+.button_container .other_button {
+	background: url('../../../Image/CN/Withdraw/btn_print_the_receipt.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+.button_container .enter_button {
+	background: url('../../../Image/CN/Withdraw/btn_print_crown_size.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*确认按钮*/
+
+.button_container_footer .forword_button {
+	background: url('../../../Image/CN/Withdraw/btn_confirm.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*请选择或输入取款金额页面*/
+
+
+/*选择金额的背景图*/
+
+.money_panel .money_panel_lis li div {
+	background: url('../../../Image/CN/Withdraw/btn_choice_uncheck.png') no-repeat;
+  background-size: 100% 100% !important;
+}
+
+
+/*点击“选择金额”时的图标或者鼠标移到“选择金额”时显示的图标*/
+
+.money_panel .money_panel_lis li div:active {
+	background: url('../../../Image/CN/Withdraw/btn_choice_check.png') no-repeat;
+}
+
+
+/*选择金额的毛玻璃效果*/
+
+.money_panel .money_panel_lis li div.forst {
+	position: absolute;
+	-webkit-filter: blur(5px);
+	filter: blur(5px);
+	background: #181c21;
+	opacity: 0.55;
+}
+
+
+/*输入取款金额的输入框背景图*/
+
+.other_amount_countain {
+	background: url('../../../Image/CN/Withdraw/edit_enter_other_amount.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*输入错误的金额出现的错误提示*/
+
+.error_tips {
+	background: url('../../../Image/CN/Withdraw/icon_wrong.png') no-repeat;
+	background-size: auto 100%;
+}
+
+
+/*账户交易详情页面*/
+
+
+/*三个标题下面的下划线*/
+
+.transaction_details_contain .transaction_details_con_head {
+	background: url('../../../Image/CN/Index/home_page_cutting_line.png') no-repeat bottom center;
+	background-size: 100% auto !important;
+}
+
+
+/*选择标题时文字和下划线的颜色*/
+
+.transaction_details_contain .transaction_details_con_head div.traction_current,
+.transaction_details_contain .transaction_details_con_head div:hover {
+	color: #e59eda;
+	border-bottom: 2px solid #e59eda;
+}
+
+
+/*表格标题背景（日期、交易类型、交易金额、金额），background: rgba()表示背景颜色透明*/
+
+.transaction_details_contain .transaction_details_con_body .transac_detail_th {
+	color: #c2c2c3;
+	background: rgba(151, 153, 153, 0.2);
+}
+
+
+/*表格内容“单数行”背景*/
+
+.transaction_details_contain .transaction_details_con_body .transac_detail_tr {
+	background: rgba(239, 243, 244, 0.03);
+}
+
+
+/*表格内容“单数行”背景*/
+
+.transaction_details_contain .transaction_details_con_body .transac_detail_tr table tr {
+	background: rgba(79, 85, 87, 0.03);
+}
+
+
+/*表格内容“双数行”背景颜色*/
+
+.transaction_details_contain .transaction_details_con_body .transac_detail_tr table tr:nth-child(2n) {
+	background: rgba(239, 243, 244, 0.08);
+}
+
+
+/*表格内容“双数行”背景颜色*/
+
+.transaction_details_contain .transaction_details_con_body .transac_detail_tr:nth-child(2n) {
+	background: rgba(239, 243, 244, 0.08);
+}
+
+
+/*滚动条颜色*/
+
+
+/*参数的区别，只是适用的浏览器不同，值都一样。linear 表示线性，参数top表示垂直方向，参数red表示颜色*/
+
+.swiper-scrollbar div {
+	background: -moz-linear-gradient(top, #e59eda 0%, #e59eda 100%);
+	/*适用于火狐浏览器3.6+：线性渐变（linear-gradient）*/
+	background: -webkit-linear-gradient(#e59eda, red 0%, #e59eda 100%);
+	/*适用于Safari 5.1+, Chrome 10+浏览器：线性渐变（linear-gradient）*/
+	background: -o-linear-gradient(top, #e59eda 0%, #e59eda 100%);
+	/*适用于Opera 11.10+浏览器：线性渐变（linear-gradient）*/
+	background: -ms-linear-gradient(top, #e59eda 0%, #e59eda 100%);
+	/*适用于IE9 and IE 10浏览器：线性渐变（linear-gradient）*/
+	background: linear-gradient(to bottom, #e59eda 0%, #e59eda 100%);
+	/*适用于其它浏览器：线性渐变（linear-gradient）*/
+}
+
+
+/*历史交易的弹层——滚动时间的框框*/
+
+.date_select_container .date_select_group .date_select_group_con {
+	background: url('../../../Image/CN/Withdraw/bar_transaction_details_start_end_time.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/**
+ * 开卡业务    
+ * 时间：2016年8月17日14:31:51
+ */
+
+
+/*导航条（也是步骤）*/
+
+
+/*未完成的步骤背景图*/
+
+.card_container .card_container_title ul li em {
+	background: url('../../../Image/CN/Card/icon_input_information_not_carried.png') no-repeat center;
+	background-size: 100% 100% !important;
+}
+
+
+/*进度条图标*/
+
+.card_container_title ul li span {
+	background: url('../../../Image/CN/Card/icon_input_information_progress_line.png') no-repeat center center;
+	background-size: 100% auto !important;
+}
+
+
+/*完成的步骤*/
+
+.card_container_title ul li.step_finish em {
+	background: url('../../../Image/CN/Card/icon_input_information_success.png') no-repeat;
+}
+
+
+/*当前的步骤*/
+
+.card_container .card_container_title ul li.step_current em {
+	background: url('../../../Image/CN/Card/icon_input_information_underway.png') no-repeat;
+}
+
+
+/*录入信息*/
+
+
+/*选择下拉框的向下图标*/
+
+.card_input_container .card_input_container_group .card_input_con .card_input_con_group .card_input_con_group_select {
+	background: url('../../../Image/CN/Card/icon_input_information_down.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*不能编辑的输入框边框背景图*/
+
+.card_input_container .card_input_container_group .card_input_con .card_input_con_group.disabled_input {
+	background: url('../../../Image/CN/Card/edit_Input_information_can_not_edit.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+/*错误提示的图标背景图*/
+.error_msg_tips {
+  background: url('../../../Image/CN/Withdraw/icon_wrong.png') no-repeat;
+  background-size: auto 100% !important;
+}
+
+/*证件扫描*/
+/*拍照的边框背景图*/
+.card_scan_container .camera_area {
+  background: url('../../../Image/CN/Card/icon_camera.png') no-repeat;
+  background-size: 100% 100% !important;
+}
+
+/*没有任何拍照照片的背景图*/
+.card_scan_container .photo_scan_area_list .photo_show {
+  background: url('../../../Image/CN/Card/icon_photo_identification.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+/*点击图片预览——预览图片层的背景图*/
+.img_preview {
+  background: url('../../../Image/CN/Index/bg.png') no-repeat;
+  background-size: 100% 100% !important;
+}
+
+/*关闭预览图片的层*/
+.img_preview .close_img_preview {
+  background: url('../../../Image/CN/Card/icon_sign_out.png') no-repeat;
+  background-size: 100% 100% !important;
+ }
+ 
+ /*上一页"<"背景图*/
+ .img_preview .page_switch div.prev_img {
+  background: url('../../../Image/CN/Card/icon_left.png') no-repeat right top;
+  background-size: 63px 64px;
+}
+
+ /*下一页"<"背景图*/
+.img_preview .page_switch div.next_img {
+  background: url('../../../Image/CN/Card/icon_right.png') no-repeat left top;
+  background-size: 63px 64px;
+}
+
+/*放大图片的图标*/
+.img_preview .preview_menu div.enlarge {
+  background: url('../../../Image/CN/Card/icon_plus.png') no-repeat;
+}
+
+/*缩小图片的图标*/
+.img_preview .preview_menu div.narrow {
+  background: url('../../../Image/CN/Card/icon_minus_sign.png') no-repeat;
+}
+
+/*左旋转的图标*/
+.img_preview .preview_menu div.rotate_left {
+  background: url('../../../Image/CN/Card/icon_left_rotation.png') no-repeat;
+}
+
+/*右旋转的图标*/
+.img_preview .preview_menu div.rotate_right {
+  background: url('../../../Image/CN/Card/icon_right-rotation.png') no-repeat;
+}
+
+/*插入身份证页面*/
+
+/*“插入身份证"的背景图*/
+
+.machine_panel.identify {
+	background: url(../../../Image/CN/Animal/insertidcard.gif) no-repeat;
+	background-size: 100% 100%;
+}
+
+/*取回身份证页面*/
+
+/*请取回您的身份证*/
+
+.machine_panel.takeidentification {
+	background: url(../../../Image/CN/Animal/takeidcard.gif) no-repeat;
+	background-size: 100% 100%;
+}
+
+/*客服人员将采集您的面部信息，请抬头正视屏幕上方摄像头页面*/
+
+
+/*“采集您的面部信息"的背景图*/
+
+.machine_panel.facial {
+	background: url(../../../Image/CN/Card/icon_photo_archive.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*请将头像置于框内，并停留5秒页面*/
+
+
+/*“照相框"的背景图*/
+
+.photo_scanning {
+	background: url(../../../Image/CN/Card/bg_photo_scanning.png) no-repeat center center;
+	background-size: 1920px 1080px;
+}
+
+
+/*身份验证成功页面*/
+
+
+/*“身份验证成功"的图标*/
+
+.authentication_title {
+	background: url(../../../Image/CN/Change/ok.png) no-repeat;
+	background-size: auto 100%;
+}
+
+
+/*身份验证失败页面*/
+
+
+/*“身份验证失败"的图标*/
+
+.authenticationFiled_title {
+	background: url(../../../Image/CN/Card/icon_fail.png) no-repeat;
+	background-size: auto 100%;
+}
+
+
+/*请取回您的表单，并在签名处签名页面*/
+
+
+/*“签名表单"的背景图*/
+
+.machine_panel.signature {
+	background: url(../../../Image/CN/Animal/printform_F.gif) no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*请把表单放入表单扫描口页面*/
+
+
+/*“表单扫描口”的背景图*/
+
+.machine_panel.signatureScan {
+	background: url(../../../Image/CN/Animal/back_scan.gif) no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*审核通过，请把打印表单放入回收口中页面*/
+
+
+/*“打印表单的背景图*/
+
+.machine_panel.recycleform {
+	background: url(../../../Image/CN/Animal/retractform.gif) no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*放入钞票页面*/
+
+
+/*“放入钞票”的背景图*/
+
+.put_in_money_container .machine_panel.bank_note {
+	background: url(../../../Image/CN/Animal/cashin.gif) no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*点钞结果页面*/
+
+
+/*“点钞结果”的图标*/
+
+.transaction_result_title {
+	background: url(../../../Image/CN/Change/icon_ok.png) no-repeat;
+	background-size: auto 100%;
+}
+
+
+/*开卡业务——设置密码页面开始、请输入旧密码和新密码页面*/
+
+
+/*毛玻璃效果*/
+
+.frosted-glass {
+	position: absolute;
+	background: none;
+	-webkit-filter: blur(3px);
+	filter: blur(3px);
+	filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false);
+	/*IE6~9版本*/
+	opacity: 0.55;
+}
+
+
+/*“设置密码”左边的背景图*/
+
+.set_password_left {
+	background: url(../../../Image/CN/Animal/inputpin.gif) no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*“设置密码”右边输入框的背景图*/
+
+.set_pwd {
+	background: url(../../../Image/CN/Card/edit_set_password_frame_uncheck.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*鼠标移到“设置密码”右边输入框时的背景图*/
+
+.set_pwd.pwd_hover:hover,
+.set_pwd.pwd_hover:active {
+	background: url(../../../Image/CN/Card/edit_smal_scale_password_box_checkpng.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*“密码输入错误”的警告错误图标*/
+
+.notmatch_tip span {
+	background: url(../../../Image/CN/Withdraw/icon_wrong.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+
+/*生成账户页面*/
+
+
+/*“生成账户”的图标*/
+
+.generateaccount_title {
+	background: url(../../../Image/CN/Card/icon_generate_account.png) no-repeat;
+	background-size: auto 100%;
+}
+
+
+/*开卡业务——设置密码页面结束*/
+
+
+/*错误提示功能公用页面*/
+
+
+/*“错误”的图标*/
+
+.error_title {
+	background: url(../../../Image/CN/Change/error.jpg) no-repeat;
+	background-size: auto 100%;
+}
+
+
+/*网络故障，交易取消页面*/
+
+
+/*“网络故障”的图标*/
+
+.error_title.networkfault_title {
+	background: url(../../../Image/CN/Change/networkerror.png) no-repeat;
+	background-size: auto 100%;
+}
+
+
+/*对不起,交易超时页面*/
+
+
+/*“超时”的图标*/
+
+.error_title.timeout_title {
+	background: url(../../../Image/CN/ErrorPrompt/timeout.png) no-repeat;
+	background-size: auto 100%;
+}
+
+
+/*谢谢使用，再见页面*/
+
+
+/*“谢谢”的图标*/
+
+.error_title.thanks_title {
+	background: url(../../../Image/CN/ErrorPrompt/icon_thank_using.png) no-repeat;
+	background-size: auto 100%;
+}
+
+
+/*交易成功页面*/
+
+
+/*“成功”的图标*/
+
+.success_title {
+	background: url(../../../Image/CN/Change/ok.png) no-repeat;
+	background-size: auto 100%;
+}
+
+
+/*是否确认退出当前业务页面*/
+
+
+/*“退出”的图标*/
+
+.error_title.exitbusiness_title {
+	background: url(../../../Image/CN/ErrorPrompt/icon_current_business_back.png) no-repeat;
+	background-size: auto 100%;
+}
+
+/*点钞结果页面最新UI钞票的背景图*/
+.moneytype_row .money {
+	background: url(../../../Image/CN/Withdraw/btn_choice_uncheck.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*背景图更换--结束*/
+
+
+/*640*480*/
+
+@media only screen and (max-width: 640px) {
+	html {
+		font-size: 6px;
+	}
+	/*请将头像置于框内，并停留5秒开始拍照*/
+	.black_bg_title {
+		line-height: 40px;
+	}
+	.photo_scanning {
+		background-size: 633px 335px
+	}
+}
+
+
+/*800*600*/
+
+@media only screen and (min-width: 641px) and (max-width: 800px) {
+	html {
+		font-size: 8px;
+	}
+	/*请将头像置于框内，并停留5秒开始拍照*/
+	.black_bg_title {
+		line-height: 65px;
+	}
+	.photo_scanning {
+		background-size: 797px 430px;
+	}
+}
+
+
+/*1024*768*/
+
+@media only screen and (min-width: 801px) and (max-width: 1024px) {
+	html {
+		font-size: 10px;
+	}
+	/*请将头像置于框内，并停留5秒开始拍照*/
+	.black_bg_title {
+		line-height: 135px;
+	}
+	.photo_scanning {
+		background-size: 1019px 540px;
+	}
+}
+
+
+/*1280*1024*/
+
+@media only screen and (min-width: 1025px) and (max-width: 1281px) {
+	html {
+		font-size: 12px;
+	}
+	/*请将头像置于框内，并停留5秒开始拍照*/
+	.black_bg_title {
+		line-height: 230px;
+	}
+	/*.shade_video img {
+		width: 100%;
+		height: 695px;
+	}*/
+	.photo_scanning {
+		background-size: 1200px 640px;
+	}
+}
+
+
+/*1366*768*/
+
+@media only screen and (min-width: 1282px) and (max-width: 1366px) {
+	html {
+		font-size: 14px;
+	}
+	/*请将头像置于框内，并停留5秒开始拍照*/
+	.photo_scanning {
+		background-size: 1365px 770px;
+	}
+}
+
+
+/*1440*900*/
+
+@media only screen and (min-width: 1367px) and (max-width: 1440px) {
+	html {
+		font-size: 16px;
+	}
+	/*请将头像置于框内，并停留5秒开始拍照*/
+	.photo_scanning {
+		/*width: 1439px;
+    	height: 900px;*/
+		background-size: 1555px 900px;
+	}
+}
+
+
+/*1680*1050*/
+
+@media only screen and (min-width: 1441px) and (max-width: 1680px) {
+	html {
+		font-size: 18px;
+	}
+	/*.photo_scanning{
+		width: 1683px;
+    	height: 1048px;
+	}*/
+}
+
+@media only screen and (min-width: 1681px) and (max-width: 1920px) {
+	html {
+		font-size: 20px;
+	}
+}

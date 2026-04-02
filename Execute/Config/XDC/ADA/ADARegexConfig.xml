@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Comments are shown as below
+  ****************************************************************************************************
+  ** Author: RayMond Lau (2013/09/13)
+  **
+  *** < Audio > : ADA play node, audioID: refers to the ADA script (*.xml file) corresponding to the screen
+  ** Regex: regular expressions, each of which corresponds to a calculation formula for a variable, such as "Audio audioID =" 074 "> is the calculation formula of three variables, fill in each fill begin fill end in order
+  ** data source: print data (credential or flow data) of the host, and the variable oreplydata.m_listprintdata in the code  
+  ** Author: RayMond Lau (2013/09/13)
+  **
+  ** <Audio>：ADA播放节点，audioID:指应的ADA脚本(*.xml文件)，与屏幕一一对应
+  ** Regex: 正则表达式，每一项对应一个变量的计算公式，如<Audio audioID="074">下面就是三个变量的计算公式，
+  **        按顺序把值填入每个fill begin  fill end
+  ** 数据来源是：主机下发的print数据(凭条或流水数据)，代码中变量oReplyData.m_listPrintData
+  *****************************************************************************************************
+-->
+<Root>
+<!-- comments by wglin.
+     the value of audioID indicates the voice script file. 
+     for example, '074' indicates 074.xml.
+-->
+	<Audio audioID="074">
+<!-- comments by wglin
+     the regular pattern is used to match the print data which is downloaded to the terminal. 
+     the print data is stored in the memory.
+     for example, the first pattern is used to find the account number in the message which is downloaded to the terminal.
+-->
+		<Regex Pattern="ACCOUNT NUMBER\s*\:\s*(\d+\s*)"/>
+		<Regex Pattern="AVAILABLE\s*\:\s*(\d+\.\d+\s*CNY)"/>
+		<Regex Pattern="AVAILABLE\s*\:\s*(\d+\.\d+\s*CNY)"/>
+	</Audio>
+	
+<!--
+     这里设置动态金额显示屏幕的wav金额语音播放配置，Screen节点中的screenID代表在显示哪个根屏幕号的时候会有动态金额需要通过组装wav进行播放，其中子节点可以配置5种：
+	1、AudioFile(wav音频文件)子节点
+		audioFileName：需要播放的wav文件的文件名；
+			该节点语音文件查找路径如下：
+				1、先找 Resource\XDC\Voice\ADA\Local\000\
+				2、后找 Resource\XDC\Voice\ADA\Host\000\
+		
+	2、DynamicNumber(屏幕脚本中主机下发的动态数字(例如金额)，按照带有数字单位的方式进行播放)子节点
+		sourceScreenID：动态数字(例如金额)数据来源屏幕号；
+		regexPattern：用来从数据来源屏幕号中提取出动态数字(例如金额)字符串的正则表达式匹配模式串。
+			该节点语音文件查找路径如下：
+				Resource\XDC\Voice\Common\000\，其中 000 为语言基数，若有多种语言，需要创建名字为对应的语言基数的文件夹，并保持文件夹内的数字语音文件名称相同，如 0 的语音就都需要为 0.wav
+		
+	3、DepositDetailTemplate(存款详细)子节点（作为模板声明使用）：
+		sourceScreenID：存款金额数据来源屏幕号；
+			AudioFile(wav音频文件)子节点
+				audioFileName：需要播放的wav文件的文件名；
+					该节点语音文件查找路径如下：
+						1、先找 Resource\XDC\Voice\ADA\Local\000\
+						2、后找 Resource\XDC\Voice\ADA\Host\000\
+			Denomination(面额)子节点
+				（CNY|100:7;CNY|50:6; 中的100和50）；
+					该节点语音文件查找路径如下：
+						Resource\XDC\Voice\Common\000\，其中 000 为语言基数，若有多种语言，需要创建名字为对应的语言基数的文件夹，并保持文件夹内的数字语音文件名称相同，如 0 的语音就都需要为 0.wav
+			Numbers(张数)子节点
+				（CNY|100:7;CNY|50:6; 中的7和6）；
+					该节点语音文件查找路径如下：
+						Resource\XDC\Voice\Common\000\，其中 000 为语言基数，若有多种语言，需要创建名字为对应的语言基数的文件夹，并保持文件夹内的数字语音文件名称相同，如 0 的语音就都需要为 0.wav
+	4、DepositTotalAmount(存款总金额)子节点
+		sourceScreenID：存款金额数据来源屏幕号；
+		（CNY|100:7;CNY|50:6; 中通过计算获得的1000 (100*7)+(50*6)=1000）。
+			该节点语音文件查找路径如下：
+				Resource\XDC\Voice\Common\000\，其中 000 为语言基数，若有多种语言，需要创建名字为对应的语言基数的文件夹，并保持文件夹内的数字语音文件名称相同，如 0 的语音就都需要为 0.wav
+		
+	5、DynamicNumberSpeakOneByOne(屏幕脚本中主机下发的动态数字(例如卡号)，按照一个一个数字的方式进行播放)子节点
+		sourceScreenID：动态数字(例如卡号)数据来源屏幕号；
+		regexPattern：用来从数据来源屏幕号中提取出动态数字(例如卡号)字符串的正则表达式匹配模式串。
+			该节点语音文件查找路径如下：
+				Resource\XDC\Voice\Common\000\，其中 000 为语言基数，若有多种语言，需要创建名字为对应的语言基数的文件夹，并保持文件夹内的数字语音文件名称相同，如 0 的语音就都需要为 0.wav
+-->
+	<DynamicScreenAudio>
+		<!-- <Screen screenID="269"> -->
+			<!-- <DynamicNumber sourceScreenID="026" regexPattern="\$\s+(\d+\.\d{2})"/> -->
+		<!-- </Screen> -->
+		<!-- <Screen screenID="302"> -->
+			<!-- <DepositDetailTemplate sourceScreenID="DEP"> -->
+				<!-- <AudioFile  audioFileName="amount.wav"/> -->
+				<!-- <Denomination /> -->
+				<!-- <AudioFile  audioFileName="USD.wav"/> -->
+				<!-- <AudioFile  audioFileName="pause_100ms.wav"/> -->
+				<!-- <AudioFile  audioFileName="has.wav"/> -->
+				<!-- <Numbers /> -->
+				<!-- <AudioFile  audioFileName="pause_200ms.wav"/> -->
+			<!-- </DepositDetailTemplate> -->
+			<!-- <AudioFile  audioFileName="total_amount.wav"/> -->
+			<!-- <AudioFile  audioFileName="is.wav"/> -->
+			<!-- <AudioFile  audioFileName="pause_100ms.wav"/> -->
+			<!-- <DepositTotalAmount sourceScreenID="DEP"/> -->
+			<!-- <AudioFile  audioFileName="USD.wav"/> -->
+		<!-- </Screen> -->
+	</DynamicScreenAudio>
+	
+	<!-- <Text content="&lt;break strength='medium'/&gt;"/> -->
+	<!-- <Text content="&lt;silence msec='500'/&gt;"/> -->
+	
+<!--
+    这里配置屏幕号对应的 ADA TXT 文本拼接后播放配置，Screen节点中的screenID代表在显示哪个根屏幕号的时候会根据这里的设置进行 ADA TXT 文本的拼接播放，其中子节点可以配置5种：
+		1、Text(静态文本)子节点
+			content：需要播放的静态文本内容。可以是符合微软 SSML 格式标准的内容，如【&lt;silence msec='500'/&gt;】是【停顿500毫秒】的作用，其中【&lt;】和【&gt;】是小于号和大于号的转义符，请注意特殊字符的转义；
+
+		2、DynamicNumber(屏幕脚本中主机下发的动态数字(例如金额)，按照带有数字单位的方式进行播放)子节点
+			sourceScreenID：动态数字(例如金额)数据来源屏幕号；
+			regexPattern：用来从数据来源屏幕号中提取出动态数字(例如金额)字符串的正则表达式匹配模式串。
+
+		3、DynamicNumberSpeakOneByOne(屏幕脚本中主机下发的动态数字(例如卡号)，按照一个一个数字的方式进行播放)子节点
+			sourceScreenID：动态数字(例如卡号)数据来源屏幕号；
+			regexPattern：用来从数据来源屏幕号中提取出动态数字(例如卡号)字符串的正则表达式匹配模式串。
+
+		4、DepositDetailTemplate(存款详细)子节点（作为模板声明使用）：
+			sourceScreenID：存款金额数据来源屏幕号；
+				Text(静态文本)子节点
+					content：需要播放的静态文本内容；
+				Denomination(面额)子节点
+					（CNY|100:7;CNY|50:6; 中的50和100，会按照面额从小到大排序后的对应顺序输出）；
+				Numbers(张数)子节点
+					（CNY|100:7;CNY|50:6; 中的6和7，会按照面额从小到大排序后的对应顺序输出）；
+
+		5、DepositTotalAmount(存款总金额)子节点
+			sourceScreenID：存款金额数据来源屏幕号；
+			（CNY|100:7;CNY|50:6; 中通过计算获得的1000： (100*7)+(50*6)=1000）。
+
+	这里播放使用的是 Windows 系统自带的语音合成引擎。
+-->
+
+	<DynamicScreenTxt>
+		<!-- <Screen screenID="074" languageBase="000"> -->
+			<!-- <Text content="ACCOUNT BALANCE:"/> -->
+			<!-- <DynamicNumber sourceScreenID="075" regexPattern="JM(\d+\.\d{2})"/> -->
+			<!-- <Text content="CNY"/> -->
+			<!-- <Text content="&lt;silence msec='500'/&gt;"/> -->
+			<!-- <Text content="CASH AVAILABLE:"/> -->
+			<!-- <DynamicNumber sourceScreenID="075" regexPattern="FM(\d+\.\d{2})"/> -->
+			<!-- <Text content="CNY"/> -->
+			<!-- <Text content="&lt;silence msec='500'/&gt;"/> -->
+			<!-- <Text content="WOULD YOU LIKE MORE TRANSACTION. PRESS 1 FOR YES, PRESS 2 FOR NO"/> -->
+		<!-- </Screen> -->
+		<!-- <Screen screenID="366" languageBase="000"> -->
+			<!-- <Text content="Cash in detail:"/> -->
+			<!-- <Text content="&lt;break strength='weak'/&gt;"/> -->
+			<!-- <DepositDetailTemplate sourceScreenID="DEP"> -->
+				<!-- <Denomination /> -->
+				<!-- <Text content="CNY"/> -->
+				<!-- <Text content="has"/> -->
+				<!-- <Numbers /> -->
+				<!-- <Text content="&lt;silence msec='500'/&gt;"/> -->
+			<!-- </DepositDetailTemplate> -->
+			<!-- <Text content="Total amount is"/> -->
+			<!-- <DepositTotalAmount sourceScreenID="DEP"/> -->
+			<!-- <Text content="CNY"/> -->
+		<!-- </Screen> -->
+	</DynamicScreenTxt>
+	
+	
+	<!-- <DynamicScreenTxtSsmlEngine> -->
+		<!-- <Engine languageBase="000" xmlLang="en-US" voiceName="AriaNeural" /> -->
+	<!-- </DynamicScreenTxtSsmlEngine> -->
+
+<!--
+     这里设置动态金额语音播放需要的数目语音模板，最大支持11位数字（带两位小数点）：
+	 NumbersAudio节点属性 
+		- inputAmountPlayByWav：是否需要使用wav拼接播放的方式播放输入金额的语音；
+			该属性语音文件查找路径如下：
+				Resource\XDC\Voice\Common\000\，其中 000 为语言基数，若有多种语言，需要创建名字为对应的语言基数的文件夹，并保持文件夹内的数字语音文件名称相同，如 0 的语音就都需要为 0.wav
+		- hStateInputNumberPlayOneByOneWithWav：是否需要启用“H状态输入数字逐个播放本地Wav数字音频”功能
+			该属性语音文件查找路径如下：
+				Resource\XDC\Voice\Common\000\，其中 000 为语言基数，若有多种语言，需要创建名字为对应的语言基数的文件夹，并保持文件夹内的数字语音文件名称相同，如 0 的语音就都需要为 0.wav
+	 1、Item子节点
+			name：（非必要情况下不要改动！！！）数目语音模板关键字，“百”使用“100”，“千”使用“1000”，以此类推；
+			audioFileName：数目语音模板文件名，会根据语言基数到 Resource\XDC\Voice\Common\ 下不同的语言基数目录下面寻找，请保证每个语言基数目录下面对应数字的语音文件名均和下面设置的保持一致。
+			
+			注：如果不需要动态金额语音中出现 And，可以将下面 NumbersAudio 中 And 的 Item 配置行注释或删除即可。
+-->
+	<NumbersAudio inputAmountPlayByWav="0" hStateInputNumberPlayOneByOneWithWav="0">
+		<Item name="0" audioFileName="0.wav"/>
+		<Item name="1" audioFileName="1.wav"/>
+		<Item name="2" audioFileName="2.wav"/>
+		<Item name="3" audioFileName="3.wav"/>
+		<Item name="4" audioFileName="4.wav"/>
+		<Item name="5" audioFileName="5.wav"/>
+		<Item name="6" audioFileName="6.wav"/>
+		<Item name="7" audioFileName="7.wav"/>
+		<Item name="8" audioFileName="8.wav"/>
+		<Item name="9" audioFileName="9.wav"/>
+		<Item name="10" audioFileName="10.wav"/>
+		<Item name="11" audioFileName="11.wav"/>
+		<Item name="12" audioFileName="12.wav"/>
+		<Item name="13" audioFileName="13.wav"/>
+		<Item name="14" audioFileName="14.wav"/>
+		<Item name="15" audioFileName="15.wav"/>
+		<Item name="16" audioFileName="16.wav"/>
+		<Item name="17" audioFileName="17.wav"/>
+		<Item name="18" audioFileName="18.wav"/>
+		<Item name="19" audioFileName="19.wav"/>
+		<Item name="20" audioFileName="20.wav"/>
+		<Item name="30" audioFileName="30.wav"/>
+		<Item name="40" audioFileName="40.wav"/>
+		<Item name="50" audioFileName="50.wav"/>
+		<Item name="60" audioFileName="60.wav"/>
+		<Item name="70" audioFileName="70.wav"/>
+		<Item name="80" audioFileName="80.wav"/>
+		<Item name="90" audioFileName="90.wav"/>
+		<Item name="100" audioFileName="100.wav"/>
+		<Item name="1000" audioFileName="1000.wav"/>
+		<Item name="1000000" audioFileName="1000000.wav"/>
+		<Item name="1000000000" audioFileName="1000000000.wav"/>
+		<Item name="Point" audioFileName="point.wav"/>
+		<Item name="And" audioFileName="and.wav"/>
+		<Item name="Minus" audioFileName="minus.wav"/>
+	</NumbersAudio>
+
+</Root>

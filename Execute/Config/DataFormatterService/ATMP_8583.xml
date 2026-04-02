@@ -1,0 +1,1073 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--             
+标记TransactionFieldConfig包含了报文接口定义的所有的域，域所包含的字段说明如下所示：
+Description 			参考《银行卡联网联合技术规范V2.0 第2部分 报文接口规范.pdf》
+    
+对于指定的交易，如INQ查询交易，需要用到的域，罗列在<INQ>之下，表示INQ交易只使用这些域，其XML结构跟TransactionFieldConfig的一样。
+如果在指定交易下，其中的某些域的字段有别于TransactionFieldConfig的定义，可以在指定的交易下，额外列出差异的标识和属性
+如果没有额外列出，认为此域的字段跟TransactionFieldConfig的定义一致，没有特殊化。
+
+
+    // 域结构说明
+    public struct tISO8583FileldConfig
+    {
+        // FieldCheckData 的取值为：
+        // 空或不存在时，表示“打包时此域的数据FieldData”与“解包时此域的数据FieldHostData”进行校验
+        // 其它情况，表示“解包时此域的数据FieldHostData”与“FieldCheckData配置的数据”进行校验	
+        public string FieldCheckData;
+
+        // 此域的默认数据，如果KV中存在则使用KV的数据，否则使用默认数据
+        public string FieldDefaultData;
+
+        // 此域的关键字，如果在KV中存在，则会使用KV的数据代替域的默认数据
+        public string FieldName;           
+      
+        // 此域的长度，可以是VAR（表示变长数据，在FeelView中常用），
+        // 可以是某个数字（如12，表示长度只能是12，在VarFieldLenType为FIXED下，会执行长度检查）
+        // 单位为字节
+        public int FieldDataLen;
+
+        // 此域是否可选，如果是，则KV中不存在的话打包时此域会被忽略
+        // 如果否，则KV中不存在会报错
+        // 默认为否
+        public BooleanType FieldIsOptional;
+
+        // 此域的编码方式（BCD或ASCII）
+        public ValueCoding FieldDataCoding;
+
+        // 响应报文解包后的数据保存在此域中
+        public string FieldHostData;
+
+        // 域ID，在交易打包中经常使用。
+        // “BitID是-1，-2等负数的域，与主位图或者扩展位图没有关系，不会在位图上有所体现”
+        public int FieldID;
+
+        // 域数据的长度的类型（FIXED或VAR_LL或VAR_LLL）
+        public LengthStyle VarFieldLenType;
+
+        // 域数据的长度的编码方式（BCD或ASCII）
+        public ValueCoding VarFieldLenCoding;
+
+        // 左填充字符，如果传入的数据的长度少于配置的长度FieldDataLen，则左填充此字符
+        public string LeftPadding;
+
+        // 右填充字符，如果传入的数据的长度少于配置的长度FieldDataLen，则右填充此字符
+        public string RightPadding;
+
+        // 左删除字符，如果LeftTrim配置有值，则执行左删除
+        public string LeftTrim;
+
+        // 右删除字符，如果RightTrim配置有值，则执行右删除
+        public string RightTrim;
+
+        // 取子串配置，如"0,20"，表示取最前面的20个字符
+        public string SubString;                
+
+        // CheckIsMandatory 的取值为：
+        // true时，表示此域必须存在 ，并且需要校验
+        // false时，表示此域存在则校验，不存在就不校验
+        // no_check时，表示此域不校验
+        // 子域不配置此项时，以总域的配置为准，如果总域也没配置此项表示此域不校验 
+        public BooleanType CheckIsMandatory;
+
+        // CheckMode 的取值为：
+        // int时，表示按数值的方式校验
+        // string时，表示按字符串的方式校验
+        // 不存在或其它情况时， 表示按字符串的方式校验
+        public string CheckMode;
+
+        CanUnpackPartly="1"
+        // 部分解包（一般适用于定长报文）
+        // 如果配置为1，表示允许部分解包，并在部分解包下可以返回解包成功（就算可能后面的域因为没有数据而返回空，只解出了前面部分的域）
+        // 如果配置为0，表示不允许部分解包，只能全部域都解出来才会返回成功
+        public bool m_isCanUnpackPartly = false;
+    }
+    
+    注意：FieldName是一个关键字，不能重复！至少在一个交易和相关联的MAC交易中，一定不能重复。
+    
+  在TransactionFieldConfig增加MaskFieldName="F_PAN|F_BITMAP" 可以在日志中屏蔽指定的域
+-->
+<Packages>
+	<TransactionFieldConfig HeadLength="4" HeadLengthCoding="BCD" BitmapFieldID="1" MaskFieldName="F_PAN|F_POSENTRYMODE|F_POSCONDITIONCODE|F_POSPINCAPTURECODE|F_ACCOUNTNAME|F_SECURITYCONTROLINFO|F_ADDITIONDATA|F_ACCOUNTID1|F_ACCOUNTID2">
+		<HeaderFields>
+		</HeaderFields>
+		<BitmapFields>
+			<Field BitID="-1" Description="报文头部">
+				<Data FieldName="F_HEADER" FieldDefaultData="0110000000" FieldDataLen="10" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="0" Description="信息类型标识">
+				<Data FieldName="F_INFOTYPE" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="1" Description="位图（主位图、扩展位图）">
+				<Data FieldName="F_BITMAP" FieldDataLen="16" FieldDataCoding="BCD" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="BCD"/>
+			</Field>
+			<Field BitID="2" Description="主账号">
+				<Data FieldName="F_PAN" FieldBinding="core_PAN" FieldDataLen="19" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="VAR_LL" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="3" Description="交易处理码">
+				<Data FieldName="F_PROCESSCODE" FieldDataLen="6" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag CheckIsMandatory="false"/>
+			</Field>
+			<Field BitID="4" Description="交易金额">
+				<Data FieldName="F_AMOUNT" FieldBinding="core_TransAmountMultiply100" FieldDefaultData="0" FieldDataLen="12" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<DataPadding LeftPadding="0"/>
+				<Flag CheckIsMandatory="true" CheckMode="int"/>
+			</Field>
+			<Field BitID="5" Description="清算金额">
+				<Data FieldName="F_SETTLEMENT_AMOUNT" FieldDefaultData="000000000000" FieldDataLen="12" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="7" Description="交易传输时间">
+				<Data FieldName="F_TIME_MMddHHmmss" FieldBinding="core_TransTimeMMddHHmmss" FieldDataLen="10" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="9" Description="清算汇率，如71212345，表示汇率为0.1212345">
+				<Data FieldName="F_CONVERSION_RATE" FieldDataLen="8" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="10" Description="持卡人扣帐汇率，如71212345，表示汇率为0.1212345">
+				<Data FieldName="F_CARD_CONVERSION_RATE" FieldDataLen="8" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="11" Description="系统跟踪号">
+				<Data FieldName="F_SERIALNUM" FieldBinding="core_SerialNumber" FieldDataLen="6" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<DataPadding LeftPadding="0"/>
+				<Flag CheckIsMandatory="true" CheckMode="int"/>
+			</Field>
+			<Field BitID="12" Description="受卡方所在地时间">
+				<Data FieldName="F_TIME_HHmmss" FieldBinding="core_TransTimeHHmmss" FieldDataLen="6" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="13" Description="受卡方所在地日期">
+				<Data FieldName="F_TIME_MMdd" FieldBinding="core_TransTimeMMdd" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="14" Description="卡有效期">
+				<Data FieldName="F_VALIDDATE" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="15" Description="清算日期">
+				<Data FieldName="F_SETTLEMENT_DATE"  FieldBinding="core_TransTimeMMdd" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="16" Description="兑换日期">
+				<Data FieldName="F_CONVERSION_DATE" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="18" Description="商户类型">
+				<Data FieldName="F_MERCHANTTYPE" FieldDefaultData="6011" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="22" Description="服务点输入方式码">
+				<Data FieldName="F_POSENTRYMODE" FieldBinding="core_POSEntryMode" FieldDataLen="3" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="23" Description="IC卡序列号">
+				<Data FieldName="F_ICSEQUENCENUMBER" FieldBinding="core_ICSequenceNumber" FieldDataLen="3" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="25" Description="服务条件码">
+				<Data FieldName="F_POSCONDITIONCODE" FieldBinding="core_POSConditionCode" FieldDataLen="2" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="26" Description="服务点PIN 获取码">
+				<Data FieldName="F_POSPINCAPTURECODE" FieldDefaultData="12" FieldDataLen="2" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="28" Description="交易费">
+				<Data FieldName="F_FEE" FieldDataLen="9" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="32" Description="受理机构标识码">
+				<Data FieldName="F_ORGID" FieldDataLen="11" FieldBinding="core_BranchNumber" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="VAR_LL" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="33" Description="发送机构标识码">
+				<Data FieldName="F_SENDORGID" FieldDataLen="11" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="VAR_LL" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="35" Description="第二磁道数据">
+				<Data FieldName="F_TRACK2" FieldBinding="core_Track2" FieldDataLen="37" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="VAR_LL" VarFieldLenCoding="ASCII"/>
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="36" Description="第三磁道数据">
+				<Data FieldName="F_TRACK3" FieldBinding="core_Track3" FieldDataLen="104" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="VAR_LLL" VarFieldLenCoding="ASCII"/>
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="37" Description="检索参考号">
+				<Data FieldName="F_RETRIEVALREFNUMBER" FieldBinding="core_RetrievalReferenceNumber" FieldDataLen="12" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="39" Description="应答码">
+				<Data FieldName="F_RESPONSECODE" FieldDataLen="2" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="41" Description="受卡机终端标识码">
+				<Data FieldName="F_TERMINALID" FieldBinding="core_TerminalID" FieldDataLen="8" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag CheckIsMandatory="true"/>
+			</Field>
+			<Field BitID="43" Description="受卡方名称地址">
+				<Data FieldName="F_ATMLOCATION" FieldDefaultData="156" FieldDataLen="40" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<DataPadding RightPadding=" "/>
+			</Field>
+			<Field BitID="48" Description="附加数据－私有">
+				<Data FieldName="F_PRIVATEDATA" FieldDataLen="512" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="VAR_LLL" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="49" Description="交易货币代码">
+				<Data FieldName="F_CURRENCYCODE" FieldDefaultData="156" FieldDataLen="3" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="50" Description="清算货币代码">
+				<Data FieldName="F_SETTLEMENT_CURRENCYCODE" FieldDataLen="3" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="52" Description="个人标识码数据">
+				<Data FieldName="F_PINDATA" FieldBinding="core_Pin" FieldDataLen="8" FieldDataCoding="BCD" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="BCD"/>
+			</Field>
+			<Field BitID="53" Description="安全控制信息">
+				<Data FieldName="F_SECURITYCONTROLINFO" FieldDefaultData="20" FieldDataLen="16" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<DataPadding RightPadding="0"/>
+			</Field>
+			<Field BitID="54" Description="实际余额">
+				<Data FieldName="F_REALAMOUT" FieldDataLen="80" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="VAR_LLL" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="55" Description="IC卡相关数据">
+				<Data FieldName="F_55DATA" FieldBinding="core_55Data" FieldDataLen="510" FieldDataCoding="BCD" FieldCheckData=""/>
+				<VAR VarFieldLenType="VAR_LLL" VarFieldLenCoding="ASCII"/>
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="59" Description="明细查询数据">
+				<Data FieldName="F_DETAILDATA" FieldDataLen="600" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="VAR_LLL" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="60" Description="附加服务点数据">
+				<Data FieldName="F_ADDITIONDATA" FieldBinding="core_AdditionData" FieldDataLen="200" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="VAR_LLL" VarFieldLenCoding="ASCII"/>
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="66" Description="清算代码">
+				<Data FieldName="F_SETTLEMENTCODE" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="70" Description="网络管理信息码">
+				<Data FieldName="F_NETWORKMANAGER" FieldDefaultData="001" FieldDataLen="3" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="90" Description="原始数据元">
+				<Data FieldName="F_ORIGINALDATA" FieldBinding="core_OriginalDataElements" FieldDataLen="42" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="95" Description="替换金额">
+				<Data FieldName="F_REPLACEAMOUT" FieldBinding="core_ReplacementAmount" FieldDataLen="42" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="102" Description="账户标识1">
+				<Data FieldName="F_ACCOUNTID1" FieldBinding="core_PAN" FieldDataLen="28" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="VAR_LL" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="103" Description="账户标识2">
+				<Data FieldName="F_ACCOUNTID2" FieldBinding="core_OtherAccount" FieldDataLen="28" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="VAR_LL" VarFieldLenCoding="ASCII"/>
+			</Field>
+			<Field BitID="128" Description="报文鉴别码">
+				<Data FieldName="F_MAC" FieldDataLen="8" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<DataPadding SubString="0,8"/>
+			</Field>
+		</BitmapFields>
+	</TransactionFieldConfig>
+	<MAC Description="MAC 运算报文域的选择">
+		<Header>
+		</Header>
+		<BitmapFields FieldSeparator="32" IsConvertToUpper="1" IsDeleteValid="1" IsTrimMulSpace="1">
+			<Field BitID="0" Description="信息类型标识">
+			</Field>
+			<Field BitID="2" Description="主账号">
+			</Field>
+			<Field BitID="4" Description="交易金额">
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="5" Description="清算金额">
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="7" Description="交易传输时间">
+			</Field>
+			<Field BitID="9" Description="清算汇率">
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="10" Description="持卡人扣帐汇率">
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="11" Description="系统跟踪号">
+			</Field>
+			<Field BitID="39" Description="应答码">
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="41" Description="受卡机终端标识码">
+			</Field>
+			<Field BitID="90" Description="原始数据元">
+				<Data FieldDataLen="20"/>
+				<DataPadding SubString="0,20"/>
+				<Flag FieldIsOptional="true"/>
+			</Field>
+		</BitmapFields>
+	</MAC>
+	<TFR_MAC Description="MAC 运算报文域的选择">
+		<Header>
+		</Header>
+		<BitmapFields FieldSeparator="32" IsConvertToUpper="1" IsDeleteValid="1" IsTrimMulSpace="1">
+			<Field BitID="0" Description="信息类型标识">
+			</Field>
+			<Field BitID="2" Description="主账号">
+			</Field>
+			<Field BitID="4" Description="交易金额">
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="5" Description="清算金额">
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="7" Description="交易传输时间">
+			</Field>
+			<Field BitID="9" Description="清算汇率">
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="10" Description="持卡人扣帐汇率">
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="11" Description="系统跟踪号">
+			</Field>
+			<Field BitID="39" Description="应答码">
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="41" Description="受卡机终端标识码">
+			</Field>
+			<Field BitID="90" Description="原始数据元">
+				<Data FieldDataLen="20"/>
+				<DataPadding SubString="0,20"/>
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="102" Description="账户标识1">
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="103" Description="账户标识2">
+				<Flag FieldIsOptional="true"/>
+			</Field>
+		</BitmapFields>
+	</TFR_MAC>
+	<RQK Description="签到">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0820" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0830"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="41"/>
+			<Field BitID="48">
+				<Data FieldName="F_PRIVATEDATA_RQK" FieldBinding="core_PrivateDataRQK"/>
+			</Field>
+			<Field BitID="70" Description="">
+				<Data FieldDefaultData="001"/>
+			</Field>
+		</BitmapFields>
+	</RQK>
+	<IDL>
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0820" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0830"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="41"/>
+			<Field BitID="48"/>
+			<Field BitID="70"/>
+		</BitmapFields>
+	</IDL>
+	<INQ Description="查询">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1" Description="报文头部"/>
+			<Field BitID="0" Description="信息类型标识">
+				<Data FieldDefaultData="0200" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0210"/>
+			</Field>
+			<Field BitID="1" Description="扩展位图"/>
+			<Field BitID="2" Description="主账号"/>
+			<Field BitID="3" Description="交易处理码">
+				<Data FieldDefaultData="301000"/>
+			</Field>
+			<Field BitID="7" Description="交易传输时间"/>
+			<Field BitID="11" Description="系统跟踪号"/>
+			<Field BitID="12" Description="受卡方所在地时间"/>
+			<Field BitID="13" Description="受卡方所在地日期"/>
+			<Field BitID="22" Description="服务点输入方式码"/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description="服务点PIN 获取码"/>
+			<Field BitID="35" Description="第二磁道数据"/>
+			<Field BitID="36" Description="第三磁道数据"/>
+			<Field BitID="41" Description="受卡机终端标识码"/>
+			<Field BitID="43" Description="受卡方名称地址"/>
+			<Field BitID="49" Description="交易货币代码"/>
+			<Field BitID="52" Description="个人标识码数据"/>
+			<Field BitID="55" Description=""/>
+			<Field BitID="60" Description=""/>
+			<Field BitID="128" Description="报文鉴别码"/>
+		</BitmapFields>
+	</INQ>
+	<CWD Description="取款">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0200" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0210"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="2"/>
+			<Field BitID="3">
+				<Data FieldDefaultData="011000" FieldDataLen="6" FieldDataCoding="ASCII"/>
+			</Field>
+			<Field BitID="4"/>
+			<Field BitID="7"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="22"/>
+			<Field BitID="23" Description="IC卡序号"/>
+			<Field BitID="25" Description="服务条件码"/>
+			<Field BitID="26"/>
+			<Field BitID="35"/>
+			<Field BitID="36"/>
+			<Field BitID="41"/>
+			<Field BitID="43"/>
+			<Field BitID="49"/>
+			<Field BitID="52"/>
+			<Field BitID="55" Description=""/>
+			<Field BitID="60" Description=""/>
+			<Field BitID="128"/>
+		</BitmapFields>
+	</CWD>
+	<PIN Description="改密">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0100" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0110"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="2"/>
+			<Field BitID="3">
+				<Data FieldDefaultData="701000" FieldDataLen="6" FieldDataCoding="ASCII"/>
+			</Field>
+			<Field BitID="7"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="18"/>
+			<Field BitID="22"/>
+			<Field BitID="25" Description="服务条件码"/>
+			<Field BitID="26"/>
+			<Field BitID="35"/>
+			<Field BitID="36"/>
+			<Field BitID="41"/>
+			<Field BitID="43"/>
+			<Field BitID="48">
+				<Data FieldName="F_PINDATA_NEW" FieldBinding="core_NewPin" FieldDataLen="8" FieldDataCoding="BCD"/>
+			</Field>
+			<Field BitID="49"/>
+			<Field BitID="52"/>
+			<Field BitID="55" Description="IC卡"/>
+			<Field BitID="60"/>
+			<Field BitID="128"/>
+		</BitmapFields>
+	</PIN>
+	<TFI Description="转账查询">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0200" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0210"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="2"/>
+			<Field BitID="3">
+				<Data FieldDefaultData="411000" FieldDataLen="6" FieldDataCoding="ASCII"/>
+			</Field>
+			<Field BitID="7"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="22"/>
+			<Field BitID="25" Description="服务条件码"/>
+			<Field BitID="26"/>
+			<Field BitID="41"/>
+			<Field BitID="43"/>
+			<Field BitID="49"/>
+			<Field BitID="128"/>
+		</BitmapFields>
+	</TFI>
+	<TFR Description="转帐" MACTypeOfPack="TFR_MAC" MACTypeOfUnPack="TFR_MAC">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0200" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0210"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="2"/>
+			<Field BitID="3">
+				<Data FieldDefaultData="400000" FieldDataLen="6" FieldDataCoding="ASCII"/>
+			</Field>
+			<Field BitID="4"/>
+			<Field BitID="7"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="18"/>
+			<Field BitID="22"/>
+			<Field BitID="25" Description="服务条件码"/>
+			<Field BitID="26"/>
+			<Field BitID="35"/>
+			<Field BitID="36"/>
+			<Field BitID="41"/>
+			<Field BitID="43"/>
+			<Field BitID="49"/>
+			<Field BitID="52"/>
+			<Field BitID="55" Description="IC卡"/>
+			<Field BitID="60"/>
+			<Field BitID="102"/>
+			<Field BitID="103"/>
+			<Field BitID="128"/>
+		</BitmapFields>
+	</TFR>
+	<EXC Description="外币兑换">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0240" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0241"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="2"/>
+			<Field BitID="3">
+				<Data FieldDefaultData="400000" FieldDataLen="6" FieldDataCoding="ASCII"/>
+			</Field>
+			<Field BitID="4"/>
+			<Field BitID="5"/>
+			<Field BitID="7"/>
+			<Field BitID="9"/>
+			<Field BitID="10"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="15"/>
+			<Field BitID="16"/>
+			<Field BitID="18"/>
+			<Field BitID="22"/>
+			<Field BitID="25" Description="服务条件码"/>
+			<Field BitID="26"/>
+			<Field BitID="35"/>
+			<Field BitID="36"/>
+			<Field BitID="41"/>
+			<Field BitID="43"/>
+			<Field BitID="49"/>
+			<Field BitID="50"/>
+			<Field BitID="52"/>
+			<Field BitID="102"/>
+			<Field BitID="103"/>
+			<Field BitID="128"/>
+		</BitmapFields>
+	</EXC>
+	<DEP Description="有卡存款">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0200" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0210"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="2"/>
+			<Field BitID="3">
+				<Data FieldDefaultData="211000" FieldDataLen="6" FieldDataCoding="ASCII"/>
+			</Field>
+			<Field BitID="4"/>
+			<Field BitID="7"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="22"/>
+			<Field BitID="25" Description="服务条件码"/>
+			<Field BitID="26"/>
+			<Field BitID="35"/>
+			<Field BitID="36"/>
+			<Field BitID="41"/>
+			<Field BitID="43"/>
+			<Field BitID="49"/>
+			<Field BitID="52"/>
+			<Field BitID="55" Description="IC卡"/>
+			<Field BitID="60"/>
+			<Field BitID="128"/>
+		</BitmapFields>
+	</DEP>
+	<ADI Description="无卡存款查询">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0200" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0210"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="2"/>
+			<Field BitID="3">
+				<Data FieldDefaultData="411000" FieldDataLen="6" FieldDataCoding="ASCII"/>
+			</Field>
+			<Field BitID="7"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="22"/>
+			<Field BitID="25" Description="服务条件码"/>
+			<Field BitID="26"/>
+			<Field BitID="41"/>
+			<Field BitID="43"/>
+			<Field BitID="48">
+				<Data FieldName="F_ACCOUNTNAME"/>
+				<Flag FieldIsOptional="true"/>
+			</Field>
+			<Field BitID="49"/>
+			<Field BitID="128"/>
+		</BitmapFields>
+	</ADI>
+	<ADP Description="无卡存款">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0200" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0210"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="2"/>
+			<Field BitID="3">
+				<Data FieldDefaultData="211000" FieldDataLen="6" FieldDataCoding="ASCII"/>
+			</Field>
+			<Field BitID="4"/>
+			<Field BitID="7"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="22">
+				<Data FieldDefaultData="012"/>
+			</Field>
+			<Field BitID="25" Description="服务条件码"/>
+			<Field BitID="26"/>
+			<Field BitID="41"/>
+			<Field BitID="43"/>
+			<Field BitID="49"/>
+			<Field BitID="128"/>
+		</BitmapFields>
+	</ADP>
+	<ICBDZHQC Description="IC卡绑定帐户圈存">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0200" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0210"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="2"/>
+			<Field BitID="3">
+				<Data FieldDefaultData="600000" FieldDataLen="6" FieldDataCoding="ASCII"/>
+			</Field>
+			<Field BitID="4"/>
+			<Field BitID="7"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="18"/>
+			<Field BitID="22"/>
+			<Field BitID="23" Description="IC卡序号"/>
+			<Field BitID="26"/>
+			<Field BitID="35"/>
+			<Field BitID="36"/>
+			<Field BitID="41"/>
+			<Field BitID="43"/>
+			<Field BitID="49"/>
+			<Field BitID="52"/>
+			<Field BitID="55" Description="ic卡"/>
+			<Field BitID="60" Description=""/>
+			<Field BitID="128"/>
+		</BitmapFields>
+	</ICBDZHQC>
+	<ICTZ Description="IC卡脚本通知">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1" Description="报文头部"/>
+			<Field BitID="0" Description="信息类型标识">
+				<Data FieldDefaultData="0620" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0630"/>
+			</Field>
+			<Field BitID="1" Description="扩展位图"/>
+			<Field BitID="2" Description="主账号"/>
+			<Field BitID="3" Description="交易处理码">
+				<Data FieldDefaultData="011000"/>
+			</Field>
+			<Field BitID="4"/>
+			<Field BitID="7" Description="交易传输时间"/>
+			<Field BitID="11" Description="系统跟踪号"/>
+			<Field BitID="12" Description="受卡方所在地时间"/>
+			<Field BitID="13" Description="受卡方所在地日期"/>
+			<Field BitID="22" Description="服务点输入方式码"/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="39" Description="">
+				<Data FieldBinding="core_ResponseCode"/>
+			</Field>
+			<Field BitID="41" Description="受卡机终端标识码"/>
+			<Field BitID="49" Description="交易货币代码"/>
+			<Field BitID="55" Description="ic卡"/>
+			<Field BitID="60" Description=""/>
+			<Field BitID="70" Description="">
+				<Data FieldDefaultData="951"/>
+			</Field>
+			<Field BitID="90" Description=""/>
+			<Field BitID="128" Description="报文鉴别码"/>
+		</BitmapFields>
+	</ICTZ> 
+	<CWC Description="取款冲正">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0420" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0430"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="2"/>
+			<Field BitID="3">
+				<Data FieldDefaultData="011000" FieldDataLen="6" FieldDataCoding="ASCII"/>
+			</Field>
+			<Field BitID="4">
+			<!-- 部分冲正用以下变量 -->
+			<!-- <Data FieldBinding="core_ReversalAmount"/> -->
+			</Field>
+			<Field BitID="7"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="22"/>
+			<Field BitID="23" Description="ic卡"/>
+			<Field BitID="25" Description="服务条件码"/>
+			<Field BitID="37"/>
+			<Field BitID="41"/>
+			<Field BitID="49"/>
+			<Field BitID="55" Description="ic卡"/>
+			<Field BitID="60" Description="ic卡"/>
+			<Field BitID="90"/>
+			<Field BitID="95"/>
+			<Field BitID="128"/>
+		</BitmapFields>
+	</CWC>
+	<CDC>
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0220" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0230"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="2"/>
+			<Field BitID="3">
+				<Data FieldDefaultData="211000" FieldDataLen="6" FieldDataCoding="ASCII"/>
+			</Field>
+			<Field BitID="4"/>
+			<Field BitID="7"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="22"/>
+			<Field BitID="26"/>
+			<Field BitID="35"/>
+			<Field BitID="36"/>
+			<Field BitID="37"/>
+			<Field BitID="41"/>
+			<Field BitID="43"/>
+			<Field BitID="49"/>
+			<Field BitID="53"/>
+			<Field BitID="90"/>
+			<Field BitID="128"/>
+		</BitmapFields>
+	</CDC>
+	<ADC Description="无卡存款冲正">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0220" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0230"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="2"/>
+			<Field BitID="3">
+				<Data FieldDefaultData="211000" FieldDataLen="6" FieldDataCoding="ASCII"/>
+			</Field>
+			<Field BitID="4"/>
+			<Field BitID="7"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="22"/>
+			<Field BitID="26"/>
+			<Field BitID="37"/>
+			<Field BitID="41"/>
+			<Field BitID="43"/>
+			<Field BitID="49"/>
+			<Field BitID="53"/>
+			<Field BitID="90"/>
+			<Field BitID="128"/>
+		</BitmapFields>
+	</ADC>
+	<ICBDZHQCCZ Description="IC卡绑定帐户圈存冲正">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0420" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0430"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="2"/>
+			<Field BitID="3">
+				<Data FieldDefaultData="600000" FieldDataLen="6" FieldDataCoding="ASCII"/>
+			</Field>
+			<Field BitID="4"/>
+			<Field BitID="7"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="22"/>
+			<Field BitID="23" Description="ic卡"/>
+			<Field BitID="37"/>
+			<Field BitID="41"/>
+			<Field BitID="49"/>
+			<Field BitID="55" Description="ic卡"/>
+			<Field BitID="60" Description="ic卡"/>
+			<Field BitID="90"/>
+			<Field BitID="95"/>
+			<Field BitID="128"/>
+		</BitmapFields>
+	</ICBDZHQCCZ>
+	<RWT  Description="取款重置，加钞报文，加钞时发送">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0820" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0830"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="41"/>
+			<Field BitID="48">
+				<Data FieldBinding="F_AddCashExtendData"></Data>
+			</Field>
+			<Field BitID="70">
+				<Data FieldDefaultData="261" FieldDataLen="3" FieldDataCoding="ASCII"/>
+			</Field>
+		</BitmapFields>
+	</RWT>
+	<TTI  Description="清机，结算报文，打印结帐时发送">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0520" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0530"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="41"/>
+			<Field BitID="48">
+				<Data FieldBinding="F_SettlementExtendData"></Data>
+			</Field>
+			<Field BitID="70">
+				<Data FieldDefaultData="390" FieldDataLen="3" FieldDataCoding="ASCII"/>
+			</Field>
+		</BitmapFields>
+	</TTI>
+	<AEX Description="帐户例外">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0820" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0830"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="41"/>
+			<Field BitID="48"/>
+			<Field BitID="70">
+				<Data FieldDefaultData="365" FieldDataLen="3" FieldDataCoding="ASCII"/>
+			</Field>
+		</BitmapFields>
+	</AEX>
+	<CASS_MANAGE Description="钞箱管理交易">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="0820" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0830"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="39"/>
+			<Field BitID="41"/>
+			<Field BitID="48"/>
+			<Field BitID="70"/>
+		</BitmapFields>
+	</CASS_MANAGE>
+	
+	<PAY_INQ Description="中间业务查询">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1" Description="报文头部"/>
+			<Field BitID="0" Description="信息类型标识">
+				<Data FieldDefaultData="9000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="9010"/>
+			</Field>
+			<Field BitID="1" Description="扩展位图"/>
+			<Field BitID="2" Description="主账号"/>
+			<Field BitID="3" Description="交易处理码">
+				<Data FieldBinding="proj_PayTransCode"/>
+			</Field>
+			<Field BitID="7" Description="交易传输时间"/>
+			<Field BitID="11" Description="系统跟踪号"/>
+			<Field BitID="12" Description="受卡方所在地时间"/>
+			<Field BitID="13" Description="受卡方所在地日期"/>
+			<Field BitID="22" Description="服务点输入方式码"/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description="服务点PIN 获取码"/>
+			<Field BitID="35" Description="第二磁道数据"/>
+			<Field BitID="36" Description="第三磁道数据"/>
+			<Field BitID="39" Description="响应码">
+				<Data FieldDefaultData="00" />
+			</Field>
+			<Field BitID="41" Description="受卡机终端标识码"/>
+			<Field BitID="43" Description="受卡方名称地址"/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49" Description="交易货币代码"/>
+			<Field BitID="52" Description="个人标识码数据"/>
+			<Field BitID="55" Description=""/>
+			<Field BitID="60" Description=""/>
+			<Field BitID="128" Description="报文鉴别码"/>
+		</BitmapFields>
+	</PAY_INQ>	
+	
+	<PAY Description="中间业务缴费">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="-1"/>
+			<Field BitID="0">
+				<Data FieldDefaultData="9000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="9010"/>
+			</Field>
+			<Field BitID="1"/>
+			<Field BitID="2"/>
+			<Field BitID="3"/>
+			<Field BitID="4"/>
+			<Field BitID="7"/>
+			<Field BitID="11"/>
+			<Field BitID="12"/>
+			<Field BitID="13"/>
+			<Field BitID="22"/>
+			<Field BitID="23" Description="IC卡序号"/>
+			<Field BitID="25" Description="服务条件码"/>
+			<Field BitID="26"/>
+			<Field BitID="35"/>
+			<Field BitID="36"/>
+			<Field BitID="41"/>
+			<Field BitID="43"/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49"/>
+			<Field BitID="52"/>
+			<Field BitID="55" Description=""/>
+			<Field BitID="60" Description=""/>
+			<Field BitID="128"/>
+		</BitmapFields>
+	</PAY>
+	
+	<PASSBOOK Description="存折补登">
+    <Header>
+    </Header>
+    <BitmapFields>
+      <Field BitID="-1"/>
+      <Field BitID="0">
+        <Data FieldDefaultData="0200" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData="0210"/>
+      </Field>
+      <Field BitID="1"/>
+      <Field BitID="2"/>
+      <Field BitID="3">
+        <Data FieldDefaultData="380000" FieldDataLen="6" FieldDataCoding="ASCII"/>
+      </Field>
+      <Field BitID="7"/>
+      <Field BitID="11"/>
+      <Field BitID="12"/>
+      <Field BitID="13"/>
+      <Field BitID="22"/>
+      <Field BitID="25" Description="服务条件码"/>
+      <Field BitID="26"/>
+      <Field BitID="35"/>
+      <Field BitID="36"/>
+      <Field BitID="41"/>
+	  <Field BitID="53" Description="安全控制信息"/>
+      <Field BitID="60"/>
+      <Field BitID="128"/>
+    </BitmapFields>
+  </PASSBOOK>
+</Packages>

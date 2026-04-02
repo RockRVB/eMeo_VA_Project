@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Comments are shown as below
+  ****************************************************************************************************
+  ** Author: Peter Lee (2012/08/14)
+  **
+  ** 1. For all variables to be replaced
+  **(1) the property "replace" should be the value "true"
+  **(2) the id of the main item should be less or equal than 500 when the data replaced is active
+  **(3) all the main item the setting must have 3 properties. "id" , "replace" and "active"
+  **    [1] if "id" <= 500, all the data found in the XML file should be replaced
+  **    [2] "replace" property is true when "id" <= 500
+  **    [3] "active" property is true if the section is used
+  **  Notice: If the keyword is "engine1", the variable in the XML or TXT file should be "[engine1]".
+  ** **************************************************************************************************
+  **
+  ** 2. For the parameters setting.
+  ** (1) the property "replace" should be the value "false" 
+  ** (2) the id of the main item should be greater than 500 
+  ** (3) the active of main itme should be "true" if the setting itme is enabled
+  **
+  *****************************************************************************************************
+-->
+<Root>
+	<ADAKey>
+		<!-- Define the map setting for FDK keys-->
+		<KeyMap>
+			<Item key="F1" value="Key1"/>
+			<Item key="F3" value="Key4"/>
+			<Item key="F5" value="Key7"/>
+			<Item key="F7" value="KeyDot"/>
+			<Item key="F2" value="Key3"/>
+			<Item key="F4" value="Key6"/>
+			<Item key="F6" value="Key9"/>
+			<Item key="F8" value="Key00"/>
+		</KeyMap>
+	</ADAKey>
+	<ScreenKey>
+		<!-- Define the map setting for specific screens to support ADA voice promotion
+        * Default : 000 -> 000.xml
+        *           001 -> 001.xml
+	    *           ..............
+        -->
+		<ScreenMap>
+			<Item key="Transaction/Entrance/Welcome.html" value="010.xml"/>
+			<Item key="Transaction/IOModule/SafePrompt.html" value="001.xml"/>
+			<Item key="1234" value="001.xml"/>
+			<Item key="568" value="goodbye.WAV"/>
+			<Item key="121" value="INSERTAR.TXT"/>
+		</ScreenMap>
+	</ScreenKey>
+	<Templates>
+		<!-- Define the name of windows TTS engine-->
+		<!-- In different engine, the language recognition will be diffrent with langauge pronuncation switch-->
+		<!-- Engine List
+		   * Microsoft Sam
+		  * Microsoft Anna
+		  * Microsoft Mary
+		  * Microsoft Lili
+		  * Microsoft Spanish TTS Engine
+		  *  ..., etc.
+        -->
+		<Engine>
+			<Item key="engine1" value="Microsoft Anna"/>
+			<Item key="engine2" value="Microsoft Anna"/>
+			<Item key="engine3" value="Microsoft Anna"/>
+			<Item key="engine4" value="Microsoft Lili"/>
+			<Item key="engine5" value="Microsoft Anna"/>
+		</Engine>
+		<!-- Define the format of balance setting-->
+		<!-- It will replace the variable data according to the setting-->
+		<BalanceFormat>
+			<!-- The text prior of the balance num on a receipt-->
+			<Item key="Format" value="Available balance:"/>
+			<!-- Read as 'Your available balance is $$$'-->
+			<Item key="Replaceto" value="Your available balance is"/>
+		</BalanceFormat>
+	</Templates>
+	<ParaData>
+		<!-- Define the parameters setting for Speech-->
+		<SpeechPara id="501" replace="false" active="true">
+			<!-- Default attribute for voice guidence-->
+			<Item key="DefaultLanguage" value="Microsoft Anna"/>
+			<Item key="KeyPressedVoice" value="Key   replaceto   pressed"/>
+			<Item key="Rate" value="0"/>
+			<Item key="Volume" value="80"/>
+			<Item key="VolumeOffSet" value="10"/>
+			<!-- Time Slice(s) -->
+			<!-- The timer to response the key you enter -->
+			<Item key="Sleepkey" value="4"/>
+			<!-- The timer to Wait for removing cash -->
+			<Item key="SleepRemoveCash" value="6"/>
+			<!-- The timer to Wait for removing receipt -->
+			<Item key="SleepRemoveReceipt" value="6"/>
+			<!-- The timer to sound out the (balance) result -->
+			<Item key="SleepResult" value="12"/>
+			<!-- The timer to Wait for removing headset -->
+			<Item key="SleepRemoveHeadSet" value="15"/>
+			<!-- once earphone inserted, start speak the notice -->
+			<Item key="StartPromotionData" value="  ADA start operation"/>
+			<!-- press the key and play the amount information -->
+			<Item key="AmountPromotion" value=" amount is [AmtData]    "/>
+			<!-- press the key and play the receipt information -->
+			<Item key="ReceiptPromotion" value=" receipt data is [RcptData]    "/>
+		</SpeechPara>
+	</ParaData>
+</Root>

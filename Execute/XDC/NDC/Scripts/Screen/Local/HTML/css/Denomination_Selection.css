@@ -1,0 +1,292 @@
+
+#wrapper {
+	width: 800px;
+	height: 600px;
+	max-width: 800px;
+	max-height: 600px;
+	margin-top: 0px;
+	position: fixed;
+	top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	text-align: center;
+}
+#header {
+	width: 800px;
+	background-color: #FFFFFF;
+	height: 95px;
+	border-bottom: 5px solid #FFF7F7;
+}
+#note {
+	max-height: 600px;
+	width: 800px;
+	height: 75px;
+	max-width: 800px;
+	position: fixed;
+	background-color: #962923;
+}
+#note p {
+	max-width: 800px;
+	font-size: 30px;
+	color: #FFFFFF;
+	font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
+	height: 50px;
+	text-transform: uppercase;
+	max-height: 50px;
+	font-weight: 400;
+	font-style: normal;
+	margin-top: 18px;
+	text-align: center;
+	width: 800px;
+}
+#left {
+	position:absolute;
+	top:75px;
+	width: 800px;
+	height: 450px;
+	max-width: 794px;
+	max-height: 450px;
+	border: medium solid #B86560;
+	display: none;
+}
+#left p {
+	text-align: center;
+	font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
+	font-weight: lighter;
+	font-size: 28px;
+	color: #B86560;
+}
+
+
+table   {
+	width: 500px;
+}
+
+table th  {
+	text-transform: uppercase;
+	font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
+	color: #FFFFFF;
+	background-color: #B86560;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 150px;
+	font-size: 24px;
+	font-weight: lighter;
+}
+table td  {
+	font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-weight: lighter;
+	color: #B86560;
+	font-size: 20px;
+}
+
+table, th, td {
+	text-align: center;
+	border: medium solid #DCB4B2;
+	border-collapse: collapse;
+}
+table tr:last-child {
+	background-color: #EBD7D5;
+}
+
+input.increase-button {
+	width: 30px;
+	height: 30px;
+	max-width: 30px;
+	max-height: 30px;
+	border:  #C38480;
+	color: #B86560;
+	font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
+	text-transform: uppercase;
+	font-size: 30px;
+	background-color: #FFFFFF;
+}
+input.decrease-button {
+	width: 30px;
+	height: 30px;
+	max-width: 30px;
+	max-height: 30px;
+	border:  #C38480;
+	color: #B86560;
+	font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
+	text-transform: uppercase;
+	font-size: 30px;
+	background-color: #FFFFFF;
+}
+
+input#total_amount{
+	max-width: 400px;
+	ma-height: 80px;
+	width: 400px;
+	height: 60px;
+	border: 5px solid  #B86560;
+	max-height: 60px;
+	text-align: center;
+	color: #B86560;
+	font-size: 40px;
+	font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
+
+}
+
+#btn_box {
+	width: 800px;
+	height: 60px;
+	position: absolute;
+	top: 445px;
+	left: 140px;
+}
+.btn_frame {
+	width: 270px;
+	height: 60px;
+	border-right: 25px solid #FFFFFF;
+	float: left;
+}
+.btn_title {
+	width: 240px;
+	height: 50px;
+	position: absolute;
+	border: 5px solid  #B86560;
+}
+.btn_title a {
+	text-align: center;
+	display: block;
+	height: 50px;
+	width: 240px;
+	color: #B86560;
+	font-size: 42px;
+	font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
+	padding-bottom: 0px;
+	text-decoration: none;
+}
+
+/*new*/
+.denomination_select_container{
+	display: -ms-flexbox;
+    display: flex;
+	width: 100%;
+}
+.denomination{
+	margin: 0 1rem;
+    color: rgb(238, 236, 236);
+    text-align: center;
+    transition: all 0.3s;
+    flex: 1;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+}
+.vip .denomination{
+	background: rgba(0, 0, 0, 0.3);
+	box-shadow:inset 0 0 0.5rem rgba(96, 49, 138, 0.3);
+	color: #f9d206;
+}	
+
+
+.type_title{
+	padding:0 0 1.5rem 2rem;
+	position: relative;
+}
+
+.type_title span:nth-child(1){
+	letter-spacing: 4px;
+    font-size: 2.4rem;
+	position: relative;
+	opacity: 0.8;
+}
+.type_title span:nth-child(1)::after{
+    content: "¥";
+    position: absolute;
+    top: -0.2rem;
+    left: -1.8rem;
+    font-size: 2.3rem;
+    font-family: "Microsoft YaHei",SimHei;
+    font-weight: 100;
+}
+
+.type_title span:nth-child(2){
+	font-size: 1.4rem;
+}
+.pieces{
+	font-size: 6rem;
+    height: 8.6rem;
+    width: 80%;
+    margin: 2rem auto 1rem auto;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+}
+.vip .pieces{
+	border-bottom: 1px solid rgba(249, 210, 6,0.3);
+}
+.pieces::after{
+	content: " PCS";
+    font-size: 1.3rem;
+    position: absolute;
+    top: 6.3rem;
+    margin-left: 0.3rem;
+    opacity: 0.75;
+    transform: translateX(-50%);
+    left: 50%;
+}
+.denomination .operate{
+	height:4rem;
+	width: 100%;
+}
+.denomination .operate>div{
+	float: left;
+	width: 50%;
+	height: 100%;
+	background-repeat: no-repeat;
+    background-position: center;
+    background-size: 3.2rem;
+	transition: all 0.3s;
+}
+.operate>div:nth-child(1){
+	background-image: url(../../Image/default/minus.png);
+    background-color: rgba(30, 142, 165, 0.4);
+}
+.operate>div:nth-child(1):hover{
+	background-color: rgba(90, 133, 142, 0.5)
+}
+.operate>div:nth-child(2){
+	background-image: url(../../Image/default/plus.png);
+	background-color: rgb(171, 93, 111);
+}
+.operate>div:nth-child(2):hover{
+	background-color: rgb(158, 80, 98);
+}
+
+.vip .operate>div:nth-child(1){
+    background-color: rgba(0, 0, 0, 0.15);
+}
+.vip .operate>div:nth-child(1):hover{
+	background-color: rgba(0, 0, 0, 0.3);
+}
+.vip .operate>div:nth-child(2){
+	background-color: rgba(255, 193, 28, 0.8)
+}
+.vip .operate>div:nth-child(2):hover{
+	background-color: rgba(255, 194, 28, 0.9)
+}
+.total_tip{
+    font-size: 1.8rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+.total_tip span{
+	vertical-align: middle;
+	color: #ffc860;
+    font-size:6rem;
+	margin-left: 3rem;
+	position: relative;
+	display: inline-block;
+}
+.total_tip span::after{
+	position: absolute;
+    content: '￥';
+    top: 4px;
+    left: -3.4rem;
+    font-weight: 100;
+    font-size: 4.6rem;
+}

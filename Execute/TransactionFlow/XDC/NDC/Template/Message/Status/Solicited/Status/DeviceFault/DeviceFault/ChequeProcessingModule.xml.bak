@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--  Cheque Processing Module
+		*  This messge gives details of a cheque processing Module (CPM) 
+		*   response to a Transaction Reply Command message.
+		*  If a transaction reply contains one of the CPM function values and the SST does not have a CPM configured, 
+		* a standard solicited error message is returned.
+		-->
+  <ChequeProcessingModule>
+    <!-- Device Identification Graphic. -->
+    <Item key="e1" value="q" size="1" restriction="Mandatory" />
+    <!--   Transaction/Device Status. (T-code plus T-data). Gives details of a dispense operation in respense to a Transaction Reply Command message.
+		* Character 1 (T-code) can be:
+		*   '1'  - Cancel selected/Time-out occurs during procssing (entry/retrieval) of cheque. Due to one of the following:
+		*            [1]  Cardholder did not insert a cheque.
+		*            [2]  Cardholder inserted cheque which was not successfully accepted., but retrieved by cardholder
+		*            [3]  Cardholder selected Cancel key instead of inserting cheque.
+		*   '2'  - CPM Failure
+		*   '4'  -  Error, no access (error on bin).
+		*   '5'  - Cheque jam.
+		*   '6'  - Cheque jam, no access.
+		*When Option 83 is '001' the following code may also be returned:
+		*   '7'  - Cheque retracted and captured.
+		-->
+    <Item key="e2" value="[Device.IPM.DevStatus]" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--  Error Severity.  Standard code.-->
+    <Item key="e3" value="[Device.IPM.Fitness]" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--  Diagnostic Status. (M-status plus M-data). The M-status describes the main error found. -->
+    <Item key="e4" value="[Device.IPM.DiagnosticStatus]" size="var" restriction="Optional" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--  Suplies Status . 
+		 * When option 83 is '000' this field contains zeroes and is 4 bytes long.
+		 * When option 83 is '001' the following is returned. 
+         * Character 1: Endorse printer
+		 * Character 2: Stamper
+	     * Character 3: Reserved.
+		 * Character 4: Reserved.
+		 * Character 5: Bin 1
+		 * Character 6: Bin 2
+		 * Character n: Bin n
+	     * Supplies Status Values
+		 * '0' - No Configured/Reserved..
+		 * '1' - Good state.
+		 * '2' - Media low.
+		 * '3' - Media out
+		 * '4' - Overfill
+		 * '5' - Media high (almost full).
+		-->
+    <Item key="e5" value="[Device.IPM.SuppliesStatus]" size="1" restriction="Mandatory" />
+  </ChequeProcessingModule>
+</Root>

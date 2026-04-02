@@ -1,0 +1,11 @@
+<Root>
+<!--update cassette hope-->
+	<Update file="Config\XDC\MainConfig\CassetteSetting.xml">
+		<Modify xpath="/Root/CassetteHope/Item[@key='1']" attrName="value" value="PHY01"/>
+		<Modify xpath="/Root/CassetteHope/Item[@key='2']" attrName="value" value="PHY02"/>
+		<Modify xpath="/Root/CassetteHope/Item[@key='3']" attrName="value" value="PHY03"/>
+		<Modify xpath="/Root/CassetteHope/Item[@key='4']" attrName="value" value="PHY04"/> 
+	</Update>
+</Root>
+
+

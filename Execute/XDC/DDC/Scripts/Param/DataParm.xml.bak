@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--  
+		* Configuration Parameters from host.
+	-->
+  <Data>
+    <Item key="machineNumber" value="" default="" valueType="string" description="" />
+    <Item key="LUNO" value="000" default="000" valueType="string" description="" />
+    <Item key="ConfigurationID" value="0000" default="0000" valueType="string" description="" />
+  </Data>
+  <!--  
+	* Timer Number
+	-->
+  <TimerNumber>
+    <Item key="00" value="30" default="030" valueType="string" description="Keyboard entry time-out." />
+    <Item key="01" value="21" default="030" valueType="string" description="Cardholder response to time-out screen time-out." />
+    <Item key="02" value="5" default="030" valueType="string" description="Close state screen time-out." />
+    <Item key="03" value="90" default="030" valueType="string" description="Communications response time-out." />
+    <Item key="04" value="60" default="030" valueType="string" description="Cheque/envelope insertion time-out" />
+    <Item key="05" value="45" default="030" valueType="string" description="Cash retract time-out." />
+    <Item key="06" value="1" default="030" valueType="string" description="Communication connection sample intervalt." />
+    <Item key="07" value="5" default="030" valueType="string" description="Present time-out." />
+    <Item key="08" value="30" default="030" valueType="string" description="Night safe deposit time-out." />
+    <Item key="09" value="10" default="030" valueType="string" description="Card removal time-out." />
+    <Item key="10" value="5" />
+    <Item key="11" value="0" />
+    <Item key="15" value="0" />
+    <Item key="18" value="0" />
+    <Item key="20" value="0" />
+    <Item key="21" value="0" />
+    <Item key="68" value="030" default="000" valueType="string" description="Statement media entry/exit indicator duration time-out." />
+    <Item key="72" value="030" default="030" valueType="string" description="Card removal from DASH card reader time-out." />
+    <!-- Cash Acceptance Timers This timer defines the timeout value for note entry to the cash acceptor -->
+    <Item key="77" value="045" default="030" valueType="string" description="BNA cash acceptance time-out" />
+    <!-- Cash Rejection Timers This timer defines the timeout value for note removal from the refund slot.If the notes are note removed, they are retracted.-->
+    <Item key="78" value="030" default="030" valueType="string" description="BNA and GBXX cash removal by cardholder time-out." />
+    <Item key="82" value="030" default="030" valueType="string" description="Camera Delay Period. Not support." />
+    <Item key="83" value="030" default="030" valueType="string" description="File Expiry Mechanism. Not support." />
+    <Item key="87" value="030" default="030" valueType="string" description="Cheque capture screen time-out." />
+    <Item key="91" value="030" default="030" valueType="string" description="In Service EJ Inspection time-out. Not support." />
+    <Item key="92" value="030" default="030" valueType="string" description="Fault display time-out." />
+    <Item key="94" value="030" default="030" valueType="string" description="Cheuqe/envelope eject time-out." />
+    <Item key="95" value="030" default="030" valueType="string" description="Statement retract time-out" />
+    <Item key="96" value="005" default="030" valueType="string" description="Statement present time-out." />
+    <Item key="97" value="030" default="030" valueType="string" description="Door access open time-out. Not support.." />
+    <Item key="98" value="030" default="030" valueType="string" description="Reserved" />
+    <Item key="99" value="003" default="003" valueType="string" description="Reserved" />
+    <Item key="23" value="0" />
+  </TimerNumber>
+  <Options>
+    <Item key="00" value="001" default="000" valueType="string" description="Camera Control " />
+    <Item key="01" value="103" default="000" valueType="string" description="Miscellaneous Features 1" />
+    <Item key="02" value="084" default="000" valueType="string" description="Miscellaneous Features 2" />
+    <Item key="03" value="063" default="000" valueType="string" description="Miscellaneous Features 3" />
+    <Item key="04" value="007" default="000" valueType="string" description="Miscellaneous Features 4" />
+  </Options>
+</Root>

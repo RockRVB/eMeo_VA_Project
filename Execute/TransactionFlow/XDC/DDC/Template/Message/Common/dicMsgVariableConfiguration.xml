@@ -1,0 +1,1099 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<Root>
+	<Device>
+		<CardReader>
+			<Item key="Fitness">
+				<Result value="[xmlvariable]">
+					<xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\DDC\Data\DataCardReader.xml"/>
+				</Result>
+			</Item>
+			<Item key="MDS">
+				<Result value="[xmlvariable]">
+					<xmlvariable value="/Root/Calculate/Status/@MDS" xmldoc="\XDC\DDC\Data\DataCardReader.xml"/>
+				</Result>
+			</Item>
+		</CardReader>
+		<BillDispenser>
+			<Item key="MDS">
+				<Result value="[msgvariable]">
+					<msgvariable value="[Msg.Solicited.BillDispenser.Status.DispenseErrorCode]" expression="dictionary,/Root/MDS/BillDispenser/Solicited/Item,key,value"/>
+					<Condition value="[msgvariable2]" operand="Solicited.Status.DeviceFault.CashHandler" operator="==">
+						<msgvariable2 value="[SendCondition.Current.SendMsgID]"/>
+					</Condition>
+				</Result>
+				<Result value="[xmlvariable]">
+					<xmlvariable value="/Root/Calculate/Status/@MDS" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+				</Result>
+			</Item>
+		</BillDispenser>
+		<ReceiptPrinter>
+			<Item key="MDS">
+				<Result value="[xmlvariable]">
+					<xmlvariable value="/Root/Calculate/Status/@MDS" xmldoc="\XDC\DDC\Data\DataReceiptPrinter.xml"/>
+				</Result>
+			</Item>
+		</ReceiptPrinter>
+		<JournalPrinter>
+			<Item key="MDS">
+				<Result value="[xmlvariable]">
+					<xmlvariable value="/Root/Calculate/Status/@MDS" xmldoc="\XDC\DDC\Data\DataJournalPrinter.xml"/>
+				</Result>
+			</Item>
+		</JournalPrinter>
+		<PINPad>
+			<Item key="MDS">
+				<Result value="[xmlvariable]">
+					<xmlvariable value="/Root/Calculate/Status/@MDS" xmldoc="\XDC\DDC\Data\DataEncryptor.xml"/>
+				</Result>
+			</Item>
+		</PINPad>
+		<BarCodeReader>
+			<Item key="MDS">
+				<Result value="[xmlvariable]">
+					<xmlvariable value="/Root/Calculate/Status/@MDS" xmldoc="\XDC\DDC\Data\DataBarCodeReader.xml"/>
+				</Result>
+			</Item>
+		</BarCodeReader>		
+		<CashAcceptor>
+			<Item key="MDS">
+				<Result value="[xmlvariable]">
+					<xmlvariable value="/Root/Calculate/Status/@MDS" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+				</Result>
+			</Item>
+		</CashAcceptor>
+	</Device>
+	<SupplyCounters>
+		<Item size="5" key="CardCaptured" default="00000">
+			<Result value="[xmlvariable]">
+				<xmlvariable value="/Root/Device/Information/CardReader/@UsCard" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCardReader.xml"/>
+			</Result>
+		</Item>
+		<Item size="5" key="Deposits" default="00000"/>
+		<BillDispenser>
+			<Item size="5" key="Diverted" default="00000">
+				<Result value="[expvariable]">
+					<expvariable value="[SupplyCounters.BillDispenser.Position1.Divert1]+[SupplyCounters.BillDispenser.Position2.Divert1]+[SupplyCounters.BillDispenser.Position3.Divert1]+[SupplyCounters.BillDispenser.Position4.Divert1]" format="{0:d5}"/>
+				</Result>
+			</Item>
+			<Item size="5" key="Dumped" default="00000"/>
+			<Position1>
+				<Item size="5" key="Loaded" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@InitialCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+					</Result>
+				</Item>
+				<Item size="5" key="Dispensed" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@CashOutCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+					</Result>
+				</Item>
+				<Item size="5" key="Divert1" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@RejectCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+					</Result>
+				</Item>
+			</Position1>
+			<Position2>
+				<Item size="5" key="Loaded" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@InitialCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+					</Result>
+				</Item>
+				<Item size="5" key="Dispensed" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@CashOutCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+					</Result>
+				</Item>
+				<Item size="5" key="Divert1" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@RejectCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+					</Result>
+				</Item>
+			</Position2>
+			<Position3>
+				<Item size="5" key="Loaded" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@InitialCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+					</Result>
+				</Item>
+				<Item size="5" key="Dispensed" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@CashOutCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+					</Result>
+				</Item>
+				<Item size="5" key="Divert1" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@RejectCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+					</Result>
+				</Item>
+			</Position3>
+			<Position4>
+				<Item size="5" key="Loaded" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@InitialCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+					</Result>
+				</Item>
+				<Item size="5" key="Dispensed" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@CashOutCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+					</Result>
+				</Item>
+				<Item size="5" key="Divert1" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@RejectCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+					</Result>
+				</Item>
+			</Position4>
+		</BillDispenser>
+		<CoinDispenser>
+			<Position1>
+				<Item size="1" key="Demon" value="A"/>
+				<Item size="5" key="Count" value="000000"/>
+			</Position1>
+			<Position2>
+				<Item size="1" key="Demon" value="A"/>
+				<Item size="5" key="Count" value="000000"/>
+			</Position2>
+			<Position3>
+				<Item size="1" key="Demon" value="A"/>
+				<Item size="5" key="Count" value="000000"/>
+			</Position3>
+			<Position4>
+				<Item size="1" key="Demon" value="A"/>
+				<Item size="5" key="Count" value="000000"/>
+			</Position4>
+			<Position5>
+				<Item size="1" key="Demon" value="A"/>
+				<Item size="5" key="Count" value="000000"/>
+			</Position5>
+		</CoinDispenser>
+		<CashAcceptor>
+			<Position1>
+				<Item size="1" key="CassetteType" default="_">
+					<Result value="2">
+						<Condition value="[xmlvariable]" operand="RECYCLING" operator="==">
+							<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@UseType" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+						</Condition>
+					</Result>
+					<Result value="5">
+						<Condition value="[xmlvariable]" operand="CASHIN" operator="==">
+							<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@UseType" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+						</Condition>
+					</Result>
+					<Result value="0">
+						<Condition value="[xmlvariable]" operand="BILL" operator="==">
+							<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@UseType" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+						</Condition>
+					</Result>
+				</Item>
+				<Item size="3" key="CurrencyID" default="000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@CurrencyID" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+					</Result>
+				</Item>
+				<Item size="10" key="BillValue" default="0000000000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@DenoValue" format="{0:d10}" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+					</Result>
+				</Item>
+				<Item size="5" key="Deposit" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@CashInCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+					</Result>
+				</Item>
+				<Item size="5" key="Retract" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@RejectCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+					</Result>
+				</Item>
+			</Position1>
+			<Position2>
+				<Item size="1" key="CassetteType" default="_">
+					<Result value="2">
+						<Condition value="[xmlvariable]" operand="RECYCLING" operator="==">
+							<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@UseType" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+						</Condition>
+					</Result>
+					<Result value="5">
+						<Condition value="[xmlvariable]" operand="CASHIN" operator="==">
+							<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@UseType" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+						</Condition>
+					</Result>
+					<Result value="0">
+						<Condition value="[xmlvariable]" operand="BILL" operator="==">
+							<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@UseType" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+						</Condition>
+					</Result>
+				</Item>
+				<Item size="3" key="CurrencyID" default="000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@CurrencyID" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+					</Result>
+				</Item>
+				<Item size="10" key="BillValue" default="0000000000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@DenoValue" format="{0:d10}" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+					</Result>
+				</Item>
+				<Item size="5" key="Deposit" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@CashInCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+					</Result>
+				</Item>
+				<Item size="5" key="Retract" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@RejectCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+					</Result>
+				</Item>
+			</Position2>
+			<Position3>
+				<Item size="1" key="CassetteType" default="_">
+					<Result value="2">
+						<Condition value="[xmlvariable]" operand="RECYCLING" operator="==">
+							<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@UseType" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+						</Condition>
+					</Result>
+					<Result value="5">
+						<Condition value="[xmlvariable]" operand="CASHIN" operator="==">
+							<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@UseType" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+						</Condition>
+					</Result>
+					<Result value="0">
+						<Condition value="[xmlvariable]" operand="BILL" operator="==">
+							<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@UseType" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+						</Condition>
+					</Result>
+				</Item>
+				<Item size="3" key="CurrencyID" default="000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@CurrencyID" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+					</Result>
+				</Item>
+				<Item size="10" key="BillValue" default="0000000000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@DenoValue" format="{0:d10}" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+					</Result>
+				</Item>
+				<Item size="5" key="Deposit" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@CashInCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+					</Result>
+				</Item>
+				<Item size="5" key="Retract" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@RejectCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+					</Result>
+				</Item>
+			</Position3>
+			<Position4>
+				<Item size="1" key="CassetteType" default="_">
+					<Result value="2">
+						<Condition value="[xmlvariable]" operand="RECYCLING" operator="==">
+							<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@UseType" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+						</Condition>
+					</Result>
+					<Result value="5">
+						<Condition value="[xmlvariable]" operand="CASHIN" operator="==">
+							<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@UseType" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+						</Condition>
+					</Result>
+					<Result value="0">
+						<Condition value="[xmlvariable]" operand="BILL" operator="==">
+							<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@UseType" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+						</Condition>
+					</Result>
+				</Item>
+				<Item size="3" key="CurrencyID" default="000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@CurrencyID" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+					</Result>
+				</Item>
+				<Item size="10" key="BillValue" default="0000000000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@DenoValue" format="{0:d10}" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+					</Result>
+				</Item>
+				<Item size="5" key="Deposit" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@CashInCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+					</Result>
+				</Item>
+				<Item size="5" key="Retract" default="00000">
+					<Result value="[xmlvariable]">
+						<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@RejectCount" format="{0:d5}" xmldoc="\XDC\DDC\Data\DataCashAcceptor.xml"/>
+					</Result>
+				</Item>
+			</Position4>
+		</CashAcceptor>
+	</SupplyCounters>
+	<Msg>
+		<RolloverCount>
+			<Item key="Position1">
+				<Result value="[msgvariable]">
+					<msgvariable value="[SupplyCounters.BillDispenser.Position1.Dispensed]" format="{0:d3}" expression="[var]%255"/>
+				</Result>
+			</Item>
+			<Item key="Position2">
+				<Result value="[msgvariable]">
+					<msgvariable value="[SupplyCounters.BillDispenser.Position2.Dispensed]" format="{0:d3}" expression="[var]%255"/>
+				</Result>
+			</Item>
+			<Item key="Position3">
+				<Result value="[msgvariable]">
+					<msgvariable value="[SupplyCounters.BillDispenser.Position3.Dispensed]" format="{0:d3}" expression="[var]%255"/>
+				</Result>
+			</Item>
+			<Item key="Position4">
+				<Result value="[msgvariable]">
+					<msgvariable value="[SupplyCounters.BillDispenser.Position4.Dispensed]" format="{0:d3}" expression="[var]%255"/>
+				</Result>
+			</Item>
+		</RolloverCount>
+		<Transaction>
+			<BillDispenser>
+				<Position1>
+					<Item size="1" key="Demon" default="@">
+						<Result value="[xmlvariable]">
+							<xmlvariable value="/Root/Device/Initiation/DenominationID/@Hope1" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml" expression="dictionary,/Root/Cassette/DenominationID/Transaction/Item,key,value"/>
+						</Result>
+					</Item>
+				</Position1>
+				<Position2>
+					<Item size="1" key="Demon" default="@">
+						<Result value="[xmlvariable]">
+							<xmlvariable value="/Root/Device/Initiation/DenominationID/@Hope2" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml" expression="dictionary,/Root/Cassette/DenominationID/Transaction/Item,key,value"/>
+						</Result>
+					</Item>
+				</Position2>
+				<Position3>
+					<Item size="1" key="Demon" default="@">
+						<Result value="[xmlvariable]">
+							<xmlvariable value="/Root/Device/Initiation/DenominationID/@Hope3" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml" expression="dictionary,/Root/Cassette/DenominationID/Transaction/Item,key,value"/>
+						</Result>
+					</Item>
+				</Position3>
+				<Position4>
+					<Item size="1" key="Demon" default="@">
+						<Result value="[xmlvariable]">
+							<xmlvariable value="/Root/Device/Initiation/DenominationID/@Hope4" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml" expression="dictionary,/Root/Cassette/DenominationID/Transaction/Item,key,value"/>
+						</Result>
+					</Item>
+				</Position4>
+				<Position5>
+					<Item size="1" key="Demon" default="@">
+						<Result value="[xmlvariable]">
+							<xmlvariable value="/Root/Device/Initiation/DenominationID/@Hope5" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml" expression="dictionary,/Root/Cassette/DenominationID/Transaction/Item,key,value"/>
+						</Result>
+					</Item>
+				</Position5>
+			</BillDispenser>
+			<LastFunction>
+				<Item size="1" key="Response" default="0">
+					<Result value="1">
+						<Condition value="[msgvariable]" operand="Ready" operator="match">
+							<msgvariable value="[SendCondition.Current.SendMsgIDInTran]"/>
+						</Condition>
+					</Result>
+					<Result value="2">
+						<Condition value="[msgvariable]" operand="DeviceFault" operator="match">
+							<msgvariable value="[SendCondition.Current.SendMsgIDInTran]"/>
+						</Condition>
+					</Result>
+					<Result value="3">
+						<Condition value="[msgvariable]" operand="Reject" operator="match">
+							<msgvariable value="[SendCondition.Current.SendMsgIDInTran]"/>
+						</Condition>
+					</Result>
+				</Item>
+			</LastFunction>
+		</Transaction>
+		<Solicited>
+			<SpecificCmdReject>
+				<Item key="HostMessageIdentifier" default="0">
+					<Result value="[msgvariable]">
+						<msgvariable value="[ReceivMsg.1]"/>
+						<Condition value="[msgvariable]" operand="" operator="!=">
+							<msgvariable value="[ReceivMsg.1]"/>
+						</Condition>
+					</Result>
+				</Item>
+				<HostMessageSubidentifier>
+					<Item size="1" key="Class" default="1">
+						<Result value="2">
+							<Condition value="[msgvariable]" operand="OpenAccountRelationship" operator="match">
+								<msgvariable value="[SendCondition.Current.ReceiveMsgID]"/>
+							</Condition>
+						</Result>
+						<Result value="3">
+							<Condition value="[msgvariable]" operand="EncryptionKeyChange" operator="match">
+								<msgvariable value="[SendCondition.Current.ReceiveMsgID]"/>
+							</Condition>
+						</Result>
+					</Item>
+					<Item size="1" key="Modifier" default="0">
+						<Result value="[SendCondition.Current.ErrFunctionID]">
+							<Condition value="[msgvariable]" operand="EnhancedWriteCommand" operator="match">
+								<msgvariable value="[SendCondition.Current.ReceiveMsgID]"/>
+							</Condition>
+						</Result>
+						<Result value="[msgvariable]">
+							<msgvariable value="[ReceivMsg.5]"/>
+							<Condition value="[msgvariable]" operand="TerminalCommand" operator="match">
+								<msgvariable value="[SendCondition.Current.ReceiveMsgID]"/>
+							</Condition>
+						</Result>
+						<Result value="[msgvariable]">
+							<msgvariable value="[ReceivMsg.6]"/>
+							<Condition value="[msgvariable]" operand="DataCommand" operator="match">
+								<msgvariable value="[SendCondition.Current.ReceiveMsgID]"/>
+							</Condition>
+						</Result>
+						<Result value="1">
+							<Condition value="[msgvariable]" operand="OpenAccountRelationship" operator="match">
+								<msgvariable value="[SendCondition.Current.ReceiveMsgID]"/>
+							</Condition>
+						</Result>
+					</Item>
+				</HostMessageSubidentifier>
+			</SpecificCmdReject>
+			<Printer>
+				<Result value="[msgvariable]">
+					<msgvariable value="[BinaryData.Solicited.Printer.Status]" expression="B2H"/>
+				</Result>
+				<Status>
+				</Status>
+			</Printer>
+			<ReceiptPrinter>
+				<Item key="Status">
+					<Result value="[msgvariable]">
+						<msgvariable value="[BinaryData.Solicited.Printer.Status]" expression="B2H"/>
+					</Result>
+				</Item>
+			</ReceiptPrinter>
+			<JournalPrinter>
+				<Result value="[msgvariable]">
+					<msgvariable value="[BinaryData.Solicited.Printer.Status]" expression="B2H"/>
+				</Result>
+				<Status>
+				</Status>
+			</JournalPrinter>
+			<BillDispenser>
+				<Status>
+					<Item size="2" key="DispenseErrorCode" default="00">
+						<Result value="[msgvariable]">
+							<msgvariable value="[Device.BillDispenser.PhycialDispenseErrorCode]" expression="dictionary,/Root/DispenseErrorCode/Item,key,value"/>
+						</Result>
+					</Item>
+					<Item size="1" key="PartialDispenseStatus" default="0">
+						<!--GoodDispense;ShortDispense;NoNotesDispensed;DispensedUnknown;NoNoesDispensedOrCardEjected;SomeNotesRetracted-->
+						<Result value="0">
+							<Condition value="[msgvariable]" operand="GoodDispense" operator="==">
+								<msgvariable value="[Msg.Transaction.CashHandler.Status]"/>
+							</Condition>
+						</Result>
+						<Result value="5">
+							<Condition value="[msgvariable]" operand="ShortDispense" operator="==">
+								<msgvariable value="[Msg.Transaction.CashHandler.Status]"/>
+							</Condition>
+						</Result>
+						<Result value="3">
+							<Condition value="[msgvariable]" operand="NoNotesDispensed" operator="==">
+								<msgvariable value="[Msg.Transaction.CashHandler.Status]"/>
+							</Condition>
+						</Result>
+						<Result value="2">
+							<Condition value="[msgvariable]" operand="DispensedUnknown" operator="==">
+								<msgvariable value="[Msg.Transaction.CashHandler.Status]"/>
+							</Condition>
+						</Result>
+						<Result value="3">
+							<Condition value="[msgvariable]" operand="NoNoesDispensedOrCardEjected" operator="==">
+								<msgvariable value="[Msg.Transaction.CashHandler.Status]"/>
+							</Condition>
+						</Result>
+						<Result value="0">
+							<Condition value="[msgvariable]" operand="SomeNotesRetracted" operator="==">
+								<msgvariable value="[Msg.Transaction.CashHandler.Status]"/>
+							</Condition>
+						</Result>
+					</Item>
+					<Position1>
+						<Item size="1" key="Demon" default="_">
+							<Result value="[msgvariable]">
+								<msgvariable value="[SupplyCounters.BillDispenser.Position1.Demon]"/>
+							</Result>
+						</Item>
+						<Item size="2" key="NumberOfBillsDispensed" default="00">
+							<Result value="[msgvariable]">
+								<msgvariable value="[Msg.Transaction.CashHandler.Dispensed1]"/>
+							</Result>
+						</Item>
+					</Position1>
+					<Position2>
+						<Item size="1" key="Demon" default="_">
+							<Result value="[msgvariable]">
+								<msgvariable value="[SupplyCounters.BillDispenser.Position2.Demon]"/>
+							</Result>
+						</Item>
+						<Item size="2" key="NumberOfBillsDispensed" default="00">
+							<Result value="[msgvariable]">
+								<msgvariable value="[Msg.Transaction.CashHandler.Dispensed2]"/>
+							</Result>
+						</Item>
+					</Position2>
+					<Position3>
+						<Item size="1" key="Demon" default="_">
+							<Result value="[msgvariable]">
+								<msgvariable value="[SupplyCounters.BillDispenser.Position3.Demon]"/>
+							</Result>
+						</Item>
+						<Item size="2" key="NumberOfBillsDispensed" default="00">
+							<Result value="[msgvariable]">
+								<msgvariable value="[Msg.Transaction.CashHandler.Dispensed3]"/>
+							</Result>
+						</Item>
+					</Position3>
+					<Position4>
+						<Item size="1" key="Demon" default="_">
+							<Result value="[msgvariable]">
+								<msgvariable value="[SupplyCounters.BillDispenser.Position4.Demon]"/>
+							</Result>
+						</Item>
+						<Item size="2" key="NumberOfBillsDispensed" default="00">
+							<Result value="[msgvariable]">
+								<msgvariable value="[Msg.Transaction.CashHandler.Dispensed4]"/>
+							</Result>
+						</Item>
+					</Position4>
+				</Status>
+			</BillDispenser>
+			<ConfigurationID>
+				<Status>
+					<Item key="ConfigurationID">
+						<Result value="[msgvariable]">
+							<msgvariable value="[ConfigurationID]"/>
+						</Result>
+					</Item>
+					<Item key="Tail">
+						<Result value="[msgvariable]">
+							<msgvariable value="[BinaryData.Solicited.ConfigurationID.Status.Tail]" expression="B2H"/>
+						</Result>
+					</Item>
+				</Status>
+			</ConfigurationID>
+			<HardwareConfiguration>
+				<Status>
+					<Item key="Standard">
+						<Result value="[msgvariable]">
+							<msgvariable value="[BinaryData.Solicited.HardwareConfiguration.Status.Standard]" expression="B2H"/>
+						</Result>
+					</Item>
+					<Item key="Expanded">
+						<Result value="[msgvariable]">
+							<msgvariable value="[BinaryData.Solicited.HardwareConfiguration.Status.Expanded]" expression="B2H"/>
+						</Result>
+					</Item>
+					<Item key="Double">
+						<Result value="[msgvariable]">
+							<msgvariable value="[BinaryData.Solicited.HardwareConfiguration.Status.Double]" expression="B2H"/>
+						</Result>
+					</Item>
+					<Item key="Additional">
+						<Result value="[msgvariable]">
+							<msgvariable value="[BinaryData.Solicited.HardwareConfiguration.Status.Double]" expression="B2H"/>
+						</Result>
+					</Item>
+					<Additional>
+						<CashAcceptor>
+							<Result value="">
+								<Condition value="[msgvariable]" operand="0" operator="match">
+									<msgvariable value="[OptionCtrl.Configuration.CashAcceptor]"/>
+								</Condition>
+							</Result>
+						</CashAcceptor>
+					</Additional>
+				</Status>
+			</HardwareConfiguration>
+			<SupplyCounts>
+				<Item size="var" key="MDS" value="000000"/>
+			</SupplyCounts>
+			<ExternalOptionsModule>
+				<Item key="Status">
+					<Result value="[msgvariable]">
+						<msgvariable value="[BinaryData.Solicited.Reserve.Status]" expression="B2H"/>
+					</Result>
+				</Item>
+			</ExternalOptionsModule>
+		</Solicited>
+		<Unsolicited>
+			<SupervisoSupplySwitches>
+				<Item key="Status">
+					<Result value="[msgvariable]">
+						<msgvariable value="[BinaryData.Unsolicited.SupervisoSupplySwitches.Status]" expression="B2H"/>
+					</Result>
+				</Item>
+			</SupervisoSupplySwitches>
+			<Printer>
+				<Item key="Status">
+					<Result value="[msgvariable]">
+						<msgvariable value="[BinaryData.Unsolicited.Printer.Status]" expression="B2H"/>
+					</Result>
+				</Item>
+			</Printer>
+			<ReceiptPrinter>
+				<Item key="Status">
+					<Result value="[msgvariable]">
+						<msgvariable value="[BinaryData.Unsolicited.Printer.Status]" expression="B2H"/>
+					</Result>
+				</Item>
+			</ReceiptPrinter>
+			<JournalPrinter>
+				<Item key="Status">
+					<Result value="[msgvariable]">
+						<msgvariable value="[BinaryData.Unsolicited.Printer.Status]" expression="B2H"/>
+					</Result>
+				</Item>
+			</JournalPrinter>
+			<CardReader>
+				<Item key="Status">
+					<Result value="[msgvariable]">
+						<msgvariable value="[BinaryData.Unsolicited.CardReader.Status]" expression="B2H"/>
+					</Result>
+				</Item>
+			</CardReader>
+			<Alarm>
+				<Item key="Status">
+					<Result value="[msgvariable]">
+						<msgvariable value="[BinaryData.Unsolicited.Alarm.Status]" expression="B2H"/>
+					</Result>
+				</Item>
+			</Alarm>
+			<BillDispenser>
+				<Item size="var" key="Status" default="">
+					<Result value="DI01">
+						<Condition value="[msgvariable]" operand="0" operator="==">
+							<msgvariable value="[Options.F2.MDSStatusToNetwork]" operator=""/>
+						</Condition>
+					</Result>
+				</Item>
+			</BillDispenser>
+		</Unsolicited>
+	</Msg>
+	<BinaryData>
+		<Solicited>
+			<HardwareConfiguration>
+				<Status>
+					<Standard>
+						<Item key="10" default="0">
+							<Result value="1">
+								<Condition value="[xmlvariable]" operand="True" operator="==">
+									<xmlvariable value="/Root/Device/Capability/CashDispenser/@SupportShutter" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="23" default="0">
+							<Result value="1">
+								<Condition value="[xmlvariable]" operand="1" operator="==">
+									<xmlvariable value="/Root/OptionCtrl/Configuration/Item[@key='JournalPrinter']/@value" xmldoc="\XDC\DDC\Data\dicMsgVariableOptionCtrl.xml"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="22" default="0">
+							<Result value="1">
+								<Condition value="[xmlvariable]" operand="1" operator="==">
+									<xmlvariable value="/Root/OptionCtrl/Configuration/Item[@key='CardReader']/@value" xmldoc="\XDC\DDC\Data\dicMsgVariableOptionCtrl.xml"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="20" default="0">
+							<Result value="1">
+								<Condition value="[msgvariable]" operand="1" operator="==">
+									<msgvariable value="[OptionCtrl.Configuration.CashAcceptor]"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="75" default="0">
+							<Result value="1">
+								<Condition value="[msgvariable]" operand="0" operator="==">
+									<msgvariable value="[Options.F3.DoubleExpandedHardwareConfigurationStatus]" operator=""/>
+								</Condition>
+							</Result>
+						</Item>
+					</Standard>
+					<Expanded>
+						<Item key="86" default="0">
+							<Result value="1">
+								<Condition value="[xmlvariable]" operand="True" operator="==">
+									<xmlvariable value="/Root/Device/Capability/CashDispenser/@SupportShutter" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="84" default="0">
+							<Result value="1">
+								<Condition value="[msgvariable]" operand="1" operator="==">
+									<msgvariable value="[OptionCtrl.Configuration.Camera]"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="107" default="0">
+							<Result value="1">
+								<Condition value="[xmlvariable]" operand="1" operator="==">
+									<xmlvariable value="/Root/Device/Enable/@CassetteType8" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="106" default="0">
+							<Result value="1">
+								<Condition value="[xmlvariable]" operand="1" operator="==">
+									<xmlvariable value="/Root/Device/Enable/@CassetteType7" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="105" default="0">
+							<Result value="1">
+								<Condition value="[xmlvariable]" operand="1" operator="==">
+									<xmlvariable value="/Root/Device/Enable/@CassetteType6" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="104" default="0">
+							<Result value="1">
+								<Condition value="[xmlvariable]" operand="1" operator="==">
+									<xmlvariable value="/Root/Device/Enable/@CassetteType5" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="103" default="0">
+							<Result value="1">
+								<Condition value="[xmlvariable]" operand="1" operator="==">
+									<xmlvariable value="/Root/Device/Enable/@CassetteType4" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="102" default="0">
+							<Result value="1">
+								<Condition value="[xmlvariable]" operand="1" operator="==">
+									<xmlvariable value="/Root/Device/Enable/@CassetteType3" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="101" default="0">
+							<Result value="1">
+								<Condition value="[xmlvariable]" operand="1" operator="==">
+									<xmlvariable value="/Root/Device/Enable/@CassetteType2" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="100" default="0">
+							<Result value="1">
+								<Condition value="[xmlvariable]" operand="1" operator="==">
+									<xmlvariable value="/Root/Device/Enable/@CassetteType1" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="117" default="0">
+							<Result value="1">
+								<Condition value="[msgvariable]" operand="1" operator="==">
+									<msgvariable value="[OptionCtrl.Configuration.IDM]"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="116" default="0">
+							<Result value="1">
+								<Condition value="[msgvariable]" operand="1" operator="==">
+									<msgvariable value="[OptionCtrl.Configuration.CoinDispenser]"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="110" default="0">
+							<Result value="1">
+								<Condition value="[xmlvariable]" operand="MOTOR" operator="!=">
+									<xmlvariable value="/Root/Device/Capability/CardReader/@SupportType" xmldoc="\XDC\DDC\Data\DataCardReader.xml"/>
+								</Condition>
+							</Result>
+						</Item>
+					</Expanded>
+				</Status>
+			</HardwareConfiguration>
+			<ConfigurationID>
+				<Status>
+					<Tail>
+						<Item key="26" default="0">
+							<Result value="1">
+								<Condition value="[xmlvariable]" operand="1" operator="==">
+									<xmlvariable value="/Root/Calculate/Door/@OPERATORSWITCH" xmldoc="\XDC\DDC\Data\DataSensorAndLight.xml"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="25" default="0">
+							<Result value="1">
+								<Condition value="[xmlvariable]" operand="1" operator="==">
+									<xmlvariable value="/Root/Calculate/Door/@CABINET" xmldoc="\XDC\DDC\Data\DataSensorAndLight.xml"/>
+								</Condition>
+							</Result>
+						</Item>
+						<Item key="75" default="0">
+							<Result value="1">
+								<Condition value="[msgvariable]" operand="0" operator="==">
+									<msgvariable value="[Options.F3.DoubleExpandedHardwareConfigurationStatus]" operator=""/>
+								</Condition>
+							</Result>
+						</Item>
+					</Tail>
+				</Status>
+			</ConfigurationID>
+		</Solicited>
+		<Unsolicited>
+			<Printer>
+				<Status>
+					<Item key="07" default="0">
+						<Result value="1">
+							<Condition value="[msgvariable]" operand="UnsolicitedStatus.ReceiptPrinter" operator="match">
+								<msgvariable value="[SendCondition.Current.SendMsgID]"/>
+							</Condition>
+							<Condition value="[xmlvariable]" operand="4" operator="!=">
+								<xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\DDC\Data\DataReceiptPrinter.xml"/>
+							</Condition>
+						</Result>
+						<Result value="1">
+							<Condition value="[msgvariable]" operand="UnsolicitedStatus.JournalPrinter" operator="match">
+								<msgvariable value="[SendCondition.Current.SendMsgID]"/>
+							</Condition>
+							<Condition value="[xmlvariable]" operand="4" operator="!=">
+								<xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\DDC\Data\DataJournalPrinter.xml"/>
+							</Condition>
+						</Result>
+					</Item>
+					<Item key="01" default="0">
+						<Result value="1">
+							<Condition value="[xmlvariable]" operand="4" operator="==">
+								<xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\DDC\Data\DataReceiptPrinter.xml"/>
+							</Condition>
+						</Result>
+					</Item>
+					<Item key="00" default="0">
+						<Result value="1">
+							<Condition value="[xmlvariable]" operand="4" operator="==">
+								<xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\DDC\Data\DataJournalPrinter.xml"/>
+							</Condition>
+						</Result>
+					</Item>
+					<Item key="17" default="0">
+						<Result value="1">
+							<Condition value="[xmlvariable]" operand="2" operator="==">
+								<xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@Paper" xmldoc="\XDC\DDC\Data\DataReceiptPrinter.xml"/>
+							</Condition>
+						</Result>
+					</Item>
+					<Item key="15" default="0">
+						<Result value="1">
+							<Condition value="[xmlvariable]" operand="3" operator="==">
+								<xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@Paper" xmldoc="\XDC\DDC\Data\DataReceiptPrinter.xml"/>
+							</Condition>
+						</Result>
+					</Item>
+					<Item key="10" default="0">
+						<Result value="1">
+							<Condition value="[xmlvariable]" operand="4" operator="==">
+								<xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\DDC\Data\DataReceiptPrinter.xml"/>
+							</Condition>
+						</Result>
+					</Item>
+					<Item key="27" default="0">
+						<Result value="1">
+							<Condition value="[xmlvariable]" operand="3" operator="==">
+								<xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@Paper" xmldoc="\XDC\DDC\Data\DataJournalPrinter.xml"/>
+							</Condition>
+						</Result>
+					</Item>
+					<Item key="25" default="0">
+						<Result value="1">
+							<Condition value="[xmlvariable]" operand="2" operator="==">
+								<xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@Paper" xmldoc="\XDC\DDC\Data\DataJournalPrinter.xml"/>
+							</Condition>
+						</Result>
+					</Item>
+					<Item key="20" default="0">
+						<Result value="1">
+							<Condition value="[xmlvariable]" operand="4" operator="==">
+								<xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\DDC\Data\DataJournalPrinter.xml"/>
+							</Condition>
+						</Result>
+					</Item>
+				</Status>
+			</Printer>
+			<CardReader>
+				<Status>
+					<Item key="01" default="0">
+						<Result value="1">
+							<Condition value="[xmlvariable]" operand="4" operator="==">
+								<xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\DDC\Data\DataCardReader.xml"/>
+							</Condition>
+						</Result>
+					</Item>
+				</Status>
+			</CardReader>
+			<Alarm>
+				<Status>
+					<Item key="03" default="0">
+						<Result value="1">
+							<Condition value="[xmlvariable]" operand="1" operator="==">
+								<xmlvariable value="/Root/Calculate/Door/@CABINET" xmldoc="\XDC\DDC\Data\DataSensorAndLight.xml"/>
+							</Condition>
+						</Result>
+					</Item>
+					<Item key="01" default="0">
+						<Result value="1">
+							<Condition value="[xmlvariable]" operand="1" operator="==">
+								<xmlvariable value="/Root/Calculate/Door/@SAFE" xmldoc="\XDC\DDC\Data\DataSensorAndLight.xml"/>
+							</Condition>
+						</Result>
+					</Item>
+				</Status>
+			</Alarm>
+			<SupervisoSupplySwitches>
+				<Status>
+					<Item key="06" default="0">
+						<Result value="1">
+							<Condition value="[xmlvariable]" operand="1" operator="==">
+								<xmlvariable value="/Root/Calculate/Door/@OPERATORSWITCH" xmldoc="\XDC\DDC\Data\DataSensorAndLight.xml"/>
+							</Condition>
+						</Result>
+					</Item>
+				</Status>
+			</SupervisoSupplySwitches>
+		</Unsolicited>
+	</BinaryData>
+	<SendCondition>
+		<FiledControl>
+			<Item key="ReplyOAR" default="0">
+				<Result value="1">
+					<Condition value="DataCommand.OpenAccountRelationship" operand="[msgvariable]" operator="==">
+						<msgvariable value="[SendCondition.Current.ReceiveMsgID]"/>
+					</Condition>
+				</Result>
+			</Item>
+		</FiledControl>
+		<DeviceStatusChange>
+			<Item key="CardReader" default="0">
+				<Result value="1">
+					<Condition value="[xmlvariable]" operand="[msgvariable]" operator="!=">
+						<xmlvariable value="/Root/Msg/Unsolicited/CardReader/Item[@key = 'Status']/@value" expression="H2B,0,1" xmldoc="\XDC\DDC\Data\dicMsgVariableHost.xml"/>
+						<msgvariable value="[BinaryData.Unsolicited.CardReader.Status.01]"/>
+					</Condition>
+				</Result>
+				<Result value="1">
+					<Condition value="[xmlvariable]" operand="80" operator="!=">
+						<xmlvariable value="/Root/Msg/Unsolicited/CardReader/Item[@key = 'Status']/@value" xmldoc="\XDC\DDC\Data\dicMsgVariableHost.xml"/>
+					</Condition>
+ 					<Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="match">
+						<xmlvariable value="/Root/Device/Information/CardReader/@DeviceState" xmldoc="\XDC\DDC\Data\DataCardReader.xml"/>
+					</Condition>					
+				</Result>				
+			</Item>
+			<Item key="ReceiptPrinter" default="0">
+				<Result value="1">
+					<Condition value="[xmlvariable]" operand="[msgvariable]" operator="!=">
+						<xmlvariable value="/Root/Msg/Unsolicited/ReceiptPrinter/Item[@key = 'Status']/@value" expression="H2B,0,1" xmldoc="\XDC\DDC\Data\dicMsgVariableHost.xml"/>
+						<msgvariable value="[BinaryData.Unsolicited.Printer.Status.01]"/>
+					</Condition>
+				</Result>
+				<Result value="1">
+					<Condition value="[xmlvariable]" operand="[msgvariable]" operator="!=">
+						<xmlvariable value="/Root/Msg/Unsolicited/ReceiptPrinter/Item[@key = 'Status']/@value" expression="H2B,1,7" xmldoc="\XDC\DDC\Data\dicMsgVariableHost.xml"/>
+						<msgvariable value="[BinaryData.Unsolicited.Printer.Status.17]"/>
+					</Condition>
+				</Result>
+				<Result value="1">
+					<Condition value="[xmlvariable]" operand="[msgvariable]" operator="!=">
+						<xmlvariable value="/Root/Msg/Unsolicited/ReceiptPrinter/Item[@key = 'Status']/@value" expression="H2B,1,5" xmldoc="\XDC\DDC\Data\dicMsgVariableHost.xml"/>
+						<msgvariable value="[BinaryData.Unsolicited.Printer.Status.15]"/>
+					</Condition>
+				</Result>
+			</Item>
+			<Item key="JournalPrinter" default="0">
+				<Result value="1">
+					<Condition value="[xmlvariable]" operand="[msgvariable]" operator="!=">
+						<xmlvariable value="/Root/Msg/Unsolicited/JournalPrinter/Item[@key = 'Status']/@value" expression="H2B,0,0" xmldoc="\XDC\DDC\Data\dicMsgVariableHost.xml"/>
+						<msgvariable value="[BinaryData.Unsolicited.Printer.Status.00]"/>
+					</Condition>
+				</Result>
+				<Result value="1">
+					<Condition value="[xmlvariable]" operand="[msgvariable]" operator="!=">
+						<xmlvariable value="/Root/Msg/Unsolicited/JournalPrinter/Item[@key = 'Status']/@value" expression="H2B,2,7" xmldoc="\XDC\DDC\Data\dicMsgVariableHost.xml"/>
+						<msgvariable value="[BinaryData.Unsolicited.Printer.Status.27]"/>
+					</Condition>
+				</Result>
+				<Result value="1">
+					<Condition value="[xmlvariable]" operand="[msgvariable]" operator="!=">
+						<xmlvariable value="/Root/Msg/Unsolicited/JournalPrinter/Item[@key = 'Status']/@value" expression="H2B,2,5" xmldoc="\XDC\DDC\Data\dicMsgVariableHost.xml"/>
+						<msgvariable value="[BinaryData.Unsolicited.Printer.Status.25]"/>
+					</Condition>
+				</Result>
+			</Item>
+			<Item key="CashHandler" default="1">
+			</Item>
+			<Item key="EnvelopeDispenser" default="0">
+			</Item>
+			<Item key="EnvelopeDepository" default="0">
+			</Item>
+			<Item key="BarCodeReader" default="0">
+					<Result value="1">
+					<Condition value="[xmlvariable]" operand="[msgvariable]" operator="!=">
+						<xmlvariable value="/Root/Device/BarCodeReader/Item[@key='MDS']/@value" xmldoc="\XDC\DDC\Data\dicMsgVariableHost.xml"/>
+						<msgvariable value="[Device.BarCodeReader.MDS]"/>
+					</Condition>
+				</Result>
+			</Item>
+			<Item key="Alarm" default="0">
+				<Result value="1">
+					<Condition value="[xmlvariable]" operand="[msgvariable]" operator="!=">
+						<xmlvariable value="/Root/Msg/Unsolicited/Alarm/Item[@key = 'Status']/@value" expression="H2B,0,3" xmldoc="\XDC\DDC\Data\dicMsgVariableHost.xml"/>
+						<msgvariable value="[BinaryData.Unsolicited.Alarm.Status.03]"/>
+					</Condition>
+				</Result>
+				<Result value="1">
+					<Condition value="[xmlvariable]" operand="[msgvariable]" operator="!=">
+						<xmlvariable value="/Root/Msg/Unsolicited/Alarm/Item[@key = 'Status']/@value" expression="H2B,0,1" xmldoc="\XDC\DDC\Data\dicMsgVariableHost.xml"/>
+						<msgvariable value="[BinaryData.Unsolicited.Alarm.Status.01]"/>
+					</Condition>
+				</Result>
+			</Item>
+			<Item key="Encryptor" default="0">
+				<Result value="1">
+					<Condition value="[xmlvariable]" operand="[msgvariable]" operator="!=">
+						<xmlvariable value="/Root/Device/PINPad/Item[@key='MDS']/@value" xmldoc="\XDC\DDC\Data\dicMsgVariableHost.xml"/>
+						<msgvariable value="[Device.PINPad.MDS]"/>
+					</Condition>
+				</Result>
+			</Item>
+			<Item key="CashAcceptor" default="0">
+				<Result value="1">
+					<Condition value="[xmlvariable]" operand="[msgvariable]" operator="!=">
+						<xmlvariable value="/Root/Device/CashAcceptor/Item[@key='MDS']/@value" xmldoc="\XDC\DDC\Data\dicMsgVariableHost.xml"/>
+						<msgvariable value="[Device.CashAcceptor.MDS]"/>
+					</Condition>
+				</Result>
+			</Item>
+		</DeviceStatusChange>
+		<DeviceEventOccur>
+			<Item key="CashHandler" default="0">
+				<Result value="1">
+					<Condition value="[msgvariable]" operand="SomeNotesRetracted" operator="==">
+						<msgvariable value="[Msg.Transaction.CashHandler.Status]"/>
+					</Condition>
+				</Result>
+			</Item>
+		</DeviceEventOccur>
+	</SendCondition>
+	<Capability>
+		<Encryptor>
+			<Item key="RKL">
+				<Result value="[xmlvariable]">
+					<xmlvariable value="/Root/Calculate/Status/@RKL_SIG" xmldoc="\XDC\DDC\Data\DataEncryptor.xml"/>
+				</Result>
+			</Item>
+		</Encryptor>
+	</Capability>
+</Root>

@@ -1,0 +1,248 @@
+@import './iconfont/font-awesome/css/font-awesome.css';
+
+html {
+    width: 100vw;
+    height: 100vh;
+    background: url(../images/background.png) no-repeat center/cover;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently */
+}
+html body {
+    font-size: 34px;
+    color: #fff;
+    height: 100%;
+    overflow: hidden;
+}
+.hide {
+    display: none !important;
+}
+/* g-button */
+.g-button {
+    border-width: 3px; 
+}
+.g-button.is-round{
+    border-radius: 10px;
+}
+.g-button--default {
+    border-color: #fff;
+    color: #2b6da9;
+}
+.g-button.exit-btn{
+    border:hidden;
+    padding: 0;
+}
+.g-button.command-btn{
+    width: 300px;
+    height: 80px;
+}
+
+/* g-main */
+.g-main {
+    position: relative;
+    padding: 0 8%;
+    max-width: 1920px;
+}
+.g-main .img-wrapper img{
+    width: 80%;
+    vertical-align: top;
+    border-radius: 10px;
+}
+
+.g-main .img-wrapper .img-warnning{
+    width: 150px;
+    height: 150px;
+    margin-top: 95px;
+}
+
+.g-main .img-wrapper .img-loading{
+    width: 240px;
+    height: 240px;
+    margin-top: 50px;
+}
+
+.g-main .main-title {
+    font-size: 50px;
+    line-height: 56px;
+    padding: 100px 0;
+}
+.g-main .sm-main-title {
+    font-size: 50px;
+    line-height: 56px;
+    margin: 50px 0;
+}
+
+.g-footer {
+    position: fixed;
+    bottom: 5%;
+    left: 5%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* loading */
+.img-wrapper #imgLoading img{
+    width: 240px;
+    border-radius: 10px;
+}
+
+.img-wrapper #imgLoading{
+    margin-top: 50px;
+}
+
+/* g-form */
+.g-input {
+    color: #fff;
+    border-radius: 5px;
+    padding: 0 20px;
+    font-size: 25px;
+}
+.g-input:focus, .g-input:hover {
+    box-shadow: 0 0 0 2px #dceeff;
+    border-color: #fff;
+}
+.g-form-item-error .g-input:focus,
+.g-form-item-error .g-input:active,
+.g-form-item-error .g-input:hover {
+    box-shadow: 0 0 0 2px #f5222d !important;
+}
+.g-form-item-label {
+    color: #fff;
+}
+.g-radio {
+    margin-right: 20px;
+}
+.g-radio .g-radio-circle {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+}
+.g-radio-checked .g-radio-circle::after {
+    width: 20px;
+    height: 20px;
+    top: 9px;
+    left: 9px;
+    border-radius: 10px;
+}
+.g-form {
+    font-size: 30px;
+    text-align: left;
+    width: 80%;
+    margin: 0 auto;
+}
+.g-form-item:not(:last-child) {
+    padding-bottom: 30px;
+    position: relative;
+}
+.g-form-item-error-tip {
+    font-size: 20px;
+    line-height: 30px;
+}
+.g-form .btn-wrapper .g-form-item-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* g-card */
+.card-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+.card-wrapper .g-card {
+    margin: 0 auto 50px;
+}
+.card-wrapper .g-card .header {
+    text-align: center;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.g-card img {
+    width: 100px;
+    max-height: 100%;
+    vertical-align: top;
+}
+
+/* stepper */
+.g-stepper {
+    position: absolute;
+    left: 3%;
+    right: 3%;
+    top: 0;
+    font-size: 25px;
+}
+
+/* messagebox */
+.g-modal-confirm .g-modal-confirm-body{
+    font-size: 40px;
+    text-align: center;
+}
+.g-modal-confirm .g-modal-confirm-footer {
+    margin-top: 50px;
+    text-align: center;
+}
+.g-modal-confirm .g-modal-confirm-footer button{
+    font-size: 30px;
+}
+.g-modal-confirm .g-modal-content {
+    border-radius: 30px;
+}
+
+/* message */
+.g-message {
+    font-size: 20px;
+    border-radius: 10px;
+    background: rgba(0,0,0,.5);
+    color: #fff;
+}
+/* drawer */
+.g-drawer {
+    background: #1262ab;
+}
+
+/* keyboard */
+.keyboard-wrapper input {
+    font-size: 30px;
+    height: 60px;
+}
+.keyboard-wrapper i {
+    font-size: 30px;
+    height: 60px;
+    color: #fff;
+}
+.keyboard-wrapper .keyboard {
+    background: none;
+}
+.keyboard.default .hg-button {
+    border: 1px solid #fff;
+}
+@media screen and (min-width: 1366px){
+    .g-input {min-width: 500px;}
+    .g-form-item-error-tip {font-size: 25px;}
+    .keyboard .hg-button {width: 70px; height: 70px; line-height: 66px; margin: 6px 4px;}
+    .keyboard .hg-button span {font-size: 23px;}
+    .keyboard .hg-button-bksp, .keyboard .hg-button-cancel, .keyboard .hg-button-clear, .keyboard .hg-button-enter, .keyboard .hg-button-shift {
+        width: 130px;
+    }
+}
+/* scrollbar */
+/* ::-webkit-scrollbar{
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track-piece{
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:horizontal{
+    height: 5px;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 6px;
+} */

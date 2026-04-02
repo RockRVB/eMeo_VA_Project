@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="STMAWithdrawal">
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2013/10/7 15:15:12" comment="The workflow design is for withdrawal"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start" homeVisible="0">
+			<Forward event="OnConfirm" targetID="ID_DispenseCash"/>
+		</Start>
+		<!--设置取款数据-->
+		<SetSTMAWithdralData ID="ID_SetSTMAWithdralData" comment="设置取款数据">
+			<Forward event="OnConfirm" targetID="ID_DispenseCash"/>
+			<DefaultForward targetID="ID_InvokeCloseTransWorkflow"/>
+		</SetSTMAWithdralData>
+
+		<DispenseCash ID="ID_DispenseCash" UI="UI_PresentCash" comment="Dispense cash">
+			<States>
+				<State name="DispenseAmountError" UI="UI_DispenseAmountError"/>
+				<State name="RejectingCash" UI="UI_RejectingCash"/>
+				<State name="RejectCashForHardwareError" UI="UI_RejectCashForHardwareError"/>
+				<State name="RejectCashFail" UI="UI_RejectCashFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_PresentCash"/>
+			<Forward event="OnHardwareError" targetID="ID_SendSTMAWithdralData"/>
+		</DispenseCash>
+		<PresentCash ID="ID_PresentCash" UI="UI_PresentCash" comment="Present cash">
+			<States>
+				<State name="TakeCash" UI="UI_TakeMoneyTip"/>
+				<State name="RetractingCash" UI="UI_RetractingCash"/>
+				<State name="RetractCashForTimeout" UI="UI_RetractCashForTimeout"/>
+				<State name="RetractCashForHardwareError" UI="UI_RetractCashForHardwareError"/>
+				<State name="RetractNoCash" UI="UI_RetractNoCash"/>
+				<State name="RetractCashFail" UI="UI_RetractCashFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_BusinessActivitySTMWithdral"/>
+			<Forward event="OnHardwareError" targetID="ID_SendSTMAWithdralData"/>
+		</PresentCash>
+		<!--出钞完成，向A端通知-->
+		<BusinessActivitySTMWithdral ID="ID_BusinessActivitySTMWithdral" comment="">
+			<Forward event="OnConfirm" targetID="ID_WithdrawSuccessBySTMA"/>
+			<Forward event="OnContinue" targetID="ID_DispenseCash"/>
+		</BusinessActivitySTMWithdral>
+		
+		<!--出钞异常，向A端通知已出钞结果，作为参考-->
+		<BusinessActivitySendSTMAWithdralData ID="ID_SendSTMAWithdralData" comment="">
+			<Forward event="OnConfirm" targetID="ID_WithdrawFailBySTMA"/>
+		</BusinessActivitySendSTMAWithdralData>
+		
+		<!--出钞正常提示-->
+		<Prompt ID="ID_WithdrawSuccessBySTMA" UI="UI_WithdrawSuccessBySTMA" timeout="5000" comment="">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</Prompt>
+		
+		<!--出钞异常，向A端通知已出钞结果，作为参考-->
+		<Prompt ID="ID_WithdrawFailBySTMA" UI="UI_WithdrawFailBySTMA" timeout="5000" comment="">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</Prompt>
+		
+		<End ID="9999" comment="End">
+		</End>
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>
+

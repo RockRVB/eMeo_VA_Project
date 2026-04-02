@@ -1,0 +1,141 @@
+﻿Print Journal:
+First：Start Information
+
+Format：
+Date:Year-Month-Day  Time: Hour:Minute:Second
+Version:XXXXXX
+Kernel version:XXXXXX
+Branch Number:XXXX
+ATM ID:XXXXXXXX
+ATMP IP address Port:
+Local IP address:
+Sub-net mask:
+Gate-way IP address:
+------------------------------------
+Cassette  Type  Denomination  Fill   Left   Status
+Kernel version
+Engineering version
+Sign on successfully[Type]:Status
+
+Example：
+-------------ATM START------------
+DATE:2012-03-24  TIME:19:58:07
+APP Version:1.0.0.1
+eCAT Version:1.0.0.0
+BANKNO:04814650    ATMNO:00009210
+ATMP:127.0.0.1:10101
+Local IP:0.0.0.0
+Subnet:
+Gateway:0.0.0.0
+------------------------------------
+==============Cassette Information==============
+Cassette     Type     Demonization Fill Left    Status
+PHY01   Reject/Retract      100     0    6      Normal
+PHY02   Recycling           100    200   188     LOW
+PHY03   Recycling           50     300   300    Normal
+PHY04   Recycling           100    400   400    Normal
+PHY05   Bill                100    500   500     LOW
+Cassette remaining (Reject/Retract Bin not included):123800.00
+Kernel VER:b62
+DAM VER:b62
+eCAT VER:1.0.0.0
+BankInterface VER:1.0.0.0
+SignIn Complete[RQK]:00
+
+Second：Transaction Information
+
+1 INQUERY 
+Format：
+==>Hour:Minute:Second PAN: Track2
+   Hour:Minute:Second RESP:Response Code
+<==Year-Month-Day Hour:Minute:Second CARD TAKEN
+Example：
+==>09:18:07 PAN:955880*********1431
+   09:18:19 #[001059] INQ
+   09:18:19 Response Code:00
+<==2010-03-19 09:18:28 CARD TAKEN
+  
+2 Cash Withdrawal    
+Format：
+==>Hour:Minute:Second PAN: Track2
+   Hour:Minute:Second RESP: Response Code
+   Mix information: Position, denomination, dispense, retract
+   Hour:Minute:Second WITHDRAWAL OK
+<==Year-Month-Day Hour:Minute:Second CARD TAKEN
+Example：
+==>20:04:10 PAN:685800******8074     
+  11:33:24 #[000039] Withdrawal amount:100.00 
+  11:33:24 Response Code:00  FEE:0.00       
+  DISPENSE INFO:0-1-0-0-0            
+  0006-0187-0300-0400-0500           
+  WITHDRAWAL OK                      
+<==2012-03-24 20:04:33 CARD TAKEN    
+
+3 PIN  
+
+Format：
+==>Hour:Minute:Second PAN: Track2
+   Hour:Minute:Second RESP:Response code
+<==Year-Month-Day Hour:Minute:Second CARD TAKEN
+Example：
+==>20:05:55 PAN:685800******8074                    
+  11:17:45 Response Code:00                  
+<==2012-03-24 20:06:29 CARD TAKEN     
+  
+4 Transfer accounts
+
+Format：
+==>Hour:Minute:Second PAN: Track2
+   Transfer in account:
+   Hour:Minute:Second RESP:Response code FEE: Service Charge
+<==Year-Month-Day Hour:Minute:Second CARD TAKEN
+Example：
+==>20:10:13 PAN:685800******8074     
+  TFR_TO:000000000000000000          
+  11:49:23 Response Code:00  FEE:0.00       
+<==2012-03-24 20:10:48 CARD TAKEN    
+  
+5 Deposit  
+
+Format：
+Account
+==>Hour:Minute:Second PAN: Track2
+   Hour:Minute:Second Refused notes taken
+   CASH TOTAL:Note details
+   Hour:Minute:Second: RESP:Response Code FEE: Service Charge
+   Hour:Minute:Second Deposit result
+<==Year-Month-Day Hour:Minute:Second CARD TAKEN
+Example：
+==>20:12:15 PAN:685800******8074     
+  CASH COUNT:[100]:3 [NG]:2          
+  REFUSED CASH TAKEN                 
+  CASH TOTAL:[100]:3                 
+  11:31:45 #[000044] Deposit amount:300.00 
+  11:31:45 Response Code:00  FEE:0.00       
+  0006-0190-0300-0400-0500           
+  20:12:59 STORE CASH OK             
+<==2012-03-24 20:13:09 CARD TAKEN    
+   
+6 DEP  (Transaction Code:116)
+
+Format：
+==>Hour:Minute:Second PAN: ID Number
+   Hour:Minute:Second Account name inquiry
+   Hour:Minute:Second Refused notes taken
+   CASH TOTAL:Note details
+   Hour:Minute:Second RESP:Response Code FEE:Service Charge
+   Hour:Minute:Second Deposit result
+<==Year-Month-Day Hour:Minute:Second CARD TAKEN
+Example：
+==>22:08:14 PAN:000000********0000     
+  22:08:14 NO CARD CDP START           
+  22:08:15 #[000083] NOCARD NAME_INQ   
+  22:08:15 Response Code:00                   
+  CASH COUNT:[50]:20 [100]:10 [NG]:2   
+  REFUSED CASH TAKEN                   
+  CASH TOTAL:[100]:10 [50]:20          
+  13:09:21 #[000084] Deposit amount:2000.00  
+  13:09:21 Response Code:00  FEE:0.00         
+  0027-0250-0320-0400-0500             
+  22:08:42 STORE CASH OK               
+<==2012-03-24 22:08:48 NO CARD CDP END 

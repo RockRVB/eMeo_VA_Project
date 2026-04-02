@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<BusinessService name="eCAT" eventCache="500" startup="XDCPowerup" shutdown="Shutdown" flowError="CloseTrans" mixProtocol="1">
+  <Engine assemblyName="SerialEngine" cfg="EngineConfig.xml">
+  </Engine>
+  <Workflow>
+    <Factory assemblyName="WFFactory" encrypted="0" path="TransactionFlow\Common\;TransactionFlow\XDC\;Business\Workflow\" bindAssembly="IBankProjectWorkflow" />
+  </Workflow>
+  <Activity>
+    <Factory assemblyName="ActFactory" path="Business\Activity\;Business\XDC\Activity\" />
+  </Activity>
+  <Mode assemblyName="ModeForATMC">
+  </Mode>
+  <DataSetting>
+    <CardTable path="Config\CardTable.xml" />
+    <Printer path="Config\PrnConfig.xml" />
+    <ErrorCode path="Config\ErrorCode.xml" />
+  </DataSetting>
+  <DataGateway>
+    <Transaction enable="1" dbName="TransDetailGatewaysqlite" />
+    <HistoryTransaction enable="1" dbName="HistoryTransDetailGatewaysqlite" />
+    <Misc enable="1" dbName="MiscGatewayAccess" />
+    <CaptureCard enable="1" dbName="CaptureCardGatewaysqlite" />
+    <OCRInfo enable="1" dbName="OCRInfoGatewaysqlite" />
+    <HistoryOCRInfo enable="1" dbName="HistoryOCRInfoGatewaysqlite" />
+    <VTMInfo enable="1" dbName="VTMInfoGatewaysqlite" />
+    <DistributedData enable="1" dbName="VTMDataGatewaysqlite" />
+    <HistoryDistributedData enable="1" dbName="HistoryVTMDataGatewaysqlite" />
+    <HTMAAccount enable="1" dbName="HTMATransDetailGatewaysqlite" />
+  </DataGateway>
+  <Services>
+    <ADA assemblyName="ADAservice" enable="0" cfg="Config\Services\Adaservice.xml" deps="" />
+    <!--Notice: NDCScreenParser and DDCScreenParser at least one service enable valus is 1 -->
+    <NDCScreenParser assemblyName="NDCScreenParserService" enable="1" cfg="Config\Services\NDCScreenParserConfig.xml" deps="" />
+    <DDCScreenParser assemblyName="DDCScreenParserService" enable="0" cfg="Config\Services\DDCScreenParserConfig.xml" deps="" />
+    <XDCPrintData assemblyName="XDCPrintDataService" enable="1" deps="" />
+    <NDCPrintDataService assemblyName="NDCPrintDataParserService" enable="1" deps="" />
+    <DDCPrintDataService assemblyName="DDCPrintDataParserService" enable="0" deps="" />
+    <DummyRequest assemblyName="DummyRequestService" enable="0" deps="" />
+    <XDCEMVCommonService assemblyName="XDCEMVCommonService" enable="1" deps="" />
+    <NDCEMVService assemblyName="NDCEMVService" enable="1" deps="" />
+    <DDCEMVService assemblyName="DDCEMVService" enable="0" deps="" />
+    <XDCCommonService assemblyName="XDCCommonService" enable="1" deps="" />
+    <FeelView assemblyName="FeelView" enable="0" cfg="Config\Services\FeelViewConfig.xml" deps="" />
+    <!-- FeelView 和 FeelViewJson 如果同时开启，则优先使用 FeelViewJson -->
+    <FeelViewJson assemblyName="FeelViewJson" enable="0" cfg="Config\Services\FeelViewJsonConfig.xml" deps="" />
+    <OCRService assemblyName="OCRService" enable="1" cfg="Config\Services\OCRService.xml" deps="" />
+    <EJService assemblyName="EJService" enable="0" cfg="Config\Services\EJService.xml" deps="" />
+    <WCFServiceHost assemblyName="WCFServiceHost" enable="0" cfg="config\services\WCFServiceHostConfig.xml" deps="" />
+    <A4PrinterService assemblyName="A4PrinterService" enable="0" cfg="Config\Services\A4PrinterService.xml" deps="" />
+    <TransactionDependenceService assemblyName="TransactionDependenceService" enable="0" cfg="Config\Services\TransactionDependenceServiceConfig.xml" deps="" />
+    <DVRRecordService assemblyName="DVRRecordService" enable="0" cfg="Config\Services\DVRRecordService.xml" deps="" />
+    <FSN assemblyName="FSN" enable="0" cfg="Config\Services\FSNConfig.xml" deps="" />
+    <NetworkDataChannel assemblyName="NetworkDataChannel" enable="1" deps="" />
+    <DataMappingService assemblyName="DataMapping" enable="0" cfg="config\services\DataMappingConfig.xml" deps="" />
+    <TriggerService assemblyName="TriggerService" enable="0" cfg="config\services\TriggerServiceConfig.xml" deps="" />
+    <ReconciliationService assemblyName="ReconciliationService" enable="0" cfg="config\Services\ReconciliationService.xml" deps="" />
+    <MessageCenterService assemblyName="MessageCenterService" enable="0" cfg="config\Services\MessageCenterService.xml" deps="" />
+    <A4PrinterByWosa assemblyName="A4PrinterServiceByWosa" enable="0" cfg="Config\Services\A4PrinterService.xml" deps="" />
+    <MediaPlatformService assemblyName="MediaPlatformService" enable="1" cfg="Config\Services\MediaPlatformService.xml" deps="" />
+    <GRGRemoteTellerService assemblyName="GRGRemoteTellerService" enable="0" cfg="Config\Services\GRGRemoteTellerServiceConfig.xml" deps="" />
+    <GRGRemoteAssistService assemblyName="GRGRemoteAssistService" enable="0" cfg="Config\Services\GRGRemoteAssistConfig.xml" deps="" />
+    <VideoService assemblyName="VideoService" enable="0" cfg="Config\Services\VideoConfig.xml" deps="" />
+    <USBCameraService assemblyName="USBCameraService" enable="0" cfg="Config\Services\CameraConfig.xml" deps="" />
+    <ADService assemblyName="ADService" enable="0" cfg="Config\Services\ADServiceConfig.xml" deps="" />
+    <ADWebViewService assemblyName="ADWebViewService" enable="0" cfg="Config\Services\ADServiceConfig.xml" deps="" />
+    <FaceVRIService assemblyName="FaceVRIService" enable="0" cfg="Config\Services\FaceVRIService.xml" deps="" />
+    <FaceppSDK assemblyName="FaceppSDK" enable="0" cfg="Config\Services\FaceppSDK.xml" deps="" />
+    <NDCMessageService assemblyName="NDCMessageService" enable="1" cfg="Config\Services\NDCMessageServiceConfig.xml" deps="" />
+    <WhiteBoardControllerService assemblyName="WhiteBoardControllerService" enable="0" cfg="config\services\WhiteBoardControllerServiceCfg.xml" deps="" />
+    <FaceService assemblyName="FaceService" enable="0" cfg="Config\Services\FaceService.xml" deps="" />
+    <PackJsonService assemblyName="PackJsonService" enable="0" deps="" />
+    <HttpService assemblyName="HttpService" enable="0" cfg="Config\Services\HttpService.xml" deps="" />
+    <FileDownloadService assemblyName="FileDownloadService" enable="0" cfg="config\services\FileDownloadService.xml" deps="" />
+    <USBCameraServiceByDriver assemblyName="USBCameraServiceByDriver" enable="0" cfg="Config\Services\CameraByDriverConfig.xml" deps="" />
+    <MonitorSystemStateService assemblyName="MonitorSystemStateService" enable="0" cfg="config\services\MonitorSystemStateConfig.xml" deps="" />
+    <WpsOffice2PngService assemblyName="WpsOffice2PngService" enable="0" cfg="config\services\WpsOffice2PngServiceCfg.xml" deps="" />
+    <TransConfigService assemblyName="TransConfigService" enable="1" cfg="config\services\TransConfigServiceConfig.xml" deps="" />
+    <FaceRecognizeService assemblyName="FaceRecognizeService" enable="0" cfg="Config\Services\FaceRecognizeConfig.xml" deps="" />
+    <RestfulService assemblyName="RestfulService" enable="1" cfg="Config\Services\RestfulServiceConfig.xml" deps="" />
+    <VTMA3Service assemblyName="VTMA3Service" enable="0" cfg="Config\Services\VTMA3ServiceConfig.xml" deps="" />
+    <FingerServerRequestService assemblyName="FingerServerRequestService" enable="0" cfg="Config\Services\FingerConfig.xml" deps="" />
+    <FingerveinServerRequestService assemblyName="FingerveinServerRequestService" enable="0" cfg="Config\Services\FingerveinConfig.xml" deps="" />
+    <ExternalWebsiteBrowserService assemblyName="ExternalWebsiteBrowserService" enable="0" cfg="Config\Services\ExternalWebsiteBrowserServiceConfig.xml" deps="" />
+    <WebSocketService assemblyName="WebSocketService" enable="0" cfg="Config\Services\WebSocketServiceConfig.xml" deps="" />
+    <SessionRecordService assemblyName="SessionRecordService" enable="1" cfg="Config\Services\SessionRecordServiceConfig.xml" deps="" />
+    <EformService assemblyName="EformService" enable="0" cfg="Config\Services\EformServiceConfig.xml" deps="" />
+    <FaceRecognitionService4SmartKiosk assemblyName="FaceRecognitionService4SmartKiosk" enable="0" cfg="Config\Services\FacialRecognitionConfig.xml" />
+    <SecurityCameraStatusService assemblyName="SecurityCameraStatusService" enable="0" cfg="config\Services\SecurityCameraStatusServiceConfig.xml" />
+    <ADMarketingService assemblyName="ADMarketingService" enable="0" cfg="Config\Services\ADMarketingServiceConfig.xml" deps="" />
+    <DigitalHumanService assemblyName="DigitalHumanService" enable="0" cfg="Config\Services\DigitalHumanServiceConfig.xml" deps="" />
+    <ChatService assemblyName="ChatService" enable="0" cfg="Config\Services\ChatServiceConfig.xml" deps="" />
+  </Services>
+</BusinessService>

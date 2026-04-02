@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!--  Night Safe Depository
+		*  This solicitied status message is sent in reponse to a Transaction Reply Command. 
+        *  If the deposit was not detected. It indicates that one of the following conditions has occured. 
+		*   [1] Cardholder did not attempt a deposit. 
+		*  [2] Deposit door is jammed closed.
+		*  [3] Bag detection mechanism is faulty.
+        * This usolicited status message is sent on the tenth consecutive 'Cardholder did not attempt deposit' indication.
+	-->
+		
+	<NightSafeDepository>
+		<!-- Device Identification Graphic. -->
+		<Item key="e1" 																		value="K"  																				size="1" 				restriction="Mandatory"/>
+		
+		<!--   Transaction/Device Status 	
+		*  '1' -  Undetected deposit, or bag detection switch blocked before enable..
+		-->
+		<Item key="e2" 																		value="1"  																				size="1" 				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																			size="1"				restriction="Mandatory"/>
+		
+		<!--  Error Severity. 
+		*  '0 ' - No error. Beg detection mechanism was clear when the deposit door was unlocked.
+		*  '2'  - Warning. Bag detection mechanism was blocked when the deposit door was unlocked(solicited status).  
+		*           NCR recommends that you sht down the terminal if you required confirmation of all deposits. 
+		-->
+		<Item key="e3" 																		value="[NightSafeDepositoryErrSeverity]"  							size="1" 				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																			size="1"				restriction="Mandatory"/>
+		
+		<!--  Diagnostic Status.Used for logging errors. The length of the field is variable(because it is hardware-dependent) and may be omitted if 
+		* if there is no error condition to be reported. The field will always be present if preceded by an error severity field with a value of 1 or greater.
+		* There are certain rules which are followed by all devices.
+		* Characters 1 and 2 contain a main error status value. (M-Status) in the range 0 -99, transmitted as 2 characters which give the decimal representation.
+		* of the M-Status value.
+		* M-Status is used mainly as an error log to assist machine servicing. It may also be used in a transaction log to supplementTransaction status or Device.
+		* status information.
+        * Characters 3 to n (M-Data) 
+		-->
+		<Item key="g4" 																		value="[NightSafeDepositoryDiagnosticStatus]"  					size="var" 			restriction="Optional"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																			size="1"				restriction="Mandatory"/>
+		
+		<!--  Suplies Status. Contains information related to the state of supplies (paper, currency, magnetic cards, envelopes, inkwells, documents)
+		 * in the terminal. This field contains one character for each supplies container managed by the device.Each character is always coded in the same 
+		 * in same way.
+		 *  This is a single character field indicating the state of the card capture bin.
+		 *  '0'  - No new state
+		 *  '1'  - No overfill condition (capture bin).
+		 *  '4'  - Overfill condition (capture bin).
+		-->
+		<Item key="g5" 																		value="[NightSafeDepositorySuppliesStatus]"  						size="1" 				restriction="Mandatory"/>
+		
+	</NightSafeDepository>	
+</Root>

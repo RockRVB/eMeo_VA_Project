@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+	<!--当前资产-->
+	<Screen name="UI_CurrentAsset" uri="Inquiry\CurrentAsset.html" cache="0"> 
+	</Screen>
+	<!--最近账户交易详情-->
+	<Screen name="UI_TransactionDetail" uri="Inquiry\TransactionDetail.html" cache="0"> 
+      <Templates>
+        <Template name="TRANSDETAIL">
+				<td style="width:25%"><span id="transDate" type="text" content="{Binding Date}"></span></td>
+				<td style="width:25%"><span id="transType" type="text" content="{Binding TransType}"></span></td>
+				<td style="width:25%"><span id="transAmount" type="text" content="{Binding Amount}"></span></td>
+				<td style="width:25%"><span id="transBalance" type="text" content="{Binding Balance}"></span></td>
+        </Template>
+      </Templates>
+	</Screen>
+	<Screen name="UI_TransactionDetailToday" uri="Inquiry\TransactionDetailToday.html" cache="0"> 
+	  <Templates>
+        <Template name="TRANSDETAIL">
+				<td style="width:25%"><span id="transDate" type="text" content="{Binding Date}"></span></td>
+				<td style="width:25%"><span id="transType" type="text" content="{Binding TransType}"></span></td>
+				<td style="width:25%"><span id="transAmount" type="text" content="{Binding Amount}"></span></td>
+				<td style="width:25%"><span id="transBalance" type="text" content="{Binding Balance}"></span></td>
+        </Template>
+      </Templates>
+	</Screen>
+	<!--历史账户交易详情-->
+	<Screen name="UI_TransactionDetailHistory" uri="Inquiry\TransactionDetailHistory.html" cache="0"> 
+	  <Templates>
+        <Template name="TRANSDETAIL">
+				<td style="width:25%"><span id="transDate" type="text" content="{Binding Date}"></span></td>
+				<td style="width:25%"><span id="transType" type="text" content="{Binding TransType}"></span></td>
+				<td style="width:25%"><span id="transAmount" type="text" content="{Binding Amount}"></span></td>
+				<td style="width:25%"><span id="transBalance" type="text" content="{Binding Balance}"></span></td>
+        </Template>
+      </Templates>
+	</Screen>
+	<!--查询明细失败-->
+	<Screen name="UI_InquiryDetailsFailure" uri="Inquiry\InquiryDetailsFailure.xaml" cache="0"></Screen>
+	<!--取走打印的账单-->
+	<Screen name="UI_TakeCheck" uri="Inquiry\TakeCheck.xaml" cache="0"></Screen>
+	<!--打印明细失败-->
+	<Screen name="UI_PrintDetailsFailure" uri="Inquiry\PrintDetailsFailure.html" cache="0"></Screen>
+	<!--介质操作失败-->
+	<Screen name="UI_ControlMediaFailure" uri="Inquiry\ControlMediaFailure.html" cache="0"></Screen>
+	<!--选择日期-->
+	<Screen name="UI_SelectPeriod" uri="Inquiry\SelectPeriod.xaml" cache="0"></Screen>
+
+
+</Screens>
+

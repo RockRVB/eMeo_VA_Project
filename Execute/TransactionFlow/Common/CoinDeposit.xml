@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="CoinDeposit">
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for Deposit"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_CashInStart"/>
+		</Start>
+		
+		<InsertCard ID="ID_InsertCard" UI="UI_InsertCard" comment="insert second card" timeout="30000" activeKeys="CANCEL" terminateKeys="CANCEL">
+			<States>
+				<State name="ReadingCard" UI="UI_Operating"/>
+			</States>
+			<Forward event="OnMagneticCard" targetID="ID_InputPin"/>
+			<Forward event="OnFallbackCard" targetID="ID_InputPin"/>
+			<Forward event="OnICCard" targetID="ID_InputPin"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnInvalidCard" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InsertCard>
+		<VTMInputPinEx ID="ID_InputPin" UI="UI_Input_PIN_QRCode" comment="Enter your PIN" autoEnd="1" minLen="4" maxLen="6" timeout="120000">
+			<Forward event="OnConfirm" targetID="ID_CashInStart" />
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+			<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow" />
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+			<DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+		</VTMInputPinEx>
+		<TakeCard ID="ID_TakeCard" UI="UI_TakeCard" comment="Close transaction">
+			<States>
+				<State name="TakeCard" UI="UI_TakeCardAndInserSecondCard"/>
+				<State name="TransTimeOut" UI="UI_TransTimeOut"/>
+				<State name="KeyError" UI="UI_KeyError"/>
+				<State name="InvalidCard" UI="UI_InvalidCard"/>
+				<State name="HardwareError" UI="UI_HardwareError"/>
+				<State name="GeneralError" UI="UI_GeneralError"/>
+				<State name="CapturingCard" UI="UI_CapturingCard"/>
+				<State name="CaptureCardForTimeout" UI="UI_CaptureCardForTimeout"/>
+				<State name="CaptureCard" UI="UI_CaptureCard"/>			
+				<State name="InputWithdrawalAmountExceedRetryTimes" UI="UI_InputWithdrawalAmountExceedRetryTimes"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnCaptureCard" targetID="ID_InvokeCaptureWorkflow"/>
+		</TakeCard>	
+		
+		
+		<!-- 开始存款 -->
+		<CoinCashInStart ID="ID_CashInStart" UI="UI_CashInStart">
+			<Forward event="OnConfirm" targetID="ID_CashIn"/>
+		</CoinCashInStart>
+		<!-- 显示操作正在进行中界面 -->
+		<ShowScreen ID="ID_ShowScreen" UI="UI_OperatingNoCounter">
+			<Forward event="OnContinue" targetID="ID_CashIn"/>
+		</ShowScreen>
+		
+		<!-- 无钞取消处理 -->
+		<CoinCancelCashIn ID="ID_InputCashEmpty" UI="UI_InputCashEmpty">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</CoinCancelCashIn>
+
+		<!-- 无钞开关门失败处理 -->
+		<CoinCancelCashIn ID="ID_InputCashEmptyForError" UI="UI_InputCoinEmptyForError">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</CoinCancelCashIn>
+		<!-- 有钞取消(未点钞)处理 -->
+		<CoinCancelCashIn ID="ID_InputCashEmptyForCancel" UI="UI_InputCoinEmpty">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</CoinCancelCashIn>
+		<!-- 无钞超时处理 -->
+		<CoinCancelCashIn ID="ID_InputCashEmptyForTimeout" UI="UI_InputCoinEmpty">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</CoinCancelCashIn>
+		<!-- 点钞 -->
+		<CoinCashIn ID="ID_CashIn" UI="UI_CountingCoin" maxRefusedNotesCount="20" waitShutterCloseTime="2000">
+			<States>
+				<State name="NoteInserted" UI="UI_NoteInserted4AutoShutter_Coin"/>
+				<State name="OperationIsProcessing" UI="UI_OperatingNoCounter"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_CashInShowResult"/>
+			<Forward event="OnFail" targetID="ID_InputCashEmptyForError"/>
+			<Forward event="OnCancel" targetID="ID_InputCashEmptyForCancel"/>
+			<Forward event="OnTimeout" targetID="ID_InputCashEmptyForTimeout"/>
+		</CoinCashIn>
+		<!-- 显示点钞结果 -->
+		<CoinShowResult ID="ID_CashInShowResult" UI="UI_CoinCashInShowResult" journalKeyName="IDS_CustomCancel" activeKeys="ENTER" terminateKeys="ENTER">
+			<Forward event="OnTimeout" targetID="ID_CashInEnd"/>
+			<Forward event="OnConfirm" targetID="ID_CashInEnd"/>
+			<Forward event="OnContinue" targetID="ID_ShowScreen"/>
+			<!--Forward event="OnKeyError" targetID="ID_RequestTrans"/-->
+			<Forward event="OnKeyError" targetID="ID_CashInEnd"/>
+			<Forward event="OnCashInEnd" targetID="ID_CashInEnd"/>
+			<Forward event="OnHardwareError" targetID="ID_CashInEnd"/>
+		</CoinShowResult>
+		<!-- 交易请求状态 -->
+		<RequestTrans ID="ID_RequestTrans" UI="UI_RequestTrans" comment="Deposit request">
+		    <States>
+				<State name="TransNotAccepted" UI="UI_ICTransNotAccepted"/>
+				<State name="TransDeclined" UI="UI_ICTransDeclined"/>
+				<State name="TransTerminated" UI="UI_ICTransTerminated"/>
+			</States>
+			<Forward event="OnDepositPassiveSuccess" targetID="ID_CashInEndForPassive"/>
+			<!--Forward event="OnDepositPassiveFail" targetID="ID_HostRefuseAndCashInEnd"/-->
+			<Forward event="OnDepositPassiveFail" targetID="ID_HostRefuseAndCashInEnd"/>
+			<Forward event="OnConfirm" targetID="ID_CashInEnd"/>
+			<Forward event="OnPackFail" targetID="ID_HostRefuseAndCashInEnd"/>
+			<Forward event="OnConnectFail" targetID="ID_HostRefuseAndCashInEnd"/>
+			<Forward event="OnSendFail" targetID="ID_HostRefuseAndCashInEnd"/>
+			<Forward event="OnReceiveFail" targetID="ID_HostRefuseAndCashInEnd"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_HostRefuseAndCashInEnd"/>
+			<Forward event="OnNetworkFail" targetID="ID_HostRefuseAndCashInEnd"/>
+			<Forward event="OnUnpackFail" targetID="ID_HostRefuseAndCashInEnd"/>
+			<Forward event="OnHostRefuse" targetID="ID_HostRefuseAndCashInEnd"/>
+			<Forward event="OnReInputPin" targetID="ID_HostRefuseAndCashInEnd"/>
+			<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnFallback" targetID="ID_RequestTrans"/>
+			<Forward event="OnTryAgain" targetID="ID_TryAgain"/>
+			<Forward event="OnICAppLoadedFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</RequestTrans>
+		<!-- 存钞 -->
+		<CoinCashInEnd ID="ID_CashInEnd" UI="UI_CashInEnd" timeout="5000">
+			<States>
+				<State name="CashInEndSuccess" UI="UI_CashInEndSuccess"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_GetDevStatusForCloseTrans"/>
+		</CoinCashInEnd>
+		<!-- 非主动确认存钞（超时） -->
+		<CoinCashInEnd ID="ID_CashInEndForPassive" UI="UI_CoinCashInEnd" timeout="5000">
+			<States>
+				<State name="CashInEndSuccess" UI="UI_CoinCashInEndSuccess"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_GetDevStatusForCloseTrans"/>
+		</CoinCashInEnd>
+		<!-- 主机拒绝吞钞 -->
+		<CoinCashInEnd ID="ID_HostRefuseAndCashInEnd" UI="UI_CashInEndForCommError" timeout="5000">
+			<States>
+				<State name="CashInEndSuccess" UI="UI_CashInEndSuccess"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</CoinCashInEnd>
+		<!-- 设备故障或非主动存钞时检查凭条状态 -->
+		<GetDevStatus ID="ID_GetDevStatusForCloseTrans" comment="Get device status for close transaction" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnWarn" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</GetDevStatus>
+		
+		<!-- 设备故障或非主动存钞时开始打印凭条 -->
+		<PrintReceipt ID="ID_PrintReceiptForCloseTrans" UI="UI_PrintingReceipt" formName="" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</PrintReceipt>
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+		</End>
+		<InvokeWorkflow ID="ID_TryAgain" name="Main" comment="IC returns TryAgain" actionID="ID_ICMoreAppSelectForMainMenu" syn="0">
+		</InvokeWorkflow>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

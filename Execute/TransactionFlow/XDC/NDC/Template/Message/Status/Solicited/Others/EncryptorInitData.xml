@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!--  This message class/Sub-class is used when initialising the encryptor module, and is used in a similar
+	*  way to the terminal state message. 
+	* However, it does not contains any of the fields associated with message authentication, and is therefore suitable for the 
+	* initial exchange of data required to initialise the encryptor. 
+	* This solicited message is returned in response to an Extended Encryption Key Change message, described in "Extended 
+	* Encryption Key Change".
+	-->		
+	<EncryptorInitData>
+		<!--  Message Sub-Class. The message sub-class is:
+		* '3'  - Encryptor Initialisation Data
+		-->
+		<Item key="c" 																		value="3"  																	size="1" 				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"															   size="1"				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="d" 																		value="[LUNO]"														size="3-9"				restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																size="1"				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																size="1"				restriction="Mandatory"/>
+		
+		<!--  Information Identifier. Identifiers the type of information sent, as follows:
+		* '1'  - EPP Serial Number and Signature.
+		* '2'  - EPP Public Key and Signature.
+		* '3'  - New Key Verification Value (KVV) for key just loaded or reactivated.
+		* '4'  - Keys Statusss.
+		* '5'  - Key Loaded.
+		* '6'  - Key Entry Mode
+		* '7'  - RSA encryption KVV
+		* '9'  - ATM random number
+		* 'B' - Encryptor capabilities and state
+		* 'C' - Key deleted
+		-->
+		
+		<!--  Encryptor Information, dependent on the information identifier as follows:
+		*  When information identifier = '1' : 
+		*        characters 8 bytes:  			EPP Serial Number
+		*        characters 320 bytes: 		EPP Serial Number Signature, created using the RSA NCR key, and base 94 encoded. For further details
+		*        													of EPP authentication and base 94 encoding. 
+		* When information identifier = '2':
+        *        characters 320 bytes:        EPP Public key, base 94 encoded. The exponent of the EPP Public Key is always 65537, and is therfore not  sent to Central. 
+		*        characters 320 bytes:        EPP Public key Signature, created using the RSA NCR key, and base 94 encoded. For further details of EPP
+        *                                                          authentication and base 94 encoding.
+		* When information identifier = '3':
+        *        characters 6 or 72 bytes:   New Key Verification Value (KVV)
+        *                                                          authentication and base 94 encoding.
+		* When information identifier = '4':  (Key Status, containing KVVs as follows:)
+        *        characters 6 bytes:        Master Key KVV
+		*        characters 6 bytes:   	  Communication Key KVV
+        *        characters 6 bytes:   	  MAC Key KVV
+        *        characters 6 bytes:   	  B Key KVV
+        *        if a key has not been loaded, its KVV will be six zeroes.
+		* When information identifier = '5':  (For Key Loading, this field is absent)
+		* When information identifier = '6':  (Key Entry Mode, a single character in the range '1' to '4' as follows:)
+        *        '1'  - Single length without XOR 
+		*        '2'  - Single length with XOR
+        *        '3'  - Double length with XOR 
+        *        '4'  - Double length, restricted.
+		* When information identifier = '7'
+        *       characters 3 bytes:   	- Binary data length
+        *        'var'  - RSA KVV base 94 encoded
+		* When information identifier = '9'
+        *        'var'  - ATM random number. ASCII hexadecimal encoded. 
+		*                    This message is not required in the basic remote key protocol and, if 
+        *                     received, a Specific Command Reject is returned.
+		* When information identifier = 'B'
+        *        	characters 2 bytes:   -  Remote Key Protocol, two characters in the range '00' to '06' as follows: 
+		*                    '00'  - None
+        *                     '01' - Basic Signature
+		*                     '02' - Basic Certificate.
+        *                     '03' - Basic Signature and certificate
+		*                     '04' - Enhanced signature
+		*                     '06' - Enhanced signature and certificate
+		*        	characters 2 bytes: Certificate state
+		*                      '00' - Not ready or not supported.
+		*                      '01' - Certificate primary
+		*                      '02' - Certificate secondary
+		* When information identifier = 'C':  (For Key Loading, this field is absent)
+		-->		
+
+	</EncryptorInitData>	
+</Root>

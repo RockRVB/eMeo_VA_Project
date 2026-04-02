@@ -1,0 +1,283 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>维护主界面</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/maintenance/cn.css" />
+<script src="../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../js/jquery-ui.min.js"></script>
+<script src="../../../js/maintenance/common/common.js"></script>
+<script src="../../../js/maintenance/common/global.js"></script>
+<script src="../../../js/maintenance/component/components.js"></script>
+<script src="../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../js/maintenance/ui/mvc/page-data.js"></script>
+<script src="../../../js/maintenance/ui/mvc/menu.js"></script>
+<script src="../../../js/maintenance/ui/mvc/maintenance-menu.js"></script>
+<script src="../../../js/maintenance/ui/mvc/maintenance-view.js"></script>
+<script src="../../../js/maintenance/ui/maintenance/maintenance.js"></script> 
+</head>
+
+<body>
+<!--界面容器-->
+<div class="wrapper maintenance"> 
+	<!--菜单-->
+	<div class="navigation"> 
+		<!--一级菜单-->
+		<div class="level-1 clear"> 
+			<!--向左按钮-->
+			<button id="MENU1_PRE_PAGE" type="button" class="button-arrow-prev nav-left none"> 
+				<span class="tip"></span>
+				<span class="button-text"></span>
+			</button>
+			<!--向右按钮-->
+			<button id="MENU1_NEXT_PAGE" type="button" class="button-arrow-next nav-right none"> 
+				<span class="tip"></span>
+				<span class="button-text"></span>
+			</button>
+			<!--菜单区域-->
+			<div class="nav-zone">
+				<ul>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>清机管理</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>系统诊断</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>系统配置</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>日常维护</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>日志操作</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>使用帮助</span></div>
+						</div>
+						</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--二级菜单-->
+		<div class="level-2 clear"> 
+			<!--向左按钮-->
+			<button id="MENU2_PRE_PAGE" type="button" class="button-arrow-prev nav-left none"> 
+				<span class="tip"></span>
+				<span class="button-text"></span>
+			</button>
+			<!--向右按钮-->
+			<button id="MENU2_NEXT_PAGE" type="button" class="button-arrow-next nav-right none"> 
+				<span class="tip"></span>
+				<span class="button-text"></span>
+			</button>
+			<!--菜单区域-->
+			<div class="nav-zone">
+				<ul>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>打印结账</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>打印异常交易</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>打印吞卡记录</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>查询钱箱信息</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>钞票信息查询</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>查询交易信息</span></div>
+						</div>
+						</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--三级菜单-->
+		<div class="level-3 clear none">
+			<!--向左按钮-->
+			<button id="MENU3_PRE_PAGE" type="button" class="button-arrow-prev nav-left none"> 
+				<span class="tip"></span>
+				<span class="button-text"></span>
+			</button>
+			<!--向右按钮-->
+			<button id="MENU3_NEXT_PAGE" type="button" class="button-arrow-next nav-right none"> 
+				<span class="tip"></span>
+				<span class="button-text"></span>
+			</button> 
+			<!--菜单区域-->
+			<div class="nav-zone">
+				<ul>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>按钞票序列号查询</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>按流水号查询</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>按卡号查询</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>查本周期异常交易</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>打开钱箱</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>清理回收箱</span></div>
+						</div>
+						</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--菜单遮罩-->
+		<div id="navigation-mask" class="none"></div>
+	</div>
+	<!--导航路径文字-->
+	<div id="nav-path">
+		<ul>
+			<li><span ids="IDS_PositionMaintenance"></span></li>
+		</ul>
+	</div>
+	<!--流程容器-->
+	<div id="handleguide-container" class="none">
+		<!--进度条-->
+		<div class="progress-bg none"><div class="progress-fg"></div></div>
+		<!--进度容器-->
+		<ul class="progress-container">
+			<li class=" step-current none"><div class="progress-step-number">1</div><div class="progress-step-description">打印结账</div></li>
+			<li class=" none"><div class="progress-step-number">2</div><div class="progress-step-description">清理钱箱</div></li>
+			<li class=" none"><div class="progress-step-number">3</div><div class="progress-step-description">清理回收箱</div></li>
+			<li class=" none"><div class="progress-step-number">4</div><div class="progress-step-description">加钞</div></li>
+			<li class=" none"><div class="progress-step-number">5</div><div class="progress-step-description">查询钱箱余额</div></li>
+			<li class=" none"><div class="progress-step-number">6</div><div class="progress-step-description"></div></li>
+			<li class=" none"><div class="progress-step-number">7</div><div class="progress-step-description"></div></li>
+			<li class=" none"><div class="progress-step-number">8</div><div class="progress-step-description"></div></li>
+		</ul>
+		<!--流程按钮区域-->
+		<div class="flow-button-zone">	
+			<button id="FUN_-UPSTEP" type="button" class="button-common flow-button-hspace disabled"> 
+				<span class="tip"></span>
+				<span class="button-text" ids="IDS_PreviousHandleGuide">上一步</span>
+			</button>
+			<button id="FUN_-DWONSTEP" type="button" class="button-common flow-button-hspace"> 
+				<span class="tip"></span>
+				<span class="button-text" ids="IDS_NextHandleGuide">下一步</span>
+			</button>
+			<button id="FUN_-BACK" type="button" class="button-common"> 
+				<span class="tip"></span>
+				<span class="button-text" ids="IDS_ReturnMalfunctionGuide">返回</span>
+			</button>
+		</div>
+	</div>
+	<!--第四级菜单容器-->
+	<div class="level4-menu-button-zone none">
+	
+	</div>
+    <!--子界面容器-->
+    <div class="maintenance-container"><iframe id="top-container" name="top-container" width="100%" height="100%" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe></div>
+	<!--底部-->
+	<div class="bottom">
+		<div class="bottom-button-zone">
+			<div class="float-left">
+				<button id="FUN_LOGOUT" type="button"  class="button-operate "> 
+					<span><img alt="" src="../../../../Image/CN/maintenance/button/icon-logout.png"/></span>
+					<span class="tip"></span>
+					<span class="button-text" ids="IDS_Logout">注销用户</span>
+				</button>
+				<button id="FUN_QUIT" type="button" class="button-operate operate-button-space-left disabled"  dataToSend="MENU_88888">
+				    <span><img alt="" src="../../../../Image/CN/maintenance/button/icon-quit.png"/></span>
+					<span class="tip"></span>
+					<span class="button-text" ids="IDS_Quit">退出维护</span>
+				</button>
+			</div>
+			<div class="float-right">
+				<button id="FUN_TABMODE" type="button" class="button-operate " dataToSend="MENU_99999">
+					<span><img alt="" src="../../../../Image/CN/maintenance/button/icon-tabmode.png"/></span>
+					<span class="tip"></span>
+					<span class="button-text" ids="IDS_SwitchMaintenance">快捷维护</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

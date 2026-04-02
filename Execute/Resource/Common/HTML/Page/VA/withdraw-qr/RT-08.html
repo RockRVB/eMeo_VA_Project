@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Success</title>
+    <link rel="stylesheet" href="../../../css/VA/style.css">
+    <script src="../../../js/coreScript.js"></script>
+    <script src="../../../js/VA/common.js"></script>
+    <script src="../../../js/VA/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="stm-layout">
+    <!-- Header -->
+
+    <stm-auth-header-no-cus-name></stm-auth-header-no-cus-name>
+
+    <!-- Body -->
+    <main class="stm-body confirm-deposit-body">
+        <div class="stm-content">
+            <stm-progress-bar
+                    current-step="5"
+                    steps='[
+                        {"label": "Xác thực", "ids" : "ids_VAB_withdraw_qr_step_1"},
+                        {"label": "Chọn tài khoản", "ids" : "ids_VAB_withdraw_qr_step_2"},
+                        {"label": "Rút tiền", "ids" : "ids_VAB_withdraw_qr_step_3"},
+                        {"label": "Hoàn tất", "ids" : "ids_VAB_withdraw_qr_step_4"}
+                    ]'>
+            </stm-progress-bar>
+
+            <div class="statement-actions-container">
+                <div class="cash-deposit-success-wrap">
+                    <div class="cash-deposit-success-icon">
+                        <img src="../../../images/VA/icon-success.svg">
+                    </div>
+                    <h2 class="cash-deposit-success-wrap-title" ids="ids_VAB_rt_08_withdraw_success">Giao dịch thành công</h2>
+                    <div class="statement-card">
+                        <div class="statement-table statement-header">
+                            <div class="statement-row">
+                                <span class="statement-col" ids="ids_VAB_rt_08_account_num">Số tài khoản</span>
+                                <span class="statement-col" style="font-weight: 400;" id="account-num"></span>
+                            </div>
+                            <div class="statement-row">
+                                <span class="statement-col" ids="ids_VAB_rt_08_account_info">Thông tin tài khoản</span>
+                                <span class="statement-col" style="font-weight: 400;" id="account-info"></span>
+                            </div>
+                            <div class="statement-row">
+                                <span class="statement-col" ids="ids_VAB_rt_08_transaction_code">Mã giao dịch</span>
+                                <span class="statement-col" style="font-weight: 400;" id="transaction-code"></span>
+                            </div>
+                            <div class="statement-row">
+                                <span class="statement-col" ids="ids_VAB_rt_08_transaction_time">Thời gian</span>
+                                <span class="statement-col" style="font-weight: 400;" id="transaction-time"></span>
+                            </div>
+                            <div class="statement-row">
+                                <span class="statement-col" ids="ids_VAB_rt_08_withdraw_amount">Số tiền rút</span>
+                                <span class="statement-col" style="font-weight: 400;" id="withdraw-amount"></span>
+                            </div>
+                            <div class="statement-row">
+                                <span class="statement-col" ids="ids_VAB_rt_08_transaction_fee">Phí giao dịch</span>
+                                <span class="statement-col" style="font-weight: 400;" id="transaction-fee"></span>
+                            </div>
+                            <div class="statement-row">
+                                <span class="statement-col" ids="ids_VAB_rt_08_transaction_final_amount">Số tiền trừ vào tài khoản</span>
+                                <span class="statement-col" style="font-weight: 400;" id="subtract-to-value"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="statement-btns-container">
+                    <div class="dialog-actions">
+                        <button class="btn-dialog-secondary" id="do_another_task_btn" tag="do_another_task_btn">
+                            <span ids="ids_VAB_rt_08_do_another_transaction">Thực hiện giao dịch khác</span>
+                        </button>
+
+                        <button class="btn-dialog-primary" id="print_trans_bill_btn" tag="print_trans_bill_btn">
+                            <img src="../../../images/VA/icon-printer.svg" style="margin-right: 10px;">
+                            <span ids="ids_VAB_rt_08_print_trans_bill">IN BIÊN LAI GIAO DỊCH</span>
+                        </button>
+
+                        <button class="btn-dialog-secondary" id="end_transaction_btn" tag="end_transaction_btn">
+                            <span ids="ids_VAB_rt_08_end_trans">Kết thúc giao dịch</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <stm-footer></stm-footer>
+    <input style="display: none;" id="input-val" value='{}' />
+    <input style="display: none;" id="output-val" value='{}'/>
+</div>
+<script src="../../../js/VA/scale.js"></script>
+<script>
+    $(document).ready(function (){
+        const accNum = document.getElementById("account-num");
+        const accInfo = document.getElementById("account-info");
+        const transCode = document.getElementById("transaction-code");
+        const transTime = document.getElementById("transaction-time");
+        const withdrawAmount = document.getElementById("withdraw-amount");
+        const transFee = document.getElementById("transaction-fee");
+        const subtract = document.getElementById("subtract-to-value");
+        accNum.innerText = 'Nguyen Van Teo';
+        accInfo.innerText = '09123456789 jksjdkasjk';
+        transCode.innerText = 'ABC8982193';
+        transTime.innerText = '2026-03-03';
+        withdrawAmount.innerText = '6.000.000';
+        transFee.innerText = '0';
+        subtract.innerText = '6.000.000';
+    })
+</script>
+</body>
+</html>

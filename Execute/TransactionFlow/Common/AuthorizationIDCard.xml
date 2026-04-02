@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="AuthorizationIDCard">
+  <Head type="GRGWorkflow" author="yslin3" comment="The workflow design is for Authorization with ID Card"/>
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start">
+      <Forward event="OnConfirm" targetID="ID_IDCardGetDevStatusEx"/>
+    </Start>
+
+	<!-- Set the LoginSuccessFlag to be False -->
+    <SetData ID="ID_SetLoginFlagFalse" saveBufferBool="{LoginSuccessfulFlag, 1}" value="False">
+      <Forward event="OnConfirm" targetID="ID_InvokeAuthorizationReqAgentWorkflow" />
+    </SetData>
+
+	<!-- Invoke the agent requesting workflow -->
+    <InvokeWorkflow ID="ID_InvokeAuthorizationReqAgentWorkflow" name="AuthorizationReqAgent" comment="Invoke the agent requesting workflow">
+      <Forward event="OnConfirm" targetID="ID_CompareReqAgentSuccessFlag"/>
+    </InvokeWorkflow>
+	
+	<!-- Judge whether the agent is connected or not -->
+	<CompareData ID="ID_CompareReqAgentSuccessFlag" comment="" compareBuffer="{VTM_VideoStatusWrapper}"> 
+      <Forward event="OnEqualSTATUS_IN_TALKING" targetID="ID_ScanIDCard" />
+      <DefaultForward targetID="9999" />
+    </CompareData>
+	
+	<!-- Get device status of ID card reader -->
+	<GetDevStatusEx ID="ID_IDCardGetDevStatusEx" UI="UI_Waiting" comment="Get device status" devType="IDReader" callVisible="0" homeVisible="0">
+	  <States>
+        <State name="GetDevStatusExError" UI="UI_DevError"/>
+      </States>
+      <Forward event="OnNormal" targetID="ID_SetLoginFlagFalse" />
+      <Forward event="OnWarn" targetID="ID_SetLoginFlagFalse" />
+      <Forward event="OnFail" targetID="9999" />
+    </GetDevStatusEx>
+	
+	<!-- Scan ID card -->
+	<ScanIDCard ID="ID_ScanIDCard" UI="UI_InsertIDCard" CallingMethodType="1" ejcard="1" homeVisible="0" timeout="30000" generateImg="0">
+      <States>
+        <State name="IDCardError" UI="UI_IDCardError"/>
+        <State name="OutDateError" UI="UI_IDCardOutDate" />
+        <State name="TakeIDCard" UI="UI_TakeIdCard" />
+		<State name="TakeIDCardFail" UI="UI_TakeIDByReadErr" />
+        <State name="ReadingCard" UI="UI_ReadingCard" />
+		<State name="EjectCardFail" UI="UI_EjectCardFail" />
+		<State name="TransProcessing" UI="UI_Waiting" />
+      </States>
+      <Forward event="OnContinue" targetID="ID_SetIdentityData" />
+	  <Forward event="OnFail" targetID="ID_ScanIDCardError" />
+      <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+    </ScanIDCard>
+	
+	<ScanIDCardError ID="ID_ScanIDCardError" UI="UI_ReadingIDCardError" timeout="30000">
+		<Forward event="OnContinue" targetID="ID_ScanIDCard" />
+		<Forward event="OnCancel" targetID="9999"/>
+	</ScanIDCardError>
+	
+	
+    <!-- Set ID card data for requesting agent -->
+    <SetIdentityData ID="ID_SetIdentityData" homeVisible="0">
+		<States>
+			<State name="IdentityDataIsNull" UI="UI_DevError" />
+		</States>
+      <Forward event="OnContinue" targetID="ID_UpFile"/>
+      <Forward event="OnFail" targetID="9999"/>
+    </SetIdentityData>
+
+    <!-- Upload file(s). It supports upload multiple files on time now.-->
+	<!-- Values of fileType: 1(IDPhoto), 2(IDfront), 4(IDback), 8(SignPic), 
+		16(fingerprint), 32(CapturePhoto), 64(DepositForm), 128(ChequePhoto),
+		256(PassportHeadSculpture), 512(PassportCapture)
+		or the results of the Or-Operation between them. -->
+    <UpFile ID="ID_UpFile" UI="UI_Waiting" timeout="60000" fileType="6">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_SendCustomerInfo"/>
+      <Forward event="OnFail" targetID="9999"/>
+    </UpFile>
+
+    <!-- Send customer info to VTA. -->
+    <VTARequest ID="ID_SendCustomerInfo" UI="UI_Waiting" messageType="2004" timeout="60000" checkVideo="1">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail"/>
+        <State name="TimeOutError" UI="UI_TransTimeOut"/>
+        <State name="ServiceCloseTrans" UI="UI_ServiceCloseTrans"/>
+		<State name="CameraError" UI="UI_DevError"/>
+		<State name="VideoDisconnected" UI="UI_VideoDisconnected"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_RequestVtaToVerifyInfo"/>
+      <Forward event="OnFail" targetID="9999"/>
+    </VTARequest>
+	
+    <!-- Request VTA to verify the customer info -->
+    <VTARequest ID="ID_RequestVtaToVerifyInfo" UI="UI_CommonWaiting" ids="IDS_VTMIDCheckPleaseWait" messageType="2006" timeout="60000" verify="3001" checkVideo="1">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail"/>
+        <State name="TimeOutError" UI="UI_TransTimeOut"/>
+        <State name="ServiceCloseTrans" UI="UI_ServiceCloseTrans"/>
+		<State name="CameraError" UI="UI_DevError"/>
+		<State name="VideoDisconnected" UI="UI_VideoDisconnected"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_CheckVerificationResult"/>
+      <Forward event="OnFail" targetID="9999"/>
+    </VTARequest>
+	
+	<!-- Check whether VTA passed the customer info verification -->
+    <CheckDeal ID="ID_CheckVerificationResult">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail" />
+      </States>
+      <Forward event="OnYes" targetID="ID_SetLoginFlagTrue" />
+      <Forward event="OnTryAgain" targetID="ID_IDCardGetDevStatusEx" />
+      <Forward event="OnNo" targetID="ID_AuditingFailCard" />
+      <Forward event="OnFail" targetID="9999" />
+    </CheckDeal>
+	
+	<WaitSleep ID="ID_AuditingFailCard" UI="UI_AuditingFailCard" timeout="3000">
+      <Forward event="OnContinue" targetID="9999" />
+    </WaitSleep>
+	
+	<!-- Set the LoginSuccessFlag to be True -->
+    <SetData ID="ID_SetLoginFlagTrue" saveBufferBool="{LoginSuccessfulFlag, 1}" value="True">
+      <Forward event="OnConfirm" targetID="9999" />
+    </SetData>
+	
+	<!-- Invoke the CloseTrans workflow -->
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+
+    <End ID="9999" comment="End"/>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+  </DefaultForward>
+</Workflow>

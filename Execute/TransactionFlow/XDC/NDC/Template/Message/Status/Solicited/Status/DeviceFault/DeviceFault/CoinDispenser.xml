@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!--  Coin Dispenser.
+		*  This messge gives details of  a Coin Dispenser response to a Transaction Reply Command message.
+		*  When Option 79 is set to '000', this message reports the status of four hopper types. When Option 79 is set to '001'.
+        * This message reports the status of the number of hopper types reported in the Hardware Configuration message. 
+		* The status is always reported for a minimum of four hopper types..
+		-->
+		
+	<CoinDispenser>
+		<!-- Device Identification Graphic. -->
+		<Item key="e1" 																		value="Y"  																	size="1" 				restriction="Mandatory"/>
+		
+		<!--   Transaction/Device Status 	
+		*  '0' - Successful operation, but an exception condition occurred.
+		*  '1' - The coin dispenser low thresholds for each coin hopper were not set  during the configuration of the SST.No coins have been dispensed..
+        *  '3' - (No coins have been dispensed)
+					The coin dispense was not started as the requested hopper had one of the following problems:
+                    [1] The hopper was in a fatal state
+                    [2]  The hopper was out of coins.
+					[3]  The hopper was not in the correct position to allow a dispense.
+					[4]  The hopper was in a low condiction without enough coins to perform the dispense.
+		*	'4' - The coin dispense has failed for a reason other than a jam. Some coins may bave been dispensed.
+        *  '9' - The coin dispense has failed due to a jam in the hopper. Some coins may have been dispensed.
+		*  ':'  - The coin dispense has failed due to a jam in the transport chute. Some coins may have been dispensed.		
+		*  ';'  - The transport chute exit sensor was blocked at the start of the coin dispense. No coins have been dispensed.
+		*  '<'  - A coin dispense has been attempted while the coin dispenser was in a fatal state.No coins have been dispensed.
+		*  '='  - Tampering detected during dispense. The coin dispense has failed due to the module being accessed during the dispense.
+		*            Some coins may have been dispensed.
+		-->
+		<Item key="e2" 																		value="[CoinDispenser.DevStatus]"  								size="1" 				restriction="Mandatory"/>
+		<Item key="e2-1" 																    value="[CoinDispenser.CoinDispensed]"  						size="1" 				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																size="1"				restriction="Mandatory"/>
+		
+		<!--  Error Severity. 
+		*  '0'  - No error
+		*   '1' - Routine
+		*   '2' - Warning
+		*   '3' - Suspend. This is only used for the coin dispenser core components character.
+		*   '4' - Fatal
+		-->
+		<Item key="e3" 																		value="[CoinDispenser.ErrSeverity]"  								size="1-2" 			restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																size="1"				restriction="Mandatory"/>
+		
+		<!--  Diagnostic Status.Used for logging errors. The length of the field is variable(because it is hardware-dependent) and may be omitted if 
+		* if there is no error condition to be reported. The field will always be present if preceded by an error severity field with a value of 1 or greater.
+		* There are certain rules which are followed by all devices.
+		* Characters 1 and 2 contain a main error status value. (M-Status) in the range 0 -99, transmitted as 2 characters which give the decimal representation.
+		* of the M-Status value.
+		* M-Status is used mainly as an error log to assist machine servicing. It may also be used in a transaction log to supplementTransaction status or Device.
+		* status information.
+        * Characters 3 to n (M-Data) 
+		-->
+		<Item key="g4" 																		value="[CoinDispenser.DiagnosticStatus]"  					size="var" 			restriction="Optional"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																size="1"				restriction="Mandatory"/>
+		
+		<!--  Suplies Status. Contains information related to the state of supplies (paper, currency, magnetic cards, envelopes, inkwells, documents)
+		 * in the terminal. This field contains one character for each supplies container managed by the device.Each character is always coded in the same 
+		 * in same way.
+		 *  '0'  - State not determined during this operation
+		 *  '1'  - Good
+		 *  '2'  - Hopper Low. The sensor associated with this hopper has indicated a low condition.
+		 *  '3'  - Hopper Empty. The sensor associated with this hopper has indicated low and the coin low 
+	     *          and the coin low threshold limit has been reached..
+		-->
+		<Item key="g5" 																		value="[CoinDispenser.SuppliesStatus]"  						size="1" 				restriction="Mandatory"/>
+		
+	</CoinDispenser>	
+</Root>

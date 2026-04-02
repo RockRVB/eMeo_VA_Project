@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=""></script>
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <style>
+		.g-input {
+			text-align: center;
+			height: 80px;
+			font-size: 40px;
+			margin-bottom: 50px;
+		}
+		.g-input:disabled {
+			background-color: transparent;
+			color: #fff;
+        }
+        .img-wrapper {
+            height: 500px;
+            background: url(../../images/bg_password.png) no-repeat center/cover;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <g-header :height='100'>
+            <img slot='left' class='logo' src="../../images/logo.png" alt="">
+            
+        </g-header>
+        <g-main>
+            <h2 class='sm-main-title' id="megtext" type="textblock" content="{Binding MsgText mode=2}">请根据图片内容输入第一组密匙（32位）</h2>
+            <input class='g-input' type='text' value='123' disabled id="keyvalue" content="{Binding Password}" content='{Binding Password mode=2}' />
+            <div class="img-wrapper">
+			</div>
+        </g-main>
+		<g-footer>
+            <g-button id="F2" tag="OnCancel" ids='ids_Btn_cancel' round transparent>Cancel</g-button>
+			<g-button id="F4" tag="OnClear" ids='ids_Btn_reset' color='info' round>Reset</g-button>
+        </g-footer>
+    </div>
+</body>
+</html>

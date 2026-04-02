@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<Workflow name="FingerveinWorkFlow">
+  <Head type="GRGWorkflow" author="Alson" timeStamp="" comment="" />
+  <DataPool />
+  <Activities>
+    <Start ID="0" UI="" comment="Start">
+      <Forward event="OnConfirm" targetID="ID_FingerveinSelectFunction" />
+    </Start>
+
+		<SelectFunction ID="ID_FingerveinSelectFunction" UI="UI_FingerveinSelectMenu" comment="cannot print receipt">
+			<Forward event="OnMatch" targetID="ID_FingerToMatch"/>
+			<Forward event="OnRegister" targetID="ID_FingerToRegister"/>
+			<Forward event="OnDelete" targetID="ID_FingerToDelete"/>
+			<Forward event="OnDeleteAll" targetID="ID_FingerToDeleteAll"/>
+		</SelectFunction>
+		
+		<InvokeWorkflow ID="ID_FingerToMatch" name="FingerveinMatchForFB" comment="FingerveinMatch workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_FingerToRegister" name="FingerveinRegisterForFB" comment="FingerveinRegister workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_FingerToDelete" name="FingerveinDeleteForFB" comment="FingerveinDelete workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_FingerToDeleteAll" name="FingerveinDeleteAllForFB" comment="FingerveinDeleteAll workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<FingerveinStart ID="ID_FingerStartForMatch" comment="">
+			<Forward event="OnConfirm" targetID="ID_FingerveinInputCifToMatch"/>
+		</FingerveinStart>
+		
+		<FingerveinStart ID="ID_FingerStartForRegister" comment="">
+			<Forward event="OnConfirm" targetID="ID_FingerveinInputCifToRegister"/>
+		</FingerveinStart>
+		
+		<InputCifToMatch ID="ID_FingerveinInputCifToMatch" UI="UI_FingerveinInputCif" comment="cannot print receipt">
+			<Forward event="OnConfirm" targetID="ID_FingerveinQuery"/>
+			<Forward event="onCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InputCifToMatch>
+		
+		<FingerveinQuery ID="ID_FingerveinQuery" comment="">
+			<Forward event="OnYes" targetID="ID_FingerveinScanAndMatch"/>
+			<Forward event="OnNo" targetID="ID_FingerveinShowNotRegister"/>
+		</FingerveinQuery>
+		
+		<InputCifToMatch ID="ID_FingerveinInputCifToRegister" UI="UI_FingerveinInputCif" comment="cannot print receipt">
+			<Forward event="OnConfirm" targetID="ID_FingerveinScanForRegister"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InputCifToMatch>
+		
+		<FingerveinScanAndMatch ID="ID_FingerveinScanAndMatch" UI="UI_FingerveinMatch" comment="">
+			<Forward event="OnContinue" targetID="ID_FingerveinShowSuccess"/>
+			<Forward event="OnNotFound" targetID="ID_FingerveinShowNotMatch"/>
+			<Forward event="OnFail" targetID="ID_FingerveinShowNotMatch"/>
+		</FingerveinScanAndMatch>
+
+		<FingerveinScanForRegister ID="ID_FingerveinScanForRegister" UI="UI_FingerveinEnroll" comment="">
+			<Forward event="OnConfirm" targetID="ID_FingerveinRegisterToServer"/>
+			<Forward event="OnFail" targetID="ID_FingerveinShowError"/>
+		</FingerveinScanForRegister>
+		
+		<FingerveinRegisterToServer ID="ID_FingerveinRegisterToServer" comment="">
+			<Forward event="OnConfirm" targetID="ID_FingerveinShowSuccess"/>
+			<Forward event="OnFail" targetID="ID_FingerveinShowError"/>
+		</FingerveinRegisterToServer>
+		
+		<Prompt ID="ID_FingerveinShowError" UI="UI_FingerShowError" comment="" timeout="5000">
+          <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+		  <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+        </Prompt>
+		
+		<Prompt ID="ID_FingerveinShowNotRegister" UI="UI_FingerShowNotRegister" comment="" timeout="5000">
+          <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+		  <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+        </Prompt>
+		
+		<Prompt ID="ID_FingerveinShowNotMatch" UI="UI_FingerShowNotMatch" comment="" timeout="5000">
+          <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+		  <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+        </Prompt>
+		
+		<Prompt ID="ID_FingerveinShowSuccess" UI="UI_FingerShowSuccess" comment="" timeout="5000">
+          <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+		  <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+        </Prompt>
+
+	
+    <End ID="9999" UI="" comment="End" />
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" UI="" comment="Invoke close trans workflow" name="CloseTrans">
+      <Forward event="OnConfirm" targetID="9999" />
+    </InvokeWorkflow>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnHardwareError" targetID="ID_DevError" />
+    <Forward event="OnFail" targetID="ID_EventError" />
+    <Forward event="OnTimeout" targetID="ID_GoTimeOut" />
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+  </DefaultForward>
+</Workflow>

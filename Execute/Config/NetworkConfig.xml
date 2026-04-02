@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- *******************************************************************************************************************
+	* eCAT系统的网络配置是按照网络服务类型来分类配置的。网络服务配置下有两个配置节点。 
+    * 配置节点<Sessions>指定了连接远端主机的网络会话配置信息
+    * 配置节点<Listeners>指定了监听外部连接的配置信息
+    <NetworkService>指定所使用的网络服务，只有一个属性name. 指定网络服务的名称。只有两个值 IPNetworkService和SDLC
+     * IPNetworkService 指定使用TCP/IP协议栈，进程内的网络服务 
+     * SDLC 指定使用SDLC协议，进程外的网络服务
+	<Sessions 所有用于连接远端主机的网络会话配置节点。enable属性用于指定是否启用此节点下所有的会话配置信息，值为0则不启用，值为非0值则启用。不指定该属性，则默认为enable="1">
+		<Session>配置网络会话配置信息，该节点有以下的属性:
+                name: 指定会话的名称，此名称将被用于代码中获取此会话。     （必须）
+                type: 指定网络会话的类型。在IPNetworkService网络服务内，
+				      类型值有两个值“TCP”和“UDP.不指定则默认为TCP       （可选）
+                enable:指定是否启用该会话。值为0则不启用，值为非0则启用。
+					   不指定默认为enable="1"                              （可选）
+			    default: 指定该会话是否为默认会话。此值用于代码中获取
+						 默认的会话。不指定则default="0"                   （可选）
+                keepAlive: 指定会话的keepAlive值，单位为秒。不指定
+						   则keepAlive="0"                                  (可选)
+                protocol: 指定会话采用的协议                                (可选)
+                comment: 描述该会话的说明信息                               (可选)
+				reConnectTimes: 发消息时，重连的次数，默认连接一次。最多支持五次(可选)
+            <Session>有以下子节点：                                    
+				<Address> 指定会话连接的远端主机的地址和本地地址，
+						  有以下属性:                                      （必须）
+                     remote: 指定远端主机的地址配置信息。地址配置信息
+							 按照以下模板设定："地址:端口" 地址
+							 可以设置4种类型的值                           （必须）
+						     "localhost" 本地主机地址
+							 "anyhost" 本地主机的任何地址，注意：不能用在remote属性设置上
+							 "xxx.xxx.xxx.xxx" 标准的点分地址，如"192.168.0.1"。注意此为IPV4地址
+							 "域名" 主机的域名。如"www.grgbanking.com.cn"
+							比如："localhost:2040"表示地址是本地主机，端口号为2040
+                                  "192.168.0.1:4096" 表示地址是192.168.0.1,端口号为4096
+                                  "www.grgbanking.com.cn:8080" 表示地址是域名www.grgbanking.com.cn，端口号为8080
+							remote的值可以设定多个地址，多个地址以分号分隔，用来设定多个备分远程主机的地址。注意会话连接的顺序从第一个到最后一个，直到连接成功为止。
+							比如"192.168.0.1:8000;10.1.0.10:4096"表示有两个地址
+							一个地址是192.168.0.1,端口号为8000
+							一个地址是10.1.0.10,端口号为4096
+                     local: 指定本地的地址配置信息。通过此属性，可以指定
+							通过那个网卡连接远程主机                        (可选) 
+				<Connection> 指定会话的连接配置信息，有以下属性：          （可选）
+					 mode: 指定会话的连接模式，可以设置3个值。             （必须）
+						   0 -> 长连接
+						   1 -> 短连接
+						   2 -> 半短连接
+                     autoRecovery:指定会话是否在连接失败后，是否自动重连.
+								  该属性只有在长连接模式下才有意义。值为0则
+								  不自动重连，值为非0则自动重连。
+								  如果不设定该值，则默认值为1                (可选) 
+                     autoRecoveryInterval 指定会话自动重连的间隔，该属性只
+										  有在长连接模式下才有意义。单位为
+										  毫秒。如果不指定该值，
+										  则默认值为10000                   （可选）
+                     autoConnectAfterOpen 指定会话是否在打开过后自动开始
+										  连接主机。值为0则打开后自动连接，
+										  值为非0则不自动连接。如果不指定，
+										  则默认值为1                       （可选） 
+				<Packet> 指定会话的数据包配置信息，有以下属性：             （必须）
+                     headPattern: 指定数据包包头的长度数据模板信息，该长度
+								  指定了数据包的大小。有以下6个值：         （必须）
+								  "NoHeader" 没有包头
+                                  "L1L2" 包头的长度数据格式是2个字节的16进制格式，字节顺序是小字头
+                                  "L2L1" 包头的长度数据格式是2个字节的16进制格式，字节顺序是大字头
+                                  "L4L3L2L1" 包头的长度数据格式是4个字节的16进制格式，字节顺序是大字头
+                                  "L4L3L2L1_ASCII" 包头的长度数据格式是4字节的ascii码格式。
+                                  "EOR" 数据包的长度以特定字符结束
+					 headIncluded: 指定包头长度数据是否包含在数据包大小中。
+								   值为0则不包含，值为非0则包含。如果不指定
+								   该属性，则默认值为0                       （可选）	
+	<Listeners>配置了所有监听会话的配置信息，该节点有以下属性：
+		enable: 指定是否启用该节点下的所有监听会话节点配置信息。值为0则
+				不启用，值为非0则启用。如果不指定则默认为1                   （可选） 
+		<Listener>配置了一个监听会话的配置信息，该节点有以下属性:
+				 name:监听会话的名称。代码中可以使用该名称查询到此监听会话   （必须）
+                 enable: 指定监听会话是否启用。 值为0则不启用，值为非0则启
+						 用，如果不指定，则默认值为非0                        (可选)
+                 listenAddress:指定监听会话的地址信息，地址配置模板同上面
+							   session的地址模板。注意，此属性值不能设置
+							   多个地址										 （必须）
+                 backlog:指定并发的接受连接个数。不指定该值，则默认是系统
+						 最大可接受并发连接个数                              （可选）
+                 autoStart: 指定监听会话是否在打开后自动开始监听。值为0则
+							自动开始，值为非0则不自动开始。如果不指定，
+							则默认值为1                                      （可选）
+                 comment: 此监听会话的描述信息                               （可选）
+                 <Listener>有以下的子节点
+                 <Session> 用于设置接收连接会话的配置信息，此配置信息与      （必须）
+						   上面的<session>配置相同，注意，不需要指定
+						   <session>节点的Name属性和Default属性               
+                      注意: <Session>的名称将按照"Listener的名称 + session + 连接序号"指定，
+							比如，listener的名称是"Server1", 此listener的第1
+							个接受的连接会话名称则是"Server1session0"，第2个则为"Server1session1" 
+       <SSL> 指定启用SSL功能，有以下属性：
+					enable: 指定是否启用SSL功能，默认为0，不启用
+					<Authenticate> 指定在SSL中要用到的验证信息
+						sslProtocol: 指定SSL的协议。有以下的值：
+									Default:默认的协议，此为默认值
+									Tls: 采用TLS协议
+									SSL3：采用SSL3协议
+						requireClientCertificate:指定是否要求验证客户端证书，默认不检查
+						checkCertificateRevocation: 检查是否撤销证书列表。默认不检查
+						checkRemoteCertificate: 检查是否验证客户端证书。默认不检查
+						<ServerX509Certificate>: 指定服务端证书X509证书。             （必须）
+							value:指定X509证书的值，此值跟findType属性值相关
+							findType: 指定查找x509证书的方式，支持以下值：
+									  FindByThumbprint:查找证书中的指纹
+									  FindBySubjectName:查找证书的名称
+									  FindBySubjectDistinguishedName: 清晰查找证书的名称
+									  FindByIssuerName: 查找证书的发行者
+									  FindByIssuerDistinguishedName: 清晰查找证书的发行者
+									  FindBySerialNumber:查找证书的序列号
+							storeLocation: 证书的存储位置，支持以下值：
+									  CurrentUser:当前的用户
+									  LocalMachine: 本机
+						<CustomAuthenticate> 指定自定义验证信息
+							handler: 指定自定义验证类的信息，按以下格式TopNamespace.SubNameSpace.class, MyAssembly, Version=1.3.0.0, 		Culture=neutral,PublicKeyToken=b17a5c561934e089
+       ********************************************************************************************************************** 
+	   注意：1、如果要使用http或https通讯协议发送报文，则将type配置为http或https
+			 2、满足条件1的情况下:
+				(1)发送8583报文，则需将contentType配置为"application/text"
+				(2)发送JSON报文，则需将contentType配置为"application/json"
+			 3、如果是使用TCP发送JSON报文，则不需要带报文头长度，即headPattern="NoHeader"
+	   -->
+<NetConfig>
+  <NetworkService name="IPNetworkService">
+    <Sessions enable="1">
+      <Session name="ATMP1" type="TCP" enable="0" default="1" offline="1" keepAlive="10" protocol="ISO8583" comment="ATMP" descrip="Transaction Server">
+        <Address remote="192.168.31.228:6011" />
+        <Connection autoRecovery="0" autoRecoveryInterval="60000" mode="1" autoConnectAfterOpen="1" />
+        <Packet headPattern="L2L1" headIncluded="0" />
+      </Session>
+      <Session name="ATMP2" type="TCP" enable="1" default="1" keepAlive="10" protocol="NDC/DDC" comment="ATMP" descrip="Transaction Server">
+        <Address remote="127.0.0.1:4070" />
+        <Connection autoRecovery="1" autoRecoveryInterval="6000" mode="0" autoConnectAfterOpen="0" />
+        <Packet headPattern="L2L1" headIncluded="0" />
+        <SSL enable="0">
+          <Authenticate sslProtocol="Tls12" serverX509CertificateName="ibank.grgbanking.com" checkCertificateRevocation="0" checkRemoteCertificate="0">
+            <ClientX509Certificate value="" findType="FindBySubjectName" storeLocation="CurrentUser" />
+            <CustomAuthenticate handler="xxx,CheckAuthenticate" />
+          </Authenticate>
+        </SSL>
+      </Session>
+      <Session name="ATMF1" type="TCP" enable="0" default="1" keepAlive="10" protocol="NDC/DDC" comment="ATMF" descrip="Transaction Server">
+        <Address remote="127.0.0.1:4070" />
+        <Connection autoRecovery="1" autoRecoveryInterval="6000" mode="0" autoConnectAfterOpen="0" />
+        <Packet headPattern="L2L1" headIncluded="0" />
+      </Session>
+      <Session name="RESTFUL" type="http" enable="1" default="1" keepAlive="10" protocol="xml/json" comment="RESTFUL" descrip="RESTFUL Server">
+        <Address remote="10.1.24.86:8089" method="POST" defaultServicePath="/FeelGateway/entry" contentType="application/json" />
+        <Connection autoRecovery="0" autoRecoveryInterval="60000" mode="1" autoConnectAfterOpen="1" />
+        <Packet headPattern="NoHeader" headIncluded="0" />
+      </Session>
+      <Session name="ATMP3" type="http" enable="0" default="1" keepAlive="10" protocol="ISO8583" comment="ATMP" descrip="Transaction Server">
+        <Address remote="21.96.3.137:9112" method="POST" contentType="application/json" />
+        <Connection autoRecovery="0" autoRecoveryInterval="60000" mode="1" autoConnectAfterOpen="1" />
+        <Packet headPattern="NoHeader" headIncluded="0" />
+      </Session>
+      <Session name="ATMV1" type="TCP" enable="0" default="1" keepAlive="10" protocol="ISO8583" comment="ATMV" descrip="Monitor Server">
+        <Address remote="10.1.91.31:10101" />
+        <Connection autoRecovery="0" autoRecoveryInterval="5000" mode="1" autoConnectAfterOpen="1" recoveryIntervalInHostRefuse="10000" />
+        <Packet headPattern="NoHeader" headIncluded="0" />
+      </Session>
+      <Session name="VTAService" reConnectTimes="2" type="TCP" enable="0" default="1" keepAlive="10" protocol="ISO8583" comment="VTAService" descrip="VTA Server">
+        <Address remote="sg2.grgtech.top:18195" />
+        <Connection autoRecovery="1" autoRecoveryInterval="5000" mode="0" autoConnectAfterOpen="1" />
+        <Packet headPattern="NoHeader" headIncluded="0" />
+        <SSL enable="1">
+          <Authenticate sslProtocol="Tls12" serverX509CertificateName="ibank.grgbanking.com" checkCertificateRevocation="0" checkRemoteCertificate="0">
+            <ClientX509Certificate value="" findType="FindBySubjectName" storeLocation="CurrentUser" />
+            <CustomAuthenticate handler="xxx,CheckAuthenticate" />
+          </Authenticate>
+        </SSL>
+      </Session>
+    </Sessions>
+    <Listeners enable="0">
+      <Listener name="Server1" default="1" enable="1" listenAddress="localhost:8080" backlog="5" comment="ATMS">
+        <Session keepAlive="10" protocol="ISO8583">
+          <Packet headPattern="NoHeader" headIncluded="0" />
+          <SSL enable="1">
+            <Authenticate sslProtocol="Tls12" requireClientCertificate="0" clientX509CertificateName="FEEL Biometric Platform Client" checkCertificateRevocation="0">
+              <ServerX509Certificate value="fbfs.grgbanking.com" findType="FindBySubjectName" storeLocation="CurrentUser" />
+            </Authenticate>
+          </SSL>
+        </Session>
+      </Listener>
+    </Listeners>
+  </NetworkService>
+</NetConfig>

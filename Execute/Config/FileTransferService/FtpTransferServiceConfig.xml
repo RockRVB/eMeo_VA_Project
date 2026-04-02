@@ -1,0 +1,5 @@
+﻿<FileTransferFtpService>
+	<!--对账需要的ftp服务器的配置-->
+	<TransferSession name="ReconciliationFtpSession" enable="1" userName="Administrator" 
+		password="gmGbjnP00j5718HHpEl25A==" baseUri="ftp://127.0.0.1" timeout="5000" enableSSL="0" keepAlive="1"/>
+</FileTransferFtpService>

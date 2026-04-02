@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config name="UI">
+	<item key="IDS_PrintSystemInfoStart" value="================System Information====================="/>
+	<item key="IDS_PrintAssemblyStart" value="=================Loaded assembly Information================"/>
+	<item key="IDS_OSVersion" value="Operation System Version: {0} {1}"/>
+	<item key="IDS_ProcessCount" value="CPU count: {0}"/>
+	<item key="IDS_machineName" value="Machine name: {0}"/>
+	<item key="IDS_userName" value="User Name: {0}"/>
+	<item key="IDS_pageSize" value="System page size: {0} bytes"/>
+	<item key="IDS_32System" value="32 bit system"/>
+	<item key="IDS_64System" value="64 bit system"/>
+	<item key="IDS_CLRVesion" value="CLR version: {0}"/>
+	<item key="IDS_CurrentDirectoy" value="Current directory: {0}"/>
+	<item key="IDS_SystemDirectory" value="System directory: {0}"/>
+	<item key="IDS_DriveName" value="Logical drive: {0}"/>
+	<item key="IDS_DriveType" value="Drive type: {0}"/>
+	<item key="IDS_DriveFormat" value="File system: {0}"/>
+	<item key="IDS_DriveLabel" value="Drive label: {0}"/>
+	<item key="IDS_DriveTotalSize" value="Total size: {0} bytes"/>
+	<item key="IDS_DriveAvaFreeSize" value="Total free size: {0} bytes"/>
+	<item key="IDS_DriveFreeSize" value="Total available free size: {0} bytes"/>
+	<item key="IDS_AvailablePhysicalMemory" value="Available phsical memory: {0} bytes"/>
+	<item key="IDS_AvailableVirtualMemory" value="Available virtual memory: {0} bytes"/>
+	<item key="IDS_TotalPhysicalMemory" value="Total physical memory: {0} bytes"/>
+	<item key="IDS_TotalVirtualMemory" value="Total virtual memory: {0} bytes"/>
+	<item key="IDS_NetworkAviable" value="Local network avaiable：{0}"/>
+	<item key="IDS_NetworkName" value="Name of a network interface：{0}"/>
+	<item key="IDS_NetworkType" value="Type of a network interface：{0}"/>
+	<item key="IDS_NetSupportMulticasat" value="If a network interface supports multicast：{0}"/>
+	<item key="IDS_NetOpStatus" value="Operation status of a network interface：{0}"/>
+	<item key="IDS_PhyAddress" value="MAC of a network interface：{0}"/>
+	<item key="IDS_IPV4Address" value="IPV4 address：{0}"/>
+	<item key="IDS_IPV4Mask" value="IPV4 mask：{0}"/>
+	<item key="IDS_IPV4Gateway" value="IPV4 gateway：{0}"/>
+	<item key="IDS_DNSAddress" value="DNS address：{0}"/>
+	<item key="IDS_DHCPAddress" value="DHCP address：{0}"/>
+	<item key="IDS_ECATRunDirectory" value="The executing directory of eCAT：{0}"/>
+	<item key="IDS_ICTransLog_Index" value="Index"/>
+	<item key="IDS_ICTransLog_Date" value="Time"/>
+	<item key="IDS_ICTransLog_Type" value="Type"/>
+	<item key="IDS_ICTransLog_Amount" value="Amount"/>
+	<item key="IDS_TransName_Unknown" value="Unknown"/>
+	<item key="IDS_TransName_INQ" value="Inquiry"/>
+	<item key="IDS_TransName_CWD" value="Withdrawal"/>
+	<item key="IDS_TransName_DEP" value="Deposit"/>
+	<item key="IDS_TransName_PIN" value="ChangePin"/>
+	<item key="IDS_TransName_TFR" value="Transfer"/>
+	<item key="IDS_TransName_Load" value="IC Load"/>
+	<item key="IDS_SystemStartup" value="System startup..."/>
+	<item key="IDS_InitializeDeviceFormat" value="Initializing {0}"/>
+	<item key="JPTR" value="Journal printer"/>
+	<item key="TTU" value="TTU"/>
+	<item key="FlashDevice" value="Flash device"/>
+	<item key="PIN" value="Pin Pad"/>
+	<item key="SIU" value="Sensor indicator unit"/>
+	<item key="IDC" value="IDC"/>
+	<item key="ContactLessIDC" value="ContactLessIDC"/>
+	<item key="RPTR" value="Receipt printer"/>
+	<item key="CDM" value="CDM"/>
+	<item key="CIM" value="CIM"/>
+	<item key="VDM" value="VDM"/>
+	<item key="CardDistributor" value="Card distributor"/>
+	<item key="Camera" value="Camera"/>
+	<item key="IDReader" value="ID reader"/>
+	<item key="SimulateKeypad" value="Simulate keypad"/>
+	<item key="BiometricIdenticifcation" value="Biometric identicification device"/>
+	<item key="DVRDevice" value="DVR Device"/>
+	<item key="IDS_NoWithdrawalTrans" value="本机暂不能提供取款功能 This machine does not provide withdrawal function temporarily"/>
+	<item key="IDS_NoDepoistTrans" value="本机暂不能提供存款功能 This machine does not provide deposit function temporarily"/>
+	<item key="IDS_NoWithdrawalAndDepositTrans" value="本机暂不能提供存取款功能 This machine does not provide withdrawal and deposit function temporarily"/>
+	<item key="IDS_NoCardTrans" value="本机暂不能提供插卡交易 This machine does not provide card function temporarily"/>
+	<item key="IDS_Currency" value="CNY"/>
+	<item key="IDS_CurrencySymbol" value="CNY"/>
+	<item key="IDS_Confirm" value="Confirm"/>
+	<item key="IDS_Clear" value="Clear"/>
+	<item key="IDS_Cancel" value="Cancel"/>
+	<item key="IDS_TakeCard" value="Take Card"/>
+	<item key="IDS_TakeCardCN" value="退###卡"/>
+    	<item key="IDS_TakeCardEN" value="Take Card"/>
+  	<item key="IDS_TakeCardForDIP" value="Please Take Card"/>
+	<item key="IDS_Exit" value="Exit"/>
+	<item key="IDS_Return" value="Return"/>
+	<item key="IDS_Continue" value="Continue"/>
+	<item key="IDS_Chinese" value="中###文"/>
+	<item key="IDS_English" value="English"/>
+	<item key="IDS_CreditAccount" value="Credit Account"/>
+	<item key="IDS_DefaultAccount" value="Default Account"/>
+	<item key="IDS_CheckAccount" value="Checking Account"/>
+	<item key="IDS_SavingAccount" value="Saving Account"/>
+	<item key="IDS_Inquiry" value="Inquiry"/>
+	<item key="IDS_Withdrawal" value="Withdrawal"/>
+	<item key="IDS_Transfer" value="Transfer"/>
+	<item key="IDS_ChangePin" value="Change PIN"/>
+	<item key="IDS_Deposit" value="Deposit"/>
+	<item key="IDS_eCASH" value="EC Transaction"/>
+	<item key="IDS_ICInquiry" value="ECash Balance"/>
+	<item key="IDS_ICDetail" value="ECash Detail"/>
+	<item key="IDS_ICBDZHQC" value="Load"/>
+	<item key="IDS_ICFBDZHQC" value="Non Bind Load"/>
+	<item key="IDS_ICXJCZ" value="Cash Recharge"/>
+	<item key="IDS_ICQT" value="Unload"/>
+	<item key="IDS_CONTINUEINTERPOSE" value="Continue Interpose"/>
+	<item key="IDS_Note100" value="100"/>
+	<item key="IDS_Note200" value="200"/>
+	<item key="IDS_Note500" value="500"/>
+	<item key="IDS_Note800" value="800"/>
+	<item key="IDS_Note1000" value="1000"/>
+	<item key="IDS_Note2000" value="2000"/>
+	<item key="IDS_Note2500" value="2500"/>
+	<item key="IDS_Note3000" value="3000"/>
+	<item key="IDS_YES" value="Yes"/>
+	<item key="IDS_NO" value="No"/>
+	<item key="IDS_NoCardDeposit" value="Cardless Deposit"/>
+	<item key="IDS_TransferName" value="Account name:"/>
+	<item key="IDS_PBOCECC_AvailableAmount" value="ECash Balance:"/>
+	<item key="IDS_PBOCECCAccountBalance" value="ECash Balance:"/>
+	<item key="IDS_ARPCFail" value="Can not confirm whether the transaction is successful|Please check your balance to confirm|Please contact your bank if in doubt"/>
+	<item key="IDS_AppNotFound" value="Can not find an available IC card application|Transaction has been cancelled"/>
+	<item key="IDS_ICTransCancel" value="Unknown error|Transaction has been cancelled"/>
+	<item key="IDS_ICTransFallback" value="IC Trans Fallback！"/>
+	<item key="IDS_ICInvalidCard" value="Read IC card fail|Transaction has been cancelled"/>
+	<item key="IDS_CardLock" value="The card is locked|Transaction has been cancelled"/>
+	<item key="IDS_AppLock" value="The application is locked|Transaction has been cancelled"/>
+	<item key="IDS_ICTryAnotherInterface" value="Unknown error|Transaction has been cancelled|Please try another interface"/>
+	<item key="IDS_PrintReceipt" value="Print Advice"/>
+	<item key="IDS_CannotPrintReceipt" value="Printing advice is unavailable|Would you like to continue?"/>
+	<item key="IDS_SelectAccountType" value="Please select the account type"/>
+	<item key="IDS_SelectService" value="Please select the service"/>
+	<item key="IDS_InquiryResult" value="Inquiry result"/>
+	<item key="IDS_AccountBalance" value="##Account Balance:"/>
+	<item key="IDS_AvailableBalance" value="Available Balance:"/>
+	<item key="IDS_InputAmountError" value="Incorrect amount|Please key in again"/>
+	<item key="IDS_InputWithdrawalAmount" value="Please key in amount|　"/>
+	<item key="IDS_InputWithdrawalAmountError" value="Incorrect amount|Please key in again"/>
+	<item key="IDS_InputWithdrawalAmountExceedsLimit" value="Exceeds withdrawal amount limit|Please key in again"/>
+	<item key="IDS_InputWithdrawalAmountExceedsCassetteAmount" value="Sorry, Insufficient funds in ATM|Please key in again"/>
+	<item key="IDS_InputWithdrawalAmountExceedRetryTimes" value="Exceeds times limit|Transaction has been cancelled"/>
+	<item key="IDS_InputWithDrawalAmountDenominateError" value="Incorrect amount|Please key in again"/>
+	<item key="IDS_SupplyWithdrawalDenomination" value="The following denominations are available"/>
+	<item key="IDS_MaxWithdrawalAmount" value="The maximum withdrawal|amount is"/>
+	<item key="IDS_PresentCash" value="Presenting cash, please wait..."/>
+	<item key="IDS_RetractCashForTimeout" value="Sorry, taking cash timeout|Cash has been retained|Please contact the bank"/>
+	<item key="IDS_RetractCashForHardwareError" value="Sorry, cash has been retained|Please contact the bank"/>
+	<item key="IDS_SelectLanguage" value="请选择提示语言|Please select the language"/>
+	<item key="IDS_InputPin" value="Please key in your personal|Identification number"/>
+	<item key="IDS_InputOldPin" value="Please key in your old PIN|  "/>
+	<item key="IDS_InputNewPin" value="Please key in your new PIN|　"/>
+	<item key="IDS_InputNewPinAgain" value="Please key in your new PIN again|　"/>
+	<item key="IDS_InputNewPinUnmatch" value="Invalid PIN|Please key in again"/>
+	<item key="IDS_InputOldNewPinSame" value="The new PIN is same as the old|Please key in again"/>
+	<item key="IDS_ChangePinSuccess" value="New PIN accepted|Please remember your|New PIN to use it next time"/>
+	<item key="IDS_InputTransferAccount" value="Please key in transferee account number|　"/>
+	<item key="IDS_InputTransferAccountAgain" value="Please key in transferee account number again|　"/>
+	<item key="IDS_InputTransferAccountUnmatch" value="Invalid transferee account number|Please key in again"/>
+	<item key="IDS_InputTransferAmount" value="Please key in amount|　"/>
+	<item key="IDS_MaxTransferAmount" value="The maximum transfer amount is"/>
+	<item key="IDS_InputTransferAmountExceedsLimit" value="Exceeds transferred amount limit|Please key in again"/>
+	<item key="IDS_InputTransferAmountLessThanLimit" value="Less than transferred amount min limit|Please key in again"/>
+	<item key="IDS_InputTransferAmountMultipleError" value="Incorrect amount|Please key in again"/>
+	<item key="IDS_ShowTransferInformation" value="Please confirm the account and amount"/>
+	<item key="IDS_TransferAccount" value="Transfer account:"/>
+	<item key="IDS_TransferAmount" value="Transfer amount:"/>
+	<item key="IDS_TransferSuccess" value="Transfer accepted"/>
+	<item key="IDS_InputICLoadAmount" value="Please input load amount|　"/>
+	<item key="IDS_InputICUnloadAmount" value="Please input unload amount|　"/>
+	<item key="IDS_MaxICLoadAmount" value="The max rechargeable limit is　"/>
+	<item key="IDS_MaxICUnloadAmount" value="The max unload limit is　"/>
+	<item key="IDS_ICLoadSuccess" value="Load transaction succeeded"/>
+	<item key="IDS_ICUnloadSuccess" value="Unload transaction succeeded"/>
+	<item key="IDS_InputNoCardDepositAccount" value="Please key in card number|or passbook number"/>
+	<item key="IDS_TAKENOTERefused" value="Please take unidentified bank notes|　"/>
+	<item key="IDS_TAKENOTEForError" value="Sorry, device failure|Please take your cash"/>
+	<item key="IDS_PrintingReceipt" value="Printing advice..."/>
+	<!-- show printing ocr  by lsjie5-->
+	<item key="IDS_PrintingOCRReceipt" value="Printing OCR..."/>
+	<item key="IDS_IsPrintReceipt" value="Print advice?"/>
+	<item key="IDS_PrintReceiptFail" value="Sorry|Print advice failed"/>
+	<item key="IDS_TakeReceipt" value="Please take the advice"/>
+	<item key="IDS_TakeReceiptAndCard" value="Please take your card and advice"/>
+	<item key="IDS_TAKENOTEToomuch" value="Exceeds the deposited notes count limit|Please take the remaining notes"/>
+	<item key="IDS_CASHINENDSUCC" value="Success to deposit notes"/>
+	<item key="IDS_TAKENOTE" value="Sorry, transaction cancelled|Please take the notes"/>
+	<item key="IDS_TAKENOTEForCancel" value="Please take the notes|After taking notes, please don't leave"/>
+	<item key="IDS_TAKENOTEForCommError" value="please take the notes"/>
+	<item key="IDS_COUNTINGNOTE" value="Counting notes|please wait..."/>
+	<item key="IDS_TransactionIsBeing" value="Transaction is being processed|Please wait..."/>
+	<item key="IDS_TransactionIsBeingDoubleLanguage" value="操作正在进行，请稍候...|Transaction is being processed|Please wait..."/>
+	<item key="IDS_EjectingCard" value="Processing to return card, please wait..."/>
+	<item key="IDS_PleaseTakeCard" value="Please take your card"/>
+	<item key="IDS_CaptureCardForTimeout" value="Sorry, taking card timeout|The card has been retained|Please contact the bank"/>
+	<item key="IDS_CaptureCard" value="Sorry, the card has been retained|Please contact the bank"/>
+	<item key="IDS_Timeout" value="Sorry, transaction timeout"/>
+	<item key="IDS_KeyError" value="Sorry, input error|Please be cautious if|any stranger is around you"/>
+	<item key="IDS_InvalidCard" value="对不起，卡无效|Sorry, invalid card"/>
+	<item key="IDS_ThankYou" value="Thank you, goodbye"/>
+	<item key="IDS_OutOfService" value="对不起，本机暂停服务|Sorry, out of service temporarily"/>
+	<item key="IDS_ServiceUnavailable" value="Sorry|Service is unavailable temporarily"/>
+	<item key="IDS_INCORRECTPIN_REINPUT" value="Incorrect PIN|Please input again"/>
+	<item key="IDS_ACCOUNTNAME" value="Account name:"/>
+	<item key="IDS_TRANSACTION_AMOUNT" value="Transaction amount:"/>
+	<item key="IDS_CONFIRM_ACCOUNTINFO" value="Please confirm the account information"/>
+	<item key="IDS_CONFIRM_INACCOUNT" value="Account:"/>
+	<item key="IDS_DEPOSIT_ARRANGECASH" value="Notes loaded exceed limit or incorrectly|please take the unaccepted notes|or reload notes"/>
+	<item key="IDS_DEPOSIT_INPUTTIMESOVERLIMIT" value="Notes loaded exceed limit or incorrectly|please take the unaccepted notes"/>
+	<item key="IDS_EJECTCASH_TOCUSTOMER" value="Notes are being returned|please wait..."/>
+	<item key="IDS_EJECTCASH_REPEATSN" value="There exists duplicate Serial NO.|Notes are being returned|please wait..."/>
+	<item key="IDS_RETRACTCASH_REPEATSN" value="There exists duplicate Serial NO.|Notes are retained"/>
+	<item key="IDS_DEPOSIT_DEVERR_RETURNCASH" value="System is processing, please don't go away."/>
+	<item key="IDS_DEPOSIT_DEVERR_TAKECASH" value="Sorry|system error,|please take the notes"/>
+	<item key="IDS_DEPOSIT_WAITFOR_INSERTCASH" value="Please load the notes neatly"/>
+	<item key="IDS_DEPOSIT_WAITFOR_INSERTCASH_NOCASH" value="Please interpose your cash|No notes have been detected"/>
+	<item key="IDS_DOING_CASHINEND" value="Deposit succeeded|Transaction is being processed|Please wait..."/>
+	<item key="IDS_DEPOSIT_DETECTEDNOCASH" value="Detected no notes|transaction is cancelled"/>
+	<item key="IDS_DEPOSIT_DETECTEDNOCASHANDDEVICEERROR" value="Device error|transaction is canceled"/>
+	<item key="IDS_DEPOSIT_TAKECASH_TIMEOUT" value="Taking cash timeout|Notes are retained"/>
+	<item key="IDS_OperationTimeoutRetractCash" value="Operation timeout|Notes are retained"/>
+	<item key="IDS_DEPOSIT_DEVICEERROR_RETRACTCASH" value="Sorry|Device error|Notes are retained"/>
+	<item key="IDS_DEPOSIT_RETRACTCASH" value="Can not confirm whether the transaction is successful|Please check your balance to confirm|Please contact your bank if in doubt"/>
+	<item key="IDS_DEPOSIT_TOTALDETAILS" value="Current deposit details"/>
+	<item key="IDS_DEPOSIT_TOTALAMOUNT" value="Total amount:"/>
+	<item key="IDS_DEPOSIT_100YUAN" value="CNY 100:"/>
+	<item key="IDS_DEPOSIT_50YUAN" value="CNY 50:"/>
+	<item key="IDS_DEPOSIT_PIECE" value="Piece"/>
+	<item key="IDS_DEPOSIT_YUAN" value="CNY"/>
+	<item key="IDS_And" value=","/>
+	<item key="IDS_IS_CONTINUEINTERPOSE" value="To continue deposit|Press 'Continue Interpose'"/>
+	<item key="IDS_EXCEEDED_WITHDRAWALAMOUNT" value="The withdrawal amount exceeds limit|Please input again"/>
+	<item key="IDS_TakeCash" value="Please take your notes"/>
+	<item key="IDS_REJECTOVERLIMIT" value="Sorry|no notes loaded|Transaction cancelled"/>
+	<item key="IDS_LEFTINTERPOSENOTESCOUNT" value="please don't interpose notes exceed"/>
+	<item key="IDS_LEFTCASHINNOTESCOUNT" value="This time please don't interpose notes exceed"/>
+	<item key="IDS_DEPOSITSUPPLYDENO" value="This ATM only can accept"/>
+	<item key="IDS_WITHDRAWALSUPPLYDENO" value="This ATM only can accept"/>
+	<item key="EjectCashNow" value="Rejecting notes, please wait and don't go away"/>
+	<item key="TestSuccess" value="Test success"/>
+	<item key="TestFail" value="Test fail"/>
+	<item key="ServiceCancelledForCommError" value="Sorry|transaction cancelled|please contact with the bank"/>
+	<item key="IDS_InputEPPKeyConStruct" value="Please input key of {0} group({1}-bit)"/>
+	<item key="IDS_VerifyCheckValue" value="Key Check Value:"/>
+	<item key="IDS_VerifyCheckValueTip" value="Please Press 'Enter' to Continue, press 'Cancel' to Exit"/>
+	<item key="IDS_VerifyCheckValueErrorTip" value="Check value failure, press 'Cancel' to Exit"/>
+	<item key="IDS_ExitEPPFlow" value="Please Press 'Enter' to Exit"/>
+	<item key="IDS_GetPasswordTip" value="Press 'Cancel' to Exit"/>
+	<item key="IDS_GetPawwordA" value="Please Input Key-A Password"/>
+	<item key="IDS_GetPawwordB" value="Please Input Key-B Password"/>
+	<item key="IDS_SecurKeyEntryA" value="Please key in the 32 chars of Key-Part A"/>
+	<item key="IDS_SecurKeyEntryB" value="Please key in the 32 chars of Key-Part B"/>
+	<item key="IDS_InputNoDoorMaintenancePin" value="Please key in PIN"/>
+	<item key="IDS_RollbackForExceedICAvailableRechargeAmount" value="Sorry|Deposit total amount exceed|IC available recharge amount"/>
+	<item key="IDS_InputAmountExceedICAvailableRechargeAmount" value="Exceeds IC available load amount|Please key in again"/>
+	<item key="IDS_InputAmountExceedICBalance" value="Exceeds IC available unload amount|Please key in again"/>
+	<item key="IDS_InputAccountSameAsPAN" value="Transferee account number |is same as inserted card number|Please key in again"/>
+	<item key="IDS_InputAccountLengthNotEnough" value="Input account length is not enough|Please key in again"/>
+	<item key="IDS_InputPinLengthNotEnough" value="Input password length is not enough|Please key in again"/>
+    <item key="IDS_RCMGetBackCapturedCard" value="Get Captured Card"/>
+    <item key="IDS_RCMInputPANLast4Number" value="Please key in your card|Last 4 nummber"/>
+    <item key="IDS_RCMInputPANLast4NumberLengthNotEnough" value="Input last 4 number length is not enough|Please key in again"/> 
+    <item key="IDS_RCMNextStep" value="Next Step"/>
+    <item key="IDS_RCMFoundCapturedCardInfoInBin" value="Sorry, the card has been retained|Please contact the bank"/>
+    <item key="IDS_RCMNotFoundCapturedCardInfo" value="Sorry, don't find the capture card record|Of you keyed number|Please contact the bank"/>
+    <item key="IDS_RCMCaptureCardToSlotForTimeout" value="Sorry|Taking card timeout|The card has been retained by device|Yon can select [GET CAPTURED CARD]|In welcome page to get back your card soon"/>
+    <item key="IDS_RCMCaptureCardToSlotForPINError" value="Sorry,personal identification number error|The card has been retained by device|Yon can select [GET CAPTURED CARD]|In welcome page to get back your card soon"/>
+    <item key="IDS_RCMCaptureCardToSlot" value="Sorry,the card has been retained by device|Yon can select [GET CAPTURED CARD]|In welcome page to get back your card soon"/>
+    <item key="RCM" value="Eject Card Module" />
+    
+    <item key="IDS_CMCCPayment" value="China Mobile Payment"/>
+	<item key="IDS_CUPayment" value="China Unicom Payment"/>
+	<item key="IDS_CTPayment" value="China Telecom Payment"/>
+	<item key="IDS_PRPayment" value="Power Rate"/>
+	<item key="IDS_WRPayment" value="Water Rate"/>
+	<item key="IDS_DSQWRPayment" value="DASHIQIAO Water Rate"/>
+	<item key="IDS_GRPayment" value="Gas Rate"/>
+	
+	  <item key="IDS_PaymentSuccess" value="The payment is successful" />
+	<item key="IDS_ConfirmPaymentInfo" value="Please confirm the payment information" />
+	<item key="IDS_PaymentNumber" value="Payment Number: " />
+	<item key="IDS_PaymentAccntName" value="User Name: " />
+	<item key="IDS_PaymentAmount" value="Payment Amount: " />
+	<item key="IDS_MaxPaymentAmount" value="The maximum payment amount is" />
+	<item key="IDS_InputPaymentAmount" value="Please key in the payment amount" />
+	<item key="IDS_InputPaymentAmountAgain" value="Please key in the payment amount again" />
+	<item key="IDS_InputPhoneNumber" value="Please key in the phone number" />
+	<item key="IDS_InputPhoneNumberAgain" value="Please key in the phone number again" />
+	<item key="IDS_InputPhoneNumberUnmatch" value="Invalid phone number|Please key in again" />
+	<item key="IDS_InputPowerRateNumber" value="Please key in the power rate number" />
+	<item key="IDS_InputPowerRateNumberAgain" value="Please key in the power rate number again" />
+	<item key="IDS_InputPowerRateNumberUnmatch" value="Invalid power rate number|Please key in again" />
+	<item key="IDS_InputWaterRateNumber" value="Please key in the water rate number" />
+	<item key="IDS_InputWaterRateNumberAgain" value="Please key in the water rate number again" />
+	<item key="IDS_InputWaterRateNumberUnmatch" value="Invalid power water number|Please key in again" />
+	<item key="IDS_InputGasRateNumber" value="Please key in the gas rate number" />
+	<item key="IDS_InputGasRateNumberAgain" value="Please key in the gas rate number again" />
+	<item key="IDS_InputGasRateNumberUnmatch" value="Invalid power gas number|Please key in again" />
+	<!--Button-->
+	<item key="IDS_BtnCMCC" value="China Mobile" />
+	<item key="IDS_BtnCU" value="China Unicom" />
+	<item key="IDS_BtnCT" value="China Telecom" />
+	<item key="IDS_BtnPR" value="Power Rate" />
+	<item key="IDS_BtnWR" value="Water Rate" />
+	<item key="IDS_BtnGR" value="Gas Rate" />
+	<item key="IDS_BtnDSQWR" value="DASHIQIAO Water Rate" />
+	<item key="IDS_BtnMobile" value="Mobile Phone" />
+	<item key="IDS_BtnFixLine" value="Telephone" />
+	<item key="IDS_BtnWideBand" value="Broadband" />
+	<item key="IDS_PromptForTransfer" value="No Self-bank transaction, need transaction fee." />
+	<item key="IDS_ICLoadFail" value="IC Load transaction Failed" />
+	<item key="IDS_InputPinTip" value="Be careful to protect your own password." />
+	<!--ocr-->
+	<item key="IDS_SelectReceiptType" value="Print receipt"/>
+	<item key="IDS_PrintOCR" value="Print OCR"/>
+	<item key="IDS_PrintReceipt" value="Receipt"/>
+	<item key="IDS_TakeNoteHostRefuse" value="Deposit fail or translation host refused,please wait "/>
+	<item key="IDS_TransName_61" value="IC Unload"/>
+	<item key="IDS_TransName_62" value="IC unbundling Load"/>
+	<item key="IDS_TransName_63" value="Cash Recharge"/>
+	<item key="IDS_TransName_00" value="Consume"/>
+	<item key="IDS_TransName_03" value="Pre authorization"/>
+	<item key="IDS_TransName_20" value="Returned purchase"/>
+	<item key="IDS_ContactLessICC" value="ContactLessICC"/>	
+	<item key="IDS_ICPutCard" value="请将IC卡放到读卡区域|Please put the IC card into the reading area"/>	
+	<item key="IDS_ICReadingCard" value="正在读取卡信息,请勿移动IC卡片|Reading card data,do not move the IC card"/>	
+	<item key="IDS_SelectApplication" value="Please select the application"/>
+	<item key="IDS_TryAgain" value="请重试|Try Again" />
+	<item key="IDS_ICNoLog" value="No detailed data" />
+	<item key="IDS_ICCanNotReadLog" value="Unable to read the detail data" />
+	<item key="IDS_ICReadLogError" value="Read the details data error" />
+	<item key="IDS_ICTransTerminated" value="Sorry|Service cancelled|Please contact with your card issuer" />
+	<item key="IDS_ICTransDeclined" value="Sorry|Transaction has been declined|Please contact with your card issuer" />
+	<item key="IDS_ICTransNotAccepted" value="Sorry|Transaction has not been accepted|Please contact with your card issuer" />
+	<item key="IDS_PleaseTakeCardAndInsertSecondCard" value="Pease take your card and insert the IC card|you want to recharge"/>
+	<item key="IDS_TheSecondCardISInvalidCard" value="You Inserted card does not support|Can't recharge"/>
+	<item key="IDS_PleaseInserRechardCard" value="Please insert your card to recharge"/>
+	<item key="IDS_SecondAndFirstCradIsSame" value="You insert the same card|The transaction will be cancelled"/>
+	<item key="IDS_InputFirstCardPin" value="Please input your transfer card password"/>
+	<item key="IDS_ResultWithoutCancel" value="Please Press 'Enter' to Continue"/>
+	<item key="IDS_A4Ready" value="Ready"/>
+	<item key="IDS_A4Busy" value="Busy"/>
+	<item key="IDS_A4DoorOpened" value="Printer Door Open"/>
+	<item key="IDS_A4Error" value="Printer Error"/>
+	<item key="IDS_A4Initial" value="Initializing"/>
+	<item key="IDS_A4IOActive" value="I/O Active"/>
+	<item key="IDS_A4ManualFeed" value="Manual Feed"/>
+	<item key="IDS_A4NoToner" value="No Toner"/>
+	<item key="IDS_A4NotAvailable" value="Not Available"/>
+	<item key="IDS_A4OffLine" value="Off Line"/>
+	<item key="IDS_A4MemoryOut" value="Out of Memory"/>
+	<item key="IDS_A4BinFull" value="Output Bin Full"/>
+	<item key="IDS_A4PagePunt" value="Page Punt"/>
+	<item key="IDS_A4PaperJam" value="Paper Jam"/>
+	<item key="IDS_A4PaperOut" value="Paper Out"/>
+	<item key="IDS_A4PageProblem" value="Page Problem"/>
+	<item key="IDS_A4Paused" value="Paused"/>
+	<item key="IDS_A4PendingDeletion" value="Pending Deletion"/>
+	<item key="IDS_A4Printing" value="Printing"/>
+	<item key="IDS_A4Processing" value="Processing"/>
+	<item key="IDS_A4TonerLow" value="Toner Low"/>
+	<item key="IDS_A4UserIntervention" value="User Intervention"/>
+	<item key="IDS_A4Waiting" value="Waiting"/>
+	<item key="IDS_A4WarmingUp" value="Warming Up"/>
+	<item key="IDS_A4UnknownStatus" value="Unknown Status"/>
+	
+	<item key="IDS_EMVKernelLoadFail" value="Emv Loading Fail"/>	
+    <item key="IDS_CardRederlLoadFail" value="Emv CardReder Loading Fail"/>
+    <item key="IDS_ContactLessLoadFail" value="Emv ContactLess Loading Fail"/>
+	<item key="IDS_ICTryAnotherInterface" value="Internal authentication failure, transaction cancel"/>
+	
+   <!--存折补登-->
+  <item key="IDS_ReadPassbook" value="Please turn your passbook to the cover page and insert the passbook..." />
+  <item key="IDS_PrintPassbook" value="Passbook" />
+  <item key="IDS_InvalidPassBook" value="对不起，存折无效|Sorry, invalid passbook"/>
+  <item key="IDS_PrintingPassBook" value="PassBook Printing"/>
+  <item key="IDS_PrintPassBookSuccess" value="Print PassBook Success"/>
+  <item key="IDS_PrintPassBookFail" value="Print PassBook Fail"/>
+  <item key="IDS_PrintPassBookBack" value="Please choose to continue service or take your passbook"/>
+  <item key="IDS_InputPassBookBack" value="Please turn to the next page and insert the passbook again"/>
+  <item key="IDS_Passbook" value="Passbook"/>
+  <item key="IDS_NoPassbookDetail" value="No Passbook Detail"/>
+  <item key="IDS_ShowChangePassbook" value="Insert PassBook and PassBook not match"/>
+  <item key="IDS_ShowNeedChangePassBook" value="Please go to the counter for discount business"/>
+  <item key="IDS_WaitForChangePage" value="Please take PassBook|Turn to next Page and Insert"/>
+  <item key="IDS_WaitForPassbookTaken" value="Please Take PassBook"/>
+  
+  <!--人脸识别-->
+  <item key="IDS_FaceRec" value="Face recognize" />
+  <item key="IDS_FaceDetect" value="Please look at the camera" />
+  <item key="IDS_FaceDetectFail" value="Face detected fail" />
+  <item key="IDS_FaceDetectSuccess" value="Face detected success" />
+  <item key="IDS_InsertIDCard" value="Please insert your ID card" />
+  <item key="IDS_ReadingIDCard" value="Reading ID card,please wait..." />
+  <item key="IDS_HardwareError" value="ID card device error" />
+  <item key="IDS_TakeIDCard" value="Read success,Please take away your ID card" />
+  <item key="IDS_TakeIDCardFail" value="Read fail,Please take away your ID card" />
+  <item key="IDS_FaceMatchIDCard" value="Face recognitizing,please wait..." />
+  <item key="IDS_FaceMatchSuccess" value="Face recognition succeeded" />
+  <item key="IDS_FaceMatchFail" value="Face recognition failed" />
+  <item key="IDS_ScanIDCardFailure" value="ID card scan failure" />
+  <item key="IDS_TakeIDCardTimeOut" value="Take ID card timeout" />
+  <item key="IDS_CameraDevError" value="Camera device error" />
+  <item key="IDS_Media" value="Check Deposit"/>
+</config>

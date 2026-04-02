@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BBB62305-0157-46A2-88EB-10B067C0A48A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IBankProjectBusinessActivityBase</RootNamespace>
+    <AssemblyName>IBankProjectBusinessActivityBase</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Execute\BaseImplement\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Execute\BaseImplement\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>eCATAct.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Attribute4ECAT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=791a35bb88e4d4e9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Execute\BaseImplement\Attribute4ECAT.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BusinessActivityBaseImp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e8bc019b4cbfeb49, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Execute\BaseImplement\BusinessActivityBaseImp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BusinessServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\BusinessServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="eCATBusinessActivityBase, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e8bc019b4cbfeb49, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Execute\BaseImplement\eCATBusinessActivityBase.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="eCATBusinessServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\eCATBusinessServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IBankProjectBusinessServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\IBankProjectBusinessServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="LogProcessorService">
+      <HintPath>..\..\Execute\GeneralService\LogProcessorService.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VTMBusinessActivityBase, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e8bc019b4cbfeb49, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Execute\BaseImplement\VTMBusinessActivityBase.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VTMBusinessServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\VTMBusinessServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="XDCBusinessServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\XDC\XDCBusinessServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IBankProjectBusinessActivityBaseImp.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="eCATAct.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

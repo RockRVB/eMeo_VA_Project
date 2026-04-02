@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!--  Device Fault Status Information Field
+		*  When the status Description is '8' - Device Fault. 
+		-->
+	<Data>
+		<!-- Field Separator  -->	
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Error Severity.  Standard code.-->
+		<Item key="e3" value="[Msg.Solicited.{0}.DID]" size="1" restriction="Mandatory"/>
+		<Item key="e3" value="[Msg.Solicited.{0}.Status]" size="1" restriction="Mandatory"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.Configuration.CoinDispenser]"/>
+		<Item key="Amount of Coins Dispensed" value="[Msg.Solicited.AmountOfCoinsDispensed]" size="3" restriction="[OptionCtrl.Configuration.CoinDispenser]"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="[Mandatory]"/>
+		<Item key="[MDS_0]" value="001" size="1" restriction="Mandatory" /> 
+    	<Item key="[MDS_1]" value="[Device.{0}.DeviceID]" size="1" restriction="[Mandatory]" />  
+		<Item key="[MDS_2]" value="[Device.{0}.MDS]" size="1" restriction="[Mandatory]"/>
+		<Item key="Buffers.Group" value="[Msg.Solicited.BufferGroup]" size="var" restriction="Optional"/>
+		<!-- Rollover Count -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[Options.F1.AppendRolloverCounts]"/>		
+		<Item key="r2" value="[Msg.RolloverCount.Position1]" size="5" restriction="[Options.F1.AppendRolloverCounts]"/>
+		<Item key="r2" value="[Msg.RolloverCount.Position2]" size="5" restriction="[Options.F1.AppendRolloverCounts]"/>
+		<Item key="r2" value="[Msg.RolloverCount.Position3]" size="5" restriction="[Options.F1.AppendRolloverCounts]"/>
+		<Item key="r2" value="[Msg.RolloverCount.Position4]" size="5" restriction="[Options.F1.AppendRolloverCounts]"/>
+		<Item key="r2" value="[Msg.RolloverCount.Position5]" size="5" restriction="[Options.F1.AppendRolloverCounts],[OptionCtrl.Configuration.CoinDispenser],[OptionCtrl.Configuration.AFD5HighFeature]"/>
+	</Data>
+</Root>

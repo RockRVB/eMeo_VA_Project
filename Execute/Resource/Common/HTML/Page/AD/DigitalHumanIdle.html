@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../css/CN.css"  replace="1" /></head>
+<body> 
+	<img id="banner" src="../../../AD/0.png" style="margin-left: 0px; margin-top: 0px; position: absolute;width:100%;height:100%"/>
+	    <div id="adVideo" type="media" style="margin-left: 0px; margin-top: 0px; position: absolute;background-color:#000000">
+       </div>
+	 </body>
+	 
+	 <script>
+            var banners = ["../../../AD/DigitalHuman_bg.png"]; // 图片地址
+			var Videolist = [];// 视频地址
+			var pictureDisplayTime=2000;//2s
+			var videoPlayTime=10000;//10s
+			
+			var counter = 0;//controller
+			var videotag=document.getElementById("adVideo");
+			
+            function run(){
+			    if(banners.length>0)
+				{
+				  setInterval(cycle,pictureDisplayTime);
+				}
+				if(Videolist.length>0)
+				{
+				  setInterval(Cyclevideo,videoPlayTime);
+				}
+            }
+            function cycle(){
+			    if(counter < banners.length)
+				{
+					document.getElementById("banner").src = banners[counter];
+					counter++;
+					if(counter == banners.length&&Videolist.length==0)    
+						counter = 0;
+				}
+            }
+			function Cyclevideo()
+			{
+			 videotag.innerHTML=null;
+			 if(counter == banners.length+Videolist.length)
+			      counter = 0;
+			 if(counter >= banners.length)
+			 {
+			 videotag.innerHTML="<video enablecontextmenu='0' autoplay loop autostart='1' showstatusbar='0' showaudiocontrols='0' showcontrols='0' height='1080' width='1920'  src='"+Videolist[counter-banners.length]+"' />"
+			 counter++;
+			 }
+			}
+			run();
+        </script>
+</html>

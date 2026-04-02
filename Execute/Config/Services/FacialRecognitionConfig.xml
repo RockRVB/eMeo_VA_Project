@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+cameraVPID:			PID for camera V
+cameraIRPID:		PID for camera IR
+faceImagePath:		Face image path
+videoRotateAngel:	Video rotated angle, valid values: 0, 90, 180, 270
+videoFlipMode:		Video flipped mode, valid values: 0:no flip; 1:horizontal flip; 2:vertical flip; 3: horizontal&vertical flip
+detectAlive:		Detect alive or not (True/False)
+aliveThreshold:		Threshold for determining if a face is alive.
+hostName:			Host (stand-alone) program file.
+hostStartPort:		Starting TCP port of the host (stand-alone).
+hostEndPort:		Ending TCP port of the host (stand-alone).
+-->
+<FacialRecognition cameraVVID="0471" cameraVPID="A6CA" cameraIRVID="0471" cameraIRPID="A6CD" 
+videoWidth="640" videoHeight="480" fps="15" faceImagePath="Temp\face.png"
+videoRotateAngel="0" videoFlipMode="1" detectAlive="True" aliveThreshold="0.5" 
+imageQualityThreshold="0" yawThreshold="15" pitchThreshold="15" rollThreshold="15" confidenceThreshold="0.5" faceWidthThreshold="100"
+hostName="PixelFacialRecognitionHost.exe" hostStartPort="8041" hostEndPort="8045"/>

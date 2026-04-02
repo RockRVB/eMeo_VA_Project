@@ -1,0 +1,1213 @@
+@import './iconfont/font-awesome/css/font-awesome.css';
+
+@font-face {
+    font-family: 'AlibabaSans-Bold';
+    src: url('../font/AlibabaSans-Bold.otf');
+}
+
+@font-face {
+    font-family: 'AlibabaSans-Medium';
+    src: url('../font/AlibabaSans-Medium.otf');
+}
+
+@font-face {
+    font-family: 'AlibabaSans-Regular';
+    src: url('../font/AlibabaSans-Regular.otf');
+}
+
+html {
+    width: 100vw;
+    height: 100vh;
+    background: url(../images/img_2.4/bg-business.png) no-repeat center/cover;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently */
+}
+
+html body {
+    font-size: 34px;
+    color: #fff;
+    height: 100%;
+    overflow: hidden;
+    touch-action: none;
+}
+
+.hide {
+    display: none !important;
+}
+
+/* g-header */
+.g-header {
+    padding-right: 0;
+}
+
+/* g-button */
+.g-button {
+    border-width: 3px;
+}
+
+.g-button.is-round {
+    border-radius: 10px;
+}
+
+.g-button--default {
+    border-color: #fff;
+    color: #2b6da9;
+}
+
+.g-button.exit-btn {
+    height: 100%;
+    border: none;
+    color: #fff;
+    padding: 0 30px;
+}
+
+.g-button.command-btn {
+    width: 300px;
+    height: 80px;
+}
+
+.g-button--info, .g-button--info:focus, .g-button--info:hover {
+    border-color: #fff;
+}
+
+/* g-main */
+.g-main {
+    position: relative;
+    padding: 0 8%;
+    max-width: 1920px;
+}
+
+.g-main .img-wrapper img {
+    width: 80%;
+    vertical-align: top;
+    border-radius: 10px;
+    /* new add */
+    max-height: 500px;
+}
+
+.g-main .img-wrapper .img-warnning {
+    width: 150px;
+    height: 150px;
+    margin-top: 95px;
+}
+
+.g-main .img-wrapper .img-loading {
+    width: 240px;
+    height: 240px;
+    margin-top: 50px;
+}
+
+.g-main .main-title {
+    font-size: 50px;
+    line-height: 56px;
+    padding: 100px 0;
+}
+
+.g-main .sm-main-title {
+    font-size: 50px;
+    line-height: 56px;
+    margin: 50px 0;
+}
+
+.g-footer {
+    position: fixed;
+    bottom: 5%;
+    left: 8%;
+    width: 84%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* loading */
+.img-wrapper #imgLoading img {
+    width: 240px;
+    border-radius: 10px;
+}
+
+.img-wrapper #imgLoading {
+    margin-top: 50px;
+}
+
+/* g-form */
+.g-input {
+    color: #fff;
+    border-radius: 5px;
+    padding: 0 20px;
+    font-size: 25px;
+}
+
+.g-input:focus, .g-input:hover {
+    box-shadow: 0 0 0 2px #dceeff;
+    border-color: #fff;
+}
+
+.g-form-item-error .g-input:focus,
+.g-form-item-error .g-input:active,
+.g-form-item-error .g-input:hover {
+    box-shadow: 0 0 0 2px #f5222d !important;
+}
+
+.g-form-item-label {
+    color: #fff;
+}
+
+.g-radio {
+    margin-right: 20px;
+}
+
+.g-radio .g-radio-circle {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+}
+
+.g-radio-checked .g-radio-circle::after {
+    width: 20px;
+    height: 20px;
+    top: 9px;
+    left: 9px;
+    border-radius: 10px;
+}
+
+.g-form {
+    font-size: 30px;
+    text-align: left;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.g-form-item:not(:last-child) {
+    padding-bottom: 35px;
+    position: relative;
+}
+
+.g-form-item-error-tip {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.g-form .btn-wrapper .g-form-item-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* g-card */
+.card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-wrapper .g-card {
+    margin: 0 auto 50px;
+}
+
+.card-wrapper .g-card .header {
+    text-align: center;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.g-card img {
+    width: 100px;
+    max-height: 100%;
+    vertical-align: top;
+}
+
+/* stepper */
+.g-stepper {
+    position: absolute;
+    left: 3%;
+    right: 3%;
+    top: 0;
+    font-size: 25px;
+}
+
+/* messagebox */
+.g-modal-confirm .g-modal-confirm-body {
+    font-size: 40px;
+    text-align: center;
+}
+
+.g-modal-confirm .g-modal-confirm-footer {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.g-modal-confirm .g-modal-confirm-footer button {
+    font-size: 30px;
+    border-radius: 10px;
+}
+
+.g-modal-confirm .g-modal-content {
+    border-radius: 30px;
+}
+
+/* message */
+.g-message {
+    font-size: 20px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, .5);
+    color: #fff;
+}
+
+/* drawer */
+.g-drawer {
+    background: #1262ab;
+}
+
+/* keyboard */
+.keyboard-wrapper input {
+    font-size: 30px;
+    height: 60px;
+    max-width: 500px;
+}
+
+.keyboard-wrapper .label {
+    font-size: 25px;
+    display: inline-block;
+    height: 60px;
+    line-height: 60px;
+}
+
+.keyboard-wrapper i {
+    font-size: 30px;
+    height: 60px;
+    color: #fff;
+}
+
+.keyboard-wrapper .keyboard {
+    background: none;
+}
+
+.keyboard.default .hg-button {
+    border: 1px solid #fff;
+}
+
+.hg-button.hg-button-space {
+    flex: 7 1 auto
+}
+
+/* datetime */
+.datepicker .picker-box-wrapper {
+    background: #1262ab;
+}
+
+@media screen and (min-width: 1366px) {
+    .g-input {
+        min-width: 500px;
+    }
+
+    .g-form-item-error-tip {
+        font-size: 25px;
+    }
+
+    .keyboard .hg-button {
+        width: 70px;
+        height: 70px;
+        line-height: 66px;
+        margin: 6px 4px;
+    }
+
+    .keyboard .hg-button span {
+        font-size: 23px;
+    }
+
+    .keyboard .hg-button-bksp, .keyboard .hg-button-cancel, .keyboard .hg-button-clear, .keyboard .hg-button-enter, .keyboard .hg-button-shift {
+        width: 130px;
+    }
+}
+
+/* 多语言虚拟键盘样式调整 */
+.keyboard {
+    padding-top: 70px;
+    position: relative;
+}
+
+.hg-candidate-box {
+    position: absolute;
+    background: #ececec;
+    border-bottom: 2px solid #b5b5b5;
+    border-radius: 5px;
+    display: inline-flex;
+    left: 0;
+    margin-top: -10px;
+    margin-left: 10px;
+    max-width: 1000px;
+    position: absolute;
+    transform: translateY(-100%);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+ul.hg-candidate-box-list {
+    display: flex;
+    flex: 1;
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+li.hg-candidate-box-list-item {
+    align-items: center;
+    display: flex;
+    height: 60px;
+    justify-content: center;
+    width: 60px;
+    font-size: 23px;
+    margin: left 10px right 10px;
+}
+
+li.hg-candidate-box-list-item:hover {
+    background: rgba(0, 0, 0, .03);
+    cursor: pointer
+}
+
+li.hg-candidate-box-list-item:active {
+    background: rgba(0, 0, 0, .1)
+}
+
+.hg-candidate-box-prev:before {
+    content: "◄"
+}
+
+.hg-candidate-box-next:before {
+    content: "►"
+}
+
+.hg-candidate-box-next,
+.hg-candidate-box-prev {
+    align-items: center;
+    background: #d0d0d0;
+    color: #969696;
+    cursor: pointer;
+    display: flex;
+    padding: 0 10px
+}
+
+.hg-candidate-box-next {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px
+}
+
+.hg-candidate-box-prev {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px
+}
+
+.hg-candidate-box-btn-active {
+    color: #444
+}
+
+.hg-candidate-box-list {
+    color: #000;
+}
+
+.layui-layer-dialog .layui-layer-content {
+    position: relative;
+    text-align: center;
+    font-size: 25px;
+    word-break: unset;
+    color: rgba(0, 0, 0, .65);
+}
+
+.layui-layer-dialog .layui-layer-content span {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.layui-layer-dialog {
+    height: 200px !important;
+    border-radius: 20px;
+}
+
+.layui-layer-lan .layui-layer-btn {
+    text-align: center;
+    height: 100px !important;
+}
+
+.layui-layer-lan .layui-layer-btn a {
+    background: #1890ff;
+    margin: 0 15px;
+}
+
+.layui-layer-lan .layui-layer-btn .layui-layer-btn1 {
+    background: #35495e;
+    color: white
+}
+
+.layui-layer-btn a {
+    height: 40px;
+    line-height: 40px;
+}
+
+/* 头部样式 */
+#app {
+    height: 100%;
+}
+
+.grg-header {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 162px;
+    left: 0;
+    top: 0;
+    padding: 0 50px;
+    box-sizing: border-box;
+    background: url(../images/img_2.4/top-img.png) no-repeat center/cover;
+}
+
+.grg-header .header-logo-img img {
+    display: inline-block;
+    width: 182px;
+    height: 72px;
+    margin-top: 26.5px;
+}
+
+.header-date {
+    margin-top: 30px;
+    line-height: 30px;
+}
+
+.header-date .time {
+    text-align: right;
+    font-size: 28px;
+    font-family: 'Alibaba Sans';
+    font-weight: bold;
+}
+
+.header-date .date {
+    font-size: 18px;
+    opacity: 0.8;
+    font-family: 'Alibaba Sans';
+}
+
+.header-date .date .date-1 {
+    margin-right: 10px;
+}
+
+.header-date .date .date-2 {
+    margin-left: 10px;
+}
+
+.header-bottom {
+    position: absolute;
+    width: 100%;
+    height: 44px;
+    left: 0;
+    bottom: -2px;
+    background-color: #f9fcfe;
+    border-radius: 30px 30px 0 0;
+    box-shadow: -2px -2px 20px rgba(242, 246, 255, 0.2);
+}
+
+
+/* 中间部分样式(main) */
+.grg-main {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 120px);
+    margin-top: 120px;
+    padding: 0 50px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: rgba(242, 246, 254, 1);
+    border-radius: 30px 30px 0 0;
+    box-shadow: -2px -2px 20px rgba(242, 246, 255, 0.2);
+}
+
+.count-down {
+    position: absolute;
+    width: 62px;
+    height: 62px;
+    right: 50px;
+    top: 22px;
+    font-size: 24px;
+    border-radius: 50%;
+    text-align: center;
+    background-image: linear-gradient(180deg, rgba(83, 165, 255, 1), rgba(41, 108, 255, 1));
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 9;
+}
+
+.count-down-2 {
+    position: absolute;
+    width: 58px;
+    height: 58px;
+    font-size: 24px;
+    font-family: 'Alibaba Sans';
+    border-radius: 50%;
+    text-align: center;
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #296cff;
+    line-height: 52px;
+}
+
+.circle-1,
+.circle-2,
+.circle-3 {
+    position: absolute;
+    z-index: -10;
+}
+
+.circle-1 {
+    right: 0;
+    bottom: 0;
+    z-index: -10;
+}
+
+.circle-2 {
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+.circle-3 {
+    left: 0;
+    bottom: 0;
+}
+
+/* 2.4开卡流程样式 */
+.step-box {
+    width: 19%;
+    height: 92%;
+    margin-top: 30px;
+    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.6) 100%);
+    padding: 12px 15px;
+    box-sizing: border-box;
+    z-index: 6;
+}
+
+.step-item {
+    display: flex;
+    width: 100%;
+}
+
+.step-item:last-child .step-line,
+.step-item:last-child .step-dotted-line {
+    display: none;
+}
+
+.step-left {
+    width: 30px;
+    padding-top: 6px;
+    margin-right: 15px;
+    color: #231815;
+    box-sizing: border-box;
+}
+
+.step-left .step-line,
+.step-left .step-dotted-line {
+    margin: 10px auto;
+}
+
+.step-circle {
+    width: 30px;
+    height: 30px;
+    line-height: 24px;
+    border-radius: 50%;
+    border: 1px solid #979797;
+    font-size: 22px;
+    color: #666666;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.step-line {
+    width: 1px;
+    height: 45px;
+    background-color: #bbbbbb;
+}
+
+.step-dotted-line {
+    position: relative;
+    width: 0;
+    height: 45px;
+    border-left: 1px dashed #bbbbbb;
+    color: #bbbbbb;
+    font-size: 24px;
+}
+
+.step-dotted-line .line-arrows {
+    position: absolute;
+    display: inline-block;
+    width: 10px;
+    height: 6px;
+    bottom: -6px;
+    left: -5px;
+}
+
+.step-circle-finish {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: unset;
+    background-color: #00dd95;
+    font-family: Arial,
+}
+
+.step-circle-active {
+    width: 30px;
+    height: 30px;
+    line-height: 24px;
+    border-radius: 50%;
+    border: unset;
+    background-color: #296cff;
+    font-size: 22px;
+    color: #fff;
+    box-shadow: 0 0 2px 6px rgba(41, 108, 255, 0.3);
+    margin: auto;
+    text-align: center;
+}
+
+.step-right {
+    font-size: 24px;
+    font-family: 'Alibaba Sans';
+    color: #999999;
+}
+
+.step-right-finish {
+    color: #231815;
+}
+
+.step-right-active {
+    color: #296cff;
+    font-weight: bold;
+}
+
+.open-card-right-box {
+    position: relative;
+    width: 80%;
+    height: 92%;
+    margin-top: 30px;
+    padding-top: 50px;
+    background: linear-gradient(166deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 6;
+}
+
+.open-card-right-box .title {
+    color: #333333;
+    font-size: 50px;
+    font-family: 'Alibaba Sans';
+    font-weight: bold;
+}
+
+.button-box {
+    position: absolute;
+    display: flex;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+}
+
+.only-page-button-box {
+    bottom: 60px;
+}
+
+.button-box .grg-btn {
+    width: 250px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 8px;
+    font-family: Arial;
+    font-size: 32px;
+    margin-right: 30px;
+    text-align: center;
+}
+
+.button-box .icon-img {
+    margin-right: 12px;
+    vertical-align: -4px;
+}
+
+.button-box .grg-btn:last-child {
+    margin-right: 0;
+}
+
+.button-box .grg-cancel {
+    background: linear-gradient(180deg, #FFFFFF 0%, #F4F8FF 100%);
+    box-shadow: inset 0px 0px 6px 0px #FFFFFF;
+    border: 2px solid #296CFF;
+    color: #296cff;
+}
+
+.button-box .grg-confirm {
+    background: linear-gradient(180deg, #7AA4FF 0%, #296CFF 100%);
+    box-shadow: inset 0px 0px 6px 0px #FFFFFF;
+    color: #fff;
+}
+
+.button-box .grg-cancel:active {
+    background: linear-gradient(180deg, #F1F5FF 0%, #D9E5FF 100%);
+}
+
+.button-box .grg-confirm:active {
+    background: linear-gradient(180deg, #5281E8 0%, #1457EA 100%);
+}
+
+.enter-password-img-box {
+    position: relative;
+    width: 570px;
+    height: 550px;
+}
+
+.enter-password-img-box .enter-password-img {
+    display: inline-block;
+    width: 570px;
+    height: 550px;
+}
+
+.enter-password-img-box .text {
+    position: absolute;
+    width: 508px;
+    left: 0;
+    bottom: 0;
+    padding: 0 10px;
+    font-size: 24px;
+    font-family: 'Alibaba Sans';
+    color: #231815;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.enter-password-box {
+    position: relative;
+    width: 744px;
+    height: 370px;
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #979797;
+    color: #231815;
+}
+
+.enter-password-box .text {
+    margin-top: 50px;
+    font-size: 45px;
+    font-family: 'Alibaba Sans';
+    font-weight: bold;
+    color: #231815;
+}
+
+.enter-password-box .pin-wrapper {
+    position: absolute;
+    display: flex;
+    width: calc(100% - 84px);
+    left: 50%;
+    top: 65%;
+    justify-content: center;
+    background: linear-gradient(180deg, #EDEDED 0%, #FFFFFF 100%);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    transform: translate(-50%, -65%);
+    box-sizing: border-box;
+}
+
+.card-protocol-dialog-content {
+    position: absolute;
+    width: 1120px;
+    height: 824px;
+    top: 130px;
+    padding: 0 30px;
+    background: linear-gradient(180deg, #4F86FF 0%, #FFFFFF 100%);
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.main-content-box {
+    width: 100%;
+    text-align: center;
+}
+
+.main-content-box .title {
+    color: #333333;
+    font-size: 50px;
+    font-family: 'Alibaba Sans';
+    font-weight: bold;
+    margin-top: 100px;
+}
+
+.main-content-img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.animate_grg_fadeInRight {
+    animation-delay: 0.2s;
+    animation-fill-mode: forwards;
+}
+
+/* 2.4开卡流程样式结束 */
+
+/* 2.4生物识别样式开始 */
+.grg-main .main-title {
+    margin-top: 80px;
+    height: 77px;
+    font-size: 50px;
+    font-weight: bold;
+    color: #333333;
+    line-height: 77px;
+    text-align: center;
+    font-family: 'Alibaba Sans';
+}
+
+.btn-ok {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 32px;
+    color: #FFFFFF;
+    font-family: Arial;
+    background: linear-gradient(180deg, #7AA4FF 0%, #296CFF 100%);
+    box-shadow: inset 0px 0px 6px 0px #FFFFFF;
+    border-radius: 8px;
+    border: none;
+    z-index: 10;
+}
+
+.btn-ok:active {
+    background: linear-gradient(180deg, #5281E8 0%, #1457EA 100%);
+}
+
+.btn-img-ok, .btn-img-retry {
+    margin-right: 13px;
+    width: 30px;
+    height: 30px;
+}
+
+.btn-retry {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 32px;
+    color: #296CFF;
+    font-family: Arial;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F4F8FF 100%);
+    box-shadow: inset 0px 0px 6px 0px #FFFFFF;
+    border-radius: 8px;
+    border: 2px solid #296CFF;
+    z-index: 10;
+}
+
+.btn-retry:active {
+    background: linear-gradient(180deg, #F1F5FF 0%, #D9E5FF 100%);
+}
+
+.main-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.main-custom-btn {
+    position: relative;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 340px;
+    height: 366px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0px 0px 12px 5px rgb(0 0 0 / 10%);
+}
+
+.main-custom-btn:active {
+    background: #F0F6FF;
+}
+
+
+@media only screen and (width: 1280px) {
+    .grg-header {
+        background: url(../images/img_2.4/device_img_1280/top-img.png) no-repeat center/cover;
+    }
+
+    /* 开卡 */
+    .open-card-right-box .title {
+        font-size: 40px;
+    }
+
+    .button-box .grg-btn {
+        width: 220px;
+        height: 70px;
+        line-height: 70px;
+        border-radius: 8px;
+        font-family: Arial;
+        font-size: 28px;
+        margin-right: 30px;
+        text-align: center;
+    }
+
+    .button-box .icon-img {
+        margin-right: 12px;
+        vertical-align: -7px;
+    }
+
+    .step-box {
+        width: 19%;
+        height: 92%;
+        margin-top: 30px;
+        background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.6) 100%);
+        padding: 12px 10px;
+        box-sizing: border-box;
+        z-index: 6;
+    }
+
+    .step-item {
+        display: flex;
+        width: 100%;
+    }
+
+    .step-item:last-child .step-line,
+    .step-item:last-child .step-dotted-line {
+        display: none;
+    }
+
+    .step-left {
+        width: 30px;
+        padding-top: 6px;
+        margin-right: 12px;
+        color: #231815;
+        box-sizing: border-box;
+    }
+
+    .step-left .step-line,
+    .step-left .step-dotted-line {
+        margin: 10px auto;
+    }
+
+    .step-circle {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 50%;
+        border: 1px solid #979797;
+        font-size: 18px;
+        color: #666666;
+        text-align: center;
+        vertical-align: bottom;
+    }
+
+    .step-line {
+        width: 1px;
+        height: 40px;
+        background-color: #bbbbbb;
+    }
+
+    .step-dotted-line {
+        position: relative;
+        width: 0;
+        height: 40px;
+        border-left: 1px dashed #bbbbbb;
+        color: #bbbbbb;
+        font-size: 24px;
+    }
+
+    .step-circle-finish {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: unset;
+        background-color: #00dd95;
+        font-family: Arial,
+    }
+
+    .step-circle-active {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 50%;
+        border: unset;
+        background-color: #296cff;
+        font-size: 18px;
+        color: #fff;
+        box-shadow: 0 0 2px 6px rgba(41, 108, 255, 0.3);
+        margin: auto;
+        text-align: center;
+    }
+
+    .step-right {
+        font-size: 18px;
+        font-family: 'Alibaba Sans';
+        color: #999999;
+        padding-top: 8px;
+        box-sizing: border-box;
+    }
+
+    .step-right-finish {
+        color: #231815;
+    }
+
+    .step-right-active {
+        color: #296cff;
+        font-weight: bold;
+    }
+
+    .enter-password-img-box {
+        position: relative;
+        width: 342px;
+        height: 330px;
+    }
+
+    .enter-password-img-box .enter-password-img {
+        display: inline-block;
+        width: 342px;
+        height: 330px;
+    }
+
+    .enter-password-img-box .text {
+        position: absolute;
+        width: 300px;
+        left: 0;
+        bottom: 0;
+        padding: 0 10px;
+        font-size: 16px;
+        font-family: 'Alibaba Sans';
+        color: #231815;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .enter-password-box {
+        position: relative;
+        width: 450px;
+        height: 330px;
+        background: #ffffff;
+        border-radius: 8px;
+        border: 1px solid #979797;
+        color: #231815;
+    }
+
+    .enter-password-box .text {
+        margin-top: 50px;
+        font-size: 30px;
+        font-family: 'Alibaba Sans';
+        font-weight: bold;
+        color: #231815;
+    }
+
+    .enter-password-box .pin-wrapper {
+        position: absolute;
+        display: flex;
+        width: calc(100% - 40px);
+        left: 50%;
+        top: 60%;
+        justify-content: center;
+        background: linear-gradient(180deg, #EDEDED 0%, #FFFFFF 100%);
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        transform: translate(-50%, -60%);
+        box-sizing: border-box;
+    }
+
+    .card-protocol-dialog-content {
+        width: 928px;
+        top: 100px;
+    }
+
+    .main-content-box .title {
+        font-size: 40px;
+    }
+    /* 开卡 */
+
+    /* 2.4生物识别开始 */
+    .grg-main .main-title {
+        margin-top: 85px;
+        height: 62px;
+        font-size: 40px;
+        font-weight: bold;
+        color: #333333;
+        line-height: 62px;
+        text-align: center;
+        font-family: 'Alibaba Sans';
+    }
+
+    .btn-ok {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 230px;
+        height: 70px;
+        line-height: 70px;
+        font-size: 28px;
+        color: #FFFFFF;
+        font-family: Arial;
+        background: linear-gradient(180deg, #7AA4FF 0%, #296CFF 100%);
+        box-shadow: inset 0px 0px 6px 0px #FFFFFF;
+        border-radius: 8px;
+        border: none;
+        z-index: 10;
+    }
+
+    .btn-ok:active {
+        background: linear-gradient(180deg, #5281E8 0%, #1457EA 100%);
+    }
+
+    .btn-retry {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 230px;
+        height: 70px;
+        line-height: 70px;
+        font-size: 32px;
+        color: #296CFF;
+        font-family: Arial;
+        background: linear-gradient(180deg, #FFFFFF 0%, #F4F8FF 100%);
+        box-shadow: inset 0px 0px 6px 0px #FFFFFF;
+        border-radius: 8px;
+        border: 2px solid #296CFF;
+        z-index: 10;
+    }
+
+    .btn-retry:active {
+        background: linear-gradient(180deg, #F1F5FF 0%, #D9E5FF 100%);
+    }
+
+    .main-custom-btn {
+        position: relative;
+        z-index: 6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 380px;
+        height: 276px;
+        background: #ffffff;
+        border-radius: 24px;
+        box-shadow: 0px 0px 12px 5px rgb(0 0 0 / 10%);
+    }
+
+    .custom-btn-box {
+        width: 276px;
+        height: 276px;
+    }
+
+    .main-custom-btn:active {
+        background: #F0F6FF;
+    }
+    /*2.4生物识别结束*/
+}

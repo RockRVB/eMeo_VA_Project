@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Picture Failed</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/vue-i18n.js"></script>
+    <script src="../../js/jquery-3.7.0.js"></script>	<script src="../../js/class/layer/layer.js"></script>	<script src="../../js/index.js"></script>
+    <script src="../../js/coreScript.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <link rel="stylesheet" href="../../css/animate.grg.css">
+    <style>
+    </style>
+</head>
+
+<style>
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-content img {
+        margin-top: 56px;
+        width: 534px;
+        height: 534px;
+    }
+
+    @media only screen and (width: 1280px) {
+        .main-content img {
+            width: 470px;
+            height: 470px;
+        }
+    }
+</style>
+
+<body>
+<div id="grg-header" class="grg-header">
+</div>
+<div id="grg-main" class="grg-main animate_grg_fadeInRight">
+    <div class="main-title" ids="ids_Common_Faceauthfail">Face authentication failured</div>
+    <div class="main-content" id="img">
+    </div>
+</div>
+</body>
+</html>
+<script>
+    window.onload = function () {
+        setTimeout(function () {
+            const el = document.getElementById('img')
+            const html = '<img src="../../images/img_2.4/face_failure.png">'
+            el.innerHTML = html;
+        }, 300)
+    }
+</script>
+
+

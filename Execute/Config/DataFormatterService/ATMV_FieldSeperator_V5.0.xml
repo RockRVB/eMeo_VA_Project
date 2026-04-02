@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+标记TransactionFieldConfig包含了报文接口定义的所有的域，域所包含的字段说明如下所示：
+
+BitID 						“BitID是-1，-2等负数的Field，与主位图或者扩展位图没有关系，不会在位图上有所体现”
+Description 			参考《银行卡联网联合技术规范V2.0 第2部分 报文接口规范.pdf》
+<Field BitID="-1" Description="报文头部">
+FieldDefaultData					域数据，关键字
+FieldDataLen			域数据长度，字节为单位
+FieldDataCoding		域数据编码方式，ASCII或者BCD
+FieldCheckData		域数据的验证数据
+	<Data FieldDefaultData="0110000000"   FieldDataLen="10"  FieldDataCoding="ASCII"  FieldCheckData=""></Data>
+VarFieldLenType		域长度类型
+VarFieldLenCoding	域长度编码
+ 	<VAR  VarFieldLenType="VAR_LL" VarFieldLenCoding="ASCII" ></VAR>
+
+FieldLogFlag			此域是否以明文方式记日志
+ 	<Flag FieldLogFlag="true"></Flag>
+</Field>
+
+    
+对于指定的交易，如INQ查询交易，需要用到的域，罗列在<INQ>之下，表示INQ交易只使用这些域，其XML结构跟TransactionFieldConfig的一样。
+如果在指定交易下，其中的某些域的字段有别于TransactionFieldConfig的定义，可以在指定的交易下，额外列出差异的标识和属性
+如果没有额外列出，认为此域的字段跟TransactionFieldConfig的定义一致，没有特殊化。
+-->
+<Packages>
+	<TransactionFieldConfig HeadLength="0" HeadLengthCoding="BCD" BitmapFieldID="0" MaskFieldName="F_PAN|F_PANID2|F_IC_TRACK_PASSBOOK">
+		<HeaderFields>
+		</HeaderFields>
+		<BitmapFields FieldSeparator="31">
+			<Field BitID="1" Description="报文类型">
+				<Data FieldName="F_MESSAGETYPE" FieldDataLen="5" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2" Description="交易类型">
+				<Data FieldName="F_TRANS_TYPE_FeelView" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="3" Description="交易类型参数">
+				<Data FieldName="F_TRANS_TYPE_PARA" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="4" Description="终端设备号">
+				<Data FieldName="F_TERMINALID" FieldBinding="core_TerminalID" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5" Description="请求流水号">
+				<Data FieldName="F_SERIALNUM" FieldBinding="core_SerialNumber" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="6" Description="请求日期">
+				<Data FieldName="F_TIME_yyyyMMdd" FieldBinding="core_TransTimeyyyyMMdd" FieldDataLen="8" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="7" Description="请求时间">
+				<Data FieldName="F_TIME_HHmmss" FieldBinding="core_TransTimeHHmmss" FieldDataLen="6" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="8" Description="交易卡号">
+				<Data FieldName="F_PAN" FieldBinding="core_PAN" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="9" Description="对方卡号">
+				<Data FieldName="F_PANID2" FieldBinding="core_OtherAccount" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="10" Description="交易金额">
+				<Data FieldName="F_AMOUNT" FieldBinding="core_TransAmountMultiply100" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="11" Description="货币代码">
+				<Data FieldName="F_CURRENCYCODE" FieldDefaultData="156" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="12" Description="交易应答码">
+				<Data FieldName="F_RESPONSECODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="13" Description="交易结果">
+				<Data FieldName="F_TRANSRESULTCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="14" Description="主机流水号">
+				<Data FieldName="F_RETRIEVALREFNUM" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="15" Description="主机响应码">
+				<Data FieldName="F_RESPONSECODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="16" Description="ATMP流水号">
+				<Data FieldName="F_RETRIEVALREFNUM" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="17" Description="卡种类型">
+				<Data FieldName="F_CARDTYPE" FieldDefaultData="111" FieldDataLen="3" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="18" Description="受理行机构代码">
+				<Data FieldName="F_ORGID" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="19" Description="发卡行机构代码">
+				<Data FieldName="F_SENDORGID" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="20" Description="受理行信息">
+				<Data FieldName="F_ADDR" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="21" Description="交易手续费">
+				<Data FieldName="F_FEE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="22" Description="IC卡/磁卡/存折交易">
+				<Data FieldName="F_IC_TRACK_PASSBOOK" FieldDefaultData="0" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="23" Description="银行卡品种">
+				<Data FieldName="F_BANK_TYPE" FieldDefaultData="0" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="24" Description="钞箱剩余张数">
+				<Data FieldName="F_CASS_REMAIN_DATA" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2002" Description="报文版本">
+				<Data FieldName="F_PROTOCOL_VERSION" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2003" Description="设备标识">
+				<Data FieldName="F_DEVICEID" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2004" Description="终端编号">
+				<Data FieldName="F_TERMINALID" FieldBinding="core_TerminalID" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2005" Description="终端软件运行状态">
+				<Data FieldName="F_SOFTWARESTATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2006" Description="管理员信息">
+				<Data FieldName="F_ADMIN_INFO" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2007" Description="主控设备（工控PC）状态">
+				<Data FieldName="F_PCSTATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2008" Description="主控设备错误码">
+				<Data FieldName="F_PC_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2009" Description="出钞机芯状态">
+				<Data FieldName="F_CDM_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2010" Description="出钞机芯错误码">
+				<Data FieldName="F_CDM_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2011" Description="存款机芯状态">
+				<Data FieldName="F_CIM_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2012" Description="存款机芯错误码">
+				<Data FieldName="F_CIM_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2013" Description="出钞门状态">
+				<Data FieldName="F_CASHDOOR_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2014" Description="出钞门错误码">
+				<Data FieldName="F_CASHDOOR_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2015" Description="存款门状态">
+				<Data FieldName="F_CIMDOOR_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2016" Description="存款门错误码">
+				<Data FieldName="F_CIMDOOR_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2017" Description="凭条打印机状态">
+				<Data FieldName="F_RPTR_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2018" Description="凭条打印机错误码">
+				<Data FieldName="F_RPTR_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2019" Description="流水打印机状态">
+				<Data FieldName="F_JPTR_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2020" Description="流水打印机错误码">
+				<Data FieldName="F_JPTR_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2021" Description="发票打印机状态">
+				<Data FieldName="F_INVOICE_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2022" Description="发票打印机错误码">
+				<Data FieldName="F_INVOICE_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2023" Description="UPS状态">
+				<Data FieldName="F_UPS_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2024" Description="UPS错误码">
+				<Data FieldName="F_UPS_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2025" Description="磁卡读写器状态">
+				<Data FieldName="F_IDC_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2026" Description="磁卡读写器错误码">
+				<Data FieldName="F_IDC_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2027" Description="IC卡读写器状态">
+				<Data FieldName="F_IC_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2028" Description="IC卡读写器错误码">
+				<Data FieldName="F_IC_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2029" Description="保险门状态">
+				<Data FieldName="F_SAFEDOOR_STAUTS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2030" Description="保险门错误码">
+				<Data FieldName="F_SAFEDOOR_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2031" Description="机箱门状态（电子柜门）">
+				<Data FieldName="F_CABINET_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2032" Description="机箱门错误码">
+				<Data FieldName="F_CABINET_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2033" Description="加密键盘EPP状态">
+				<Data FieldName="F_EPP_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2034" Description="加密键盘EPP错误码">
+				<Data FieldName="F_EPP_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2035" Description="信封存款模块状态">
+				<Data FieldName="F_ENVELOP_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2036" Description="信封存款模块错误码">
+				<Data FieldName="F_ENVELOP_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2037" Description="信封存款信封数">
+				<Data FieldName="F_ENVELOP_COUNT" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2038" Description="存折打印机状态">
+				<Data FieldName="F_PASSBOOK_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2039" Description="存折打印机错误码">
+				<Data FieldName="F_PASSBOOK_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2040" Description="吞卡张数">
+				<Data FieldName="F_CAPTURECARD" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2041" Description="钱箱状态">
+				<Data FieldName="F_CASS_STATUS" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2042" Description="钱箱类型">
+				<Data FieldName="F_CASS_TYPE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2043" Description="钱箱面额(当地最小货币单位，例如中国为分)">
+				<Data FieldName="F_CASS_DENO" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2044" Description="钱箱币种">
+				<Data FieldName="F_CASS_CURRENCY" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2045" Description="钱箱加钞张数(最近一次)">
+				<Data FieldName="F_CASS_ADDCASH" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2046" Description="钱箱存入张数">
+				<Data FieldName="F_CASS_CASHINCOUNT" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2047" Description="钱箱当前（剩余）张数">
+				<Data FieldName="F_CASS_REMAIN" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2048" Description="钱箱加钞时间">
+				<Data FieldName="F_ADDCASH_TIME" FieldDataLen="14" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2049" Description="状态上报时间">
+				<Data FieldName="F_UPDATE_TIME" FieldDataLen="14" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2050" Description="钱箱错误码">
+				<Data FieldName="F_CASS_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2051" Description="电子流水记录仪状态">
+				<Data FieldName="F_EJOU_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2052" Description="电子流水记录错误码">
+				<Data FieldName="F_EJOU_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2053" Description="DVR模块状态">
+				<Data FieldName="F_DVR_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2054" Description="DVR模块错误码">
+				<Data FieldName="F_DVR_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2055" Description="维护终端状态">
+				<Data FieldName="F_TTU_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2056" Description="维护终端错误码">
+				<Data FieldName="F_TTU_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2057" Description="操作员门状态">
+				<Data FieldName="F_OPERATOR_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2058" Description="操作员门错误码">
+				<Data FieldName="F_OPERATOR_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2059" Description="指纹状态">
+				<Data FieldName="F_FINGERPRINT_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2060" Description="指纹错误码">
+				<Data FieldName="F_FINGERPRINT_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2061" Description="掌纹静脉状态">
+				<Data FieldName="F_PALMPRINT_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2062" Description="掌纹静脉错误码">
+				<Data FieldName="F_PALMPRINT_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2063" Description="硬币模块状态">
+				<Data FieldName="F_COIN_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2064" Description="硬币模块错误码">
+				<Data FieldName="F_COIN_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2065" Description="扩展1状态">
+				<Data FieldName="F_EXT1_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2066" Description="扩展1错误码">
+				<Data FieldName="F_EXT1_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2067" Description="扩展2状态">
+				<Data FieldName="F_EXT2_STATUS" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="2068" Description="扩展2错误码">
+				<Data FieldName="F_EXT2_ERRORCODE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="3002" Description="终端编号">
+				<Data FieldName="F_TERMINALID" FieldBinding="core_TerminalID" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="3003" Description="卡号">
+				<Data FieldName="F_PAN" FieldBinding="core_PAN" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="3004" Description="原因">
+				<Data FieldName="F_CAPTURE_REASON" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="3005" Description="原因码">
+				<Data FieldName="F_CAPTURE_REASONCODE_not_used" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="3006" Description="吞卡时间">
+				<Data FieldName="F_CAPTURE_TIME" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="4002" Description="终端编号">
+				<Data FieldName="F_TERMINALID" FieldBinding="core_TerminalID" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="4003" Description="钱箱类型">
+				<Data FieldName="F_CASS_TYPE" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="4004" Description="钱箱状态">
+				<Data FieldName="F_CASS_STATUS" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="4005" Description="钱箱面额(当地最小货币单位，例如中国为分，越南为盾)">
+				<Data FieldName="F_CASS_DENO" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="4006" Description="钱箱币种">
+				<Data FieldName="F_CASS_CURRENCY" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="4007" Description="钱箱当前张数(加钞张数)">
+				<Data FieldName="F_CASS_ADDCASH" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="4008" Description="钱箱钞票总金额">
+				<Data FieldName="F_CASS_ADDCASH_TOTALAMOUNT" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="4009" Description="报告时间">
+				<Data FieldName="F_TIME_yyyyMMddHHmmss" FieldBinding="core_TransTimeyyyyMMddHHmmss" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5002" Description="终端编号">
+				<Data FieldName="F_TERMINALID" FieldBinding="core_TerminalID" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5003" Description="上次加钞总金额">
+				<Data FieldName="F_SETTLEMENT_LASTADDCASHAMOUNT" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5004" Description="钱箱出钞数">
+				<Data FieldName="F_SETTLEMENT_DISPCOUNT" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5005" Description="钱箱面额(当地最小货币单位，例如中国为分，越南为盾)">
+				<Data FieldName="F_SETTLEMENT_CASSDENO" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5006" Description="钱箱总剩余金额">
+				<Data FieldName="F_SETTLEMENT_REMAINGAMOUT" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5007" Description="废钞箱钞数">
+				<Data FieldName="F_SETTLEMENT_COUNTOFREJ" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5008" Description="取款笔数">
+				<Data FieldName="F_SETTLEMENT_CNTOFWITHDRAW" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5009" Description="取款金额">
+				<Data FieldName="F_SETTLEMENT_AMOUNTOFWITHDRAW" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5010" Description="存款笔数">
+				<Data FieldName="F_SETTLEMENT_CNTOFDEP" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5011" Description="存款金额">
+				<Data FieldName="F_SETTLEMENT_AMOUNTOFDEP" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5012" Description="转帐笔数">
+				<Data FieldName="F_SETTLEMENT_CNTOFTFR" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5013" Description="转帐金额">
+				<Data FieldName="F_SETTLEMENT_AMOUTOFTRF" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5014" Description="代缴费笔数">
+				<Data FieldName="F_SETTLEMENT_CNTOFPAY" FieldDefaultData="0" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5015" Description="代缴费金额">
+				<Data FieldName="F_SETTLEMENT_AMOUNTOFPAY" FieldDefaultData="0" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5016" Description="结算时间">
+				<Data FieldName="F_TIME_yyyyMMddHHmmss"  FieldBinding="core_TransTimeyyyyMMddHHmmss" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+		</BitmapFields>
+	</TransactionFieldConfig>
+	<TRA Description="6.1 交易报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+				<Data FieldDefaultData="10001"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+		</BitmapFields>
+	</TRA>
+	<STA Description="6.2 设备状态报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+				<Data FieldDefaultData="10002"/>
+			</Field>
+			<Field BitID="2002" Description="">
+				<Data FieldDefaultData="0501"/>
+			</Field>
+			<Field BitID="2003" Description=""/>
+			<Field BitID="2004" Description=""/>
+			<Field BitID="2005" Description=""/>
+			<Field BitID="2006" Description=""/>
+			<Field BitID="2007" Description=""/>
+			<Field BitID="2008" Description=""/>
+			<Field BitID="2009" Description=""/>
+			<Field BitID="2010" Description=""/>
+			<Field BitID="2011" Description=""/>
+			<Field BitID="2012" Description=""/>
+			<Field BitID="2013" Description=""/>
+			<Field BitID="2014" Description=""/>
+			<Field BitID="2015" Description=""/>
+			<Field BitID="2016" Description=""/>
+			<Field BitID="2017" Description=""/>
+			<Field BitID="2018" Description=""/>
+			<Field BitID="2019" Description=""/>
+			<Field BitID="2020" Description=""/>
+			<Field BitID="2021" Description=""/>
+			<Field BitID="2022" Description=""/>
+			<Field BitID="2023" Description=""/>
+			<Field BitID="2024" Description=""/>
+			<Field BitID="2025" Description=""/>
+			<Field BitID="2026" Description=""/>
+			<Field BitID="2027" Description=""/>
+			<Field BitID="2028" Description=""/>
+			<Field BitID="2029" Description=""/>
+			<Field BitID="2030" Description=""/>
+			<Field BitID="2031" Description=""/>
+			<Field BitID="2032" Description=""/>
+			<Field BitID="2033" Description=""/>
+			<Field BitID="2034" Description=""/>
+			<Field BitID="2035" Description=""/>
+			<Field BitID="2036" Description=""/>
+			<Field BitID="2037" Description=""/>
+			<Field BitID="2038" Description=""/>
+			<Field BitID="2039" Description=""/>
+			<Field BitID="2040" Description=""/>
+			<Field BitID="2041" Description=""/>
+			<Field BitID="2042" Description=""/>
+			<Field BitID="2043" Description=""/>
+			<Field BitID="2044" Description=""/>
+			<Field BitID="2045" Description=""/>
+			<Field BitID="2046" Description=""/>
+			<Field BitID="2047" Description=""/>
+			<Field BitID="2048" Description=""/>
+			<Field BitID="2049" Description=""/>
+			<Field BitID="2050" Description=""/>
+			<Field BitID="2051" Description=""/>
+			<Field BitID="2052" Description=""/>
+			<Field BitID="2053" Description=""/>
+			<Field BitID="2054" Description=""/>
+			<Field BitID="2055" Description=""/>
+			<Field BitID="2056" Description=""/>
+			<Field BitID="2057" Description=""/>
+			<Field BitID="2058" Description=""/>
+			<Field BitID="2059" Description=""/>
+			<Field BitID="2060" Description=""/>
+			<Field BitID="2061" Description=""/>
+			<Field BitID="2062" Description=""/>
+			<Field BitID="2063" Description=""/>
+			<Field BitID="2064" Description=""/>
+			<Field BitID="2065" Description=""/>
+			<Field BitID="2066" Description=""/>
+			<Field BitID="2067" Description=""/>
+			<Field BitID="2068" Description=""/>
+		</BitmapFields>
+	</STA>
+	<CAP Description="6.3 吞卡报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+				<Data FieldDefaultData="10003"/>
+			</Field>
+			<Field BitID="3002" Description=""/>
+			<Field BitID="3003" Description=""/>
+			<Field BitID="3004" Description=""/>
+			<Field BitID="3005" Description=""/>
+			<Field BitID="3006" Description=""/>
+		</BitmapFields>
+	</CAP>
+	<ADD Description="6.4 加钞报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+				<Data FieldDefaultData="10004"/>
+			</Field>
+			<Field BitID="4002" Description=""/>
+			<Field BitID="4003" Description=""/>
+			<Field BitID="4004" Description=""/>
+			<Field BitID="4005" Description=""/>
+			<Field BitID="4006" Description=""/>
+			<Field BitID="4007" Description=""/>
+			<Field BitID="4008" Description=""/>
+			<Field BitID="4009" Description=""/>
+		</BitmapFields>
+	</ADD>
+	<SET Description="6.5 结算报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+				<Data FieldDefaultData="10005"/>
+			</Field>
+			<Field BitID="5002" Description=""/>
+			<Field BitID="5003" Description=""/>
+			<Field BitID="5004" Description=""/>
+			<Field BitID="5005" Description=""/>
+			<Field BitID="5006" Description=""/>
+			<Field BitID="5007" Description=""/>
+			<Field BitID="5008" Description=""/>
+			<Field BitID="5009" Description=""/>
+			<Field BitID="5010" Description=""/>
+			<Field BitID="5011" Description=""/>
+			<Field BitID="5012" Description=""/>
+			<Field BitID="5013" Description=""/>
+			<Field BitID="5014" Description=""/>
+			<Field BitID="5015" Description=""/>
+			<Field BitID="5016" Description=""/>
+		</BitmapFields>
+	</SET>
+	<CAS Description="6.6 回笼报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1" Description="报文类型">
+				<Data FieldDefaultData="10006"/>
+			</Field>
+			<Field BitID="4002" Description="终端编号"/>
+			<Field BitID="4003" Description="钱箱类型"/>
+			<Field BitID="4004" Description="钱箱状态"/>
+			<Field BitID="4005" Description="钱箱面额"/>
+			<Field BitID="4006" Description="钱箱币种"/>
+			<Field BitID="4007" Description="钱箱当前张数"/>
+			<Field BitID="4008" Description="钱箱钞票总金额"/>
+			<Field BitID="4009" Description="报告时间"/>
+		</BitmapFields>
+	</CAS>
+</Packages>

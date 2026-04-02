@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<config name="Journal">
+	<item key="IDS_AppTitle" value="欢迎使用eCAT配置工具"/>
+	<item key="IDS_Back" value="上一步(_B)"/>
+	<item key="IDS_Next" value="下一步(_N)"/>
+	<item key="IDS_Cancel" value="取消"/>
+	<item key="IDS_ATMType" value="机型"/>
+	<item key="IDS_PleaseSelect" value="请选择 "/>
+	<item key="IDS_BankSettings" value="银行信息设置"/>
+	<item key="IDS_BankNumber" value="银行编号 "/>
+	<item key="IDS_BranchNumber" value="支行号 "/>
+	<item key="IDS_ATMNumber" value="ATM编号 "/>
+	<item key="IDS_Devicetype" value="设备类型"/>
+	<item key="IDS_MaintenanceUnit" value="维护设备"/>
+	<item key="IDS_OtherDevice" value="其他设备"/>
+	<item key="IDS_EppTypes" value="密码键盘"/>
+	<item key="IDS_TwinScreen" value="双屏"/>
+	<item key="IDS_TextTerminalUnit" value="后台维护终端"/>
+	<item key="IDS_CIM" value="存钞机芯"/>
+	<item key="IDS_CDM" value="出钞机芯"/>
+	<item key="IDS_JournalPrinter" value="流水打印机"/>
+	<item key="IDS_ReceiptPrinter" value="凭条打印机"/>
+	<item key="IDS_SIU" value="传感器"/>
+	<item key="IDS_CardReader" value="读卡器"/>
+	<item key="IDS_VDM" value="厂商模式"/>
+	<item key="IDS_PIN" value="加密键盘"/>
+	<item key="IDS_EPP" value="EPP"/>
+	<item key="IDS_EPPPCI" value="EPP__PCI"/>
+	<item key="IDS_PORT" value="端口 "/>
+	<item key="IDS_Language" value="当前语言 "/>
+	<item key="CN" value="中文"/>
+	<item key="EN" value="English"/>
+	<item key="IDS_RunOnlyOnce" value="配置工具只能运行一次或重新安装"/>
+	<item key="IDS_Confirm" value="确认"/>
+	<item key="IDS_SettingIPInvalid" value="IP或者端口设置错误，具体错误如下："/>
+	<item key="IDS_UpdateSettingConfirm" value="确认保存配置？"/>
+	<item key="IDS_Successfully" value="成功"/>
+	<item key="IDS_Unsuccessfully" value="失败"/>
+	<item key="IDS_Update" value="更新"/>
+	<item key="IDS_ConfirmExit" value="确定退出配置工具？"/>
+	<item key="IDS_Finish" value="完成"/>
+	<item key="ATMP" value="P端IP "/>
+	<item key="ATMV" value="V端IP "/>
+	<item key="ATMS" value="监听IP "/>
+	
+	<item key="IDS_ScreenType" value="后维护模式"/>
+	<item key="IDS_ScreenTypeFlash" value="Flash" />
+	<item key="IDS_ScreenTypeHTML" value="HTML"/>
+</config>

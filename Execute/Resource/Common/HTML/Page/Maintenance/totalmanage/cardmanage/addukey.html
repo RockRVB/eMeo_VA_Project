@@ -1,0 +1,113 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>加UKEY</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../../css/maintenance/cn.css" />
+<script src="../../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../../js/jquery-ui.min.js"></script>
+<script src="../../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../../js/maintenance/common/global.js"></script>
+<script src="../../../../js/maintenance/component/components.js"></script>
+<script src="../../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../../js/maintenance/ui/custom-ui.js"></script>
+</head>
+
+<body onselectstart="return false">
+<!--界面容器-->
+<div class="wrapper set-atm-no">
+	<div class="g-margin-wrapper"> 
+		<!--左边-->
+		<div class="g-left-wrapper"> 
+			<!--表格控件-->
+			<div id="table_1" class="type-table reversal-color" type="TABLE" maxRowCount="6" rowCount="6"> 
+				<!--翻页按钮-->
+				<div class="type-table-paging none">
+					<div class="middle-outer">
+						<div class="middle-inner">
+							<button class="button-page" mark="prev" dataToSend="78" id="prev"><span class="tip"></span> <span class="button-text">▲</span></button>
+							<button class="button-page" mark="next"><span class="tip"></span> <span class="button-text">▼</span></button>
+						</div>
+					</div>
+				</div>
+				<div class="type-table-container table_margin_top " style="margin:0">
+					<table>
+						<thead>
+							<tr class="tr_height">
+								<th><span id="STATIC_UnitSeqH" ids="IDS_CardUnitSeq">序号</span></th>
+								<th><span id="STATIC_UnitNameH" ids="IDS_UkeyUnitName">UKEY箱名</span></th>
+								<th><span id="STATIC_UnitType" ids="IDS_UnitType">类型</span></th>
+								<th><span id="STATIC_InitCount" ids="IDS_SetUkeyUnitCount">设置UKEY数</span></th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr id="STATIC_TR_R1" style="display:none">
+								<td><span id="STATIC_UnitSeq_R1" type="STATIC_TXT">1</span></td>
+								<td><span id="STATIC_UnitName_R1" type="STATIC_TXT">吞UKEY箱1</span></td>
+								<td><span id="STATIC_UnitType_R1" type="STATIC_TXT">回收1</span></td>
+								<td><span id="INPUT_AddCount_R1" type="STATIC_TXT">0</span></td>
+								
+							</tr>
+							<tr id="STATIC_TR_R2" style="display:none">
+								<td><span id="STATIC_UnitSeq_R2" type="STATIC_TXT">1</span></td>
+								<td><span id="STATIC_UnitName_R2" type="STATIC_TXT">吞UKEY箱2</span></td>
+								<td><span id="STATIC_UnitType_R2" type="STATIC_TXT">回收2</span></td>
+								<td><span id="INPUT_AddCount_R2" type="STATIC_TXT">0</span></td>
+								
+							</tr>
+							<tr id="STATIC_TR_R3" style="display:none">
+								<td><span id="STATIC_UnitSeq_R3" type="STATIC_TXT">1</span></td>
+								<td><span id="STATIC_UnitName_R3" type="STATIC_TXT">吞UKEY箱3</span></td>
+								<td><span id="STATIC_UnitType_R3" type="STATIC_TXT">回收3</span></td>
+								<td><span id="INPUT_AddCount_R3" type="STATIC_TXT">0</span></td>
+								
+							</tr>
+							<tr id="STATIC_TR_S1" style="display:none">
+								<td><span id="STATIC_UnitSeq_S1" type="STATIC_TXT">1</span></td>
+								<td><span id="STATIC_UnitName_S1" type="STATIC_TXT">供UKEY箱1</span></td>	
+								<td><span id="STATIC_UnitType_S1" type="STATIC_TXT">循环1</span></td>								
+								<td><input id="INPUT_AddCount_S1" type="text" class="input-text input-sheet"  value="0" maxlength="3" validchars = "0123456789"></td>
+								
+							</tr>
+							<tr id="STATIC_TR_S2" style="display:none">
+								<td><span id="STATIC_UnitSeq_S2" type="STATIC_TXT">1</span></td>
+								<td><span id="STATIC_UnitName_S2" type="STATIC_TXT">供UKEY箱2</span></td>
+								<td><span id="STATIC_UnitType_S2" type="STATIC_TXT">循环2</span></td>								
+								<td><input id="INPUT_AddCount_S2" type="text" class="input-text input-sheet"  value="0" maxlength="3" validchars = "0123456789"></td>
+								
+							</tr>
+							<tr id="STATIC_TR_S3" style="display:none">
+								<td><span id="STATIC_UnitSeq_S3" type="STATIC_TXT">1</span></td>
+								<td><span id="STATIC_UnitName_S3" type="STATIC_TXT">供UKEY箱3</span></td>
+								<td><span id="STATIC_UnitType_S3" type="STATIC_TXT">循环3</span></td>
+								<td><input id="INPUT_AddCount_S3" type="text" class="input-text input-sheet"  value="0" maxlength="3" validchars = "0123456789"></td>
+								
+							</tr>
+							
+						</tbody>
+					</table>
+					<!--提示文字-->
+					<div id="STATIC_PROMPT" type="STATIC_TXT" class="g-prompt-text float-right operation-tip" color="#e01e1e" disabledColor="#000000" flashType="color"></div>
+				</div>
+			</div>
+			<!--表格控件END--> 
+		</div>
+		<!--右边-->
+		<div class="g-right"> 
+			<!--键盘-->
+			<div id="KEYBOARD_NUMBER_1" type="KEYBOARD_NUMBER" class="keyboard-number">
+				<!--键盘操作提示-->
+				<div id="keyboard-tip" class="keyboard-tip clear none" ids="IDS_KeyboardTip">按00键可以在输入框和键盘之间切换</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

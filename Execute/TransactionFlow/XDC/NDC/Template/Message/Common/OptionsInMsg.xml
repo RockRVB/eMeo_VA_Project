@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- protocol: NDC -->
+<Root>
+	<Options>
+		<Item size="1" value="45" position="0" key="BNA.LastTransactionStatus"/>
+		<Item size="1" value="45" position="1" key="BNA.AcceptMoreThan90Notes"/>
+		<Item size="1" value="45" position="2" key="BNA.Retract"/>
+		<Item size="1" value="45" position="3" key="BNA.ExtendedMessageFormat"/>
+		<Item size="1" value="45" position="4" key="BNA.SuppliesReporting"/>
+		<Item size="1" value="45" position="5" key="BNA.EnhancedCashDepositMode"/>
+		<Item size="1" value="45" position="6" key="BNA.Recycling"/>
+		<Item size="1" value="1" position="0" key="ReadyStatus"/>
+		<Item size="1" value="1" position="1" key="SupplyMode"/>
+		<Item size="1" value="1" position="3" key="AmountBufferLength"/>
+		<Item size="1" value="1" position="4" key="IncludeTransactionStatusData"/>
+		<Item size="1" value="15" position="0" key="Option15"/>
+		<Item size="1" value="34" position="0" key="MCONRange"/>		
+	</Options>
+
+</Root>

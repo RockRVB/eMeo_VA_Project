@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!--  Envelope Depository
+		*  This messge gives details of a deposit operation in response to a Transaction Reply Command message.
+		-->
+	<Device>
+		<!-- Device Identification Graphic. -->
+		<Item key="e1" value="\" size="1" restriction="Mandatory"/>
+		<!--   Transaction/Device Status. (T-code plus T-data). Gives details of a dispense operation in respense to a Transaction Reply Command message.
+		* Character 1 (T-code) can be:
+		*   '1'  - Time-out on cardholder deposit.
+		*   '2'  - Failure to enable mechanism for a deposit.
+		*   '3'  - Envelope/document jam or envelope/document deposit failed. The cardholder has access. This status is also returned if there
+		*            any doubt about cardholder access.
+		*   '4'  -  Envelope/document jam or deposit failed. The cardholder does not have access.
+		-->
+		<Item key="e2" value="[Device.EnvelopeDispenser.DevStatus]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Error Severity.  Standard code.-->
+		<Item key="e3" value="[Device.EnvelopeDispenser.Fitness]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Diagnostic Status. (M-status plus M-data). The M-status describes the main error found. -->
+		<Item key="e4" value="[Device.EnvelopeDispenser.DiagnosticStatus]" size="var" restriction="Optional"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Suplies Status Indicates the state of the Deposit Bin.
+		*  This field is not sent with the message when a deposit time-out occurs. States reported are:
+		 * '0' - No envelope deposited.
+		 * '1' - No overfill condition.
+		 * '4' - Overfill detected.
+		-->
+		<Item key="e5" value="[Device.EnvelopeDispenser.SuppliesStatus]" size="1" restriction="Mandatory"/>
+	</Device>
+</Root>

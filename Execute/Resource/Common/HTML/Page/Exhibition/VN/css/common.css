@@ -1,0 +1,192 @@
+.overdraft_warning .text_content {
+  margin: 80px auto 0;
+  max-width: 1700px;
+}
+
+.overdraft_warning .bt_wrapper .bt_orange:first-child,
+.deposit_more_than_200_warning .bt_wrapper .bt_orange:first-child {
+  margin-right: 40px;
+}
+
+.unable_to_print .bt_wrapper .bt_orange:first-child {
+  margin-right: 120px;
+}
+.unable_to_print .bt_wrapper .bt_orange {
+  width: 280px;
+}
+
+.card_disabled .img_content {
+  margin: 40px 0 0 190px;
+}
+
+.insert_card .img_content {
+  margin-right: 50px;
+}
+
+.max_notes_exceeded .img_content,
+.rejected_notes .img_content {
+  margin: 40px 0 0 310px;
+}
+
+.need_open_ca_for_deposit .bt_orange,
+.open_current_account .bt_orange {
+  width: 500px;
+}
+
+.reciept-dropbox .img_content {
+  margin-left: -320px;
+}
+
+.take_card .img_content {
+  margin-left: 240px;
+}
+
+.take_card.flow2 .img_content {
+  margin: 50px 0 0 335px;
+}
+
+.remove_card .img_content {
+  margin: 87px 0 0 168px;
+}
+
+.other-transaction .title {
+    margin-top: 127px;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+.other-transaction .main_menu {
+    margin: 40px auto 20px;
+    width: 1070px;
+}
+.other-transaction .main_menu .menu_label {
+    float: left;
+    font-family: 'tpb_neo_sansbold';
+    font-size: 40px;
+    text-align: right;
+    border: 5px solid #fff;
+    width: 430px;
+    height: 260px;
+    padding: 80px 40px;
+}
+.other-transaction .main_menu .menu_label {
+    float: left;
+    font-family: 'tpb_neo_sansbold';
+    font-size: 40px;
+    text-align: right;
+    border: 5px solid #fff;
+    width: 430px;
+    height: 260px;
+    padding: 80px 40px;
+}
+.other-transaction .main_menu .bt:first-child {
+    margin: 0;
+}
+.other-transaction .main_menu .bt {
+    position: relative;
+    display: block;
+    float: left;
+    width: 340px;
+    height: 260px;
+    padding-top: 140px;
+    font-size: 32px;
+    color: #fff;
+    text-align: center;
+    background: url('../img/menu_deposit.png') no-repeat center 40px #2c71ff;
+}
+.other-transaction .main_menu .bt:nth-child(even) {
+  margin-left: 25px;
+}
+.other-transaction .main_menu .bt:nth-child(odd) {
+  margin-left: 0;
+}
+.other-transaction .main_menu .bt:nth-child(3),
+.other-transaction .main_menu .bt:nth-child(4) {
+  margin-top: 20px;
+}
+.other-transaction .main_menu .menu_left {
+  float: left;
+  width: 710px;
+}
+.other-transaction .main_menu .menu_right {
+  float: right;
+}
+.other-transaction .main_menu .bt.bt_menu_withdraw {
+    background: url('../img/menu_withdraw.png') no-repeat center 40px #00a7f6;
+}
+.other-transaction .main_menu .bt.bt_menu_saving {
+    background: url('../img/menu_savings_account.png') no-repeat center 40px #89c541;
+}
+.other-transaction .main_menu .bt.bt_menu_current {
+    background: url('../img/menu_current_account.png') no-repeat center 40px #00B050;
+}
+.other-transaction .main_menu .bt.bt_menu_enquiries {
+    background: url('../img/menu_enquiries.png') no-repeat center 160px #89107A;
+    height: 541px;
+    padding-top: 270px;
+    float: right;
+}
+.other-transaction .bt_orange {
+    width: 281px;
+    margin-top: 40px;
+}
+.other-transaction .bt_wrapper {
+    clear: both;
+    text-align: center;
+}
+
+.other-transaction .bt .overlay_bt{
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+}
+.other-transaction .bt .overlay_bt span{
+  position: relative;
+  display: block;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.balance_is_not_enough .bt_wrapper {
+  margin-top: 160px;
+}
+.balance_is_not_enough .bt.bt_orange {
+  width: 280px;
+  float: none;
+}
+.balance_is_not_enough .bt.bt_orange:first-child {
+  margin-right: 80px;
+}
+.balance_is_not_enough table{
+  width: 900px;
+  margin-top: 100px;
+}
+.balance_is_not_enough table tr:first-child,
+.balance_is_not_enough table tr:last-child{
+  background: none;
+}
+.balance_is_not_enough table tr:nth-child(2){
+  background: #6b3b8f;
+}
+.balance_is_not_enough table tr:last-child td{
+  background: #fff;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: none;
+}
+.balance_is_not_enough table tr:last-child td.col1{
+  border-bottom-right-radius: 0;
+}
+.balance_is_not_enough table tr:last-child td.col2{
+  border-bottom-left-radius: 0;
+}
+.balance_is_not_enough table td{
+  width: 50%;
+}
+.balance_is_not_enough table td span.overdraft{
+  color: #f30000;
+}

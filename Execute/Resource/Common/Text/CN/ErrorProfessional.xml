@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<config name="Error">
+	<item key="00" value="承兑或交易成功"/>
+	<item key="01" value="查发卡方"/>
+	<item key="02" value="查发卡方的特殊条件"/>
+	<item key="03" value="无效商户"/>
+	<item key="04" value="没收卡"/>
+	<item key="05" value="不予承兑"/>
+	<item key="06" value="出错"/>
+	<item key="07" value="特殊条件下没收卡"/>
+	<item key="09" value="请求正在处理中"/>
+	<item key="12" value="无效交易"/>
+	<item key="13" value="无效金额"/>
+	<item key="14" value="无效卡号（无此账号）"/>
+	<item key="15" value="无此发卡方"/>
+	<item key="19" value="重新送入交易"/>
+	<item key="20" value="无效响应"/>
+	<item key="21" value="不能采取行动"/>
+	<item key="22" value="故障怀疑"/>
+	<item key="23" value="不可接受的交易费"/>
+	<item key="25" value="找不到原始交易"/>
+	<item key="30" value="格式错误"/>
+	<item key="31" value="交换中心不支持的银行"/>
+	<item key="33" value="过期的卡"/>
+	<item key="34" value="有作弊嫌疑"/>
+	<item key="35" value="受卡方与代理方联系（没收卡）"/>
+	<item key="36" value="受限制的卡"/>
+	<item key="37" value="受卡方电话通知代理方安全部门"/>
+	<item key="38" value="超过允许的PIN 试输入"/>
+	<item key="39" value="无贷记账户"/>
+	<item key="40" value="请求的功能尚不支持"/>
+	<item key="41" value="挂失卡"/>
+	<item key="42" value="无此账户"/>
+	<item key="43" value="被窃卡"/>
+	<item key="44" value="无此投资账户"/>
+	<item key="51" value="资金不足"/>
+	<item key="52" value="无此支票账户"/>
+	<item key="53" value="无此储蓄卡账户"/>
+	<item key="54" value="过期的卡"/>
+	<item key="55" value="不正确的PIN"/>
+	<item key="56" value="无此卡记录"/>
+	<item key="57" value="不允许持卡人进行的交易"/>
+	<item key="58" value="不允许终端进行的交易"/>
+	<item key="59" value="有作弊嫌疑"/>
+	<item key="60" value="受卡方与代理方联系（不没收卡）"/>
+	<item key="61" value="超出金额限制"/>
+	<item key="62" value="受限制的卡"/>
+	<item key="63" value="侵犯安全"/>
+	<item key="64" value="原始金额错误"/>
+	<item key="65" value="超出取款次数限制"/>
+	<item key="66" value="受卡方通知受理方安全部门"/>
+	<item key="67" value="强行受理（要求在自动会员机上没收此卡）"/>
+	<item key="68" value="接收的响应超时"/>
+	<item key="75" value="允许的输入PIN 次数超限"/>
+	<item key="76" value="无效账户"/>
+	<item key="90" value="正在日终处理（系统终止一天的活动，开始第二天的活动，交易在几分钟后可再次发送）"/>
+	<item key="91" value="发卡方不能操作"/>
+	<item key="92" value="金融机构或中间网络设施找不到或无法达到"/>
+	<item key="93" value="交易违法、不能完成"/>
+	<item key="94" value="重复交易"/>
+	<item key="95" value="核对差错"/>
+	<item key="96" value="交换中心系统异常、失效"/>
+	<item key="97" value="ATM/POS 终端号找不到"/>
+	<item key="98" value="交换中心收不到发卡方应答"/>
+	<item key="99" value="PIN 格式错"/>
+	<item key="A0" value="MAC 鉴别失败"/>
+	<item key="A1" value="校验随机码失败"/>
+	<item key="B1" value="需要终端下载密钥"/>
+	<item key="B2" value="需要终端下载参数"/>
+</config>

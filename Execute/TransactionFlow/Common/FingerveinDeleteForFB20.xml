@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<Workflow name="FingerveinDeleteForFB20">
+  <Head type="GRGWorkflow" author="Hunk" timeStamp="" comment="" />
+  <DataPool />
+  <Activities>
+    <Start ID="0" UI="" comment="Start">
+      <Forward event="OnConfirm" targetID="ID_GetPublicKey" />
+    </Start>
+	<RequestTransViaRestful ID="ID_GetPublicKey" UI="UI_CommonProcessing" digitalVoiceKey="||||||||" transType="GetPublicKey"  transFormat="json">
+		  <States>
+			<State name="PackFail" UI="UI_general_error"/>
+			<State name="ConnectFail" UI="UI_general_error"/>
+			<State name="SendFail" UI="UI_general_error"/>
+			<State name="ReceiveFail" UI="UI_general_error"/>
+			<State name="ReceiveTimeout" UI="UI_general_error"/>
+			<State name="NetworkFail" UI="UI_general_error"/>
+			<State name="UnpackFail" UI="UI_general_error"/>
+			<State name="HardwareError" UI="UI_general_error"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_UserLoginFB"/>
+		  <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+	</RequestTransViaRestful>
+	<UserLoginFB ID="ID_UserLoginFB" UI="" comment="" timeout="60000" >
+		  <Forward event="OnConfirm" targetID="ID_FBLOGINRequest" />
+		  <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+	</UserLoginFB>
+	<RequestTransViaRestful ID="ID_FBLOGINRequest" UI="UI_CommonProcessing" digitalVoiceKey="||||||||" transType="FB20LOGIN"  transFormat="json">
+		  <States>
+			<State name="PackFail" UI="UI_general_error"/>
+			<State name="ConnectFail" UI="UI_general_error"/>
+			<State name="SendFail" UI="UI_general_error"/>
+			<State name="ReceiveFail" UI="UI_general_error"/>
+			<State name="ReceiveTimeout" UI="UI_general_error"/>
+			<State name="NetworkFail" UI="UI_general_error"/>
+			<State name="UnpackFail" UI="UI_general_error"/>
+			<State name="HardwareError" UI="UI_general_error"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_FBLoginResult"/>
+		  <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+		</RequestTransViaRestful>
+		<FBLoginResult ID="ID_FBLoginResult" UI="" comment="" timeout="60000" >
+		  <Forward event="OnConfirm" targetID="ID_FingerveinInputCifToRegister" />
+		  <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+		</FBLoginResult>
+		<InputIdNumberFB ID="ID_FingerveinInputCifToRegister" UI="UI_InputFaceRegisterInfo" digitalVoiceKey="action_034" comment="cannot print receipt">
+			<Forward event="OnConfirm" targetID="ID_GetCustomerInfo"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InputIdNumberFB>
+		<RequestTransViaRestful ID="ID_GetCustomerInfo" UI="UI_CommonProcessing" digitalVoiceKey="||||||||" transType="FB20GetCustomerInfo"  transFormat="json">
+		  <States>
+			<State name="PackFail" UI="UI_general_error"/>
+			<State name="ConnectFail" UI="UI_general_error"/>
+			<State name="SendFail" UI="UI_general_error"/>
+			<State name="ReceiveFail" UI="UI_general_error"/>
+			<State name="ReceiveTimeout" UI="UI_general_error"/>
+			<State name="NetworkFail" UI="UI_general_error"/>
+			<State name="UnpackFail" UI="UI_general_error"/>
+			<State name="HardwareError" UI="UI_general_error"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_GetCustomerInfoResultFB"/>
+		  <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+		</RequestTransViaRestful>
+		<GetCustomerInfoResultFB20 ID="ID_GetCustomerInfoResultFB"  comment="" timeout="300000" >
+		  <Forward event="OnConfirm" targetID="ID_FingerveinScan" />
+		  <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+		</GetCustomerInfoResultFB20>
+		<FingerveinCreateTemplateFB ID="ID_FingerveinScan" UI="UI_FingerveinEnroll" digitalVoiceKey="action_079" comment="">
+			<Forward event="OnContinue" targetID="ID_GetTemplateId"/>
+			<Forward event="OnFail" targetID="ID_FingerveinShowError"/>
+		</FingerveinCreateTemplateFB>
+		<RequestTransViaRestful ID="ID_GetTemplateId" UI="UI_CommonProcessing" digitalVoiceKey="||||||||" transType="FB20FingerveinMatch"  transFormat="json">
+		  <States>
+			<State name="PackFail" UI="UI_general_error"/>
+			<State name="ConnectFail" UI="UI_general_error"/>
+			<State name="SendFail" UI="UI_general_error"/>
+			<State name="ReceiveFail" UI="UI_general_error"/>
+			<State name="ReceiveTimeout" UI="UI_general_error"/>
+			<State name="NetworkFail" UI="UI_general_error"/>
+			<State name="UnpackFail" UI="UI_general_error"/>
+			<State name="HardwareError" UI="UI_general_error"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_FingerveinMatchResult"/>
+		  <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+		</RequestTransViaRestful>
+		<FingerveinMatchResultFB20 ID="ID_FingerveinMatchResult" digitalVoiceKey="action_078" comment="">
+			<States>
+				<State name="FingerMatchSuccess" UI="UI_FingerShowSuccess"/>				
+			</States>
+			<Forward event="OnMatch" targetID="ID_FingerveinDeleteToServer"/>
+			<Forward event="OnFail" targetID="ID_FingerveinShowNotRegister"/>
+		</FingerveinMatchResultFB20>
+		<RequestTransViaRestful ID="ID_FingerveinDeleteToServer" UI="UI_CommonProcessing" digitalVoiceKey="||||||||" transType="FB20DeleteFingervein"  transFormat="json">
+		  <States>
+			<State name="PackFail" UI="UI_general_error"/>
+			<State name="ConnectFail" UI="UI_general_error"/>
+			<State name="SendFail" UI="UI_general_error"/>
+			<State name="ReceiveFail" UI="UI_general_error"/>
+			<State name="ReceiveTimeout" UI="UI_general_error"/>
+			<State name="NetworkFail" UI="UI_general_error"/>
+			<State name="UnpackFail" UI="UI_general_error"/>
+			<State name="HardwareError" UI="UI_general_error"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_FingerveinShowSuccess"/>
+		  <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnHostRefuse" targetID="ID_FingerveinShowError"/>
+		</RequestTransViaRestful>
+		
+		<Prompt ID="ID_FingerveinShowError" UI="UI_FingerShowError" digitalVoiceKey="action_080" comment="" timeout="5000">
+          <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+		  <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+        </Prompt>
+		
+		<Prompt ID="ID_FingerveinShowNotRegister" UI="UI_FingerShowNotRegister" digitalVoiceKey="action_045" comment="" timeout="5000">
+          <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+		  <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+        </Prompt>
+		
+		<Prompt ID="ID_FingerveinShowSuccess" UI="UI_FingerShowSuccess" digitalVoiceKey="action_078" comment="" timeout="5000">
+          <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+		  <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+        </Prompt>
+
+	
+    <End ID="9999" UI="" comment="End" />
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" UI="" comment="Invoke close trans workflow" name="CloseTrans">
+      <Forward event="OnConfirm" targetID="9999" />
+    </InvokeWorkflow>
+	<InvokeWorkflow ID="ID_HostRefuse" UI="" comment="Invoke close trans workflow" name="CloseTrans">
+      <Forward event="OnConfirm" targetID="9999" />
+    </InvokeWorkflow>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnHardwareError" targetID="ID_DevError" />
+    <Forward event="OnFail" targetID="ID_EventError" />
+    <Forward event="OnTimeout" targetID="ID_GoTimeOut" />
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+  </DefaultForward>
+</Workflow>

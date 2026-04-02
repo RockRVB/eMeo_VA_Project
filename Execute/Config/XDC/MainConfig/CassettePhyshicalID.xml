@@ -1,0 +1,20 @@
+<Root>
+	<!-- "NMD100" start -->
+	<Item key="PHY01" value="1"/>
+	<Item key="PHY02" value="2"/>
+	<Item key="PHY03" value="3"/>
+	<Item key="PHY04" value="4"/>
+	<!-- "NMD100" end-->
+	<!-- "9250" start -->
+	<Item key="S1_I0" value="1"/>
+	<Item key="S2_I0" value="2"/>
+	<Item key="S3_I0" value="3"/>
+	<Item key="S4_I0" value="4"/>
+	<!-- "9250" end-->
+	<!-- "8240|6240" start -->
+	<Item key="Hopper1" value="1"/>
+	<Item key="Hopper2" value="2"/>
+	<Item key="Hopper3" value="3"/>
+	<Item key="Hopper4" value="4"/>
+	<!-- "8240|6240" end-->
+</Root>

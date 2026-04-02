@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Config>  
+	<!--物理上是否存在两个钞口位置，如P2800有进钞口和退钞口：1-是，0-否-->
+	<IsExistTwoPositions value="0"/>
+	
+	<!--点钞卡钞时是否继续存款（部分上账）：1-是，0-否
+	目前仅有i58和P2800需配置成1
+	-->
+	<IsDepoistContinueAfterCashInFail value="0"/>
+	
+	<!--东信TTU的能力为 8*15，但是调用Read指令传入的为 7，14 即最后一位时，东信不支持，
+	xOffsetValue 表示在原有的基础上偏移
+	原有的ReadAtAsyn(int x, int y....）则传到sp时会更改为ReadAtAsyn(int x-xOffsetValue, int y-yOffsetValue)
+	如 xOffsetValue="1" 表示readatasyn的指令
+	-->
+	<TtuOffset xOffsetValue="0" yOffsetValue="0"/>
+	
+	<!--取款机芯复位时回收区域参数是否强制传NULL（有些厂商的机芯不传NULL会返回-52如东信）：1-是，0-否-->
+	<CashDevResetAreaIsNull value="0"/>
+
+	<!--零状态下，是否忽略GetData指令. 如前屏是触摸屏并且没有侧键，界面上又需要提供无卡业务按钮：1-是，0-否-->
+	<IsIgnoreGetDataInZeroState value="0"/>
+	
+	<!--取SafeDoor的状态是从SIU还是CDM还是CIM取出来，
+	对于NCR的一些设备SIU取不到SafeDoor状态，只能CDM取SafeDoor状态
+	1,CDM
+	2,CIM
+	其它情况下，SIU
+	-->
+	<GetSafeDoorStatus value="0"/>	
+	
+	<!--表示对于JPTR设备，如果累计发生-15或-42或-53的错误码的次数达到5时，会重启机器。
+  	其它设备类似。
+  	它们之间是或的关系，满足其中一个条件都会重启
+  	-->
+	<RebootMap value="" />
+	
+	<!--在获取钱箱信息的时候，是否要判断钱箱使用模式是否相同：1-是，0-否
+	对于OKI的机型此项配置需配成1，其他机型配成0
+	-->
+	<IsNeedJudgeUseTypeWhenGetCashUnitInfo value="0"/>
+	
+	<!--存款等待客户取走钞票时，是否依次调用openinput和openoutput：1-是，0-否
+	对于Wincor的存款机PC4000，此项配置需配成1，其他机型配成0
+	Wincor PC4000机器存款点钞后，在input与output中都有钞票的情况下，模块只收到了openoutput指令，并未收到openinput指令，导致设备异常。
+	由于4000的物理特性，在打开output时，input中的钞票也是可见的，往往客户会同时拿走input与output中的钞票，但此时input中的钞票取出较困难，有一定概率不能成功取出从而导致以上情况。
+	Wincor建议当ATMC在input有钞票的情况下，先调用openinput（此时output中的钞票不可见），再调用openoutput，这样才方便客户取走钞票。 
+	-->
+	<OpenInShutterAndOutShutter value="0"/>
+	
+	<!--存款时，卡钞，Rollback 失败，是否需要进行复位退钞标识，默认为 0
+	0：表示按原逻辑，判断 m_objContext.TerminalConfig.Terminal.VendorId == "01" 则进行复位退钞；
+	1：Rollback 失败，进行复位退钞；
+	2：Rollback 失败，不进行复位退钞
+	-->
+	<ResetFlagWhenRollbackFail value="0"/>	
+	
+	<!--存款当客户取走钞票时，在关门的瞬间将钱丢进闸门，并且关门指令报回-55(WFS_ERR_USER_ERROR)时，是否再次开门：1-是，0-否
+	对于Wincor的存款机PC4000，此项配置需配成1，其他机型配成0
+	因为在未验钞关闭Shutter口的情况下，此时若调回收会造成长款，且用户体验差，还是需要打开SHutter门让客户取走钞票或重新整理后放入钞票
+	-->
+	<IsNeedOpenShutterWhenCloseShutterReturnUserError value="0"/>
+	
+	    <!--IsFrontScreenAndTouchScreen 此节点用来判断设置设备是前维护又是触摸屏幕的时候，value设置为“1”，其他的情况默认为0
+	--> 
+	<IsFrontScreenAndTouchScreen value="0"/>
+</Config>

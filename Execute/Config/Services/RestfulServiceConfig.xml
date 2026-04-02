@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+  <BaseSetting>
+    <Item key="NetWorkSession" value="RESTFUL" />
+    <Item key="SendMessageTimeout" value="60000" />
+    <Item key="XMLConfigFile" value="Config\DataFormatterService\RestfulXml.xml" />
+	<Item key="JsonConfigFile" value="Config\DataFormatterService\RestfulJson.json" />
+	<Item key="TxtConfigFile" value="Config\DataFormatterService\RestfulTxt.json" />
+	<Item key="EncryptPassword" value="19999991" />
+	<Item key="IsEncrypt" value="false" />
+	<Item key="IsRecordMessage" value="false" />
+  </BaseSetting>
+  <SensitiveFields>
+	 <Item key="RestfulXml" value="NAME,ID_NUMBER,PLACECOUNTRY,EMAIL"/><!--此列表对应XML格式的restful服务需屏蔽日志字段，"RestfulXml"关键字不能改-->
+	<Item key="FBLOGIN" value="code;password;sceneKey;type;username"/><!--从此字关键字往下，均是jso格式的restful服务需屏蔽日志字段，Key值对应restful.json里对应的服务名-->
+	<Item key="FaceIdentify" value="image"/>
+	<Item key="FaceCompare2Img" value="image1;image2"/>
+	<Item key="compareFeature" value="user_id;image"/>
+	<Item key="queryCusImage" value="customerId"/>
+	<Item key="FaceImageQuality" value="image"/>
+	<Item key="FaceRegister" value="user_id;image"/>
+	<Item key="AddCustomerInfo" value="address;birthday;cif;customerName;deleted;email;idExpiryDate;idIssueDate;idIssuePlace;idNumber;idType;phone;sex;vip"/>
+	<Item key="FingerprintRegister" value="base64image;feature;customerId"/>
+	<Item key="FingerprintMatch" value="base64image;feature;customerId"/>
+	<Item key="DeleteFingerprint" value="base64image;feature;id"/>
+	<Item key="DeleteAllFingerprint" value="base64image;feature;id"/>
+	<Item key="FingerveinRegister" value="feature;id"/>
+	<Item key="DeleteFingervein" value="feature;id"/>
+	<Item key="DeleteAllFingervein" value="feature;id"/>
+	<Item key="FingerveinMatch" value="feature;id"/>
+	<Item key="PushPdf" value="feature;id"/>
+	<Item key="GetFingerveinTemplateId" value="feature,customerId"/>
+	<Item key="GetFingerprintTemplateId" value="base64image,feature,customerId"/>
+	<Item key="addFaceUser" value="uid,sex,isRegister,isNetVerify,image"/>
+	<Item key="addUser" value="uid,sex,isRegister,isNetVerify,image"/>
+	<Item key="registerAcc" value="terminal"/>
+	<Item key="GetProduct" value="uid,name,sex,minority,birthDate,ctfType,userinfo,userList,ctfNo,ctfValidiryStart,ctfValidiryEnd,address,mobilePhone,isRegister"/>
+	<Item key="FB20LOGIN" value="code;password;sceneKey;type;username"/><!--从此字关键字往下，均是jso格式的restful服务需屏蔽日志字段，Key值对应restful.json里对应的服务名-->
+	<Item key="FB20FaceIdentify" value="image"/>
+	<Item key="FB20FaceCompare2Img" value="image1;image2"/>
+	<Item key="FB20CompareFeature" value="customerId;image"/>
+	<Item key="FB20FaceImageQuality" value="image"/>
+	<Item key="FB20FaceRegister" value="customerId;image"/>
+	<Item key="FB20AddCustomerInfo" value="address;birthday;cif;customerName;deleted;email;idExpiryDate;idIssueDate;idIssuePlace;idNumber;idType;phone;sex;vip"/>
+	<Item key="FB20FingerprintRegister" value="base64image;feature;customerId"/>
+	<Item key="FB20FingerprintMatch" value="base64image;feature;customerId"/>
+	<Item key="FB20DeleteFingerprint" value="templateId;customerId"/>
+	<Item key="FB20DeleteAllFingerprint" value="base64image;feature;customerId"/>
+	<Item key="FB20FingerveinRegister" value="feature;customerId"/>
+	<Item key="FB20DeleteFingervein" value="templateId;customerId"/>
+	<Item key="FB20DeleteAllFingervein" value="feature;customerId"/>
+	<Item key="FB20FingerveinMatch" value="feature;customerId"/>
+  </SensitiveFields>
+</Config>

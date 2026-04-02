@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="NewAccount">
+  <Head type="GRGWorkflow" author="" timeStamp="" comment="The workflow design is for Card printing Demo"/>
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start" callVisible="0" endflag="1">
+      <Forward event="OnConfirm" targetID="ID_SetTransTypeNewCard"/>
+    </Start>
+	<SetData ID="ID_SetTransTypeNewCard" saveBuffer="{VTM_TransTypeName,0}" value="VTM_Standard_NewCard">
+      <Forward event="OnConfirm" targetID="ID_CompareVideoStatus"/>
+    </SetData>
+	<!--Check Agin Video Connection-->
+	<!-- 判断视频状态 -->
+    <!-- STATUS_END = 0,        未初始化前的状态，登陆前状态  -->
+    <!-- STATUS_INITIAL_REQ,    初始化请求状态, 登陆中状态  -->
+    <!-- STATUS_IDLE,           初始化成功后还未呼叫时的空闲状态  -->
+    <!-- STATUS_CALL_REQ,       呼叫发起请求状态  -->
+    <!-- STATUS_IN_TALKING,     通话中状态  -->
+    <!-- STATUS_RELEASE_REQ,    呼叫发起释放状态  -->
+    <!-- STATUS_ENDING_REQ,     发起结束初始化状态  -->
+    <!-- STATUS_ANSWER_REQ,     应答中，此时点击应答，等有TALKING事件上报后，将迁移到STATUS_IN_TALKING  -->
+    <!-- STATUS_IN_CALLING,     正在 来电中， 也就是收到振铃事件；对于AVAYA，主叫会收到振铃事件但被叫反而不会收到振铃事件  -->
+    <!-- STATUS_IN_REJECTING,   正在拒绝中  -->
+    <!-- STATUS_NETWORK_ERROR,  网络故障  -->
+    <CompareData ID="ID_CompareVideoStatus" comment="" compareBuffer="{VTM_VideoStatusWrapper}">
+      <Forward event="OnEqualSTATUS_IN_TALKING" targetID="ID_BeginTransaction" />
+      <Forward event="OnEqualSTATUS_IDLE" targetID="ID_InvokeCallAgentWorkflow" />
+      <DefaultForward targetID="ID_ConnectAgentFail" />
+    </CompareData>
+	
+    <!-- Invoke the Authorization workflow-->
+    <InvokeWorkflow ID="ID_InvokeCallAgentWorkflow" name="CallAgent" comment="Invoke CallAgent workflow" index="0">
+      <Forward event="OnConfirm" targetID="ID_CompareVideoStatusAgain"/>
+    </InvokeWorkflow>	
+	
+	<!-- Judge whether the agent is connected or not -->
+	  <CompareData ID="ID_CompareVideoStatusAgain" comment="" compareBuffer="{VTM_VideoStatusWrapper}"> 
+      <Forward event="OnEqualSTATUS_IN_TALKING" targetID="ID_BeginTransaction" />
+      <DefaultForward targetID="ID_ConnectAgentFail" />
+    </CompareData>
+	
+    <BeginTransaction ID="ID_BeginTransaction" UI="UI_contacting_agent" timeout="60000">
+      <States>
+        <State name="NetWorkError" UI="UI_network_error"/>
+        <State name="TimeOutError" UI="UI_timeout"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_CardProtol"/>
+      <Forward event="OnFail" targetID="ID_ConnectAgentFail"/>
+    </BeginTransaction>
+
+    <!--view CardProtol-->
+    <VTMSelectFunction ID="ID_CardProtol" UI="UI_card_protocol" timeout="120000" homeVisible="1" index="2">
+      <Forward event="OnConfirm" targetID="ID_ScanByPassportGetDevStatusEx"/>
+	    <Forward event="OnBack" targetID="ID_InvokeCloseTransWorkflow"/>
+    </VTMSelectFunction>
+    <GetDevStatusEx ID="ID_ScanByCAMGetDevStatusEx" UI="UI_waiting" comment="Get device status" devType="CAM" callVisible="0">
+      <States>
+        <State name="GetDevStatusExError" UI="UI_DevError" />
+      </States>
+      <Forward event="OnNormal" targetID="ID_SelectIDcard" />
+      <Forward event="OnWarn" targetID="ID_SelectIDcard" />
+      <Forward event="OnFail" targetID="ID_ScanByPassportGetDevStatusEx" />
+    </GetDevStatusEx>
+	<GetDevStatusEx ID="ID_ScanByPassportGetDevStatusEx" UI="UI_waiting" comment="Get device status" devType="PassportScaner" callVisible="0">
+      <States>
+        <State name="GetDevStatusExError" UI="UI_general_error" />
+      </States>
+      <Forward event="OnNormal" targetID="ID_ScanPassport" />
+      <Forward event="OnWarn" targetID="ID_ScanPassport" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </GetDevStatusEx>
+	<SelectIDType ID="ID_SelectIDcard" UI="UI_SelectIDcard" comment="" timeout="300000" >
+      <!-- <Forward event="OnCCCD" targetID="ID_ReadCitizenIDCardGetDevStatusEx" /> -->
+      <Forward event="OnIdCard" targetID="ID_ScanIDCardGetDevStatusEx" />
+      <Forward event="OnPassport" targetID="ID_ScanPassPortGetDevStatusEx" />
+    </SelectIDType>
+	<GetDevStatusEx ID="ID_ScanIDCardGetDevStatusEx" UI="" comment="Get device status" devType="CAM" callVisible="0">
+      <States>
+        <State name="GetDevStatusExError" UI="UI_DevError" />
+      </States>
+      <Forward event="OnNormal" targetID="ID_PutIDCardIntoHighCamera" />
+      <Forward event="OnWarn" targetID="ID_PutIDCardIntoHighCamera" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </GetDevStatusEx>
+    <WaitSleep ID="ID_PutIDCardIntoHighCamera" UI="UI_PutIDCardIntoHighCamera" comment="" timeout="5000" >
+	 <DefaultUIStates>
+		<State name="SavingAccountMainFlow" UI="UI_PutIDCardtoCameraSavingAccount"/>
+		<State name="DepositByIDToOwner" UI="UI_PutIDCardIntoHighCameraDeposit"/>
+		<State name="DepositIDOnUsAccount" UI="UI_PutIDCardIntoHighCameraDeposit"/>
+		<State name="DepositIDOffUsAccount" UI="UI_PutIDCardIntoHighCameraDeposit"/>
+		<State name="DepositIDOnUsCard" UI="UI_PutIDCardIntoHighCameraDeposit"/>
+		<State name="DepositIDOffUsCard" UI="UI_PutIDCardIntoHighCameraDeposit"/>
+		<State name="MaintenanceMainWorkflow" UI="UI_PutIDCardIntoHighCameraMaintenanceMainWorkflow"/>
+		<State name="CompleKYCMainFlow" UI="UI_KYCInsertIDCard"/>
+		<State name="BillingMainFlow" UI="UI_BillingInsertOldIDCard"/>
+		<State name="Withdrawal" UI="UI_WithdrawalInsertOldIDCard"/>
+		<State name="TransferMainFlow" UI="UI_TransferInsertOldIDCard"/>
+		<State name="PassbookSettleMainFlow" UI="UI_PassbookInsertOldIDCard"/>
+		<State name="FingerprintMaintenanceMainFlow" UI="UI_FingerprintMaintainInsertOldIDCard"/>
+	  </DefaultUIStates>
+      <Forward event="OnContinue" targetID="ID_ScanOldIDCard" />
+    </WaitSleep>
+    <ScanDoc ID="ID_ScanOldIDCard" UI="UI_ScanIDCard" comment="" CX="460" CY="624" CW="572" CH="808" windowx="140"  IsIDCard="1" windowy="325" windowwidth="480" windowheight="400" defaulnum="2" timeout="300000" callVisible="0" >
+      <States>
+        <State name="OpenScanDocError" UI="UI_DevError" />
+        <State name="StartTakePick" UI="UI_ScanIDCard" />
+      </States>
+	  <DefaultUIStates>
+		<State name="SavingAccountMainFlow" UI="UI_ScanIDCardSavingAccount"/>
+		<State name="DepositByIDToOwner" UI="UI_ScanIDCardDeposit"/>
+		<State name="DepositIDOnUsAccount" UI="UI_ScanIDCardDeposit"/>
+		<State name="DepositIDOffUsAccount" UI="UI_ScanIDCardDeposit"/>
+		<State name="DepositIDOnUsCard" UI="UI_ScanIDCardDeposit"/>
+		<State name="DepositIDOffUsCard" UI="UI_ScanIDCardDeposit"/>
+		<State name="MaintenanceMainWorkflow" UI="UI_ScanIDCardMaintenanceMainWorkflow"/>
+		<State name="CompleKYCMainFlow" UI="UI_KYCScanIDCard"/>
+		<State name="BillingMainFlow" UI="UI_BillingScanIDCard"/>
+		<State name="Withdrawal" UI="UI_WithdrawalScanIDCard"/>
+		<State name="TransferMainFlow" UI="UI_TransferScanIDCard"/>
+		<State name="PassbookSettleMainFlow" UI="UI_PassbookScanIDCard"/>
+		<State name="FingerprintMaintenanceMainFlow" UI="UI_FingerprintMaintainScanIDCard"/>
+	  </DefaultUIStates>
+	  <!--
+      <Forward event="OnContinue" targetID="ID_UpFileIDCardFront" /> -->
+	  <Forward event="OnContinue" targetID="ID_IDcardInfo" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </ScanDoc>
+	<CommonVerify ID="ID_IDcardInfo" UI="UI_info_review" verifyType="CheckIDCardImage">
+      <States>
+        <State name="NetWorkError" UI="UI_network_error"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_FillFormPassport"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </CommonVerify>
+	<GetDevStatusEx ID="ID_ScanPassPortGetDevStatusEx" UI="" comment="Get device status" devType="CAM" callVisible="0">
+      <States>
+        <State name="GetDevStatusExError" UI="UI_DevError" />
+      </States>
+      <Forward event="OnNormal" targetID="ID_PutPassPortIntoHighCamera" />
+      <Forward event="OnWarn" targetID="ID_PutPassPortIntoHighCamera" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </GetDevStatusEx>
+    <WaitSleep ID="ID_PutPassPortIntoHighCamera" UI="UI_PutIDCardIntoHighCamera" comment="" timeout="5000" >
+	 <DefaultUIStates>
+		<State name="SavingAccountMainFlow" UI="UI_PutIDCardtoCameraSavingAccount"/>
+		<State name="DepositByIDToOwner" UI="UI_PutIDCardIntoHighCameraDeposit"/>
+		<State name="DepositIDOnUsAccount" UI="UI_PutIDCardIntoHighCameraDeposit"/>
+		<State name="DepositIDOffUsAccount" UI="UI_PutIDCardIntoHighCameraDeposit"/>
+		<State name="DepositIDOnUsCard" UI="UI_PutIDCardIntoHighCameraDeposit"/>
+		<State name="DepositIDOffUsCard" UI="UI_PutIDCardIntoHighCameraDeposit"/>
+		<State name="MaintenanceMainWorkflow" UI="UI_PutIDCardIntoHighCameraMaintenanceMainWorkflow"/>
+		<State name="CompleKYCMainFlow" UI="UI_KYCPutPassportIntoHighCamera"/>
+		<State name="BillingMainFlow" UI="UI_BillingInsertOldIDCard"/>
+		<State name="Withdrawal" UI="UI_WithdrawalInsertPassport"/>
+		<State name="TransferMainFlow" UI="UI_TransferInsertPassport"/>
+		<State name="PassbookSettleMainFlow" UI="UI_PassbookInsertOldIDCard"/>
+		<State name="FingerprintMaintenanceMainFlow" UI="UI_FingerprintMaintainInsertOldIDCard"/>
+	  </DefaultUIStates>
+      <Forward event="OnContinue" targetID="ID_ScanPassPortCAM" />
+    </WaitSleep>
+    <ScanDoc ID="ID_ScanPassPortCAM" UI="UI_ScanIDCard" comment="" windowx="140" windowy="325" IsIDCard="2" homeVisible="1" windowwidth="480" windowheight="400" defaulnum="1" timeout="300000" callVisible="0" >
+      <States>
+        <State name="OpenScanDocError" UI="UI_DevError" />
+        <State name="StartTakePick" UI="UI_ScanIDCard" />
+      </States>
+	   <DefaultUIStates>
+		<State name="SavingAccountMainFlow" UI="UI_ScanIDCardSavingAccount"/>
+		<State name="DepositByIDToOwner" UI="UI_ScanIDCardDeposit"/>
+		<State name="DepositIDOnUsAccount" UI="UI_ScanIDCardDeposit"/>
+		<State name="DepositIDOffUsAccount" UI="UI_ScanIDCardDeposit"/>
+		<State name="DepositIDOnUsCard" UI="UI_ScanIDCardDeposit"/>
+		<State name="DepositIDOffUsCard" UI="UI_ScanIDCardDeposit"/>
+		<State name="MaintenanceMainWorkflow" UI="UI_ScanIDCardMaintenanceMainWorkflow"/>
+		<State name="CompleKYCMainFlow" UI="UI_KYCScanIDCard"/>
+		<State name="BillingMainFlow" UI="UI_BillingScanIDCard"/>
+		<State name="Withdrawal" UI="UI_WithdrawalScanIDCard"/>
+		<State name="TransferMainFlow" UI="UI_TransferScanIDCard"/>
+		<State name="PassbookSettleMainFlow" UI="UI_PassbookScanIDCard"/>
+		<State name="FingerprintMaintenanceMainFlow" UI="UI_FingerprintMaintainIDCard"/>
+	  </DefaultUIStates>
+      <Forward event="OnContinue" targetID="ID_SetScanDataPassport" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </ScanDoc>
+    <SetScanData ID="ID_SetScanDataPassport" UI="" comment="" callVisible="0">
+      <Forward event="OnContinue" targetID="ID_ScanPassportInfo" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </SetScanData>
+	<CommonVerify ID="ID_ScanPassportInfo" UI="UI_info_review" verifyType="CheckPassportImage">
+      <States>
+        <State name="NetWorkError" UI="UI_network_error"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_FillFormPassport"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </CommonVerify>
+    <PassportScan  ID="ID_ScanPassport" UI="UI_insert_passport" CallingMethodType="0" manualScan="0" homeVisible="0" timeout="30000">
+      <States>
+        <State name="TakePassport" UI="UI_take_passport" />
+        <State name="ScanningPassport" UI="UI_reading_passport" />
+		    <State name="ScanError" UI="UI_scan_passport_failure" />
+        <State name="HardwareError" UI="UI_hardware_error" />
+      </States>
+      <Forward event="OnContinue" targetID="ID_PassportInfo" />
+      <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />	  
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </PassportScan>
+
+    <CommonVerify ID="ID_PassportInfo" UI="UI_info_review" verifyType="PassportInfo">
+      <States>
+        <State name="NetWorkError" UI="UI_network_error"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_FillFormPassport"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </CommonVerify>
+
+    <!--Fill in the Passport Form-->
+    <FillFormPassport ID="ID_FillFormPassport" UI="UI_input_form_passport" timeout="120000">
+      <Forward event="OnConfirm" targetID="ID_PassportFormInfoCheck"/>
+	    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+    </FillFormPassport>
+
+    <!--填单信息审核请求-->
+    <CommonVerify ID="ID_PassportFormInfoCheck" UI="UI_info_review" verifyType="PassportFormData" useSignPen="0">
+      <States>
+        <State name="NetWorkError" UI="UI_network_error"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_Signature4Pen2"/>
+      <Forward event="OnTryAgain" targetID="ID_FillFormPassport"/>	  
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </CommonVerify>
+
+    <!--  电子签名-->
+    <ConfirmSignInfo4Html ID="ID_Signature" UI="UI_sign_atPad" timeout="60000">
+      <States>
+        <State name="NetWorkError" UI="UI_network_error" />
+        <State name="TimeOutError" UI="UI_timeout" />
+        <State name="ServiceCloseTrans" UI="UI_host_refuse" />
+      </States>
+      <Forward event="OnContinue" targetID="ID_RequestSignCheck" />
+      <Forward event="OnReInput" targetID="ID_Signature" />
+      <Forward event="OnExitEx" targetID="ID_InvokeCloseTransWorkflow" />
+    </ConfirmSignInfo4Html>
+	
+	<!--  电子签名-->
+    <ConfirmSignInfo4Pen ID="ID_Signature4Pen" UI="UI_sign_atPad4Pen" timeout="180000" filename="signature.png">
+      <States>
+        <State name="NetWorkError" UI="UI_network_error" />
+        <State name="TimeOutError" UI="UI_timeout" />
+        <State name="ServiceCloseTrans" UI="UI_host_refuse" />
+      </States>
+      <Forward event="OnContinue" targetID="ID_RequestSignCheck" />
+      <Forward event="OnReInput" targetID="ID_Signature4Pen" />
+      <Forward event="OnExitEx" targetID="ID_InvokeCloseTransWorkflow" />
+    </ConfirmSignInfo4Pen>
+	
+	<!-- 支持压感的电子签名 -->
+    <ConfirmSignInfo4Pen2 ID="ID_Signature4Pen2" UI="UI_sign_atPad4Pen2" timeout="180000" X="323" Y="329" Width="1274" Height="494" ForcePen="0" Thickness="3">
+      <Forward event="OnConfirm" targetID="ID_RequestSignCheck" />
+    </ConfirmSignInfo4Pen2>
+	
+    <CommonVerify ID="ID_RequestSignCheck" UI="UI_info_review" verifyType="SignatureCheck">
+      <States>
+        <State name="NetWorkError" UI="UI_network_error"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_GetQRCodeFac"/>
+      <Forward event="OnTryAgain" targetID="ID_Signature4Pen2"/>	  
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </CommonVerify>
+
+    <QRCodeFac ID="ID_GetQRCodeFac" UI="" comment="" barw="270" barh="70" qrw="130" qrh="130" homeVisible="0">
+      <Forward event="OnContinue" targetID="ID_GenerateDitCarForm" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </QRCodeFac>
+	
+    <GenerateDebitCardForm ID="ID_GenerateDitCarForm" UI="" comment="">
+      <Forward event="OnContinue" targetID="ID_GetPrinterStatusEx" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </GenerateDebitCardForm>
+	
+    <GetDevStatus ID="ID_GetPrinterStatusEx" UI="" comment="Get device status" devType="DocPrinter" callVisible="0">
+      <States>
+        <State name="GetDevStatusExError" UI="UI_hardware_error" />
+      </States>
+      <Forward event="OnNormal" targetID="ID_PrintFormData" />
+      <Forward event="OnWarn" targetID="ID_PrintFormData" />
+      <Forward event="OnFail" targetID="ID_CheckFormImage" />
+    </GetDevStatus>
+	
+    <PrintFormData ID="ID_PrintFormData" UI="UI_printing_form" comment="" ids="IDS_AcPrint" fileWithStamp="0" fileName="iBankProjectAccountApply.html" timeout="120000">
+      <States>
+        <State name="PrintFormDataError" UI="UI_hardware_error" />
+      </States>
+	    <DefaultUIStates>
+		<State name="CreateSavingAccount" UI="UI_PrintFormSavingAccount"/>
+		<State name="DepositMainFlow" UI="UI_SignFormDeposit"/>
+		<State name="saving_with_card" UI="UI_PrintFormSavingAccounwithcard"/>
+	  </DefaultUIStates>
+      <Forward event="OnContinue" targetID="ID_StartFeed" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </PrintFormData>
+
+	<StartFeed ID="ID_StartFeed" UI="UI_scan_form" comment="" feedimg="1" chkbar="0" timeout="120000" homeVisible="0">
+      <States> 
+        <State name="ScanFormSuccess" UI="UI_ScanFormSuccess"></State><!-- pending -->
+        <State name="CheckingQRCode" UI="UI_CheckingQRCode"></State>
+        <State name="QRCodeEmptyOrIncorrect" UI="UI_QRCodeEmptyOrIncorrect"></State><!-- pending -->
+        <State name="StartFeedFailure" UI="UI_hardware_error"></State>
+        <State name="ReStartFeed" UI="UI_RetractFormAgain"></State><!-- pending -->
+        <State name="TakePaper" UI="UI_TakeBackForm"></State><!-- pending -->
+      </States>
+      <Forward event="OnContinue" targetID="ID_CheckFormImage"/>
+      <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnRePrint" targetID="ID_GetPrinterStatusEx"/>
+      <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+    </StartFeed>
+
+    <CommonVerify ID="ID_CheckFormImage" UI="UI_info_review" verifyType="CheckForm">
+      <States>
+        <State name="NetWorkError" UI="UI_network_error"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_OpenAccountSuccessfully"/>
+      <Forward event="OnTryAgain" targetID="ID_GetPrinterStatusEx"/>	  
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </CommonVerify>
+	<Prompt ID="ID_OpenAccountSuccessfully" UI="UI_openAccountSuccess" timeout="5000" comment="show Communication Error">
+      <Forward event="OnTimeout" targetID="ID_GetDevStatus" />
+      <Forward event="OnFail" targetID="ID_GetDevStatus" />
+    </Prompt>
+    <GetDevStatus ID="ID_GetDevStatus" comment="Get device status" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_PrintReceipt"/>
+			<Forward event="OnWarn" targetID="ID_PrintReceipt"/>
+			<Forward event="OnFail" targetID="9999"/>
+	  </GetDevStatus>
+	<!-- 开始打印凭条 -->
+    <PrintReceipt ID="ID_PrintReceipt" UI="UI_PrintingReceipt" formName="ReceiptFormACCEN" showTime="2000">
+      <States>
+        <State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+        <State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+      </States>
+		  <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+	</PrintReceipt>
+    <RequestTransViaRestful ID="ID_RequestTransForAccNumber" UI="UI_waiting" transType="registerAcc"  transFormat="json">
+      <States>
+        <State name="PackFail" UI="UI_general_error"/>
+        <State name="ConnectFail" UI="UI_general_error"/>
+        <State name="SendFail" UI="UI_general_error"/>
+        <State name="ReceiveFail" UI="UI_general_error"/>
+        <State name="ReceiveTimeout" UI="UI_general_error"/>
+        <State name="NetworkFail" UI="UI_general_error"/>
+        <State name="UnpackFail" UI="UI_general_error"/>
+        <State name="HardwareError" UI="UI_general_error"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_OpenAccountSuccessfully"/>
+      <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+    </RequestTransViaRestful>	
+
+
+    <!--开始发卡-->
+    <DispenseCard ID="ID_DispenseCard" UI="UI_dispense_card" homeVisible="0">
+      <States>
+        <State name="DispenseCardError" UI="UI_hardware_error"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_PrintCardNum"/>
+      <Forward event="OnHardwareError" targetID="ID_ReturnCard"/>
+    </DispenseCard>
+
+    <SetData ID="ID_SetDefaultCHN" saveBuffer="{core_PAN,1}" value = "6217000000000000001">
+      <Forward event="OnConfirm" targetID="ID_PrintCardNum"/>
+    </SetData>
+
+	  <PrintCard ID="ID_PrintCardNum" UI="UI_dispense_card" PrintSource="core_PAN" FontSize="50" FontName="Arial" FontType="0" X="80" Y="440" timeout="120000">
+      <States>
+        <State name="PrintCardError" UI="UI_hardware_error"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_PrintCardHolderName"/>
+      <Forward event="OnHardwareError" targetID="ID_ReturnCardForHardwareError"/>
+      <DefaultForward targetID="ID_ReturnCardForHardwareError"/>
+    </PrintCard>
+
+	  <PrintCard ID="ID_PrintCardHolderName" UI="UI_dispense_card" PrintSource="CardHolderName" FontSize="50" FontName="Arial" FontType="0" X="80" Y="540" timeout="120000">
+      <States>
+        <State name="PrintCardError" UI="UI_hardware_error"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_DispenseCardSuccess"/>
+      <Forward event="OnHardwareError" targetID="ID_ReturnCardForHardwareError"/>
+      <DefaultForward targetID="ID_ReturnCardForHardwareError"/>
+    </PrintCard>
+	
+	 <CRDDispenseCardSuccess ID="ID_DispenseCardSuccess" UI="UI_dispense_card" homeEnable="0" IsNeverTimedOut="false" timeout="30000">
+      <States>
+        <State name="EjectWait" UI="UI_dispense_card"/>
+        <State name="TakeCard" UI="UI_take_card"/>
+        <State name="EjectCardError" UI="UI_timeout"/>
+        <State name="TransTimeOut" UI="UI_timeout"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnHardwareError" targetID="ID_ReturnCardForHardwareError"/>
+      <Forward event="OnTimeout" targetID="ID_ReturnCardForNotTake"/>
+    </CRDDispenseCardSuccess>
+	
+	<!--不拿卡吞卡-->
+	<CRDReturnCard ID="ID_ReturnCardForNotTake" UI="UI_waiting" captureCardReason="1" homeVisible="0">
+      <States>
+        <State name="ReturnCardError" UI="UI_hardware_error"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_TakeCardTimeout"/>
+      <Forward event="OnHardwareError" targetID="ID_TakeCardTimeout"/>
+      <Forward event="OnTakeCardSuccess" targetID="ID_ComparePrintingReceiptFlag"/>
+    </CRDReturnCard>
+
+	<!--发卡器故障吞卡-->
+	<CRDReturnCard ID="ID_ReturnCardForHardwareError" UI="UI_waiting" captureCardReason="2" homeVisible="0">
+      <States>
+        <State name="ReturnCardError" UI="UI_hardware_error"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_TakeCardTimeout"/>
+      <Forward event="OnHardwareError" targetID="ID_TakeCardTimeout"/>
+    </CRDReturnCard>
+
+    <!-- 主机要求吞卡 -->
+    <CRDReturnCard ID="ID_ReturnCardHostDemand" UI="UI_waiting" captureCardReason="3" homeVisible="0">
+      <States>
+        <State name="ReturnCardError" UI="UI_hardware_error"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_SetCaptureCardFlag"/>
+      <Forward event="OnHardwareError" targetID="ID_SetCaptureCardFlag"/>
+    </CRDReturnCard>
+
+    <!-- 吞卡后打印凭条 -->
+    <CRDReturnCard ID="ID_ReturnCardReset" UI="UI_waiting" homeVisible="0">
+      <States>
+        <State name="ReturnCardError" UI="UI_hardware_error"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_SetCaptureCardFlag"/>
+      <Forward event="OnHardwareError" targetID="ID_SetCaptureCardFlag"/>
+    </CRDReturnCard>
+
+    <!-- 吞卡后结束交易 -->
+    <CRDReturnCard ID="ID_ReturnCard" UI="UI_waiting" homeVisible="0">
+      <States>
+        <State name="ReturnCardError" UI="UI_hardware_error"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_SetCaptureCardFlag"/>
+      <Forward event="OnHardwareError" targetID="ID_SetCaptureCardFlag"/>
+    </CRDReturnCard>
+	
+	
+	<SetData ID="ID_SetCaptureCardFlag" saveBufferBool="{core_HostAskCaptureCardTemp}" value="True">
+      <Forward event="OnConfirm" targetID="ID_PrintReceiptForCloseTrans"/>
+    </SetData>
+
+	<!--审核不通过-->
+	<WaitSleep ID="ID_AuditingFailCard" UI="UI_agent_refuse" timeout="3000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+    </WaitSleep>
+
+    <WaitSleep ID="ID_ConnectAgentFail" UI="UI_network_error" timeout="5000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+    </WaitSleep>
+
+    <WaitSleep ID="ID_TransTimeOut" UI="UI_timeout" timeout="5000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+    </WaitSleep>
+	
+	<WaitSleep ID="ID_HostRefuse" UI="UI_host_refuse" timeout="5000">
+      <Forward event="OnContinue" targetID="ID_ReturnCardHostDemand" />
+    </WaitSleep>
+  
+	<WaitSleep ID="ID_TakeCardTimeout" UI="UI_card_captured" timeout="5000">
+      <Forward event="OnContinue" targetID="ID_SetCaptureCardFlag" />
+    </WaitSleep>
+
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+
+    <InvokeWorkflow ID="ID_InvokeRequestAgent_WF" name="RequestAgent_WF" comment="Invoke help workflow" fallBackAfterEnd="1">
+      <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+    </InvokeWorkflow>
+    <End ID="9999" comment="End">
+    </End>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnCusBusy" targetID="ID_CusBusyFail"/>
+    <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnCancel" targetID="ID_OtherTrans"/>
+    <Forward event="OnKeyError" targetID="ID_EventError"/>
+    <Forward event="OnRollbackForError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHelp" targetID="ID_InvokeRequestAgent_WF"/>
+  </DefaultForward>
+</Workflow>

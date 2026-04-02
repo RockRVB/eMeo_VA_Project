@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Comments are shown as below
+  ****************************************************************************************************
+  * The screen setting for the screen of NDC/DDC protocol
+  * It will include the parameter setting for any processor to be added in the main loop  
+  *****************************************************************************************************
+-->
+<Root>
+  <Application>
+    <Item key="BackgroundImg" value="D:\GrgBanking\eCAT\Resource\XDC\Image\000\Bkimg_1024.png" valueType="string" />
+    <!-- Configuration Items -->
+    <!-- Loaded during ATMC is being started -->
+    <Item key="InitialScreen" value="003" default="003" valueType="string" />
+    <!-- Played when it is waiting for a customer -->
+    <Item key="ZeroScreen" value="010" default="010" valueType="string" />
+    <!-- The background color from color list in the screenDataFommat.xml
+		<ColorList>
+		<Item key="black" value="1"/>
+		<Item key="red" value="2"/>
+		<Item key="green" value="3"/>
+		<Item key=" yellow" value="4"/>
+		<Item key=" blue" value="5"/>
+		<Item key="magenia" value="6"/>
+		<Item key="cyan" value="7"/>
+		<Item key="white" value="8"/>
+		<Item key="transparent" value="9"/>
+	</ColorList>	
+	-->
+    <Item key="BackgroundColor" value="3" default="1" valueType="int" />
+    <!-- For All text back ground color setting
+        * Enable transparent or not
+       -->
+    <Item key="TextBackgroundColor" value="9" default="9" valueType="int" />
+    <!-- The foreground color from color list in the screenDataFommat.xml   -->
+    <Item key="ForegroundColor" value="1" default="8" valueType="int" />
+    <!-- Switch Delay in ms, increase if flicker happens. -->
+    <Item key="SwitchDelay" value="999999" default="99999" valueType="int" />
+    <!-- Last screen it displays -->
+    <Item key="LastScreen" value="003" default="003" valueType="string" />
+    <!-- default value is , -->
+    <Item key="AmountTemplateSeparator" value=",@" valueType="string" />
+    <!-- Disable the Taskbar  -->
+    <Item key="DisableTaskbar" value="0" valueType="int" />
+    <!-- Is to delete two zero in the rear of the show amount frde 20141127 -->
+    <Item key="IsCutTwoZeroInRear" value="1" valueType="string" />
+    <!-- EN:Is use local detail when verify the notes -->
+    <Item key="IsUseLocalShowAmountDetail" value="0" baeeScreenNumber="366" tempScreenNumber="M10" languageTemplate_0="M00" languageTemplate_1="M01" />
+    <!-- Is to replace the wrong icon name in deposite acion  bxue 20141210，为0时表示使用主机资源，为其他屏幕号，如000时，使用自定义资源  -->
+    <Item key="SpecialDepositSuccess" value="" />
+    <Item key="DDCReceiptSpecialCtrlsToCut" value="(;[" />
+    <Item key="NDCReceiptSpecialCtrlsToCut" value="(;[" />
+    <!-- show accepte notes info order ,default value "0" mean ascending, "1" mean decending-->
+    <Item key="ShowNotesInfoSort" value="0" valueType="string" />
+    <!-- whether show accepte notes info when count is "000" ,default value "0" mean not show , Otherwise show it-->
+    <Item key="IsShowCount000" value="0" valueType="string" />
+    <!-- whether show deposit Total with ".00" ,default value "0" mean not show , 1 mean add ".00"-->
+    <Item key="IsShowDepositToTalWithDecimal" value="0" valueType="string" />
+    <!-- DDC Screen textBolck area row zoomscale ,value range 0~1 ,H68N/H68NL suggest set "0.86" and the Font Height set "26"-->
+    <Item key="ZoomScale" value="1.00" valueType="string" />
+    <!-- DDC Screen FDK area expandScale,value range 1.00~1.10,H68N/H68NL suggest set "1.03".This option is not available unless ZoomScale isn't equal to 1-->
+    <Item key="ExpandScale" value="1.00" valueType="string" />
+    <Item key="NeedMoreTimeScreen" value="000" />
+    <!--this configuration value="1" for the 4 digit screenScript with language mark or value="0" for 3 digit screenScript -->
+    <Item key="AddLangBaseInLoop" value="0" valueType="string" />
+    <!--set default language code for project -->
+    <Item key="DefaultLangCode" value="0" valueType="string" />
+  </Application>
+  <FontCfg>
+    <!-- Define thesetting for all font settings
+      * Default font configuration of charset-0, all others charset inherits 
+      * configurations from this one except it is exceptly configured.
+      * Font height referes to line height in percent against font width(in fact font size). 
+      -->
+    <Item key="0" value="NDCAlphanumeric1" height="36" width="25" topIndent="0" wordSpace="0" leftIndent="0" />
+    <Item key="1" value="NDCAlphanumeric1" height="36" width="25" topIndent="0" wordSpace="0" leftIndent="0" />
+    <Item key="2" value="NDCAlphanumeric2" height="36" width="25" topIndent="0" wordSpace="0" leftIndent="0" />
+    <Item key="3" value="NDCAlphanumeric1" height="36" width="25" topIndent="0" wordSpace="0" leftIndent="0" />
+    <Item key="4" value="NDCAlphanumeric1" height="36" width="25" topIndent="0" wordSpace="0" leftIndent="0" />
+    <!--<Item key="5" value="GRGDDC-RUSS_BOLD" height="36" width="25" topIndent="0" wordSpace="0" leftIndent="0" />-->
+    <Item key="5" value="NDCAlphanumeric1" height="36" width="25" topIndent="0" wordSpace="0" leftIndent="0" />
+    <Item key="6" value="test" height="36" width="25" topIndent="0" wordSpace="0" leftIndent="0" />
+    <Item key="7" value="DDC-8X16" height="36" width="25" topIndent="0" wordSpace="0" leftIndent="0" />
+    <Item key="8" value="ROSBANK" height="36" width="25" topIndent="0" wordSpace="0" leftIndent="0" />
+    <Item key="(" value="ROSBANK BOLD" height="36" width="25" topIndent="0" wordSpace="0" leftIndent="0" />
+    <Item key="&gt;" value="BLACK ATM" height="36" width="25" topIndent="0" wordSpace="0" leftIndent="0" />
+    <Item key="Y" value="Courier New" height="36" width="25" topIndent="0" wordSpace="0" leftIndent="0" />
+    <Item key="Z" value="NCR R2" height="36" width="25" topIndent="0" wordSpace="0" leftIndent="0" />
+    <Item key="default" value="NDCAlphanumeric1" height="36" width="25" topIndent="0" wordSpace="0" leftIndent="0" />
+  </FontCfg>
+  <WebExtensions>
+    <!-- Is In WebExtension UI mode [ 1:yes | 0:no ]  -->
+    <Item key="IsWebExtensionUIMode" value="0" />
+  </WebExtensions>
+  <Local>
+    <!-- whether the local definition page is used,
+	If the 888 or 999 page sent to the host is received, the corresponding local page is 0100229, of which [888 corresponds to 010, 999 for 022].
+	By frde 11:55:12 2014-9-1
+	-->
+    <!--是否使用本地之定义页面，
+	如果接收到主机下发的888或999页面，则对应显示本地页面010,0229，其中[888对应010,999对应022]
+	by frde 2014-9-1 11:55:12
+	-->
+    <Item key="IsUseLocalResource" value="0" HostScreenNum="366" LocalScreenNum="M10" />
+    <!--If the left button is the offset of the right button, if value = 5, left - 5 represents the left, right + 5 represents -->
+    <!--确定是左侧按钮还是右侧按钮的偏移位，如value=5,则，left-5代表左侧,right+5代表 -->
+    <Item key="RightButtonTextOffset" value="0" screenNum="888" />
+    <!--line deviation -->
+    <!--行偏移 -->
+    <Item key="UpButtonTextOffset" value="0" screenNum="888" />
+  </Local>
+  <LocalHTML>
+    <!--1:Support MuiltLanguage, 0:not support -->
+    <Item key="UpdateFileSupportMuiltLang" value="0" />
+  </LocalHTML>
+  <InputTemplate>
+    <!--
+	0: TEMPLATE_FORMAT_CALCULATOR: C template
+	1: TEMPLATE_FORMAT_DECIMAL: D template
+	2: TEMPLATE_FORMAT_DEFAULT: no template
+	/ / add by frde 2014-9-17 16:02:24
+	-->
+    <!--
+	0：TEMPLATE_FORMAT_CALCULATOR：C模板
+	1：TEMPLATE_FORMAT_DECIMAL：D模板
+	2: TEMPLATE_FORMAT_DEFAULT：无模板
+	// add by frde 2014-9-17 16:02:24
+	-->
+    <Item key="AmountInput" value="0" />
+    <Item key="InformationInput" value="0" />
+    <!-- remove the amount template 004 screen blank or line break
+	Clear Screen 004 Spacing -->
+    <!--是否清除金额模板004屏幕空格或换行符
+        Clear Screen 004 Spacing	-->
+    <Item key="ClearSpacing" value="0" />
+  </InputTemplate>
+</Root>

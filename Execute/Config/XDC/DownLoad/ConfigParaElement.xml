@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!--  
+		* Configuration Parameters from host.
+	-->
+	<SMRA>
+		<!-- No option selected. -->
+		<Item key="0" value="NoOption" valueType="string"/>
+		<!--  A separate Ready status message is sent to central in response to a transaction reply message.-->
+		<Item key="1" value="ReadyStatus" valueType="string"/>
+		<!--  The terminal will automatically return to the previous mode when it leaves supply mode.-->
+		<Item key="2" value="SupplyMode" valueType="string"/>
+		<!-- No option selected. -->
+		<Item key="4" value="NoOptionT" valueType="string"/>
+		<!--  The amount buffer length is set to 12 digits(if value is 1). Otherwise, the buffer length is set to 8 digits(value is 0 as default value).-->
+		<Item key="8" value="AmtBufLen" valueType="string"/>
+	</SMRA>
+</Root>

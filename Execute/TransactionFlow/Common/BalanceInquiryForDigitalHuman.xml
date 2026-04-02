@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="BalanceInquiryForDigitalHuman">
+	<Head type="GRGWorkflow" author="SWK" timeStamp="" comment="The workflow design is for inquiry"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_InsertCard"/>
+		</Start>
+		
+		<InsertCard ID="ID_InsertCard" UI="UI_InsertCardBalance" digitalVoiceKey="|action_001" comment="insert second card" timeout="30000" activeKeys="CANCEL" terminateKeys="CANCEL">
+			<States>
+				<State name="ReadingCard" UI="UI_Operating"/>
+			</States>
+			<Forward event="OnMagneticCard" targetID="ID_InputPin"/>
+			<Forward event="OnFallbackCard" targetID="ID_InputPin"/>
+			<Forward event="OnICCard" targetID="ID_InputPin"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnInvalidCard" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InsertCard>
+		
+		<VTMInputPinEx ID="ID_InputPin" UI="UI_InputPINBalance" digitalVoiceKey="action_003" comment="Enter your PIN" autoEnd="1" minLen="4" maxLen="6" timeout="120000">
+			<Forward event="OnConfirm" targetID="ID_BalanceShow" />
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+			<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow" />
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+			<DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+		</VTMInputPinEx>
+		
+		<Prompt ID="ID_BalanceShow" UI="UI_ShowBalance" digitalVoiceKey="action_004" timeout="60000" comment="show Balance">
+			<Forward event="OnConfirm" targetID="ID_VTMRejectCard"/>
+		</Prompt>
+		
+		<VTMRejectCard ID="ID_VTMRejectCard" UI="UI_InvalidCard" timeout="30000">
+			<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+		</VTMRejectCard>
+		
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+		</End>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

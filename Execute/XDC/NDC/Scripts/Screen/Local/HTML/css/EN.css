@@ -1,0 +1,431 @@
+﻿body {
+	left: 0px;
+	top: 0px;
+	margin: 0px;
+	background-image: none;
+	background-repeat: no-repeat;
+	background-position: center;
+	overflow: hidden;
+}
+
+input {
+	readonly:expression(this.readOnly=true);
+}
+.backgroundDivForOperating {
+	background-image: url(../../Video/CN/operating.gif);
+	position: absolute;
+	width: 800px;
+	height: 600px;
+	z-index: -1;
+}
+
+.backgroundDiv {
+	background-image: url(../../Image/CN/Bkimg_800.png);
+	position: absolute;
+	width: 800px;
+	height: 600px;
+	z-index: -1;
+}
+
+.dateDiv {
+	position: absolute;
+	left: 30%;
+	top: 2%;
+	font-family: Tahoma;
+	font-size: 19px;
+	color: red;
+	text-align: center;
+}
+
+.deviceStatusDiv {
+	position: absolute;
+	width: 438px;
+	height: 40px;
+	left: 23%;
+	top: 90%;
+	margin-top: -100px;
+	border: solid 0px red;
+	color: red;
+	font-family: Tahoma;
+	font-size: 22px;
+	text-align: center;
+}
+
+.zeroStateDiv {
+	position: absolute;
+	left: 0px;
+	z-index: -1;
+}
+
+.buttonLeft {
+	position: absolute;
+	width: 167px;
+	top: 0px;
+	font-family: Tahoma;
+	font-size: 25px;
+	color: #ffffff;
+	text-align: center;
+	left: 0px;
+}
+
+.buttonLeftCommonStyle {
+	position: absolute;
+	width: 167px;
+	top: 5px;
+	font-family: Tahoma;
+	font-size: 25px;
+	color: #ffffff;
+	text-align: center;
+	letter-spacing: 1pt;
+	left: 0px;
+}
+
+.buttonLeftForLongText {
+	position: absolute;
+	width: 167px;
+	top: 9px;
+	font-family: Tahoma;
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	left: 0px;
+}
+
+.buttonLeftForTwoLines {
+	position: absolute;
+	width: 167px;
+	top: 6px;
+	font-family: Tahoma;
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	left: 0px;
+	line-height: 18px
+}
+.buttonLeftForTakeCard {
+	position: absolute;
+	width: 168px;
+	top: 12px;
+	font-family: Tahoma;
+	font-size: 24px;
+	color: #ffd800;
+	text-align: center;
+	letter-spacing: 1pt;
+	left: 0px;
+}
+
+.buttonRight {
+    position: absolute;
+    width: 168px;
+    top: 8px;
+    font-family: 思源黑体 CN Regular;
+    font-size: 22px;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 1pt;
+    left: 0px;
+   
+}
+
+.buttonRightCommonStyle {
+	position: absolute;
+	width: 167px;
+	top: 5px;
+	font-family: 思源黑体 CN Regular;
+	font-size: 25px;
+	color: #ffffff;
+	text-align: center;
+	letter-spacing: 1pt;
+	left: 0px;
+}
+
+.buttonRightForLongText {
+	position: absolute;
+	width: 167px;
+	top: 9px;
+	font-family: Tahoma;
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	left: 0px;
+}
+
+.buttonRightForTwoLines {
+	position: absolute;
+	width: 167px;
+	top: 6px;
+	font-family: Tahoma;
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	left: 0px;
+	line-height: 18px
+}
+
+.mainDivOneLine {
+	margin-top: 115px;
+	margin-bottom: 75px;
+	font-family: Tahoma;
+	font-size: 32px;
+	color: #ffffff;
+	text-align: center;
+}
+
+.mainDivOneLineCommonStyle {
+	margin-top: 115px;
+	margin-bottom: 75px;
+	font-family: 思源黑体 CN Regular;
+	font-size: 32px;
+	color: #ffffff;
+	text-align: center;
+	letter-spacing: 1pt;
+}
+
+.mainDivTwoLines {
+	margin-top: 116px;
+	margin-bottom: 28px;
+	font-family: Tahoma;
+	font-size: 32px;
+	color: #ffffff;
+	text-align: center;
+}
+
+.mainDivThreeLines {
+	margin-top: 115px;
+	margin-bottom: 75px;
+	font-family: Tahoma;
+	font-size: 32px;
+	color: #ffffff;
+	text-align: center;
+}
+
+.mainDivMiddle {
+	margin-top: 100px;
+	font-family: Tahoma;
+	font-size: 32px;
+	color: #ffffff;
+	text-align: center;
+}
+
+.mainDivUpperMiddle {
+	margin-top: 173px;
+	font-family: Tahoma;
+	font-size: 32px;
+	color: #ffffff;
+	text-align: center;
+}
+
+.inputDiv {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.inputDivRightAlign1 {
+	margin-top: 20px;
+	text-align: right;
+	width: 66%;
+}
+
+.inputDivRightAlign2 {
+	margin-top: 20px;
+	text-align: right;
+	width: 75%;
+}
+
+.inputPrompt {
+	height: 100%;
+	margin-bottom: 8px;
+	font-family: Tahoma;
+	font-size: 25px;
+	color: #ffffff;
+}
+
+.inputPromptForInquiryResult {
+	height: 100%;
+	margin-bottom: 8px;
+	font-family: Tahoma;
+	font-size: 25px;
+	color: #ffffff;
+	margin-left: -110px;}
+	
+.inputTextAlign {
+    font-family: Tahoma;
+	font-size:50px;
+	color:#ffffff;
+	background:none;
+	background-image:url(../../Image/CN/bg_input.PNG);
+	background-repeat:no-repeat;
+	border:0px;
+	width:238px;
+	height:60px;
+	text-align:center;
+	padding-top:5px;
+}
+
+
+.inputTextLeftAlign {
+	font-family: Tahoma;
+	font-size: 23px;
+	color:#ffffff;
+	background:none;
+	background-repeat:no-repeat;
+	text-align: Left;
+		border-style: solid;
+    border-color: #0099cc;
+	border-width: 1px;
+}
+
+.inputTextCenterAlign {
+	font-family: Tahoma;
+	font-size: 23px;
+	color:#ffffff;
+	background:none;
+	background-repeat:no-repeat;
+	text-align: center;
+		border-style: solid;
+    border-color: #0099cc;
+	border-width: 1px;
+}
+
+.inputTextRightAlign {
+	font-family: Tahoma;
+	font-size: 23px;
+		color:#ffffff;
+	background:none;
+	background-repeat:no-repeat;
+	text-align: right;
+		border-style: solid;
+    border-color: #0099cc;
+	border-width: 1px;
+}
+
+.promptDiv {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.promptNormalText {
+	font-family: Tahoma;
+	font-size: 20px;
+	color: #ffffff;
+}
+
+.promptKeyText {
+	font-family: Tahoma;
+	font-size: 20px;
+	color: red;
+}
+
+.videoDiv {
+	margin-top: 30px;
+	text-align: center;
+}
+
+.CounterDiv {
+	position:absolute;
+	top: 20px;
+	right: 20px;
+	font-family: Tahoma;
+	font-size: 36px;
+	color: #ffffff;
+	text-align: right;
+	letter-spacing: 1pt;
+}
+
+.CounterNum {
+	width:33px;
+	text-align:right;
+	padding:2px;
+}
+
+.CounterTable {
+	table-layout:fixed;
+	height:100%;
+	border-collapse:collapse;
+	border:solid 0px black;
+}
+
+.marqueeDiv {
+	position: absolute;
+	left: 210px;
+	right: 210px;
+	top: 550px;
+	font-family: Tahoma;
+	font-size: 25px;
+	color: red;
+	text-align: center;
+	letter-spacing: 1pt;
+}
+
+.pageCount 
+{
+	position:absolute;
+	width:30px;
+	height:20px;
+	z-index:1;
+	left: 715px;
+	top: 145px;
+	font-family: Tahoma;  
+        color:#484848;
+}
+
+.totalCount 
+{
+	position:absolute;
+	width:150px;
+	height:19px;
+	z-index:2;
+	left: 352px;
+	top: 422px;
+	font-size: 18px;
+	font-family: Tahoma;
+        color:#484848;
+}
+
+
+.mxTable
+{
+    table-layout:fixed;
+    font-family: Tahoma;
+}
+.mxTable td
+{
+	line-height:35px;
+}
+.mxTable tr
+{
+    height:40px;
+    border-bottom-style:none;
+}
+
+.tableFont 
+{
+  font-size: 16px;
+  font-family: Tahoma;
+  font-weight:bold;
+  color:#484848;
+}
+
+.gifDiv 
+{
+    position:absolute; 
+    left:82px; 
+    top:225px;
+}
+
+.gifImgDiv 
+{
+    width:636px; 
+    height:229px;
+}
+.inputPinTitle {
+position:absolute; 
+top:190px; 
+right:50px; 
+width: 350px; 
+text-align:center; 
+font-family: Tahoma; 
+font-size: 28px; 
+color: #ffffff; 
+letter-spacing: -1pt;
+}

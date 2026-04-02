@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- 
+  ****************************************************************************************************
+  * [1] 
+  * [2]  
+  *****************************************************************************************************
+-->
+<Root>  
+  <Message>    
+    <!-- 
+    * [1] Message feature(s) support or not
+    * [2] Some device status will be enabled or customized by special requirement.
+    * Sample:
+    * 	<Item Key="Commands"  Support="1" Enable="0"/>   
+    -->
+    
+    <!-- -->
+    <Commands Support="1">
+    	 
+    </Commands>
+    
+    <!-- -->
+    <Configuartion Support="1">
+    	 
+    </Configuartion>
+    
+    <!-- -->
+    <EMV Support="1">
+    	 
+    </EMV>
+    
+    <!-- -->
+    <FunctionParaser Support="1">
+    	 
+    </FunctionParaser>
+
+    <!-- -->
+    <Others Support="1">
+    	 
+    </Others>
+    
+    <!-- -->
+    <ReceiptDatParser Support="1">
+    	 
+    </ReceiptDatParser>
+    
+    <!-- -->
+    <RKL Support="1">
+    	 
+    </RKL>
+    
+    <!-- -->
+    <ScreenParser Support="1">
+    	 
+    </ScreenParser>  
+   
+    <!-- -->
+    <Status Support="1">
+    	 
+    </Status>
+    
+    <!-- -->
+    <Transaction Support="1">
+    	 
+    </Transaction>  
+        
+  </Message>
+ 
+</Root>

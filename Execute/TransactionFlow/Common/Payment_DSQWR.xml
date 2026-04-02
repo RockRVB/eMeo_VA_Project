@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="Payment_DSQWR">
+<!--中间业务-大石桥水费-->
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for transfer"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_InputPaymentNumber"/>
+		</Start>
+
+		<!--输入缴费号码-->
+		<InputInfo ID="ID_InputPaymentNumber" UI="UI_Payment_WR_InputPaymentNumber"  timeout="60000"  comment="Input payment number" minLen="7" maxLen="8">
+			<States>
+				<State name="InputInfoAgain" UI="UI_Payment_WR_InputPaymentNumberAgain"/>
+				<State name="InputInfoUnmatch" UI="UI_Payment_WR_InputPaymentNumberUnmatch"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_RequestTransForPaymentInquiry"/>
+			<Forward event="OnContinue" targetID="9999"/>
+		</InputInfo>		
+		
+		<!--缴费查询-->
+	  <RequestTrans ID="ID_RequestTransForPaymentInquiry" UI="UI_RequestTrans" transType="PAY_INQ" comment="Transfer request for Payment Inquiry">
+			<States>
+				<State name="PackFail" UI="UI_GeneralError"/>
+				<State name="ConnectFail" UI="UI_GeneralError"/>
+				<State name="SendFail" UI="UI_GeneralError"/>
+				<State name="ReceiveFail" UI="UI_GeneralError"/>
+				<State name="ReceiveTimeout" UI="UI_GeneralError"/>
+				<State name="NetworkFail" UI="UI_GeneralError"/>
+				<State name="UnpackFail" UI="UI_GeneralError"/>
+				<State name="HardwareError" UI="UI_GeneralError"/>
+				<State name="TransNotAccepted" UI="UI_ICTransNotAccepted"/>
+				<State name="TransDeclined" UI="UI_ICTransDeclined"/>
+				<State name="TransTerminated" UI="UI_ICTransTerminated"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InputPaymentAmount"/>
+			<Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnReceiveFail" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnNetworkFail" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnUnpackFail" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+			<Forward event="OnReInputPin" targetID="ID_ReInputPin"/>
+		</RequestTrans>   
+		
+		<!--输入缴费金额-->
+		<InputOtherAmount ID="ID_InputPaymentAmount" UI="UI_Payment_WR_InputPaymentAmount" maxOtherAmount="500" comment="Input Payment amount">
+			<Forward event="OnConfirm" targetID="ID_ConfirmPaymentInfomation"/>
+			<Forward event="InputAmountExceedsLimit" targetID="ID_InputPaymentAmountError"/>
+			<Forward event="InputAmountError" targetID="ID_InputPaymentAmountError"/>
+			<Forward event="OnContinue" targetID="9999"/>
+		</InputOtherAmount>
+		
+		<!--确认缴费信息-->
+		<SelectFunction ID="ID_ConfirmPaymentInfomation" UI="UI_Payment_WR_ConfirmPaymentInfomation" comment="Confirm Payment Info">
+			<Forward event="OnConfirm" targetID="ID_RequestTrans"/>
+			<Forward event="OnContinue" targetID="9999"/>
+		</SelectFunction>
+		
+		<!--缴费-->
+		<RequestTrans ID="ID_RequestTrans" UI="UI_RequestTrans" transType="PAY" comment="Payment request">
+			<States>
+				<State name="PackFail" UI="UI_GeneralError"/>
+				<State name="ConnectFail" UI="UI_GeneralError"/>
+				<State name="SendFail" UI="UI_GeneralError"/>
+				<State name="ReceiveFail" UI="UI_GeneralError"/>
+				<State name="ReceiveTimeout" UI="UI_GeneralError"/>
+				<State name="NetworkFail" UI="UI_GeneralError"/>
+				<State name="UnpackFail" UI="UI_GeneralError"/>
+				<State name="HardwareError" UI="UI_GeneralError"/>
+				<State name="TransNotAccepted" UI="UI_ICTransNotAccepted"/>
+				<State name="TransDeclined" UI="UI_ICTransDeclined"/>
+				<State name="TransTerminated" UI="UI_ICTransTerminated"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_ShowPaymentResult"/>
+			<Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnReceiveFail" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnNetworkFail" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnUnpackFail" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+			<Forward event="OnReInputPin" targetID="ID_ReInputPin"/>
+		</RequestTrans>
+		<InputPin ID="ID_ReInputPin" UI="UI_ReInputPin"  autoEnd="1"  comment="ReInput password">
+			<Forward event="OnConfirm" targetID="ID_CheckCardType"/>
+		</InputPin>
+		<CheckCardType ID="ID_CheckCardType" comment="Check card type">
+			<Forward event="OnMagneticType" targetID="ID_RequestTrans"/>
+			<Forward event="OnICType" targetID="ID_ICAppLoaded"/>
+			<Forward event="OnPureEC" targetID="ID_ICAppLoaded"/>
+		</CheckCardType>
+		<ICAppLoaded ID="ID_ICAppLoaded" UI="UI_ICTransactionIsBeing" comment="">
+			<Forward event="OnContinue" targetID="ID_RequestTrans"/>
+			<Forward event="OnFallback" targetID="ID_RequestTrans"/>
+			<Forward event="OnTryAgain" targetID="ID_TryAgain"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		</ICAppLoaded>
+		<!--主机拒绝，显示拒绝码对应的提示信息，然后退卡-->
+		<Prompt ID="ID_HostRefuse" UI="UI_HostRefuse" timeout="5000" comment="show host refuse">
+			<Forward event="OnTimeout" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnFail" targetID="ID_PrintReceiptForCloseTrans"/>
+		</Prompt>
+		<Prompt ID="ID_ShowPaymentResult" UI="UI_PaymentSuccess" comment="Transfer result" timeout="4000">
+			<Forward event="OnTimeout" targetID="ID_GetDevStatus"/>
+			<Forward event="OnFail" targetID="ID_GetDevStatus"/>
+		</Prompt>
+		<GetDevStatus ID="ID_GetDevStatus" comment="Get device status" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_PrintReceipt"/>
+			<Forward event="OnWarn" targetID="ID_PrintReceipt"/>
+			<Forward event="OnFail" targetID="9999"/>
+		</GetDevStatus>
+		<!-- 开始打印凭条 -->
+		<PrintReceipt ID="ID_PrintReceipt" UI="UI_PrintingReceipt" formName="ReceiptFormCN" showTime="3">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="9999"/>
+		</PrintReceipt>
+		<PrintReceipt ID="ID_PrintReceiptForCloseTrans" UI="UI_PrintingReceipt" formName="ReceiptFormCN" showTime="3">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</PrintReceipt>
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+		</End>
+		<End ID="ID_TryAgain" fallBack="ID_ICMoreAppSelectForMainMenu" comment="End">
+		</End>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

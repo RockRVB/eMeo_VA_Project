@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../../css/default.css" />
+<link rel="stylesheet" type="text/css" href="../../css/Button.css" />
+
+<link rel="stylesheet" type="text/css" href="../../css/slick.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/slick-theme.min.css"/>
+
+<script TYPE="text/javascript" SRC="../../js/jquery.min.js"></script>
+<script type="text/javascript" src='../../js/slick.min.js'></script>
+<SCRIPT type="text/javascript" src="../../js/util.js" ></SCRIPT>
+
+</head>
+<body>
+	<header>
+		<div id="logo">
+			welcome to use
+		</div>
+		<div id="showTime"></div>	
+    </header> 
+    <div id="headerNav">
+        <!--<div class="menu" id="Fallback" tag="OnFallback" type="Button" >menu</div>-->
+        <div class="exit" id="CANCEL" tag="CANCEL" type="Button" >exit</div>
+    </div>
+	
+	<div id="bi" style="left:8rem">
+        <div>PLEASE CHOOSE CASH DISPENSE METHOD </div>
+    </div>
+	<div id="btn_container"  class="menu">
+          <ul>
+            <li class="account" id="F2" tag="F2" type="Button" visible="{Binding F2_Visible}">LARGE NOTES</li>
+            <li class="account" id="F4" tag="F4" type="Button" visible="{Binding F4_Visible}">MIXED NOTES</li>
+            <li class="account" id="F6" tag="F6" type="Button" visible="{Binding F6_Visible}">SMALL NOTES</li>
+          </ul>
+    </div>
+    
+	<script>
+        $("nav").slick({
+             arrows:false,
+             dots: true,
+             infinite: false,
+             slidesToShow: 1,
+            slidesToScroll: 1,
+             touchThreshold:100,
+             centerPadding:"10rem",
+		 	draggable:true
+			
+         });
+		 $('nav').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+				console.log(nextSlide);
+		});
+    </script>
+    </body>
+
+</html>

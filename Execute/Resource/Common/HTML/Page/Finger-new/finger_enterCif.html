@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <script src=""></script>
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <style>
+        .g-form {text-align: center;}
+        .g-form-item-content {flex: none}
+        .g-form-item {display: inline-flex;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <g-header>
+            <img slot='left' class='logo' src="../../images/logo.png" alt="">
+            <g-button class="exit-btn" slot='right' id='exitBtn' ids='ids_Exit' transparent>Exit</g-button>
+        </g-header>
+        <g-main>
+            <h2 ids='ids_finger_enterCif' class='main-title'>Please enter your CIF</h2>
+            <g-form :model="formModel" ref="form" label-position='right'>
+                <g-form-item label="CIF" prop="cif" ids='ids_finger_cif' required>
+                    <g-input type='number' id='cif' content='{Binding cif mode=2}' v-model="formModel.cif" placeholder="please input your cif"></g-input>
+                </g-form-item>
+            </g-form>
+        </g-main>
+        <g-footer :height='150'>
+            <g-button class="command-btn" id='OnCancel' tag='OnCancel' type='button' ids='ids_Btn_cancel' round transparent>Cancel</g-button>
+            <g-button class="command-btn" id='OnConfirm' type='button' @click='handleSubmit' ids='ids_Btn_confirm' round>Confirm</g-button>
+        </g-footer>
+    </div>
+</body>
+</html>
+
+<script>
+    var app = new Base({
+        data: {
+            formModel: {
+                cif: ''
+            },
+        },
+        methods: {
+            handleSubmit: function() {
+                this.$refs.form.validate(function(valid) {
+                    if(valid) {
+                        goto('OnConfirm')
+                    }
+                }.bind(this))
+            }
+        },
+        created: function() {
+            window.onload = function() {
+                var init = document.querySelector('#cif').value
+                this.formModel.cif = init || ''
+            }.bind(this)
+        }
+    }).$mount('#app')
+</script>

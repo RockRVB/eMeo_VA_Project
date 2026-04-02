@@ -1,0 +1,75 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>角色登陆页面</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/maintenance/cn.css" />
+<script src="../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../js/jquery-ui.min.js"></script>
+<script src="../../../js/maintenance/common/global.js"></script>
+<script src="../../../js/maintenance/component/components.js"></script>
+<script src="../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../js/maintenance/ui/interface.js"></script>
+<!--<script src="../../../js/maintenance/ui/custom-ui.js"></script>-->
+<script src="../../../js/maintenance/ui/maintenance/loginrole.js"></script>
+</head>
+
+<script type="text/javascript">
+	$(function(){
+		$("#INPUT_PASSWORD").focus();
+	})
+</script>
+
+<body>
+
+<!--界面容器-->
+<div class="wrapper"> 
+	<!--居中显示-->
+	<div class="loginrole"> 
+		<!--左边-->
+		<div class="loginrole-left"> 
+			
+			<!--左边标签区域-->
+			<div class="loginrole-left-zone">
+				<div>
+					<label id="STATIC_ROLE_LABEL" ids="IDS_UserLogin_role"  class="loginrole-user-label">&nbsp;</label>
+					<button id="FUN_1" type="button" class="button-toggle selected" isSelected="1" dataToSend="FUN_NEXT" isToggle="1" parentSelector=".loginrole-left-zone"> <span class="tip"></span> <span class="button-text" >&nbsp;</span> </button>
+				</div>
+				<div class="loginrole-vertical-space1">
+					<label class="loginrole-label-hidden"></label>
+					<button id="FUN_2" type="button" class="button-toggle" dataToSend="FUN_NEXT" isToggle="1"  parentSelector=".loginrole-left-zone"> <span class="tip"></span> <span class="button-text" >&nbsp;</span> </button>
+				</div>
+				<div class="loginrole-vertical-space2">
+					<label for="INPUT_PASSWORD" id="STATIC_PASSWORD_LABEL" ids="IDS_PasswordLogin_role"  class="loginrole-password-label">&nbsp;</label>
+					<input type="password" class="input-text loginrole-password" id="INPUT_PASSWORD" maxlength= "6" password = "1" validchars = "1234567890">
+				</div>
+			</div>
+			
+			<!--登录和退出按钮-->
+			<div class="clear loginrole-vertical-space3">
+				<button id="KEYBOARD_ENTER" type="button" class="button-red loginrole-horizontal-space1"> <span class="tip"></span> <span ids="IDS_LoginLogin_role" class="button-text" >&nbsp;</span> </button>
+				<button id="FUN_QUIT" type="button" class="button-red loginrole-horizontal-space2"> <span class="tip"></span> <span ids="IDS_ExitLogin_role" class="button-text" >&nbsp;</span> </button>
+			</div>
+			<!--登陆提示文字-->
+			<div class="loginrole-vertical-space4">
+				<div><span id="STATIC_ROLEDESP"  class="loginrole-description">&nbsp;</span></div>
+				<div class="loginrole-vertical-space5"> <span id="STATIC_PROMPT"  class="loginrole-prompt">&nbsp;</span> </div>
+			</div>
+		</div>
+		<!--右边-->
+		<div class="loginrole-right"> 
+			<!--键盘-->
+			<div id="keyboard" type="KEYBOARD_NUMBER" class="keyboard-number" useEnterKey = "0" clearKeyIndex = "11"> 
+				<!--键盘操作提示-->
+				<div id="keyboard-tip" class="keyboard-tip clear none" ids="IDS_KeyboardTip">&nbsp;</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

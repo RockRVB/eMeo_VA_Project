@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OCRServiceConfig ignoreFileNoChange="1">
+  <Registry rootKey="LocalMachine" subKey="SOFTWARE\eCATR2" name="PS_NoteSNRInfo" nameForHWEnable="PL_SNR_HW_SUPPORTED" nameForSPEnable="PL_SNR_SP_SUPPORTED"/>
+  <Format4Ini title="Cash_Info" operationTime="OperationTime" level2CountName="LEVEL2_COUNT" level3CountName="LEVEL3_COUNT" level4CountName="LEVEL4_COUNT" level2DetailPrefix="LEVEL2_" level3DetailPrefix="LEVEL3_" level4DetailPrefix="LEVEL4_" deleteFile="0" creatAgentIni="0" iniFileFolder="C:\AMMAPI\OCR" fileStoredDays="180"/> 
+  <!-- notPrintOCRCommandForJPTR 的数值为以下的数字，屏蔽多项指令时，使用|分隔
+		Unknown = 0,
+		Dispense = 1,
+		RetractForCDM = 2,
+		ResetForCDM = 3,
+		Reject = 4,
+		CashIn = 5,
+		RetractForCIM = 6,
+		CashInEnd = 7,
+		ResetForCIM = 8,
+		Rollback = 9,
+		OpenForCDM = 10,
+		OpenForCIM = 11,
+		ResetCDMByAdmin = 12,
+		ResetCIMByAdmin = 13,
+		StartExchangeForCDM = 14,
+		StartExchangeForCIM = 15,
+		EndExchangeForCDM = 16,
+		EndExchangeForCIM = 17,
+  -->
+  <!--
+	printJournalType等于1时，ocr流水只打印电子流水;2时，只打印纸质流水;其他值为电子、纸质都打印
+   -->
+  <PrintConfig printJournal="1" printNumForRPTR="3" printNUMForJPTR="3" notPrintOCRCommandForJPTR="7|9" printJournalType="3"/>
+ </OCRServiceConfig>

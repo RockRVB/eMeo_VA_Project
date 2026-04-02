@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!-- Device Identifier between device identifier and device name(Associated configuration data -->
+	<!--
+	A through H - Type of bill 
+a through h - Type of bill that is low or empty 
+J - Denomination ID cannot be read 
+@ - No cassette present 
+_ (underscore) - No feed module present 
+-->
+	<Cassette>
+		<Item key="@" KnowStatus="0" DenominationID="@" DenominationIDLow="@" StatusNormal="&lt;0" StatusLow="&lt;0"/>
+		<Item key="1" KnowStatus="1" DenominationID="A" DenominationIDLow="a" StatusNormal="&lt;1" StatusLow="&gt;1"/>
+		<Item key="2" KnowStatus="1" DenominationID="B" DenominationIDLow="b" StatusNormal="&lt;2" StatusLow="&gt;2"/>
+		<Item key="3" KnowStatus="1" DenominationID="C" DenominationIDLow="c" StatusNormal="&lt;3" StatusLow="&gt;3"/>
+		<Item key="4" KnowStatus="1" DenominationID="D" DenominationIDLow="d" StatusNormal="&lt;4" StatusLow="&gt;4"/>
+		<Item key="5" KnowStatus="1" DenominationID="E" DenominationIDLow="e" StatusNormal="&lt;5" StatusLow="&gt;5"/>
+		<Item key="6" KnowStatus="1" DenominationID="F" DenominationIDLow="f" StatusNormal="&lt;6" StatusLow="&gt;6"/>
+		<Item key="7" KnowStatus="1" DenominationID="G" DenominationIDLow="g" StatusNormal="&lt;7" StatusLow="&gt;7"/>
+		<Item key="8" KnowStatus="1" DenominationID="H" DenominationIDLow="h" StatusNormal="&lt;8" StatusLow="&gt;8"/>
+		<Item key="J" KnowStatus="0" DenominationID="J" DenominationIDLow="J" StatusNormal="&lt;:" StatusLow="&lt;:"/>
+		<Item key="_" KnowStatus="0" DenominationID="_" DenominationIDLow="_" StatusNormal="=?" StatusLow="=?"/>
+		<DenominationID>
+			<Transaction>
+				<Item key="@" value="@"/>
+				<Item key="1" value="A"/>
+				<Item key="2" value="B"/>
+				<Item key="3" value="C"/>
+				<Item key="4" value="D"/>
+				<Item key="5" value="E"/>
+				<Item key="6" value="F"/>
+				<Item key="7" value="G"/>
+				<Item key="8" value="H"/>
+				<Item key="J" value="@"/>
+				<Item key="_" value="@"/>
+			</Transaction>
+		</DenominationID>
+	</Cassette>
+	<MDS>
+		<XFSCode>
+			<Acceptor>
+				<Item key="-1312" value=":3A:33:41"/>
+				<Item key="0" value=":00:00:00"/>
+			</Acceptor>
+		</XFSCode>
+		<Acceptor>
+			<Item key="DDC_BNA_HEALTHY" value=":00:00:00"/>
+			<!--Item key="DDC_BNA_TIMEOUT" value=":23:00:00"/-->
+			<Item key="DDC_BNA_CANCEL" value=":24:00:00"/>
+			<Item key="DDC_BNA_COMMAND_REJECT" value=":30:35:30"/>
+			<Item key="DDC_BNA_COMMUNICATION_PROBLEM" value=":38:00:00"/>
+			<Item key="DDC_BNA_DEVICE_APP_NOT_RESPOND" value=":38:40:00"/>
+			<Item key="DDC_BNA_MODULE_NOT_OPERABLE" value=":39:40:01"/>
+			<Item key="DDC_BNA_MODULE_OUTOFSERVICE" value=":39:40:02"/>
+			<Item key="DDC_BNA_SHUTTER_POSITION_UNKNOW" value=":39:41:01"/>
+			<Item key="DDC_BNA_TRANSPORT_STATE_UNKNOW" value=":39:42:01"/>
+			<Item key="DDC_BNA_JAM_IN_TRANSPORT" value=":39:42:02"/>
+			<Item key="DDC_BNA_ESCROW_STATE_UNKNOW" value=":39:43:01"/>
+			<Item key="DDC_BNA_RETRACT_STATE_UNKNOW" value=":39:44:01"/>
+			<Item key="DDC_BNA_ARTICLE6_STATE_UNKNOW" value=":39:45:01"/>
+			<Item key="DDC_BNA_CASHBOX_STATE_UNKNOW" value=":39:49:00"/>
+			<Item key="DDC_BNA_SHUTTER_NOTOPEN" value=":3A:33:41"/>
+			<!--Item key="DDC_BNA_HARDERROR" value=":3A:39:39"/-->
+			<Item key="DDC_BNA_HARDERROR" value="keyword.nochange"/>
+			<Item key="DDC_BNA_NO_DENOM_SELECTED" value=":3A:41:01"/>
+			<Item key="DDC_BNA_SIGNATURE_FAULT" value=":3A:56:00"/>
+			<Item key="DDC_BNA_SHUTTER_NOTCLOSE" value=":3C:33:45"/>
+			<Item key="DDC_BNA_CASSETTE_NEARLY_FULL" value=":3D:26:nn"/>
+			<Item key="DDC_BNA_CASSETTE_ISFULL" value=":3D:37:nn"/>
+			<Item key="DDC_BNA_ESCROW_ISFULL" value=":3D:40:01"/>
+			<Item key="DDC_BNA_RETRACT_ISFULL" value=":3D:41:01"/>
+			<Item key="DDC_BNA_ARTICLE6_ISFULL" value=":3D:42:01"/>
+			<Item key="DDC_BNA_RETRACT_NEARLY_FULL" value=":3D:43:01"/>
+			<Item key="DDC_BNA_RETRACT_FULL_OP_SUCC" value=":3D:50:00"/>
+			<Item key="DDC_BNA_RETRACT_FULL_BEFORE_OP" value=":3D:51:00"/>
+			<Item key="DDC_BNA_CASHGUARD_ACTIVATED" value=":3D:51:01"/>
+			<Item key="DDC_BNA_RETRACT_MISSING" value=":3D:60:00"/>
+			<Item key="DDC_BNA_CASSETTE_INOP" value=":3D:60:6C"/>
+			<Item key="DDC_BNA_CASSETTE_MISSING" value=":3D:60:7C"/>
+			<Item key="DDC_BNA_INVALID_DATA" value=":3E:40:34"/>
+			<Item key="DDC_BNA_LOAD_BUFFER_ERROR" value=":3E:40:35"/>
+			<Item key="DDC_BNA_CASSETTE_ERROR" value=":3E:40:7C"/>
+			<Item key="DDC_BNA_RETRACT_IN_CLOSE	" value=":3F:31:30"/>
+			<Item key="DDC_BNA_NOMEDIA" value=":3F:31:31"/>
+			<Item key="DDC_BNA_NOCASH_ESCROW_RETURN" value=":3F:31:32"/>
+			<Item key="DDC_BNA_REJECT_IN_RETRACT_OP" value=":3F:31:33"/>
+			<Item key="DDC_BNA_ESCROW_FULL" value=":3F:31:34"/>
+			<Item key="DDC_BNA_INPUT_TOOMANY_BILLS" value=":3F:31:35"/>
+			<Item key="DDC_BNA_REJECT_ALL_VERIFY_OP" value=":3F:31:37"/>
+			<Item key="DDC_BNA_REJECT_LIMIT_NO_VERIFY" value=":3F:31:38"/>
+			<Item key="DDC_BNA_REJECT_LIMIT_SOME_VERIFY" value=":3F:31:39"/>
+			<Item key="DDC_BNA_RETRACT_IN_CLEAR_OP" value=":3F:32:30"/>
+			<!--Item key="DDC_BNA_RETRACK_DEPOSIT" value=":3F:32:31"/-->
+			<Item key="DDC_BNA_CASSETTE_SHUFFLE" value=":3F:36:35"/>
+			<Item key="DDC_BNA_NETWORK_FAULT" value=":3F:40:31"/>
+			<Item key="DDC_BNA_UNKNOW_ERROR" value=":3F:40:40"/>
+			<Item key="DDC_BNA_BILLS_IN_TRANSPORT" value=":3F:50:00"/>
+			<Item key="DDC_BNA_BILLS_IN_ESCROW" value=":3F:50:01"/>
+			<Item key="DDC_BNA_RETRACT_NOTEMPTY" value=":3F:50:02"/>
+			<Item key="DDC_BNA_ARTICLE_NOTEMPTY" value=":3F:50:03"/>
+			<Item key="DDC_BNA_INPUT_NOTEMPTY" value=":3F:51:01"/>
+			<Item key="DDC_BNA_SHUTTER_RECOVER" value=":3F:56:00"/>
+			<Item key="DDC_BNA_SHUTTER_TAMPER" value=":3F:56:01"/>
+			<Item key="DDC_BNA_BILLS_SUSPECT" value=":3F:60:00"/>
+			<Item key="DDC_BNA_CESSETTE_TAMPER" value=":61:nn:00"/>
+			<Item key="DDC_BNA_SHUTTERJAM" value=":3C:33:35"/>
+			<Item key="DDC_BNA_NUMBERS" value=""/>
+			<Item key="DDC_BNA_UPDATE_SUPPLYCOUNTES" value=""/>
+		</Acceptor>
+		<BillDispenser>
+			<Solicited>
+				<Item key="17" value=":3F:31:37"/>
+				<Item key="18" value=":3F:31:38"/>
+				<Item key="19" value=":3F:31:39"/>
+				<Item key="20" value=":3F:32:30"/>
+				<Item key="21" value=":3F:32:31"/>
+				<Item key="22" value=":3F:32:31"/>
+				<Item key="58" value=":3F:35:38"/>
+				<Item key="90" value=":38:00:00"/>
+			</Solicited>
+		</BillDispenser>
+	</MDS>
+	<DispenseErrorCode>
+		<!--[NMD100]-->
+		<Item key="1156" value="79"/>
+		<Item key="1166" value="78"/>
+		<!--GRGCDM
+; 12051　1st cashbox empty 
+; 12052　2nd cashbox empty
+; 12053　3rd cashbox empty 
+; 12054　4th cashbox empty 
+; 12055　5th cashbox empty 
+; 12056　6th cashbox empty 
+
+; 12057　No 1st cashbox 
+; 12058　No 2nd cashbox 
+; 12059　No 3rd cashbox 
+; 12060　No 4th cashbox 
+; 12061　No 5th cashbox 
+; 12062　No 6th cashbox 
+
+;12063 1st cashbox feeding failure 
+;12064 2nd cashbox feeding failure 
+;12065 3rd cashbox feeding failure 
+;12066 4th cashbox feeding failure 
+;12067 5th cashbox feeding failure 
+;12068 6th cashbox feeding failure 
+
+;12069 1st cashbox ID illegal 
+;12070 2nd cashbox ID illegal 
+;12071 3rd cashbox ID illegal 
+;12072 4th cashbox ID illegal 
+;12073 5th cashbox ID illegal 
+;12074 6th cashbox ID illegal 
+
+; 12075　Recycle box non-existence
+; 12076　Recycle box full
+;12080 Thickness sensor fault
+; 12190 Serial port opening error 
+; 12191 Fail to send command
+; 12192 Fail to receive data 
+; 12193 Format of data received error 
+; 12194 Data received is found to be wrong after verification 
+ 
+-->
+		<Item key="12188" value="00"/>
+		<Item key="12142" value="00"/>
+		<Item key="12143" value="00"/>
+		<Item key="12051" value="17"/>
+		<Item key="12052" value="18"/>
+		<Item key="12053" value="19"/>
+		<Item key="12054" value="20"/>
+		<Item key="12055" value="21"/>
+		<Item key="12056" value="22"/>
+		<Item key="12057" value="17"/>
+		<Item key="12058" value="18"/>
+		<Item key="12059" value="19"/>
+		<Item key="12060" value="20"/>
+		<Item key="12061" value="21"/>
+		<Item key="12062" value="22"/>
+		<Item key="12063" value="17"/>
+		<Item key="12064" value="18"/>
+		<Item key="12065" value="19"/>
+		<Item key="12066" value="20"/>
+		<Item key="12067" value="21"/>
+		<Item key="12068" value="22"/>
+		<Item key="12069" value="17"/>
+		<Item key="12070" value="18"/>
+		<Item key="12071" value="19"/>
+		<Item key="12072" value="20"/>
+		<Item key="12073" value="21"/>
+		<Item key="12074" value="22"/>
+		<Item key="12075" value="79"/>
+		<Item key="12076" value="78"/>
+		<Item key="12080" value="39"/>
+		<Item key="12087" value="17"/>
+		<Item key="12089" value="18"/>
+		<Item key="12091" value="19"/>
+		<Item key="12093" value="20"/>
+		<Item key="12095" value="21"/>
+		<Item key="12097" value="22"/>
+		<Item key="12088" value="17"/>
+		<Item key="12090" value="18"/>
+		<Item key="12092" value="19"/>
+		<Item key="12094" value="20"/>
+		<Item key="12096" value="21"/>
+		<Item key="12098" value="22"/>
+		<Item key="12190" value="90"/>
+		<Item key="12191" value="90"/>
+		<Item key="12192" value="90"/>
+		<Item key="12193" value="90"/>
+		<Item key="12194" value="90"/>
+		<!-- 9250 -->
+		<Item key="15180" value="17"/>
+		<Item key="15181" value="18"/>
+		<Item key="15182" value="19"/>
+		<Item key="15183" value="20"/>
+		<Item key="15184" value="21"/>
+		<Item key="15169" value="17"/>
+		<Item key="15170" value="18"/>
+		<Item key="15171" value="19"/>
+		<Item key="15172" value="20"/>
+		<Item key="15173" value="21"/>
+		<Item key="15356" value="17"/>
+		<Item key="15357" value="18"/>
+		<Item key="15358" value="19"/>
+		<Item key="15359" value="20"/>
+		<Item key="15360" value="21"/>
+		<Item key="15446" value="17"/>
+		<Item key="15447" value="18"/>
+		<Item key="15448" value="19"/>
+		<Item key="15449" value="20"/>
+		<Item key="15450" value="21"/>
+		<!--
+		<Item key="15452" value="17"/>
+		<Item key="15453" value="18"/>
+		<Item key="15454" value="19"/>
+		<Item key="15455" value="20"/>
+		<Item key="15456" value="21"/>
+-->
+		<Item key="15412" value="58"/>
+	</DispenseErrorCode>
+</Root>

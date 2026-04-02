@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="ChangePinForDigitalHuman">
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for changing password"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_InsertCard"/>
+		</Start>
+		
+		<InsertCard ID="ID_InsertCard" UI="UI_InsertCardBalance" digitalVoiceKey="|action_001" comment="insert second card" timeout="30000" activeKeys="CANCEL" terminateKeys="CANCEL">
+			<States>
+				<State name="ReadingCard" UI="UI_Operating"/>
+			</States>
+			<Forward event="OnMagneticCard" targetID="ID_InputPin"/>
+			<Forward event="OnFallbackCard" targetID="ID_InputPin"/>
+			<Forward event="OnICCard" targetID="ID_InputPin"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnInvalidCard" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InsertCard>
+		
+		<VTMInputPinEx ID="ID_InputPin" UI="UI_InputPINBalance" digitalVoiceKey="action_003" comment="Enter your PIN" autoEnd="1" minLen="4" maxLen="6" timeout="120000">
+			<Forward event="OnConfirm" targetID="ID_PINSuccess" />
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+			<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow" />
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+			<DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+		</VTMInputPinEx>
+		
+		<Prompt ID="ID_PINSuccess" UI="UI_InputPINcorrect" digitalVoiceKey="action_006" comment="Change pin result" timeout="4000">
+			<Forward event="OnTimeout" targetID="ID_InputNewPin"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</Prompt>
+		
+		<VTMInputPinEx ID="ID_InputNewPin" UI="UI_InputNewPIN" digitalVoiceKey="action_007" comment="Enter your PIN" autoEnd="1" minLen="4" maxLen="6" timeout="120000">
+			<Forward event="OnConfirm" targetID="ID_InputNewPinAgain" />
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+			<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow" />
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+			<DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+		</VTMInputPinEx>
+		
+		<VTMInputPinEx ID="ID_InputNewPinAgain" UI="UI_InputNewPINagain" digitalVoiceKey="action_008" comment="Enter your PIN" autoEnd="1" minLen="4" maxLen="6" timeout="120000">
+			<Forward event="OnConfirm" targetID="ID_ChangePINSuccess" />
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+			<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow" />
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+			<DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+		</VTMInputPinEx>
+		
+		
+		<Prompt ID="ID_ChangePINSuccess" UI="UI_ChangePINcorrect" digitalVoiceKey="action_009" comment="Change pin result" timeout="10000">
+			<Forward event="OnConfirm" targetID="ID_VTMRejectCard"/>
+			<Forward event="OnTimeout" targetID="ID_VTMRejectCard"/>
+			<Forward event="OnFail" targetID="ID_VTMRejectCard"/>
+		</Prompt>
+		
+		<VTMRejectCard ID="ID_VTMRejectCard" UI="UI_InvalidCard" digitalVoiceKey="action_005" timeout="30000">
+		<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+		<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+		</VTMRejectCard>
+	
+		
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+		</End>
+		<InvokeWorkflow ID="ID_TryAgain" name="Main" comment="IC returns TryAgain" actionID="ID_ICMoreAppSelectForMainMenu" syn="0">
+		</InvokeWorkflow>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

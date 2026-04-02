@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=""></script>
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <style>
+        .g-row{
+            padding: 20px;
+        }
+        .g-card{
+            width: 100%;    
+            border-radius: 10px;
+        }
+        .g-main .main-title{
+            padding: 80px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <g-main>
+            <h2 ids='ids_Common_selectItem' class='main-title'>Print the pdf file</h2>
+			<g-swiper freemode>
+                <div class="swiper-slide">
+					<g-button id='OnCancel' type='button' ids='ids_Btn_cancel' tag='OnCancel' round transparent>Cancel</g-button>
+					<g-button id='OnConfirm' type='button'  ids='ids_Btn_confirm' tag="OnConfirm" round transparent>Print</g-button>
+                </div>
+            </g-swiper>			
+        </g-main>
+    </div>
+    <div type="text" hidden id='remotevaletmode' content='{Binding EnableRemoteValetMode}' >({{remotevaletmode}})</div>
+</body>
+</html>
+<script>
+
+</script>
+
+

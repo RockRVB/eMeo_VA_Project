@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="../../css/default.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/Button.css" />
+	<SCRIPT type="text/javascript" src="../../js/util.js"></SCRIPT>
+</head>
+<style>
+.content__container {
+    position: absolute;
+    top: 10%;
+    width: 100%;
+}
+#t01.b_table {
+    width: 70rem;
+    left: 50%;
+    top: 40%;
+   
+}
+</style>
+
+
+<body>
+	<header>
+		<div id="logo">
+			welcome to use
+		</div>
+		<div id="showTime"></div>
+	</header>
+<!--
+    <div id="headerNav">
+        <div class="menu" id="MainMenu" tag="OnMainMenu" type="Button" >menu</div>
+        <div class="exit" id="Cancel" tag="OnCancel" type="Button" >exit</div>
+    </div>
+-->
+	<div class="content">
+		<div class="content__container">
+			NOTES RETAINED FOR VERIFICATION.<br/> PLEASE CONTACT YOUR BRANCH.
+		</div>
+	</div>
+	<div id="btn_container" class="operate">
+		<ul>
+			<li class="exit" id="F8" tag="F8" type="Button">Cancel</li>
+			<li class="yes" id="F4" tag="F4" type="Button">Continue</li>
+		</ul>
+	</div>
+	<div id="t01" class="b_table">
+		<table>
+			<thead>
+				<tr>
+					<th>CURRENCY</th>
+					<th>DENOMINATION</th>
+					<th>COUNT</th>
+					<th>LEVEL</th>
+				</tr>
+			</thead>
+			<tbody id="dataTable">
+            
+			</tbody>
+			 
+			 <div id="origindetail" style="display:none">
+				<span type="text" id="depositdetailL2" content="{Binding DepositDetail11}"></span>
+				<span type="text" id="depositdetailL3" content="{Binding DepositDetail12}"></span>
+			 </div>
+		</table>
+	</div>
+</body>
+
+</html>
+<script>
+
+	window.onload=function(){
+		
+		var newArray=[
+			{data1:"CNY",data2:"100",data3:"2",data4:"2"},		
+		]
+		
+		/*var count = 1;
+		var objs =  document.getElementsByTagName("span");
+		for(var cur=0;cur<objs.length;cur+=3)
+		{
+			if(objs[cur].innerHTML.indexOf('*')>0)
+			{
+				var temp ={};
+				temp.data1 = "UZS"
+				temp.data2 = objs[cur].innerHTML.replace("*","");
+				temp.data3 = objs[cur+1].innerHTML.replace("=","");
+				temp.data4 = objs[cur+2].innerHTML;
+				newArray[count++]=temp;
+			
+			}
+		}
+		
+		var dataTable=document.querySelector('.dataTable');
+		var newHtml='';
+		var total =0;*/
+		var newHtml='';
+		var dataTable=document.querySelector('#dataTable');
+		for(var i=0;i<newArray.length;i++){
+			var newIndex=newArray[i];
+			newHtml +='	<tr class="rowBox">'+
+			'				<td class="currency" >'+newIndex.data1+'</td>'+
+			'				<td class="denominations" >'+newIndex.data2+'</td>'+
+			'				<td class="count" >'+newIndex.data3+'</td>'+
+			'				<td class="level" >'+newIndex.data4+'</td>'+
+			'			</tr>';
+
+		}
+		
+		dataTable.innerHTML=newHtml;
+	}
+	
+</script>

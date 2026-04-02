@@ -1,0 +1,1 @@
+<tr><td>CNY</td><td>100</td><td>14</td><td>1400</td></tr><tr><td id="total" style colspan=2;>TOTAL: 1400 CNY</td></tr>

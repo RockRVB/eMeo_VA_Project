@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--视频服务
+GRGVideoConfig：视频服务配置，name，port，IPAddress，timeout 均为保留属性
+LocalVideoPosUI：本地视频投影 X 相对于屏幕X轴坐标,Y 相对于屏幕Y 轴坐标, WIDTH 本地视频投影窗体大小 HIGH 本地视频投影高度
+RemoteVideoPosUI: 远端(VTA) 视频投影 X 相对于屏幕X轴坐标,Y 相对于屏幕Y 轴坐标, WIDTH 本地视频投影窗体大小 HIGH 远端(VTA) 视频投影高度
+
+特殊需求:
+有些银行考虑考虑到客户被人盯着办业务可能会有压力，故此定制隐藏远端视频 一般该功能有VTA 下发指令控制
+OtherLocalVideoPosUI: 控制后,本地视频显示位置，X 相对于屏幕X轴坐标,Y 相对于屏幕Y 轴坐标, WIDTH 本地视频投影窗体大小 HIGH  视频投影高度
+OtherRemoteVideoPosUI:控制后,远端视频位置,X 相对于屏幕X轴坐标,Y 相对于屏幕Y 轴坐标, WIDTH 本地视频投影窗体大小 HIGH 远端(VTA) 视频投影高度
+VideoType:参数为ivideo时为原先的视频服务，值为Azure时为微软的视频服务
+-->
+ <GRGVideoConfig name="GRG" port="8183" IPAddress="localhost" timeout="10000" wsport="forward" vtmwsport="10086" usevideoweb="1" recordvideo="0" FEELiVideoVersion="3" VideoType="ivideo">
+ 
+     <LocalVideoPosUI X="4130" Y="774" WIDTH="510" HIGH="416" />
+     <RemoteVideoPosUI X="1920" Y="0" WIDTH="1920" HIGH="1080"/>
+
+     <OtherLocalVideoPosUI X="4340" Y="880" WIDTH="300" HIGH="180" />
+     <OtherRemoteVideoPosUI X="6560" Y="110" WIDTH="1500" HIGH="844"/>
+
+
+
+ <!--  <LocalVideoPosUI X="4130" Y="780" WIDTH="250" HIGH="150" />
+     <RemoteVideoPosUI X="2720" Y="0" WIDTH="1920" HIGH="1080"/>-->
+
+ <!--<LocalVideoPosUI X="4070" Y="773" WIDTH="250" HIGH="150" />
+     <RemoteVideoPosUI X="3060" Y="223" WIDTH="1260" HIGH="700"/>
+     <LocalVideoPosUI X="4070" Y="773" WIDTH="250" HIGH="150"/>
+     <RemoteVideoPosUI X="3060" Y="223" WIDTH="1260" HIGH="700"/>-->
+</GRGVideoConfig> 
+

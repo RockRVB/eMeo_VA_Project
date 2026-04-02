@@ -1,0 +1,1189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () -->
+<Root>
+  <Device>
+    <CardReader>
+      <Item key="Configuration">
+        <Result value="00">
+          <Condition value="[xmlvariable]" operand="0">
+            <xmlvariable value="/Root/Device/Enable/@CardReader" xmldoc="\XDC\NDC\Data\DataCardReader.xml" />
+          </Condition>
+        </Result>
+        <Result value="09" />
+      </Item>
+      <Item key="Fitness">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\NDC\Data\DataCardReader.xml" />
+        </Result>
+      </Item>
+      <Item key="SuppliesStatus">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Status/@SuppliesStatus" xmldoc="\XDC\NDC\Data\DataCardReader.xml" />
+        </Result>
+      </Item>
+    </CardReader>
+    <CashHandler>
+      <Item key="Configuration">
+        <Result value="00">
+          <Condition value="[xmlvariable]" operand="0">
+            <xmlvariable value="/Root/Device/Enable/@CashDispenser" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Condition>
+        </Result>
+        <Result value="01" />
+      </Item>
+      <DevStatus>
+        <Item key="TCode" default="0">
+          <Result value="0">
+            <Condition value="[xmlvariable]" operand="103" operator="==">
+              <xmlvariable value="/Root/SendCondition/Current/Item[@key='EventID']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariable.xml" />
+            </Condition>
+          </Result>
+          <Result value="0">
+            <Condition value="[xmlvariable]" operand="GoodDispense">
+              <xmlvariable value="/Root/Device/Event/Item[@ID = '51']/@Param" xmldoc="\XDC\NDC\Data\DataEvent.xml" />
+            </Condition>
+          </Result>
+          <Result value="1">
+            <Condition value="[xmlvariable]" operand="ShortDispense">
+              <xmlvariable value="/Root/Device/Event/Item[@ID = '51']/@Param" xmldoc="\XDC\NDC\Data\DataEvent.xml" />
+            </Condition>
+          </Result>
+          <Result value="2">
+            <Condition value="[xmlvariable]" operand="NoNotesDispensed">
+              <xmlvariable value="/Root/Device/Event/Item[@ID = '51']/@Param" xmldoc="\XDC\NDC\Data\DataEvent.xml" />
+            </Condition>
+          </Result>
+          <Result value="3">
+            <Condition value="[xmlvariable]" operand="DispensedUnknown">
+              <xmlvariable value="/Root/Device/Event/Item[@ID = '51']/@Param" xmldoc="\XDC\NDC\Data\DataEvent.xml" />
+            </Condition>
+          </Result>
+          <Result value="4">
+            <Condition value="[xmlvariable]" operand="NoNoesDispensedOrCardEjected" xmldoc="\XDC\NDC\Data\DataEvent.xml">
+              <xmlvariable value="/Root/Device/Event/Item[@ID = '51']/@Param" xmldoc="\XDC\NDC\Data\DataEvent.xml" />
+            </Condition>
+          </Result>
+          <Result value="5">
+            <Condition value="[xmlvariable]" operand="SomeNotesRetracted">
+              <xmlvariable value="/Root/Device/Event/Item[@ID = '51']/@Param" xmldoc="\XDC\NDC\Data\DataEvent.xml" />
+            </Condition>
+          </Result>
+        </Item>
+        <Item key="NotesDispensed1" default="00">
+          <Result value="00">
+            <Condition value="[xmlvariable]" operand="103" operator="==">
+              <xmlvariable value="/Root/SendCondition/Current/Item[@key='EventID']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariable.xml" />
+            </Condition>
+          </Result>
+          <Result value="00">
+            <Condition value="[msgvariable]" operand="None|GoodDispense|DispensedUnknown|NoNoesDispensedOrCardEjected" operator="match">
+              <msgvariable value="[Msg.Transaction.CashHandler.Status]" />
+            </Condition>
+          </Result>
+          <Result value="[msgvariable]">
+            <msgvariable value="[Msg.Transaction.CashHandler.Dispensed1]" />
+          </Result>
+        </Item>
+        <Item key="NotesDispensed2" default="00">
+          <Result value="00">
+            <Condition value="[xmlvariable]" operand="103" operator="==">
+              <xmlvariable value="/Root/SendCondition/Current/Item[@key='EventID']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariable.xml" />
+            </Condition>
+          </Result>
+          <Result value="00">
+            <Condition value="[msgvariable]" operand="None|GoodDispense|DispensedUnknown|NoNoesDispensedOrCardEjected" operator="match">
+              <msgvariable value="[Msg.Transaction.CashHandler.Status]" />
+            </Condition>
+          </Result>
+          <Result value="[msgvariable]">
+            <msgvariable value="[Msg.Transaction.CashHandler.Dispensed2]" />
+          </Result>
+        </Item>
+        <Item key="NotesDispensed3" default="00">
+          <Result value="00">
+            <Condition value="[xmlvariable]" operand="103" operator="==">
+              <xmlvariable value="/Root/SendCondition/Current/Item[@key='EventID']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariable.xml" />
+            </Condition>
+          </Result>
+          <Result value="00">
+            <Condition value="[msgvariable]" operand="None|GoodDispense|DispensedUnknown|NoNoesDispensedOrCardEjected" operator="match">
+              <msgvariable value="[Msg.Transaction.CashHandler.Status]" />
+            </Condition>
+          </Result>
+          <Result value="[msgvariable]">
+            <msgvariable value="[Msg.Transaction.CashHandler.Dispensed3]" />
+          </Result>
+        </Item>
+        <Item key="NotesDispensed4" default="00">
+          <Result value="00">
+            <Condition value="[xmlvariable]" operand="103" operator="==">
+              <xmlvariable value="/Root/SendCondition/Current/Item[@key='EventID']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariable.xml" />
+            </Condition>
+          </Result>
+          <Result value="00">
+            <Condition value="[msgvariable]" operand="None|GoodDispense|DispensedUnknown|NoNoesDispensedOrCardEjected" operator="match">
+              <msgvariable value="[Msg.Transaction.CashHandler.Status]" />
+            </Condition>
+          </Result>
+          <Result value="[msgvariable]">
+            <msgvariable value="[Msg.Transaction.CashHandler.Dispensed4]" />
+          </Result>
+        </Item>
+        <Item key="NotesDispensed5" default="00">
+          <Result value="00">
+            <Condition value="[xmlvariable]" operand="103" operator="==">
+              <xmlvariable value="/Root/SendCondition/Current/Item[@key='EventID']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariable.xml" />
+            </Condition>
+          </Result>
+          <Result value="00">
+            <Condition value="[msgvariable]" operand="None|GoodDispense|DispensedUnknown|NoNoesDispensedOrCardEjected" operator="match">
+              <msgvariable value="[Msg.Transaction.CashHandler.Status]" />
+            </Condition>
+          </Result>
+          <Result value="[msgvariable]">
+            <msgvariable value="[Msg.Transaction.CashHandler.Dispensed5]" />
+          </Result>
+        </Item>
+        <Item key="NotesDispensed6" default="00">
+          <Result value="00">
+            <Condition value="[xmlvariable]" operand="103" operator="==">
+              <xmlvariable value="/Root/SendCondition/Current/Item[@key='EventID']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariable.xml" />
+            </Condition>
+          </Result>
+          <Result value="00">
+            <Condition value="[msgvariable]" operand="None|GoodDispense|DispensedUnknown|NoNoesDispensedOrCardEjected" operator="match">
+              <msgvariable value="[Msg.Transaction.CashHandler.Status]" />
+            </Condition>
+          </Result>
+          <Result value="[msgvariable]">
+            <msgvariable value="[Msg.Transaction.CashHandler.Dispensed6]" />
+          </Result>
+        </Item>
+        <Item key="NotesDispensed7" default="00">
+          <Result value="00">
+            <Condition value="[xmlvariable]" operand="103" operator="==">
+              <xmlvariable value="/Root/SendCondition/Current/Item[@key='EventID']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariable.xml" />
+            </Condition>
+          </Result>
+          <Result value="00">
+            <Condition value="[msgvariable]" operand="None|GoodDispense|DispensedUnknown|NoNoesDispensedOrCardEjected" operator="match">
+              <msgvariable value="[Msg.Transaction.CashHandler.Status]" />
+            </Condition>
+          </Result>
+          <Result value="[msgvariable]">
+            <msgvariable value="[Msg.Transaction.CashHandler.Dispensed7]" />
+          </Result>
+        </Item>
+      </DevStatus>
+      <Fitness>
+        <Item key="Handler">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Calculate/Status/Fitness/@Handler" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Result>
+        </Item>
+        <Item key="CassetteType1">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType1" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Result>
+        </Item>
+        <Item key="CassetteType2">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType2" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Result>
+        </Item>
+        <Item key="CassetteType3">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType3" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Result>
+        </Item>
+        <Item key="CassetteType4">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType4" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Result>
+        </Item>
+      </Fitness>
+      <SuppliesStatus>
+        <Item key="RejectBin">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@RejectRetract" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Result>
+        </Item>
+        <Item key="CassetteType1">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@CassetteType1" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Result>
+        </Item>
+        <Item key="CassetteType2">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@CassetteType2" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Result>
+        </Item>
+        <Item key="CassetteType3">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@CassetteType3" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Result>
+        </Item>
+        <Item key="CassetteType4">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@CassetteType4" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Result>
+        </Item>
+      </SuppliesStatus>
+    </CashHandler>
+    <ReceiptPrinter>
+      <Item key="Configuration">
+        <Result value="00">
+          <Condition value="[xmlvariable]" operand="0">
+            <xmlvariable value="/Root/Device/Enable/@ReceiptPrinter" xmldoc="\XDC\NDC\Data\DataReceiptPrinter.xml" />
+          </Condition>
+        </Result>
+        <Result value="01" />
+      </Item>
+      <Item key="DevStatus">
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+            <xmlvariable value="/Root/Device/Information/ReceiptPrinter/@DeviceState" xmldoc="\XDC\NDC\Data\DataReceiptPrinter.xml" />
+          </Condition>
+        </Result>
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="OUT">
+            <xmlvariable value="/Root/Device/Information/ReceiptPrinter/@PaperStatus" xmldoc="\XDC\NDC\Data\DataReceiptPrinter.xml" />
+          </Condition>
+        </Result>
+        <Result value="0" />
+      </Item>
+      <Item key="Fitness">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\NDC\Data\DataReceiptPrinter.xml" />
+        </Result>
+      </Item>
+      <SuppliesStatus>
+        <Item key="Paper">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@Paper" xmldoc="\XDC\NDC\Data\DataReceiptPrinter.xml" />
+          </Result>
+        </Item>
+      </SuppliesStatus>
+    </ReceiptPrinter>
+    <JournalPrinter>
+      <Item key="Configuration">
+        <Result value="00">
+          <Condition value="[xmlvariable]" operand="0">
+            <xmlvariable value="/Root/Device/Enable/@JournalPrinter" xmldoc="\XDC\NDC\Data\DataJournalPrinter.xml" />
+          </Condition>
+        </Result>
+        <Result value="80" />
+      </Item>
+      <Item key="DevStatus">
+        <Result value="6">
+          <Condition value="[xmlvariable]" operand="52" operator="==">
+            <xmlvariable value="/Root/SendCondition/Current/Item[@key='EventID']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariable.xml" />
+          </Condition>
+        </Result>
+        <Result value="8">
+          <Condition value="[xmlvariable]" operand="53" operator="==">
+            <xmlvariable value="/Root/SendCondition/Current/Item[@key='EventID']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariable.xml" />
+          </Condition>
+        </Result>
+        <Result value="7">
+          <Condition value="[xmlvariable]" operand="54" operator="==">
+            <xmlvariable value="/Root/SendCondition/Current/Item[@key='EventID']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariable.xml" />
+          </Condition>
+        </Result>
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+            <xmlvariable value="/Root/Device/Information/JournalPrinter/@DeviceState" xmldoc="\XDC\NDC\Data\DataJournalPrinter.xml" />
+          </Condition>
+        </Result>
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="OUT">
+            <xmlvariable value="/Root/Device/Information/JournalPrinter/@PaperStatus" xmldoc="\XDC\NDC\Data\DataJournalPrinter.xml" />
+          </Condition>
+        </Result>
+        <Result value="0" />
+      </Item>
+      <Item key="Fitness">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\NDC\Data\DataJournalPrinter.xml" />
+        </Result>
+      </Item>
+      <SuppliesStatus>
+        <Item key="Paper">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@Paper" xmldoc="\XDC\NDC\Data\DataJournalPrinter.xml" />
+          </Result>
+        </Item>
+      </SuppliesStatus>
+    </JournalPrinter>
+    <Encryptor>
+      <Item key="Configuration">
+        <Result value="00">
+          <Condition value="[xmlvariable]" operand="0">
+            <xmlvariable value="/Root/Device/Enable/@Encryptor" xmldoc="\XDC\NDC\Data\DataEncryptor.xml" />
+          </Condition>
+        </Result>
+        <Result value="C7" />
+      </Item>
+      <Item key="Fitness">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\NDC\Data\DataEncryptor.xml" />
+        </Result>
+      </Item>
+    </Encryptor>
+    <EnvelopeDepository>
+      <Item key="Configuration">
+        <Result value="02">
+          <Condition value="[xmlvariable]" operand="1" operator="==">
+            <xmlvariable value="/Root/OptionCtrl/Configuration/Item[@key='EnvelopeDepository']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableOptionCtrl.xml" />
+          </Condition>
+        </Result>
+        <Result value="00" />
+      </Item>
+      <Item key="Fitness">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Status/Depository/@fitness" xmldoc="\XDC\NDC\Data\DataEnvelopeDispenser.xml" />
+        </Result>
+      </Item>
+      <Item key="SuppliesStatus">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Status/Depository/@SuppliesStatus" xmldoc="\XDC\NDC\Data\DataEnvelopeDispenser.xml" />
+        </Result>
+      </Item>
+    </EnvelopeDepository>
+    <BNA>
+      <Item key="Configuration">
+        <Result value="04">
+          <Condition value="[xmlvariable]" operand="1" operator="==">
+            <xmlvariable value="/Root/OptionCtrl/Configuration/Item[@key='CashAcceptor']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableOptionCtrl.xml" />
+          </Condition>
+        </Result>
+        <Result value="00" />
+      </Item>
+      <Fitness>
+        <Item key="Overall">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Calculate/Status/Fitness/@Overall" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+          </Result>
+        </Item>
+      </Fitness>
+      <SuppliesStatus>
+        <Item key="Overall">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@Overall" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+          </Result>
+        </Item>
+      </SuppliesStatus>
+      <Extended>
+        <Fitness>
+          <Item key="RejectBin">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Calculate/Status/Fitness/@RetractBin" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item key="CassetteType1">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType1" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item key="CassetteType2">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType1" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item key="CassetteType3">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType1" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item key="CassetteType4">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType1" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+        </Fitness>
+        <SuppliesStatus>
+          <Item key="RejectBin">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@RetractBin" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item key="CassetteType1">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@CassetteType1" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item key="CassetteType2">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@CassetteType1" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item key="CassetteType3">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType1" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item key="CassetteType4">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType1" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+        </SuppliesStatus>
+      </Extended>
+    </BNA>
+    <EnvelopeDispenser>
+      <Item key="Configuration">
+        <Result value="01">
+          <Condition value="[xmlvariable]" operand="1" operator="==">
+            <xmlvariable value="/Root/OptionCtrl/Configuration/Item[@key='EnvelopeDepository']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableOptionCtrl.xml" />
+          </Condition>
+        </Result>
+        <Result value="00" />
+      </Item>
+      <Item key="Fitness">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Status/Dispenser/@fitness" xmldoc="\XDC\NDC\Data\DataEnvelopeDispenser.xml" />
+        </Result>
+      </Item>
+      <Item key="SuppliesStatus">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Status/Dispenser/@SuppliesStatus" xmldoc="\XDC\NDC\Data\DataEnvelopeDispenser.xml" />
+        </Result>
+      </Item>
+    </EnvelopeDispenser>
+    <BarCodeReader>
+      <Item key="Configuration">
+        <Result value="0000">
+          <Condition value="[xmlvariable]" operand="0">
+            <xmlvariable value="/Root/Device/Enable/@BarCodeReader" xmldoc="\XDC\NDC\Data\DataBarCodeReader.xml" />
+          </Condition>
+        </Result>
+        <Result value="0001" />
+      </Item>
+      <Item key="Fitness">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\NDC\Data\DataBarCodeReader.xml" />
+        </Result>
+      </Item>
+    </BarCodeReader>
+    <Sensors>
+      <Item key="Supervisor" default="0">
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="500" operator="==">
+            <xmlvariable value="/Root/SendCondition/Current/Item[@key='EventID']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariable.xml" />
+          </Condition>
+        </Result>
+        <Result value="0">
+          <Condition value="[xmlvariable]" operand="501" operator="==">
+            <xmlvariable value="/Root/SendCondition/Current/Item[@key='EventID']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariable.xml" />
+          </Condition>
+        </Result>
+      </Item>
+      <Item key="DoorContact" default="0">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Door/@SAFE" format="{0:d}" xmldoc="\XDC\NDC\Data\DataSensorAndLight.xml" />
+        </Result>
+      </Item>
+      <Item key="ElectronicsEnclosure" default="0">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Door/@CABINET" format="{0:d}" xmldoc="\XDC\NDC\Data\DataSensorAndLight.xml" />
+        </Result>
+      </Item>
+      <Item key="CurrencyRejectBin" default="0">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Sensor/@RejectBin" format="{0:d}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+        </Result>
+      </Item>
+      <Item key="CurrencyCassetteInPosition1" default="0">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Sensor/@Hope1" format="{0:d}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+        </Result>
+      </Item>
+      <Item key="CurrencyCassetteInPosition2" default="0">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Sensor/@Hope2" format="{0:d}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+        </Result>
+      </Item>
+      <Item key="CurrencyCassetteInPosition3" default="0">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Sensor/@Hope3" format="{0:d}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+        </Result>
+      </Item>
+      <Item key="CurrencyCassetteInPosition4" default="0">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Sensor/@Hope4" format="{0:d}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+        </Result>
+      </Item>
+    </Sensors>
+  </Device>
+  <SupplyCounters>
+    <NotesInCassettes>
+      <Item size="5" key="Type1" default="00000">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type1/@Count" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          <Condition value="[xmlvariable]" operand="1">
+            <xmlvariable value="/Root/Device/Enable/@CassetteType1" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Condition>
+        </Result>
+      </Item>
+      <Item size="5" key="Type2" default="00000">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type2/@Count" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          <Condition value="[xmlvariable]" operand="1">
+            <xmlvariable value="/Root/Device/Enable/@CassetteType2" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Condition>
+        </Result>
+      </Item>
+      <Item size="5" key="Type3" default="00000">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type3/@Count" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          <Condition value="[xmlvariable]" operand="1">
+            <xmlvariable value="/Root/Device/Enable/@CassetteType3" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Condition>
+        </Result>
+      </Item>
+      <Item size="5" key="Type4" default="00000">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type4/@Count" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          <Condition value="[xmlvariable]" operand="1">
+            <xmlvariable value="/Root/Device/Enable/@CassetteType4" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Condition>
+        </Result>
+      </Item>
+    </NotesInCassettes>
+    <NotesRejected>
+      <Item size="5" key="Type1" default="00000">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type1/@RejectCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          <Condition value="[xmlvariable]" operand="1">
+            <xmlvariable value="/Root/Device/Enable/@CassetteType1" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Condition>
+        </Result>
+      </Item>
+      <Item size="5" key="Type2" default="00000">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type2/@RejectCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          <Condition value="[xmlvariable]" operand="1">
+            <xmlvariable value="/Root/Device/Enable/@CassetteType2" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Condition>
+        </Result>
+      </Item>
+      <Item size="5" key="Type3" default="00000">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type3/@RejectCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          <Condition value="[xmlvariable]" operand="1">
+            <xmlvariable value="/Root/Device/Enable/@CassetteType3" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Condition>
+        </Result>
+      </Item>
+      <Item size="5" key="Type4" default="00000">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type4/@RejectCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          <Condition value="[xmlvariable]" operand="1">
+            <xmlvariable value="/Root/Device/Enable/@CassetteType4" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+          </Condition>
+        </Result>
+      </Item>
+    </NotesRejected>
+    <NotesDispensed>
+      <Item size="5" key="Type1" default="00000">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type1/@CashOutCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+        </Result>
+      </Item>
+      <Item size="5" key="Type2" default="00000">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type2/@CashOutCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+        </Result>
+      </Item>
+      <Item size="5" key="Type3" default="00000">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type3/@CashOutCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+        </Result>
+      </Item>
+      <Item size="5" key="Type4" default="00000">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type4/@CashOutCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+        </Result>
+      </Item>
+    </NotesDispensed>
+    <NotesDeposited>
+      <Item size="5" key="Type1" default="00000">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type1/@CashInCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+        </Result>
+      </Item>
+      <Item size="5" key="Type2" default="00000">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type2/@CashInCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+        </Result>
+      </Item>
+      <Item size="5" key="Type3" default="00000">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type3/@CashInCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+        </Result>
+      </Item>
+      <Item size="5" key="Type4" default="00000">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type4/@CashInCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+        </Result>
+      </Item>
+    </NotesDeposited>
+    <Item size="5" key="CardCaptured" default="00000">
+      <Result value="[xmlvariable]">
+        <xmlvariable value="/Root/Device/Information/CardReader/@UsCard" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCardReader.xml" />
+      </Result>
+    </Item>
+  </SupplyCounters>
+  <Wincor>
+    <CashAcceptor>
+      <!--Item size="1" key="numberofcashintransactions" default="0000">					 
+							<Result value="[expvariable]">
+								<expvariable value="[Wincor.CashAcceptor.cassette.t1.deposit]+[Wincor.CashAcceptor.cassette.t2.deposit]+[Wincor.CashAcceptor.cassette.t3.deposit]+[Wincor.CashAcceptor.cassette.t4.deposit]" format="{0:d5}"/>
+							</Result>
+						</Item-->
+      <!--Item size="1" key="numberofretractoperations" default="00000">					 
+								<Result value="[msgvariable]">
+										<msgvariable value="[Wincor.CashAcceptor.retract.amount]"/>
+								</Result>
+						</Item-->
+      <!--
+						<Item size="1" key="groupofnotestoboxes" default="0000">					 
+							<Result value="[expvariable]">
+								<expvariable value="[Wincor.CashAcceptor.cassette.deposit]+[Wincor.CashAcceptor.cassette.deposit]+[Wincor.CashAcceptor.cassette.deposit]+[Wincor.CashAcceptor.cassette.deposit]" format="{0:d5}"/>
+							</Result>
+						</Item>
+						-->
+      <Item size="1" key="l4notesinserted" default="00000">
+        <Result value="[expvariable]">
+          <expvariable value="[Wincor.CashAcceptor.cassette.t1.deposit]+[Wincor.CashAcceptor.cassette.t2.deposit]+[Wincor.CashAcceptor.cassette.t3.deposit]+[Wincor.CashAcceptor.cassette.t4.deposit]" format="{0:d5}" />
+        </Result>
+      </Item>
+      <!--
+						<Item size="1" key="groupofnoteidcount" default="0000">					 
+							<Result value="[expvariable]">
+								<expvariable value="[Wincor.CashAcceptor.cassette.count]+[Wincor.CashAcceptor.cassette.count]+[Wincor.CashAcceptor.cassette.count]+[Wincor.CashAcceptor.cassette.count]" format="{0:d5}"/>
+							</Result>
+						</Item>		
+                         -->
+      <Item size="1" key="supplystatusofcashinretractbox" default="0">
+        <Result value="[msgvariable]">
+          <msgvariable value="[Wincor.CashAcceptor.retract.SuppliesStatus]" />
+        </Result>
+      </Item>
+      <note>
+        <t1>
+          <Item size="1" key="count" default="00000">
+            <Result value="[msgvariable]">
+              <msgvariable value="[Wincor.CashAcceptor.cassette.t1.count]" />
+            </Result>
+          </Item>
+        </t1>
+        <t2>
+          <Item size="1" key="count" default="00000">
+            <Result value="[msgvariable]">
+              <msgvariable value="[Wincor.CashAcceptor.cassette.t2.count]" />
+            </Result>
+          </Item>
+        </t2>
+        <t3>
+          <Item size="1" key="count" default="00000">
+            <Result value="[msgvariable]">
+              <msgvariable value="[Wincor.CashAcceptor.cassette.t3.count]" />
+            </Result>
+          </Item>
+        </t3>
+        <t4>
+          <Item size="1" key="count" default="00000">
+            <Result value="[msgvariable]">
+              <msgvariable value="[Wincor.CashAcceptor.cassette.t4.count]" />
+            </Result>
+          </Item>
+        </t4>
+      </note>
+      <retract>
+        <Item size="1" key="Fitness" default="0">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Calculate/Status/Fitness/@RetractBin" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+          </Result>
+        </Item>
+        <Item size="1" key="SuppliesStatus" default="0">
+          <Result value="1">
+            <Condition value="[xmlvariable]" operand="OK">
+              <xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Condition>
+          </Result>
+          <Result value="3">
+            <Condition value="[xmlvariable]" operand="FULL">
+              <xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Condition>
+          </Result>
+          <Result value="2">
+            <Condition value="[xmlvariable]" operand="HIGH">
+              <xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Condition>
+          </Result>
+          <Result value="1">
+            <Condition value="[xmlvariable]" operand="LOW">
+              <xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Condition>
+          </Result>
+          <Result value="1">
+            <Condition value="[xmlvariable]" operand="EMPTY">
+              <xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Condition>
+          </Result>
+          <Result value="0">
+            <Condition value="[xmlvariable]" operand="MISSING">
+              <xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Condition>
+          </Result>
+        </Item>
+        <Item size="1" key="amount" default="0">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Count" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+          </Result>
+        </Item>
+      </retract>
+      <ac>
+        <Item size="1" key="Fitness" default="0">
+          <Result value="[xmlvariable]">
+            <xmlvariable value="/Root/Calculate/Status/Fitness/@CIN" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+          </Result>
+        </Item>
+        <Item size="1" key="SuppliesStatus" default="4">
+          <Result value="0">
+            <Condition value="[xmlvariable]" operand="OK">
+              <xmlvariable value="/Root/Device/Information/CassettePhysical/ID_S0_I3/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Condition>
+          </Result>
+          <Result value="1">
+            <Condition value="[xmlvariable]" operand="FULL">
+              <xmlvariable value="/Root/Device/Information/CassettePhysical/ID_S0_I3/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Condition>
+          </Result>
+          <Result value="2">
+            <Condition value="[xmlvariable]" operand="HIGH">
+              <xmlvariable value="/Root/Device/Information/CassettePhysical/ID_S0_I3/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Condition>
+          </Result>
+          <Result value="3">
+            <Condition value="[xmlvariable]" operand="LOW">
+              <xmlvariable value="/Root/Device/Information/CassettePhysical/ID_S0_I3/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Condition>
+          </Result>
+          <Result value="4">
+            <Condition value="[xmlvariable]" operand="EMPTY">
+              <xmlvariable value="/Root/Device/Information/CassettePhysical/ID_S0_I3/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Condition>
+          </Result>
+          <Result value="4">
+            <Condition value="[xmlvariable]" operand="MISSING">
+              <xmlvariable value="/Root/Device/Information/CassettePhysical/ID_S0_I3/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Condition>
+          </Result>
+        </Item>
+      </ac>
+      <cassette>
+        <t1>
+          <Item size="1" key="SuppliesStatus" default="0">
+            <Result value="1">
+              <Condition value="[xmlvariable]" operand="OK">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="3">
+              <Condition value="[xmlvariable]" operand="FULL">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="2">
+              <Condition value="[xmlvariable]" operand="HIGH">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="1">
+              <Condition value="[xmlvariable]" operand="LOW">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="1">
+              <Condition value="[xmlvariable]" operand="EMPTY">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="0">
+              <Condition value="[xmlvariable]" operand="MISSING">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+          </Item>
+          <Item size="1" key="count" value="00000">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@Count" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item size="1" key="deposit" default="00000">
+            <Result value="[xmlvariable]">
+              <Condition value="[xmlvariable1]" operand="OK|FULL|HIGH|EMPTY|LOW" operator="match">
+                <xmlvariable1 value="/Root/Device/Information/CassetteHope/Hope1/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+              <xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@CashInCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item size="1" key="dispense" value="00000">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@CashOutCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item size="1" key="dispense" value="1" />
+        </t1>
+        <t2>
+          <Item size="1" key="SuppliesStatus" default="0">
+            <Result value="1">
+              <Condition value="[xmlvariable]" operand="OK">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="3">
+              <Condition value="[xmlvariable]" operand="FULL">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="2">
+              <Condition value="[xmlvariable]" operand="HIGH">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="1">
+              <Condition value="[xmlvariable]" operand="LOW">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="1">
+              <Condition value="[xmlvariable]" operand="EMPTY">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="0">
+              <Condition value="[xmlvariable]" operand="MISSING">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+          </Item>
+          <Item size="1" key="count" value="00000">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@Count" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item size="1" key="deposit" default="00000">
+            <Result value="[xmlvariable]">
+              <Condition value="[xmlvariable1]" operand="OK|FULL|HIGH|EMPTY|LOW" operator="match">
+                <xmlvariable1 value="/Root/Device/Information/CassetteHope/Hope2/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+              <xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@CashInCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item size="1" key="dispense" value="00000">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@CashOutCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item size="1" key="dispense" value="1" />
+        </t2>
+        <t3>
+          <Item size="1" key="SuppliesStatus" default="0">
+            <Result value="1">
+              <Condition value="[xmlvariable]" operand="OK">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="3">
+              <Condition value="[xmlvariable]" operand="FULL">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="2">
+              <Condition value="[xmlvariable]" operand="HIGH">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="1">
+              <Condition value="[xmlvariable]" operand="LOW">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="1">
+              <Condition value="[xmlvariable]" operand="EMPTY">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="0">
+              <Condition value="[xmlvariable]" operand="MISSING">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+          </Item>
+          <Item size="1" key="count" value="00000">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@Count" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item size="1" key="deposit" default="00000">
+            <Result value="[xmlvariable]">
+              <Condition value="[xmlvariable1]" operand="OK|FULL|HIGH|EMPTY|LOW" operator="match">
+                <xmlvariable1 value="/Root/Device/Information/CassetteHope/Hope3/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+              <xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@CashInCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item size="1" key="dispense" value="00000">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@CashOutCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item size="1" key="dispense" value="1" />
+        </t3>
+        <t4>
+          <Item size="1" key="SuppliesStatus" default="0">
+            <Result value="1">
+              <Condition value="[xmlvariable]" operand="OK">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="3">
+              <Condition value="[xmlvariable]" operand="FULL">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="2">
+              <Condition value="[xmlvariable]" operand="HIGH">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="1">
+              <Condition value="[xmlvariable]" operand="LOW">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="1">
+              <Condition value="[xmlvariable]" operand="EMPTY">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+            <Result value="0">
+              <Condition value="[xmlvariable]" operand="MISSING">
+                <xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+            </Result>
+          </Item>
+          <Item size="1" key="count" value="00000">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@Count" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item size="1" key="deposit" default="00000">
+            <Result value="[xmlvariable]">
+              <Condition value="[xmlvariable1]" operand="OK|FULL|HIGH|EMPTY|LOW" operator="match">
+                <xmlvariable1 value="/Root/Device/Information/CassetteHope/Hope4/@Status" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+              </Condition>
+              <xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@CashInCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item size="1" key="dispense" value="00000">
+            <Result value="[xmlvariable]">
+              <xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@CashOutCount" format="{0:d5}" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            </Result>
+          </Item>
+          <Item size="1" key="dispense" value="1" />
+        </t4>
+      </cassette>
+    </CashAcceptor>
+  </Wincor>
+  <LastTrans>
+    <Item size="5" key="LastCoinageAmountDispensed" default="00000">
+      <Result value="">
+        <Condition value="[msgvariable]" operand="1" operator="match">
+          <msgvariable value="[OptionCtrl.I_State.FieldID_r]" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item size="20" key="LastCoinsDispensedData" default="00000000000000000000">
+      <Result value="">
+        <Condition value="[msgvariable]" operand="1" operator="match">
+          <msgvariable value="[OptionCtrl.I_State.FieldID_r]" />
+        </Condition>
+      </Result>
+    </Item>
+  </LastTrans>
+  <SendCondition>
+    <DeviceStatusChange>
+      <Item key="CardReader" default="0">
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\NDC\Data\DataCardReader.xml" />
+            <xmlvariable2 value="/Root/Device/CardReader/Item[@key='Fitness']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/@SuppliesStatus" xmldoc="\XDC\NDC\Data\DataCardReader.xml" />
+            <xmlvariable2 value="/Root/Device/CardReader/Item[@key='SuppliesStatus']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition> /&gt;
+				</Result>
+      </Item>
+      <Item key="ReceiptPrinter" default="0">
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\NDC\Data\DataReceiptPrinter.xml" />
+            <xmlvariable2 value="/Root/Device/ReceiptPrinter/Item[@key='Fitness']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@Paper" xmldoc="\XDC\NDC\Data\DataReceiptPrinter.xml" />
+            <xmlvariable2 value="/Root/Device/ReceiptPrinter/SuppliesStatus/Item[@key='Paper']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+      </Item>
+      <Item key="JournalPrinter" default="0">
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\NDC\Data\DataJournalPrinter.xml" />
+            <xmlvariable2 value="/Root/Device/JournalPrinter/Item[@key='Fitness']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/SuppliesStatus" xmldoc="\XDC\NDC\Data\DataJournalPrinter.xml" />
+            <xmlvariable2 value="/Root/Device/JournalPrinter/SuppliesStatus/Item[@key='Paper']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+      </Item>
+      <Item key="Encryptor" default="0">
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\NDC\Data\DataEncryptor.xml" />
+            <xmlvariable2 value="/Root/Device/Encryptor/Item[@key='Fitness']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+      </Item>
+      <Item key="CashHandler" default="0">
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@RejectRetract" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+            <xmlvariable2 value="/Root/Device/CashHandler/SuppliesStatus/Item[@key='RejectBin']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@CassetteType1" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+            <xmlvariable2 value="/Root/Device/CashHandler/SuppliesStatus/Item[@key='CassetteType1']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@CassetteType2" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+            <xmlvariable2 value="/Root/Device/CashHandler/SuppliesStatus/Item[@key='CassetteType2']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@CassetteType3" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+            <xmlvariable2 value="/Root/Device/CashHandler/SuppliesStatus/Item[@key='CassetteType3']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@CassetteType4" xmldoc="\XDC\NDC\Data\DataCashDispenser.xml" />
+            <xmlvariable2 value="/Root/Device/CashHandler/SuppliesStatus/Item[@key='CassetteType4']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+      </Item>
+      <Item key="CashAcceptor" default="0">
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/Fitness/@Overall" xmldoc="\XDC\NDC\Data\DataCashAcceptor.xml" />
+            <xmlvariable2 value="/Root/Device/BNA/Fitness/Item[@key='Overall']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+      </Item>
+      <Item key="EnvelopeDispenser" default="0">
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/Dispenser/@fitness" xmldoc="\XDC\NDC\Data\DataEnvelopeDispenser.xml" />
+            <xmlvariable2 value="/Root/Device/EnvelopeDispenser/Item[@key='Fitness']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/Dispenser/@SuppliesStatus" xmldoc="\XDC\NDC\Data\DataEnvelopeDispenser.xml" />
+            <xmlvariable2 value="/Root/Device/EnvelopeDispenser/Item[@key='SuppliesStatus']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+      </Item>
+      <Item key="EnvelopeDepository" default="0">
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/Depository/@fitness" xmldoc="\XDC\NDC\Data\DataEnvelopeDispenser.xml" />
+            <xmlvariable2 value="/Root/Device/EnvelopeDepository/Item[@key='Fitness']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/Depository/@SuppliesStatus" xmldoc="\XDC\NDC\Data\DataEnvelopeDispenser.xml" />
+            <xmlvariable2 value="/Root/Device/EnvelopeDepository/Item[@key='SuppliesStatus']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+      </Item>
+      <Item key="BarCodeReader" default="0">
+        <Result value="1">
+          <Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="!=">
+            <xmlvariable value="/Root/Calculate/Status/@fitness" xmldoc="\XDC\NDC\Data\DataBarCodeReader.xml" />
+            <xmlvariable2 value="/Root/Device/BarCodeReader/Item[@key='Fitness']/@value" xmldoc="\XDC\NDC\Data\dicMsgVariableHost.xml" />
+          </Condition>
+        </Result>
+      </Item>
+      <Sensors>
+        <Item key="SensorChange" default="0">
+          <Result value="1">
+            <Condition value="[xmlvariable]" operand="outOfService|inService" operator="match">
+              <xmlvariable value="/Root/Device/Information/DataGeneral/@Mode" xmldoc="\XDC\NDC\Data\DataGeneral.xml" />
+            </Condition>
+          </Result>
+        </Item>
+      </Sensors>
+    </DeviceStatusChange>
+    <DeviceEventOccur>
+      <Item key="CashHandler" default="0">
+        <Result value="1">
+          <Condition value="[msgvariable]" operand="SomeNotesRetracted" operator="==">
+            <msgvariable value="[Msg.Transaction.CashHandler.Status]" />
+          </Condition>
+        </Result>
+      </Item>
+      <Sensors>
+        <Item size="1" key="ModeChange" default="0">
+          <Result value="1">
+            <Condition value="[xmlvariable]" operand="Maintenance" operator="match">
+              <xmlvariable value="/Root/Device/Event/Item[@ID = '500']/@Param" xmldoc="\XDC\NDC\Data\DataEvent.xml" />
+            </Condition>
+          </Result>
+          <Result value="1">
+            <Condition value="[xmlvariable]" operand="Maintenance" operator="match">
+              <xmlvariable value="/Root/Device/Event/Item[@ID = '501']/@Param" xmldoc="\XDC\NDC\Data\DataEvent.xml" />
+            </Condition>
+          </Result>
+        </Item>
+      </Sensors>
+    </DeviceEventOccur>
+  </SendCondition>
+  <Capability>
+    <Encryptor>
+      <Item key="RKL">
+        <Result value="[xmlvariable]">
+          <xmlvariable value="/Root/Calculate/Status/@RKL_SIG" xmldoc="\XDC\NDC\Data\DataEncryptor.xml" />
+        </Result>
+      </Item>
+    </Encryptor>
+  </Capability>
+</Root>

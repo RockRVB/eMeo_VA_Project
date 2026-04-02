@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!-- Hardware Configuration Data.
+		* 	This solicited status message is sent to central in response to a Send Configuration Information Terminal Command message..
+		*  (a command code of '7' with a command modifier of '1')
+		-->
+  <HardwareConfigData>
+    <Item key="g1" value="H" size="1" restriction="Mandatory" />
+    <!--  Configuration ID Identifier 'A'	
+		* Configuration ID. This four-character field contains the last four-digit configuration ID number. In the range 0000-9999, sent to the terminal from Central.
+		-->
+    <Item key="g2-1" value="A" size="1" restriction="Mandatory" />
+    <Item key="g2-2" value="[ConfigurationID]" size="4" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--  Product Class Identifier 'B'. Product Class This two-character field contains the product class of the terminal.
+			*  The following entries are possible. But this does not mean that Adavance NDC supports all these classes.
+		.-->
+    <Item key="g3-1" value="B" size="1" restriction="Mandatory" />
+    <Item key="g3-2" value="[SolicitedStatus.TerminalState.ProductClass]" size="2" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--  Hardware configuration Identifier 'C'. .-->
+    <Item key="g4-1" value="C" size="1" restriction="Mandatory" />
+    <Item key="g4-2" value="C00" size="var" restriction="Optional" />
+    <!--   Magnetic Card Reader .-->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.CardReader]" />
+    <Item key="g4-3" value="[Device.CardReader.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.CardReader]" />
+    <Item key="g4-3" value="[Device.CardReader.Configuration]" size="var" restriction="[OptionCtrl.Configuration.CardReader]" />
+    <!--  Cash Handler. .-->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.CashHandler]" />
+    <Item key="g4-4" value="[Device.CashHandler.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.CashHandler]" />
+    <Item key="g4-4" value="[Device.CashHandler.Configuration]" size="var" restriction="[OptionCtrl.Configuration.CashHandler]" />
+    <!--  EnvelopeDepository.-->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.EnvelopeDepository]" />
+    <Item key="g4-5" value="[Device.EnvelopeDepository.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.EnvelopeDepository]" />
+    <Item key="g4-5" value="[Device.EnvelopeDepository.Configuration]" size="var" restriction="[OptionCtrl.Configuration.EnvelopeDepository]" />
+    <!--  Receipt Printer *. .-->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.ReceiptPrinter]" />
+    <Item key="g4-6" value="[Device.ReceiptPrinter.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.ReceiptPrinter]" />
+    <Item key="g4-6" value="[Device.ReceiptPrinter.Configuration]" size="var" restriction="[OptionCtrl.Configuration.ReceiptPrinter]" />
+    <!--  Journal Printer -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.JournalPrinter]" />
+    <Item key="g4-7" value="[Device.JournalPrinter.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.JournalPrinter]" />
+    <Item key="g4-7" value="[Device.JournalPrinter.Configuration]" size="var" restriction="[OptionCtrl.Configuration.JournalPrinter]" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="Optional" />
+    <Item key="g4-8" value="[Device.NIghtSafeDepository.DeviceID]" size="1" restriction="Optional" />
+    <Item key="g4-8" value="[Device.NIghtSafeDepository.Configuration]" size="var" restriction="Optional" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.Encryptor]" />
+    <Item key="g4-9" value="[Device.Encryptor.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.Encryptor]" />
+    <Item key="g4-9" value="[Device.Encryptor.Configuration]" size="var" restriction="[OptionCtrl.Configuration.Encryptor]" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="OptionCtrl.Configuration.FlexDisk]" />
+    <Item key="g4-10" value="[Device.FlexDisk.DeviceID]" size="1" restriction="OptionCtrl.Configuration.FlexDisk]" />
+    <Item key="g4-10" value="[Device.FlexDisk.Configuration]" size="var" restriction="[OptionCtrl.Configuration.FlexDisk]" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.TIBins]" />
+    <Item key="g4-11" value="[Device.TIBins.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.TIBins]" />
+    <Item key="g4-11" value="[Device.TIBins.Configuration]" size="var" restriction="[OptionCtrl.Configuration.TIBins]" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.CardholderKeyboard]" />
+    <Item key="g4-12" value="[Device.CardholderKeyboard.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.CardholderKeyboard]" />
+    <Item key="g4-12" value="[Device.CardholderKeyboard.Configuration]" size="var" restriction="[OptionCtrl.Configuration.CardholderKeyboard]" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.OperatorKeyboard]" />
+    <Item key="g4-13" value="[Device.OperatorKeyboard.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.OperatorKeyboard]" />
+    <Item key="g4-13" value="[Device.OperatorKeyboard.Configuration]" size="var" restriction="[OptionCtrl.Configuration.OperatorKeyboard]" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.CardholderDisplay]" />
+    <Item key="g4-14" value="[Device.CardholderDisplay.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.CardholderDisplay]" />
+    <Item key="g4-14" value="[Device.CardholderDisplay.Configuration]" size="var" restriction="[OptionCtrl.Configuration.CardholderDisplay]" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.SystemDisplay]" />
+    <Item key="g4-15" value="[Device.SystemDisplay.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.SystemDisplay]" />
+    <Item key="g4-15" value="[Device.SystemDisplay.Configuration]" size="var" restriction="[OptionCtrl.Configuration.SystemDisplay]" />
+    <!-- BarCodeReader -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.BarCodeReader]" />
+    <Item key="g4-16" value="[Device.BarCodeReader.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.BarCodeReader]" />
+    <Item key="g4-16" value="[Device.BarCodeReader.Configuration]" size="var" restriction="[OptionCtrl.Configuration.BarCodeReader]" />
+    <!-- Cheque Processor -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.IPM]" />
+    <Item key="g4-17" value="[Device.IPM.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.IPM]" />
+    <Item key="g4-17" value="[Device.IPM.Configuration]" size="var" restriction="[OptionCtrl.Configuration.IPM]" />
+    <!-- BNA -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <Item key="g4-18" value="[Device.BNA.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <Item key="g4-18" value="[Device.BNA.Configuration]" size="var" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="Optional" />
+    <Item key="g4-19" value="[Device.MediaEntryIndicators.DeviceID]" size="1" restriction="Optional" />
+    <Item key="g4-19" value="[Device.MediaEntryIndicators.Configuration]" size="var" restriction="Optional" />
+    <!-- EnvelopeDispenser-->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.EnvelopeDepository]" />
+    <Item key="g4-20" value="[Device.EnvelopeDispenser.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.EnvelopeDepository]" />
+    <Item key="g4-20" value="[Device.EnvelopeDispenser.Configuration]" size="var" restriction="[OptionCtrl.Configuration.EnvelopeDepository]" />
+    <!-- Secondary Card Reader-->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.ContactLessIDC]" />
+    <Item key="g4-21" value="[Device.ContactLessIDC.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.ContactLessIDC]" />
+    <Item key="g4-21" value="[Device.ContactLessIDC.Configuration]" size="var" restriction="[OptionCtrl.Configuration.ContactLessIDC]" />
+    <!-- Camera-->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.Camera]" />
+    <Item key="g4-22" value="[Device.Camera.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.Camera]" />
+    <Item key="g4-22" value="[Device.Camera.Configuration]" size="var" restriction="[OptionCtrl.Configuration.Camera]" />
+    <!-- FingerService -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.FingerService]" />
+    <Item key="g4-23" value="[Device.FingerService.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.FingerService]" />
+    <Item key="g4-23" value="[Device.FingerService.Configuration]" size="var" restriction="[OptionCtrl.Configuration.FingerService]" />
+    <!--  Hardware Configuration. Thie contains information for each device indicating which variant of the device is configured and any other configuration data available. .-->
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.NoUse]" />
+    <!--  Data Identifier .-->
+    <Item key="g5" value="[HWDataID]" size="1" restriction="[OptionCtrl.NoUse]" />
+    <!--  Data.-->
+    <Item key="g5-1" value="[HWData]" size="var" restriction="[OptionCtrl.NoUse]" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]" />
+    <!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+    <Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]" />
+  </HardwareConfigData>
+</Root>

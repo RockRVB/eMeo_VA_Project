@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!-- IsNeed 是否隐藏菜单, 1 : 显示, 0 : 隐藏
+	IsProcessing :  菜单是否可操作，只在 IsNeed为1时有效, 1 : 可操作， 0 ：不可操作， -->
+<Root>
+     <CNRowList>
+      <Row id="1" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_identity.png"   IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_identity_grey.png"  BgColor="#FFF1753A" Name="身份验证" TransType="VTM_Auth" Tag="OnAuth"  IsNeed="1"/>
+      <Row id="2" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_ukey.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_ukey_grey.png" BgColor="#FFE85A80" Name="开 UKey" TransType="VTM_SIGN" Tag="OnSign" IsNeed="1"/>
+     <!-- <Row id="3" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_data modification.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_data modification_grey.png" BgColor="#FF43BFBE" Name="资料修改"  TransType="OnAuthentication" Tag="OnAuthentication" IsNeed="1"/>-->
+      <Row id="3" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_money transfer.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_money transfer_grey.png" BgColor="#FFDB9C25" Name="转账业务" TransType="TFR" Tag="OnTransfer" IsNeed="1"/>
+      <Row id="4" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_cash.png"  IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_cash_grey.png" BgColor="#FF34A3D7" Name="现金业务" TransType="OnCash" Tag="OnCash" IsNeed="1"/>
+      <Row id="5" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_card.png"   IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_card_grey.png"  BgColor="#FFF1753A" Name="开卡业务" TransType="VTM_NEWACC_CURRENT" Tag="OnDebitCard"  IsNeed="1"/>
+     <!-- <Row id="6" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_investment.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_investment_grey.png" BgColor="#FF436BB5" Name="投资理财" TransType="OnFinacial" Tag="OnFinacial" IsNeed="1"/>
+      <Row id="7" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_forwarding.png"  IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_forwarding_grey.png" BgColor="#FF38A3E8" Name="贷款业务" TransType="OnLoan" Tag="OnLoan"  IsNeed="1" />
+      <Row id="8" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_agreement.png"  IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_agreement_grey.png" BgColor="#FF37CA74" Name="签订协议" TransType="OnAgreement" Tag="OnAgreement" IsNeed="1"/>
+      <Row id="9" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_query.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_query_grey.png" BgColor="#FF1CB798" Name="查询业务" TransType="INQ" Tag="OnInquiry" IsNeed="1"/>
+      <Row id="10" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_money transfer.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_money transfer_grey.png" BgColor="#FFDB9C25" Name="转账业务" TransType="TFR" Tag="OnTransfer" IsNeed="1"/>-->
+    </CNRowList>
+	 <ENRowList>
+ <Row id="1" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_identity.png"   IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_identity_grey.png"  BgColor="#FFF1753A" Name="Identity Authentication" TransType="VTM_Auth" Tag="OnAuth"  IsNeed="1"/>
+      <Row id="2" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_ukey.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_ukey_grey.png" BgColor="#FFE85A80" Name="Issue UKey" TransType="VTM_SIGN" Tag="OnSign" IsNeed="1"/> 
+
+      <!--<Row id="3" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_data modification.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_data modification_grey.png" BgColor="#FF43BFBE" Name="Data modification" TransType="OnAuthentication" Tag="OnAuthentication" IsNeed="1"/>-->
+ <Row id="3" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_money transfer.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_money transfer_grey.png" BgColor="#FFDB9C25" Name="Transfer Service" TransType="TFR" Tag="OnTransfer" IsNeed="1"/>
+      <Row id="4" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_cash.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_cash_grey.png" BgColor="#FF34A3D7" Name="Cash business" TransType="OnCash" Tag="OnCash" IsNeed="1"/>
+
+       <Row id="5" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_card.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_card_grey.png" BgColor="#FFF1753A" Name="Account Opening" TransType="VTM_NEWACC_CURRENT" Tag="OnDebitCard"  IsNeed="1"/>
+
+
+     <!-- <Row id="4" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_fill.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_fill_grey.png" BgColor="#FF2B7CA0" Name="Bank book update" TransType="PASSBOOK" Tag="OnPassbookRenew" IsNeed="1"/>
+
+      <Row id="6" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_investment.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_investment_grey.png" BgColor="#FF436BB5" Name="Investment" TransType="OnFinacial" Tag="OnFinacial" IsNeed="1"/>
+      <Row id="7" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_forwarding.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_forwarding_grey.png" BgColor="#FF38A3E8" Name="Loans service" TransType="OnLoan" Tag="OnLoan"  IsNeed="1" />
+      <Row id="8" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_agreement.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_agreement_grey.png" BgColor="#FF37CA74" Name="Sign agreement" TransType="OnAgreement" Tag="OnAgreement" IsNeed="1"/>
+      <Row id="9" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_query.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_query_grey.png" BgColor="#FF1CB798" Name="Inquiry service" TransType="INQ" Tag="OnInquiry" IsNeed="1"/>
+      <Row id="10" Background="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_money transfer.png" IsEnabledBackground="pack://SiteOfOrigin:,,,/Resource/Resource/Images/MainImage/bg_money transfer_grey.png" BgColor="#FFDB9C25" Name="Trasfer service" TransType="TFR" Tag="OnTransfer" IsNeed="1"/>-->
+    </ENRowList>
+</Root>

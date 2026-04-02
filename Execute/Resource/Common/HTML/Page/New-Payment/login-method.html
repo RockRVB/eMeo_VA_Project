@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select item</title>
+    <script src="../../js/vue.min.js">
+    </script>
+    <script src="../../js/grg-ui.min.js">
+    </script>
+    <script src="../../js/vue-i18n.js">
+    </script>
+    <script src="../../js/jquery-3.7.0.js">
+    </script>
+    <script src="../../js/coreScript.js">
+    </script>
+    <script src="../../js/ibank.js">
+    </script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/animate.grg.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <style>
+	.main-btn { 
+	display: flex; 
+	flex-direction: column; 
+	align-items: center; 
+	} 
+	
+	.btn-position{ 
+	position: absolute; 
+	bottom: 5%; 
+	left: 40%;
+	} 
+	
+	.main-content-box {
+	width: 100%; 
+	text-align: center; 
+	font-family: 'Alibaba Sans';
+	position: absolute;
+	top: 30%;
+	} 
+	
+	.operating-button-box { 
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	color: #333333;
+	} 
+	
+	.operating-button-box .operating-but-li { 
+	position: relative;
+	margin-right: 40px;
+	padding-top: 39px;
+	box-sizing: border-box;
+	
+	width: 250px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 20px 0px rgba(28, 42, 74, 0.23);
+    border-radius: 24px;
+    overflow: hidden;
+	} 
+	
+	.operating-button-box .operating-but-li .operating-button-shade { 
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.5);
+	left: 0;
+	top: 0;
+	} 
+	
+	.operating-button-box .operating-but-li .coming-soon-box {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 166px;
+	height: 32px; 
+	background: #F1F1F1; 
+	border-radius: 24px 0px 10px 0px; 
+	font-size: 20px; 
+	color: #999999;
+	}
+	.info-text{
+	font-size: 40px;
+	color: #333333;
+	text-align: center;
+    font-family: 'Alibaba Sans';
+	line-height:normal;
+	font-weight: blod
+	}
+	
+ </style>
+  </head>
+  
+  <body>
+    <div id="app">
+      <div id="grg-header" class="grg-header">
+      </div>
+      <div id="grg-main" class="grg-main animate_grg_fadeInRight_other">
+        <!-- <div class="count-down">
+        <div class="count-down-2">60</div>
+        </div> -->
+		<div class="info-text">
+		 <div class="main-title"ids="ids_exchange_selectloginway">Please select the login way</div>
+		<div>
+     
+        <div class="main-content-box">
+          <div class="select-business-box">
+			<div class="operating-button-box">
+              <div v-for="(item, index) in operatingButton" :key="index" class="operating-but-li"
+                @click="item.disable ? '' : event(item)">
+                <img class="btn-icon" :src="item.iconUrl" alt="">
+                <div class="btn-text":ids="item.ids">{{item.text}}</div>
+                <div v-if="item.disable" class="coming-soon-box" ids="ids_Common_Comingsoon">Coming soon</div>
+                <div v-if="item.disable" class="operating-button-shade"></div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <button class="btn-retry btn-position" id='OnCancel' type='button' tag='OnCancel' ids="ids_Btn_cancel">
+          <img class="btn-img-ok" src="../../images/img_2.4/icon-back@2x.png" ids='ids_Btn_back' alt="">Cancel</button>
+      </div>
+    </div>
+  </body>
+
+</html>
+<script>var app = new Base({
+    i18n: i18n,
+    data: {
+		operatingButton:[{
+			text: 'Passport',
+			iconUrl: '../../images/img_2.4/account-img.png',
+			eventName: 'Passport',
+			ids:"ids_Common_Passport",
+			disable: false,
+			},
+			{
+			text: 'QRCode',
+			iconUrl: '../../images/img_2.4/qr-code-img.png',
+			eventName: 'code',
+			ids:"ids_Common_QR",
+			disable: false,
+			}
+		]
+	},
+    methods: {
+	event(type) {
+        let _this = this;
+        switch (type.eventName.toLowerCase()) {
+          case 'passport':
+			goto('OnPassport');
+            //console.log('water bill');
+            break;
+          case 'code':
+			goto('OnQRCode');
+            //console.log('gas bill');
+            break;
+        }
+      },
+	},
+    computed: {},
+    mounted: function() {}
+  }).$mount('#app')</script>

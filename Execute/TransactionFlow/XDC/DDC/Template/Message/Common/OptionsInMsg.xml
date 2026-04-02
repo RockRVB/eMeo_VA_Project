@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- protocol: NDC -->
+<Root>
+	<Options>
+		<!--
+		The "value" in this file , like value = "3" stands for  
+		the key of <Item key="03" value="063" default="000" valueType="string" description="Miscellaneous Features 3" />(e.g. key= 3) of "Options.Item"	in the file"DataParm.xml"
+		position ="6" stands for "position" start from 0 and the 6th digit as 1, it means "F3.TransactionVerificationStatus" true , nor false.
+		-->
+		<!--
+		此文件中的value，如value="3"对应于
+		DataParm.xml文件中的Options.Item的<Item key="03" value="063" default="000" valueType="string" description="Miscellaneous Features 3" />中的key，如key="03"
+		position="6" 表示 position 从0算起， 第6位为1，  表示F3.TransactionVerificationStatus为真，否则为假
+		-->
+		<Item size="1" value="1" position="7" Weight="128" key="F1.AppendRolloverCounts"/>
+		<Item size="1" value="1" position="6" Weight="64" key="F1.DecimalStyle"/>
+		<Item size="1" value="1" position="5" Weight="32" key="F1.DepositCancelStatusBit"/>
+		<Item size="1" value="1" position="4" Weight="16" key="F1.DollarDecimalPlaces"/>
+		<Item size="1" value="1" position="3" Weight="8" key="F1.DollarBufferSize"/>
+		<Item size="1" value="1" position="2" Weight="4" key="F1.Reserved4"/>
+		<Item size="1" value="1" position="1" Weight="2" key="F1.AutomaticReturnToReviousMode"/>
+		<Item size="1" value="1" position="0" Weight="1" key="F1.SeparateReadyResponse"/>
+		<Item size="1" value="2" position="7" Weight="128" key="F2.Reserved7"/>
+		<Item size="1" value="2" position="6" Weight="64" key="F2.RejectReasonCodesToNetwork"/>
+		<Item size="1" value="2" position="5" Weight="32" key="F2.MDSStatusToNetwork"/>
+		<Item size="1" value="2" position="4" Weight="16" key="F2.MaintenanceModeLogToNetwork"/>
+		<Item size="1" value="2" position="3" Weight="8" key="F2.Reserved3"/>
+		<Item size="1" value="2" position="2" Weight="4" key="F2.ExpandedHardwareConfigurationStatus"/>
+		<Item size="1" value="2" position="1" Weight="2" key="F2.Reserved1"/>
+		<Item size="1" value="2" position="0" Weight="1" key="F2.Reserved0"/>
+		<Item size="1" value="3" position="7" Weight="128" key="F3.BMH"/>
+		<Item size="1" value="3" position="6" Weight="64" key="F3.TransactionVerificationStatus"/>
+		<Item size="1" value="3" position="5" Weight="32" key="F3.NoRetract"/>
+		<Item size="1" value="3" position="4" Weight="16" key="F3.AdditionalHardwareConfigurationData"/>
+		<Item size="1" value="3" position="3" Weight="8" key="F3.MessageSequenceNumberInSolicitedStatusMessag"/>
+		<Item size="1" value="3" position="2" Weight="4" key="F3.ExtendedRangeForMessageCoordinationNumber"/>
+		<Item size="1" value="3" position="1" Weight="2" key="F3.DoublingTimer03Feature"/>
+		<Item size="1" value="3" position="0" Weight="1" key="F3.DoubleExpandedHardwareConfigurationStatus"/>
+		<Item size="1" value="4" position="7" Weight="128" key="F4.Reserved7"/>
+		<Item size="1" value="4" position="6" Weight="64" key="F4.Reserved6"/>
+		<Item size="1" value="4" position="5" Weight="32" key="F4.SendExpandedMDSStatus"/>
+		<Item size="1" value="4" position="4" Weight="16" key="F4.DisallowDispenseWithSafeDoorOpen"/>
+		<Item size="1" value="4" position="3" Weight="8" key="F4.Reserved3"/>
+		<Item size="1" value="4" position="2" Weight="4" key="F4.EnvelopeDispenserConfigurationControl"/>
+		<Item size="1" value="4" position="1" Weight="2" key="F4.SendEnvelopeDispenserStatusToNetwork"/>
+		<Item size="1" value="4" position="0" Weight="1" key="F4.DisableAutomaticEnvelopeDispensing"/>
+	</Options>
+	<Local>	 
+		<!--Item key="[Options.F2.MDSStatusToNetwork]" value="1"/-->
+	</Local>
+</Root>

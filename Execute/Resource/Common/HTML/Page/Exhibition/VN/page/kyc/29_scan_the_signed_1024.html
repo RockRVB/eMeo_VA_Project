@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" >
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>TPBank</title>
+				<link rel="Stylesheet" type="text/css" href="../../css/jquery-ui.min.css" />
+
+				<link rel="Stylesheet" type="text/css" href="../../js/iviewer/jquery.iviewer.css" />
+				<link rel="Stylesheet" type="text/css" href="../../js/dotozoom/dotozoom.css" />    
+	<link rel="stylesheet" type="text/css" href="../../../../../css/config/base.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../css/config/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../css/config/style.css" />
+				
+        <link rel="Stylesheet" type="text/css" href="../../css/global.css" />
+        <link rel="Stylesheet" type="text/css" href="../../css/open_ca.css" />
+<style>
+body{
+    width: 1280px;
+    height: 1024px;
+	background-size: cover;
+}
+.scan_signed .main{
+margin-left: 0px;
+}
+.title{
+width:100%;
+text-align: center;
+}
+.scan_signed .title{
+font-size: 30px;
+}
+.scan_signed .main .left{
+margin: 50px 0 0 20px;
+}
+.scan_signed .main .right{
+float: none;
+width: 1024px;
+margin-left: 530px;
+}
+</style>		
+	</head>
+    <body class="scan_signed" style="font-family:'微软雅黑';">
+      <input type="hidden" id="atmcinterop" tag="tag" handle="false">
+			<div style="padding:55px 50px 0;">
+				<div class='left'><img class="logo" src="../../img/logo1.png"></div>
+				<!-- <div class="center"> -->
+					<!-- <div class="counter_timeout" id="Counter" type="countdown" content="{Binding Count}" visible="{Binding CouterVisible}"> </div> -->
+				<!-- </div>				 -->
+			</div>
+
+     
+      <div class="main">
+	  <div class="title" ids="IDS_ScanSignTip1">Please review and confirm that image scanned is correct.</div>
+        <div class="left">
+          <div class="live_wrapper">
+            <img type="img" id="live_scan" content="{Binding ScanImg}" width="450">
+          </div>
+          <div class="bt_img">
+            <a id="OnCapture" class="bt_capture" type="button" tag="OnSnapDoc"></a>
+          </div>
+          <div class="text_content" ids="IDS_ScanSignTip">Live stream from scanner, capture image when you are ready.</div>
+        </div>
+        <div class="right">
+          <!--<div class="title" ids="IDS_ScanSignTip1">Please review and confirm that image scanned is correct.</div>-->
+          <div class="image_wrapper frame">
+            <div class="slidee">
+              <!-- <div class="image_item"> -->
+                <!-- <img class="image" src="../../img/doc1.png" width="340"> -->
+                <!-- <div class="bt_img"> -->
+                  <!-- <a style="width: 100%; border-bottom-left-radius: 20px;" class="bt_zoom" href="../../img/doc1.png"></a> -->
+                  <!-- <div class="clear"></div> -->
+                <!-- </div> -->
+              <!-- </div> -->
+              <!-- <div class="image_item"> -->
+                <!-- <img class="image" src="../../img/doc1.png" width="340"> -->
+                <!-- <div class="bt_img"> -->
+                  <!-- <a class="bt_remove"></a> -->
+                  <!-- <a class="bt_zoom" href="../../img/doc1.png"></a> -->
+                  <!-- <div class="clear"></div> -->
+                <!-- </div> -->
+              <!-- </div> -->
+            </div>
+            <div class="clear"></div>
+          </div>
+          
+          <div class="scrollbar">
+            <div class="handle">
+              <div class="mousearea"></div>
+            </div>
+          </div>
+          
+          <div class='bt_wrapper'>
+            <a id="OnConfirm" type="button" tag="OnConfirm" class="bt_orange bt_confirm hide" ids="Confirm">Confirm</a>
+          </div>
+        <div class="button_container_footer hide" style="margin-left:270px">
+            <div class="cancel_button" ids="IDS_Empty" id="btnCancel" type="Button" tag="OnClear" >清空</div>
+            <div class="forword_button " ids="IDS_ConfirmPrint" id="btnConfirm" type="Button" tag="OnConfirm" >确认</div>
+        </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+
+      <script src="../../js/jquery-3.1.0.min.js"></script>
+			<script src="../../js/jquery-migrate-3.0.0.min.js"></script>
+			<script src="../../js/jquery-ui.min.js"></script>
+
+			<script src="../../js/iviewer/jquery.iviewer.min.js"></script>
+			<script src="../../js/dotozoom/dotozoom.js"></script>
+			<script src="../../js/sly/sly.min.js"></script>
+			
+      <script src="../../js/main.js"></script>
+      <script>
+        var $frame = $('.frame');
+        var $slidee = $('.slidee');
+        var $wrap = $frame.parent();
+        
+        $frame.sly({
+          horizontal: 1,
+          itemNav: 'basic',
+          smart: 1,
+          activateOn: 'click',
+          mouseDragging: 1,
+          touchDragging: 1,
+          releaseSwing: 1,
+          startAt: 0,
+          scrollBar: $wrap.find('.scrollbar'),
+          scrollBy: 1,
+          activatePageOn: 'click',
+          speed: 300,
+          elasticBounds: 1,
+          easing: 'easeOutExpo',
+          dragHandle: 1,
+          dynamicHandle: 1,
+          clickBar: 1,
+        });
+        
+        function setImage(path){
+          $slidee.html('');
+          
+          if(path){
+            var img = path.split(',');
+            
+            for(var i = 0; i < img.length; i++){
+            
+              (function(index){
+                var item = img[index];
+                var element = $('<div class="image_item"><img class="image" src="' + item + '" width="340"><div class="bt_img"><a style="width: 100%; border-bottom-left-radius: 20px;" class="bt_zoom" href="' + item + '"></a><div class="clear"></div></div></div>');
+                
+                element.find('.bt_remove').click(function(){				
+                  goto('OnF' + (index + 1));
+                })
+                
+                $slidee.append(element);
+              })(i);
+              
+            }
+            
+            $frame.sly('reload');
+            $('.bt_zoom').dotozoom({
+              onOpen: function(){
+                goto('OnZoomOpen');
+              },
+              onClose: function(){
+                goto('OnZoomClose');
+              }
+            });
+            
+            if(img.length <= 3){
+              $wrap.find('.scrollbar').css('visibility', 'hidden');
+            } else {
+              $wrap.find('.scrollbar').css('visibility', 'visible');
+            }
+            
+            $('.button_container_footer').removeClass('hide');
+          } else {
+            $frame.sly('reload');
+            $wrap.find('.scrollbar').css('visibility', 'hidden');
+            $('.button_container_footer').addClass('hide');
+          }
+        }
+        
+      </script>
+      <!-- <div class="hide"><div id="exit_form"><div class="save_wrapper"><div class="save_title" ids="IDS_AreYouSureToExit">Are you sure you want to exit?</div><div class="bt_wrapper2"><a class="bt_orange2 bt_no" onClick="close_fancybox()" ids="IDS_No">No</a><a class="bt_orange2 bt_yes" id="OnExit" type="button" tag="OnCancel" ids="IDS_Yes">Yes</a></div></div></div></div> -->
+    </body>
+</html>

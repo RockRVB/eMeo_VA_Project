@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  ****************************************************************************************************
+  * [1] Function command definition 
+  * [2] The map setting between DDC function and DDC command  
+  *****************************************************************************************************
+-->
+<Root>
+	<!-- Define the basic function command with unit definition-->
+	<FuncCmdBase>
+		<Item key="f" value="PrintJournal" description="Record Journal Log"/>
+		<Item key="4" value="PrintData" description="Print Data"/>
+		<Item key="5" value="JumpToNextState" description="Jump to next state"/>
+		<Item key="A" value="DepositEnvelope" description="Deposit envelope"/>
+		<Item key="B" value="DispenseNote" description="Dispense Note"/>		
+		<Item key="C" value="PresentNote" description="Present Note"/>
+		<Item key="D" value="PrintAndWaitForCompletion" description="Print and wait for completion"/>
+		<Item key="V" value="WriteTrack1" description="Write Track 1"/>
+		<Item key="W" value="WriteTrack2" description="Write Track 2"/>	
+		<Item key="F" value="WriteTrack3" description="Write track 3"/>		
+		<Item key="E" value="EjectCard" description="Eject Card"/>
+		<Item key="H" value="PrintAndDoNotWait" description="Print and do not wait for completion"/>	
+		<Item key="U" value="PresentCard" description="Present card"/>
+		<Item key="Z" value="DoNothing" description="Do Nothing"/>
+		<Item key="x" value="RecordTransactionLog" description="Record Transaction Log"/>
+		<Item key="1" value="TakeDepositEnvelope" description="Take In Envelope"/>
+		<Item key="u" value="RefundDepositNote" description="Refund Deposit Note"/>
+		<Item key="e" value="EnCashDepositNote" description="Enhance Cash Deposit Note"/>
+		<Item key="t" value="EnCashDepositWaitNextReply" description="Enhance Cash Deposit And Wait Next Reply"/>
+		<Item key=";" value="EnhancedFunctionData" description="Enhanced Function Data"/>
+		<Item key="P" value="PrintDataAndStayInPresentState" description="PrintData And Stay In Present State"/>
+		<Item key="r" value="WincorDDCCashDepositNote" description="WincorDDCCashDepositNote"/>
+	</FuncCmdBase>
+	<!-- Define the map setting between DDC function command and unit definition-->
+	<Command>
+		<Item key="4" value="4" description="Print Data"/>
+		<Item key="5" value="f54x" description="set next state and print"/>
+		<Item key="7" value="e4x" description="Deposit and print"/>
+		<Item key="A" value="A" description="Deposit envelope"/>
+		<Item key="B" value="B" description="Dispense Note"/>		
+		<Item key="C" value="C" description="Present Note"/>
+		<Item key="D" value="D" description="Print and wait for completion"/>
+		<Item key="E" value="E" description="Eject Card"/>
+		<Item key="F" value="F" description="Write track 3"/>
+		<Item key="H" value="H" description="Print and do not wait for completion"/>
+		<Item key="U" value="U" description="Present card"/>
+		<Item key="V" value="V" description="Write Track 1"/>
+		<Item key="W" value="W" description="Write Track 2"/>
+		<Item key="Z" value="Z" description="Do Nothing"/>
+		<Item key=";" value=";" description="Enhanced Function Data"/>
+		<Item key="P" value="P" description="PrintData And Stay In Present State"/>
+		<Item key="r" value="r" description="WincorDDCCashDepositNote"/>
+	</Command>
+</Root>

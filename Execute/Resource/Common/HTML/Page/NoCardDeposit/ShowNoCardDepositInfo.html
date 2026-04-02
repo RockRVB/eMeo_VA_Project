@@ -1,0 +1,38 @@
+﻿<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+		<title>点钞结果</title>
+		<link rel="stylesheet" type="text/css" href="../../css/CN.css"  replace="1"/>
+		<script src="../../js/require.js" type="text/javascript" charset="utf-8" data-main="../../js/main" async="true"></script>
+	</head>
+	<body class="all_bg">
+		<header class="index_top clear">
+			<div class="logo"></div>
+			<div class="index_top_title">
+				<div class="count_down_time" style="display:none" id="Counter" type="countdown" content="{Binding Count}" visible="{Binding CouterVisible}">10</div>
+			</div>
+		</header>
+		<div class="ibank_container">
+			<div class="business_container">
+				<div class="transaction_result">
+					<div class="transaction_title" style="width: 55% !important;" ids="IDS_ConfirmNoCardDepositInfomation">请确认您的存款信息</div>
+                    <div class="count_res_group">
+                        <div class="count_res_contain">
+                            <div class="count_res_label" ids="IDS_NoCardDepositAcount">账号：</div>
+                            <span style="display:inline" id="tdPAN" type="text" content="{Binding core_PAN}" format="#### ">2234 7678 7899 2201 345</span>
+                        </div>
+                        <div class="count_res_contain">
+                            <div class="count_res_label" ids="IDS_NoCardDepositAcountName">户名：</div>
+                            <div style="display:inline" id="tdName" content="{Binding core_AccountName}" type="text">*晓东</div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+			<div class="button_container">
+				<div class="cancel_button" type="button" name="btnCancel" id="btnCancel" tag="OnCancel" ids="IDS_Cancel">取消</div>
+				<div class="enter_button" type="button" name="btnConfirm" id="btnConfirm" tag="OnConfirm" ids="IDS_Confirm">确认</div>
+			</div>
+		</div>
+	</body>
+</html>

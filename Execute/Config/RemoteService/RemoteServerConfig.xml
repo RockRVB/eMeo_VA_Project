@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RemoteServerConfig>
+  <DataFormatProviders>
+    <!--通信数据格式化处理器，dllFilePath指定程序集的路径-->
+    <!--通信数据格式化处理器，name指定为格式化器别名-->
+    <DataFormatProvider dllFilePath="RemoteService\DataFormatJSON.dll" name="JSONFormater"></DataFormatProvider>
+  </DataFormatProviders>
+  <CommandHandlerAssemblyPaths>
+    <!--命令程序集加载路径，value指定为相对程序集运行根目录的相对目录，例如：RemoteService\-->
+    <CommandHandlerAssemblyPath value="RemoteService\"></CommandHandlerAssemblyPath>
+  </CommandHandlerAssemblyPaths>
+</RemoteServerConfig>

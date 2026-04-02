@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <InterTransResponse>
+    <!--  Message Class and the message is unsolicitied message  -->
+    <Item key="b" value="1" size="1" restriction="Mandatory" />
+    <!--  Message Sub-Class. The message sub-class is '1' - Transaction Request message.  -->
+    <Item key="c" value="1" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--  Logical Unit Number(LUNO).Default value is 000  -->
+    <Item key="d" value="[LUNO]" size="3-9" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--  Timer Vaiant Number-. The field can contain an eight-digit number derived from the time of day be the terminal for each transaction request.(-0-9, A- F).  -->
+    <Item key="e" value="[TVN]" size="3-9" restriction="Optional" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--  Top of Receipt Transaction Flag. 
+		* 	'0' - will not print data for this transaction at the top of the receipt.
+		* 	'1' - will print data for this transction at the top of the receipt
+		-->
+    <Item key="f" value="[Msg.Transaction.TopOfRcptTransFlag]" size="1" restriction="Mandatory" />
+    <!--  Message Co-Ordination. 
+		* 	The valid range of the co-ordination number is 31 hex to 3F hex, or if enhanced cofiguration parameter 34 'MCN Range' has been set to 001, from 31 hex to 7E hex..
+		-->
+    <Item key="g" value="[Msg.Transaction.MCON]" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--  General Purpose Buffer B 
+		* 	Contains the keyboard data entered during the information entry state or after receiving an Interactive Transaction
+		* Response. The last character in this buffer is a graphic 'T' if the terminal 'time-out' waiting for the cardholder to respond(via keyboard entry) to
+		* an interactive transaction response, or a graphic 'E' if the cardholder pressed  the Cancel key. Length is 3-32..
+		-->
+    <Item key="m" value="[Buffer.B]" size="var(32)" restriction="Optional" />
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]" />
+    <!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+    <Item key="x" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]" />
+  </InterTransResponse>
+</Root>

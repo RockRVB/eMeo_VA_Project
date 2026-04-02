@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--与VTA通讯服务
+VTAServiceSession: 网络会话名称,对应NetworkConfig.xml Session中的name 属性
+MessageTimeOut: 超时时间
+VideoRequestTrace: 保留属性
+BusinessTrace: 保留属性
+VTAListenerSession: 客户端监听服务名称, 对应NetworkConfig.xml Listener中的name 属性
+-->
+<RemoteTellerServiceConfig>
+  <VTAServiceSession name="VTAService" />
+  <MessageTimeOut value="60000" />
+  <VideoRequestTrace value="21" />
+  <BusinessTrace value="15" />
+  <BizIdTypeValue value="1"/><!-- 设置Teller call向VTMA上传的businessId格式类型值，0-兼顾旧版本VTMA，沿用旧格式busId;1-对应新版本VTMA，采用新格式busId -->
+  <VTAListenerSession name="VTAListen"/>
+  
+ 
+  <!-- mask：0（不屏蔽），1（屏蔽） -->
+  <!-- item：屏蔽规则。  -->
+  <!-- xpath：需要屏蔽的报文（XML）的节点，  -->
+  <!-- maskPattern：屏蔽格式，例如：
+		"[S]{4}[*]{3}[E]{3}"，表示保留原信息的前4位与后3位，中间以固定长度的3个*号替换，
+		"[S]{4}[*]{-1}[E]{3}"，表示保留原信息的前4位与后3位，中间的信息保留原长度，以*号替换， 
+		其他依次类推，如果不配置，则默认以长度与原信息相等的*号替换。 -->
+  <SensitiveInfo mask="1">
+	<item xpath="/business/head/token" maskPattern=""/>
+	<item xpath="/business/body/data" maskPattern=""/>
+	<item xpath="/business/body/cusData" maskPattern=""/>
+	<item xpath="/business/body/busiData" maskPattern=""/>
+  </SensitiveInfo>
+  
+  <!-- ValetInterface.json 代客报文屏蔽字段 -->
+  <SensitiveFields>
+	<Item key="ScanPassportResponse" value="name,gender,birthDate,nation,idNo,expire,certType"/>
+	<Item key="InitiateVerificationResponse" value="name,gender,birthDate,nation,idNo,expire,certType"/>
+	<Item key="SendCardResponse" value="cardNumber"/>
+  </SensitiveFields>
+  
+  <ValetMode enable="1">
+	<MessageConfig value="Config\DataFormatterService\ValetInterface.json"/>
+	<RemoteProxyConfig value="Config\DistributedService\eCATPlatformDistributedServiceConfig.xml" />
+	<IsEncrypt4FEELConfig value="true" />
+  </ValetMode>
+  
+</RemoteTellerServiceConfig>

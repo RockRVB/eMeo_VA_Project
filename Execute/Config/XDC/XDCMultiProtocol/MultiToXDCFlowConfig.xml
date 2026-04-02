@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+<!-- for example:-->
+  <CWD>
+    <EnterFlowParameter>
+	<Item key="StateNumber" value="068" description=""/>
+	<Item key="ScreenNumber" value="" description=""/>
+	<Item key="OperationCode" value="       B" description=""/>
+	<Item key="SetBufferData" value="" description="for example:[065,00000000];[064,5000];[068,222222]"/>
+	<Item key="CopyBufferData" value="" description="for example:[065,045];[064,078]"/>
+    </EnterFlowParameter>
+    <LeaveFlowParameter>
+	<Item key="XDCStateNumWorkflow" value="068,051,069,058,185,074,204,013,067" description=""/>
+	<Item key="CompMode" value="0" description="0 is equal,1 is startwith,2 is endwith"/>
+	<Item key="SetBufferData" value="" description="for example:[065,00000000];[064,5000];[068,222222]"/>
+	<Item key="CopyBufferData" value="" description="for example:[065,045];[064,078]"/>
+    </LeaveFlowParameter>
+  </CWD>
+
+</Root>

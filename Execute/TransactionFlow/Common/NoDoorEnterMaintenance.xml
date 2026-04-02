@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="NoDoorEnterMaintenance">
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2013/11/02 15:59:00" comment="The workflow design is for no door enter maintenance"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_NoDoorEnterMaintenance"/>
+		</Start>
+		<InputInfo ID="ID_NoDoorEnterMaintenance" UI="UI_NoDoorEnterMaintenance" comment="Input password" minLen="6" maxLen="10" timeout="10000" showCharacter="*" validateMaintenancePin="1" activeKeys="1,2,3,4,5,6,7,8,9,0,00,.,ENTER,CANCEL,CLEAR,BACKSPACE" terminateKeys="CANCEL">
+			<Forward event="OnConfirm" targetID="ID_InvokeMaintenanceWorkflow"/>
+			<DefaultForward targetID="ID_CompareMode"/>
+		</InputInfo>
+		<InvokeWorkflow ID="ID_InvokeMaintenanceWorkflow" name="Maintenance" comment="Invoke maintenance workflow" syn="0">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<CompareData ID="ID_CompareMode" comment="判断原始模式是什么" compareBuffer="{core_OriginalMode}">
+			<Forward event="OnEqualOffline" targetID="ID_InvokeOfflineWorkflow"/>
+			<Forward event="OnEqualOutOfService" targetID="ID_InvokeOutOfServiceWorkflow"/>
+			<DefaultForward targetID="ID_InvokeCloseTransWorkflow"/>
+		</CompareData>
+		<InvokeWorkflow ID="ID_InvokeOfflineWorkflow" name="Offline" comment="Invoke offline workflow" syn="0">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeOutOfServiceWorkflow" name="OutOfService" comment="Invoke out of service workflow" syn="0">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+		</End>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

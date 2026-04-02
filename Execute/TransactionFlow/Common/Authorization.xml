@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="Authorization">
+  <Head type="GRGWorkflow" comment="The workflow design is for Authorization flow"/>
+  <!--数据池变量定义
+	key：变量名称
+	lifeCycle：变量生命周期，1-CardHolder；2-Terminal；3-Workflow。若此项不存在，生命周期默认为Transaction
+	-->
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start">
+      <Forward event="OnConfirm" targetID="ID_SelectAuthType"/>
+    </Start>
+
+    <VTMSelectFunction  ID="ID_SelectAuthType" UI="UI_SelectAuthorization" transTypeMap="[F2,IDCARD_AUTH][F3,PASSPORT_AUTH]" homeVisible="1">
+      <!-- <Forward event="OnBankCardType" targetID="ID_SetAuthTypeCard"/> -->
+      <Forward event="OnIDType" targetID="ID_SetAuthTypeIDCard"/>
+      <Forward event="OnPassportType" targetID="ID_SetAuthTypePassport"/>
+	  <Forward event="OnBack" targetID="ID_SetBackFlag"/>
+    </VTMSelectFunction>
+	
+	<!--设置返回按钮标志-->
+	<SetData ID="ID_SetBackFlag" saveBuffer="{VTM_BackFlag,0}" value="True">
+      <Forward event="OnConfirm" targetID="9999" />
+    </SetData>
+
+    <!-- Set IDCard Authorization Way	-->
+    <SetData ID="ID_SetAuthTypeIDCard" saveBuffer="{VTM_AuthentificationWay, 1}" value="0">
+      <Forward event="OnConfirm" targetID="ID_IDType" />
+    </SetData>
+    <!-- Set Passport Authorization Way  -->
+    <SetData ID="ID_SetAuthTypePassport" saveBuffer="{VTM_AuthentificationWay, 1}" value="1">
+      <Forward event="OnConfirm" targetID="ID_PassportType" />
+    </SetData>
+    <!-- Set BankCard Authorization Way -->
+    <SetData ID="ID_SetAuthTypeCard" saveBuffer="{VTM_AuthentificationWay, 1}" value="2">
+      <Forward event="OnConfirm" targetID="ID_Login" />
+    </SetData>
+
+    <!--插卡认证-->
+    <InvokeWorkflow ID="ID_Login" name="Login" comment="insert card and input pin">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+    <!--身份证认证-->
+    <InvokeWorkflow ID="ID_IDType" name="AuthorizationIDCard" comment="insert ID Card">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+    <!--护照认证-->
+    <InvokeWorkflow ID="ID_PassportType" name="AuthorizationPassport" comment="insert Passport">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+
+    <InvokeWorkflow ID="ID_InvokeRequestAgent_WF" name="RequestAgent_WF"  comment="Invoke help workflow" fallBackAfterEnd="1">
+      <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+    </InvokeWorkflow>
+
+    <End ID="9999" comment="End">
+    </End>
+
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHelp" targetID="ID_InvokeRequestAgent_WF"/>
+  </DefaultForward>
+</Workflow>

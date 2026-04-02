@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!-- The definition of denomination setting in host side -->
+  <DenominationType>
+    <DenoItem denoTypeID="1" name="A" currency="VND" denomination="500000" enabled="1" />
+    <DenoItem denoTypeID="2" name="B" currency="VND" denomination="200000" enabled="1" />
+    <DenoItem denoTypeID="3" name="C" currency="VND" denomination="100000" enabled="1" />
+    <DenoItem denoTypeID="4" name="D" currency="VND" denomination="20000" enabled="1" />
+    <DenoItem denoTypeID="5" name="E" currency="CNY" denomination="100" enabled="0" />
+    <DenoItem denoTypeID="6" name="F" currency="CNY" denomination="100" enabled="0" />
+    <DenoItem denoTypeID="7" name="G" currency="CNY" denomination="100" enabled="0" />
+    <DenoItem denoTypeID="8" name="H" currency="CNY" denomination="100" enabled="0" />
+  </DenominationType>
+  <!-- The definition of cassete setting-->
+  <Cassette>
+    <CassetteItem keyID="1" cassetteID="00001" currency="VND" denomination="500000" enabled="1" />
+    <CassetteItem keyID="2" cassetteID="00002" currency="VND" denomination="200000" enabled="1" />
+    <CassetteItem keyID="3" cassetteID="00003" currency="VND" denomination="100000" enabled="1" />
+    <CassetteItem keyID="4" cassetteID="00004" currency="VND" denomination="20000" enabled="1" />
+    <CassetteItem keyID="5" cassetteID="" currency="CNY" denomination="100" enabled="0" />
+    <CassetteItem keyID="6" cassetteID="" currency="CNY" denomination="100" enabled="0" />
+    <CassetteItem keyID="7" cassetteID="" currency="CNY" denomination="100" enabled="0" />
+    <CassetteItem keyID="8" cassetteID="" currency="CNY" denomination="100" enabled="0" />
+  </Cassette>
+  <!--  The map setting between denomination type and cassettes -->
+  <MapSetting>
+    <MapItem keyID="1" tag="1" cassetteID="00001" denoTypeID="1" />
+    <MapItem keyID="2" tag="1" cassetteID="00002" denoTypeID="2" />
+    <MapItem keyID="3" tag="1" cassetteID="00003" denoTypeID="3" />
+    <MapItem keyID="4" tag="1" cassetteID="00004" denoTypeID="4" />
+    <MapItem keyID="5" tag="0" cassetteID="" denoTypeID="5" />
+    <MapItem keyID="6" tag="0" cassetteID="" denoTypeID="6" />
+    <MapItem keyID="7" tag="0" cassetteID="" denoTypeID="7" />
+    <MapItem keyID="8" tag="0" cassetteID="" denoTypeID="8" />
+  </MapSetting>
+  <!-- The map setting between physical name and hopper id -->
+  <CasIdMapToHopperId>
+    <!-- "NMD100" start -->
+    <Item key="PHY01" value="1" />
+    <Item key="PHY02" value="2" />
+    <Item key="PHY03" value="3" />
+    <Item key="PHY04" value="4" />
+    <!-- "NMD100" end-->
+    <!-- "9250" start -->
+    <Item key="S1_I0" value="1" />
+    <Item key="S2_I0" value="2" />
+    <Item key="S3_I0" value="3" />
+    <Item key="S4_I0" value="4" />
+    <!-- "9250" end-->
+    <!-- "8240|6240" start -->
+    <Item key="Hopper1" value="1" />
+    <Item key="Hopper2" value="2" />
+    <Item key="Hopper3" value="3" />
+    <Item key="Hopper4" value="4" />
+    <!-- "8240|6240" end-->
+  </CasIdMapToHopperId>
+  <!-- The definition of algorithm to allot the notes according to the type in host-->
+  <DispenserAlgorithm>
+    <!-- The minimum first to dispense(empty the cassette first) -->
+    <Item key="0" value="minFirstDispense" minNotesLeft="0" enabled="0" />
+    <!-- The maximum first to dispense(keep the balance of the left notes for each hopper)-->
+    <Item key="1" value="maxFirstDispense" minNotesLeft="0" enabled="0" />
+    <!--Balance dispense with more consideration -->
+    <Item key="2" value="balanceDispense" BalanceAlgorithm="3" DispenserRepeatAction="0" minNotesLeft="0" baseRemainRadio="2" enabled="1" />
+  </DispenserAlgorithm>
+  <!-- The enum value for balance algorithm -->
+  <BalanceAlgorithm>
+    <!-- The access to each hopper every time with balance algorithm -->
+    <Item key="0" value="balanceByEachHopper" />
+    <!-- The balance by history transaction with best compare (history and future transaction in recorded balance consideration)-->
+    <Item key="1" value="balanceByHistoryTransaction" />
+    <!--The balance with cassette access much more consideration -->
+    <Item key="2" value="balanceHWBestProtect" />
+    <!-- The balance with first success to be more consideration -->
+    <Item key="3" value="balanceTransBestSuccess" />
+  </BalanceAlgorithm>
+  <!-- The enum value for repeat dispense action -->
+  <DispenserRepeatAction>
+    <!-- Try to dispense notes only once for each transaction command from host
+		*  If gets failed and just reports fail to host with reversal message 
+		-->
+    <Item key="0" value="onceOnlyFromHost" />
+    <!-- Try to dispense notes with given result of the current allot algorithm
+		*   If gets failed and just try one more times.
+		-->
+    <Item key="1" value="repeatOnlyOnce" />
+    <!-- Try to dispense notes for current withdrawal transaction.
+		*    If gets failed and try all conditions with all solution found to push
+		*    the current transaction to get success with given dispense command.
+		-->
+    <Item key="2" value="repeatForAllConditions" />
+  </DispenserRepeatAction>
+  <CassetteHope>
+    <Item key="1" value="S1_I0" />
+    <Item key="2" value="S2_I0" />
+    <Item key="3" value="S3_I0" />
+    <Item key="4" value="S4_I0" />
+  </CassetteHope>
+</Root>

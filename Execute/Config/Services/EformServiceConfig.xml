@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<EformServiceConfig name="GRG" offline="0" pipeName="eformServicePipe" ProcessName="EformServicePIPClient.exe">
+	<LocalEformBroswerPos X="0" Y="0" WIDTH="1920" HIGH="1080" DownLoadTimeOut="180" Topmost="1" MouseDraw="0" />
+</EformServiceConfig>

@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config name="UI">
+  <item key="IDS_PrintSystemInfoStart" value="================系统信息====================="/>
+  <item key="IDS_PrintAssemblyStart" value="=================进程装载动态库信息================"/>
+  <item key="IDS_OSVersion" value="操作系统版本: {0} {1}"/>
+  <item key="IDS_ProcessCount" value="CPU 个数: {0}"/>
+  <item key="IDS_machineName" value="机器名: {0}"/>
+  <item key="IDS_userName" value="用户名: {0}"/>
+  <item key="IDS_pageSize" value="页面大小: {0} bytes"/>
+  <item key="IDS_32System" value="32位系统"/>
+  <item key="IDS_64System" value="64位系统"/>
+  <item key="IDS_CLRVesion" value="CLR版本: {0}"/>
+  <item key="IDS_CurrentDirectoy" value="当前运行目录: {0}"/>
+  <item key="IDS_SystemDirectory" value="系统目录: {0}"/>
+  <item key="IDS_DriveName" value="逻辑驱动器: {0}"/>
+  <item key="IDS_DriveType" value="驱动器类型: {0}"/>
+  <item key="IDS_DriveFormat" value="文件系统: {0}"/>
+  <item key="IDS_DriveLabel" value="卷标: {0}"/>
+  <item key="IDS_DriveTotalSize" value="全部空间大小: {0} bytes"/>
+  <item key="IDS_DriveAvaFreeSize" value="可用空间大小: {0} bytes"/>
+  <item key="IDS_DriveFreeSize" value="全部可用空间大小: {0} bytes"/>
+  <item key="IDS_AvailablePhysicalMemory" value="可用物理内存: {0} bytes"/>
+  <item key="IDS_AvailableVirtualMemory" value="可用虚拟内存: {0} bytes"/>
+  <item key="IDS_TotalPhysicalMemory" value="全部物理内存: {0} bytes"/>
+  <item key="IDS_TotalVirtualMemory" value="全部虚拟内存: {0} bytes"/>
+  <item key="IDS_NetworkAviable" value="本地网络是否可用：{0}"/>
+  <item key="IDS_NetworkName" value="网络接口名称：{0}"/>
+  <item key="IDS_NetworkType" value="网络接口类型：{0}"/>
+  <item key="IDS_NetSupportMulticasat" value="网络接口是否支持多播：{0}"/>
+  <item key="IDS_NetOpStatus" value="网络接口操作状态：{0}"/>
+  <item key="IDS_PhyAddress" value="网络接口MAC：{0}"/>
+  <item key="IDS_IPV4Address" value="IPV4地址：{0}"/>
+  <item key="IDS_IPV4Mask" value="IPV4子网掩码：{0}"/>
+  <item key="IDS_IPV4Gateway" value="IPV4网关地址：{0}"/>
+  <item key="IDS_DNSAddress" value="DNS地址：{0}"/>
+  <item key="IDS_DHCPAddress" value="DHCP地址：{0}"/>
+  <item key="IDS_ECATRunDirectory" value="eCAT运行目录：{0}"/>
+  <item key="IDS_ICTransLog_Index" value="序号"/>
+  <item key="IDS_ICTransLog_Date" value="时间"/>
+  <item key="IDS_ICTransLog_Type" value="类型"/>
+  <item key="IDS_ICTransLog_Amount" value="金额"/>
+  <item key="IDS_TransName_Unknown" value="未知"/>
+  <item key="IDS_TransName_INQ" value="查询"/>
+  <item key="IDS_TransName_CWD" value="取款"/>
+  <item key="IDS_TransName_DEP" value="存款"/>
+  <item key="IDS_TransName_PIN" value="改密"/>
+  <item key="IDS_TransName_TFR" value="转账"/>
+  <item key="IDS_TransName_Load" value="圈存"/>
+  <item key="IDS_SystemStartup" value="系统正在启动..."/>
+  <item key="IDS_InitializeDeviceFormat" value="初始化{0}"/>
+  <item key="JPTR" value="流水打印机"/>
+  <item key="TTU" value="文本维护终端"/>
+  <item key="FlashDevice" value="双屏维护终端"/>
+  <item key="PIN" value="密码键盘"/>
+  <item key="SIU" value="传感器"/>
+  <item key="IDC" value="读卡器"/>
+  <item key="ContactLessIDC" value="非接读卡器"/>
+  <item key="RPTR" value="凭条打印机"/>
+  <item key="CDM" value="出钞机芯"/>
+  <item key="CIM" value="存钞机芯"/>
+  <item key="VDM" value="厂商模式"/>
+  <item key="CardDistributor" value="发卡器"/>
+  <item key="Camera" value="摄像头"/>
+  <item key="IDReader" value="身份证识别器"/>
+  <item key="SimulateKeypad" value="模拟键盘"/>
+  <item key="BiometricIdenticifcation" value="指纹识别器"/>
+  <item key="DVRDevice" value="硬盘录像机"/>
+  <item key="IDS_NoWithdrawalTrans" value="本机暂不能提供取款功能 This machine does not provide withdrawal function temporarily"/>
+  <item key="IDS_NoDepoistTrans" value="本机暂不能提供存款功能 This machine does not provide deposit function temporarily"/>
+  <item key="IDS_NoWithdrawalAndDepositTrans" value="本机暂不能提供存取款功能 This machine does not provide withdrawal and deposit function temporarily"/>
+  <item key="IDS_NoCardTrans" value="本机暂不能提供插卡交易 This machine does not provide card function temporarily"/>
+  <item key="IDS_Currency" value="元"/>
+  <item key="IDS_CurrencySymbol" value="CNY"/>
+  <item key="IDS_Print" value="打###印"/>
+  <item key="IDS_Confirm" value="确###认"/>
+  <item key="IDS_Clear" value="更###正"/>
+  <item key="IDS_Cancel" value="取###消"/>
+  <item key="IDS_TakeCard" value="退###卡"/>
+  <item key="IDS_TakeCardCN" value="退###卡"/>
+  <item key="IDS_TakeCardEN" value="Take Card"/>
+  <item key="IDS_TakeCardForDIP" value="请取回您的卡"/>
+  <item key="IDS_Exit" value="退###出"/>
+  <item key="IDS_Return" value="返###回"/>
+  <item key="IDS_Continue" value="继###续"/>
+  <item key="IDS_Chinese" value="中###文"/>
+  <item key="IDS_English" value="English"/>
+  <item key="IDS_CreditAccount" value="信用账户"/>
+  <item key="IDS_DefaultAccount" value="缺省账户"/>
+  <item key="IDS_CheckAccount" value="支票账户"/>
+  <item key="IDS_SavingAccount" value="储蓄账户"/>
+  <item key="IDS_Inquiry" value="查###询"/>
+  <item key="IDS_Withdrawal" value="取###款"/>
+  <item key="IDS_Transfer" value="转###账"/>
+  <item key="IDS_ChangePin" value="改###密"/>
+  <item key="IDS_Deposit" value="存###款"/>
+   <item key="IDS_Media" value="支票存款"/>
+  <item key="IDS_Payment" value="代#缴#费"/>
+  <item key="IDS_ICCardTest" value="IC Data"/>
+  <item key="IDS_eCASH" value="电子现金"/>
+  <item key="IDS_TransferName" value="姓名:"/>
+  <item key="IDS_ICInquiry" value="电子现金余额"/>
+  <item key="IDS_ICDetail" value="卡片交易明细"/>
+  <item key="IDS_ICBDZHQC" value="绑定账户圈存"/>
+  <item key="IDS_ICFBDZHQC" value="非绑定圈存"/>
+  <item key="IDS_ICXJCZ" value="现金充值"/>
+  <item key="IDS_ICQT" value="圈###提"/>
+  <item key="IDS_CalculatedTotalCash" value="现金总金额为："/>
+  <item key="IDS_CanNotDoICLoad" value="现金总金额超过最大可圈存金额"/>
+  <item key="IDS_CONTINUEINTERPOSE" value="继续放钞"/>
+  <item key="IDS_Note100" value="100"/>
+  <item key="IDS_Note200" value="200"/>
+  <item key="IDS_Note500" value="500"/>
+  <item key="IDS_Note800" value="800"/>
+  <item key="IDS_Note1000" value="1000"/>
+  <item key="IDS_Note2000" value="2000"/>
+  <item key="IDS_Note2500" value="2500"/>
+  <item key="IDS_Note3000" value="3000"/>
+  <item key="IDS_YES" value="是"/>
+  <item key="IDS_NO" value="否"/>
+  <item key="IDS_NoCardDepositForZeroState" value="无卡存款|NO CARD DEPOSIT"/>
+  <item key="IDS_NoCardDeposit" value="无卡存款"/>
+  <item key="IDS_PBOCECC_AvailableAmount" value="电子现金余额:"/>
+  <item key="IDS_PBOCECCAccountBalance" value="电子现金余额："/>
+  <item key="IDS_ARPCFail" value="不能确认交易是否成功|请查询余额确认|如有疑问请与银行联系"/>
+  <item key="IDS_AppNotFound" value="未找到可用的IC卡应用,交易取消！"/>
+  <item key="IDS_ICTransCancel" value="未知错误,交易取消！"/>
+  <item key="IDS_ICTransFallback" value="IC卡交易降级！"/>
+  <item key="IDS_ICInvalidCard" value="读取IC卡片失败,交易取消！"/>
+  <item key="IDS_CardLock" value="卡片被锁定，交易终止!"/>
+  <item key="IDS_AppLock" value="应用被锁定，交易终止。"/>
+	<item key="IDS_ICTryAnotherInterface" value="未知错误,交易取消|请尝试其他接口设备"/>
+  <item key="IDS_PrintReceipt" value="打印凭条"/>
+  <item key="IDS_CannotPrintReceipt" value="暂不能打印凭证|是否继续交易？"/>
+  <item key="IDS_SelectAccountType" value="请选择账户类型"/>
+  <item key="IDS_SelectService" value="请选择交易类型"/>
+  <item key="IDS_InquiryResult" value="查询结果"/>
+  <item key="IDS_AccountBalance" value="账户余额："/>
+  <item key="IDS_AvailableBalance" value="可用余额："/>
+  <item key="IDS_InputAmountError" value="输入金额不正确|请重新输入"/>
+  <item key="IDS_InputAmountExceedLimit" value="输入金额超限|请重新输入"/>
+  <item key="IDS_InputWithdrawalAmount" value="请输入取款金额|　"/>
+  <item key="IDS_InputMediaAmount" value="请输入发票金额|   "/>
+  <item key="IDS_InputWithdrawalAmountError" value="输入金额不正确|请重新输入"/>
+  <item key="IDS_InputWithdrawalAmountExceedsLimit" value="超过单次取款限额|请重新输入"/>
+  <item key="IDS_InputWithdrawalAmountExceedsCassetteAmount" value="对不起，本机现金不足|请重新输入"/>
+  <item key="IDS_InputWithdrawalAmountExceedRetryTimes" value="输入错误次数超限|本次交易被取消"/>
+  <item key="IDS_InputWithDrawalAmountDenominateError" value="输入金额不正确|请重新输入"/>
+  <item key="IDS_SupplyWithdrawalDenomination" value="本机提供以下面额"/>
+  <item key="IDS_MaxWithdrawalAmount" value="一次最大取款限额为"/>
+  <item key="IDS_PresentCash" value="正在出钞，请稍候..."/>
+  <item key="IDS_RetractCashForTimeout" value="超时未取钱，钱已回收|请与银行联系"/>
+  <item key="IDS_RetractCashForHardwareError" value="对不起，钱已回收|请与银行联系"/>
+  <item key="IDS_SelectLanguage" value="请选择提示语言|Please select the language"/>
+  <item key="IDS_InputPin" value="请输入您的个人密码|　"/>
+  <item key="IDS_InputOldPin" value="请输入您的旧密码|  "/>
+  <item key="IDS_InputNewPin" value="请输入您的新密码|　"/>
+  <item key="IDS_InputNewPinAgain" value="请再次输入您的新密码|　"/>
+  <item key="IDS_InputNewPinUnmatch" value="两次输入的密码不一致|请重新输入您的新密码"/>
+  <item key="IDS_InputOldNewPinSame" value="新旧密码相同，不能改密|请重新输入您的新密码"/>
+  <item key="IDS_ChangePinSuccess" value="个人密码修改成功|请记住您的新密码以便下次使用"/>
+  <item key="IDS_InputTransferAccount" value="请输入转入账号|　"/>
+  <item key="IDS_InputTransferAccountAgain" value="请再次输入转入账号|　"/>
+  <item key="IDS_InputTransferAccountUnmatch" value="两次输入的账号不一致|请重新输入"/>
+  <item key="IDS_InputTransferAmount" value="请输入转出金额|　"/>
+  <item key="IDS_MaxTransferAmount" value="一次最大转账限额为"/>
+  <item key="IDS_InputTransferAmountExceedsLimit" value="超过单次转账限额|请重新输入"/>
+  <item key="IDS_InputTransferAmountLessThanLimit" value="少于单次转账最小限额|请重新输入"/>
+  <item key="IDS_InputTransferAmountMultipleError" value="输入金额不正确|请重新输入"/>
+  <item key="IDS_ShowTransferInformation" value="请确认转入账号和金额"/>
+  <item key="IDS_TransferAccount" value="转入账号："/>
+  <item key="IDS_TransferAmount" value="转账金额："/>
+  <item key="IDS_TransferSuccess" value="转账成功"/>
+  <item key="IDS_InputICLoadAmount" value="请输入圈存金额|　"/>
+  <item key="IDS_InputICUnloadAmount" value="请输入圈提金额|　"/>
+  <item key="IDS_MaxICLoadAmount" value="本次可充值的最大限额为"/>
+  <item key="IDS_MaxICUnloadAmount" value="本次可圈提的最大限额为"/>
+  <item key="IDS_ICLoadSuccess" value="圈存交易成功"/>
+  <item key="IDS_ICUnloadSuccess" value="圈提交易成功"/>
+  <item key="IDS_InputNoCardDepositAccount" value="请输入存入卡号或存折账号|　"/>
+  <item key="IDS_InputNoCardDepositAccountAgain" value="请再次输入存入卡号或存折账号|　"/>
+  <item key="IDS_InputNoCardDepositAccountUnmatch" value="两次输入的账号不一致|请重新输入"/>
+  <item key="IDS_TAKENOTERefused" value="请取回系统未能识别的钞票"/>
+  <item key="IDS_TAKENOTEForError" value="对不起，设备故障|请取回您的钞票"/>
+  <item key="IDS_PrintingReceipt" value="正在打印凭证..."/>
+  <item key="ids_Common_BankCard" value="银行卡" />
+  <item key="ids_Common_e-wallet" value="电子钱包" />
+  <item key="ids_Common_Cash" value="现金" />
+    <item key="ids_opac_name" value="名字" />
+	<item key="ids_opac_gender" value="性别" />
+	<item key="ids_opac_nation" value="国家" />
+	<item key="ids_opac_passportNo" value="护照号码" />
+	<item key="ids_opac_birth" value="出生日期" />
+	<item key="ids_opac_CIFNO" value="CIFNO" />
+	<item key="ids_opac_IDNo" value="身份证号" />
+	<item key="ids_opac_IDType" value="身份证类型" />
+	<item key="ids_opac_expire" value="到期" />
+	<item key="ids_opac_phone" value="电话号码" />
+	<item key="ids_opac_email" value="邮件" />
+	<item key="ids_opac_address" value="地址" />
+  <item key="ids_Common_inputotp" value="请输入OTP" />
+  <item key="ids_withdraw_Amount" value="取款金额" />
+  <item key="ids_withdraw_inputamount" value="请输入提现金额" />
+  <item key="ids_Common_wronginputpinagain" value="密码错误，请重新输入|!" />
+  <item key="ids_Common_Warnning" value="警告!" />
+  <item key="ids_Common_UsingGRGBanking" value="感谢您使用GRGBanking!" />
+  <item key="ids_withdraw_takeReceipt" value="请带着收据" />
+  <item key="ids_opac_takeCard" value="请拿好您的卡" />
+  <item key="ids_Common_SystemStarting" value="系统正在启动" />
+  <item key="ids_Common_selectproject" value="请选择服务"/>
+  <item key="ids_Common_otherTrans" value="其它交易"/>
+  <item key="ids_Common_Biometrics" value="身份识别" />
+  <item key="ids_Common_humanService" value="人工服务"/>
+  <item key="ids_Common_newcard" value="签发新卡"/>
+  <item key="ids_Common_Account" value="申请新账号"/>
+  <item key="ids_Common_cashexchange" value="兑换现金" />
+  <item key="ids_Common_livingpayment" value="日常缴费" />
+  <item key="ids_Common_appWithdrawal" value="App取款" />
+  <item key="ids_Common_QRCodeWithdrawal" value="二维码取款" />
+  <item key="ids_Common_coindesposit" value="硬币存款" />
+  <item key="ids_Common_Chequedesposit" value="支票存取" />
+  <item key="ids_Common_exit" value="确认退出？" />
+  <item key="ids_Common_Waiting" value="请等待" />
+  <item key="ids_Common_hardwareerror" value="设备故障!" />
+  <item key="ids_Common_NetworkError" value="网络故障" />
+  <item key="ids_Common_ContactingAgentwait" value="联系代理，请等待" />
+  <item key="ids_Common_Timeout" value="操作超时" />
+  <item key="ids_Common_selectIdcardOrPassport" value="扫描身份证，您有那种类型证件?" />
+  <item key="ids_Common_card" value="身份证" />
+  <item key="ids_Common_Passport" value="护照" />
+  <item key="ids_Common_QR" value="二维码" />
+  
+  <item key="ids_Common_Female" value="女" />
+  <item key="ids_Common_Male" value="男" />
+  <item key="ids_Common_PrintReceipt" value="打印凭条" />
+  <item key="ids_Common_TakeCard" value="拿卡" />
+  <item key="ids_Common_SetPassword" value="设置密码" />
+  <item key="ids_Common_PrintingCard" value="印刷名片" />
+  <item key="ids_Common_ScanForm" value="扫描表单" />
+  <item key="ids_Common_PrintForm" value="打印表单" />
+  <item key="ids_Common_Sign" value="签名" />
+  <item key="ids_Common_CustomerInfo" value="顾客信息" />
+  <item key="ids_Common_ScanPassport" value="扫描的护照" />
+  <item key="ids_Common_selectcurrency" value="请选择货币" />
+  
+  <item key="ids_opac_protocolParagraph1" value="建立银行与企业之间良好的合作关系，促进双方的共同发展和长期合作。" />
+  <item key="ids_opac_protocolParagraph2" value="I.	    乙方愿意将甲方作为重要的主要客户，在遵守法律和金融政策的前提下，为甲方提供各种信贷资金支持等优质金融服务，并将甲方置于优先地位。" /> 
+  <item key="ids_opac_protocolParagraph3" value="II.	乙方将根据贷款条件和流程，为甲方提供流动资金贷款、基建贷款、技改贷款、储备贷款、房地产贷款、汇票承兑贴现等全方位信贷服务。" />
+  <item key="ids_opac_protocolParagraph4" value="IV.	乙方将尽力满足甲方对流动资金贷款的合理需求。甲方应保持良好的财务结构，流动比率控制在____%以上，应收账款周转率控制在____%以上，资产负债率控制在____%以下。" />
+  <item key="ids_opac_protocolParagraph5" value="IV.    乙方将积极支持甲方的基本建设和技术改造。对于甲方已被权威机构列入项目的项目，乙方将尽快进行评估;对承诺项目，乙方应在其年度授信计划中给予优惠安排，保证资金及时到位。" />
+  <item key="ids_opac_cardProtocol" value="卡协议" />
+  <item key="ids_Common_InfomationReview" value="信息审核，请稍等…" />
+  <item key="ids_opac_putpassport" value="请把护照放在扫描仪上" />
+  <item key="ids_opac_printformwait" value="打印您的申请表格，请稍候!!" />
+  <item key="ids_opac_putformscanner" value="请把您的申请表放到扫描仪上!" />
+   <item key="ids_opac_sign" value="请在屏幕上签名!" />
+   <item key="ids_Common_backpassport" value="请收回您的护照" />
+   <item key="ids_Common_takereceipt" value="请带好收据!" />
+   <item key="ids_Common_DispensingCard" value="发卡请等待!" />
+   <item key="ids_opac_inputInformation" value="请输入您的个人资料" />	
+   <item key="ids_opac_printingCard" value="正在办卡，请稍等……" />
+   <item key="ids_Common_readpassport" value="阅读您的护照，请稍等!" />
+   <item key="ids_Common_passportRecognized" value="护照不被识别!" />
+   <item key="ids_Common_TakeCard" value="请把卡拿回去" />
+   <item key="ids_Common_notrecognizedtryagain" value="护照不被识别，请重试" />
+   <item key="ids_withdraw_enterPin" value="请输入密码" />
+   <item key="ids_withdraw_insertCard" value="请插卡" />
+   <item key="ids_Common_AgentRefuse" value="代理拒绝…" />
+   <item key="ids_Common_CardCaptured" value="吞卡…" />
+   <item key="ids_Common_changepinsucc" value="改密成功!!" />	
+   <item key="ids_Common_notdiscoverpin" value="请不要向任何人(包括警察和银行工作人员)透露您的密码。" />
+   <item key="ids_Common_newpin" value="密码正确，请输入新密码!" />
+   <item key="ids_Common_ReEnternewpin" value="请重新输入您的新密码!" />
+   <item key="ids_Common_Enternewpin" value="请输入您的密码!" />
+   <item key="ids_Common_Enternewpinagain" value="再次请输入您的密码!" />
+   <item key="ids_Common_checkBalance" value="请输入密码查看余额!" />
+   <item key="ids_Common_hostrefuses" value="主机拒绝! "/>
+   <item key="ids_Common_InformationReview" value="信息审核，请稍等!" />
+   <item key="ids_Common_insertcard" value="请插卡!" />
+   <item key="ids_insertCheck" value="请插入支票" />
+   <item key="ids_Common_NoAgentOnline" value="对不起，没有代理在线!" />
+   <item key="ids_Common_OpenAccountSuccess" value="开户成功" />
+   <item key="ids_Common_AccountInformation" value="账户信息" />
+   <item key="ids_accountAdmin" value="账户名称" />
+   <item key="ids_accountNum" value="账号" />
+   <item key="ids_Common_pincorrect" value="密码正确!" />
+   <item key="ids_Common_putcard" value="请放您的卡!" />
+   <item key="ids_Common_checkyourBalance" value="请核对您的余额!" />
+   <item key="ids_withdraw_information" value="请取出未接受的钞票或重新装入钞票" />
+   <item key="ids_Common_DepositSuccess" value="存款成功" />
+   <item key="ids_Common_RejectingCash" value="纸币被退回，拒绝现金!" />
+   <item key="ids_Common_returningCash" value="设备错误!返还现金，请稍等!" />
+   <item key="ids_Common_timeoutRejectingCash" value="操作超时，拒绝现金!" />
+   <item key="ids_Common_deverrtakecash" value="设备错误。请拿好现金!" />
+   <item key="ids_Common_Unidentifiablebanknotes" value="无法辨认的钞票。请拿好现金!" />
+   <item key="ids_Common_selectbusiness" value="选择您需要的业务!" />
+   <item key="ids_Common_welcome" value="欢迎来到GRG数字银行" />
+    <item key="ids_Common_DeviceID" value="设备 ID:" />
+    <item key="ids_Common_Or" value="或" />
+   	<item key="ids_withdraw_WithdrawCompletePrintReceipt" value="完成取款，您是否需要打印凭条?" />
+   <item key="ids_Common_NoCardTransactions" value="无卡交易" />
+   <item key="ids_Common_pleaseInsertCard" value="请插卡" />
+   <item key="ids_Common_ThankYou" value="感谢您使用GRG数字银行!" />
+   <item key="ids_Common_DepositComplete" value="存款完成" />
+   <item key="ids_Common_DepositAmount" value="存款金额" />
+   <item key="ids_Common_CountingcoinsWait" value="数硬币。请稍等!" />
+   <item key="ids_Common_putcoins" value="请投硬币!" />
+   <item key="ids_Btn_confirm" value="确定" />
+   <item key="ids_Btn_cancel" value="取消" />
+   <item key="ids_Common_InvalidCard" value="无效卡 ..." />
+   <item key="ids_withdraw_processing" value="处理中，请稍等!" />
+   <item key="ids_exchange_confirminformation" value="请确认信息"/>
+   <item key="ids_exchange_PayableAmount" value="应付帐款"/>
+   <item key="ids_exchange_Coin" value="硬币"/>
+   <item key="ids_exchange_Banknote" value="钞票"/>
+   <item key="ids_exchange_inofrmationquestion" value="兑换能力不足，是否继续兑换货币?"/>
+   <item key="ids_exchange_inofrmationtip" value="少的金额可以联系银行兑换"/>
+   <item key="ids_exchange_AmountDue" value="应付金额"/>
+   <item key="ids_exchange_IDNumber" value="身份证号"/>
+   <item key="ids_exchange_paymentmethod" value="请选择付款方式"/>
+   <item key="ids_exchange_PrintingReceipt" value="交易成功!打印收据"/>
+   <item key="ids_exchange_ExchangeAmount" value="交换数量"/>
+   <item key="ids_exchange_CashOutAmount" value="支付金额"/>
+   <item key="ids_Common_PrintingReceipt" value="打印收据，请稍等…..." />	
+   <item key="ids_Common_PrintFail" value="打印收据失败 ..." />		
+   <item key="ids_Common_RemoteServing" value="远程柜员服务..." />
+   <item key="ids_Common_ScanningWait" value="扫描检查请稍等...." />
+   <item key="IDS_CurrencyTypeHKD" value="HKD"/>
+   <item key="IDS_CurrencyTypeUSD" value="USD"/>
+   <item key="IDS_CurrencyTypeCNY" value="CNY"/>
+   <item key="IDS_CurrencyTypeAED" value="AED"/>
+	<item key="ids_Common_welcome1" value="欢迎" />
+	<item key="ids_opac_selecttranscationaccount" value="请选择您的交易账户!" />
+	<item key="ids_Common_Comingsoon" value="即将到来" />
+	<item key="ids_Common_openscanAPP" value="请打开APP和扫描二维码" />
+	<item key="ids_withdraw_checkinformation" value="请检查您的提现信息。" />
+	<item key="ids_Btn_resign" value="放弃" />
+	<item key="ids_Error" value="错误!" />
+	<item key="ids_Successful" value="成功!" />
+	<item key="ids_Contiue" value="继续" />
+	<item key="ids_exchange_From" value="表单"/>
+	<item key="ids_exchange_Rate" value="比率"/>
+	<item key="ids_exchange_Exchange" value="兑换"/>
+	<item key="ids_exchange_AddCash" value="加现金"/>
+	<item key="ids_Common_CountingcashWait" value="点钞，请稍等..." />
+	<item key="ids_Common_putcash" value="请将您的现金!" />
+	 <item key="IDS_RetractCash" value="回收现金"/>
+	 <item key="IDS_TransactionComingSoon" value="交易即将进行" />
+	 <item key="ids_epp_ExitEPPFlow" value="请按“Enter”退出" />
+	 <item key="ids_epp_TransactionIsBeing" value="交易正在处理中|请稍候..." />
+	 <item key="ids_epp_GetPawwordA" value="请输入Key-A密码"/>
+	 <item key="ids_Btn_reset" value="重置" />
+	 <item key="ids_epp_VerifyCheckValue" value="密钥校验值:"/>
+	 <item key="ids_epp_VerifyCheckValueTip" value="请按“Enter”继续，按“Cancel”退出"/>
+	 <item key="ids_epp_Getkey" value="请输入键"/>
+	 <item key="ids_epp_GetKeyPart" value="请输入key - part B的key"/>
+	 <item key="ids_epp_GetKeyPartA" value="请输入key - part A的key"/>
+	 <item key="ids_CheckImageFailTakePhotoAgain" value="检查图像质量失败，请重试!" />
+	 <item key="ids_Common_Faceauthsucc" value="人脸认证成功" />
+	 <item key="ids_Common_Faceauthfail" value="人脸认证失败" />
+	 <item key="ids_FaceRegisterSuccessful" value="人脸注册成功!" />
+	 <item key="ids_HostRefuseFailTryAgain" value="主机拒绝失败，请重试!" />
+	 <item key="ids_Common_EnterIdNumberTitle" value="请输入您的身份证号码" />
+	 <item key="ids_Common_enteridnumber" value="输入身份证号码" />
+	 <item key="ids_face_lookCamera" value="请看着相机拍照" />
+	 <item key="ids_face_faceapearsbox" value="确保你的脸出现在区域里" />
+	 <item key="ids_face_Maintainadequate" value="保持足够的照明" />
+	 <item key="ids_Common_selectItem" value="请选择交易" />
+	 <item key="ids_face_faceRegister" value="人脸注册" />
+	 <item key="ids_face_faceIdentity" value="面部识别" />
+	 <item key="ids_face_faceAuthorization" value="人脸授权" />
+	 <item key="ids_face_facepassport" value="脸部和护照" />
+	 <item key="ids_face_faceIdenResult" value="人脸识别结果" />
+	 <item key="ids_face_curPhoto" value="当前的照片" />
+	 <item key="ids_finger_askRegist" value="您没有在我们的系统上注册。请先注册" />
+	 <item key="ids_finger_MatchFail" value="匹配失败了。请尝试使用另一个" />
+	 <item key="ids_finger_enterCif" value="请输入你的到岸价" />
+	 <item key="ids_finger_fingerprintthreetime" value="扫描指纹三次。只用一个手指" />
+	 <item key="ids_finger_enterCifAName" value="请输入您的到岸价和名称" />
+	 <item key="ids_finger_fingerprintMatchSuc" value="指纹匹配成功!" />
+	 <item key="ids_finger_customerName" value="客户名称" />
+	 <item key="ids_finger_matchFingerprint" value="指纹匹配" />
+	 <item key="ids_finger_registFingerprint" value="指纹注册" />
+	 <item key="ids_finger_DeleteTemplate" value="删除模板" />
+	 <item key="ids_finger_DeleteALLTemplate" value="删除全部模板" />
+	 <item key="ids_finger_scanOneTimes2" value="扫描指纹一次，只用一个手指" />
+	 <item key="ids_finger_fingerveinthreetime" value="扫描手指静脉三次。只用一个手指" />
+	 <item key="ids_finger_fingerveinonetime" value="扫描手指静脉一次。只用一个手指" />
+	 <item key="ids_finger_matchFingervein" value="匹配指静脉" />
+	 <item key="ids_finger_registFingervein" value="注册指静脉" />
+	 <item key="ids_finger_deleteFingervein" value="删除指静脉" />
+	 <item key="ids_finger_deleteAllFingervein" value="删除全部指静脉" />
+	 <item key="ids_finger_VeinAuthsuccess" value="指静脉认证成功" />
+	 <item key="ids_face_selectTransType" value="请选择交易" />
+	  <item key="ids_Common_PrintReceiptSuccess" value="成功。您要打印收据吗?" />
+	  <item key="ids_Common_OutOfService" value="对不起，停止服务 ..." />
+	  <item key="ids_Common_chequeamount" value="请输入支票金额" />
+	  <item key="ids_withdraw_wouldLikePrintReceipt" value="您要打印收据吗?" />
+	  <item key="ids_opac_DepositsuccessWait" value="存款成功。请稍等!" />
+	  <item key="ids_opac_chequecurrency" value="请选择支票币种" />
+	  <item key="ids_opac_DepositPrintReceipt" value="存款成功,确认打印收据?" />
+	  <item key="ids_Common_Deposittimeout" value="存款超时" />  
+	  <item key="ids_Common_takeyourcheque" value="请带上支票。" />
+	  <item key="ids_Common_putyourcheque" value="请放上支票!" />  
+	  <item key="ids_NewPayment_Diffenence" value="不同"/>
+	  <item key="ids_Yes" value="是" />
+	  <item key="ids_No" value="否" /> 
+	  <item key="ids_NewPayment_BillAmount" value="账单金额"/>
+	  <item key="ids_NewPayment_CashinAmount" value="卡数量"/>
+	  <item key="ids_NewPayment_Paymenttype" value="支付方式"/>
+	  <item key="ids_NewPayment_putcash2" value="请输入现金"/>
+	  <item key="ids_NewPayment_Amount" value="数量"/>
+	  <item key="ids_NewPayment_billType" value="账单类型"/>
+	  <item key="IDS_MediaReturnToConfirm" value="返回"/>
+	  <item key="ids_NewPayment_Electricitybill" value="电费账单"/>
+	  <item key="ids_NewPayment_Waterbill" value="水费账单"/>
+	  <item key="ids_NewPayment_Gasbill" value="天然气账单"/>
+	  <item key="ids_NewPayment_readagreement" value="请仔细阅读用户协议并同意"/>
+	  <item key="ids_opac_takeForm" value="请拿着你的申请表" />
+	  <item key="ids_Common_inputpassportscanner" value="请把护照放在扫描仪上" />
+	  <item key="ids_opac_takePassport" value="请把护照拿回去" />
+	  <item key="ids_withdraw_RejectNoFail" value="拒绝不失败!" />
+	  <item key="ids_withdraw_RejectNoTimeOut" value="拒绝超时!" />
+	  <item key="ids_withdraw_RejectNoCash" value="拒绝现金!" />
+	  <item key="ids_withdraw_selectAmount" value="请选择金额" />
+	  <item key="ids_withdraw_takeCash" value="请拿好现金" />
+	  <item key="ids_withdraw_complete" value="退出完成" />
+	  <item key="ids_opac_scanappoinmentcode" value="请扫描您的预约码!" />
+	  <item key="ids_finger_username" value="名字" />
+	  <item key="ids_Common_Account1" value="账户" />
+	  <item key="ids_Common_Withdrawal" value="撤回" />
+	  <item key="ids_Common_inputOTP" value="输入你的OTP!" />
+      <item key="ids_Common_Amount" value="金额" />	  
+	  <item key="ids_exchange_ViewImage" value="查看图片"/>
+	
+   	<item key="ids_NewPayment_takechange" value="请拿好零钱。"/>
+   <item key="ids_NewPayment_selectbill" value="请选择您的帐单"/>
+   	<item key="ids_NewPayment_checkbill" value="请核对您的账单"/>
+   <item key="ids_NewPayment_confirmAmount" value="请确认您的金额"/>
+   <item key="ids_NewPayment_putcash" value="您想存更多的现金吗?"/>
+   <item key="ids_NewPayment_Depositedcash" value="存现金"/>
+   <item key="ids_NewPayment_PaymentComplete" value="支付完成。您要打印收据吗?"/>
+   <item key="ids_exchange_selectloginway" value="请选择登录方式"/>
+  <!-- show printing ocr  by lsjie5-->
+  <item key="IDS_PrintingOCRReceipt" value="正在打印冠字号..."/>
+  <item key="IDS_IsPrintReceipt" value="是否打印凭证？"/>
+  <item key="IDS_PrintReceiptFail" value="对不起|打印凭证失败"/>
+  <item key="IDS_TakeReceipt" value="请拿好凭证"/>
+	<item key="IDS_TakeReceiptAndCard" value="请取回您的卡|并拿好凭证"/>	
+  <item key="IDS_TAKENOTEToomuch" value="存款张数超限|请取回剩余的钞票"/>
+  <item key="IDS_CASHINENDSUCC" value="存入钞票成功"/>
+  <item key="IDS_TAKENOTE" value="对不起，交易取消|请取回钞票"/>
+  <item key="IDS_TAKENOTEForCancel" value="请取回钞票|取回钞票后，请务必不要离开"/>
+  <item key="IDS_TAKENOTEForCommError" value="请拿走钞票"/>
+  <item key="IDS_COUNTINGNOTE" value="系统正在点钞|请稍候..."/>
+  <item key="IDS_TransactionIsBeing" value="操作正在进行，请稍候..."/>
+  <item key="IDS_TransactionIsBeingDoubleLanguage" value="操作正在进行，请稍候...|Transaction is being processed|Please wait..."/>
+  <item key="IDS_EjectingCard" value="正在退卡, 请稍候..."/>
+  <item key="IDS_PleaseTakeCard" value="请取回您的卡"/>
+  <item key="IDS_CaptureCardForTimeout" value="对不起，取卡超时|此卡由银行保留|请与银行联系"/>
+  <item key="IDS_CaptureCard" value="对不起，此卡由银行保留|请与银行联系"/>
+  <item key="IDS_Timeout" value="对不起，交易超时"/>
+  <item key="IDS_KeyError" value="按键错误，当您做交易时|请确定身边没有其他人"/>
+  <item key="IDS_InvalidCard" value="对不起，卡无效|Sorry, invalid card"/>
+  <item key="IDS_ThankYou" value="谢谢使用，再见"/>
+  <item key="IDS_OutOfService" value="对不起，本机暂停服务|Sorry, out of service temporarily"/>
+  <item key="IDS_ServiceUnavailable" value="对不起，交易暂时无法处理"/>
+  <item key="IDS_INCORRECTPIN_REINPUT" value="密码错误，请重新输入|　"/>
+  <item key="IDS_ACCOUNTNAME" value="姓名:"/>
+  <item key="IDS_TRANSACTION_AMOUNT" value="交易金额:"/>
+  <item key="IDS_CONFIRM_ACCOUNTINFO" value="请确认存款信息"/>
+  <item key="IDS_CONFIRM_INACCOUNT" value="账号:"/>
+  <item key="IDS_DEPOSIT_ARRANGECASH" value="您放入的钞币位置不正确|请取回您的钞币并重新整理后|再次进行存款操作"/>
+  <item key="IDS_DEPOSIT_INPUTTIMESOVERLIMIT" value="您放入的钞币位置不正确|请取回您的钞币"/>
+  <item key="IDS_EJECTCASH_TOCUSTOMER" value="钞票正在退出|请不要离开"/>
+  <item key="IDS_EJECTCASH_REPEATSN" value="出现重号钞票|钞票正在退出|请不要离开"/>
+  <item key="IDS_RETRACTCASH_REPEATSN" value="出现重号钞票|您的钞币将被暂存"/>
+  <item key="IDS_DEPOSIT_DEVERR_RETURNCASH" value="系统处理中|请务必不要离开"/>
+  <item key="IDS_DEPOSIT_DEVERR_TAKECASH" value="对不起|系统故障|请取回您的钞票"/>
+  <item key="IDS_DEPOSIT_WAITFOR_INSERTCASH" value="请将钞票叠放整齐后放入存钞口"/>
+  <item key="IDS_DEPOSIT_WAITFOR_INSERTCASH_NOCASH" value="请将钞票叠放整齐后放入存钞口|没有检测到钞票"/>
+  <item key="IDS_DOING_CASHINEND" value="存款成功|正在存入钞票，请稍候..."/>
+  <item key="IDS_DEPOSIT_DETECTEDNOCASH" value="您本次放钞数为空|交易被取消"/>
+  <item key="IDS_DEPOSIT_DETECTEDNOCASHANDDEVICEERROR" value="设备故障|交易被取消"/>
+  <item key="IDS_DEPOSIT_TAKECASH_TIMEOUT" value="取钞超时|您的钞币将被暂存"/>
+  <item key="IDS_OperationTimeoutRetractCash" value="操作超时|您的钞币将被暂存"/>
+  <item key="IDS_DEPOSIT_DEVICEERROR_RETRACTCASH" value="对不起|设备故障|您的钞币将被暂存"/>
+  <item key="IDS_DEPOSIT_RETRACTCASH" value="不能确认交易是否成功|请查询余额确认|如有疑问请与银行联系"/>
+  <item key="IDS_DEPOSIT_TOTALDETAILS" value="您当前总计放钞明细如下"/>
+  <item key="IDS_DEPOSIT_TOTALAMOUNT" value="总金额："/>
+  <item key="IDS_DEPOSIT_100YUAN" value="100元："/>
+  <item key="IDS_DEPOSIT_50YUAN" value="50元："/>
+  <item key="IDS_DEPOSIT_PIECE" value="张"/>
+  <item key="IDS_DEPOSIT_YUAN" value="元"/>
+  <item key="IDS_And" value=","/>
+  <item key="IDS_IS_CONTINUEINTERPOSE" value="如需再次放入钞票|请按“继续放钞”键"/>
+  <item key="IDS_EXCEEDED_LIMITAMOUNT" value="超过单次限额|请重新输入"/>
+  <item key="IDS_EXCEEDED_WITHDRAWALAMOUNT" value="超过单次取款限额|请重新输入"/>
+  <item key="IDS_TakeCash" value="请提取现金"/>
+  <item key="IDS_REJECTOVERLIMIT" value="您的拒钞张数过多|交易取消"/>
+  <item key="IDS_LEFTINTERPOSENOTESCOUNT" value="您还可以放入钞票"/>
+  <item key="IDS_LEFTCASHINNOTESCOUNT" value="本次最多能放入钞票"/>
+  <item key="IDS_DEPOSITSUPPLYDENO" value="本机能存入以下面额"/>
+  <item key="IDS_WITHDRAWALSUPPLYDENO" value="本机仅供面额 {0} 元"/>
+  <item key="EjectCashNow" value="钞币正在退出|请不要离开"/>
+  <item key="TestSuccess" value="测试成功"/>
+  <item key="TestFail" value="测试失败"/>
+  <item key="ServiceCancelledForCommError" value="对不起|所需服务已取消|请与发卡银行联系|钞票正在退出,请不要离开"/>
+  <item key="IDS_InputEPPKeyConStruct" value="请根据图片内容输入第{0}组密钥({1}位)"/>
+  <item key="IDS_VerifyCheckValue" value="校验值:"/>
+  <item key="IDS_VerifyCheckValueTip" value="请按'确定'键继续，按'取消'键退出"/>
+  <item key="IDS_VerifyCheckValueErrorTip" value="校验失败，按'取消'键退出"/>
+  <item key="IDS_ExitEPPFlow" value="请按'确定'键退出"/>
+  <item key="IDS_GetPasswordTip" value="按'取消'键退出"/>
+  <item key="IDS_GetPawwordA" value="请输入A部分密码"/>
+  <item key="IDS_GetPawwordB" value="请输入B部分密码"/>
+  <item key="IDS_SecurKeyEntryA" value="请输入A部分密钥"/>
+  <item key="IDS_SecurKeyEntryB" value="请输入B部分密钥"/>
+  <item key="IDS_InputNoDoorMaintenancePin" value="请输入密码"/>
+  <item key="IDS_RollbackForExceedICAvailableRechargeAmount" value="对不起|存款总金额超过可充值金额"/>
+  <item key="IDS_InputAmountExceedICAvailableRechargeAmount" value="超过可圈存金额|请重新输入"/>
+  <item key="IDS_InputAmountExceedICBalance" value="超过可圈提金额|请重新输入"/>
+  <item key="IDS_InputAccountSameAsPAN" value="输入的账号与插入卡号相同|请重新输入"/>
+  <item key="IDS_InputAccountLengthNotEnough" value="输入的账号长度不够|请重新输入"/>
+  <item key="IDS_InputPinLengthNotEnough" value="输入的密码长度不够|请重新输入"/>
+  <item key="IDS_RCMGetBackCapturedCard" value="取回吞卡"/>
+  <item key="IDS_RCMInputPANLast4Number" value="请输入您卡号后四位"/>
+  <item key="IDS_RCMInputPANLast4NumberLengthNotEnough" value="您输入卡号后四位不足|请重新输入"/>
+  <item key="IDS_RCMNextStep" value="下一步"/>
+  <item key="IDS_RCMFoundCapturedCardInfoInBin" value="您输入的银行卡已由银行保管|请与银行联系"/>
+  <item key="IDS_RCMNotFoundCapturedCardInfo" value="没有查询到您输入的银行卡吞卡记录|请与银行联系"/>
+  <item key="IDS_RCMCaptureCardToSlotForTimeout" value="操作超时，卡片暂由设备保管|稍后您可以通过|待机界面的【取回吞卡】功能取回卡片"/>
+  <item key="IDS_RCMCaptureCardToSlotForPINError" value="密码输入错误，卡片暂由设备保管|稍后您可以通过|待机界面的【取回吞卡】功能取回卡片"/>
+  <item key="IDS_RCMCaptureCardToSlot" value="对不起，此暂由设备保管|稍后您可以通过|待机界面的【取回吞卡】功能取回卡片"/>
+  <item key="RCM" value="退卡模块" />
+  <item key="IDS_CMCCPayment" value="移动缴费"/>
+  <item key="IDS_CUPayment" value="联通缴费"/>
+  <item key="IDS_CTPayment" value="电信缴费"/>
+  <item key="IDS_PRPayment" value="电###费"/>
+  <item key="IDS_WRPayment" value="水###费"/>
+  <item key="IDS_DSQWRPayment" value="大石桥水费"/>
+  <item key="IDS_GRPayment" value="煤#气#费"/>
+  <item key="ids_finger_fingerprint" value="指纹" />
+  <item key="ids_Common_fingerVein" value="指静脉" />
+  <item key="ids_Common_faceRecog" value="面部识别" />
+
+  <item key="ids_Btn_back" value="返回" />
+
+  <item key="IDS_PaymentSuccess" value="缴费成功" />
+  <item key="IDS_ConfirmPaymentInfo" value="请确认缴费信息" />
+  <item key="IDS_PaymentNumber" value="缴费号码: " />
+  <item key="IDS_PaymentAccntName" value="用户名称: " />
+  <item key="IDS_PaymentAmount" value="缴费金额: " />
+  <item key="IDS_MaxPaymentAmount" value="一次最大缴费限额为" />
+  <item key="IDS_InputPaymentAmount" value="请输入缴费金额" />
+  <item key="IDS_InputPaymentAmountAgain" value="请再次输入缴费金额" />
+  <item key="IDS_InputPhoneNumber" value="请输入电话号码" />
+  <item key="IDS_InputPhoneNumberAgain" value="请输再次入电话号码" />
+  <item key="IDS_InputPhoneNumberUnmatch" value="两次输入的电话号码不一致|请重新输入" />
+  <item key="IDS_InputPowerRateNumber" value="请输入您的电费号码" />
+  <item key="IDS_InputPowerRateNumberAgain" value="请再次输入您的电费号码" />
+  <item key="IDS_InputPowerRateNumberUnmatch" value="两次输入的电费号码不一致|请重新输入" />
+  <item key="IDS_InputWaterRateNumber" value="请输入您的水费号码" />
+  <item key="IDS_InputWaterRateNumberAgain" value="请再次输入您的水费号码" />
+  <item key="IDS_InputWaterRateNumberUnmatch" value="两次输入的水费号码不一致|请重新输入" />
+  <item key="IDS_InputGasRateNumber" value="请输入您的煤气号码" />
+  <item key="IDS_InputGasRateNumberAgain" value="请再次输入您的煤气号码" />
+  <item key="IDS_InputGasRateNumberUnmatch" value="两次输入的煤气号码不一致|请重新输入" />
+  <!--按钮-->
+  <item key="IDS_BtnCMCC" value="移###动" />
+  <item key="IDS_BtnCU" value="联###通" />
+  <item key="IDS_BtnCT" value="电###信" />
+  <item key="IDS_BtnPR" value="电###费" />
+  <item key="IDS_BtnWR" value="水###费" />
+  <item key="IDS_BtnGR" value="煤#气#费" />
+  <item key="IDS_BtnDSQWR" value="大石桥水费" />
+  <item key="IDS_BtnMobile" value="手###机" />
+  <item key="IDS_BtnFixLine" value="固###话" />
+  <item key="IDS_BtnWideBand" value="宽###带" />
+  <item key="IDS_PromptForTransfer" value="非本行内互转，需要收取一定手续费。" />
+  <item key="IDS_ICLoadFail" value="圈存交易失败" />
+  <item key="IDS_InputPinTip" value="请注意遮挡，谨防密码被窃取" />
+  <!--ocr-->
+  <item key="IDS_SelectReceiptType" value="打印凭证"/>
+  <item key="IDS_PrintOCR" value="冠字号"/>
+  <item key="IDS_PrintReceipt" value="凭条"/>
+  <item key="IDS_TakeNoteHostRefuse" value="存款失败或交易拒绝,正在退钞"/>
+  <item key="IDS_TransName_61" value="圈提"/>
+  <item key="IDS_TransName_62" value="非绑定圈存"/>
+  <item key="IDS_TransName_63" value="现金充值"/>
+  <item key="IDS_TransName_00" value="消费"/>
+  <item key="IDS_TransName_03" value="预授权"/>
+  <item key="IDS_TransName_20" value="退货"/>
+  <item key="IDS_ContactLessICC" value="非接IC卡"/>
+  <item key="IDS_ICPutCard" value="请将IC卡放到读卡区域|Please put the IC card into the reading area"/>
+  <item key="IDS_ICReadingCard" value="正在读取卡信息,请勿移动IC卡片|Reading card data,do not move the IC card"/>
+  <item key="IDS_SelectApplication" value="请选择应用"/>
+  <item key="IDS_TryAgain" value="请重试|Try Again" />
+  <item key="IDS_ICNoLog" value="无明细数据" />
+  <item key="IDS_ICCanNotReadLog" value="无法读取明细数据" />
+  <item key="IDS_ICReadLogError" value="读取明细数据异常" />
+  <item key="IDS_ICTransTerminated" value="对不起|所需服务已取消|请与发卡银行联系" />
+  <item key="IDS_ICTransDeclined" value="对不起|卡片拒绝交易|请与发卡银行联系" />
+  <item key="IDS_ICTransNotAccepted" value="对不起|卡片不接受交易|请与发卡银行联系" />
+  <item key="IDS_PleaseTakeCardAndInsertSecondCard" value="请取回您的卡后插入您要充值的IC卡"/>
+  <item key="IDS_TheSecondCardISInvalidCard" value="您插入的卡不支持|不能进行充值"/>
+  <item key="IDS_PleaseInserRechardCard" value="请插入您要充值的IC卡"/>
+  <item key="IDS_SecondAndFirstCradIsSame" value="您插入了相同的卡|交易将取消"/>
+  <item key="IDS_InputFirstCardPin" value="请输入您的转出卡号密码"/>
+  <item key="IDS_ResultWithoutCancel" value="请按'确定'键继续"/>
+	<item key="IDS_A4Ready" value="准备就绪"/>
+	<item key="IDS_A4Busy" value="忙"/>
+	<item key="IDS_A4DoorOpened" value="被打开"/>
+	<item key="IDS_A4Error" value="错误"/>
+	<item key="IDS_A4Initial" value="初始化"/>
+	<item key="IDS_A4IOActive" value="正在输入,输出"/>
+	<item key="IDS_A4ManualFeed" value="手工送纸"/>
+	<item key="IDS_A4NoToner" value="无墨粉"/>
+	<item key="IDS_A4NotAvailable" value="不可用"/>
+	<item key="IDS_A4OffLine" value="脱机"/>
+	<item key="IDS_A4MemoryOut" value="内存溢出"/>
+	<item key="IDS_A4BinFull" value="输出口已满"/>
+	<item key="IDS_A4PagePunt" value="当前页无法打印"/>
+	<item key="IDS_A4PaperJam" value="塞纸"/>
+	<item key="IDS_A4PaperOut" value="打印纸用完"/>
+	<item key="IDS_A4PageProblem" value="纸张问题"/>
+	<item key="IDS_A4Paused" value="暂停"/>
+	<item key="IDS_A4PendingDeletion" value="正在删除"/>
+	<item key="IDS_A4Printing" value="正在打印"/>
+	<item key="IDS_A4Processing" value="正在处理"/>
+	<item key="IDS_A4TonerLow" value="墨粉不足"/>
+	<item key="IDS_A4UserIntervention" value="需要用户干预"/>
+	<item key="IDS_A4Waiting" value="等待"/>
+	<item key="IDS_A4WarmingUp" value="热机中"/>
+	<item key="IDS_A4UnknownStatus" value="未知状态"/>
+
+  <item key="IDS_EMVKernelLoadFail" value="Emv加载失败"/>
+  <item key="IDS_CardRederlLoadFail" value="Emv接触模块加载失败"/>
+  <item key="IDS_ContactLessLoadFail" value="Emv非接触模块加载失败"/>
+  <item key="IDS_ICTryAnotherInterface" value="内部认证失败,交易取消"/>
+  
+  <!--存折补登-->
+  <item key="IDS_ReadPassbook" value="请将存折翻到补打页，然后插入存折..." />
+  <item key="IDS_PrintPassbook" value="存折补登" />
+  <item key="IDS_InvalidPassBook" value="对不起，存折无效|Sorry, invalid passbook"/>
+  <item key="IDS_PrintingPassBook" value="正在进行存折补登"/>
+  <item key="IDS_PrintPassBookSuccess" value="存折补登成功"/>
+  <item key="IDS_PrintPassBookFail" value="存折补登失败"/>
+  <item key="IDS_PrintPassBookBack" value="请选择继续服务或者退出存折"/>
+  <item key="IDS_InputPassBookBack" value="请翻到下一页，重新插入存折"/>
+  <item key="IDS_Passbook" value="存折补登"/>
+  <item key="IDS_NoPassbookDetail" value="没有未登折明细"/>
+  <item key="IDS_ShowChangePassbook" value="插入存折与补登存折不一致"/>
+  <item key="IDS_ShowNeedChangePassBook" value="请前往柜面办理换折业务"/>
+  <item key="IDS_WaitForChangePage" value="请取回存折|翻到下一页后重新插入存折"/>
+  <item key="IDS_WaitForPassbookTaken" value="请取回存折"/>
+  
+  <!--人脸识别-->
+  <item key="IDS_FaceRec" value="人脸识别" />
+  <item key="IDS_FaceDetect" value="请注视摄像头" />
+  <item key="IDS_FaceDetectFail" value="人脸检测失败" />
+  <item key="IDS_FaceDetectSuccess" value="人脸检测成功" />
+  <item key="IDS_InsertIDCard" value="请插入你的身份证" />
+  <item key="IDS_ReadingIDCard" value="正在读取身份证信息,请稍候..." />
+  <item key="IDS_HardwareError" value="身份证设备故障" />
+  <item key="IDS_TakeIDCard" value="信息读取完毕，请取回您的身份证" />
+  <item key="IDS_TakeIDCardFail" value="信息读取失败，请取回您的身份证" />
+  <item key="IDS_FaceMatchIDCard" value="正在进行人脸和身份证比对..." />
+  <item key="IDS_FaceMatchSuccess" value="人脸验证通过" />
+  <item key="IDS_FaceMatchFail" value="人脸验证不通过" />
+  <item key="IDS_ScanIDCardFailure" value="身份证扫描失败" />
+  <item key="IDS_TakeIDCardTimeOut" value="超时未拿走身份证" />
+  <item key="IDS_CameraDevError" value="摄像头设备故障" />
+  
+  <!--IDCard-->  
+  <item key="IDS_DateFormater" value="yyyyMMdd"/>
+  <item key="IDS_DateConcat" value="-"/> 
+  <item key="ids_opac_putIDCard" value="请把您的身份证放到感应区" />  
+  <item key="ids_CreateCustomerAccount" value="创建客户账号" />
+ 
+  <item key="IDS_sign_with_pen" value="请使用笔进行签名！" />
+  <item key="ids_FaceVerification" value="人脸识别" />
+  <item key="ids_FaceVerificationPrompt" value="GRG仅会收集您的面部图像用于身份验证|所有信息均严格保密" />
+</config>

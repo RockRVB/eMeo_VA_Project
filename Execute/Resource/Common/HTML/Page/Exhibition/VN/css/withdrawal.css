@@ -1,0 +1,229 @@
+.title {
+  font-size: 40px;
+}
+
+.content {
+  text-align: center;
+}
+
+.visible {
+  visibility: visible !important;
+}
+
+span.vietnam_text {
+  position: absolute;
+  top: 8.5px;
+  font-size: 40px;
+}
+
+span.vietnam_text_bold {
+  position: absolute;
+  top: 8px;
+  font-size: 43px;
+  font-weight: bold;
+}
+
+.insert_card .img_content {
+  margin-right: 50px;
+}
+
+.take_your_cash .img_content {
+  margin-left: 315px;
+}
+
+
+/* enter_pin */
+.enter_pin .content_title {
+  margin-top: 73px;
+  line-height: 1.2;
+}
+.enter_pin .description {
+  color: #FFF;
+  font-size: 33px;
+  line-height: 1.4;
+}
+.enter_pin .content_img {
+  margin-top: 35px;
+  margin-left: 195px;
+}
+.enter_pin .content_img img {
+  height: 550px;
+}
+.enter_pin .content_pin {
+  display: flex;
+  flex-direction: row;
+  width: 740px;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+.enter_pin .wrapper_pin {
+  height: 95px;
+  width: 110px;
+  border: 2px solid #ac82c4;
+  border-radius: 20px;
+  position: relative;
+}
+.enter_pin .wrapper_pin div.pin_sign {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+}
+.enter_pin .content_pin div:not(:last-child) {
+  margin-right: 18px;
+}
+.enter_pin .content_error {
+  visibility: hidden;
+  color: red;
+}
+
+/* select_amount */
+.select_withdraw_account .content_title {
+  margin-top: 83px;
+  line-height: 1.2;
+}
+.select_withdraw_account .content_table {
+  margin-top: 40px !important;
+}
+.select_withdraw_account .bt_wrapper {
+  margin-top: 50px;
+}
+
+/* select_amount */
+.select_amount .bt_wrapper{
+  height: 540px;
+}
+.select_amount .bt_purple {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-family: 'tpb_neo_sansbold';
+  width: 410px;
+  height: 140px;
+  background: linear-gradient(to bottom right, #9056B2, #5F2F88);
+  border-radius: 20px;
+  float: left;
+  margin-top: 40px;
+  margin-right: 40px;
+}
+.select_amount .text_wrapper {
+  margin-top: 50px;
+  font-size: 40px;
+  text-align: left;
+}
+.select_amount .select_amount_content{
+  margin-left: 280px;
+  width: 1380px;
+}
+.select_amount .left_content{
+  float: left;
+  width: 900px;
+}
+.select_amount .right_content{
+  float: right;
+  width: 440px;
+  margin-top: 30px;
+  text-align: center;
+}
+.select_amount .bt {
+  width: 300px;
+  margin-top: 425px;
+  visibility: hidden;
+}
+.select_amount .form_wrapper .label {
+  text-align: left;
+  visibility: hidden;
+  color: #ac82c4;
+  margin-left: 5px;
+}
+.select_amount input {
+  width: 430px;
+  margin-top: 9px;
+}
+.select_amount #OtherAmount_keyboard {
+  width: 445px;
+  height: 390px;
+  background: linear-gradient(190deg, #9258B3, #5E2E87);
+  border-radius: 30px;
+  left: 1210px !important;
+  top: 390px !important;
+  position: absolute;
+  padding: 10px 5px 0px;
+}
+.select_amount #OtherAmount_keyboard .ui-keyboard-button {
+  font-size: 22px;
+  font-weight: normal;
+  font-family: 'tpb_neo_sans';
+  width: 80px;
+  height: 80px;
+  margin-left: 15px;
+  margin-top: 7px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 2px 2px 3px #444;
+}
+.select_amount #OtherAmount_keyboard .ui-keyboard-button.ui-keyboard-bksp,
+.select_amount #OtherAmount_keyboard .ui-keyboard-button.ui-keyboard-clear,
+.select_amount #OtherAmount_keyboard .ui-keyboard-button.ui-keyboard-cancel,
+.select_amount #OtherAmount_keyboard .ui-keyboard-button.ui-keyboard-enter {
+  width: 110px !important;
+}
+
+/* withdraw_complete */
+.withdraw_complete .content_title {
+  margin-top: 80px;
+}
+.withdraw_complete .content_table {
+  margin-top: 52px;
+}
+.withdraw_complete .content_menu {
+  margin-top: 113px;
+}
+.withdraw_complete .bt_wrapper {
+  margin-top: 55px;
+}
+.withdraw_complete table {
+  width: 990px;
+}
+.withdraw_complete table tr td:first-child {
+  width: 420px;
+}
+.withdraw_complete table tr td:last-child {
+  width: 570px;
+}
+.withdraw_complete table tr:last-child td:first-child {
+  border-bottom-left-radius: 20px;
+}
+.withdraw_complete table tr:last-child td:last-child {
+  border-bottom-right-radius: 20px;
+}
+.withdraw_complete table tbody tr:nth-child(odd) {
+  background-color: transparent;
+  color: #FFF;
+  font-family: 'tpb_neo_sans'
+}
+.withdraw_complete table tbody tr:nth-child(even) {
+  background-color: #6b3b8f;
+  color: #FFF;
+  font-family: 'tpb_neo_sans'
+}
+.withdraw_complete td.wrap_vietnam {
+  position: relative;
+  padding-right: 70px
+}
+.withdraw_complete .bt {
+  width: 280px;
+}
+.withdraw_complete .bt.bt_no {
+  margin-right: 60px;
+}
+
+/* take_receipt */
+.take_receipt .img_content {
+  margin-left: -310px;
+}

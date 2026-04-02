@@ -1,0 +1,176 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>查询钱箱余额</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../../css/maintenance/cn.css" />
+<script src="../../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../../js/jquery-ui.min.js"></script>
+<script src="../../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../../js/maintenance/common/global.js"></script>
+<script src="../../../../js/maintenance/component/components.js"></script>
+<script src="../../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../../js/maintenance/ui/maintenance/totalmanage/cashunitsmanage/getcashunits.js"></script>
+<script src="../../../../js/maintenance/ui/maintenance/totalmanage/handletotal.js"></script>
+</head>
+
+<body>
+<!--界面容器-->
+<div class="wrapper get-cash-units">
+	<div class="g-margin-wrapper"> 
+		<!--表格控件-->
+		<div id="Table_1" class="type-table table-cash-margin_top" type="TABLE"> 
+			<!--翻页按钮-->
+			<div class="type-table-paging">
+				<div class="middle-outer">
+					<div class="middle-inner">
+						<button class="button-page" mark="prev" dataToSend="78" id="prev"><span class="tip"></span> <span class="button-text">▲</span></button>
+						<button class="button-page" mark="next"><span class="tip"></span> <span class="button-text">▼</span></button>
+					</div>
+				</div>
+			</div>
+			<div class="type-table-container  getcash-table-width" >
+				<table>
+					<thead>
+						<tr>
+							<th><span id="STATIC_HOPPER" ids="IDS_NoMenu_161">序号</span></th>
+							<th><span id="STATIC_CASSETID" ids="IDS_IdMenu_161">ID</span></th>
+							<th><span id="STATIC_TYPE" ids="IDS_TypeMenu_161">类型</span></th>
+							<th><span id="STATIC_DENO" ids="IDS_DenoMenu_161">面额</span></th>
+							<th><span id="STATIC_REMANI" ids="IDS_RemainnumMenu_161">剩余数</span></th>
+							<th><span id="STATIC_MONEY" ids="IDS_RemainTotalMenu_161">剩余金额</span></th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th colspan="4"><span id="STATIC_1" ids="IDS_TotalMenu_161">合计（不含回收箱）</span></th>
+							<th><span id="STATIC_TOTALSHEET" type="STATIC_TXT">15</span></th>
+							<th><span id="STATIC_TOTALMONEY" type="STATIC_TXT">0</span></th>
+						</tr>
+					</tfoot>
+					<tbody>
+						<tr>
+							<td><span id="STATIC_HOPPER1" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_CASSETID1" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_TYPE1" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_DENO1" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_REMANI1" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_MONEY1" type="STATIC_TXT"></span></td>
+						</tr>
+						<tr>
+							<td><span id="STATIC_HOPPER2" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_CASSETID2" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_TYPE2" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_DENO2" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_REMANI2" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_MONEY2" type="STATIC_TXT"></span></td>
+						</tr>
+						<tr>
+							<td><span id="STATIC_HOPPER3" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_CASSETID3" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_TYPE3" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_DENO3" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_REMANI3" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_MONEY3" type="STATIC_TXT"></span></td>
+						</tr>
+						<tr>
+							<td><span id="STATIC_HOPPER4" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_CASSETID4" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_TYPE4" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_DENO4" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_REMANI4" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_MONEY4" type="STATIC_TXT"></span></td>
+						</tr>
+						<tr>
+							<td><span id="STATIC_HOPPER5" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_CASSETID5" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_TYPE5" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_DENO5" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_REMANI5" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_MONEY5" type="STATIC_TXT"></span></td>
+						</tr>
+						<tr>
+							<td><span id="STATIC_HOPPER6" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_CASSETID6" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_TYPE6" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_DENO6" type="STATIC_TXT">-</span></td>
+							<td><span id="STATIC_REMANI6" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_MONEY6" type="STATIC_TXT"></span></td>
+						</tr>
+						<tr>
+							<td><span id="STATIC_HOPPER7" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_CASSETID7" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_TYPE7" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_DENO7" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_REMANI7" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_MONEY7" type="STATIC_TXT"></span></td>
+						</tr>
+						<tr>
+							<td><span id="STATIC_HOPPER8" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_CASSETID8" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_TYPE8" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_DENO8" type="STATIC_TXT">-</span></td>
+							<td><span id="STATIC_REMANI8" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_MONEY8" type="STATIC_TXT"></span></td>
+						</tr>
+						<tr class="none">
+							<td><span id="STATIC_HOPPER9" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_CASSETID9" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_TYPE9" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_DENO9" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_REMANI9" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_MONEY9" type="STATIC_TXT"></span></td>
+						</tr>
+						<tr class="none">
+							<td><span id="STATIC_HOPPER10" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_CASSETID10" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_TYPE10" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_DENO10" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_REMANI10" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_MONEY10" type="STATIC_TXT"></span></td>
+						</tr>
+						<tr class="none">
+							<td><span id="STATIC_HOPPER11" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_CASSETID11" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_TYPE11" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_DENO11" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_REMANI11" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_MONEY11" type="STATIC_TXT"></span></td>
+						</tr>
+						<tr class="none">
+							<td><span id="STATIC_HOPPER12" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_CASSETID12" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_TYPE12" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_DENO12" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_REMANI12" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_MONEY12" type="STATIC_TXT"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!--表格控件END--> 
+		<!--提示文字和按钮-->
+		<div class="get-cash-units-zone"   style="margin-top:23px"> 
+			<!--提示文字-->
+			<div id="STATIC_PROMPT" type="STATIC_TXT" class="g-prompt-text" color="#e01e1e" disabledColor="#000000" flashType="color"></div>
+			<!--按钮区域-->
+			<div class="g-button-zone">
+				<button id="FUN_PRINT" type="button" class="button-common mr5"> <span class="tip"></span> <span class="button-text" ids="IDS_ReceiptPrintMenu_161">凭条打印</span> </button>
+				<button id="FUN_J-PRINT" type="button" class="button-common mr5"> <span class="tip"></span> <span class="button-text" ids="IDS_JournalPrintMenu_161">记录电子流水</span> </button>
+				<button id="FUN_EXPORT" type="button" class="button-common"> <span class="tip"></span> <span class="button-text" ids="IDS_ExportMenu_161">导出</span> </button>
+			</div>
+			<div style="position: absolute;left:530px;top:370px;">
+				<button id="FUN_0" type="button" class="button-common" > <span class="tip"></span> <span class="button-text" ids="IDS_DispenseTestingMenu_161">出钞测试</span> </button>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

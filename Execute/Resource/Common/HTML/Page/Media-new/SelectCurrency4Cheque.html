@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select item</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/vue-i18n.js"></script>
+    <script src="../../js/jquery-3.7.0.js"></script>	<script src="../../js/class/layer/layer.js"></script>	<script src="../../js/index.js"></script>
+    <script src="../../js/coreScript.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/animate.grg.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <style>
+        .main-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .main-custom-btn-box {
+			margin-top: 11px;
+			display: flex;
+			justify-content: center;
+			width: 1470px;
+			flex-direction: row;
+			align-content: center;
+		}
+
+        .card-img-btn {
+			margin-top: auto;
+			margin-bottom: auto;
+			width: 160px;
+			height: 160px;
+		}
+
+        .card-text-btn {
+            height: 32px;
+            font-size: 32px;
+            font-weight: 400;
+            color: #333333;
+            line-height: 32px;
+            text-transform: uppercase;
+            font-family: "Alibaba Sans";
+            text-align: center;
+        }
+
+        .btn-position{
+            position: absolute;
+            bottom: 70px;
+        }
+
+        .main-custom-btn {
+			position: relative;
+			z-index: 6;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: 250px;
+			height: 250px;
+			background: #ffffff;
+			border-radius: 24px;
+			box-shadow: 0px 0px 12px 5px rgb(0 0 0 / 10%);
+			margin-right: 40px;
+
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <div id="grg-header" class="grg-header">
+    </div>
+    <div id="grg-main" class="grg-main animate_grg_fadeInRight_other">
+       <!--  <div class="count-down">
+            <div class="count-down-2">60</div>
+        </div> -->
+        <div class="main-title" type="text" ids="ids_opac_chequecurrency">Please select the cheque currency</div>
+        <div class="main-btn">
+            <div class="main-custom-btn-box">
+                <div class="main-custom-btn" id="F7" tag="OnConfirm" type="Button">
+                    <img class="card-img-btn" src="../../images/img_2.4/cash-img-2.png">
+                    <div class="card-text-btn">GBP</div>
+                </div>
+				<div class="main-custom-btn" id="F8" tag="OnConfirm" type="Button">
+                    <img class="card-img-btn" src="../../images/img_2.4/cash-img-2.png">
+                    <div class="card-text-btn">EUR</div>
+                </div>
+            </div>
+            <button class="btn-retry btn-position" id='OnCancel' type='button' tag='OnCancel' ids='ids_Btn_cancel'>
+                <img class="btn-img-ok" src="../../images/img_2.4/icon-back@2x.png">
+                Cancel
+            </button>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+    var app = new Base({
+        i18n: i18n,
+        data: {},
+        methods: {},
+        computed: {},
+        mounted: function () {
+        }
+    }).$mount('#app')
+</script>

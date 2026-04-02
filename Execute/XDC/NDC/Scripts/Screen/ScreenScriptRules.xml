@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- 
+  ****************************************************************************************************
+  * [1] Local screen and download screen map setting
+  * [2] Reservered screen map setting
+  *****************************************************************************************************
+-->
+<Root>  
+  <LocalScreenMap>    
+    <!-- Local screen defined by ATM side, the same as ISO8583 screen
+    * The mapping between local screen and download screen from host 
+    * If the local screen exists, the download screen will be replaced by local screen
+    * Condition: 
+    *   [1] If the map setting doesn't exist, will find the same name in the folder "Local"
+    *   [2] If the map setting exsit, will find the the map name in the folder "Local"      
+    * Sample:
+    * 	<Item HostScreen="000"  LocalScreen="000" Enable="0"/>   
+    -->
+    
+  </LocalScreenMap>
+
+  <ReservedScreenMap>
+    <!-- 
+    * Define the reservered screen scripts to be used 
+    * The mapping between local screen and download screen from host 
+    * Condition: 
+    *   [1] If the map setting doesn't exist, will find the same name in the folder "Reserved"
+    *   [2] If the map setting exsit, will find the the map name in the folder "Reserved"   
+    * Sample:
+    *   <Item HostScreen="002"  LocalScreen="C02" Enable="0"/> 
+    --> 
+    
+  </ReservedScreenMap> 
+
+  <Priority>    
+      <!-- 
+       ************************************************************************
+       * If above item exists, it will use the setting value according to the settiong
+       * If the setting value doesn't exsits, will go to host map setting or fatal exception flow definition: 
+       *   0 -
+       *      [1] First step:   Local Screen configuration.
+       *      [2] Second step:  Host map setting configuraiton
+       *      [3] Finally step: Fatal error exception reports
+       ************************************************************************
+       *   1 - 
+       *      [1] First step:   Local screen configuration.
+       *      [2] Second step:  Host screen map setting configuraiton
+       *      [3] Third step:   Reserved screen map setting configuraiton
+       *      [4] Finally step: Fatal error exception reports
+       ************************************************************************
+       *   2 - 
+       *      [1] First step:   Host screen map setting configuraiton.
+       *      [2] Finally step: Fatal error exception reports
+       ************************************************************************
+       -->   
+      <Item key ="ScreenMap"  Priority ="0"/>      
+      
+  </Priority>
+</Root>

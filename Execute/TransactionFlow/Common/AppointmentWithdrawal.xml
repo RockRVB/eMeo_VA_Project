@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="AppointmentWithdrawal">
+  <Head type="GRGWorkflow" author="HXL" timeStamp="2013/10/7 15:15:12" comment="The workflow design is for withdrawal"/>
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start" homeVisible="0">
+      <Forward event="OnConfirm" targetID="ID_GetDevStatusForBCR"/>
+    </Start>
+
+<!-- 检查BarCode状态 -->
+    <GetDevStatus ID="ID_GetDevStatusForBCR" comment="Get device status" devType="BCR">
+	  <States>
+        <State name="GetDevStatusError" UI="UI_hardware_error"></State>
+      </States>
+      <Forward event="OnNormal" targetID="ID_ScanQRCode"/>
+      <Forward event="OnWarn" targetID="ID_ScanQRCode"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </GetDevStatus>
+
+	<!-- 扫描二维码 -->
+	<ScanBarcodeAction ID="ID_ScanQRCode" UI="UI_ScanBarCode" timeout="60000">
+	  <States>
+        <State name="GetDevStatusError" UI="UI_hardware_error"></State>
+		<State name="TimeOutError" UI="UI_timeout"></State>
+		<State name="ReadError" UI="UI_hardware_error"></State>
+      </States>
+      <!-- <Forward event="OnConfirm" targetID="ID_CheckAppointmentMessage" /> -->
+	  <Forward event="OnConfirm" targetID="ID_ShowQRWithdrawalInfo" />
+	  <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="OnReadError" targetID="ID_InvokeCloseTransWorkflow" /> 
+	  <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+    </ScanBarcodeAction>
+	
+	<!-- 展示二维码信息 -->
+	<ShowQRWithdrawalInfo ID="ID_ShowQRWithdrawalInfo" UI="UI_ShowQRWithdrawalInfo" timeout="30000">
+	   <States>
+		 <State name="TimeOutError" UI="UI_timeout"></State>
+	   </States>
+       <Forward event="OnConfirm" targetID="ID_InputVerificationCode" />
+	   <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+       <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+    </ShowQRWithdrawalInfo>
+	
+	<!-- 输入验证码 -->
+	<VTMSelectFunction ID="ID_InputVerificationCode" UI="UI_InputVerificationCode" timeout="30000">
+        <Forward event="OnConfirm" targetID="ID_DispenseCash" /> 
+        <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+    </VTMSelectFunction>
+	
+	<QRCodeDispense ID="ID_DispenseCash" UI="UI_PresentCash" comment="Dispense cash">
+      <States>
+        <State name="DispenseAmountError" UI="UI_DispenseAmountError"/>
+        <State name="RejectingCash" UI="UI_RejectingCash"/>
+        <State name="RejectCashForHardwareError" UI="UI_RejectCashForHardwareError"/>
+        <State name="RejectCashFail" UI="UI_RejectCashFail"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_PresentCash"/>
+      <Forward event="OnHardwareError" targetID="ID_GetDevStatusForCloseTrans"/>
+    </QRCodeDispense>
+	
+	<PresentCash ID="ID_PresentCash" UI="UI_PresentCash" comment="Present cash">
+      <States>
+        <State name="TakeCash" UI="UI_TakeCash"/>
+        <State name="RetractingCash" UI="UI_RetractingCash"/>
+        <State name="RetractCashForTimeout" UI="UI_RetractCashForTimeout"/>
+        <State name="RetractCashForHardwareError" UI="UI_RetractCashForHardwareError"/>
+        <State name="RetractNoCash" UI="UI_RetractNoCash"/>
+        <State name="RetractCashFail" UI="UI_RetractCashFail"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_GetDevStatus"/>
+      <Forward event="OnHardwareError" targetID="ID_GetDevStatusForCloseTrans"/>
+    </PresentCash>
+	
+	<GetDevStatus ID="ID_GetDevStatus" comment="Get device status" devType="RPTR">
+      <Forward event="OnNormal" targetID="ID_IsPrintReceipt"/>
+      <Forward event="OnWarn" targetID="ID_IsPrintReceipt"/>
+      <Forward event="OnFail" targetID="ID_WithdrawedResultForNoPTR"/>
+    </GetDevStatus>
+	
+	<!-- 是否打印凭条 -->
+    <SelectFunctionBase ID="ID_IsPrintReceipt" UI="UI_IsPrintReceiptAfterCWD">
+      <Forward event="OnYes" targetID="ID_PrintReceipt"/>
+      <Forward event="OnNo" targetID="ID_InvokeCloseTransWorkflow"/>
+    </SelectFunctionBase>
+    <!-- 开始打印凭条 -->
+    <PrintReceipt ID="ID_PrintReceipt" UI="UI_waiting" formName="ReceiptFormAppWithdrawal" showTime="2000">
+      <States>
+        <State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess_CommonPage"/>
+        <State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+      </States>
+      <!-- <Forward event="OnConfirm" targetID="ID_SendAppointmentMessage"/> -->
+	  <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+    </PrintReceipt>
+	
+	
+	<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+	
+	<End ID="9999" comment="End">
+	</End>
+    
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+  </DefaultForward>
+</Workflow>

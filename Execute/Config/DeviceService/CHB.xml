@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ServiceName 设备的服务名
+EncoderFont MICR字体，1：E13b; 2:CMC7
+EncoderPosition MICR打印起始位置
+-->
+<CHB ServiceName="CHB" EncoderFont="1" EncoderPosition="48" />

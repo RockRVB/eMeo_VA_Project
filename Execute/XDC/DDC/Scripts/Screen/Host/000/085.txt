@@ -1,0 +1,1 @@
+DDF40********************************ED*                              *FD*                              *GD*   F00UNABLE TO PRINT RECEIPT    F40*HD*                              *ID*                              *JD********************************LIF00DO YOU WANT TO CONTINUEMLWITHOUT A RECEIPT?O1PRESS IF YES---------->21PRESS IF NO----------->

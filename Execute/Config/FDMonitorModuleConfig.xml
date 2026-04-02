@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+    <!--FEEL Distribution 4.0接口监控APP关键模块版本信息配置-->
+    <!--       
+        name:           模块名称
+		enable：        表明该模块是否需要监控：1为监控，0为不监控
+		path；          表明该模块的相对路径		
+        comment:        备注信息
+	-->
+    <Modules>
+        <Module name="GrgEmvKernel" enable="1" path="GrgEmvKernel.dll" comment="EmvKernel模块" />
+    </Modules>
+</Config>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Device>
+    <Enable EnvelopeDispenser="0" />
+    <Information>
+      <EnvelopeDispenser NumOfDeposits="4" EnvSupplyStatus="OK" DepContainerStatus="OK" DepTransportStatus="UNKNOWN" EnvDispenserStatus="OK" PrinterStatus="OK" TonerStatus="FULL" ShutterStatus="CLOSED" DeviceState="ONLINE" MediaState="unknown" LastErrorCode="" IsSuccess="True" IsFailure="False" Cancelled="False" UserState="1" />
+    </Information>
+    <Event>
+    </Event>
+    <Capability>
+      <EnvelopeDispenser CapsType="ENVELOPE" CapsEnvSupply="MOTORIZED" CapsDepTransport="True" CapsPrinter="True" CapsToner="True" CapsShutter="True" CapsPrintOnRetracts="True" CapsRetractEnvelope="RETRACTDEP" CapsMaxNumChars="1024" CapsCharSupport="ASCII" IsSuccess="True" IsFailure="False" Cancelled="False" UserState="1" />
+    </Capability>
+  </Device>
+  <Calculate>
+    <Status>
+      <Dispenser fitness="0" SuppliesStatus="1" />
+      <Depository fitness="0" SuppliesStatus="1" />
+    </Status>
+  </Calculate>
+  <Configuration>
+    <Item source="/Root/Device/Information/EnvelopeDispenser" ID="/Root/Calculate/Status/Dispenser/@fitness" default="0">
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+          <xmlvariable value="/Root/Device/Information/EnvelopeDispenser/@DeviceState" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/EnvelopeDispenser" ID="/Root/Calculate/Status/Dispenser/@SuppliesStatus" default="4">
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="OK" operator="match">
+          <xmlvariable value="/Root/Device/Information/EnvelopeDispenser/@EnvSupplyStatus" />
+        </Condition>
+      </Result>
+      <Result value="2">
+        <Condition value="[xmlvariable]" operand="LOW" operator="match">
+          <xmlvariable value="/Root/Device/Information/EnvelopeDispenser/@EnvSupplyStatus" />
+        </Condition>
+      </Result>
+      <Result value="3">
+        <Condition value="[xmlvariable]" operand="EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/EnvelopeDispenser/@EnvSupplyStatus" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/EnvelopeDispenser" ID="/Root/Calculate/Status/Depository/@fitness" default="0">
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+          <xmlvariable value="/Root/Device/Information/EnvelopeDispenser/@DeviceState" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/EnvelopeDispenser" ID="/Root/Calculate/Status/Depository/@SuppliesStatus" default="4">
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="OK" operator="match">
+          <xmlvariable value="/Root/Device/Information/EnvelopeDispenser/@DepContainerStatus" />
+        </Condition>
+      </Result>
+      <Result value="2">
+        <Condition value="[xmlvariable]" operand="LOW" operator="match">
+          <xmlvariable value="/Root/Device/Information/EnvelopeDispenser/@DepContainerStatus" />
+        </Condition>
+      </Result>
+      <Result value="3">
+        <Condition value="[xmlvariable]" operand="EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/EnvelopeDispenser/@DepContainerStatus" />
+        </Condition>
+      </Result>
+    </Item>
+  </Configuration>
+  <Signal>
+    <Item value="/Root/Calculate/Status/Dispenser/@fitness" DataEventID="107" />
+    <Item value="/Root/Calculate/Status/Dispenser/@SuppliesStatus" DataEventID="107" />
+    <Item value="/Root/Calculate/Status/Depository/@fitness" DataEventID="108" />
+    <Item value="/Root/Calculate/Status/Depository/@SuppliesStatus" DataEventID="108" />
+  </Signal>
+  <DataEvent>
+    <Item ID="107" enable="0" />
+  </DataEvent>
+</Root>

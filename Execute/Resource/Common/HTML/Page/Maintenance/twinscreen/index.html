@@ -1,0 +1,90 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>TwinScreen</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<link rel="stylesheet" type="text/css" href="../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../thirdparty/bootstrap/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/maintenance/global.css" />
+<script type="text/javascript" src="../../../js/jquery-3.7.0.min.js"></script>
+<script type="text/javascript" src="../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../js/maintenance/global.js"></script>
+<script type="text/javascript" src="../../../js/maintenance/index.js"></script>
+</head>
+
+<body>
+<!--界面配置-->
+<div id="grg-config"> 界面配置 </div>
+<!--提示框-->
+<div id="prompt-box" class="none"> 
+	<!--遮罩-->
+	<div class="prompt-box-mask"> </div>
+	<div class="middle-outer absolute-left">
+		<div class="middle-inner"> 
+			<!--外包装-->
+			<div id="prompt-box-wrapper" class="prompt-box-wrapper">
+				<!--头部-->
+				<div id="prompt-box-header" class="none"></div>
+				<div id="icon-and-content" class="icon-and-content"> 
+					<!--内容-->
+					<div id="prompt-box-content" class=""><div id="prompt-content-ui"></div><span id="prompt-box-icon" class="animation-loading"></span><span id="prompt-box-text">操作正在进行...</span></div>
+				</div>
+				
+				<!--底部-->
+				<div id="prompt-box-footer" class="">
+					<button id="FUN_OK" class="button-prompt"> <span class="tip"></span> <span class="button-text" ids="IDS_Ok">确  定</span> </button>
+					<button id="FUN_CANCEL" class="button-prompt prompt-button-hspace"> <span class="tip"></span> <span class="button-text" ids="IDS_Cancel">取  消</span> </button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--界面容器-->
+<div class="wrapper index"> 
+	<!--头部-->
+	<div class="index-header"> 
+		<!--左上角图像-->
+		<div class="top-left-image"> </div>
+		<!--状态图标-->
+		<div class="state-image state-maintenance"> 
+			<!--当前状态描述-->
+			<div class="state-description"> <span mark="state-init" ids="IDS_Init">系统启动</span> <span mark="state-normal" ids="IDS_Normal">对外服务</span> <span mark="state-login" ids="IDS_Login">管理登录</span> <span mark="state-maintenance" ids="IDS_Maintenance">维护状态</span> <span mark="state-outofservice" ids="IDS_OutOfService">暂停服务</span> <span mark="state-offline" ids="IDS_OffLine">离线状态</span> </div>
+		</div>
+		<!--网络状态图标-->
+		<div class="net-state-image net-state-online"> </div>
+		<!--下部边框-->
+		<div class="bottom-border"> </div>
+		
+		<!--ATM号和分行号-->
+		<div class="atm-banknumber-container"> 
+			<!--ATM号-->
+			<div class="index-atm"> <span id="STATIC_ATMNO" ids="IDS_Atmno">ATM 号:</span> </div>
+			<!--ATM号-值-->
+			<div class="index-atm-value"> <span id="VSTATIC_ATMNO" >72172128</span> </div>
+			
+			<!--分行号-->
+			<div class="index-banknumber"> <span id="STATIC_BANKNO" ids="IDS_Bankno">分行号:</span> </div>
+			<!--分行号-值-->
+			<div class="index-banknumber-value"> <span id="VSTATIC_BANKNO" >1234</span> </div>
+			
+			<!--网络-->
+			<div class="index-net"> <span id="STATIC_NETSTATE" ids="IDS_Nesttate">网络:</span> </div>
+		</div>
+		<!--当前用户和时间-->
+		<div class="currentuser-time-container"> 
+			<!--当前用户-->
+			<div class="index-userid"> <span id="STATIC_USERID" ids="IDS_UserId">当前用户:</span> </div>
+			<!--当前用户-值-->
+			<div class="index-userid-value"> <span id="VSTATIC_USERID" >银行管理员</span> </div>
+			
+			<!--时间-->
+			<div class="index-time"> <span id="STATIC_CURRENT_TIME" >2015-01-29 08:29</span> </div>
+		</div>
+	</div>
+	
+	<!--用于加载不同的界面-->
+	<div id="top-container"> </div>
+</div>
+</body>
+</html>

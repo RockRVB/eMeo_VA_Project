@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--VNC 服务配置 name,port,serverIP,timeout 均为保留设置-->
+<GRGRemoteAssistConfig name="GRG" port="8601" serverIP="10.1.93.177" timeout="10000">
+
+</GRGRemoteAssistConfig>

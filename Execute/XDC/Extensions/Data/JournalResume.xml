@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <!--
+	* The journal printer data to resume
+	 -->
+  <JournalResume ID="8">
+    <Item ID="1" pjTime="131202 12:20:982" pjType="FuncCmd" pjResumeData="123456" />
+    <Item ID="2" pjTime="2013-03-18 10:14:23:025" pjType="FuncCmd" pjResumeData="asdfsafasdfsadfaf" />
+    <Item ID="3" pjTime="2013-03-18 10:14:30:486" pjType="FuncCmd" pjResumeData="asdfsafasdfsadfaf" />
+    <Item ID="5" pjTime="2013-03-18 10:48:08:095" pjType="FuncCmd" pjResumeData="asdfsafasdfsadfaf" />
+    <Item ID="6" pjTime="2013-03-18 10:48:17:442" pjType="FuncCmd" pjResumeData="asdfsafasdfsadfaf" />
+    <Item ID="7" pjTime="2013-03-18 10:48:25:768" pjType="FuncCmd" pjResumeData="asdfsafasdfsadfaf" />
+    <Item ID="8" pjTime="2013-03-18 10:48:33:152" pjType="FuncCmd" pjResumeData="asdfsafasdfsadfaf" />
+  </JournalResume>
+</Root>

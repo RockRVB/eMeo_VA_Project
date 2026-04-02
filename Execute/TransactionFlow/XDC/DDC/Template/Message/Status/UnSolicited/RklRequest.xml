@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <PublicKey>
+    <Item key="Status Source" value="J" size="1" restriction="Mandatory" /> 
+    <Item key="Status" value="000EP01:3F:40:81" size="1" restriction="Mandatory" />          
+  </PublicKey>
+  
+  <InitialKey>
+    <Item key="Status Source" value="J" size="1" restriction="Mandatory" /> 
+    <Item key="Status" value="000EP01:3F:40:1E" size="1" restriction="Mandatory" />          
+  </InitialKey>
+</Root>

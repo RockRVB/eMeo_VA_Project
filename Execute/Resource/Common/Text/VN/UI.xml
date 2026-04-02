@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<item key="IDS_Confirm" value="Confirm"/>
+	<item key="IDS_Cancel" value="Cancel"/>
+	<item key="ids_Common_welcome1" value="Welcome" />
+	<item key="ids_Common_QR" value="QRCode" />
+	<item key="ids_Common_Cash" value="Cash" />
+	<item key="ids_Common_BankCard" value="Bank Card" />
+	<item key="ids_Common_Amount" value="Amount" />
+	<item key="ids_Common_ScanPassport" value="Scan Passport" />
+	<item key="ids_Common_CustomerInfo" value="Customer Info" />
+	<item key="ids_Common_Sign" value="Sign" />
+	<item key="ids_Common_PrintForm" value="Print Form" />
+	<item key="ids_Common_ScanForm" value="Scan Form" />
+	<item key="ids_Common_PrintingCard" value="Printing Card" />
+	<item key="ids_Common_SetPassword" value="User Set Password" />
+	<item key="ids_Common_TakeCard" value="Take Card" />
+	<item key="ids_Common_PrintReceipt" value="Print Receipt" />
+	<item key="ids_Common_Male" value="Male" />
+	<item key="ids_Common_Female" value="Female" />
+	<item key="ids_Common_e-wallet" value="e-wallet" />
+	<item key="ids_Common_NoCardTransactions" value="No Card Transactions" />	
+	<item key="ids_Common_welcome" value="Welcome To GRG Digital Banking" />
+	<item key="ids_Common_DeviceID" value="Device ID:" />
+	<item key="ids_Common_Or" value="Or" />
+	
+	<item key="ids_Common_pleaseInsertCard" value="Please Insert Your Card" />
+	<item key="ids_Common_or" value="Or" />	
+	<item key="ids_Common_clickHere" value="Click Here To Start" />
+	<item key="ids_Common_selectItem" value="Please select transaction" />
+	<item key="ids_Common_card" value="Issue Card" />
+	<item key="ids_Common_withdraw" value="Withdraw" />
+	<item key="ids_Common_fingerPrint" value="Finger Print" />
+	<item key="ids_Common_fingerVein" value="Finger Vein" />
+	<item key="ids_Common_faceRecog" value="Face Recognition" />
+	<item key="ids_Common_AgentRefuse" value="Agent refuses ..." />
+	<item key="ids_Common_CardCaptured" value="Card has been captured ..." />
+	<item key="ids_Common_GeneralError" value="General error ..." />		
+	<item key="ids_Common_HostRefuse" value="Host refuses ..." />
+	<item key="ids_Common_InvalidCard" value="Invalid card ..." />
+	<item key="ids_Common_NetworkError" value="Network error ..." />
+	<item key="ids_Common_NoAgentOnline" value="No agent is online ..." />
+	<item key="ids_Common_OutOfService" value="Sorry, out of service ..." />
+	<item key="ids_Common_TakeCard" value="Please take your card back" />
+	<item key="ids_Common_ThankYou" value="Thank you for using GRG Digital Banking!" />
+	<item key="ids_Common_Timeout" value="Operation timeout ..." />
+	<item key="ids_Common_Waiting" value="Processing,Please wait ..." />
+	<item key="ids_Common_ContactingAgent" value="Contacting agent, please wait ..." />
+	<item key="ids_Common_RemoteServing" value="Remote teller serving..." />
+	<item key="ids_Common_InfomationReview" value="Information review, please wait ..." />
+	<item key="ids_Common_PrintFail" value="Print receipt failed ..." />		
+	<item key="ids_Common_PrintingReceipt" value="Printing receipt, please wait..." />	
+	<item key="ids_Common_changepinsucc" value="change PIN successfully!" />	
+	<item key="ids_Common_notdiscoverpin" value="PLEASE DO NOT DISCLOSE YOUR PIN TO ANY PERSON (INCLUDING THE POLICE AND THE BANK STAFF)" />
+	<item key="ids_Common_newpin" value="PIN correct, please Enter Your New PIN!" />
+	<item key="ids_Common_ReEnternewpin" value="Please ReEnter Your New PIN!" />
+	<item key="ids_Common_Enternewpin" value="Please Enter Your PIN!" />
+	<item key="ids_Common_Enternewpinagain" value="Please Enter Your PIN Again!" />
+	<item key="ids_Common_wronginputpinagain" value="Wrong PIN, Please Input Again!" />
+	<item key="ids_Common_checkBalance" value="Please Enter Your PIN to check Balance!" />
+	<item key="ids_Common_hostrefuses" value="Host Refuses!" />
+	<item key="ids_Common_InformationReview" value="Information Review, Please Wait!" />
+	<item key="ids_Common_insertcard" value="Please insert your card!" />
+	<item key="ids_Common_pincorrect" value="PIN correct!" />
+	<item key="ids_Common_Balance" value="Balance" />
+	<item key="ids_Common_Comingsoon" value="Coming soon" />
+	<item key="ids_Common_openscanAPP" value="Please Open App and Scan QRCode" />
+	<item key="ids_Common_Account1" value="Account" />
+	<item key="ids_Common_Withdrawal" value="Withdrawal" />
+	<item key="ids_Common_DepositComplete" value="Deposit Complete" />
+	<item key="ids_Common_DepositAmount" value="Deposit Amount" />
+	<item key="ids_Common_DepositSuccess" value="Deposit Success" />
+	<item key="ids_Common_SystemStarting" value="System Is Starting" />
+	<item key="ids_Common_ScanningWait" value="Scanning Check Please Wait...." />
+	<item key="ids_Common_Deposittimeout" value="Deposit timeout" />  
+	<item key="ids_Common_takeyourcheque" value="Please take your cheque" />  
+	<item key="ids_Common_putyourcheque" value="Please put your cheque!" />  
+	<item key="ids_Common_inputOTP" value="please input your OTP!" />  
+	
+	<item key="ids_Common_selectproject" value="Please select the item" />
+	<item key="ids_Common_newcard" value="Issue New Card" />
+	<item key="ids_Common_cashexchange" value="Cash Exchange" />
+	<item key="ids_Common_livingpayment" value="Living Payment" />
+	<item key="ids_Common_appWithdrawal" value="App Withdrawal" />
+	<item key="ids_Common_QRCodeWithdrawal" value="QRCode Withdrawal" />
+	<item key="ids_Common_coindesposit" value="Deposit Coin" />
+	<item key="ids_Common_Chequedesposit" value="Deposit Cheque" />
+	<item key="ids_Common_exit" value="Do you want to exit?" />
+	<item key="ids_Common_hardwareerror" value="Hardware Error!" />
+	<item key="ids_Common_ContactingAgentwait" value="Contacting Agent, Please Wait!" />
+	<item key="ids_Common_backpassport" value="Please Take Back Your Passport" />
+	<item key="ids_Common_backIDCard" value="Please Take Back Your ID Card" />
+	<item key="ids_Common_takereceipt" value="Please Take Your Receipt!" />
+	<item key="ids_Common_DispensingCard" value="Dispensing Card, Please Wait!" />
+	<item key="ids_Common_readpassport" value="Reading Your Passport, Please Wait!" />
+	<item key="ids_Common_readIDCard" value="Reading Your ID Card, Please Wait!" />
+	<item key="ids_Common_passportRecognized" value="Passport Is Not Recognized!" />
+	<item key="ids_Common_IDCardRecognized" value="ID Card Is Not Recognized!" />
+	<item key="ids_Common_notrecognizedtryagain" value="Passport is not recognized, try again?" />
+	<item key="ids_Common_putcard" value="Please Put Your Card!" />
+	<item key="ids_Common_checkyourBalance" value="Please check your Balance!" />
+    <item key="ids_Common_UsingGRGBanking" value="Thank You For Using GRGBanking!" />
+	<item key="ids_Common_putcash" value="Please put your cash!" />
+	<item key="ids_Common_Faceauthsucc" value="Face authentication success" />
+	<item key="ids_Common_Faceauthfail" value="Face authentication failured" />
+	<item key="ids_Common_EnterIdNumberTitle" value="Please enter your ID number" />
+	<item key="ids_Common_enteridnumber" value="Enter ID number" />
+	<item key="ids_Common_inputpassword" value="Input Password" />
+	<item key="ids_Common_chequeamount" value="Please input cheque amount" />
+	<item key="ids_Common_inputotp" value="Please input OTP" />
+	<item key="ids_Common_inputpassportscanner" value="Please put the passport on the scanner" />
+	<item key="ids_Common_inputIDIntoPassportscanner" value="Please put the ID Card on the scanner" />	
+	<item key="ids_Common_CountingcoinsWait" value="Counting coins. Please Wait!" />
+	<item key="ids_Common_putcoins" value="Please put your coins!" />
+	<item key="ids_Common_RejectingCash" value="Notes are being returned, Rejecting Cash!" />
+	<item key="ids_Common_returningCash" value="Hardware error! Returning cash, Please wait!" />
+    <item key="ids_Common_timeoutRejectingCash" value="Operation timeout, Rejecting Cash!" />
+    <item key="ids_Common_deverrtakecash" value="Device error. Please take your cash!" />
+    <item key="ids_Common_Unidentifiablebanknotes" value="Unidentifiable banknotes. Please take your cash!" />
+    <item key="ids_Common_selectbusiness" value="Select the business you need!" />
+	 <item key="ids_Common_PrintReceiptSuccess" value="Success. Do You Want to Print a Receipt?" />
+	<item key="ids_Common_Warnning" value="Warnning!" />
+	<item key="ids_Common_selectcurrency" value="Please select the currency" />
+	<item key="ids_Common_CountingcashWait" value="Counting Cash, Please Wait..." />
+	
+	<item key="ids_Face_inputInfo" value="Please input your information" />
+	<item key="ids_Face_userid" value="User Id" />
+	<item key="ids_face_username" value="Name" />
+	<item key="ids_face_uid" value="Id" />
+	<item key="ids_face_rate" value="Similarity" />
+	<item key="ids_face_selectTransType" value="Please select transaction" />
+	<item key="ids_face_faceRegister" value="Face Register" />
+	<item key="ids_face_faceIdentity" value="Face Validation" /><!-- Face Identity -->
+	<item key="ids_face_faceAuthorization" value="Face Search" /><!-- Face Authorization -->
+	<item key="ids_face_FacePassportVerification" value="Face Passport Verification" />
+	<item key="ids_face_faceIdenResult" value="Face identify result" />
+	<item key="ids_face_curPhoto" value="Current photo" />
+	<item key="ids_face_lookCamera" value="Please look at the camera to take your picture" />
+	<item key="ids_FaceRegisterSuccessful" value="Face Register Successful!" />
+	<item key="ids_CheckImageFailTakePhotoAgain" value="Check image quality fail,please try again!" />
+	<item key="ids_FaceNotMatch" value="Sorry,Your face is not match, please register face!" />
+	<item key="ids_HostRefuseFailTryAgain" value="Host refuse fail,please try again!" />
+	<item key="ids_face_faceapearsbox" value="Make sure your face appears in the box" />
+	<item key="ids_face_Maintainadequate" value="Maintain adequate and even lighting" />
+	<item key="ids_face_facepassport" value="Face and passport" />
+	
+	
+	
+	<item key="ids_opac_inputInformation" value="Please input your personal information" />	
+	<item key="ids_opac_name" value="Name" />
+	<item key="ids_opac_gender" value="Gender" />
+	<item key="ids_opac_nation" value="Nation" />
+	<item key="ids_opac_passportNo" value="Passport No" />
+	<item key="ids_opac_birth" value="Birth Date" />
+	<item key="ids_opac_CIFNO" value="CIFNO" />
+	<item key="ids_opac_IDNo" value="ID No" />
+	<item key="ids_opac_IDType" value="ID Type" />
+	<item key="ids_opac_expire" value="Expire" />
+	<item key="ids_opac_phone" value="Phone No" />
+	<item key="ids_opac_email" value="Email" />
+	<item key="ids_opac_address" value="Address" />
+	<item key="ids_opac_putpassport" value="Please put your passport on the scanner" />
+	<item key="ids_opac_passport_recognized" value="Passport is not recognized..." />
+	<item key="ids_opac_printingCard" value="Preparing your card, please wait..." />
+	<item key="ids_opac_printForm" value="Printing your application form, please wait..." />
+	<item key="ids_opac_readingPassport" value="Reading your passport, please wait..." />
+	<item key="ids_opac_putForm" value="Please put the application form to the scanner" />
+	<item key="ids_opac_sign" value="Please sign on the screen" />
+	<item key="ids_opac_takeCard" value="Please take your card" />
+	<item key="ids_opac_takeForm" value="Please take your application form" />
+	<item key="ids_opac_takePassport" value="Please take your passport back" />
+	<item key="ids_opac_dispensingCard" value="Dispensing card, please wait ..." />	
+	<item key="ids_opac_cardProtocol" value="Card Protocol" />
+	<item key="ids_opac_protocolParagraph1" value="To establish the good cooperative relationship between the bank and the enterprise, and to improve the mutual development and the long term cooperation of both parties."/>
+	<item key="ids_opac_protocolParagraph2" value="I.	Party B is willing to take Party A as an important primary client, and put Party A in a preferential position when providing various credit fund supports and other high-quality financial services, under the premise of keeping in compliance with laws and financial policies." />
+	<item key="ids_opac_protocolParagraph3" value="II.	Party B will provide Party A with all-round credit services including the working capital loans, capital construction loans, technological transformation loans, reserve loans, real estate loans, and bill acceptance and discount according to the conditions and process for loans." />
+	<item key="ids_opac_protocolParagraph4" value="III.	Party B will try its best to satisfy Party A's reasonable demand for working capital loans. Party A shall maintain a good financial structure, in which the current ratio shall be controlled as above____%, the account receivable turnover ratio above____%, and the asset-liability ratio below____%." />
+	<item key="ids_opac_protocolParagraph5" value="IV.	Party B will actively support Party A in its capital construction and technological transformation. For Party A’s projects which have been listed in the programs by the authorities, Party B will give assessment as soon as possible; and for the committed projects, Party B shall make a preferential arrangement in its annual credit program and ensure the timely fund supply." />
+    <item key="ids_opac_printformwait" value="Printing Your Application Form, Please Wait!" />
+	<item key="ids_opac_putformscanner" value="Please Put Your Application Form To The Scanner!" />
+	<item key="ids_opac_scanappoinmentcode" value="Please Scan Your Appointment Code!" />
+	<item key="ids_opac_scanQRCode" value="Please Scan Your QRCode!" />
+	<item key="ids_opac_selecttranscationaccount" value="Please select your transaction account!" />
+	<item key="ids_opac_DepositsuccessWait" value="Deposit success. Please Wait!" />
+	<item key="ids_opac_chequecurrency" value="Please select the cheque currency!" />
+	<item key="ids_opac_DepositPrintReceipt" value="Deposit Success,Confirm to Print a Receipt?" />
+	<item key="ids_withdraw_insertCard" value="Please insert your card" />
+	<item key="ids_withdraw_processing" value="Processing, please wait!" />
+	<item key="ids_withdraw_takeCash" value="Please take your cash" />
+	<item key="ids_withdraw_takeReceipt" value="Please take your receipt" />
+	<item key="ids_withdraw_waitCash" value="Please wait for your cash!" />
+	<item key="ids_withdraw_wouldLikePrintReceipt" value="Would you like to print a receipt?" />
+	<item key="ids_withdraw_selectAmount" value="Please select amount" />
+	<item key="ids_withdraw_enterPin" value="Please enter your pin" />
+	<item key="ids_withdraw_complete" value="Withdraw complete" />
+	<item key="IDS_RetractCash" value="Retracting cash" />
+	<item key="IDS_RetractCashForTimeout" value="Time out, retracting cash" />	
+	<item key="IDS_RetractCashForHardwareError" value="Hardware error,Retracting cash" />
+	<item key="IDS_RetractCashFail" value="Retract cash failed" />
+	<item key="IDS_InputWithDrawalAmountDenominateError" value="incorrect amount inputted,please re-enter"/>
+	<item key="ids_withdraw_inputamount" value="Please input withdrawal amount" />
+	<item key="ids_withdraw_Amount" value="Withdrawal Amount" />
+	<item key="ids_withdraw_checkinformation" value="Please check your withdrawal information" />
+	<item key="ids_withdraw_information" value="Notes loaded exceed limit or incorrectly  Please take the unaccepted notes or reload notes" />
+	<item key="ids_withdraw_RejectNoFail" value="Reject No Fail!" />
+	<item key="ids_withdraw_RejectNoTimeOut" value="Reject No TimeOut!" />
+	<item key="ids_withdraw_RejectNoCash" value="Reject No Cash!" />
+	<item key="ids_withdraw_WithdrawCompletePrintReceipt" value="Withdraw Complete. Do You Want to Print a Receipt?" />
+	
+	
+	<item key="ids_insertCheck" value="Please insert your check" />
+	
+	<item key="ids_CreateCustomerAccount" value="Create CustomerAccount" />
+	<item key="ids_finger_fingervein" value="Finger Vein" />
+	<item key="ids_finger_fingerprint" value="Finger Print" />
+	<item key="ids_finger_scanYourFingerVein" value="Please scan your fingervein" />
+	<item key="ids_finger_scanYourFingerPrint" value="Please scan your fingerprint" />
+	<item key="ids_finger_scanThreeTimes" value="Scan fingervein three time" />
+	<item key="ids_finger_scanThreeTimes2" value="Scan fingerprint three time" />
+	<item key="ids_finger_scanOneTimes" value="Scan fingervein one time" />
+	<item key="ids_finger_scanOneTimes2" value="Scan fingerprint one time" />
+	<item key="ids_finger_onlyUseOneFinger" value="Only use one finger" />
+	<item key="ids_finger_matchFingervein" value="Match Fingervein" />
+	<item key="ids_finger_registFingervein" value="Register Fingervein" />
+	<item key="ids_finger_deleteFingervein" value="Delete Fingervein" />
+	<item key="ids_finger_deleteAllFingervein" value="Delete All Fingervein" />
+	<item key="ids_finger_matchFingerprint" value="Match Fingerprint" />
+	<item key="ids_finger_registFingerprint" value="Register Fingerprint" />
+	<item key="ids_finger_DeleteTemplate" value="Delete Template" />
+	<item key="ids_finger_DeleteALLTemplate" value="Delete all Template" />
+	<item key="ids_finger_enterCifAName" value="Please enter your CIF and Name" />
+	<item key="ids_finger_fingerprintMatchSuc" value="Finger print match Successful!" />
+	<item key="ids_finger_customerName" value="Customer Name" />
+	<item key="ids_finger_enterCif" value="Please enter your CIF" />
+	<item key="ids_finger_cif" value="CIF" />
+	<item key="ids_finger_username" value="Name" />
+	<item key="ids_finger_MatchFail" value="Match failed. please try to use another one" />
+	<item key="ids_finger_askRegist" value="You are not register on our system. please register first" />
+	<item key="ids_finger_fingerprintthreetime" value="Scan fingerprint three time. Only use one finger" />
+	<item key="ids_finger_fingerveinthreetime" value="Scan finger vein three time. Only use one finger" />
+	<item key="ids_finger_fingerveinonetime" value="Scan finger vein one time. Only use one finger" />
+	<item key="ids_finger_VeinAuthsuccess" value="Finger Vein Authentication Success" />
+	
+	
+	
+	<item key="ids_epp_ExitEPPFlow" value="Please Press 'Enter' to Exit" />
+	<item key="ids_epp_TransactionIsBeing" value="Transaction is being processed|Please wait..." />
+	<item key="ids_epp_Getkey" value="Please input key"/>
+	<item key="ids_epp_GetKeyPart" value="Please input key of Key-Part B"/>
+	<item key="ids_epp_GetKeyPartA" value="Please input key of Key-Part A"/>
+	<item key="ids_epp_GetPawwordA" value="Please Input Key-A Password"/>
+	<item key="ids_epp_GetPawwordB" value="Please Input Key-B Password"/>
+	<item key="ids_epp_VerifyCheckValue" value="Key Check Value:"/>
+  	<item key="ids_epp_VerifyCheckValueTip" value="Please Press 'Enter' to Continue, press 'Cancel' to Exit"/>
+	
+	
+	<item key="ids_exchange_inofrmationquestion" value="Exchange capacity is insufficient, do you continue to exchange currency?"/>
+	<item key="ids_exchange_inofrmationtip" value="The missing amount can contact the bank to exchange"/>
+	<item key="ids_exchange_AmountDue" value="Amount Due"/>
+	<item key="ids_exchange_Banknote" value="Banknote"/>
+	<item key="ids_exchange_Coin" value="Coin"/>
+	<item key="ids_exchange_PayableAmount" value="Payable Amount"/>
+	<item key="ids_exchange_confirminformation" value="Please confirm your information"/>
+	<item key="ids_exchange_IDNumber" value="IDNumber"/>
+	<item key="ids_exchange_From" value="From"/>
+	<item key="ids_exchange_Rate" value="Rate"/>
+	<item key="ids_exchange_Exchange" value="Exchange"/>
+	<item key="ids_exchange_AddCash" value="Add Cash"/>
+    <item key="ids_exchange_paymentmethod" value="Please select the payment method"/>
+	<item key="ids_exchange_PrintingReceipt" value="Exchange Success! Printing Receipt"/>
+	<item key="ids_exchange_ExchangeAmount" value="Exchange Amount"/>
+	<item key="ids_exchange_CashOutAmount" value="CashOut Amount"/>
+	<item key="ids_exchange_selectloginway" value="Please select the login way"/>
+	<item key="ids_exchange_ViewImage" value="View Image"/>
+	
+	<item key="ids_NewPayment_readagreement" value="Please read the user agreement and agree to"/>
+	<item key="ids_NewPayment_takechange" value="Please take your change"/>
+	<item key="ids_NewPayment_Electricitybill" value="Electricity Bill"/>
+	<item key="ids_NewPayment_Waterbill" value="Water Bill"/>
+	<item key="ids_NewPayment_Gasbill" value="Gas Bill"/>
+	<item key="ids_NewPayment_billType" value="Bill Type"/>
+	<item key="ids_NewPayment_selectbill" value="Please select your bill"/>
+	<item key="ids_NewPayment_Amount" value="Amount"/>
+	<item key="ids_NewPayment_putcash2" value="Please put in cash"/>
+	<item key="ids_NewPayment_MobileBill" value="Postpaid Mobile Bill"/>
+	<item key="ids_NewPayment_Paymenttype" value="Payment type"/>
+	<item key="ids_NewPayment_checkbill" value="Please check your bill"/>
+	<item key="ids_NewPayment_CashinAmount" value="Cashin Amount"/>
+	<item key="ids_NewPayment_confirmAmount" value="Please confirm your amount"/>
+	<item key="ids_NewPayment_BillAmount" value="Bill Amount"/>
+	<item key="ids_NewPayment_putcash" value="Not Enough! Do your want to put more cash?"/>
+	<item key="ids_NewPayment_Depositedcash" value="Deposited cash"/>
+	<item key="ids_NewPayment_Diffenence" value="Diffenence"/>
+   <item key="ids_NewPayment_PaymentComplete" value="Payment Complete. Do You Want to Print a Receipt?"/>
+	<!--CHEQUEDEPOSIT-->
+  <item key="IDS_Media" value="CHEQUE#DEPOSIT"/>
+  <item key="IDS_MediaReturnToConfirm" value="BACK"/>
+  <item key="IDS_ChequeImage" value="CHEQUE#IMAGE"/>
+  <item key="IDS_MEDIA_TOTALDETAILS" value="CHEQUE DEPOSIT ACCOUNT"/>
+  <item key="IDS_LEFTMEDIACOUNT" value="THIS TIME PLEASE DON'T INTERPOSE CHEQUE EXCEED"/>
+  <item key="IDS_InputMediaAmount" value="PLEASE KEY IN TOTAL AMOUNT|CHECK AND PRESS 'ENTER'"/>
+  <item key="IDS_ReInputMediaAmount" value="NO. OF INVALID CHEQUES: 0|PLEASE KEY IN VALID CHEQUE|AMOUNT AND PRESS 'ENTER'"/>
+  <item key="IDS_InputMediaTips" value="THE CHEQUE SHOULD BE FACE UP WITH THE|SIGNATURE LINE PARALLEL TO THE RIGHT|HAND-SIDE OF THE INSERTION SLOT|#|PLEASE INSERT CHEQUE|(maximum 1 cheque per transaction)"/>
+  <item key="IDS_OperatingChequesNoCounter" value="PLEASE WAIT|WHILE WE ARE PROCESSING YOUR CHEQUES"/>
+  <item key="IDS_ChequeAccount" value="CHEQUE DEPOSIT ACCOUNT"/>
+  <item key="IDS_ValidChequePiece" value="NO. OF VALID CHEQUE: "/>
+  <item key="IDS_InValidChequePiece" value="NO. OF INVALID CHEQUE: "/>
+  <item key="IDS_ChequeAmount" value="INPUT CHEQUE TOTAL AMOUNT: "/>
+  <item key="IDS_SelectChequeService" value="PLEASE CHOOSE SERVICE"/>
+  <item key="IDS_ViewChequeImage" value="VIEW VALID CHEQUE IMAGE"/>
+  <item key="IDS_CancelChequeService" value="CANCEL ALL"/>
+   <item key="IDS_RetractCash" value="Retracting cash"/>
+  <item key="IDS_MediaTooMuch" value="YOU HAVE REACHED THE|TRANSACTION LIMIT OF 1 CHEQUE|PLEASE TAKE THE EXCEISSIVE CHEQUE"/>
+  <item key="IDS_ContinueMediaDeposit" value="IF YOU WISH TO CONTINUE THE|TRANSACTION PLEASE KEY IN|VALID CHEQUE(S) AMOUNT|#|DO YOU WISH TO CONTINUE ?"/>
+	
+	<item key="ids_Btn_cancel" value="Cancel" />
+	<item key="ids_Btn_confirm" value="Confirm" />
+	<item key="ids_Btn_resign" value="Resign" />
+	<item key="ids_Btn_reset" value="Reset" />
+	<item key="ids_Btn_back" value="Back" />
+	<item key="ids_Yes" value="Yes" />
+	<item key="ids_No" value="No" />
+	<item key="ids_Contiue" value="Contiue" />
+	<item key="IDS_TimeoutIsExit" value="Transaction Timeout,Do you want to exit?" />
+	<item key="ids_Exit" value="Exit" />
+	<item key="ids_Successful" value="Successful!" />
+	<item key="ids_Error" value="Error!" />
+	<item key="ids_Common_Account" value="Apply New Account" />
+    <item key="ids_Common_otherTrans" value="Other Transaction" />
+	<item key="ids_Common_humanService" value="Human Service" />
+	<item key="ids_Common_OpenAccountSuccess" value="Open Account Success! " />
+	<item key="ids_Common_Biometrics" value="Biometrics" />
+	<item key="ids_Common_Passport" value="Passport" />
+	<item key="ids_Common_NoAgentOnline" value="Sorry, No Agent Is Online!" />
+	<item key="ids_Common_AccountInformation" value="Account Information" />
+	 <!--CHEQUEDEPOSIT-->
+    <item key="IDS_TransactionIsBeing" value="Transaction is being processed..."/>
+	<item key="ids_ChequeDeposit" value="Cheque Deposit" />
+  <item key="IDS_Media" value="CHEQUE#DEPOSIT"/>
+  <item key="IDS_MediaReturnToConfirm" value="BACK"/>
+  <item key="IDS_ChequeImage" value="CHEQUE#IMAGE"/>
+  <item key="IDS_MEDIA_TOTALDETAILS" value="CHEQUE DEPOSIT ACCOUNT"/>
+  <item key="IDS_LEFTMEDIACOUNT" value="THIS TIME PLEASE DON'T INTERPOSE CHEQUE EXCEED"/>
+  <item key="IDS_InputMediaAmount" value="PLEASE KEY IN TOTAL AMOUNT|CHECK AND PRESS 'ENTER'"/>
+  <item key="IDS_ReInputMediaAmount" value="NO. OF INVALID CHEQUES: 0|PLEASE KEY IN VALID CHEQUE|AMOUNT AND PRESS 'ENTER'"/>
+  <item key="IDS_InputMediaTips" value="THE CHEQUE SHOULD BE FACE UP WITH THE|SIGNATURE LINE PARALLEL TO THE RIGHT|HAND-SIDE OF THE INSERTION SLOT|#|PLEASE INSERT CHEQUE|(maximum 1 cheque per transaction)"/>
+  <item key="IDS_OperatingChequesNoCounter" value="PLEASE WAIT|WHILE WE ARE PROCESSING YOUR CHEQUES"/>
+  <item key="IDS_ChequeAccount" value="CHEQUE DEPOSIT ACCOUNT"/>
+  <item key="IDS_ValidChequePiece" value="NO. OF VALID CHEQUE: "/>
+  <item key="IDS_InValidChequePiece" value="NO. OF INVALID CHEQUE: "/>
+  <item key="IDS_ChequeAmount" value="INPUT CHEQUE TOTAL AMOUNT: "/>
+  <item key="IDS_SelectChequeService" value="PLEASE CHOOSE SERVICE"/>
+  <item key="IDS_ViewChequeImage" value="VIEW VALID CHEQUE IMAGE"/>
+  <item key="IDS_CancelChequeService" value="CANCEL ALL"/>
+  <item key="IDS_MediaTooMuch" value="YOU HAVE REACHED THE|TRANSACTION LIMIT OF 1 CHEQUE|PLEASE TAKE THE EXCEISSIVE CHEQUE"/>
+  <item key="IDS_ContinueMediaDeposit" value="IF YOU WISH TO CONTINUE THE|TRANSACTION PLEASE KEY IN|VALID CHEQUE(S) AMOUNT|#|DO YOU WISH TO CONTINUE ?"/>
+  <item key="IDS_CurrencyTypeHKD" value="HKD"/>
+  <item key="IDS_CurrencyTypeUSD" value="USD"/>
+  <item key="IDS_CurrencyTypeCNY" value="CNY"/>
+  <item key="IDS_CurrencyTypeAED" value="AED"/>
+  <item key="IDS_SelectCurrencyForSCP" value="PLEASE SELECT DEPOSIT CURRENCY"/>
+  <item key="IDS_enterPin" value="Please enter your pin" />
+  <item key="IDS_enterPinAgain" value="Please enter your pin again" />
+  <item key="IDS_enterPinNotMatch" value="Wrong PIN, Please input again" />
+  <item key="ids_accountAdmin" value="Account Name" />
+  <item key="ids_accountNum" value="Account Number" />
+  <!--IDCard-->  
+  <item key="IDS_DateFormater" value="yyyyMMdd"/>
+  <item key="IDS_DateConcat" value="-"/>
+  <item key="ids_Common_selectIdcardOrPassport" value="We need to scan your ID card. Which kind do you have?" />
+
+	<item key="IDS_PrintSystemInfoStart" value="================System Information====================="/>
+	<item key="IDS_PrintAssemblyStart" value="=================Loaded assembly Information================"/>
+	<item key="IDS_OSVersion" value="Operation System Version: {0} {1}"/>
+	<item key="IDS_ProcessCount" value="CPU count: {0}"/>
+	<item key="IDS_machineName" value="Machine name: {0}"/>
+	<item key="IDS_userName" value="User Name: {0}"/>
+	<item key="IDS_pageSize" value="System page size: {0} bytes"/>
+	<item key="IDS_32System" value="32 bit system"/>
+	<item key="IDS_64System" value="64 bit system"/>
+	<item key="IDS_CLRVesion" value="CLR version: {0}"/>
+	<item key="IDS_CurrentDirectoy" value="Current directory: {0}"/>
+	<item key="IDS_SystemDirectory" value="System directory: {0}"/>
+	<item key="IDS_DriveName" value="Logical drive: {0}"/>
+	<item key="IDS_DriveType" value="Drive type: {0}"/>
+	<item key="IDS_DriveFormat" value="File system: {0}"/>
+	<item key="IDS_DriveLabel" value="Drive label: {0}"/>
+	<item key="IDS_DriveTotalSize" value="Total size: {0} bytes"/>
+	<item key="IDS_DriveAvaFreeSize" value="Total free size: {0} bytes"/>
+	<item key="IDS_DriveFreeSize" value="Total available free size: {0} bytes"/>
+	<item key="IDS_AvailablePhysicalMemory" value="Available phsical memory: {0} bytes"/>
+	<item key="IDS_AvailableVirtualMemory" value="Available virtual memory: {0} bytes"/>
+	<item key="IDS_TotalPhysicalMemory" value="Total physical memory: {0} bytes"/>
+	<item key="IDS_TotalVirtualMemory" value="Total virtual memory: {0} bytes"/>
+	<item key="IDS_NetworkAviable" value="Local network avaiable：{0}"/>
+	<item key="IDS_NetworkName" value="Name of a network interface：{0}"/>
+	<item key="IDS_NetworkType" value="Type of a network interface：{0}"/>
+	<item key="IDS_NetSupportMulticasat" value="If a network interface supports multicast：{0}"/>
+	<item key="IDS_NetOpStatus" value="Operation status of a network interface：{0}"/>
+	<item key="IDS_PhyAddress" value="MAC of a network interface：{0}"/>
+	<item key="IDS_IPV4Address" value="IPV4 address：{0}"/>
+	<item key="IDS_IPV4Mask" value="IPV4 mask：{0}"/>
+	<item key="IDS_IPV4Gateway" value="IPV4 gateway：{0}"/>
+	<item key="IDS_DNSAddress" value="DNS address：{0}"/>
+	<item key="IDS_DHCPAddress" value="DHCP address：{0}"/>
+	<item key="IDS_ECATRunDirectory" value="The executing directory of eCAT：{0}"/>
+	<item key="IDS_YES" value="Yes"/>
+	<item key="IDS_ScanSignTip" value="Live stream from scanner, capture image when you are ready." />
+	<item key="IDS_ScanSignTip1" value="Please review and confirm that image scanned is correct." />
+	<item key="IDS_ConfirmPrint" value="Confirm"/>
+	<item key="IDS_Empty" value="Clear"/>
+    <item key="ids_opac_putIDCard" value="Please put your IDcard on the scanner" />  
+    <item key="IDS_sign_with_pen" value="Please sign with a pen!" />
+	<item key="IDS_ScanPassportAgain" value="Passport is not recognized|Try again?" />
+	<item key="IDS_TransactionComingSoon" value="Transaction coming soon" />
+	<item key="ids_FaceVerification" value="Face Verification" />
+	<item key="ids_FaceVerificationPrompt" value="GRG Banking will collect your face image for ID verification only.|All information is kept strictly confidential." />
+	
+	<!-- VAB project text -->
+	<item key="ids_VAB_header_text_not_auth" value="Kính chào quý khách !" />
+	<item key="ids_VAB_pls_insert_card" value="Please insert your card" />
+	<item key="ids_VAB_footer_hotline" value="1900 555 590 - 02836 222 590" />
+	<item key="ids_VAB_footer_website" value="www.vietabank.com.vn" />
+	<item key="ids_VAB_home_title" value="Quý khách vui lòng chọn 01 giao dịch bên dưới" />
+	<item key="ids_VAB_open_account" value="Mở tài khoản" />
+	<item key="ids_VAB_deposit" value="Nộp tiền" />
+	<item key="ids_VAB_withdraw" value="Rút tiền" />
+	<item key="ids_VAB_transfer" value="Chuyển khoản" />
+	<item key="ids_VAB_tktk" value="Tài khoản tiết kiệm" />
+	<item key="ids_VAB_dang_ky_vay" value="Đăng ký vay" />
+	<item key="ids_VAB_card_publish" value="Đăng ký phát hành thẻ" />
+	<item key="ids_VAB_other_service" value="Dịch vụ khác" />
+	<item key="ids_VAB_end_transaction_in_seconds" value="Giao dịch kết thúc sau 120s" />
+	<item key="ids_VAB_end_transaction" value="Hủy giao dịch" />
+	<item key="ids_VAB_select_transfer_type" value="Quý khách vui lòng chọn hình thức chuyển khoản" />
+	<item key="ids_VAB_select_exchange_type" value="Quý khách vui lòng chọn loại giao dịch" />
+	<item key="ids_VAB_transfer_type_cash" value="Tiền mặt" />
+	<item key="ids_VAB_transfer_type_account" value="Tài khoản thanh toán" />
+	<item key="ids_VAB_open_saving_acc_by_cash" value="Mở tài khoản tiết kiệm bằng tiền mặt" />
+	<item key="ids_VAB_partial_settlement" value="Tất toán toàn phần" />
+	<item key="ids_VAB_auth_header_close_btn" value="Đóng" />
+	<item key="ids_VAB_hello_customer" value="Xin chào" />
+	<item key="ids_VAB_cancel_trans_question" value="Bạn có chắc chắn muốn hủy giao dịch này không?" />
+	<item key="ids_VAB_cancel_trans" value="Hủy giao dịch" />
+	<item key="ids_VAB_continue_trans" value="Tiếp tục giao dịch" />
+	<item key="ids_VAB_return_home_after_seconds" value="Tự động về màn hình Trang chủ trong 60 " />
+	<item key="ids_VAB_service_not_avail" value="Dịch vụ tạm thời không khả dụng" />
+	<item key="ids_VAB_return_home_btn" value="Quay về trang chủ" />
+	<item key="ids_VAB_cash_deposit_qr_step_1" value="Xác thực" />
+	<item key="ids_VAB_cash_deposit_qr_step_2" value="Chọn tài khoản" />
+	<item key="ids_VAB_cash_deposit_qr_step_3" value="Nộp tiền" />
+	<item key="ids_VAB_cash_deposit_qr_step_4" value="Hoàn tất" />
+	<item key="ids_VAB_cash_deposit_qr_account_num" value="Số tài khoản" />
+	<item key="ids_VAB_cash_deposit_qr_avail_balance" value="Số dư khả dụng" />
+	<item key="ids_VAB_continue_btn" value="Tiếp tục" />
+	<item key="ids_VAB_cash_deposit_qr_cus_info" value="Thông tin khách hàng" />
+	<item key="ids_VAB_cash_deposit_qr_select_account_title" value="Vui lòng chọn TKTT để nộp tiền" />
+	<item key="ids_VAB_cash_deposit_qr_cus_name" value="Tên khách hàng" />
+	<item key="ids_VAB_cash_deposit_qr_cccd" value="Số CCCD" />
+	<item key="ids_VAB_cash_deposit_qr_cif" value="Số CIF" />
+	<item key="ids_VAB_nt_02_qdnt" value="Quy định nộp tiền" />
+	<item key="ids_VAB_nt_02_qdnt_1" value="Chỉ chấp nhận tiền polymer Việt Nam mệnh giá từ 50,000 VNĐ." />
+	<item key="ids_VAB_nt_02_qdnt_2" value="Số tờ nộp tối đa 200 tờ/ lần." />
+	<item key="ids_VAB_nt_02_qdnt_3" value="Vui lòng loại bỏ các vật thể không phải là tiền" />
+	<item key="ids_VAB_nt_02_pls_input_money" value="Vui lòng đưa tiền vào khoang<br>(Tối đa 200 tờ)" />
+	<item key="ids_VAB_nt_02_alert" value="Lưu ý: Các điều kiện tiền không được chấp nhận" />
+	<item key="ids_VAB_nt_02_gap_mep" value="Gấp mép" />
+	<item key="ids_VAB_nt_02_gap_tien" value="Gấp tiền" />
+	<item key="ids_VAB_nt_02_xo_lech" value="Xô lệch<br>Dính nhau" />
+	<item key="ids_VAB_nt_02_nhan_nheo" value="Nhăn nheo" />
+	<item key="ids_VAB_nt_02_rach" value="Rách, thủng" />
+	<item key="ids_VAB_nt_02_dat_doc" value="Đặt dọc" />
+	<item key="ids_VAB_nt_02_niem_phong" value="Buộc,<br>niêm phong" />
+	<item key="ids_VAB_nt_02_cuon" value="Cuộn" />
+	<item key="ids_VAB_nt_02_kem_di_vat" value="Kèm<br>dị vật" />
+	<item key="ids_VAB_nt_02_select_account_title" value="Vui lòng chọn TKTT để nộp tiền" />
+	<item key="ids_VAB_nt_02_cus_name" value="Tên khách hàng" />
+	<item key="ids_VAB_nt_02_cccd" value="Số CCCD" />
+	<item key="ids_VAB_nt_02_cif" value="Số CIF" />
+	<item key="ids_VAB_nt_02_cus_name_value" value="" />
+	<item key="ids_VAB_nt_02_cccd_value" value="" />
+	<item key="ids_VAB_nt_02_cif_value" value="" />
+	<item key="ids_VAB_nt_02_cif_value" value="" />
+	<item key="ids_VAB_nt_03_loading_title" value="Máy đang kiểm đếm ....<br>Quý khách vui lòng đợi trong giây lát" />
+	<item key="ids_VAB_nt_04_confirm_deposit" value="Xác nhận" />
+	<item key="ids_VAB_nt_04_add_on_deposit" value="Nộp thêm" />
+	<item key="ids_VAB_nt_04_count_down_text" value="Giao dịch kết thúc sau" />
+	<item key="ids_VAB_nt_04_title" value="Vui lòng xác nhận bảng kê" />
+	<item key="ids_VAB_nt_04_menh_gia" value="Mệnh giá" />
+	<item key="ids_VAB_nt_04_sl" value="Số lượng" />
+	<item key="ids_VAB_nt_04_thanh_tien" value="Thành tiền" />
+	<item key="ids_VAB_nt_04_total_label" value="Tổng" />
+	<item key="ids_VAB_nt_06_title" value="Xác nhận thông tin nộp tiền" />
+	<item key="ids_VAB_nt_06_confirm_deposit_info" value="Xác nhận" />
+	<item key="ids_VAB_nt_06_account_name" value="Tên tài khoản" />
+	<item key="ids_VAB_nt_06_account_num" value="Số tài khoản" />
+	<item key="ids_VAB_nt_06_deposit_amount" value="Số tiền nạp" />
+	<item key="ids_VAB_nt_06_fee_amount" value="Số tiền phí" />
+	<item key="ids_VAB_nt_06_final_amount" value="Số tiền nạp vào tài khoản" />
+	<item key="ids_VAB_nt_08_title" value="Giao dịch thành công" />
+	<item key="ids_VAB_nt_08_receiver_account" value="Tài khoản thụ hưởng" />
+	<item key="ids_VAB_nt_08_receiver_info" value="Thông tin thụ hưởng" />
+	<item key="ids_VAB_nt_08_transaction_code" value="Mã giao dịch" />
+	<item key="ids_VAB_nt_08_transaction_time" value="Thời gian" />
+	<item key="ids_VAB_nt_08_deposit_amount" value="Số tiền nạp" />
+	<item key="ids_VAB_nt_08_transaction_fee" value="Phí giao dịch" />
+	<item key="ids_VAB_nt_08_final_transaction_amount" value="Số tiền nạp vào tài khoản" />
+	<item key="ids_VAB_nt_08_do_another_task" value="Thực hiện giao dịch khác" />
+	<item key="ids_VAB_nt_08_print_trans_bill" value="IN BIÊN LAI GIAO DỊCH" />
+	<item key="ids_VAB_nt_08_end_transaction" value="Kết thúc giao dịch" />
+	<item key="ids_VAB_nt_07_deposit_error_title" value="Nạp tiền không thành công" />
+	<item key="ids_VAB_nt_05_cancel_deposit_title" value="Giao dịch đã hủy <br>Quý khách vui lòng nhận tiền từ khay" />
+	<item key="ids_VAB_nt_05_cancel_deposit_message" value="Hộc tiền sẽ tự động đóng sau 120s và toàn bộ tiền sẽ bị giữ lại" />
+	<item key="ids_VAB_withdraw_qr_step_1" value="Xác thực" />
+	<item key="ids_VAB_withdraw_qr_step_2" value="Chọn tài khoản" />
+	<item key="ids_VAB_withdraw_qr_step_3" value="Rút tiền" />
+	<item key="ids_VAB_withdraw_qr_step_4" value="Hoàn tất" />
+	<item key="ids_VAB_withdraw_qr_cus_info" value="Thông tin khách hàng" />
+	<item key="ids_VAB_withdraw_qr_cus_name" value="Tên khách hàng:" />
+	<item key="ids_VAB_withdraw_qr_cccd" value="Số CCCD:" />
+	<item key="ids_VAB_withdraw_qr_cif" value="Số CIF:" />
+	<item key="ids_VAB_withdraw_qr_please_select_account" value="Vui lòng chọn TKTT để rút tiền" />
+	<item key="ids_VAB_withdraw_qr_account_num" value="Số tài khoản" />
+	<item key="ids_VAB_withdraw_qr_avail_balance" value="Số dư" />
+	<item key="ids_VAB_rt_02_withdraw_source_title" value="Nguồn rút" />
+	<item key="ids_VAB_rt_02_withdraw_source_account_num_label" value="Số tài khoản:" />
+	<item key="ids_VAB_rt_02_withdraw_source_attention" value="Lưu ý: Phí giao dịch theo biểu phí hiện hành của VAB" />
+	<item key="ids_VAB_rt_02_choose_cash_value_title" value="Chọn số tiền cần rút" />
+	<item key="ids_VAB_rt_02_500k_cash" value="500,000" />
+	<item key="ids_VAB_rt_02_1000k_cash" value="1,000,000" />
+	<item key="ids_VAB_rt_02_2000k_cash" value="2,000,000" />
+	<item key="ids_VAB_rt_02_3000k_cash" value="3,000,000" />
+	<item key="ids_VAB_rt_02_5000k_cash" value="5,000,000" />
+	<item key="ids_VAB_rt_02_other_cash_value" value="Số tiền khác" />
+	<item key="ids_VAB_rt_03_pls_input_cash_value" value="Vui lòng nhập số tiền cần rút" />
+	<item key="ids_VAB_rt_03_multiple_of_50k" value="Số tiền phải là bội số của 50,000" />
+	<item key="ids_VAB_rt_03_cash_value_invalid" value="Số tiền không hợp lệ" />
+	<item key="ids_VAB_rt_03_key_num_1" value="1" />
+	<item key="ids_VAB_rt_03_key_num_2" value="2" />
+	<item key="ids_VAB_rt_03_key_num_3" value="3" />
+	<item key="ids_VAB_rt_03_key_num_4" value="4" />
+	<item key="ids_VAB_rt_03_key_num_5" value="5" />
+	<item key="ids_VAB_rt_03_key_num_6" value="6" />
+	<item key="ids_VAB_rt_03_key_num_7" value="7" />
+	<item key="ids_VAB_rt_03_key_num_8" value="8" />
+	<item key="ids_VAB_rt_03_key_num_9" value="9" />
+	<item key="ids_VAB_rt_03_key_num_0" value="0" />
+	<item key="ids_VAB_rt_03_key_num_000" value="000" />
+	<item key="ids_VAB_rt_03_confirm_withdraw_cash_value" value="Xác nhận" />
+	<item key="ids_VAB_rt_04_confirm_withdraw_info" value="Xác nhận thông tin rút tiền" />
+	<item key="ids_VAB_rt_04_account_name" value="Tên tài khoản" />
+	<item key="ids_VAB_rt_04_account_num" value="Số tài khoản" />
+	<item key="ids_VAB_rt_04_withdraw_amount" value="Số tiền rút" />
+	<item key="ids_VAB_rt_04_fee_amount" value="Số tiền phí" />
+	<item key="ids_VAB_rt_04_final_amount" value="Số tiền trừ vào tài khoản" />
+	<item key="ids_VAB_rt_04_confirm_withdraw_btn" value="Xác nhận" />
+	<item key="ids_VAB_rt_05_look_into_cam_title" value="Quý khách vui lòng nhìn vào Camera phía trên" />
+	<item key="ids_VAB_rt_05_face_authen_instruc_title" value="Hướng dẫn chụp ảnh" />
+	<item key="ids_VAB_rt_05_take_off_mask" value="Tháo khẩu trang" />
+	<item key="ids_VAB_rt_05_take_off_glasses" value="Tháo mắt kính" />
+	<item key="ids_VAB_rt_05_take_off_helmet" value="Tháo mũ bảo hiểm" />
+	<item key="ids_VAB_rt_05_start_face_authen" value="Bắt đầu xác thực" />
+	<item key="ids_VAB_rt_05_face_authenting" value="Đang xác thực..." />
+	<item key="ids_VAB_rt_06_counting_money" value="Máy đang kiểm đếm ....<br>Quý khách vui lòng đợi trong giây lát" />
+	<item key="ids_VAB_rt_07_withdraw_error_title" value="Rút tiền không thành công" />
+	<item key="ids_VAB_rt_08_withdraw_success" value="Giao dịch thành công" />
+	<item key="ids_VAB_rt_08_account_num" value="Số tài khoản" />
+	<item key="ids_VAB_rt_08_account_info" value="Thông tin tài khoản" />
+	<item key="ids_VAB_rt_08_transaction_code" value="Mã giao dịch" />
+	<item key="ids_VAB_rt_08_transaction_time" value="Thời gian" />
+	<item key="ids_VAB_rt_08_withdraw_amount" value="Số tiền rút" />
+	<item key="ids_VAB_rt_08_transaction_fee" value="Phí giao dịch" />
+	<item key="ids_VAB_rt_08_transaction_final_amount" value="Số tiền trừ vào tài khoản" />
+	<item key="ids_VAB_rt_08_do_another_transaction" value="Thực hiện giao dịch khác" />
+	<item key="ids_VAB_rt_08_print_trans_bill" value="IN BIÊN LAI GIAO DỊCH" />
+	<item key="ids_VAB_rt_08_end_trans" value="Kết thúc giao dịch" />
+	<item key="ids_VAB_rt_09_account_valid_not_exist" value="Không tồn tại tài khoản thanh toán hợp lệ" />
+	<item key="ids_VAB_rt_09_account_valid_not_exist_subtitle" value="Vui lòng quay về Trang chủ để mở tài khoản hoặc thực hiện giao dịch khác." />
+	<item key="ids_VAB_rt_09_auto_back_home_countdown" value="Tự động về màn hình Trang chủ sau" />
+	<item key="ids_VAB_rt_09_back_home_btn" value="Trang chủ" />
+	<item key="ids_VAB_xt_qr_01_choose_authen_method" value="Quý khách vui lòng chọn phương thức xác thực" />
+	<item key="ids_VAB_xt_qr_01_qr_code_method" value="QR Code" />
+	<item key="ids_VAB_xt_qr_01_cccd_method" value="Căn cước công dân" />
+	<item key="ids_VAB_xt_qr_02_countdown_update_qr" value="Tự động cập nhật sau" />
+	<item key="ids_VAB_xt_qr_02_title" value="Vui lòng đăng nhập ứng dụng VAB của bạn để quét mã QR" />
+	<item key="ids_VAB_xt_qr_02_update_qr_btn" value="Cập nhật" />
+	<item key="ids_VAB_Hello" value="XIN CHÀO" />
+</config>

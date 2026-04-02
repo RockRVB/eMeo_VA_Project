@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--ServiceName：设备的服务名-->
+<!--其中ServiceName指的是设备名称，TCPServiceEXEPath指的是驱动的放置路径，TCPClientIP指的是连接驱动服务器的地址ip，TCPClientPort指的是连接驱动服务器的地址端口号，端口要检查是否已经可用，如果不可用要检查其他软件是否有影响，TCPClientConnectTimeout这个是连接超时的时间，实际上现在也写死了，防止时间设置过长导致软件跑不起来。 -->
+<DVRDevice ServiceName="DVRDevice" TCPServiceEXEPath="Drivers\DVRServer\GrgDvrServer.exe" TCPClientIP="127.0.0.1" TCPClientPort="52479" TCPClientConnectTimeout="10000"/>

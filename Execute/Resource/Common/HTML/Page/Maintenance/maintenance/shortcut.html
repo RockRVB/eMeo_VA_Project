@@ -1,0 +1,155 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>快捷模式</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/maintenance/cn.css" />
+<script src="../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../js/jquery-ui.min.js"></script>
+<script src="../../../js/maintenance/common/common.js"></script>
+<script src="../../../js/maintenance/common/global.js"></script>
+<script src="../../../js/maintenance/component/components.js"></script>
+<script src="../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../js/maintenance/ui/maintenance/shortcut.js"></script>
+</head>
+
+<body>
+
+<!--界面容器-->
+<div class="wrapper"> 
+	<!--居中显示-->
+	<div class="shortcut"> 
+		<!--顶部-->
+		<div class="shortcut-top"> 
+			<!--面板容器-->
+			<div class="grg-panel"> 
+				<!--面板容器-头部-->
+				<div class="grg-panel-title shortcut-abnormal-height">
+					<div class="middle-outer absolute-left">
+						<div class="middle-inner shortcut-abnormal-title"> 
+							<!--故障列表--> 
+							<span id="STATIC_1" ids="IDS_ProblemList" class="float-left">故障列表</span> <span id="STATIC_2" ids="IDS_Problems" class="float-right">您要处理以下故障：</span> </div>
+					</div>
+				</div>
+				<!--面板容器-内容-->
+				<div class="grg-panel-content shortcut-abnormal-content-height"> 
+					<!--提示文字-->
+					<div class="middle-outer absolute-left">
+						<div class="middle-inner center"> <span id="STATIC_PROMPT" ids="IDS_AtmNormal" class="shortcut-atm-normal">机器正常</span> </div>
+					</div>
+					<!--垂直居中-->
+					<div class="middle-outer absolute-left">
+						<div class="middle-inner plr20"> 
+							<!--中间按钮区域-->
+							<div class="shortcut-abnormal-button-zone clearfix "> 
+								<!--向左按钮-->
+								<button id="ERROR_PRE_PAGE" isAutoSend="false" type="button" class="button-prev nav-left none"> <span class="tip"></span> <span class="button-text"></span> </button>
+								<!--向右按钮-->
+								<button id="ERROR_NEXT_PAGE" isAutoSend="false" type="button" class="button-next nav-right none"> <span class="tip"></span> <span class="button-text"></span> </button>
+								<ul>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--中部-->
+		<div class="shortcut-middle"> 
+			<!--面板容器-->
+			<div class="grg-panel"> 
+				<!--面板容器-头部-->
+				<div class="grg-panel-title shortcut-function-height">
+					<div class="middle-outer absolute-left shortcut-function-title">
+						<div class="middle-inner"> 
+							<!--日常操作--> 
+							<span id="STATIC_3" ids="IDS_DailyMaintenance" class="float-left">日常操作</span> <span id="STATIC_4" ids="IDS_OperationShortcut" class="float-right">您可以进行以下操作：</span> </div>
+					</div>
+				</div>
+				<!--面板容器-内容-->
+				<div class="grg-panel-content shortcut-function-content-height"> 
+					<!--垂直居中-->
+					<div class="middle-outer absolute-left">
+						<div class="middle-inner plr20"> 
+							<!--中间按钮区域-->
+							<div class="shortcut-function-button-zone clearfix">
+								<!--向左按钮-->
+								<button id="MENU_PRE_PAGE" isAutoSend="false" type="button" class="button-prev nav-left none"> <span class="tip"></span> <span class="button-text"></span> </button>
+								<!--向右按钮-->
+								<button id="MENU_NEXT_PAGE" isAutoSend="false" type="button" class="button-next nav-right none"> <span class="tip"></span> <span class="button-text"></span> </button>
+								<ul>
+									<li>
+										<button id="FUN_MENU1" type="button" class="button-shortcut none"> <span class="tip"></span> <span class="button-text">清机加钞</span> </button>
+									</li>
+									<li>
+										<button id="FUN_MENU2" type="button" class="button-shortcut none"> <span class="tip"></span> <span class="button-text">系统自动诊断</span> </button>
+									</li>
+									<li>
+										<button id="FUN_MENU3" type="button" class="button-shortcut none"> <span class="tip"></span> <span class="button-text">查询钱箱余额</span> </button>
+									</li>
+									<li>
+										<button id="FUN_MENU4" type="button" class="button-shortcut none"> <span class="tip"></span> <span class="button-text">本周期异常交易</span> </button>
+									</li>
+									<li>
+										<button id="FUN_MENU5" type="button" class="button-shortcut none"> <span class="tip"></span> <span class="button-text">上周期异常交易</span> </button>
+									</li>
+									<li>
+										<button id="FUN_MENU6" type="button" class="button-shortcut none"> <span class="tip"></span> <span class="button-text">打印吞卡记录</span> </button>
+									</li>
+									<li>
+										<button id="FUN_MENU7" type="button" class="button-shortcut none"> <span class="tip"></span> <span class="button-text">打印结帐</span> </button>
+									</li>
+									<li>
+										<button id="FUN_MENU8" type="button" class="button-shortcut none"> <span class="tip"></span> <span class="button-text">读卡器</span> </button>
+									</li>
+									<li>
+										<button id="FUN_MENU9" type="button" class="button-shortcut none"> <span class="tip"></span> <span class="button-text">凭条打印机</span> </button>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--底部-->
+		<div class="shortcut-bottom"> <span id="STATIC_5" ids="IDS_PressStandard">更多操作，请切换标准模式</span> </div>
+	</div>
+	<!--底部-->
+	<div class="bottom">
+		<div class="bottom-button-zone">
+			<div class="float-left">
+				<button id="FUN_LOGOUT" type="button" class="button-operate"> 
+					<span><img alt="" src="../../../../Image/CN/maintenance/button/icon-logout.png"/></span>
+					<span class="tip"></span> 
+					<span class="button-text" ids="IDS_Logout">注销用户</span> 
+				</button>
+				<button id="FUN_QUIT" type="button" class="button-operate operate-button-space-left">
+					<span><img alt="" src="../../../../Image/CN/maintenance/button/icon-quit.png"/></span>
+					<span class="tip"></span> 
+					<span class="button-text" ids="IDS_Quit">退出维护</span> 
+				</button>
+			</div>
+			<div class="float-right">
+				<button id="FUN_TABMODE" type="button" class="button-operate  operate-button-space-right"> 
+					<span><img alt="" src="../../../../Image/CN/maintenance/button/icon-tabmode.png"/></span>
+					<span class="tip"></span> 
+					<span class="button-text" ids="IDS_Standard">标准模式</span> 
+				</button>
+				<button id="FUN_DEFINEMENU" type="button" class="button-operate " style="width:140px"> 
+					<span><img alt="" src="../../../../Image/CN/maintenance/button/icon-define-menu.png"/></span>
+					<span class="tip"></span> 
+					<span class="button-text" ids="IDS_CustomiszeMenu">定制菜单</span> 
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

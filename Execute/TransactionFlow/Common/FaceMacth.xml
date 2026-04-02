@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="FaceMatch">
+	<Head type="GRGWorkflow" author="XJYONG" timeStamp="2017/09/17 16:59:12" comment="The workflow design is for face match"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_FaceDetect"/>
+		</Start>
+		<!--人脸活体检测
+			isMatch：人脸活体检测成功后，是否需要和身份证头像进行比对，0-不比对；1-比对
+		-->
+		<FaceDetect ID="ID_FaceDetect" UI="UI_FaceDetect" timeout="30000" isMatch="1">
+			<States>
+				<State name="FaceDetectSuccess" UI="UI_FaceDetectSuccess"/>
+				<State name="FaceDetectFail" UI="UI_FaceDetectFail"/>
+				<State name="CameraDevError" UI="UI_CameraDevError"/>				
+			</States>
+			<Forward event="OnContinue" targetID="ID_IDCardScan"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</FaceDetect>
+		
+		<!--身份证检测-->
+		<IDCardScan ID="ID_IDCardScan" UI="UI_InsertIDCard" timeout="30000">
+			<States>
+				<State name="ReadingIDCard" UI="UI_ReadingIDCard" />
+				<State name="TakeIDCard" UI="UI_TakeIDCard"/>
+				<State name="TakeIDCardFail" UI="UI_TakeIDCardFail"/>
+				<State name="HardwareError" UI="UI_IDCardHardwareError" />
+			</States>
+			<Forward event="OnContinue" targetID="ID_FaceMatchIDCard"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</IDCardScan>
+		
+		<!--人脸和身份证头像进行比对-->
+		<FaceMatchIDCard ID="ID_FaceMatchIDCard" UI="UI_FaceMatchIDCard" timeout="30000">
+			<States>
+				<State name="FaceMatchSuccess" UI="UI_FaceMatchSuccess"/>
+				<State name="FaceMatchFail" UI="UI_FaceMatchFail"/>
+			</States>
+		</FaceMatchIDCard>		
+		
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+		</End>	
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

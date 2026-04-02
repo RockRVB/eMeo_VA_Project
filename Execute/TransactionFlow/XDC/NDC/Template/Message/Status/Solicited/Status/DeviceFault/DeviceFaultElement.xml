@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!--  Device Fault Status Information Field
+		*  When the status Description is '8' - Device Fault. 
+		-->
+		
+	<DeviceFaultTemplate>
+		<!--  Timer Vaiant Number-. The field can contain an eight-digit number derived from the time of day be the terminal for each transaction request.(-0-9, A- F).  -->
+		<Item key="e" 					value="[TVN]"								size="3-9"	restriction="[OptionCtrl.EnableMAC]"/>	
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 				value="[FS]"									size="1"		restriction="[OptionCtrl.EnableMAC]"/>					
+		<Item key="f" 						value="8"  						size="1" 							restriction="Mandatory"/>		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 				value="[FS]"					size="1"							restriction="Mandatory"/>
+</DeviceFaultTemplate>
+	
+</Root>

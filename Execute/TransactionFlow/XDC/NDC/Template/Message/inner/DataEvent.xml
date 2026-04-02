@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Device>
+    <Variable>
+      <Item ID="Mode" value="outOfService" />
+      <Item ID="HaveResumeJournalData" value="0" />
+    </Variable>
+    <Event>
+      <!--Camera -->
+      <Item ID="0" time="0" name="CAMERA_STATE" device="Camera" Param="None" />
+      <Item ID="1" time="0" name="CARD_INSERTED" device="CardReader" />
+      <Item ID="2" time="0" name="PIN_ENTERED" device="Encryptor" />
+      <Item ID="3" time="0" name="CARD_RETURNED" device="CardReader" />
+      <Item ID="4" time="0" name="CallCaptureCard" device="CardReader" Param="TimeOut" />
+      <Item ID="5" time="0" name="RECEIPT_PRINTED" device="ReceiptPrinter" />
+      <Item ID="6" time="0" name="CASH_DISPENSED" device="CashDispenser" />
+      <Item ID="7" time="0" name="ENVELOPE_DISPENSED" device="" />
+      <Item ID="8" time="0" name="DEPOSITOR_DEPOSITED" device="" />
+      <Item ID="9" time="0" name="STATEMENT_PRINTED" device="" />
+      <Item ID="10" time="0" name="CANBINET_OPEN" device="DataSensorAndLight" />
+      <Item ID="11" time="0" name="SAFE_OPEN" device="DataSensorAndLight" />
+      <Item ID="12" time="0" name="SWICH_OPEN" device="DataSensorAndLight" />
+      <Item ID="13" time="0" name="MONEY_TAKEN" device="CashDispenser" />
+      <Item ID="14" time="0" name="MONEY_RETRACT" device="CashDispenser" />
+      <Item ID="15" time="0" name="MONEY_WAITTAKEN" device="CashDispenser" />
+      <Item ID="16" time="0" name="StartVideo_Despense" device="CashDispenser" />
+      <Item ID="17" time="0" name="StopVideo_Despense" device="CashDispenser" />
+      <Item ID="18" time="0" name="StartVideo_Deposit" device="CashDepositor" />
+      <Item ID="19" time="0" name="StopVideo_Deposit" device="CashDepositor" />
+      <!-- end -->
+      <!--Message -->
+      <Item ID="51" time="0" name="DispenseCompleted" device="CashDispenser" Param="None" Param1="00" Param2="00" Param3="00" Param4="00" />
+      <Item ID="52" time="0" name="BackupJournal2Disk" device="JournalPrinter" Param="" />
+      <Item ID="53" time="0" name="BackupJournalPrintStart" device="JournalPrinter" Param="" />
+      <Item ID="54" time="0" name="BackupJournalPrintEnd" device="JournalPrinter" Param="" />
+      <!--start:(Message.unsolicitedCheck) -->
+      <Item ID="100" time="0" name="SC_CardReader" device="CardReader" Param="" />
+      <Item ID="101" time="0" name="SC_ReceiptPrinter" device="ReceiptPrinter" Param="BackupJournal2Disk" />
+      <Item ID="102" time="0" name="SC_JournalPrinter" device="JournalPrinter" Param="BackupJournal2Disk" />
+      <Item ID="103" time="0" name="SC_CashDispenser" device="CashDispenser" />
+      <Item ID="104" time="0" name="SC_CashAcceptor" device="CashAcceptor" />
+      <Item ID="105" time="0" name="SC_Encryptor" device="Encryptor" />
+      <Item ID="106" time="0" name="SC_SensorAndLight" device="SensorAndLight" />
+      <Item ID="107" time="0" name="SC_EnvelopeDispenser" device="Envelope" />
+      <Item ID="108" time="0" name="SC_EnvelopeDepository" device="Envelope" />
+      <Item ID="109" time="0" name="SC_BarCodeReader" device="Envelope" />
+      <Item ID="110" time="0" name="SC_Sensor" device="Sensor" />
+      <Item ID="200" time="0" name="eSC_HostVarReset" device="Host" />
+      <!--end:(Message.unsolicitedCheck) -->
+      <Item ID="500" time="0" name="ModeEnterMaintenance" device="" Param="" />
+      <Item ID="501" time="0" name="ModeExitMaintenance" device="" Param="" />
+      <!-- end -->
+      <Item ID="10000" time="0" name="ResumFirstPrint" device="" Param="0" Param1="1" Name="ResumFirstPrintSuccess" Name1="HaveResumeJournalData" />
+    </Event>
+  </Device>
+  <Signal>
+    <Item value="/Root/Device/Event/Item[@ID = '0']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '1']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '2']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '3']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '4']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '5']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '6']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '7']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '8']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '9']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '10']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '11']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '12']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '13']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '14']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '15']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '16']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '17']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '18']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '19']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '50']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '51']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '52']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '53']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '54']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '100']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '101']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '102']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '103']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '104']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '105']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '106']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '107']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '109']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '108']/@time" />    
+    <Item value="/Root/Device/Event/Item[@ID = '110']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '200']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '500']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '501']/@time" />
+    <Item value="/Root/Device/Event/Item[@ID = '10000']/@time" />
+  </Signal>
+  <DataEvent>
+    <Item ID="53" Signal="/Root/Device/Event/Item[@ID = '10000']/@time" enable="0" />
+  </DataEvent>
+  <Configuration>
+    <Item source="/Root/Device/Event/Item[@ID = '10000']" ID="/Root/DataEvent/Item[@ID='53']/@enable" default="0">
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="1" operator="==">
+          <xmlvariable value="/Root/Device/Event/Item[@ID = '10000']/@Param1" />
+        </Condition>
+        <Condition value="[xmlvariable]" operand="1" operator="==">
+          <xmlvariable value="/Root/Device/Event/Item[@ID = '10000']/@Param" />
+        </Condition>
+      </Result>
+    </Item>
+  </Configuration>
+</Root>

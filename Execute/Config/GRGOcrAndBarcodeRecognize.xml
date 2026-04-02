@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<Config FrontPath="D:\\GrgBanking\\IVTMC\\Temp\\1.jpg" BackPath="D:\\GrgBanking\\IVTMC\\Temp\\2.jpg">
+  <OCRConfig FormName="ID_FRONT">
+    <OCRFiled name="Nationality" language="eng" averagethreshold="107" threshold="82">
+      <Pos StartX="30" StartY="10" Width="595" Height="70" />
+    </OCRFiled>
+    <OCRFiled name="IDNo" language="eng" averagethreshold="107" threshold="84">
+      <Pos StartX="375" StartY="87" Width="295" Height="50" />
+    </OCRFiled>
+    <OCRFiled name="Name" language="eng" averagethreshold="97" threshold="62">
+      <Pos StartX="245" StartY="240" Width="470" Height="90" />
+    </OCRFiled>
+    <OCRFiled name="Birthday" language="eng" averagethreshold="99" threshold="66">
+      <Pos StartX="220" StartY="490" Width="500" Height="40" />
+    </OCRFiled>
+    <OCRFiled name="CountryOfBirth" language="eng" averagethreshold="100" threshold="68">
+      <Pos StartX="220" StartY="560" Width="350" Height="55" />
+    </OCRFiled>
+  </OCRConfig>
+  <OCRConfig FormName="ID_BACK">
+    <OCRFiled name="DateOfIssue" language="eng" averagethreshold="111" threshold="90">
+      <Pos StartX="330" StartY="430" Width="280" Height="50" />
+    </OCRFiled>
+    <OCRFiled name="Address" language="eng" averagethreshold="118" threshold="90">
+      <Pos StartX="10" StartY="510" Width="950" Height="130" />
+    </OCRFiled>
+    <OCRFiled name="Address2" language="eng" averagethreshold="116" threshold="90">
+      <Pos StartX="10" StartY="480" Width="950" Height="150" />
+    </OCRFiled>
+  </OCRConfig>
+  <OCRConfig FormName="ID_FRONT_MAL">
+    <OCRFiled name="IDNo" language="eng" averagethreshold="83" threshold="34">
+      <Pos StartX="0" StartY="135" Width="400" Height="65" />
+    </OCRFiled>
+    <OCRFiled name="Name" language="eng" averagethreshold="97" threshold="62">
+      <Pos StartX="0" StartY="390" Width="500" Height="65" />
+    </OCRFiled>
+    <OCRFiled name="Address" language="eng" averagethreshold="100" threshold="68">
+      <Pos StartX="0" StartY="470" Width="400" Height="40" />
+    </OCRFiled>
+    <OCRFiled name="Address1" language="eng" averagethreshold="100" threshold="68">
+      <Pos StartX="0" StartY="510" Width="400" Height="30" />
+    </OCRFiled>
+    <OCRFiled name="Address2" language="eng" averagethreshold="100" threshold="68">
+      <Pos StartX="0" StartY="540" Width="400" Height="25" />
+    </OCRFiled>
+    <OCRFiled name="Address3" language="eng" averagethreshold="100" threshold="68">
+      <Pos StartX="0" StartY="565" Width="400" Height="25" />
+    </OCRFiled>
+    <OCRFiled name="Address4" language="eng" averagethreshold="100" threshold="68">
+      <Pos StartX="0" StartY="590" Width="400" Height="30" />
+    </OCRFiled>
+  </OCRConfig>
+  <OCRConfig FormName="ID_BACK_MAL">
+    <OCRFiled name="IDNo1" language="eng" averagethreshold="111" threshold="90">
+      <Pos StartX="280" StartY="420" Width="500" Height="60" />
+    </OCRFiled>
+  </OCRConfig>
+  <OCRConfig FormName="ID_FRONT_11B">
+    <OCRFiled name="IDNo" language="eng" averagethreshold="83" threshold="34">
+      <Pos StartX="270" StartY="450" Width="250" Height="60" />
+    </OCRFiled>
+    <OCRFiled name="Name" language="eng" averagethreshold="83" threshold="34">
+      <Pos StartX="270" StartY="210" Width="420" Height="60" />
+    </OCRFiled>
+    <OCRFiled name="Name1" language="eng" averagethreshold="83" threshold="34">
+      <Pos StartX="270" StartY="270" Width="420" Height="60" />
+    </OCRFiled>
+  </OCRConfig>
+  <OCRConfig FormName="ID_BACK_11B">
+    <OCRFiled name="Nationality" language="eng" averagethreshold="107" threshold="82">
+      <Pos StartX="50" StartY="185" Width="330" Height="45" />
+    </OCRFiled>
+    <OCRFiled name="Birthday" language="eng" averagethreshold="99" threshold="66">
+      <Pos StartX="50" StartY="250" Width="295" Height="50" />
+    </OCRFiled>
+    <OCRFiled name="CountryOfBirth" language="eng" averagethreshold="83" threshold="34">
+      <Pos StartX="415" StartY="250" Width="300" Height="40" />
+    </OCRFiled>
+    <OCRFiled name="Address" language="eng" averagethreshold="100" threshold="68">
+      <Pos StartX="50" StartY="390" Width="930" Height="100" />
+    </OCRFiled>
+    <OCRFiled name="Sex" language="eng" averagethreshold="100" threshold="68">
+      <Pos StartX="785" StartY="185" Width="130" Height="50" />
+    </OCRFiled>
+  </OCRConfig>
+  <BarCodeConfig FormName="ID_BARCODE">
+    <BarCodeFiled name="Barcode" averagethreshold="111" threshold="90">
+      <Pos StartX="160" StartY="50" Width="700" Height="200" />
+    </BarCodeFiled>
+    <BarCodeFiled name="BarcodeAll" averagethreshold="111" threshold="90">
+      <Pos StartX="0" StartY="0" Width="1000" Height="630" />
+    </BarCodeFiled>
+  </BarCodeConfig>
+  <BarCodeConfig FormName="ID_BARCODE_11B">
+    <BarCodeFiled name="Barcode" averagethreshold="111" threshold="90">
+      <Pos StartX="220" StartY="485" Width="585" Height="140" />
+    </BarCodeFiled>
+    <BarCodeFiled name="BarcodeAll" averagethreshold="111" threshold="90">
+      <Pos StartX="0" StartY="0" Width="1000" Height="630" />
+    </BarCodeFiled>
+  </BarCodeConfig>
+  <AcceptCardWithoutBarCode value="1" />
+</Config>

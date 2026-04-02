@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--  'P' (0x50) EPP public key and signature
+	-->
+  <EPPPublickeyAndSignature>
+    <!--'P' (0x50) EPP public key and signature-->
+    <Item key="g1" value="P" size="1" restriction="Manduary" />
+    <Item key="g2" value="[SolicitedStatus.WnRKLInformation.EPPPublickeyAndSignature.EPPPK]" size="var" restriction="Manduary" />
+    <Item key="[FS]" value="[FS]" size="1" restriction="Manduary" />
+    <Item key="g2-2" value="[SolicitedStatus.WnRKLInformation.EPPPublickeyAndSignature.EPPPKSignature]" size="var" restriction="Manduary" />
+  </EPPPublickeyAndSignature>
+</Root>

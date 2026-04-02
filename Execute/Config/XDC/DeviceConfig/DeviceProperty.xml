@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+<Application>
+	<Item key="CheckUPSTime" value="0" valueType="string"/>
+</Application>
+<CashDeposit>
+<Item key="ACFullNotDeposit" value="0" valueType="string"/>
+<Item key="CashInErrorReset" value="0" valueType="string"/>
+<Item key="WincorNDCCashDeposit" value="0" valueType="string"/>
+<Item key="WincorDDCCashDeposit" value="0" valueType="string"/>
+<Item key="IsSetAmountEntry" value="1" valueType="int"/>
+		<!--When you deposit money, check whether the bill will automatically close and count the bill -->
+		<!-- 存款时，检测到钞票是否自动关门并点钞 -->
+		<Item key="AutoCloseShutterForCim" value="0" valueType="int"/>
+		
+		<!-- wait for the bill to be taken away and wait for it forever-->
+		<!-- 等待钞票被拿走，是否永久等待-->
+		<Item key="WaitForNoteTakenForEver" value="0" valueType="int"/>
+		
+		<!-- the user response time of CI state is 1000 when the automatic gate (SP) is controlled. The default 0 is returned directly, and 1 is to continue-->
+		<!-- 自动闸门（SP控制）时CI状态的用户响应时间为000，默认0直接返回，1为继续执行-->
+		<Item key="AutoShutterWithZeroCustomerTime" value="0" valueType="int"/>
+		<!-- when take or insert notes in the moment of shutter close,'1' mean processing without timeout if OutInPosition is Empty,'0' mean processing with timeout-->
+		<!--  超时关门瞬间拿走或放进钱，’0’按原来超时处理，‘1’加个判断出钞口是否为空，空则不算超时 -->
+		<Item key="TakeNotesOnShutterClose" value="1" valueType="string"/>
+</CashDeposit>
+	<!-- The configuration of Cash dispenser -->
+	<CashDispenser>
+		<!-- Cash dispenser with cash shutter or not -->
+		<Item key="HaveCashShutter" value="1" valueType="int"/>
+		<!-- wait for the bill to be taken away or wait for it forever-->
+		<Item key="WaitForNoteTakenForEver" value="0" valueType="int"/>
+	</CashDispenser>
+	<!-- The configuration items on the journal/receipt printer- -->
+	<PrinterCfg>
+		<Item key="LogOnJournalPrinter" value="1" valueType="int"/>
+		<Item key="ReceiptWithBlackMark" value="1" valueType="int"/>
+		<Item key="PrintCountersOnReceipt" value="1" valueType="int"/>
+	</PrinterCfg>
+	<!-- The form configuration of receipt printer- -->
+	<ReceiptForm>
+		<Item key="ReceiptWidth" value="590" valueType="string"/>
+		<Item key="VerticalMargin" value="10" valueType="string"/>
+		<Item key="LeftMargin" value="1" valueType="string"/>
+		<Item key="RightMargin" value="6" valueType="string"/>
+		<Item key="TopMargin" value="0" valueType="string"/>
+		<Item key="BottomMargin" value="20" valueType="string"/>
+		<Item key="PrimaryCharSet" value="default" valueType="string"/>
+		<Item key="SecondaryCharSet" value="1" valueType="string"/>
+		<Item key="ThirdCharSet" value="2" valueType="string"/>
+		<!-- value(0 to 1000) Indicates the thickness of the font-->
+		<Item key="FontWeight" value="1000" valueType="string"/>
+		<!-- Value List
+		* [1] RPTR_STR_NOLOGO -  The form name without logo
+		* [2] RPTR_STR_LOGO - The form name with logo picture
+        * [3] ReceiptFormNoFormat - the receipt form print without format
+		-->
+		<Item key="ReceiptFormName" value="TxnReceipt" valueType="string"/>
+		<!-- 
+		* 0 - Picture print
+		* 1 - Field data filled
+		* 2 - Assign Initial value and print form 
+        * 3 - Raw data print
+		-->
+		<Item key="RcptFormPrintMode" value="0" valueType="string"/>
+		<Item key="InternationalCharSet" value="1" valueType="string"/>
+		<Item key="ArabicCharSet" value="7" valueType="string"/>
+		<Item key="DefineDownloadCharSet" value="1" valueType="string"/>
+		<Item key="ContentPicName" value="C:\Form\content.bmp" valueType="string"/>
+		<Item key="RcptFormFileName" value="C:\Form\ReceiptFormXDC.wfm" valueType="string"/>	
+		<Item key="RcptFormFieldLineStart" value="6" valueType="int"/>	
+		<Item key="RcptMaxLen" value="900" valueType="int"/>	
+		<!-- Receipt Form Content FixLeftPosition  1-FixLeftPosition every line, default LeftPosition value is ReceiptForm.[LeftMargin] , 0-not fix -->
+                <Item key="FixLeftPosition" value="0" valueType="Boolean"/>
+		<!-- 1-OneBlankToTwoBlank,  0 -no,the same as host data, fixed Receipt Data Format -->
+		<Item key="OneBlankToTwoBlank" value="0" valueType="Boolean"/>
+		<!-- 
+		* 0 - Only cut paper when scripts contain cut paper command
+		* 1 - Cut paper after function command action if scripts do not contain cut paper command
+		-->
+		<Item key="AutoCutPaper" value="0" valueType="Boolean"/>					
+		<!-- 
+		* 0 - Blank and line changed after cut paper script will be kept 
+		* 1 - Blank and line changed after cut paper script will be ignore 
+		-->
+		<Item key="IgnoreBlankEnding" value="1" valueType="Boolean"/>
+		<!-- 
+		* 0 - The generated receipt image file will be 24 bit depth 
+		* 1 - The generated receipt image file will be 1 bit depth 
+		-->
+		<Item key="GenerateOneBitDepthImageFile" value="0" valueType="Boolean"/>
+	</ReceiptForm>
+	<!-- The font setting of receipt printer- -->
+	<ReceiptFontSetting>
+		<!-- Define thesetting for all font settings (CPI) Character per inch
+      * Default font configuration of charset-0, all others charset inherits 
+      * configurations from this one except it is exceptly configured
+      -->
+		<!--
+		Character set should be one of the following value
+
+		ANSI_CHARSET = 0,
+		DEFAULT_CHARSET = 1,
+		SYMBOL_CHARSET = 2,
+		SHIFTJIS_CHARSET = 128,
+		HANGEUL_CHARSET = 129,
+		HANGUL_CHARSET = 129,
+		GB2312_CHARSET = 134,
+		CHINESEBIG5_CHARSET = 136,
+		OEM_CHARSET = 255,
+		JOHAB_CHARSET = 130,
+		HEBREW_CHARSET = 177,
+		ARABIC_CHARSET = 178,
+		GREEK_CHARSET = 161,
+		TURKISH_CHARSET = 162,
+		VIETNAMESE_CHARSET = 163,
+		THAI_CHARSET = 222,
+		EASTEUROPE_CHARSET = 238,
+		RUSSIAN_CHARSET = 204,
+		MAC_CHARSET = 77,
+		BALTIC_CHARSET = 186,
+		-->
+
+		<Item key="default" value="Courier New" fontSize="26" lineSpace="3" wordSpace="1" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="1" value="Courier New" fontSize="26" lineSpace="3" wordSpace="1" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="2" value="Courier New" fontSize="26" lineSpace="3" wordSpace="1" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="7" value="Courier New" fontSize="26" lineSpace="3" wordSpace="1" FontName = "ARABIC3" CharactersWidth = "30" CharacterSet = "1"/> 
+		<Item key="&gt;" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="?" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="B" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="C" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="D" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="E" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="F" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="G" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="H" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="I" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="J" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="K" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="L" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="M" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="N" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="O" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+		<Item key="P" value="NDCAlphanumeric1" fontSize="26" lineSpace="3" wordSpace="2" FontName = "INTERNATIONAL4" CharactersWidth = "30" CharacterSet = "1"/>
+	</ReceiptFontSetting>
+
+	<!-- The configuration of IPM -->
+	<IPM>
+		<Item key="PrintImage" value="1" valueType="int"/>
+	</IPM>
+	
+	<!-- The setting of key mapping-->
+	<EPPKeyPad>
+	 <Item key="MasterKey" value="MasterKey"/>
+	 <Item key="InitComKey" value="BKey"/>
+	 <Item key="WorkingComKey" value="PINKey"/>
+	 <Item key="MacKey" value="MACKey"/>
+	 <Item key="PeKey" value="PeKey"/>
+	 <Item key="TR31Key" value="TR31Key"/>
+	 <Item key="ActiveEnterKeyAndAKey" value="1"/>
+	</EPPKeyPad>
+</Root>

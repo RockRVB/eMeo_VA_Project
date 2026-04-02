@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<!--
+	5种交易分类，用竖线分隔，每种交易分类的交易不能在其他交易分类中出现
+	第1类：查询类：查询余额、查询明细、改密、转账户名查询、无卡存款户名查询、无卡取款户名查询
+	第2类：取款类：有卡取款、无卡取款
+	第3类：存款类：有卡存款、无卡存款、IC卡现金充值
+	第4类：转账类：转账、代缴费、IC卡补登圈存、IC卡绑定账户圈存、IC卡非绑定账户圈存、IC卡签约账户圈存、IC卡圈提
+	第5类：冲正类：有卡取款冲正、无卡取款冲正，有卡存款冲正、无卡存款冲正、转账冲正、改密冲正、IC卡补登圈存冲正、IC卡绑定账户圈存冲正、IC卡非绑定账户圈存冲正、IC卡签约账户圈存冲正、IC卡现金充值冲正
+	-->
+	<InquiryCategory transType="INQ|IND|PIN|TFI|DPI|ADI"/>
+	<WithdrawalCategory transType="CWD|AWD"/>
+	<DepositCategory transType="DEP|ADP|ICXJCZ"/>
+	<TransferCategory transType="TFR|PAY|ICBDQC|ICBDZHQC|ICFBDZHQC|ICQYZHQC|ICQT"/>
+	<ReversalCategory transType="CWC|AWC|DEC|ADC|TFC|PIC|ICBDQCCZ|ICBDZHQCCZ|ICFBDZHQCCZ|ICQYZHQCCZ|ICXJCZCZ"/>
+
+	<!--属于电子现金的交易类型，可以包括以上5种交易分类中的交易-->
+	<ECASHCategory transType="ICXJCZ|ICXJCZCZ|ICBDQC|ICBDQCCZ|ICBDZHQC|ICBDZHQCCZ|ICFBDZHQC|ICFBDZHQCCZ|ICQYZHQC|ICQYZHQCCZ|ICQT|ICTZ"/>
+</Config>

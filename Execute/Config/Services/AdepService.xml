@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- 未实现支持多个Field,目前还未需要 -->
+<AdepServiceConfig >
+  <GPK URL="/adep/atmc/v1/get_public_key" Description="Get public key">
+   <Fields>
+      <Field FieldName="content" IsEncrypt="0" Description="" />
+    </Fields>
+  </GPK>
+  <RQK URL="/adep/atmc/v1/sign_on" Description="sign in" WithSecretKey="secret" IsResponseEncrypt="1">
+    <Fields>
+      <Field FieldName="content" IsEncrypt="1" Description="" />
+    </Fields>
+  </RQK>
+  <LOG URL="/adep/atmc/v1/login" Description="login" IsResponseEncrypt="1">
+    <Fields>
+      <Field FieldName="content" IsEncrypt="1" Description="" />
+    </Fields>
+  </LOG>
+</AdepServiceConfig>

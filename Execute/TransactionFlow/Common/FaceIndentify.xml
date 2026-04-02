@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<Workflow name="FaceIdentifyWorkFlow">
+  <Head type="GRGWorkflow" author="lnqi" timeStamp="" comment="" />
+  <DataPool />
+  <Activities>
+    <Start ID="0" UI="" comment="Start">
+      <Forward event="OnConfirm" targetID="ID_FaceCaptureImage" />
+    </Start>
+    <FaceCaptureImage ID="ID_FaceCaptureImage" UI="UI_LookCameraTakePic" comment="" timeout="30000" >
+      <Forward event="OnConfirm" targetID="ID_FaceIdentify" />
+	  <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />	  
+    </FaceCaptureImage>
+	
+   <FaceIdentify ID="ID_FaceIdentify" UI="UI_CommonProcessing" comment="" LimitSimilarity="75" timeout="60000" >
+      <Forward event="OnConfirm" targetID="ID_FaceIdentifyShowResult" />
+	  <Forward event="NotMatch" targetID="ID_FaceIsNotMatch" />
+	  <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </FaceIdentify>
+	
+	<WaitSleep ID="ID_FaceIsNotMatch" UI="UI_FaceIsNotMatch" comment="" timeout="4000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+    </WaitSleep>
+	
+	<FaceIdentifyShowResult ID="ID_FaceIdentifyShowResult" UI="UI_ShowFaceIdentifyResult" comment="" timeout="60000" >
+      <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="onCancel" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="NotMatch" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </FaceIdentifyShowResult>
+	
+	<WaitSleep ID="ID_ThankYou" UI="UI_CommonThank" comment="" timeout="2000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+    </WaitSleep>
+	
+    <End ID="9999" UI="" comment="End" />
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" UI="" comment="Invoke close trans workflow" name="CloseTrans">
+      <Forward event="OnConfirm" targetID="9999" />
+    </InvokeWorkflow>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnHardwareError" targetID="ID_DevError" />
+    <Forward event="OnFail" targetID="ID_EventError" />
+    <Forward event="OnTimeout" targetID="ID_GoTimeOut" />
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+  </DefaultForward>
+</Workflow>

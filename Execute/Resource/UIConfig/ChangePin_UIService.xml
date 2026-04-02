@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+  <Screen name="UI_InputOldPin" uri="ChangePin\InputOldPin.html" cache="0">
+    <Triggers>
+      <EventTrigger condition="show">
+        <Setter target="PromptIcon" property="visible" value="0"/>
+      </EventTrigger>
+      <EventTrigger condition="LengthNotEnough">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+      </EventTrigger>
+    </Triggers>
+  </Screen>
+  <Screen name="UI_InputNewPin" uri="ChangePin\InputNewPin.html" cache="0">
+    <Triggers>
+      <EventTrigger condition="show">
+        <Setter target="PromptIcon" property="visible" value="0"/>
+      </EventTrigger>
+      <EventTrigger condition="InputNewPinUnmatch">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+        <Setter target="Prompt" property="content" value="(IDS_PasswordUnMatchTip)"/>
+      </EventTrigger>
+      <EventTrigger condition="LengthNotEnough">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+        <Setter target="Prompt" property="content" value="(IDS_InputPinLengthNotEnough)"/>
+      </EventTrigger>
+    </Triggers>
+  </Screen>
+  <Screen name="UI_ChangePinSuccess" uri="ChangePin\ChangePinSuccess.html" cache="0">
+  </Screen>
+</Screens>
+

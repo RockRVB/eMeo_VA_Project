@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="Payment">
+	<!--中间业务主流程-->
+	<Head type="GRGWorkflow" author="yzguo" timeStamp="2013/05/07 19:15:12" comment="The workflow design is for Payment"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_PaymentMainMenu"/>
+		</Start>
+
+		<!--
+			CMCC 	中国移动		F1
+			CU		中国联通		F3
+			CT		中国电信		F5
+			PR		电费				F2
+			WR		水费				F4
+			DSQWR	大石桥水费	F6
+			GR		煤气费			F8
+		-->
+		<MainMenu ID="ID_PaymentMainMenu" UI="UI_PaymentMainMenu" comment="Payment Main menu" saveBuffer="{proj_PayInqTransCode,1}" keyValueMap="[F1,541000][F2,511000][F3,531000][F4,501000][F5,531000][F6,551000][F7,521000]">
+			<Forward event="OnF1" targetID="ID_InvokePaymentCMCCWorkflow"/>
+			<Forward event="OnF2" targetID="ID_InvokePaymentPRWorkflow"/>
+			<Forward event="OnF3" targetID="ID_InvokePaymentCUWorkflow"/>
+			<Forward event="OnF4" targetID="ID_InvokePaymentWRWorkflow"/>
+			<Forward event="OnF5" targetID="ID_InvokePaymentCTWorkflow"/>
+			<Forward event="OnF6" targetID="ID_InvokePaymentDSQWRWorkflow"/>
+			<Forward event="OnF7" targetID="ID_InvokePaymentGRWorkflow"/>
+			<Forward event="OnContinue" targetID="9999"/>
+		</MainMenu>
+		
+		<!--移动缴费-->
+		<InvokeWorkflow ID="ID_InvokePaymentCMCCWorkflow" name="Payment_CMCC" comment="Payment CMCC workflow">
+			<Forward event="OnConfirm" targetID="ID_PaymentMainMenu"/>
+		</InvokeWorkflow>
+		
+		<!--中国联通-->
+		<InvokeWorkflow ID="ID_InvokePaymentCUWorkflow" name="Payment_CU" comment="Payment Unicom workflow">
+			<Forward event="OnConfirm" targetID="ID_PaymentMainMenu"/>
+		</InvokeWorkflow>
+		
+		<!--中国电信-->
+		<InvokeWorkflow ID="ID_InvokePaymentCTWorkflow" name="Payment_CT" comment="Payment Unicom workflow">
+			<Forward event="OnConfirm" targetID="ID_PaymentMainMenu"/>
+		</InvokeWorkflow>
+		
+		<!--电费-->
+		<InvokeWorkflow ID="ID_InvokePaymentPRWorkflow" name="Payment_PR" comment="Payment Power Rate workflow">
+			<Forward event="OnConfirm" targetID="ID_PaymentMainMenu"/>
+		</InvokeWorkflow>
+		
+		<!--水费-->
+		<InvokeWorkflow ID="ID_InvokePaymentWRWorkflow" name="Payment_WR" comment="Payment Water Rate workflow">
+			<Forward event="OnConfirm" targetID="ID_PaymentMainMenu"/>
+		</InvokeWorkflow>
+		
+		<!--大石桥水费-->
+		<InvokeWorkflow ID="ID_InvokePaymentDSQWRWorkflow" name="Payment_DSQWR" comment="Payment DSQ Water Rate workflow">
+			<Forward event="OnConfirm" targetID="ID_PaymentMainMenu"/>
+		</InvokeWorkflow>
+		
+		<!--煤气费-->
+		<InvokeWorkflow ID="ID_InvokePaymentGRWorkflow" name="Payment_GR" comment="Payment Gas Rate workflow">
+			<Forward event="OnConfirm" targetID="ID_PaymentMainMenu"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		
+		<End ID="9999" comment="End">
+		</End>
+	</Activities>
+		<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

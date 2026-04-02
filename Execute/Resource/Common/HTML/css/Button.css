@@ -1,0 +1,55 @@
+.f1Div {
+	position: absolute;
+	cursor: hand;
+	left: 0px;
+	top: 228px;
+}
+
+.f2Div {
+	position: absolute;
+	cursor: hand;
+	right: 0px;
+	top: 228px;
+}
+
+.f3Div {
+	position: absolute;
+	cursor: hand;
+	left: 0px;
+	top: 333px;
+}
+
+.f4Div {
+	position: absolute;
+	cursor: hand;
+	right: 0px;
+	top: 333px;
+}
+
+.f5Div {
+	position: absolute;
+	cursor: hand;
+	left: 0px;
+	top: 440px;
+}
+
+.f6Div {
+	position: absolute;
+	cursor: hand;
+	right: 0px;
+	top: 440px;
+}
+
+.f7Div {
+	position: absolute;
+	cursor: hand;
+	left: 0px;
+	top: 547px;
+}
+
+.f8Div {
+	position: absolute;
+	cursor: hand;
+	right: 0px;
+	top: 547px;
+}

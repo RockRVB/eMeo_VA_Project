@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCAT Configuration Tool</title>
+    <script src="../../js/vue.min.js"></script>
+    <link rel="stylesheet" href="../../css/ConfigurationTool/configTool.css">
+
+    <style>
+        #Table1 .table-label {
+            width: 40%;
+        }
+
+        #Table1 #Select1 {
+            width: 81%;
+        }
+
+        #Table1 #Input1{
+            width: 77%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" currentSetting="NetworkSetting">
+        <div class="header"></div>
+
+        <div class="sidebar" ref="sidebar">
+            <div class="menu-top">
+                <img :src="profileImg" alt="Profile Image">
+                <h2>{{selectedATMType || 'XXX'}}</h2>
+                <button @click="showModal">⇋</button>
+            </div>
+            <div class="menu-containers" v-for="menu in menus">
+                <div class="menu-container">
+                    <div class="setting-category" @click="toggleDropdown(menu.id)">
+                        <span class="item-icon">📦</span>
+                        <span>{{ menu.label }}</span>
+                        <span class="dropdown-arrow" :class="{ 'open': menu.isDropdownOpen }">></span>
+                    </div>
+    
+                    <div class="setting-item" v-show="menu.isDropdownOpen" :id="item.id"  :class="{ 'active': item.id === setting }"
+                      v-for="item in settings[menu.id]" :key="item.id"  >
+                      <div class="setting-item-parent" @click="toggleSelection(item)" :style="getStyle(item.id)">
+                        <span class="item-icon">{{ item.icon }}</span>
+                        <span>{{ item.label }}</span>
+                        <span class="dropdown-arrow" :class="{ 'open': item.isDropdownOpen }">></span>
+                      </div>
+    
+                      <div class="setting-item-child" v-if="itemChilds.owner === item.id && itemChilds.content" v-show="item.isDropdownOpen" :id="childItem" :style="getStyle(childItem)" :class="{ 'active': childItem === itemChild }"
+                        v-for="childItem in itemChilds.content" :key="childItem"  @click="toggleChildSelection(childItem)">
+                        <span class="item-icon">-</span>
+                        <span>{{ childItem }}</span>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-container">
+                <div class="setting-category">
+                    <span class="item-icon"><</span>
+                    <span @click="getPage(backPage)">Back</span>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div v-for="session in settingData.Sessions" :key="session.name">
+                <h2 :id="`content-${session.name}`">{{session.name}}</h2>
+                <table id="Table1">
+                    <tr>
+                        <td class="table-label">
+                            <Label>Type</Label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" v-model="session.type">
+                                <option value="TCP">TCP/IP</option>
+                                <option value="http">HTTP</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-label">
+                            <Label>Enable</Label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" v-model="session.enable">
+                                <option value="0">Disable</option>
+                                <option value="1">Enable</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="table-label">
+                            <Label>Set To Default Session</Label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" v-model="session.isDefault">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-label">
+                            <Label>Keep Alive</Label>
+                        </td>
+                        <td>
+                            <input id="Input1" type="number" v-model="session.keepAlive" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="table-label">
+                            <Label>Protocol</Label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" v-model="session.protocol">
+                                <option value="ISO8583">ISO8583</option>
+                                <option value="NDC/DDC">NDC+/DDC912</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-label">
+                            <Label>IP Address</Label>
+                        </td>
+                        <td>
+                            <input id="Input1" type="Text" v-model="session.remote">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="table-label">
+                            <Label>Auto Recovery</Label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" v-model="session.autoRecovery">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-label">
+                            <Label>Interval</Label>
+                        </td>
+                        <td>
+                            <input id="Input1" type="number" v-model="session.autoRecoveryInterval">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="table-label">
+                            <Label>Connection Mode</Label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" v-model="session.mode">
+                                <option value="0">Long Mode</option>
+                                <option value="1">Short Mode</option>
+                                <option value="2">Half Short Mode</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-label">
+                            <Label>Auto Connect After Open (Default: Not Open)</Label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" v-model="session.autoConnectAfterOpen">
+                                <option value="0">Not Open</option>
+                                <option value="1">Open</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="table-label">
+                            <Label>Net Header</Label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" v-model="session.headPattern">
+                                <option value="NoHeader">No Header</option>
+                                <option value="L1L2">L1L2</option>
+                                <option value="L4L3L2L1_ASCII">L4L3L2L1_ASCII</option>
+                                <option value="L2L1">L2L1</option>
+                                <option value="L4L3L2L1">L4L3L2L1</option>
+                                <option value="EOR">EOR</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-label">
+                            <Label>Head Include</Label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" v-model="session.headIncluded">
+                                <option value="0">No Included</option>
+                                <option value="1">Included</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr v-if="session.reConnectTimes">
+                        <td class="table-label">
+                            <Label>Reconnect Times</Label>
+                        </td>
+                        <td>
+                            <input id="Input1" type="text" v-model="session.reConnectTimes">
+                        </td>
+                    </tr>
+
+                    <!-- SSL 配置 -->
+                    <tr>
+                        <td colspan="2" style="background-color: #f0f0f0; padding: 10px; font-weight: bold;">
+                            <Label>SSL Configuration</Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-label">
+                            <Label>SSL Enable</Label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" v-model="session.sslEnable">
+                                <option value="">None</option>
+                                <option value="0">Disable</option>
+                                <option value="1">Enable</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr v-if="session.sslEnable === '1'">
+                        <td class="table-label">
+                            <Label>SSL Protocol</Label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" v-model="session.sslProtocol">
+                                <option value="Default">Default</option>
+                                <option value="Tls">TLS</option>
+                                <option value="Tls12">TLS 1.2</option>
+                                <option value="SSL3">SSL3</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr v-if="session.sslEnable === '1'">
+                        <td class="table-label">
+                            <Label>Server X509 Certificate Name</Label>
+                        </td>
+                        <td>
+                            <input id="Input1" type="text" v-model="session.serverX509CertificateName">
+                        </td>
+                    </tr>
+                    <tr v-if="session.sslEnable === '1'">
+                        <td class="table-label">
+                            <Label>Check Certificate Revocation</Label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" v-model="session.checkCertificateRevocation">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr v-if="session.sslEnable === '1'">
+                        <td class="table-label">
+                            <Label>Check Remote Certificate</Label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" v-model="session.checkRemoteCertificate">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr v-if="session.sslEnable === '1'">
+                        <td class="table-label">
+                            <Label>Client X509 Certificate Value</Label>
+                        </td>
+                        <td>
+                            <input id="Input1" type="text" v-model="session.clientX509CertificateValue">
+                        </td>
+                    </tr>
+                    <tr v-if="session.sslEnable === '1'">
+                        <td class="table-label">
+                            <Label>Client X509 Certificate Find Type</Label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" v-model="session.clientX509CertificateFindType">
+                                <option value="FindByThumbprint">Find By Thumbprint</option>
+                                <option value="FindBySubjectName">Find By Subject Name</option>
+                                <option value="FindBySubjectDistinguishedName">Find By Subject Distinguished Name</option>
+                                <option value="FindByIssuerName">Find By Issuer Name</option>
+                                <option value="FindByIssuerDistinguishedName">Find By Issuer Distinguished Name</option>
+                                <option value="FindBySerialNumber">Find By Serial Number</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr v-if="session.sslEnable === '1'">
+                        <td class="table-label">
+                            <Label>Client X509 Certificate Store Location</Label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" v-model="session.clientX509CertificateStoreLocation">
+                                <option value="CurrentUser">Current User</option>
+                                <option value="LocalMachine">Local Machine</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr v-if="session.sslEnable === '1'">
+                        <td class="table-label">
+                            <Label>Custom Authenticate Handler</Label>
+                        </td>
+                        <td>
+                            <input id="Input1" type="text" v-model="session.customAuthenticateHandler">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="buttons buttons-bottom"></div>
+        </div>
+
+        <div class="modal-bg" v-if="isModalVisible" @click="hideModal"></div>
+        <div class="modal" v-if="isModalVisible">
+            <h3>ATM Type</h3>
+            <select v-model="currentSelectType">
+                <option v-for="type in atmTypes" :key="type" :value="type">{{ type }}</option>
+            </select>
+            <div class="buttons">
+                <button class="btn cancel" @click="hideModal">Cancel</button>
+                <button class="btn" @click="confirmSelection(true)">Confirm & Apply</button>
+                <button class="btn" @click="confirmSelection(false)">Confirm & No Apply</button>
+            </div>
+        </div>
+
+        <div v-if="showAlertBox" class="custom-alert">
+            <span>{{ alertMessage }}</span>
+            <div class="buttons">
+                <button @click="closeAlert">OK</button>
+            </div>
+        </div>
+        <div v-if="isConfirmVisible" class="custom-confirm">
+            <span>{{ confirmMessage }}</span>
+            <div class="buttons">
+                <button @click="cancelConfirmation">Cancel</button>
+                <button @click="confirmAction">Confirm</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="../../js/ConfigurationTool/configTool.js"></script>
+</body>
+
+</html>

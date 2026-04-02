@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!--  Statement Printer
+		*  This messge indicates whether or not a print operation has been successfully completed
+        *  With printer supplies (paper, ribbon, print-head, knife, capture bin) require attention, or an error on a cut-and-deliver function 
+		*  during a close state.
+		-->
+		
+	<StatementPrinter>
+		<!-- Device Identification Graphic. -->
+		<Item key="e1" 																		value="V"  																		size="1" 				restriction="Mandatory"/>
+		
+		<!--   Transaction/Device Status. (T-code plus T-data). Gives details of a dispense operation in respense to a Transaction Reply Command message.
+		* Character 1 (T-code) can be:
+		*    '0'  -  No trancation error condiction, but consult other fileds for error serverity, diagnostic status or supplies status message.
+		*    '1'  -  Print/cut not successful
+		*    '2'  - Device not configured.
+		*    '3'  - Statement present in transport.
+		*    '4'  - Cancel key pressed during sideways receipt print.
+ 		-->
+		<Item key="e2" 																		value="[StatementPrinterDevStatus]"  								size="1" 				restriction="Mandatory"/>	
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="Mandatory"/>
+		
+		<!--  Error Severity.  Standard code.-->
+		<Item key="e3" 																		value="[StatementPrinterErrSeverity]"  								size="1" 				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="Mandatory"/>
+		
+		<!--  Diagnostic Status. (M-status plus M-data). The M-status describes the main error found. -->
+		<Item key="e4" 																		value="[StatementPrinterDiagnosticStatus]"  						size="var" 			restriction="Optional"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="Mandatory"/>
+		
+		<!--  Suplies Status Indicates the state of the Deposit Bin.
+		*  Indicates the status of the printer paper. Ribbon, print-head and knife.
+		* Character - 0
+		*      '1' - Sufficient paper.
+		*      '2' - Paper low.
+		*      '3' - Paper exhausted.
+		* Character - 1 
+		*      '1' - Ribbon OK.
+		*      '2' - Ribbon replacement recommended.
+		*      '3' - Ribbon replacement mandatory
+		* Character - 2
+		*      '1' - Print-head OK.
+		*      '2' - Print-head replacement recommended..
+		*      '3' - Print-head repalcement mandary.
+		* Character - 3 
+		*      '1' - Knife OK.
+		*      '2' - Knifer replacement recommended.
+		* Character - 4 
+		*      '1' - Capture bin OK.
+		*      '2' - Capture bin overfill.
+		-->
+		<Item key="e5" 																		value="[StatementPrinterSuppliesStatus]"  						size="5" 				restriction="Mandatory"/>
+		
+	</StatementPrinter>	
+</Root>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="GB2312"?>
+<errorcode>
+    <range begin = "1140" end = "1150"></range>
+    <range begin = "5000" end = "5010"></range>
+    <range begin = "12000" end = "12040"></range>
+    <range begin = "3720" end = "3770"></range>
+    <range begin = "2100" end = "2140"></range>
+    <range begin = "1219" end = "1229"></range>
+    <range begin = "1320" end = "1350"></range>
+    <range begin = "1410" end = "1450"></range>
+    <range begin = "40020" end = "40040"></range>
+    <range begin = "15000" end = "15070"></range>
+</errorcode>

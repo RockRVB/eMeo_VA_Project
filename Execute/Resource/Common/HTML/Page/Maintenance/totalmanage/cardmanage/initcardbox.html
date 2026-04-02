@@ -1,0 +1,127 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>卡箱维护</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../../css/maintenance/cn.css" />
+<script src="../../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../../js/jquery-ui.min.js"></script>
+<script src="../../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../../js/maintenance/common/global.js"></script>
+<script src="../../../../js/maintenance/component/components.js"></script>
+<script src="../../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../../js/maintenance/ui/custom-ui.js"></script>
+</head>
+
+<body>
+<!--界面容器-->
+<div class="wrapper get-cash-units">
+	<div class="g-margin-wrapper"> 
+		<!--表格控件-->
+		<div id="Table_1" class="type-table table-cash-margin_top" rowCount="6" maxRowCount="6" type="TABLE"> 
+			<!--翻页按钮-->
+			<div class="type-table-paging">
+				<div class="middle-outer">
+					<div class="middle-inner">
+						<button class="button-page" mark="prev" dataToSend="78" id="prev"><span class="tip"></span> <span class="button-text">▲</span></button>
+						<button class="button-page" mark="next"><span class="tip"></span> <span class="button-text">▼</span></button>
+					</div>
+				</div>
+			</div>
+			<div class="type-table-container  getcash-table-width" style="margin:0" >
+				<table>
+					<thead>
+						<tr>
+							<th><span id="STATIC_UnitSeqH" ids="IDS_CardUnitSeq">序号</span></th>
+							<th><span id="STATIC_UnitNameH" ids="IDS_CardUnitName">卡箱名</span></th>
+							<th><span id="STATIC_UnitType" ids="IDS_UnitType">卡箱类型</span></th>	
+							<th><span id="STATIC_CardType" ids="IDS_CardType">卡类别</span></th>							
+							<th><span id="STATIC_InitCount" ids="IDS_CardUnitInitCount">初始卡张数</span></th>
+							<th><span id="STATIC_CurrentCount" ids="IDS_CardUnitCurrentCount">当前卡张数</span></th>
+							<th><span id="STATIC_State" ids="IDS_UnitState">状态</span></th>							
+						</tr>
+					</thead>
+					<tbody>
+						<tr id="STATIC_TR_R1" style="display:none">
+							<td><span id="STATIC_UnitSeq_R1" type="STATIC_TXT">1</span></td>
+							<td><span id="STATIC_UnitName_R1" type="STATIC_TXT">吞卡箱1</span></td>	
+							<td><span id="STATIC_UnitType_R1" type="STATIC_TXT">回收1</span></td>
+							<td><span id="STATIC_CardType_R1" type="STATIC_TXT">VASA</span></td>
+							<td><span id="STATIC_InitCount_R1" type="STATIC_TXT">0</span></td>
+							<td><span id="STATIC_CurrentCount_R1" type="STATIC_TXT">0</span></td>
+							<td><span id="STATIC_State_R1" type="STATIC_TXT">0</span></td>							
+						</tr>
+						
+						<tr id="STATIC_TR_S1" style="display:none">
+							<td><span id="STATIC_UnitSeq_S1" type="STATIC_TXT">4</span></td> 
+							<td><span id="STATIC_UnitName_S1" type="STATIC_TXT">磁条卡</span></td>
+							<td><span id="STATIC_UnitType_S1" type="STATIC_TXT">循环1</span></td>
+							<td><span id="STATIC_CardType_S1" type="STATIC_TXT">VASA</span></td>
+							<td><span id="STATIC_InitCount_S1" type="STATIC_TXT">0</span></td>
+							<td><span id="STATIC_CurrentCount_S1" type="STATIC_TXT">0</span></td>
+							<td><span id="STATIC_State_S1" type="STATIC_TXT">0</span></td>							
+						</tr>
+						<tr id="STATIC_TR_R2" style="display:none">
+							<td><span id="STATIC_UnitSeq_R2" type="STATIC_TXT">2</span></td> 
+							<td><span id="STATIC_UnitName_R2" type="STATIC_TXT">吞卡箱2</span></td>
+							<td><span id="STATIC_UnitType_R2" type="STATIC_TXT">回收2</span></td>
+							<td><span id="STATIC_CardType_R2" type="STATIC_TXT">VASA</span></td>
+							<td><span id="STATIC_InitCount_R2" type="STATIC_TXT">0</span></td>
+							<td><span id="STATIC_CurrentCount_R2" type="STATIC_TXT">0</span></td>
+							<td><span id="STATIC_State_R2" type="STATIC_TXT">0</span></td>								
+						</tr>
+						<tr id="STATIC_TR_S2" style="display:none">
+							<td><span id="STATIC_UnitSeq_S2" type="STATIC_TXT">5</span></td> 
+							<td><span id="STATIC_UnitName_S2" type="STATIC_TXT">磁条卡2</span></td>
+							<td><span id="STATIC_UnitType_S2" type="STATIC_TXT">循环2</span></td>
+							<td><span id="STATIC_CardType_S2" type="STATIC_TXT">VASA</span></td>
+							<td><span id="STATIC_InitCount_S2" type="STATIC_TXT">0</span></td>
+							<td><span id="STATIC_CurrentCount_S2" type="STATIC_TXT">0</span></td>
+							<td><span id="STATIC_State_S2" type="STATIC_TXT">0</span></td>								
+						</tr>
+						<tr id="STATIC_TR_R3" style="display:none">
+							<td><span id="STATIC_UnitSeq_R3" type="STATIC_TXT">3</span></td>
+							<td><span id="STATIC_UnitName_R3" type="STATIC_TXT">吞卡箱3</span></td>
+							<td><span id="STATIC_UnitType_R3" type="STATIC_TXT">回收3</span></td>
+							<td><span id="STATIC_CardType_R3" type="STATIC_TXT">VASA</span></td>
+							<td><span id="STATIC_InitCount_R3" type="STATIC_TXT">0</span></td>
+							<td><span id="STATIC_CurrentCount_R3" type="STATIC_TXT">0</span></td>
+							<td><span id="STATIC_State_R3" type="STATIC_TXT">0</span></td>								
+						</tr>
+						<tr id="STATIC_TR_S3" style="display:none">
+							<td><span id="STATIC_UnitSeq_S3" type="STATIC_TXT">6</span></td>
+							<td><span id="STATIC_UnitName_S3" type="STATIC_TXT">磁条卡3</span></td>
+							<td><span id="STATIC_UnitType_S3" type="STATIC_TXT">循环3</span></td>
+							<td><span id="STATIC_CardType_S3" type="STATIC_TXT">VASA</span></td>
+							<td><span id="STATIC_InitCount_S3" type="STATIC_TXT">0</span></td>
+							<td><span id="STATIC_CurrentCount_S3" type="STATIC_TXT">0</span></td>
+							<td><span id="STATIC_State_S3" type="STATIC_TXT">0</span></td>							
+						</tr>
+						
+					</tbody>
+				</table>
+				<!--提示文字-->
+				<div id="STATIC_PROMPT" type="STATIC_TXT" class="g-prompt-text float-right operation-tip" color="#e01e1e" disabledColor="#000000" flashType="color"></div>
+			</div>
+		</div>
+		<!--表格控件END--> 
+		<!--提示文字和按钮-->
+		<div class="get-cash-units-zone"> 
+			
+			<!--按钮区域-->
+			<div class="g-button-zone">
+				<button id="FUN_10" type="button" class="button-common mr5"> <span class="tip"></span> <span class="button-text" ids="IDS_AddCard">清卡</span> </button>
+				<button id="FUN_11" type="button" class="button-common mr5"> <span class="tip"></span> <span class="button-text" ids="IDS_ClearRetainBin">清回收箱</span> </button> 
+				<button id="FUN_PRINT" type="button" class="button-common mr5"> <span class="tip"></span> <span class="button-text" ids="IDS_ReceiptPrintMenu_161">凭条打印</span> </button>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

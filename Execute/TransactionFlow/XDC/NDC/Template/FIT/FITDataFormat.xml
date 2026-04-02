@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Root>
+<!-- 
+ * The definition of Financial Institution Type
+ * [1] Contains the fields described. Each Field defaults to zero if not specified.
+*  [2] Each entry in the FIT Data has value in the range 00-FF hex, And considered as 2 digits, sent to terminal in decimal. And should convert each digit pair(Range 000- 255).  
+-->
+<FITData>
+		<!-- Index for financial institution ID number on card -->
+		 <Item key="a"  value="PIDDX" 			size="3"		description="Insitution ID index"/>
+		 
+		 <!-- Financial institution ID number -->
+		 <Item key="b"	value="PFIID" 			size="15"	description="Institution ID."/>
+		 
+		 <!-- Index for entries in the indirect next state table -->
+		 <Item key="c" 	value="PSTDX" 			size="3"		description="Indirect next state index."/>
+		 
+		 <!-- Algorithm index for Diebold -->
+		 <Item key="d"	value="PAGDX" 		size="3"		description="Algorithm/Bank ID index."/>
+		 
+		 <!-- Maximum number of PIN digits allowed for the card holder to enter -->
+		 <Item key="e" 	value="PMXPN" 		size="3"		description="Maximum PIN digits entered."/>
+		 
+		 <!-- Number of digits used for local PIN check -->
+		 <Item key="f"		value="PCKLN" 			size="3"		description="Maximum PIN digits checked."/>
+		 
+		 <!-- Character used to pad PIN for transmission to Central and encryption methold used. -->
+		 <Item key="g"	value="PINPD" 			size="3"		description="PIN pad"/>
+		 
+		 <!-- PAN data field length -->
+		 <Item key="h"	value="PANDX" 		size="3"		description="PAN data index."/>
+		 
+		 <!-- Index for localtion of PAN (personal account number) on card.  -->
+		 <Item key="i"		value="PANLN" 			size="3"		description="PAN data length."/>
+		 
+		 <!-- Character used to pad PIN field for encryption. -->
+		 <Item key="j"  	value="PANPD"			size="3"		description="PAN pad."/>
+		 
+		 <!-- Index for PIN retry count field on card. -->
+		 <Item key="k"	value="PRCNT" 		size="3"		description="Track 3 PIN retry count index."/>
+		 
+		 <!-- Index for PIN offset field on card. -->
+		 <Item key="l" 	value="POFDX" 			size="3"		description="PIN offset index."/>
+		 
+		 <!-- Decimalisation table used in encryption process. -->
+		 <Item key="m"	value="PDCTB" 			size="24"	description="Decimalisation table."/>
+		 
+		 <!-- DES - Encryption PIN key. -->
+		 <Item key="n" 	value="PEKEY" 			size="24"	description="Entrypted PIN key."/>
+		 
+		 <!-- Track and index reference point information for all card-related entries in FIT. -->
+		 <Item key="o"	value="PINDX" 			size="9"	description="Index reference point."/>
+		 
+		  <!-- Index for language code on card -->
+		 <Item key="p"	value="PLNDX" 			size="3"	description="Language code index."/>
+		 
+		  <!-- CIM86 sensor flag. Not supported by Adance NDC.-->
+		 <Item key="q"	value="PMMSR" 		size="3"	description="CIM86 sensor flag."/>
+		 
+		 <Item key="r"		value="Reserved"		size="9"	description="Reserved"/>
+		 
+		 <!-- Selects PIN block format for remote PIN verification. -->
+ 		 <Item key="s"	value="PBFMT" 			size="3"	description="PIN Block format."/>	
+ 	
+</FITData>
+
+</Root>

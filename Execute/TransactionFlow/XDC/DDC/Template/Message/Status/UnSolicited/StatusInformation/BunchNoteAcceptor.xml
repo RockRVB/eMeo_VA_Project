@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!--  Statement Printer
+		*  This messge indicates whether or not a print operation has been successfully completed
+        *  With printer supplies (paper, ribbon, print-head, knife, capture bin) require attention, or an error on a cut-and-deliver function 
+		*  during a close state.
+		-->
+	<BunchNoteAcceptor>
+		<!-- Device Identification Graphic. -->
+		<Item key="e1" value="w" size="1" restriction="Mandatory"/>
+		<!--   Transaction/Device Status. (T-code plus T-data). Gives details of a dispense operation in respense to a Transaction Reply Command message.
+        *  or as a result of a BNA error. 
+		* Character 1 (Error-code) can be:
+		*    '0'  -  Successful opeartion, but an exception occured.
+		*    '1'  -  Cancel selected/Time-out occurred during the Enable Cash State.
+		*    '2'  - No used.
+		*    '3'  - Error
+		*    '4'  - Device inoperative - bills stuck at the exit throat.
+		*    '6'  - Bill detected at power-up..
+		*    '7'  - Bill not taken, retracted and vaulted (not supported on BNA1). The transaction data contains details of the recognised items retracted.
+		*    '8'  - Unable to move escrowed bills to valut ( not due to a BNA function ID in a Transaction Reply).
+ 		-->
+		<Item key="e2" value="[BNAErrCode]" size="1" restriction="Mandatory"/>
+		<!--   Escrow Counts.  Counts for denomination 1 to 50.  -->
+		<Item key="e2-1" value="[BNAEscrowCounts]" size="50" restriction="Mandatory"/>
+		<!--  Vaulted Counts.  Counts for denomination 1 to 50.  -->
+		<Item key="e2-2" value="[BNAVaultedCounts]" size="50" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Error Severity.  Standard code.-->
+		<Item key="e3" value="[BNAErrSeverity]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Diagnostic Status. (M-status plus M-data). The M-status describes the main error found. -->
+		<Item key="e4" value="[BNADiagnosticStatus]" size="var" restriction="Optional"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Supply status -->
+		<Item key="e5" value="[BunchNoteAcceptorSuppliesStatus]" size="5" restriction="Mandatory"/>
+	</BunchNoteAcceptor>
+</Root>

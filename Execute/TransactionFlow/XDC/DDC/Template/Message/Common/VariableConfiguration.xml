@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<StateTable>
+		<DataLengthMin value="0"/>
+		<Transaction>
+			<Exit>
+				<ClearXDC_BUFFER_AMOUNT value="0"/>
+			</Exit>
+		</Transaction>
+	</StateTable>
+	<!-- Device Identifier between device identifier and device name(Associated configuration data -->
+	<Message>
+		<Send>
+			<Item key="unknown" replyready="1" sensitive="1"/>
+			<UnsolicitedMsgInCode>
+				<Item key="DDCDispenserCassette" value="1"/>
+			</UnsolicitedMsgInCode>
+			<Sensitive>
+				<Item key="[MAC]"/>
+				<Item key="[Msg.Transaction.BufferGroup]"/>
+				<Item key="[Buffer.C]"/>
+				<Item key="[Buffer.B]"/>
+				<Item key="[Buffer.PIN]"/>
+				<Item key="[Buffer.Track1]"/>
+				<Item key="[Buffer.Track2]"/>
+				<Item key="[Buffer.Track3]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.NewKVV]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.MasterKeyKVV"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.MACKeyKVV]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.CommunicationKeyKVV]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.RSAKVV]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.BKeyKVV]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.EPPPublicKey]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.EPPPublicKeySignature]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.EPPSerialNumber]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.EPPSerialNumberSignature]"/>
+				<Item key="[SolicitedStatus.WnRKLInformation.EPPIDAndSignature.EPPID]"/>
+				<Item key="[SolicitedStatus.WnRKLInformation.EPPIDAndSignature.EPPIDSignature]"/>
+				<Item key="[SolicitedStatus.WnRKLInformation.EPPPublickeyAndSignature.EPPPK]"/>
+				<Item key="[SolicitedStatus.WnRKLInformation.EPPPublickeyAndSignature.EPPPKSignature]"/>
+			</Sensitive>
+		</Send>
+		<Receive>
+			<MAC>
+				<Item Sensitive="1"/>
+			</MAC>
+			<Sensitive>
+				<Item key="DataCommand.ExtendedEncryptionKeyChange" FieldName="EPPKeyValue"/>				
+				<Item key="TerminalCommand.ReceiveRKLInformation" FieldName="EPPKeyValue"/>
+			</Sensitive>
+		</Receive>
+	</Message>
+	<TestUI>
+		<Item value="/Root/Device/Information/{0}/@DeviceState">
+			<Item value="ONLINE"/>
+			<Item value="HWERROR"/>
+		</Item>
+		<Item value="/Root/Device/Information/Manual/@RecoverFail">
+			<Item value="0"/>
+			<Item value="1"/>
+		</Item>
+		<Case>
+			<Item value="CashDispenser">
+				<Item value="/Root/Device/Information/Cassette/RetractBin/@Status">
+					<Item value="EMPTY"/>
+					<Item value="INOP"/>
+					<Item value="MISSING"/>
+					<Item value="FULL"/>
+					<Item value="NOREF"/>
+					<Item value="MANIP"/>
+					<Item value="HIGH"/>
+				</Item>
+				<Item value="/Root/Device/Information/Cassette/RejectBin/@Status">
+					<Item value="EMPTY"/>
+					<Item value="INOP"/>
+					<Item value="MISSING"/>
+					<Item value="FULL"/>
+					<Item value="NOREF"/>
+					<Item value="MANIP"/>
+					<Item value="HIGH"/>
+				</Item>
+				<Item value="/Root/Device/Information/CassetteHope/Hope1/@Status">
+					<Item value="EMPTY"/>
+					<Item value="INOP"/>
+					<Item value="MISSING"/>
+					<Item value="FULL"/>
+					<Item value="NOREF"/>
+					<Item value="MANIP"/>
+					<Item value="LOW"/>
+				</Item>
+				<Item value="/Root/Device/Information/CassetteHope/Hope2/@Status">
+					<Item value="EMPTY"/>
+					<Item value="INOP"/>
+					<Item value="MISSING"/>
+					<Item value="FULL"/>
+					<Item value="NOREF"/>
+					<Item value="MANIP"/>
+					<Item value="LOW"/>
+				</Item>
+				<Item value="/Root/Device/Information/CassetteHope/Hope3/@Status">
+					<Item value="EMPTY"/>
+					<Item value="INOP"/>
+					<Item value="MISSING"/>
+					<Item value="FULL"/>
+					<Item value="NOREF"/>
+					<Item value="MANIP"/>
+					<Item value="LOW"/>
+				</Item>
+				<Item value="/Root/Device/Information/CassetteHope/Hope4/@Status">
+					<Item value="EMPTY"/>
+					<Item value="INOP"/>
+					<Item value="MISSING"/>
+					<Item value="FULL"/>
+					<Item value="NOREF"/>
+					<Item value="MANIP"/>
+					<Item value="LOW"/>
+				</Item>
+			</Item>
+			<Item value="CardReader"/>
+			<Item value="EnvelopeDispenser"/>
+			<Item value="Encryptor"/>
+			<Item value="DataEvent"/>
+			<Item value="DataGeneral"/>
+			<Item value="unknown"/>
+			<Item value="BarCodeReader"/>
+			<Item value="SensorAndLight">
+				<Item value="/Root/Device/Information/Door/@SAFE">
+					<Item value="CLOSED"/>
+					<Item value="OPEN"/>
+				</Item>
+				<Item value="/Root/Device/Information/Door/@OPERATORSWITCH">
+					<Item value="RUN"/>
+					<Item value="SUPERVISOR"/>
+				</Item>
+				<Item value="/Root/Device/Information/Door/@CABINET">
+					<Item value="CLOSED"/>
+					<Item value="OPEN"/>
+				</Item>
+			</Item>
+			<Item value="JournalPrinter">
+				<Item value="/Root/Device/Information/JournalPrinter/@PaperStatus">
+					<Item value="FULL"/>
+					<Item value="LOW"/>
+					<Item value="OUT"/>
+				</Item>
+			</Item>
+			<Item value="ReceiptPrinter">
+				<Item value="/Root/Device/Information/ReceiptPrinter/@PaperStatus">
+					<Item value="FULL"/>
+					<Item value="LOW"/>
+					<Item value="OUT"/>
+				</Item>
+			</Item>
+			<Item value="CashAcceptor">
+				<Item value="/Root/Device/Information/Manual/@State">
+					<Item value="DDC_BNA_HEALTHY"/>
+					<Item value="DDC_BNA_RETRACK_DEPOSIT"/>
+				</Item>
+				<Item value="/Root/Device/Information/Operation/@XFSCode">
+					<Item value="0"/>
+					<Item value="-1312"/>
+				</Item>
+				<Item value="/Root/Device/Information/CassettePhysical/ID_S0_I2/@Status">
+					<Item value="EMPTY"/>
+					<Item value="INOP"/>
+					<Item value="MISSING"/>
+					<Item value="FULL"/>
+					<Item value="NOREF"/>
+					<Item value="MANIP"/>
+					<Item value="HIGH"/>
+				</Item>
+				<Item value="/Root/Device/Information/CassettePhysical/ID_S0_I3/@Status">
+					<Item value="EMPTY"/>
+					<Item value="INOP"/>
+					<Item value="MISSING"/>
+					<Item value="FULL"/>
+					<Item value="NOREF"/>
+					<Item value="MANIP"/>
+					<Item value="HIGH"/>
+				</Item>
+				<Item value="/Root/Device/Information/CassetteHope/Hope1/@Status">
+					<Item value="EMPTY"/>
+					<Item value="INOP"/>
+					<Item value="MISSING"/>
+					<Item value="FULL"/>
+					<Item value="NOREF"/>
+					<Item value="MANIP"/>
+					<Item value="HIGH"/>
+				</Item>
+				<Item value="/Root/Device/Information/CassetteHope/Hope2/@Status">
+					<Item value="EMPTY"/>
+					<Item value="INOP"/>
+					<Item value="MISSING"/>
+					<Item value="FULL"/>
+					<Item value="NOREF"/>
+					<Item value="MANIP"/>
+					<Item value="HIGH"/>
+				</Item>
+				<Item value="/Root/Device/Information/CassetteHope/Hope3/@Status">
+					<Item value="EMPTY"/>
+					<Item value="INOP"/>
+					<Item value="MISSING"/>
+					<Item value="FULL"/>
+					<Item value="NOREF"/>
+					<Item value="MANIP"/>
+					<Item value="HIGH"/>
+				</Item>
+				<Item value="/Root/Device/Information/CassetteHope/Hope4/@Status">
+					<Item value="EMPTY"/>
+					<Item value="INOP"/>
+					<Item value="MISSING"/>
+					<Item value="FULL"/>
+					<Item value="NOREF"/>
+					<Item value="MANIP"/>
+					<Item value="HIGH"/>
+				</Item>
+			</Item>
+		</Case>
+	</TestUI>
+	<TestState>
+		<cfg use="1" next="11"/>
+		<StateList>
+			<Item key="013" value="0"/>
+			<Item key="014" value="0"/>
+			<Item key="154" value="0"/>
+			<Item key="155" value="0"/>
+			<Item key="017" value="0"/>
+			<Item key="018" value="0"/>
+			<Item key="021" value="0"/>
+			<Item key="022" value="0"/>
+			<Item key="023" value="0"/>
+			<Item key="025" value="0"/>
+			<Item key="033" value="0"/>
+			<Item key="034" value="0"/>
+			<Item key="035" value="0"/>
+			<Item key="036" value="0"/>
+			<Item key="000" value="0"/>
+		</StateList>
+		<LogBuffer>
+			<Item key="079"/>
+		</LogBuffer>
+	</TestState>
+	<HostMsg>
+		<Item key="/Root/Msg/Unsolicited/Alarm/Item/@value"/>
+	</HostMsg>
+</Root>

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!-- Mode  Property
+		* The bit value of  for each key value. 
+		* The value of key is bit value, and the key is only 0 and 1.
+		*  If the ModeSwitch is '0011', the condiction of swithc will be enabled in "OutOfService" and "InService" mode
+	-->
+  <ModeSwich>
+    <!--  Message will be accept to be sent or received in out-of-service mode  -->
+    <Item key="0" value="OutOfService" />
+    <!--  Message will be accept to be sent or received in Maintenance  mode  -->
+    <Item key="1" value="InMaintenance" />
+    <!--  Message will be accept to be sent or received in In-Service  mode  -->
+    <Item key="2" value="InService" />
+    <!--  Message will be accept to be sent or received in consumer in progress  mode  -->
+    <Item key="3" value="TransactionState" />
+  </ModeSwich>
+  <Response>
+    <!--  Message will be accept to be sent or received in out-of-service mode  -->
+    <Item key="0" value="Accept" />
+    <!--  Message will be accept to be sent or received in Maintenance  mode  -->
+    <Item key="1" value="Reject" />
+    <!--  Message will be accept to be sent or received in In-Service  mode  -->
+    <Item key="2" value="Hold" />
+    <!--  Message will be accept to be sent or received in consumer in progress  mode  -->
+  </Response>
+  <!-- Main configuration -->
+  <Main>
+    <!--  Terminal to central message  -->
+    <Item key="TerminalToCentralMsg" value="1" />
+    <!--  Central to terminal message  -->
+    <Item key="CentralToTerminalMsg" value="1" />
+  </Main>
+  <!--  Terminal to central messages  -->
+  <TerminalToCentralMsg>
+  </TerminalToCentralMsg>
+  <!--  Central to terminal  messages  -->
+  <CentralToTerminalMsg>
+    <!--  Terminal Commands message  -->
+    <Item key="TerminalCommand.InService" ModeSwich="1111" value="1" />
+    <Item key="TerminalCommand.OutService" ModeSwich="1111" value="1" />
+    <Item key="TerminalCommand.ConfigurationID" ModeSwich="1111" value="1" />
+    <Item key="TerminalCommand.SupplyCounters.Basic" ModeSwich="1110" value="1" />
+    <Item key="TerminalCommand.SupplyCounters.Extended" ModeSwich="1110" value="1" />
+    <Item key="TerminalCommand.SupplyCounters.WincorCashInSupplyCounters" ModeSwich="1110" value="1" />
+    <Item key="TerminalCommand.DateTime" ModeSwich="1110" value="1" />
+    <Item key="DataCommand.InterTransResponse" ModeSwich="0001" value="1" />
+    <Item key="TerminalCommand.TallyInformation" ModeSwich="1110" value="1" />
+    <Item key="TerminalCommand.ErrorLogInformation" ModeSwich="1110" value="1" />
+    <!--? Dispenser Currency Cassette Mapping Table Load-->
+    <!--  Transaction Reply Command message  -->
+    <Item key="TransactionReplyCommand" ModeSwich="1001" value="1" />
+    <Group>
+      <Item key="TerminalCommand.ConfigurationInformation" ModeSwich="1111" value="1" />
+      <Item key="DataCommand.EncryptionKeyChange" ModeSwich="1010" value="1" />
+      <Item key="DataCommand.ExtendedEncryptionKeyChange" ModeSwich="1010" value="1" />
+      <!-- Customisation Data Commands -->
+      <Item key="DataCommand.CustomisationData" ModeSwich="1100" value="1" />
+      <Item key="DataCommand.EMVCustomisationData" ModeSwich="1110" value="1" />
+      <!--Start: Added by bxue-->
+      <Item key="TerminalCommand.ReceiveRKLInformation" ModeSwich="1010" value="1" />
+      <!--  EJ Commands message  -->
+      <Item key="ElectronicJournal" ModeSwich="1110" value="1" />
+      <Item key="EMVConfigurationMessage" ModeSwich="1110" value="1" />
+    </Group>
+    <OnlyTransactionRequeststate>
+      <Item key="DataCommand.InterTransResponse" />
+    </OnlyTransactionRequeststate>
+  </CentralToTerminalMsg>
+</Root>

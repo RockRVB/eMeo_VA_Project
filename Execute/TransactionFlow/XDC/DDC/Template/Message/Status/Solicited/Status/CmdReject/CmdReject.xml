@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<CmdReject>
+		<Item key="f" value="A" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]"/>
+		<!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+		<Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]"/>
+	</CmdReject>
+		<SpecificCmdReject>
+		<Item key="f" value="D" size="1" restriction="Mandatory"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<Item key="g1" value="[Msg.Solicited.SpecificCmdReject.HostMessageIdentifier]" size="1" restriction="Mandatory"/>
+		<Item key="g2" value="[Msg.Solicited.SpecificCmdReject.HostMessageSubidentifier]" size="1" restriction="Mandatory"/>
+		<Item key="g2" value="[Msg.Solicited.SpecificCmdReject.RejectReasonCode]" size="1" restriction="Mandatory"/>
+		<Item key="End of Text (ETX)  hex 03" value="[ETX]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]"/>
+		<!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+		<Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]"/>
+	</SpecificCmdReject>
+		<SpecificCmdRejectMAC>
+		<Item key="f" value="C" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]"/>
+		<!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+		<Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]"/>
+	</SpecificCmdRejectMAC>
+</Root>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+ 		
+	<EncryptorInitData>
+ 
+		<Item key="e" 																		value="J"  									size="1" 				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																size="1"				restriction="Mandatory"/>
+		
+		
+		<Item key="f" 																			value="01001100"  															size="2" 				restriction="Mandatory"/>
+		
+	</EncryptorInitData>	</Root>

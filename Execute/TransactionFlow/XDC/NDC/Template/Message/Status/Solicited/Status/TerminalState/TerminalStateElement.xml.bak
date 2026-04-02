@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--  The status information will vary according to which of the following terminal commands has been received by the terminal.
+			*  Will be sent in response to Terminal Commands requesting tallies, logs, supply counters, terminal configruation information,hallmark key(not supported) or the date and time.
+		-->
+  <TerminalState>
+    <!--  Timer Vaiant Number-. The field can contain an eight-digit number derived from the time of day be the terminal for each transaction request.(-0-9, A- F).  -->
+    <Item key="e" value="[TVN]" size="3-9" restriction="[OptionCtrl.EnableMAC]" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]" />
+    <Item key="f" value="F" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+  </TerminalState>
+</Root>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+		<!--  Send Tally Information.
+		*  Tally reporting is not supported in Advance NDC 2.06 or later. A default message is returned with g1, g2, g3 = 000101000000 and g4 = 000000
+		* 	This solicited status message is sent to central in response to a send tally group terminal command message (a command code of '5'). 
+		-->
+	<SendTallyInfo>
+
+		<Item key="g1" 						value="3"  																	size="1" 							restriction="Mandatory"/>
+		
+		<!--  Group number. Contains the group number of the requested tallies ('A' to 'N' or 'V')
+		* TSN  sent to Central. It means that the transaction has not been initiated and the counters have not been updated.  
+		-->
+		<Item key="g2" 						value="[SolicitedStatus.TerminalState.TallyGroupNum]"											size="1"							restriction="Mandatory"/>
+		
+		<!--  Date and time last cleared. As tally reporting is not supported. This field always = 000101000000. Contains default date and time in the following format:
+		* YY 	= Year ('00')
+		* MM 	= Month ("01")
+		* DD 	= Dayr ('01')
+		* HH 	= Hour ("00")
+		* MM 	= Year ('00')
+		* SS 	= Second ("00")
+		-->
+		<Item key="g3" 						value="000101000000"												size="12"						restriction="Mandatory"/>
+		
+		<!--  Tally Data. As tally reporting is not supported, this field always = 000000. -->
+		<Item key="g4" 						value="000000"															size="6"							restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]"/>
+		<!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+		<Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]"/>
+		
+	</SendTallyInfo>
+	
+</Root>

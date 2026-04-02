@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+  <Screen name="UI_processing" uri="common-new\processing.html" cache="0">
+  </Screen>
+  <Screen name="UI_scanbarcode" uri="common-new\scanbarcode.html" cache="0">
+  </Screen>
+  <Screen name="UI_putcard" uri="common-new\put_card.html" cache="0">
+  </Screen>
+  <Screen name="UI_general_error" uri="common-new\general_error.html" cache="0">
+  </Screen>
+  <Screen name="UI_hardware_error" uri="common-new\hardware_error.html" cache="0">
+  </Screen>
+  <Screen name="UI_index" uri="common-new\index.html" cache="0">
+  </Screen>
+  <Screen name="UI_network_error" uri="common-new\network_error.html" cache="0">
+  </Screen>
+  <Screen name="UI_out_of_service" uri="common-new\out_of_service.html" cache="0">
+  </Screen>
+  <Screen name="UI_select_menu" uri="common-new\select_menu.html" cache="0">
+  </Screen>
+  <Screen name="UI_system_start_up" uri="common-new\system_start_up.html" cache="0">
+  </Screen>
+  <Screen name="UI_waiting" uri="common-new\waiting.html" cache="0">
+  </Screen>
+  <Screen name="UI_contacting_agent" uri="common-new\contacting_agent.html" cache="0">
+  </Screen>  
+  <Screen name="UI_remote_serving" uri="common-new\remoteServing.html" cache="0">
+  </Screen>
+  <Screen name="UI_info_review" uri="common-new\info_review.html" cache="0">
+  </Screen>  
+  <Screen name="UI_warnning" uri="common-new\warnning.html" cache="0">
+  </Screen> 
+  <Screen name="UI_timeout" uri="common-new\timeout.html" cache="0">
+  </Screen> 
+  <Screen name="UI_no_agent_online" uri="common-new\no_agent_online.html" cache="0">
+  </Screen> 
+  <Screen name="UI_host_refuse" uri="common-new\host_refuse.html" cache="0">
+  </Screen> 
+  <Screen name="UI_agent_refuse" uri="common-new\agent_refuse.html" cache="0">
+  </Screen> 
+  <Screen name="UI_card_captured" uri="common-new\card_captured.html" cache="0">
+  </Screen> 
+  <Screen name="UI_thank_you" uri="common-new\thank_you.html" cache="0">
+  </Screen> 
+  <Screen name="UI_InsertCard" uri="common-new\insert_card.html">
+  </Screen>
+  <Screen name="UI_take_card" uri="common-new\take_card.html" cache="0">
+  </Screen> 
+  <Screen name="UI_invalid_card" uri="common-new\take_invalid_card" cache="0">
+  </Screen>
+   <Screen name="UI_openAccountSuccess" uri="common-new\openAccountSuccess.html" cache="0">
+  </Screen>
+  <Screen name="UI_Input_PIN" uri="common-new\enter_pin.html" cache="0">
+  </Screen>
+  <Screen name="UI_Input_PINAgain" uri="common-new\enter_pin_again.html" cache="0">
+  </Screen>
+  <Screen name="UI_Input_PINIncorrect" uri="common-new\enter_pin_NotMatch.html" cache="0">
+  </Screen>
+  <Screen name="UI_InsertCheck" uri="common-new\insert_check.html">
+  </Screen>
+  <Screen name="UI_SelectIDcard" uri="common-new\kind_of_id.html" cache="0"/>
+  <Screen name="UI_insert_passport4Face" uri="common-new\scanpassport.html">
+  </Screen>
+  <Screen name="UI_take_passport4Face" uri="common-new\takepassport.html">
+  </Screen>
+  
+  <Screen name="UI_insertpassport_new" uri="common-page\insert_passport.html">
+  </Screen>
+  <Screen name="UI_insert_IDIntoPassportScanner_new" uri="common-page\insert_IDIntoPassportScanner.html">
+  </Screen>
+  <Screen name="UI_takepassport_new" uri="common-page\take_passport.html">
+  </Screen>
+  <Screen name="UI_take_IDCardFromPassportScanner_new" uri="common-page\take_IDCardFromPassportScanner.html">
+  </Screen>
+  <Screen name="UI_inputform_new" uri="common-page\input_form.html">
+  </Screen>
+  <Screen name="UI_signatPad_new" uri="common-page\sign_atPad.html">
+  </Screen>
+  <Screen name="UI_printform_new" uri="common-page\printing_form.html">
+  </Screen>
+  <Screen name="UI_scanform_new" uri="common-page\scan_form.html">
+  </Screen>
+  <Screen name="UI_takecard_new" uri="common-page\take_card.html">
+  </Screen>
+  <Screen name="UI_InputPIN_new" uri="common-page\enter_pin.html">
+  </Screen>
+  <Screen name="UI_InputPINAgain_new" uri="common-page\enter_pin_again.html">
+  </Screen>
+  <Screen name="UI_InputPINIncorrect_new" uri="common-page\enter_pin_NotMatch.html">
+  </Screen>
+  <Screen name="UI_ScanBarCode" uri="common-page\ScanBarcode.html">
+  </Screen>
+  <Screen name="UI_ShowQRWithdrawalInfo" uri="common-page\ShowQRWithdrawalInfo.html">
+  </Screen>
+  <Screen name="UI_ShowQRCode" uri="common-page\ShowQRCode.html">
+  </Screen>
+  <Screen name="UI_SelectAmount" uri="common-page\SelectAccount.html">
+  </Screen>
+  <Screen name="UI_InputWithdrawalAmount_QRCode" uri="common-page\InputAmount.html">
+  </Screen>
+  <Screen name="UI_InputVerificationCode" uri="common-page\InputVerifyCode.html">
+  </Screen>
+  <Screen name="UI_Input_PIN_QRCode" uri="common-page\enter_pin_QRCode.html">
+  </Screen>
+  <Screen name="UI_ShowWelcome" uri="common-new\waiting.html">
+  </Screen>
+  <Screen name="UI_Alreadyregister" uri="Finger-new\finger_already_registers.html">
+  </Screen>
+  <Screen name="UI_PrintReceiptSuccess_CommonPage" uri="common-page\take_receipt.html">
+  </Screen>
+  
+  <Screen name="UI_SendFile_ShowSignFile" uri="common-page\SendFile_ShowSignFile.html">
+  </Screen>
+  <Screen name="UI_SendFile_ShowFile" uri="common-page\SendFile_ShowFile.html">
+  </Screen>
+  <Screen name="UI_SendFile_SignFile" uri="common-page\SendFile_Sign.html">
+  </Screen>
+  <Screen name="UI_InputPIN_Enter" uri="common-page\enter_pinCounterService.html">
+  </Screen>
+  <Screen name="UI_InputWithdrawalAmount4CounterService" uri="common-page\select_amount.html">
+  </Screen>
+</Screens>
+

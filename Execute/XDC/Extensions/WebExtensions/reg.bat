@@ -1,0 +1,7 @@
+regsvr32 /s "%cd%/GrgButton.ocx"
+regsvr32 /s "%cd%/GrgEdit.ocx" 
+regsvr32 /s "%cd%/GrgPinEdit.ocx"
+regsvr32 /s "%cd%/GrgVariable.ocx"
+regsvr32 /s "%cd%/GrgAtm.ocx"
+regsvr32 /s "%cd%/GrgSniff.ocx"
+regsvr32 /s "%cd%/CRMContents.ocx"

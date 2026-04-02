@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+    <!-- Passbook-->
+    <Screen name="UI_InsertPassbook" uri="PassbookRenew\InsertPassbook.xaml" cache="0"> 
+    </Screen>
+    <Screen name="UI_InvalidPassbook" uri="PassbookRenew\InvalidPassbook.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_OtherBankPassbook" uri="PassbookRenew\OtherBankPassbook.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_NoPrintData" uri="PassbookRenew\NoPrintData.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_ChangePassbook" uri="PassbookRenew\ChangePassbook.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_PrintPassbook" uri="PassbookRenew\PrintPassbookWaiting.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_PrintPassbookSuccess" uri="PassbookRenew\PrintPassbookSuccess.xaml" cache="0">
+    </Screen>
+    <!-- <Screen name="UI_ReadPassbook" uri="PassbookRenew\ReadInfoWaiting.xaml" cache="0">
+    </Screen> -->
+    <Screen name="UI_PrintPassbookFail" uri="PassbookRenew\PrintPassbookFail.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_RejectPassbook" uri="PassbookRenew\RejectPassbook.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_TakePassbook" uri="PassbookRenew\TakePassbook.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_TurnPageTips" uri="PassbookRenew\TurnPageTips.xaml" cache="0">
+    </Screen>
+</Screens>
+

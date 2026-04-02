@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../js/vue.min.js"></script>
+  <script src="../../js/grg-ui.min.js"></script>
+  <script src="../../js/vue-i18n.js"></script>
+  <script src="../../js/jquery-3.7.0.js"></script>	<script src="../../js/class/layer/layer.js"></script>	<script src="../../js/index.js"></script>
+  <script src="../../js/coreScript.js"></script>
+  <script src="../../js/ibank.js"></script>
+  <link rel="stylesheet" href="../../css/grg-ui.min.css">
+  <link rel="stylesheet" href="../../css/animate.grg.css">
+  <link rel="stylesheet" href="../../css/ibank.css">
+  <style>
+    .grg-main {
+      display: flex;
+      justify-content: space-between;
+      visibility: hidden;
+    }
+
+    .g-signature {
+      width: 818px;
+      height: 426px;
+      margin-top: 50px;
+      background-image: linear-gradient(#ededed, #ffffff);
+      border: 2px solid #ededed;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="grg-header" class="grg-header">
+    </div>
+    <div id="grg-main" class="grg-main animate_grg_fadeInRight">
+      <div class="main-content-box">
+        <div class="title" ids="ids_Common_openscanAPP">Please Open App and Scan QRCode</div>
+		<img id="imgQRCode" class="qrcode" style="margin-top:100px" src="../../../../../Temp/QRCode.png"/>
+      </div>
+    </div>
+	<div class="button-box only-page-button-box">
+          <div class="grg-btn grg-cancel" id='OnCancel' tag='OnCancel' type='button' ids='ids_Btn_cancel'>
+            <img class="icon-img" src="../../images/img_2.4/icon-cancel.png" alt="">Cancel
+          </div>
+          <!-- <div class="grg-btn grg-confirm" id='OnConfirm' tag='OnConfirm' type='button'> -->
+            <!-- <img class="icon-img" src="../../images/img_2.4/icon-ok.png" alt="">Confirm -->
+          <!-- </div> -->
+        </div>
+  </div>
+</body>
+
+</html>
+<!-- <script> -->
+  <!-- function showQRCode(){ -->
+    <!-- var qrcodeImage="" -->
+    <!-- if(window.chrome){ -->
+      <!-- qrcodeImage=window.chrome.webview.hostObjects.sync.eCAT.GetData('core_QRCodeimage');	 -->
+				<!-- }else{ -->
+					<!-- qrcodeImage = window.external.GetData('core_QRCodeimage'); -->
+				<!-- } -->
+        <!-- console.log("qrcodeImage is :"+ qrcodeImage); -->
+        <!-- var image = new Image(); -->
+        <!-- image.src = 'data:image/png;base64,' + qrcodeImage; -->
+        <!-- image.onload = function() { -->
+          <!-- var qrCodeContainer = document.getElementById('imgQRCode'); -->
+          <!-- qrCodeContainer.appendChild(image); -->
+		  <!-- }; -->
+<!-- } -->
+<!-- </script> -->

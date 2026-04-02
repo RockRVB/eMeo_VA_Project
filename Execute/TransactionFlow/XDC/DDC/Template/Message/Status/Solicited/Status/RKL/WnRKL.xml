@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<Root>
+	<Data>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Error Severity.  Standard code.-->
+		<Item key="e3" value="R" size="1" restriction="Mandatory"/>
+	</Data>
+	<DataReplyReady>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Error Severity.  Standard code.-->
+		<Item key="e3" value="9" size="1" restriction="Mandatory"/>
+	</DataReplyReady>
+	<Capabilities>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Error Severity.  Standard code.-->
+		<Item key="g2" value="[SolicitedStatus.WnRKLInformation.EPPCapabilities.Status]" size="1" restriction="Manduary"/>
+		<Item key="g2-2" value="[SolicitedStatus.WnRKLInformation.EPPCapabilities.Vendor]" size="2" restriction="Manduary"/>
+	</Capabilities>
+	<Sign_EPP_ID>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Error Severity.  Standard code.-->
+		<Item key="f1" value="I" size="1" restriction="Mandatory"/>
+		<!--  [EPP ID/serial number]11060152-->
+		<Item key="g2-2" value="[SolicitedStatus.WnRKLInformation.EPPIDAndSignature.EPPID]" size="var" restriction="Manduary"/>
+		<!-- [BASE 64 encoded EPP ID signature]		GmGITDSulUNWyxw+LdC6217afgfm7uRpKO8kpxZrIUyPhby7GGBOiY/BNiflhONNe+t10dvMNQBikdNcYV7ORdKqZ+yLBzF+ZjqYDV04BhxJuyezZTg+Udj81mC8rLoLo7RENUasuzlsYD2cXbIRJPLcrM5QI+eIMeUOsWFpJq2FS0dPDYw1j+5zYnPGQpS2bfW4n3DJtQj9M6ghHx/BALL3np8iWmwvKJUTuEzosQ6mkWaKwuwASDHIzBHqu0rOfadUK+33cwwXS2Nu1CswCceDsuScxfZSRbHNqq9Gynk3CDf7b5qZ4AsBGUrT1Sbjv+tlADNQWQSRZDFo9pc7Ig==
+        -->
+		<Item key="f2" value="[SolicitedStatus.WnRKLInformation.EPPIDAndSignature.EPPIDSignature]" size="1" restriction="Mandatory"/>
+	</Sign_EPP_ID>
+	<Sign_EPP_PK>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Error Severity.  Standard code.-->
+		<Item key="f1" value="P" size="1" restriction="Mandatory"/>
+		<!--  [BASE 64 encoded EPP public key]
+		nEQzBkNAM4coSuo7UYLqA9ZNpRmq26MnazMO8AidiHyDlA61u1ElGmbuttvcrm1Mi4trtyq264gZoS1kRjOSZo/FX9QuLeFBmL9pbIthb4vq7Wvfjm/k1ahdoGKcGVtb/rkcNgL6aL1H31chb3DqHNW7IGvKB1/dQMCRB5/Wp4+JuzYbUXMlNk54/+LOSTMcq6Zz3TIw8z+pZTR1CSCpEpYAUtyWgx7/DWcOxGoAG3OvLD/ueTD1lW+7NVzlg+N0chmgTQ2rh7j9Vw0ZSFdArl0JXHmgXt9zKd3NQlIQYLguKog9Q3in+aZ5BmQBkekyW3sH9+cF5F+NP0yszh1lMQ==AQAB
+		-->
+		<Item key="g2" value="[SolicitedStatus.WnRKLInformation.EPPPublickeyAndSignature.EPPPK]" size="var" restriction="Manduary"/>
+		<!-- [BASE 64 encoded public key signature]
+		TxMgu1DIpyz1x9OzNZ2NElRXJCtl6vhdq5iP5gr8bPFkfmAjoLEbU9mHDhBKIQf+2HsKt37+x9FzZ6nwSJ+xr0jaTKKUuHJClZglGsDF8Tn9kO9wVntoWcdLwl/Jd0OVnGb/SrL4zqvZPUQM0uCBJD2XMS8EzZB4FDMWwlVdaDDdD8b+U0RCo1P+nvHJVdE+PrUNT2Wes4obJhw1ZNEf530ZWZYOFUghskhihNkxWpgJqRSHdQbLcvbHXjXCu7Aa2jxj6FPYuIXwK9mmosjJUsY6aQo6aAGj8apGvWzzcqD/ktrgAco1w3vfe+TMDCN8VxAMqT698zK6EOqhHvJpJA==
+        -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Manduary"/>
+		<Item key="g2-2" value="[SolicitedStatus.WnRKLInformation.EPPPublickeyAndSignature.EPPPKSignature]" size="var" restriction="Manduary"/>
+	</Sign_EPP_PK>
+	<EPP_KVV>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Error Severity.  Standard code.-->
+		<Item key="f1" value="V" size="1" restriction="Mandatory"/>
+		<Item key="f2" value="[SolicitedStatus.EncryptorInitData.NewKVV]" size="1" restriction="Mandatory"/>
+	</EPP_KVV>
+	<EPP_MasterKVV>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Error Severity.  Standard code.-->
+		<Item key="f1" value="V" size="1" restriction="Mandatory"/>
+		<Item key="f2" value="[SolicitedStatus.EncryptorInitData.MasterKeyKVV]" size="1" restriction="Mandatory"/>
+	</EPP_MasterKVV>
+	<EPP_LocalCommKVV>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Error Severity.  Standard code.-->
+		<Item key="f1" value="V" size="1" restriction="Mandatory"/>
+		<Item key="f2" value="[SolicitedStatus.EncryptorInitData.CommunicationKeyKVV]" size="1" restriction="Mandatory"/>
+	</EPP_LocalCommKVV>
+</Root>

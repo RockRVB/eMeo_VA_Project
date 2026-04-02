@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?> 
+<!--
+此XML配置文件用于非WOSA的扩展设备。
+
+如聚宝网络设备接口：
+    public  class JuboDeviceWrapper : DeviceServiceWrapperBase
+    {
+#region instance
+        private static JuboDeviceWrapper m_singleDevWrapper= null;
+        public static JuboDeviceWrapper Instance
+        {
+            get
+            {
+                if (null == m_singleDevWrapper)
+                {
+                    IDeviceService devService = JuboDevice.Create();
+                    if (null!=devService)
+                    {
+                        devService.Open(".\\Config\\DeviceService\\OtherDevices.xml");
+						m_singleDevWrapper = new JuboDeviceWrapper(devService);
+                    } 
+                }
+                return m_singleDevWrapper;
+            }
+        }
+#endregion
+
+如POS设备接口：
+    public class POSDeviceWrapper : DeviceServiceWrapperBase
+    {
+        #region instance
+        private static POSDeviceWrapper m_singleDevWrapper = null;
+        public static POSDeviceWrapper Instance
+        {
+            get
+            {
+                if (null == m_singleDevWrapper)
+                {
+                    IDeviceService devService = POSDevice.Create();
+                    if (null != devService)
+                    {
+                        devService.Open(".\\Config\\DeviceService\\OtherDevices.xml");
+                        m_singleDevWrapper = new POSDeviceWrapper(devService);
+                    }
+                }
+                return m_singleDevWrapper;
+            }
+        }
+        #endregion
+
+-->
+<OtherDevice1 ServiceName="OtherDevice1" />

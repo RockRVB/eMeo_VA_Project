@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../css/CN.css"  replace="1" />
+<link rel="stylesheet" type="text/css" href="../../css/Button.css" />
+<script defer type="text/javascript" src="../../js/ShowResource.js"></script>
+</head>
+<body>
+<div class="backgroundDiv">
+        <div class="PageTopTitleNew" ids="IDS_TAKENOTEToomuch">
+        </div>
+         <div style="text-align: center">
+            <table cellpadding="0" cellspacing="0" style="width: 420px">
+                <tr>
+                    <td class="RoundCornerCaption" style="height: 30px; width: 33%; text-align: center;"
+                        ids="IDS_DenoValue">
+                    </td>
+                    <td class="RoundCornerCaption" style="width: 37%; text-align: center;" ids="IDS_CurrentCount">
+                    </td>
+                    <td class="RoundCornerCaption" ids="IDS_AllCount" style="width: 33%; text-align: center;">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="RoundCornerContent" ids="IDS_DEPOSIT_100YUAN" style="height: 30px; width: 33%;
+                        text-align: center;">
+                    </td>
+                    <td class="RoundCornerContent" id="tdCur100Count" style="width: 37%; text-align: center;"
+                        type="text" content="{Binding deposit_current_count_CNY100}">
+                    </td>
+                    <td class="RoundCornerContent" id="td100Count" style="width: 33%; text-align: center;"
+                        type="text" content="{Binding deposit_count_CNY100}">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="RoundCornerContent" colspan="3" style="height: 33px; width: 586px; text-align: right;">
+                        <span class="RoundCornerContentFollow" ids="IDS_DEPOSIT_TOTALAMOUNT"></span><span
+                            id="tdAllAmount" type="text" style="color: #AB7D4E;" content="{Binding core_DatabaseAmount}"
+                            format=",###"></span><span style="color: #484848; padding-left: 5px; padding-right: 8px;font-weight:bold; font-family:微软雅黑;"
+                                ids="IDS_TableYuanDep"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="f8Div" id="F8" tag="OnConfirm" type="Button">
+            <img src="../../../Image/CN/Btn_Bg1_right_up.png" id="bgimg" up="(btnbg1rightup)"
+                down="(btnbg1rightdw)" />
+            <span class="buttonRight" ids="IDS_Confirm"></span>
+        </div>
+</div>
+</body>
+</html>

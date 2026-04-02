@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<!--
+	activeKeys: 表明可用的键
+	terminateKeys： 终止键
+	注意：除Maintenance和MaintenanceKeyTest外，无需配置F1~F8的侧键，核心会扫描页面按钮自动添加
+	-->
+	<InputPin activeKeys="1,2,3,4,5,6,7,8,9,0,ENTER,CANCEL,CLEAR,BACKSPACE" terminateKeys="CANCEL"/>
+	<SelectFunction activeKeys="CANCEL" terminateKeys="CANCEL"/>
+	<InputWithdrawalAmount activeKeys="1,2,3,4,5,6,7,8,9,0,00,ENTER,CANCEL,CLEAR,BACKSPACE" terminateKeys="CANCEL"/>
+	<InputInfo activeKeys="1,2,3,4,5,6,7,8,9,0,00,ENTER,CANCEL,CLEAR,BACKSPACE" terminateKeys="CANCEL"/>
+	<InputOtherAmount activeKeys="1,2,3,4,5,6,7,8,9,0,00,.,ENTER,CANCEL,CLEAR,BACKSPACE" terminateKeys="CANCEL"/>
+	<ZeroState activeKeys="" terminateKeys=""/>
+	<InsertCard activeKeys="CANCEL" terminateKeys="CANCEL"/>
+	<EKPSetMasterKey activeKeys="0,1,2,3,4,5,6,7,8,9,CANCEL,CLEAR,HELP,ENTER,00,." terminateKeys="" keyMap="CANCEL=>A;CLEAR=>B;HELP=>C;ENTER=>D;00=>E;.=>F"/>
+	<Maintenance activeKeys="1,2,3,4,5,6,7,8,9,0,00,.,F1,F2,F3,F4,F5,F6,F7,F8,ENTER,CANCEL,CLEAR,HELP" terminateKeys=""/>
+	<MaintenanceKeyTest activeKeys="1,2,3,4,5,6,7,8,9,0,00,F1,F2,F3,F4,F5,F6,F7,F8,ENTER,CANCEL,CLEAR" terminateKeys="ENTER"/>
+</Config>

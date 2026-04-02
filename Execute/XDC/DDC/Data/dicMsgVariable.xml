@@ -1,0 +1,989 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- protocol: DDC -->
+<Root>
+  <Buffer>
+    <Cfg>
+      <Amount>
+        <Item size="1-4" key="DecimalPlaces" value="0" type="security" />
+        <Item size="1-2" key="Size" value="8" type="security" />
+      </Amount>
+    </Cfg>
+    <Item size="var" key="PIN" value="064" type="security" />
+    <Item size="var" key="A" value="065" type="security" />
+    <Item size="var" key="B" value="066" type="security" />
+    <Item size="var" key="C" value="067" type="security" />
+    <Item size="var" key="M" value="067" type="security" />
+    <Item size="0-78" key="Track1" value="088" type="security" />
+    <Item size="0-39" key="Track2" value="089" type="security" />
+    <Item size="1-106" key="Track3" value="090" type="security" />
+  </Buffer>
+  <Device>
+    <CardReader>
+      <Item size="1" key="DeviceID" value="CR01" />
+      <Item size="1" key="MDS" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+    </CardReader>
+    <BillDispenser>
+      <Item size="1" key="DeviceID" value="DI01" />
+      <Item size="1" key="MDS" value="0000" />
+      <Item size="var" key="PhycialDispenseErrorCode" value="0" />
+    </BillDispenser>
+    <CashAcceptor>
+      <Item size="1" key="DeviceID" value="CI01" />
+      <Item size="1" key="MDS" value=":00:00:00" />
+    </CashAcceptor>
+    <EnvelopeDepository>
+      <Item size="1" key="DeviceID" value="DP01" />
+      <Item size="1" key="MDS" value="0000" />
+    </EnvelopeDepository>
+    <ReceiptPrinter>
+      <Item size="1" key="DeviceID" value="PR01" />
+      <Item size="1" key="MDS" value="0000" />
+    </ReceiptPrinter>
+    <JournalPrinter>
+      <Item size="1" key="DeviceID" value="PR02" />
+      <Item size="1" key="MDS" value="0000" />
+    </JournalPrinter>
+    <PINPad>
+      <Item size="1" key="DeviceID" value="EP01" />
+      <Item size="1" key="MDS" value=":00:00:0F" />
+    </PINPad>
+    <Encryption>
+      <Item size="1" key="DeviceID" value="ED01" />
+      <Item size="1" key="MDS" value="0000" />
+    </Encryption>
+    <BarCodeReader>
+      <Item size="1" key="DeviceID" value="BC01" />
+      <Item size="1" key="MDS" value="0000" />
+    </BarCodeReader>
+    <PowerFailure>
+      <Item size="1" key="DeviceID" value="" />
+      <Item size="var" key="MDS" value="****:3E:00:00" />
+    </PowerFailure>
+    <ConfigurationInformation>
+      <Item size="1" key="DeviceID" value="" />
+      <Item size="var" key="MDS" value="" />
+    </ConfigurationInformation>
+    <SupplyCounts>
+      <Item size="1" key="DeviceID" value="" />
+      <Item size="var" key="MDS" value="" />
+    </SupplyCounts>
+    <SupervisoSupplySwitches>
+      <Item size="1" key="DeviceID" value="" />
+      <Item size="var" key="MDS" value="" />
+    </SupervisoSupplySwitches>
+    <Alarm>
+      <Item size="1" key="DeviceID" value="AL01" />
+      <Item size="var" key="MDS" value="" />
+    </Alarm>
+    <SmartCard>
+      <Item size="4" key="DeviceID" value="SV01" />
+      <Item size="3" key="OperationSequenceNumber" value="000" />
+      <Item size="var" key="MDS" value="" />
+    </SmartCard>
+    <Camera>
+      <Item size="4" key="DeviceID" value="CM01" />
+      <Item size="var" key="MDS" value="3A:39:39" />
+    </Camera>
+    <EJ>
+      <Item size="4" key="DeviceID" value="EJ01" />
+      <Item size="var" key="MDS" value="3A:39:39" />
+    </EJ>
+  </Device>
+  <SupplyCounters>
+    <Item size="5" key="CardCaptured" value="00000" />
+    <Item size="5" key="Deposits" value="00000" />
+    <BillDispenser>
+      <Item size="5" key="Diverted" value="00000" />
+      <Item size="5" key="Dumped" value="00000" />
+      <Position1>
+        <Item size="1" key="DemonUpperCase" value="_" />
+        <Item size="1" key="Demon" value="_" />
+        <Item size="5" key="Loaded" value="00000" />
+        <Item size="5" key="Dispensed" value="00001" />
+        <Item size="5" key="Divert1" value="00000" />
+        <Item size="5" key="Divert2" value="00000" />
+        <Item size="5" key="Retract" value="00000" />
+      </Position1>
+      <Position2>
+        <Item size="1" key="DemonUpperCase" value="_" />
+        <Item size="1" key="Demon" value="_" />
+        <Item size="5" key="Loaded" value="00000" />
+        <Item size="5" key="Dispensed" value="00001" />
+        <Item size="5" key="Divert1" value="00000" />
+        <Item size="5" key="Divert2" value="00000" />
+        <Item size="5" key="Retract" value="00000" />
+      </Position2>
+      <Position3>
+        <Item size="1" key="DemonUpperCase" value="_" />
+        <Item size="1" key="Demon" value="_" />
+        <Item size="5" key="Loaded" value="00000" />
+        <Item size="5" key="Dispensed" value="00001" />
+        <Item size="5" key="Divert1" value="00000" />
+        <Item size="5" key="Divert2" value="00000" />
+        <Item size="5" key="Retract" value="00000" />
+      </Position3>
+      <Position4>
+        <Item size="1" key="DemonUpperCase" value="_" />
+        <Item size="1" key="Demon" value="_" />
+        <Item size="5" key="Loaded" value="00000" />
+        <Item size="5" key="Dispensed" value="00000" />
+        <Item size="5" key="Divert1" value="00000" />
+        <Item size="5" key="Divert2" value="00000" />
+        <Item size="5" key="Retract" value="00000" />
+      </Position4>
+      <Position5>
+        <Item size="1" key="DemonUpperCase" value="_" />
+        <Item size="1" key="Demon" value="_" />
+        <Item size="5" key="Loaded" value="00000" />
+        <Item size="5" key="Dispensed" value="00000" />
+        <Item size="5" key="Divert1" value="00000" />
+        <Item size="5" key="Divert2" value="00000" />
+        <Item size="5" key="Retract" value="00000" />
+      </Position5>
+    </BillDispenser>
+    <CoinDispenser>
+      <Position1>
+        <Item size="1" key="Demon" value="A" />
+        <Item size="5" key="Dispensed" value="000000" />
+      </Position1>
+      <Position2>
+        <Item size="1" key="Demon" value="A" />
+        <Item size="5" key="Dispensed" value="000000" />
+      </Position2>
+      <Position3>
+        <Item size="1" key="Demon" value="A" />
+        <Item size="5" key="Dispensed" value="000000" />
+      </Position3>
+      <Position4>
+        <Item size="1" key="Demon" value="A" />
+        <Item size="5" key="Dispensed" value="000000" />
+      </Position4>
+      <Position5>
+        <Item size="1" key="Demon" value="A" />
+        <Item size="5" key="Dispensed" value="000000" />
+      </Position5>
+    </CoinDispenser>
+    <CashAcceptor>
+      <Item size="3" key="NumberOfDenominations" value="001" />
+      <Item size="v" key="CurrencyIDs" value="CNY" />
+      <Item size="v" key="BillValues" value="0000000010" />
+      <!-- in <<Currency Acceptor Hardware Configuration Data>> -->
+      <Item size="2" key="NumberOfBillTypes" value="01" />
+      <Position0>
+        <!-- in <<Currency Acceptor Hardware Configuration Data>>
+					 •0 - Not defined. The cassette might be dispense-only or might be missing. 
+					•1 - Shared accept and dispense reject cassette. 
+					•2 - Recycling cassette. 
+					•5 - Accept-only cassette, accepts all bill types. Refer to the list of bill types at the end of the 
+					currency acceptor hardware configuration data. 
+					•6 - Accept-only cassette, accepts a single denomination, defined in the fields immediately 
+					following this field. 
+					•_ - There is no hardware module at this position. 
+					-->
+        <Item size="1" key="CassetteType" value="1" />
+        <Item size="3" key="CurrencyID" value="000" />
+        <Item size="10" key="BillValue" value="0000000000" />
+        <Item size="5" key="Deposit" value="00000" />
+        <Item size="5" key="Retract" value="00000" />
+      </Position0>
+      <Position1>
+        <Item size="1" key="CassetteType" value="2" />
+        <Item size="3" key="CurrencyID" value="CNY" />
+        <Item size="10" key="BillValue" value="0000000000" />
+        <Item size="5" key="Deposit" value="00000" />
+        <Item size="5" key="Retract" value="00000" />
+      </Position1>
+      <Position2>
+        <Item size="1" key="CassetteType" value="2" />
+        <Item size="3" key="CurrencyID" value="CNY" />
+        <Item size="10" key="BillValue" value="0000000000" />
+        <Item size="5" key="Deposit" value="00000" />
+        <Item size="5" key="Retract" value="00000" />
+      </Position2>
+      <Position3>
+        <Item size="1" key="CassetteType" value="2" />
+        <Item size="3" key="CurrencyID" value="CNY" />
+        <Item size="10" key="BillValue" value="0000000000" />
+        <Item size="5" key="Deposit" value="00000" />
+        <Item size="5" key="Retract" value="00000" />
+      </Position3>
+      <Position4>
+        <Item size="1" key="CassetteType" value="2" />
+        <Item size="3" key="CurrencyID" value="CNY" />
+        <Item size="10" key="BillValue" value="0000000000" />
+        <Item size="5" key="Deposit" value="00000" />
+        <Item size="5" key="Retract" value="00000" />
+      </Position4>
+      <Item size="v" key="CB4" value="00000" />
+      <Item size="v" key="CB3" value="00000" />
+      <Item size="v" key="CB2" value="00000" />
+      <Item size="v" key="RE4" value="00000" />
+      <Item size="v" key="RE3" value="00000" />
+      <Item size="v" key="RE2" value="00000" />
+      <Item size="v" key="A62" value="00000" />
+      <Item size="v" key="A63" value="00000" />
+    </CashAcceptor>
+  </SupplyCounters>
+  <SolicitedStatus>
+    <Item size="6or72" key="NewKVV" value="A1347012" MaxLen="6" />
+    <!--  	* When information identifier = '4':  (Key Status, containing KVVs as follows:)
+        *        characters 6 bytes:        Master Key KVV
+		*        characters 6 bytes:   	  Communication Key KVV
+        *        characters 6 bytes:   	  MAC Key KVV
+        *        characters 6 bytes:   	  B Key KVV
+        *        if a key has not been loaded, its KVV will be six zeroes.
+		-->
+    <Item size="6" key="MasterKeyKVV" value="000000" MaxLen="6" />
+    <Item size="6" key="CommunicationKeyKVV" value="000000" MaxLen="6" />
+    <Item size="6" key="MACKeyKVV" value="000000" MaxLen="6" />
+    <Item size="6" key="BKeyKVV" value="000000" MaxLen="6" />
+    <WnRKLInformation>
+      <EPPCapabilities>
+        <Item size="1" key="Status" value="" />
+        <Item size="2" key="Vendor" value="" />
+      </EPPCapabilities>
+      <EPPIDAndSignature>
+        <Item size="8or16" key="EPPID" value="" type="security" />
+        <Item size="var" key="EPPIDSignature" value="" type="security" />
+      </EPPIDAndSignature>
+      <EPPPublickeyAndSignature>
+        <Item size="var" key="EPPPK" value="" type="security" />
+        <Item size="var" key="EPPPKSignature" value="" type="security" />
+      </EPPPublickeyAndSignature>
+      <ReadyForWnRKL>
+        <Item size="var" key="KVVKeyLoaded" value="" />
+      </ReadyForWnRKL>
+    </WnRKLInformation>
+  </SolicitedStatus>
+  <Msg>
+    <RolloverCount>
+      <Item size="3" key="Position1" value="000" />
+      <Item size="3" key="Position2" value="000" />
+      <Item size="3" key="Position3" value="000" />
+      <Item size="3" key="Position4" value="000" />
+      <Item size="3" key="Position5" value="" />
+    </RolloverCount>
+    <Transaction>
+      <Item size="1" key="TopOfRcptTransFlag" value="1" />
+      <Item size="1" key="MCON" value="1" />
+      <Item size="8" key="OpCode" value="BA      " />
+      <Item size="8or12" key="AmoutEntryField" value="00000000" />
+      <Item size="1" key="RetractOperation" value="0" />
+      <Item size="v" key="BufferGroup" value="" type="security" />
+      <BillDispenser>
+        <Position1>
+          <Item size="1" key="Demon" value="_" />
+        </Position1>
+        <Position2>
+          <Item size="1" key="Demon" value="_" />
+        </Position2>
+        <Position3>
+          <Item size="1" key="Demon" value="_" />
+        </Position3>
+        <Position4>
+          <Item size="1" key="Demon" value="_" />
+        </Position4>
+        <Position5>
+          <Item size="1" key="Demon" value="_" />
+        </Position5>
+      </BillDispenser>
+      <LastFunction>
+        <Item size="4" key="TransactionSerialNumber" value="0000" type="" />
+        <Item size="1" key="Response" value="0" type="" />
+        <Item size="20" key="NotesDispensed" value="00000000000000000000" />
+      </LastFunction>
+      <CashHandler>
+        <!--None;GoodDispense;ShortDispense;NoNotesDispensed;DispensedUnknown;NoNoesDispensedOrCardEjected;SomeNotesRetracted-->
+        <Item size="v" key="Status" value="None" type="" />
+        <Item size="1" key="Dispensed1" value="00" type="" />
+        <Item size="1" key="Dispensed2" value="00" type="" />
+        <Item size="1" key="Dispensed3" value="00" type="" />
+        <Item size="1" key="Dispensed4" value="00" type="" />
+      </CashHandler>
+    </Transaction>
+    <Solicited>
+      <Item size="3" key="AmountOfCoinsDispensed" value="000" />0
+			<Item size="v" key="BufferGroup" value="" /><ReplyReady><Item size="1" key="AdditionalTail" value="" /></ReplyReady><SpecificCmdReject><Item size="1" key="HostMessageIdentifier" value="0" /><HostMessageSubidentifier><Item size="1" key="Class" value="0" /><Item size="1" key="Modifier" value="0" /></HostMessageSubidentifier><Item size="2" key="RejectReasonCode" value="01" /></SpecificCmdReject><Printer><Item size="1" key="DID" value="2" /><Item size="var" key="Status" value="800000" /></Printer><AfterHourDepository><Item size="1" key="DID" value="3" /><Item size="var" key="Status" value="000" /></AfterHourDepository><EnhancedFunctionCommand><Item size="1" key="DID" value="7" /><Item size="var" key="Status" value="000" /></EnhancedFunctionCommand><BillDispenser911><Item size="1" key="DID" value="8" /><Item size="var" key="Status" value="000" /><Item size="var" key="MDS" value="000000" /></BillDispenser911><Presenter911><Item size="1" key="DID" value="9" /><Item size="var" key="Status" value="000" /><Item size="var" key="MDS" value="000000" /></Presenter911><EnvelopeDepository><Item size="1" key="DID" value=":" /><Item size="var" key="Status" value="000" /></EnvelopeDepository><ConfigurationID><Item size="1" key="DID" value="&lt;" /><Status><Item size="4" key="ConfigurationID" value="0000" /><Item size="4" key="Tail" value="0000" /></Status><Item size="var" key="MDS" value="000000" /></ConfigurationID><CardReader><Item size="1" key="DID" value="&gt;" /><Item size="var" key="Status" value="000000" /></CardReader><CardWriter><Item size="1" key="DID" value="=" /><Item size="var" key="Status" value="000" /></CardWriter><BillDispenser><Item size="1" key="DID" value="?" /><Status><Item size="1" key="DeliveryAreaStatus" value="0" /><Item size="2" key="DispenseErrorCode" value="00" /><Item size="1" key="PartialDispenseStatus" value="0" /><Position1><Item size="1" key="CassettePosition" value="1" /><Item size="1" key="Demon" value="_" /><Item size="2" key="NumberOfBillsDispensed" value="00" /><Item size="2" key="NumberOfDivertOperations" value="00" /><Item size="1" key="100BillDispenseFlag" value="0" /><Item size="1" key="100BillDivertFlag" value="0" /><Item size="1" key="NotApplicable" value="0" /></Position1><Position2><Item size="1" key="CassettePosition" value="2" /><Item size="1" key="Demon" value="_" /><Item size="2" key="NumberOfBillsDispensed" value="00" /><Item size="2" key="NumberOfDivertOperations" value="00" /><Item size="1" key="100BillDispenseFlag" value="0" /><Item size="1" key="100BillDivertFlag" value="0" /><Item size="1" key="NotApplicable" value="0" /></Position2><Position3><Item size="1" key="CassettePosition" value="3" /><Item size="1" key="Demon" value="_" /><Item size="2" key="NumberOfBillsDispensed" value="00" /><Item size="2" key="NumberOfDivertOperations" value="00" /><Item size="1" key="100BillDispenseFlag" value="0" /><Item size="1" key="100BillDivertFlag" value="0" /><Item size="1" key="NotApplicable" value="0" /></Position3><Position4><Item size="1" key="CassettePosition" value="4" /><Item size="1" key="Demon" value="_" /><Item size="2" key="NumberOfBillsDispensed" value="00" /><Item size="2" key="NumberOfDivertOperations" value="00" /><Item size="1" key="100BillDispenseFlag" value="0" /><Item size="1" key="100BillDivertFlag" value="0" /><Item size="1" key="NotApplicable" value="0" /></Position4><Position5><Item size="1" key="CassettePosition" value="5" /><Item size="1" key="Demon" value="_" /><Item size="2" key="NumberOfBillsDispensed" value="00" /><Item size="2" key="NumberOfDivertOperations" value="00" /><Item size="1" key="100BillDispenseFlag" value="0" /><Item size="1" key="100BillDivertFlag" value="0" /><Item size="1" key="NotApplicable" value="0" /></Position5></Status></BillDispenser><Presenter><Item size="1" key="DID" value="@" /><Item size="var" key="Status" value="000" /></Presenter><EnvelopeDepository><Item size="1" key="DID" value="A" /><Item size="var" key="Status" value="000" /></EnvelopeDepository><IDM><Item size="1" key="DID" value=" " /><Item size="var" key="Status" value="000" /></IDM><HardwareConfiguration><Item size="1" key="DID" value="B" /><Status><Item size="8" key="Standard" value="02091600000000&lt;?" /><Item size="8" key="Expanded" value="&lt;=000?00??001400" /><Item size="7" key="Double" value="00004800003200" /><Additional><Item size="v" key="CashAcceptor" value="0" type="security" /></Additional></Status></HardwareConfiguration><CheckPoint><Item size="1" key="DID" value="C" /><Item size="20" key="Status" value="00000000000000000000" /></CheckPoint><Cassette><Item size="1" key="DID" value="D" /><Status><Item size="2" key="Hope1" value="=?" /><Item size="2" key="Hope2" value="=?" /><Item size="2" key="Hope3" value="=?" /><Item size="2" key="Hope4" value="=?" /></Status></Cassette><CoinDispenser><Item size="1" key="DID" value="G" /><Item size="var" key="Status" value="000" /></CoinDispenser><SupplyCounts><Item size="1" key="DID" value="H" /></SupplyCounts><ExternalOptionsModule><Item size="1" key="DID" value="I" /><Item size="var" key="Status" value="000" /></ExternalOptionsModule><VersoinDataID><Item size="1" key="DID" value="J" /><Item size="var" key="Status" value="000" /></VersoinDataID></Solicited>
+    <Unsolicited>
+      <Item size="v" key="Log" value="" />
+      <Item size="v" key="BufferGroup" value="" />
+      <PowerFailure>
+        <Item size="1" key="SSF" value="1" />
+        <Item size="var" key="Status" value="" />
+        <Item size="var" key="MDS" value="******" />
+      </PowerFailure>
+      <Alarm>
+        <Item size="1" key="SSF" value="2" />
+        <Item size="var" key="Status" value="00" />
+      </Alarm>
+      <SupervisoSupplySwitches>
+        <Item size="1" key="SSF" value="3" />
+        <Item size="2" key="Status" value="00" />
+      </SupervisoSupplySwitches>
+      <Printer>
+        <Item size="1" key="SSF" value="4" />
+        <Item size="var" key="Status" value="800000" />
+      </Printer>
+      <ReceiptPrinter>
+        <Item size="1" key="SSF" value="4" />
+        <Item size="var" key="Status" value="800000" />
+      </ReceiptPrinter>
+      <JournalPrinter>
+        <Item size="1" key="SSF" value="4" />
+        <Item size="var" key="Status" value="800000" />
+      </JournalPrinter>
+      <CardReader>
+        <Item size="1" key="SSF" value="5" />
+        <Item size="var" key="Status" value="00" />
+      </CardReader>
+      <CardWriter>
+        <Item size="1" key="SSF" value="7" />
+        <Item size="var" key="Status" value="00" />
+      </CardWriter>
+      <DeliveryAreaSensors>
+        <Item size="1" key="SSF" value="&lt;" />
+        <Item size="var" key="Status" value="000" />
+      </DeliveryAreaSensors>
+      <BillDispenser>
+        <Item size="1" key="SSF" value="?" />
+        <Item size="var" key="Status" value="" />
+      </BillDispenser>
+      <Presenter>
+        <Item size="1" key="SSF" value="@" />
+        <Item size="var" key="Status" value="000" />
+      </Presenter>
+      <IDM>
+        <Item size="1" key="SSF" value="A" />
+        <Item size="var" key="Status" value="000" />
+      </IDM>
+      <CoinDispenser>
+        <Item size="1" key="SSF" value="G" />
+        <Item size="var" key="Status" value="000" />
+      </CoinDispenser>
+      <Enhanced>
+        <Item size="1" key="SSF" value="J" />
+        <Item size="var" key="Status" value="000" />
+      </Enhanced>
+      <IDM>
+        <Item size="1" key="SSF" value="0" />
+        <Item size="var" key="Status" value="000" />
+      </IDM>
+    </Unsolicited>
+  </Msg>
+  <BinaryData>
+    <Solicited>
+      <Printer>
+        <Status>
+          <Item size="1" key="07" value="1" />
+          <Item size="1" key="06" value="0" />
+          <Item size="1" key="05" value="0" />
+          <Item size="1" key="04" value="0" />
+          <Item size="1" key="03" value="0" />
+          <Item size="1" key="02" value="0" />
+          <Item size="1" key="01" value="0" />
+          <Item size="1" key="00" value="0" />
+          <Item size="1" key="17" value="0" />
+          <Item size="1" key="16" value="0" />
+          <Item size="1" key="15" value="0" />
+          <Item size="1" key="14" value="0" />
+          <Item size="1" key="13" value="0" />
+          <Item size="1" key="12" value="0" />
+          <Item size="1" key="11" value="0" />
+          <Item size="1" key="10" value="0" />
+          <Item size="1" key="27" value="0" />
+          <Item size="1" key="26" value="0" />
+          <Item size="1" key="25" value="0" />
+          <Item size="1" key="24" value="0" />
+          <Item size="1" key="23" value="0" />
+          <Item size="1" key="22" value="0" />
+          <Item size="1" key="21" value="0" />
+          <Item size="1" key="20" value="0" />
+        </Status>
+      </Printer>
+      <EnhancedFunctionCommand>
+        <Status>
+          <Item size="1" key="07" value="0" />
+          <Item size="1" key="06" value="0" />
+          <Item size="1" key="05" value="0" />
+          <Item size="1" key="04" value="0" />
+          <Item size="1" key="03" value="0" />
+          <Item size="1" key="02" value="0" />
+          <Item size="1" key="01" value="0" />
+          <Item size="1" key="00" value="0" />
+          <Item size="1" key="17" value="0" />
+          <Item size="1" key="16" value="0" />
+          <Item size="1" key="15" value="0" />
+          <Item size="1" key="14" value="0" />
+          <Item size="1" key="13" value="0" />
+          <Item size="1" key="12" value="0" />
+          <Item size="1" key="11" value="0" />
+          <Item size="1" key="10" value="0" />
+          <Item size="1" key="27" value="0" />
+          <Item size="1" key="26" value="0" />
+          <Item size="1" key="25" value="0" />
+          <Item size="1" key="24" value="0" />
+          <Item size="1" key="23" value="0" />
+          <Item size="1" key="22" value="0" />
+          <Item size="1" key="21" value="0" />
+          <Item size="1" key="20" value="0" />
+        </Status>
+      </EnhancedFunctionCommand>
+      <BillDispenser911>
+        <Status>
+          <Item size="1" key="07" value="0" />
+          <Item size="1" key="06" value="0" />
+          <Item size="1" key="05" value="0" />
+          <Item size="1" key="04" value="0" />
+          <Item size="1" key="03" value="0" />
+          <Item size="1" key="02" value="0" />
+          <Item size="1" key="01" value="0" />
+          <Item size="1" key="00" value="0" />
+          <Item size="1" key="17" value="0" />
+          <Item size="1" key="16" value="0" />
+          <Item size="1" key="15" value="0" />
+          <Item size="1" key="14" value="0" />
+          <Item size="1" key="13" value="0" />
+          <Item size="1" key="12" value="0" />
+          <Item size="1" key="11" value="0" />
+          <Item size="1" key="10" value="0" />
+          <Item size="1" key="27" value="0" />
+          <Item size="1" key="26" value="0" />
+          <Item size="1" key="25" value="0" />
+          <Item size="1" key="24" value="0" />
+          <Item size="1" key="23" value="0" />
+          <Item size="1" key="22" value="0" />
+          <Item size="1" key="21" value="0" />
+          <Item size="1" key="20" value="0" />
+        </Status>
+      </BillDispenser911>
+      <Presenter911>
+        <Status>
+          <Item size="1" key="07" value="0" />
+          <Item size="1" key="06" value="0" />
+          <Item size="1" key="05" value="0" />
+          <Item size="1" key="04" value="0" />
+          <Item size="1" key="03" value="0" />
+          <Item size="1" key="02" value="0" />
+          <Item size="1" key="01" value="0" />
+          <Item size="1" key="00" value="0" />
+          <Item size="1" key="17" value="0" />
+          <Item size="1" key="16" value="0" />
+          <Item size="1" key="15" value="0" />
+          <Item size="1" key="14" value="0" />
+          <Item size="1" key="13" value="0" />
+          <Item size="1" key="12" value="0" />
+          <Item size="1" key="11" value="0" />
+          <Item size="1" key="10" value="0" />
+          <Item size="1" key="27" value="0" />
+          <Item size="1" key="26" value="0" />
+          <Item size="1" key="25" value="0" />
+          <Item size="1" key="24" value="0" />
+          <Item size="1" key="23" value="0" />
+          <Item size="1" key="22" value="0" />
+          <Item size="1" key="21" value="0" />
+          <Item size="1" key="20" value="0" />
+        </Status>
+      </Presenter911>
+      <ConfigurationID>
+        <Status>
+          <Tail>
+            <Item size="1" key="27" value="0" />
+            <!-- Supervisor switch -->
+            <Item size="1" key="26" value="0" />
+            <!-- Supply switch -->
+            <Item size="1" key="25" value="0" />
+            <Item size="1" key="24" value="0" />
+            <Item size="1" key="23" value="0" />
+            <Item size="1" key="22" value="0" />
+            <Item size="1" key="21" value="0" />
+            <Item size="1" key="20" value="0" />
+            <Item size="1" key="37" value="0" />
+            <Item size="1" key="36" value="0" />
+            <Item size="1" key="35" value="0" />
+            <Item size="1" key="34" value="0" />
+            <Item size="1" key="33" value="0" />
+            <Item size="1" key="32" value="0" />
+            <Item size="1" key="31" value="0" />
+            <!-- Go In-service flag -->
+            <Item size="1" key="GoInServiceFlag" value="0" comment="30" />
+          </Tail>
+        </Status>
+      </ConfigurationID>
+      <CardReader>
+        <Status>
+          <Item size="1" key="07" value="1" />
+          <Item size="1" key="06" value="0" />
+          <Item size="1" key="05" value="0" />
+          <Item size="1" key="04" value="0" />
+          <Item size="1" key="03" value="0" />
+          <Item size="1" key="02" value="0" />
+          <Item size="1" key="01" value="0" />
+          <Item size="1" key="00" value="0" />
+          <Item size="1" key="17" value="0" />
+          <Item size="1" key="16" value="0" />
+          <Item size="1" key="15" value="0" />
+          <Item size="1" key="14" value="0" />
+          <Item size="1" key="13" value="0" />
+          <Item size="1" key="12" value="0" />
+          <Item size="1" key="11" value="0" />
+          <Item size="1" key="10" value="0" />
+        </Status>
+      </CardReader>
+      <CardWriter>
+        <Status>
+          <Item size="1" key="07" value="0" />
+          <Item size="1" key="06" value="0" />
+          <Item size="1" key="05" value="0" />
+          <Item size="1" key="04" value="0" />
+          <Item size="1" key="03" value="0" />
+          <Item size="1" key="02" value="0" />
+          <Item size="1" key="01" value="0" />
+          <Item size="1" key="00" value="0" />
+          <Item size="1" key="17" value="0" />
+          <Item size="1" key="16" value="0" />
+          <Item size="1" key="15" value="0" />
+          <Item size="1" key="14" value="0" />
+          <Item size="1" key="13" value="0" />
+          <Item size="1" key="12" value="0" />
+          <Item size="1" key="11" value="0" />
+          <Item size="1" key="10" value="0" />
+          <Item size="1" key="27" value="0" />
+          <Item size="1" key="26" value="0" />
+          <Item size="1" key="25" value="0" />
+          <Item size="1" key="24" value="0" />
+          <Item size="1" key="23" value="0" />
+          <Item size="1" key="22" value="0" />
+          <Item size="1" key="21" value="0" />
+          <Item size="1" key="20" value="0" />
+        </Status>
+      </CardWriter>
+      <BillDispenser>
+        <Status>
+          <Item size="1" key="07" value="0" />
+          <Item size="1" key="06" value="0" />
+          <Item size="1" key="05" value="0" />
+          <Item size="1" key="04" value="0" />
+          <Item size="1" key="03" value="0" />
+          <Item size="1" key="02" value="0" />
+          <Item size="1" key="01" value="0" />
+          <Item size="1" key="00" value="0" />
+          <Item size="1" key="17" value="0" />
+          <Item size="1" key="16" value="0" />
+          <Item size="1" key="15" value="0" />
+          <Item size="1" key="14" value="0" />
+          <Item size="1" key="13" value="0" />
+          <Item size="1" key="12" value="0" />
+          <Item size="1" key="11" value="0" />
+          <Item size="1" key="10" value="0" />
+          <Item size="1" key="27" value="0" />
+          <Item size="1" key="26" value="0" />
+          <Item size="1" key="25" value="0" />
+          <Item size="1" key="24" value="0" />
+          <Item size="1" key="23" value="0" />
+          <Item size="1" key="22" value="0" />
+          <Item size="1" key="21" value="0" />
+          <Item size="1" key="20" value="0" />
+        </Status>
+      </BillDispenser>
+      <Presenter>
+        <Status>
+          <Item size="1" key="07" value="0" />
+          <Item size="1" key="06" value="0" />
+          <Item size="1" key="05" value="0" />
+          <Item size="1" key="04" value="0" />
+          <Item size="1" key="03" value="0" />
+          <Item size="1" key="02" value="0" />
+          <Item size="1" key="01" value="0" />
+          <Item size="1" key="00" value="0" />
+          <Item size="1" key="17" value="0" />
+          <Item size="1" key="16" value="0" />
+          <Item size="1" key="15" value="0" />
+          <Item size="1" key="14" value="0" />
+          <Item size="1" key="13" value="0" />
+          <Item size="1" key="12" value="0" />
+          <Item size="1" key="11" value="0" />
+          <Item size="1" key="10" value="0" />
+          <Item size="1" key="27" value="0" />
+          <Item size="1" key="26" value="0" />
+          <Item size="1" key="25" value="0" />
+          <Item size="1" key="24" value="0" />
+          <Item size="1" key="23" value="0" />
+          <Item size="1" key="22" value="0" />
+          <Item size="1" key="21" value="0" />
+          <Item size="1" key="20" value="0" />
+        </Status>
+      </Presenter>
+      <IDM>
+        <Status>
+          <Item size="1" key="07" value="0" />
+          <Item size="1" key="06" value="0" />
+          <Item size="1" key="05" value="0" />
+          <Item size="1" key="04" value="0" />
+          <Item size="1" key="03" value="0" />
+          <Item size="1" key="02" value="0" />
+          <Item size="1" key="01" value="0" />
+          <Item size="1" key="00" value="0" />
+          <Item size="1" key="17" value="0" />
+          <Item size="1" key="16" value="0" />
+          <Item size="1" key="15" value="0" />
+          <Item size="1" key="14" value="0" />
+          <Item size="1" key="13" value="0" />
+          <Item size="1" key="12" value="0" />
+          <Item size="1" key="11" value="0" />
+          <Item size="1" key="10" value="0" />
+          <Item size="1" key="27" value="0" />
+          <Item size="1" key="26" value="0" />
+          <Item size="1" key="25" value="0" />
+          <Item size="1" key="24" value="0" />
+          <Item size="1" key="23" value="0" />
+          <Item size="1" key="22" value="0" />
+          <Item size="1" key="21" value="0" />
+          <Item size="1" key="20" value="0" />
+        </Status>
+      </IDM>
+      <HardwareConfiguration>
+        <Status>
+          <Standard>
+            <Item size="1" key="07" value="0" />
+            <Item size="1" key="06" value="0" />
+            <Item size="1" key="05" value="0" />
+            <Item size="1" key="04" value="0" />
+            <Item size="1" key="03" value="0" />
+            <Item size="1" key="02" value="0" />
+            <Item size="1" key="01" value="1" />
+            <Item size="1" key="00" value="0" />
+            <Item size="1" key="17" value="0" />
+            <Item size="1" key="16" value="0" />
+            <Item size="1" key="15" value="0" />
+            <Item size="1" key="14" value="0" />
+            <Item size="1" key="13" value="1" />
+            <Item size="1" key="12" value="0" />
+            <Item size="1" key="11" value="0" />
+            <Item size="1" key="10" value="1" />
+            <Item size="1" key="27" value="0" />
+            <Item size="1" key="26" value="0" />
+            <Item size="1" key="25" value="0" />
+            <Item size="1" key="24" value="1" />
+            <Item size="1" key="23" value="0" />
+            <Item size="1" key="22" value="1" />
+            <Item size="1" key="21" value="1" />
+            <Item size="1" key="20" value="0" />
+            <Item size="1" key="37" value="0" />
+            <Item size="1" key="36" value="0" />
+            <Item size="1" key="35" value="0" />
+            <Item size="1" key="34" value="0" />
+            <Item size="1" key="33" value="0" />
+            <Item size="1" key="32" value="0" />
+            <Item size="1" key="31" value="0" />
+            <Item size="1" key="30" value="0" />
+            <Item size="1" key="47" value="0" />
+            <Item size="1" key="46" value="0" />
+            <Item size="1" key="45" value="0" />
+            <Item size="1" key="44" value="0" />
+            <Item size="1" key="43" value="0" />
+            <Item size="1" key="42" value="0" />
+            <Item size="1" key="41" value="0" />
+            <Item size="1" key="40" value="0" />
+            <Item size="1" key="57" value="0" />
+            <Item size="1" key="56" value="0" />
+            <Item size="1" key="55" value="0" />
+            <Item size="1" key="54" value="0" />
+            <Item size="1" key="53" value="0" />
+            <Item size="1" key="52" value="0" />
+            <Item size="1" key="51" value="0" />
+            <Item size="1" key="50" value="0" />
+            <Item size="1" key="67" value="0" />
+            <Item size="1" key="66" value="0" />
+            <Item size="1" key="65" value="0" />
+            <Item size="1" key="64" value="0" />
+            <Item size="1" key="63" value="0" />
+            <Item size="1" key="62" value="0" />
+            <Item size="1" key="61" value="0" />
+            <Item size="1" key="60" value="0" />
+            <Item size="1" key="77" value="1" />
+            <Item size="1" key="76" value="1" />
+            <Item size="1" key="75" value="0" />
+            <Item size="1" key="74" value="0" />
+            <Item size="1" key="73" value="1" />
+            <Item size="1" key="72" value="1" />
+            <Item size="1" key="71" value="1" />
+            <Item size="1" key="70" value="1" />
+          </Standard>
+          <Expanded>
+            <Item size="1" key="87" value="1" />
+            <Item size="1" key="86" value="1" />
+            <Item size="1" key="85" value="0" />
+            <Item size="1" key="84" value="0" />
+            <Item size="1" key="83" value="1" />
+            <Item size="1" key="82" value="1" />
+            <Item size="1" key="81" value="0" />
+            <Item size="1" key="80" value="1" />
+            <Item size="1" key="97" value="0" />
+            <Item size="1" key="96" value="0" />
+            <Item size="1" key="95" value="0" />
+            <Item size="1" key="94" value="0" />
+            <Item size="1" key="93" value="0" />
+            <Item size="1" key="92" value="0" />
+            <Item size="1" key="91" value="0" />
+            <Item size="1" key="90" value="0" />
+            <Item size="1" key="107" value="0" />
+            <Item size="1" key="106" value="0" />
+            <Item size="1" key="105" value="0" />
+            <Item size="1" key="104" value="0" />
+            <Item size="1" key="103" value="1" />
+            <Item size="1" key="102" value="1" />
+            <Item size="1" key="101" value="1" />
+            <Item size="1" key="100" value="1" />
+            <Item size="1" key="117" value="0" />
+            <Item size="1" key="116" value="0" />
+            <Item size="1" key="115" value="0" />
+            <Item size="1" key="114" value="0" />
+            <Item size="1" key="113" value="0" />
+            <Item size="1" key="112" value="0" />
+            <Item size="1" key="111" value="0" />
+            <Item size="1" key="110" value="0" />
+            <Item size="1" key="127" value="1" />
+            <Item size="1" key="126" value="1" />
+            <Item size="1" key="125" value="1" />
+            <Item size="1" key="124" value="1" />
+            <Item size="1" key="123" value="1" />
+            <Item size="1" key="122" value="1" />
+            <Item size="1" key="121" value="1" />
+            <Item size="1" key="120" value="1" />
+            <Item size="1" key="137" value="0" />
+            <Item size="1" key="136" value="0" />
+            <Item size="1" key="135" value="0" />
+            <Item size="1" key="134" value="0" />
+            <Item size="1" key="133" value="0" />
+            <Item size="1" key="132" value="0" />
+            <Item size="1" key="131" value="0" />
+            <Item size="1" key="130" value="0" />
+            <Item size="1" key="147" value="0" />
+            <Item size="1" key="146" value="0" />
+            <Item size="1" key="145" value="0" />
+            <Item size="1" key="144" value="1" />
+            <Item size="1" key="143" value="0" />
+            <Item size="1" key="142" value="1" />
+            <Item size="1" key="141" value="0" />
+            <Item size="1" key="140" value="0" />
+            <Item size="1" key="157" value="0" />
+            <Item size="1" key="156" value="0" />
+            <Item size="1" key="155" value="0" />
+            <Item size="1" key="154" value="0" />
+            <Item size="1" key="153" value="0" />
+            <Item size="1" key="152" value="0" />
+            <Item size="1" key="151" value="0" />
+            <Item size="1" key="150" value="0" />
+          </Expanded>
+          <Double>
+            <Item size="1" key="167" value="0" />
+            <Item size="1" key="166" value="0" />
+            <Item size="1" key="165" value="0" />
+            <Item size="1" key="164" value="0" />
+            <Item size="1" key="163" value="0" />
+            <Item size="1" key="162" value="0" />
+            <Item size="1" key="161" value="0" />
+            <Item size="1" key="160" value="0" />
+            <Item size="1" key="177" value="0" />
+            <Item size="1" key="176" value="0" />
+            <Item size="1" key="175" value="0" />
+            <Item size="1" key="174" value="0" />
+            <Item size="1" key="173" value="0" />
+            <Item size="1" key="172" value="0" />
+            <Item size="1" key="171" value="0" />
+            <Item size="1" key="170" value="0" />
+            <Item size="1" key="187" value="0" />
+            <Item size="1" key="186" value="1" />
+            <Item size="1" key="185" value="0" />
+            <Item size="1" key="184" value="0" />
+            <Item size="1" key="183" value="1" />
+            <Item size="1" key="182" value="0" />
+            <Item size="1" key="181" value="0" />
+            <Item size="1" key="180" value="0" />
+            <Item size="1" key="197" value="0" />
+            <Item size="1" key="196" value="0" />
+            <Item size="1" key="195" value="0" />
+            <Item size="1" key="194" value="0" />
+            <Item size="1" key="193" value="0" />
+            <Item size="1" key="192" value="0" />
+            <Item size="1" key="191" value="0" />
+            <Item size="1" key="190" value="0" />
+            <Item size="1" key="207" value="0" />
+            <Item size="1" key="206" value="0" />
+            <Item size="1" key="205" value="0" />
+            <Item size="1" key="204" value="0" />
+            <Item size="1" key="203" value="0" />
+            <Item size="1" key="202" value="0" />
+            <Item size="1" key="201" value="0" />
+            <Item size="1" key="200" value="0" />
+            <Item size="1" key="217" value="0" />
+            <Item size="1" key="216" value="0" />
+            <Item size="1" key="215" value="1" />
+            <Item size="1" key="214" value="1" />
+            <Item size="1" key="213" value="0" />
+            <Item size="1" key="212" value="0" />
+            <Item size="1" key="211" value="1" />
+            <Item size="1" key="210" value="0" />
+            <Item size="1" key="227" value="0" />
+            <Item size="1" key="226" value="0" />
+            <Item size="1" key="225" value="0" />
+            <Item size="1" key="224" value="0" />
+            <Item size="1" key="223" value="0" />
+            <Item size="1" key="222" value="0" />
+            <Item size="1" key="221" value="0" />
+            <Item size="1" key="220" value="0" />
+          </Double>
+          <Additional>
+            <Item size="v" key="167" value="0" />
+          </Additional>
+        </Status>
+      </HardwareConfiguration>
+      <Reserve>
+        <Status>
+          <Item size="1" key="07" value="0" />
+          <Item size="1" key="06" value="0" />
+          <Item size="1" key="05" value="0" />
+          <Item size="1" key="04" value="0" />
+          <Item size="1" key="03" value="0" />
+          <Item size="1" key="02" value="0" />
+          <Item size="1" key="01" value="0" />
+          <Item size="1" key="00" value="0" />
+          <Item size="1" key="17" value="0" />
+          <Item size="1" key="16" value="0" />
+          <Item size="1" key="15" value="0" />
+          <Item size="1" key="14" value="0" />
+          <Item size="1" key="13" value="0" />
+          <Item size="1" key="12" value="0" />
+          <Item size="1" key="11" value="0" />
+          <Item size="1" key="10" value="0" />
+          <Item size="1" key="27" value="0" />
+          <Item size="1" key="26" value="0" />
+          <Item size="1" key="25" value="0" />
+          <Item size="1" key="24" value="0" />
+          <Item size="1" key="23" value="0" />
+          <Item size="1" key="22" value="0" />
+          <Item size="1" key="21" value="0" />
+          <Item size="1" key="20" value="0" />
+        </Status>
+      </Reserve>
+    </Solicited>
+    <Unsolicited>
+      <Printer>
+        <Status>
+          <Item size="1" key="07" value="1" />
+          <Item size="1" key="06" value="0" />
+          <Item size="1" key="05" value="0" />
+          <Item size="1" key="04" value="0" />
+          <Item size="1" key="03" value="0" />
+          <Item size="1" key="02" value="0" />
+          <Item size="1" key="01" value="0" />
+          <Item size="1" key="00" value="0" />
+          <Item size="1" key="17" value="0" />
+          <Item size="1" key="16" value="0" />
+          <Item size="1" key="15" value="0" />
+          <Item size="1" key="14" value="0" />
+          <Item size="1" key="13" value="0" />
+          <Item size="1" key="12" value="0" />
+          <Item size="1" key="11" value="0" />
+          <Item size="1" key="10" value="0" />
+          <Item size="1" key="27" value="0" />
+          <Item size="1" key="26" value="0" />
+          <Item size="1" key="25" value="0" />
+          <Item size="1" key="24" value="0" />
+          <Item size="1" key="23" value="0" />
+          <Item size="1" key="22" value="0" />
+          <Item size="1" key="21" value="0" />
+          <Item size="1" key="20" value="0" />
+        </Status>
+      </Printer>
+      <Alarm>
+        <Status>
+          <Item size="1" key="07" value="0" />
+          <Item size="1" key="06" value="0" />
+          <Item size="1" key="05" value="0" />
+          <Item size="1" key="04" value="0" />
+          <Item size="1" key="03" value="0" />
+          <Item size="1" key="02" value="0" />
+          <Item size="1" key="01" value="0" />
+          <Item size="1" key="00" value="0" />
+        </Status>
+      </Alarm>
+      <SupervisoSupplySwitches>
+        <Status>
+          <Item size="1" key="07" value="0" />
+          <Item size="1" key="06" value="0" />
+          <Item size="1" key="05" value="0" />
+          <Item size="1" key="04" value="0" />
+          <Item size="1" key="03" value="0" />
+          <Item size="1" key="02" value="0" />
+          <Item size="1" key="01" value="0" />
+          <Item size="1" key="00" value="0" />
+        </Status>
+      </SupervisoSupplySwitches>
+      <CardReader>
+        <Status>
+          <Item size="1" key="07" value="1" />
+          <Item size="1" key="06" value="0" />
+          <Item size="1" key="05" value="0" />
+          <Item size="1" key="04" value="0" />
+          <Item size="1" key="03" value="0" />
+          <Item size="1" key="02" value="0" />
+          <Item size="1" key="01" value="0" />
+          <Item size="1" key="00" value="0" />
+        </Status>
+      </CardReader>
+    </Unsolicited>
+  </BinaryData>
+  <Item size="1" key="FS" value="" type="security" />
+  <Item size="1" key="GS" value="" type="security" />
+  <Item size="1" key="RS" value="" type="security" />
+  <Item size="1" key="US" value="" type="security" />
+  <Item size="1" key="ETX" value="" type="security" />
+  <Item size="3or9" key="LUNO" value="000" />
+  <Item size="8" key="TVN" value="" />
+  <Item size="1" key="LastStatusIssued" value="0" />
+  <Item size="4" key="ConfigurationID" value="0000" />
+  <Item size="8" key="MAC" value="[MACTAG]" type="security" />
+  <SendCondition>
+    <Current>
+      <Item size="1" key="ErrFunctionID" value="0" type="" />
+      <Item size="0-255" key="ReceiveMsgID" value="FunctionCommand4" type="" />
+      <Item size="0-255" key="SendMsgID" value="Solicited.Status.TransReplyReady" type="" />
+      <Item size="0-255" key="SendMsgIDInTran" value="Solicited.Status.TransReplyReady" type="" />
+      <Item size="0-999" key="EventID" value="10000" type="" />
+    </Current>
+    <Event>
+      <Item size="1" key="Current" value="4" type="" />
+    </Event>
+    <FiledControl>
+      <Item size="1" key="ReplyOAR" value="0" type="" />
+    </FiledControl>
+    <DeviceStatusChange>
+      <Item size="1" key="CardReader" value="0" />
+      <Item size="1" key="ReceiptPrinter" value="0" />
+      <Item size="1" key="JournalPrinter" value="0" />
+      <Item size="1" key="Encryptor" value="0" />
+      <Item size="1" key="CashHandler" value="0" />
+      <Item size="1" key="CashAcceptor" value="0" />
+      <Item size="1" key="EnvelopeDispenser" value="0" />
+      <Item size="1" key="EnvelopeDepository" value="0" />
+      <Item size="1" key="BarCodeReader" value="0" />
+      <Item size="1" key="Alarm" value="0" />
+      <Sensors>
+        <Item size="1" key="ModeChange" value="0" />
+        <Item size="1" key="SensorChange" value="1" />
+      </Sensors>
+    </DeviceStatusChange>
+    <DeviceEventOccur>
+      <Item size="1" key="CashHandler" value="0" />
+      <Sensors>
+        <Item size="1" key="ModeChange" default="0" />
+      </Sensors>
+    </DeviceEventOccur>
+  </SendCondition>
+  <TranReplyMsg>
+    <Item size="var" key="ID" value="Solicited.Status.TransReplyReady" />
+    <Item size="3" key="OperationSequenceNumber" value="001" />
+  </TranReplyMsg>
+</Root>

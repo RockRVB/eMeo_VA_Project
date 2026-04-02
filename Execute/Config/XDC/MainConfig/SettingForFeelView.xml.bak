@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Setting>
+    <Item key="SendTrasactionMsg" value="0" valueType="string" />
+    <Item key="AmountBufferDecimalCount" value="2" valueType="string" />
+    <Item key="SendOcrImage4FV" value="0" valueType="string" />
+    <Item key="AgenOcriniPath" value="D:\AmmApi\OCR\" valueType="string" />
+    <Item key="AgenOcrImagePath" value="D:\AMMAPI\OCR\Image\" valueType="string" />
+    <Item key="OcrCurrency" value="CNY" valueType="string" />
+    <Item key="SnrInfoBackupPath" value="D:\GRGBanking\SNRInfoBackup\" valueType="string" />
+  </Setting>
+  <OptCode2TransType>
+    <Item transType="INQ" optcode="BA   C  " />
+    <Item transType="CWD" optcode="AA A C  ;AA B C  " />
+    <Item transType="DEP" optcode="CC      " />
+  </OptCode2TransType>
+</Root>

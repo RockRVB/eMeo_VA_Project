@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Data>
+    <Item key="000" value="CNY0000000100000001" />
+    <Item key="001" value="CNY0000000050000001" />
+    <Item key="002" value="CNY0000000020000001" />
+    <Item key="003" value="CNY0000000010000001" />
+    <Item key="004" value="CNY0000000005000001" />
+    <Item key="005" value="RUB0000000100000001" />
+    <Item key="006" value="RUB0000000010000001" />
+    <Item key="007" value="RUB0000000500000001" />
+    <Item key="008" value="RUB0000001000000001" />
+    <Item key="009" value="RUB0000000050000001" />
+    <Item key="010" value="USD0000000001000001" />
+    <Item key="011" value="USD0000000010000001" />
+    <Item key="012" value="USD0000000020000001" />
+    <Item key="013" value="USD0000000050000001" />
+    <Item key="014" value="USD0000000100000001" />
+  </Data>
+</Root>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+  <BaseSetting>
+    <Item key="NetWorkSession" value="VTAService" />
+    <Item key="SendMessageTimeout" value="60000" />
+    <Item key="XMLConfigFile" value="" />
+	<Item key="JsonConfigFile" value="Config\DataFormatterService\VTMAJson.json" />
+	<Item key="EncryptPassword" value="19999991" />
+	<Item key="IsEncrypt" value="false" />
+	<Item key="IsRecordMessage" value="false" />
+	<Item key="IsEncrypt4FEEL" value="true" />
+  </BaseSetting>
+  <SensitiveFields>
+     <!--此列表对应XML格式的restful服务需屏蔽日志字段，"RestfulXml"关键字不能改-->
+	 <!--Item key="RestfulXml" value="NAME,ID_NUMBER,PLACECOUNTRY,EMAIL"/-->
+     <!--从此字关键字往下，均是jso格式的restful服务需屏蔽日志字段，Key值对应restful.json里对应的服务名-->	 
+	 <!--Item key="FBLOGIN" value="code;password;sceneKey;type;username"/-->
+  </SensitiveFields>
+</Config>

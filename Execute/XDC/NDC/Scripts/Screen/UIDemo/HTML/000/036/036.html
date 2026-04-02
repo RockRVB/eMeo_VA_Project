@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" >
+<link rel="stylesheet" type="text/css" href="../../css/default.css" />
+<link rel="stylesheet" type="text/css" href="../../css/Button.css" />
+<SCRIPT type="text/javascript" src="../../js/util.js" ></SCRIPT>
+</head>
+<body>
+	<header>
+		<div id="logo">
+			welcome to use
+		</div>
+		<div id="showTime"></div>	
+	</header>   
+<div id="headerNav">
+        <div class="exit" id="CANCEL" tag="OnCancel" type="Button" >exit</div>
+    </div>
+
+		<div class="form" >
+				<!--<div   class="login">The maximum withdrawal amount is: <span id="Prompt2" type="text" content="{Binding maxWithdrawalAmount}"></span></div>-->
+				<div   class="login">Please key in amount in multiples of 100 <!--fill [225,1] begin--><!--fill end--><BR>then press ENTER</div>
+					<div class="password" >
+						<input content="{Binding InputText}" type="text" placeholder="amount" id="AMTENTRYText"  name="info_entry" maxlength="12" />
+					</div>
+				</div>	
+		
+<!--<body>
+<div class="backgroundDiv">
+  <div class="CounterDiv" style="display:none" id="Counter" type="countdown" content="{Binding Count}" visible="{Binding CouterVisible}"> </div>
+  <div class="mainDivTwoLines" id="Prompt" type="textblock" ids="IDS_InputWithdrawalAmount"> </div>
+  <div class="inputDiv">
+    <input class="inputTextCenterAlign" id="InputWithdrawalAmount" type="text" size="12" content="{Binding saveBuffer}" />
+  </div>
+  <div class="promptDiv"> <span class="promptNormalText" ids="IDS_SupplyWithdrawalDenomination"> </span>&nbsp;<span class="promptKeyText" id="Prompt1" type="text" content="{Binding core_WithdrawalDenomination}"></span>&nbsp;<span class="promptNormalText" id="Prompt" ids="IDS_Currency"></span> </div>
+  <div class="promptDiv"> <span class="promptNormalText" ids="IDS_MaxWithdrawalAmount"></span> &nbsp;<span class="promptKeyText" id="Prompt2" type="text" content="{Binding maxWithdrawalAmount}"></span>&nbsp;<span class="promptNormalText" id="Prompt" ids="IDS_Currency"></span> </div> 
+  <div class="f1Div" id="F1" tag="OnF1" type="Button" visible="{Binding F1_Visible}"> <img src="../../../Image/CN/Btn_Bg1_left_up.png" id="bgimg" up="(btnbg1leftup)" down="(btnbg1leftdw)" /> <span class="buttonLeft_num" ids="IDS_Note100"></span> </div>
+  <div class="f2Div" id="F2" tag="OnF2" type="Button" visible="{Binding F2_Visible}"> <img src="../../../Image/CN/Btn_Bg1_right_up.png" id="bgimg" up="(btnbg1rightup)" down="(btnbg1rightdw)" /> <span class="buttonRight_num" ids="IDS_Note2000"></span> </div>
+  <div class="f3Div" id="F3" tag="OnF3" type="Button" visible="{Binding F3_Visible}"> <img src="../../../Image/CN/Btn_Bg1_left_up.png" id="bgimg" up="(btnbg1leftup)" down="(btnbg1leftdw)" /> <span class="buttonLeft_num" ids="IDS_Note500"></span> </div>
+  <div class="f4Div" id="F4" tag="OnClear" type="Button"> <img src="../../../Image/CN/Btn_Bg3_right_up.png" id="bgimg" up="(btnbg3rightup)" down="(btnbg3rightdw)" /> <span class="buttonRight" ids="IDS_Clear"></span> </div>
+  <div class="f5Div" id="F5" tag="OnF5" type="Button" visible="{Binding F5_Visible}"> <img src="../../../Image/CN/Btn_Bg1_left_up.png" id="bgimg" up="(btnbg1leftup)" down="(btnbg1leftdw)" /> <span class="buttonLeft_num" ids="IDS_Note800"></span> </div>
+  <div class="f6Div" id="F6" tag="OnConfirm" type="Button"> <img src="../../../Image/CN/Btn_Bg1_right_up.png" id="bgimg" up="(btnbg1rightup)" down="(btnbg1rightdw)" /> <span class="buttonRight" ids="IDS_Confirm"></span> </div>
+  <div class="f7Div" id="F7" tag="OnF7" type="Button" visible="{Binding F7_Visible}"> <img src="../../../Image/CN/Btn_Bg1_left_up.png" id="bgimg" up="(btnbg1leftup)" down="(btnbg1leftdw)" /> <span class="buttonLeft_num" ids="IDS_Note1000"></span> </div>
+  <div class="f8Div" id="F8" tag="OnContinue" type="Button"> <img src="../../../Image/CN/Btn_Bg2_right_up.png" id="bgimg" up="(btnbg2rightup)" down="(btnbg2rightdw)" /> <span class="buttonRight" ids="IDS_Return"></span> </div>
+</div>
+-->
+</body>
+</html>

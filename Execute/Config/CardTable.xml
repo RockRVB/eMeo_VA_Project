@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ******************************************************************************************************
+	     卡表配置文件设置了ATMC获取持卡人的卡片磁道信息或账号信息，然后查找匹配的卡BIN，
+	 得到对应的卡类型，卡PIN的长度以及其它配置信息
+         每条卡BIN的配置信息按照磁道号(track)和偏移(offset)分组形成匹配组。检测磁道信息时，相同磁道号不同偏移值的匹配组
+	 将一并参与检测。如果检测不是磁道信息，是直接的账号信息（比如无卡存款或IC卡），则所有的匹配组都将参与检测。
+		 卡BIN配置信息读取顺序是从上到下，依次读取解析。如果存在相同的卡BIN，则以首次读取解析的卡BIN为准，其它重复的卡BIN被忽略
+		 如果一个匹配组中存在多个通用匹配，则只保留第一个读取到的通用匹配。如果同磁道号不同偏移组中存在多个通用匹配，则只有
+     偏移值为0的匹配组中的通用匹配被采用。
+	     匹配检测的顺序是： 检测磁道2匹配组 -> 检测磁道1匹配组 -> 检测磁道3匹配组。当一个磁道匹配组的匹配失败时，将检测是
+	 否存在通用匹配卡BIN（?）。如果存在，则开始读取对应的配置信息，不存在则尝试下个磁道匹配组。如果检测的是非磁道信息，
+	 则只检测磁道号为2的匹配组是否存在通用匹配，不存在则返回失败，存在则读取配置信息。
+		 当检测到有匹配的磁道信息后，ecat会尝试根据配置信息中偏移值，磁道号和最大账号长度(maxPANLen)，从偏移值开始，一直读取磁道
+	 信息直到长度达到最大账号长度或'='，形成账号信息，最后会检测账号信息长度是否在最小账号长度(minPANLen)和最大账号长度之间。如果
+	 不是符合，则会返回无效卡（InvalidCard）。如果符合，则会返回具体的配置信息。
+         当检测非磁道信息时，则会默认检测的数据就是账号。不过，仍然会根据配置的最小账号长度和最大账号长度，检测数据长度是否
+	 合法。处理的方式同检测磁道信息。
+		 <CardTableConfig> 是所有匹配组的父节点，包含了所有的匹配组配置。
+		 <Match> 定义了一个匹配组，包含以下属性:
+			offset:表示磁道的偏移信息 ，必须大于或等于0，小于0被忽略 （必须）
+            track: 表示磁道号，必须大于0，小于0被忽略                 (必须)
+            <CardTable>定义了一条卡BIN匹配配置信息,包含以下属性:
+			    minCardBIN:表示最小的卡BIN信息                        (必须)
+                maxCardBIN:表示最大的卡BIN信息                        (必须)
+                     注意: minCardBin必须小于或等于maxCardBin,且非负数。 如果minCardBin小于maxCardBin，则在minCardBin和maxCardBin
+						   之间的卡BIN都有同样的配置信息。比如minCardBIN为"400937"，maxCardBIN为"400942"，则卡BIN"400937" "400938" "400939"
+                           "400940" "400941" "400942"都将考虑匹配该条配置信息。基于计算机表示数字位数限制，如果minCardBIN或maxCardBin的信息
+                           位数大于19位，则minCardBIN和maxCardBIN必须相同，否则该条配置将被忽略
+						   当minCardBIN和maxCardBIN均配置成?时，表示匹配不到卡表时，该卡要定义成什么类型
+				minPANLen: 表示最小账号长度                           (必须)
+                maxPANLen: 表示最大账号长度                           (必须)
+                     注意: minPANLen必须小于或等于maxPANLen,且非负数
+                minPinLen: 表示最小PIN长度                            (必须)
+                maxPinLen: 表示最大PIN长度                            (必须)
+                     注意: minPinLen必须小于或等于maxPinLen,且非负数
+                cardType:  表示卡类型                                 (必须)
+				cardBinOffset: 表示卡bin的偏移数                      （必须）
+				PANOffset: 表示账号的偏移数                           (必须)
+				PANHeadPattern: 表示帐号的头部模板（用以表示长度）    (可选)
+					NoHead: 没有长度头 （默认）
+					L1L2_ASCII: 两个ascii字符表示长度
+                language:  表示语言设置                               (可选)
+                comment:   表示说明信息                               (可选)
+	matchStyle: 指定匹配的风格
+			1： 指定按照长度优先的方式匹配
+			2： 指定按照顺序优选的方式匹配
+     ******************************************************************************************************  -->
+<Config matchStyle="1">
+	<CardTableConfig>
+		<CardTable cardBinOffset="0" track="2" PANOffset="0" minCardBIN="6216207500" maxCardBIN="6216207500" minPANLen="13" maxPANLen="19" minPinLen="6" maxPinLen="6" language="0" cardType="3" description=""/>
+		<CardTable cardBinOffset="0" track="2" PANOffset="0" minCardBIN="400937" maxCardBIN="400942" minPANLen="13" maxPANLen="16" minPinLen="4" maxPinLen="6" language="0" cardType="1" description=""/>
+		<CardTable cardBinOffset="0" track="2" PANOffset="0" minCardBIN="424902" maxCardBIN="424902" minPANLen="13" maxPANLen="16" minPinLen="4" maxPinLen="6" language="0" cardType="2" description=""/>
+		<CardTable cardBinOffset="0" track="2" PANOffset="0" minCardBIN="6231" maxCardBIN="6232" minPANLen="13" maxPANLen="19" minPinLen="4" maxPinLen="6" language="0" cardType="1" description=""/>
+		<CardTable cardBinOffset="0" track="2" PANOffset="0" minCardBIN="6224" maxCardBIN="6224" minPANLen="13" maxPANLen="17" minPinLen="4" maxPinLen="6" language="0" cardType="1" description=""/>
+		<CardTable cardBinOffset="3" track="3" PANOffset="0" minCardBIN="6231" maxCardBIN="6232" minPANLen="13" maxPANLen="19" minPinLen="4" maxPinLen="6" language="0" cardType="1" description=""/>
+		<CardTable cardBinOffset="0" track="2" PANOffset="0" minCardBIN="?" maxCardBIN="?" minPANLen="13" maxPANLen="19" minPinLen="4" maxPinLen="6" language="0" cardType="9" description=""/>
+		<CardTable cardBinOffset="0" track="3" PANOffset="0" minCardBIN="?" maxCardBIN="?" minPANLen="13" maxPANLen="19" minPinLen="4" maxPinLen="6" language="0" cardType="9" description=""/>
+	</CardTableConfig>
+	<!--PassbookTableConfig>
+		<CheckSpecialCfg matchTrack2Len="23" matchTrack2MustValue="" matchTrack3Len="3" matchTrack3MustValue=""/>
+		<PassbookTable matchTrack="" matchOffset="" minCardBIN="" maxCardBIN="" PANTrack="2" PANOffset="0" minPANLen="13" maxPANLen="19" minPinLen="6" maxPinLen="6" language="0" cardType="pb" description="存折"/>
+	</PassbookTableConfig-->
+</Config>

@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<A4PrinterService timeout="20000" polling="30000" waitPrintOK="4000">
+</A4PrinterService>

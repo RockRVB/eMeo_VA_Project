@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<script defer type="text/javascript" src="../../js/ShowResource.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../css/ConfigEditing.css" />
+</head>
+<body>
+<div id="Div2" >	
+	<form method="post">
+	 <fieldset id="Group1">
+		<legend class="FontSize">EMV Setting</legend>
+		<table>
+			<tr>
+				<td>			  
+					<Label type="text">TransReqFromIni</Label>					
+				</td>
+				<td>
+					<select id="Select22" type="select" selectValue="{Binding value file=Config\XDC\MainConfig\MainConfig.xml xpath=/Root/EMVData/OperationIdentifier/Item[@key='TransReqFromIni'] mode=2}">
+					   <option value="Data_TransReq">Data_TransReq</option>
+					   <option value="DataObjForTransReq">DataObjForTransReq</option>					   		   
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>			  
+					<Label type="text">ReadBReqFromIni</Label>					
+				</td>
+				<td>
+					<select id="Select21" type="select" selectValue="{Binding value file=Config\XDC\MainConfig\MainConfig.xml xpath=/Root/EMVData/OperationIdentifier/Item[@key='ReadBReqFromIni'] mode=2}">
+					   <option value="Data_Completion">Data_Completion</option>
+					   <option value="DataObjForCompData">DataObjForCompData</option>					   		   
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>			  
+					<Label type="text">Set Default AID</Label>
+				</td>
+				<td>			  
+					<input id="textBox1102" type="text" content="{Binding value file=Config\XDC\MainConfig\MainConfig.xml xpath=/Root/EMVData/NDCEMVConfig/Item[@key='DefaultAID'] mode=2}"/>			
+				</td>				
+			</tr>				
+		</table>
+		</fieldset><BR>	
+	<fieldset id="Group2">
+		<legend class="FontSize">Add New TAG</legend>
+		<table>
+			<tr>
+				<td>			  
+					<Label type="text">TAG NAME</Label>					
+				</td>
+				<td>
+					<input id="textBox1103" type="text" content="{Binding value file=Config\XDC\MainConfig\MainConfig.xml xpath=/Root/EMVData/AddSetTag/Item[@key='TagName'] mode=2}"/>
+				</td>
+			</tr>
+			<tr>
+				<td>			  
+					<Label type="text">TAG VALUE</Label>					
+				</td>
+				<td>
+					<input id="textBox1104" type="text" content="{Binding value file=Config\XDC\MainConfig\MainConfig.xml xpath=/Root/EMVData/AddSetTag/Item[@key='TagValue'] mode=2}"/>
+				</td>
+			</tr>				
+		</table>
+		</fieldset><BR>		
+	<input id="Submit1" type="submit" value="Cancel" tag="OnCancel" ><input id="Submit2" type="submit" value="Submit" tag="OnConfirm" ></form>
+</div>
+</body> 
+</html>

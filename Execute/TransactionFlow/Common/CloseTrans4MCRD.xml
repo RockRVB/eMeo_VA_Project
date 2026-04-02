@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="CloseTrans4MCRD">
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for closing transaction"/>
+	<DataPool>
+  </DataPool>
+	<Activities>
+		<Start ID="0" comment="Start" shield="0" videoarea="false" homeVisible="0" callVisible="0" endflag="0">
+			<Forward event="OnConfirm" targetID="ID_CompareReturnCardFlag"/>
+		</Start>
+		
+		<CompareData ID="ID_CompareReturnCardFlag" comment="是否设置强制吞卡标志位" compareBuffer="{VTM_DebitReturnCardFlag}">
+			<Forward event="OnEqualTrue" targetID="ID_SetDispenseCardData"/>
+			<DefaultForward targetID="ID_CloseTransaction"/>
+		</CompareData>
+
+		<SetData ID="ID_SetDispenseCardData" saveBuffer="{VTM_DebitReturnCardFlag}" value="False">
+		  <Forward event="OnConfirm" targetID="ID_CloseTransactionReturnCard"/>
+		</SetData>
+
+		<CloseTransEx ID="ID_CloseTransactionReturnCard" UI="UI_EjectingCard" ImgPath1="c:\picture" ImgPath2="c:\SignPath" comment="Close transaction" forceCaptureCardAndReason="1">
+		  <States>
+			<State name="TakeCard" UI="UI_TakeCard"/>
+			<State name="TransTimeOut" UI="UI_TransTimeOut"/>
+			<State name="KeyError" UI="UI_KeyError"/>
+			<State name="InvalidCard" UI="UI_InvalidCard"/>
+			<State name="HardwareError" UI="UI_HardwareError"/>
+			<State name="GeneralError" UI="UI_GeneralError"/>
+			<State name="CapturingCard" UI="UI_CapturingCard"/>
+			<State name="CaptureCardForTimeout" UI="UI_CaptureCardForTimeout"/>
+			<State name="CaptureCard" UI="UI_CaptureCard"/>
+			<State name="ThankYou" UI="UI_ThankYou"/>
+			<State name="InputWithdrawalAmountExceedRetryTimes" UI="UI_InputWithdrawalAmountExceedRetryTimes"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_InvokeMainWorkflow"/>
+		  <Forward event="OnCaptureCard" targetID="ID_GetDevStatus"/>
+		</CloseTransEx>
+
+		<CloseTransEx ID="ID_CloseTransaction" UI="UI_EjectingCard" ImgPath1="c:\picture" ImgPath2="c:\SignPath" comment="Close transaction" >
+		  <States>
+			<State name="TakeCard" UI="UI_TakeCard"/>
+			<State name="TransTimeOut" UI="UI_TransTimeOut"/>
+			<State name="KeyError" UI="UI_KeyError"/>
+			<State name="InvalidCard" UI="UI_InvalidCard"/>
+			<State name="HardwareError" UI="UI_HardwareError"/>
+			<State name="GeneralError" UI="UI_GeneralError"/>
+			<State name="CapturingCard" UI="UI_CapturingCard"/>
+			<State name="CaptureCardForTimeout" UI="UI_CaptureCardForTimeout"/>
+			<State name="CaptureCard" UI="UI_CaptureCard"/>
+			<State name="ThankYou" UI="UI_ThankYou"/>
+			<State name="InputWithdrawalAmountExceedRetryTimes" UI="UI_InputWithdrawalAmountExceedRetryTimes"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_InvokeMainWorkflow"/>
+		  <Forward event="OnCaptureCard" targetID="ID_GetDevStatus"/>
+		</CloseTransEx>
+	
+		<GetDevStatus ID="ID_GetDevStatus" comment="Get device status" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_PrintReceipt"/>
+			<Forward event="OnWarn" targetID="ID_PrintReceipt"/>
+			<Forward event="OnFail" targetID="ID_InvokeMainWorkflow"/>
+		</GetDevStatus>
+		
+		<PrintReceipt ID="ID_PrintReceipt" UI="UI_PrintingReceipt" formName="" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeMainWorkflow"/>
+		</PrintReceipt>
+		
+		<InvokeWorkflow ID="ID_InvokeMainWorkflow" name="Main" comment="Invoke main workflow" syn="0">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+    </End>
+	</Activities>
+</Workflow>

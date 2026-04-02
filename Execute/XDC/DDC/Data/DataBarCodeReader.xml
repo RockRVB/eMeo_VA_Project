@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Device>
+    <Enable BarCodeReader="0" />
+    <Information>
+      <BarCodeReader BCRScanner="ON" CapsBarCodeList="EAN128;EAN8_13;JAN8_13;EAN8_132;EAN8_135;UPCA_E;UPCA_E2;UPCA_E5;NW_7;ITF;11;39;49;93;MSIPLESSEY;STD2OF5;IND2OF5;POSNET;PDF_417;DATAMATRIX;MAXICODE;CODEONE;CHANNELCODE;" CapsCmPound="0" CapsFormatDiscrimine="1" DeviceState="ONLINE" MediaState="unknown" LastErrorCode="" IsSuccess="True" IsFailure="False" Cancelled="False" UserState="10" />
+    </Information>
+    <Capability>
+      <BarCodeReader BCRScanner="ON" CommandString="GetCapabilityInfo" IsSuccess="True" IsFailure="False" Cancelled="False" UserState="10" />
+    </Capability>
+  </Device>
+  <Calculate>
+    <Status fitness="0" MDS=":00:00:00" />
+  </Calculate>
+  <AfterCalculate>
+    <Item ID="/Root/Calculate/Status/@MDS" default=":00:00:00">
+      <!--Result value=":38:00:00"-->
+      <Result value=":3A:39:39">
+        <Condition value="[xmlvariable]" operand="4" operator="==">
+          <xmlvariable value="/Root/Calculate/Status/@fitness" />
+        </Condition>
+      </Result>
+    </Item>
+  </AfterCalculate>
+  <Configuration>
+    <Item source="/Root/Device/Information/BarCodeReader" ID="/Root/Calculate/Status/@fitness" default="4">
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+          <xmlvariable value="/Root/Device/Information/BarCodeReader/@DeviceState" xmldoc="DataBarCodeReader.xml" />
+        </Condition>
+      </Result>
+      <Result value="0" />
+    </Item>
+  </Configuration>
+  <Signal>
+    <Item value="/Root/Calculate/Status/@fitness" />
+  </Signal>
+  <DataEvent>
+    <Item ID="109" enable="1" />
+  </DataEvent>
+</Root>

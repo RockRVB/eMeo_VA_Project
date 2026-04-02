@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ServiceName： 							  设备的服务名
+RetractArea： 								回收区域
+MixNumber： 									配钞算法
+         	#define     WFS_CDM_MIX_MINIMUM_NUMBER_OF_BILLS            (1)
+					#define     WFS_CDM_MIX_EQUAL_EMPTYING_OF_CASH_UNITS       (2)
+					#define     WFS_CDM_MIX_MAXIMUM_NUMBER_OF_CASH_UNITS       (3)
+Open_ShutterPosition：  			打开钞门位置，默认"0"（默认出钞口）
+Close_ShutterPosition ：			关闭钞门位置，默认"0"（默认出钞口）		
+IsAddCash4Logic：							NCR机器只支持逻辑加钞要配成1，其他配成0//这个字段的实际意义，是配置为1的时候，获取钞票张数信息的时候从逻辑钞箱获取。为0，表示从物理钞箱获取
+IsNoteListContainInDispenser：送钞完成后是否需要关心各个钱箱出钞的明细信息，默认是需要关心（东信需要配成0）
+PrintRemainCountAfterPresent：是否在送钞后打印剩余张数
+ErrorCode ：            			错误码 用于记录最近一次的设备错误物理码 默认为"ErrorCode"，可以不用配置，系统会自己按顺序查找  
+-->
+<CashDispenser ServiceName="CDM30" RetractArea="REJECT" MixNumber="2" Open_ShutterPosition="0" Close_ShutterPosition="0" PrintRemainCountAfterPresent="0" IsAddCash4Logic="0" IsNoteListContainInDispenser="1"/>

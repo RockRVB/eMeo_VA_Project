@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!--  Envelope Depository
+		*  This messge gives details of a deposit operation in response to a Transaction Reply Command message.
+		-->
+		
+	<Depository>
+		<!-- Device Identification Graphic. -->
+		<Item key="e1" 																		value="F"  																			size="1" 				restriction="Mandatory"/>
+		
+		<!--   Transaction/Device Status. (T-code plus T-data). Gives details of a dispense operation in respense to a Transaction Reply Command message.
+		* Character 1 (T-code) can be:
+		*    '0'  -  successful operation. But an exception codition occured which is detailsed in later fields.
+		* a particular cassette type.
+		-->
+		<Item key="e2" 																		value="0"  																			size="1" 				restriction="Mandatory"/>	
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="Mandatory"/>
+		
+		<!--  Error Severity.  Standard code.-->
+		<Item key="e3" 																		value="[DepositoryErrSeverity]"  										size="1" 				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="Mandatory"/>
+		
+		<!--  Diagnostic Status. (M-status plus M-data). The M-status describes the main error found. -->
+		<Item key="e4" 																		value="[DepositoryDiagnosticStatus]"  								size="var" 			restriction="Optional"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="Mandatory"/>
+		
+		<!--  Suplies Status Indicates the state of the Deposit Bin.
+		*  This field is not sent with the message when a deposit time-out occurs. States reported are:
+		 * '0' - No envelope deposited.
+		 * '1' - No overfill condition.
+		 * '4' - Overfill detected.
+		-->
+		<Item key="e5" 																		value="[DepositorySuppliesStatus]"  									size="1" 				restriction="Mandatory"/>
+		
+	</Depository>	
+</Root>

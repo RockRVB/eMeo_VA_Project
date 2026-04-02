@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!--  Format of the upload EJ data message-->
+	<Data>
+		<!-- Message Class. The message class is '6'  -  Electronic Journal. -->
+		<Item key="b" value="6" size="1" restriction="Mandatory"/>
+		<!--  Message Sub-Class. The message sub-class is:
+		* '1'  - Upload Data  
+		-->
+		<Item key="c" value="1" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Machine Number. Range 000000 to 999999. -->
+		<Item key="d" value="[MachineNumber]" size="6" restriction="Mandatory"/>
+		<!--  Date. Range 00000000 to 999999 in the format YYMMDD. 
+		* Date the block was sent. determined by the SST's internal clock. 
+		-->
+		<!-- Item key="e" value="[Date]" size="6" restriction="Mandatory"/>
+		< Time. Range 00000000 to 999999 in the format HHMMSS.. 
+		* Time the block was sent. Determined by the SST's internal clock.. 
+		-->
+		<Item key="f" value="[SolicitedStatus.TerminalState.TerminalDateTime]" size="12" restriction="Mandatory"/>
+		<!--  Last Char Previous Block. 
+		* Range 00000000 to 99999999 .  
+		-->
+		<Item key="g" value="[SolicitedStatus.UploadEJData.LastCharPreviousBlock]" size="6" restriction="Optional"/>
+		<!--  Last Char this Block. 
+		* Range 00000000 to 99999999 .  
+		-->
+		<Item key="h" value="[SolicitedStatus.UploadEJData.LastCharBlock]" size="6" restriction="Optional"/>
+		<!-- Block Length. Range 001 - 350. Default is 200. Set using the EJ options and timers command message. 
+		* Only the last data block sent to the host should  be less than this block length.
+		-->
+		<Item key="i" value="[SolicitedStatus.UploadEJData.BlockLength]" size="3" restriction="Mandatory"/>
+		<!-- Response data. Range 001-350 as specified by Field 'i'. 
+		* Upload data consists ASCII text with a carriage return (CR) at the end of each line. 
+		* Lines are a maximum of 40 characters. .
+		-->
+		<Item key="j" value="[SolicitedStatus.UploadEJData.ResponseData]" size="var" restriction="Mandatory"/>
+	</Data>
+</Root>

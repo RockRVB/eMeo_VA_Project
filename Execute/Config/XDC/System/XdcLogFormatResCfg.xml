@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- 
+  * Define the folder access to find the speicified resource file as expected.
+  -->
+<Root>  
+    <Main>
+    <!-- Define the language settiong --> 
+	  <Item key ="Lanugage"  value ="000" default="000"/>
+  </Main>
+</Root>

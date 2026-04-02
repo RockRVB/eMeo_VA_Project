@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+		<config> 节点配置如下信息：
+		urlPrefix：网站前缀
+		host： 主机名 
+		port： 端口号 12306
+		htmlPath: 目录前缀 /HTML/Page/Maintenance
+		http://localhost/HTML/Page/Maintenance/maintenance/loading.html 测试地址
+		<item> 节点配置如下
+		ui: 界面名称 忽略大小写
+		iscontainer: 是否容器 为1则切换第一级Ifram 
+ -->
+<config  urlprefix="http://" host="127.0.0.1"  port="12306" htmlpath="HTML/Page/Maintenance">
+	<item ui="Loading" url="maintenance/loading.html"   iscontainer="1" comment="系统正在启动页面" />
+	<item ui="Initialization" url="maintenance/initialization.html"   iscontainer="0" comment="初始化页面" />
+	<item ui="ShowInformation" url="maintenance/show-information.html"   iscontainer="1" comment="显示错误信息" />
+	<item ui="Normal" url="systemdiagnose/systemdiagnose.html"   iscontainer="1" comment="机器机型图片,部件和钱箱信息" />
+	<item ui="Shortcut" url="maintenance/shortcut.html"   iscontainer="1" comment="快捷模式" />
+	<item ui="Maintenance" url="maintenance/maintenance.html"   iscontainer="1" comment="维护主界面" />
+	<item ui="Login_Role" url="maintenance/loginrole.html"   iscontainer="1" comment="角色登陆维护模式" />
+	<item ui="Login_ID" url="maintenance/loginid.html"   iscontainer="1" comment="id维护模式" />
+	<item ui="Loginout" url="loginout/shortcut.html"   iscontainer="1" comment="退出维护模式" />
+	<item ui="ResolveError" url="dailymaintenance/resolveerror.html"   iscontainer="1" comment="错误解决向导" />
+	<item ui="Shutdown" url="maintenance/shutdown.html"   iscontainer="0" comment="关闭机器" />
+	<item ui="SetMasterKey" url="systemconfig/atm/setmasterkey.html"   iscontainer="0" comment="设置主秘钥" />
+	<!--<item ui="EnviorenmentDiagnose" url="systemdiagnose/enviorenmentdiagnose.html"   iscontainer="0" comment="系统环境诊断" />-->
+	<item ui="13" url="totalmanage/cashunitsmanage/addcash.html"   iscontainer="0" comment="加钞" />
+	<item ui="Dmenu_19" url="totalmanage/cashunitsmanage/addcoin.html"   iscontainer="0" comment="加钞" />
+	<item ui="19" url="maintenance/shutdown.html"   iscontainer="0" comment="关机或重启" />
+	<item ui="22" url="systemdiagnose/enviorenmentdiagnose.html"   iscontainer="0" comment="系统环境诊断" />
+	<item ui="23" url="systemdiagnose/networktest.html"   isco194ntainer="0" comment="系统网络诊断" />
+	<item ui="21" url="systemdiagnose/systemdiagnose_maintenance.html"   iscontainer="0" comment="系统自动诊断" />
+	<item ui="251" url="systemdiagnose/device/cardreadertest.html"   iscontainer="0" comment="读卡器诊断" />
+	<item ui="252" url="systemdiagnose/device/receiptprintertest.html"   iscontainer="0" comment="凭条打印机诊断" />
+	<item ui="253" url="systemdiagnose/device/journalprintertest.html"   iscontainer="0" comment="流水打印机诊断" />
+	<item ui="254" url="systemdiagnose/device/doortest.html"   iscontainer="0" comment="门诊断" />
+	<item ui="255" url="systemdiagnose/device/cashdevicetest.html"   iscontainer="0" comment="机芯诊断" />
+	<item ui="256" url="systemdiagnose/device/keytest.html"   iscontainer="0" comment="按键诊断" />
+	<item ui="257" url="systemdiagnose/device/indicatortest.html"   iscontainer="0" comment="指示灯诊断" />
+	<item ui="258" url="systemdiagnose/device/lighttest.html"   iscontainer="0" comment="按键诊断" />
+	
+	<item ui="259" url="systemdiagnose/device/CardDispenserTest.html"   iscontainer="0" comment="发卡器诊断" />
+	<item ui="259DCD" url="systemdiagnose/device/DisorderCardDispenserTest.html"   iscontainer="0" comment="乱序发卡器诊断" />
+	<item ui="25A" url="systemdiagnose/device/ukeyTest.html"   iscontainer="0" comment="" />
+	<item ui="25B" url="systemdiagnose/device/ukeyTest.html"   iscontainer="0" comment="" />
+	<item ui="25C" url="systemdiagnose/device/FingerVeinTest.html"   iscontainer="0" comment="" />
+	<item ui="25D" url="systemdiagnose/device/FingerScanerTest.html"   iscontainer="0" comment="" />
+	<item ui="25E" url="systemdiagnose/device/PassportTest.html"   iscontainer="0" comment="" />
+	<item ui="25F" url="systemdiagnose/device/IDReader.html"   iscontainer="0" comment="身份证诊断" />
+	<item ui="25G" url="systemdiagnose/device/BarcodeSnrTest.html"   iscontainer="0" comment="二维码诊断" />
+	<item ui="25H" url="systemdiagnose/device/othertest.html"   iscontainer="0" comment="其他设备诊断" />
+	<item ui="25I" url="systemdiagnose/device/FeedChannelTest.html"   iscontainer="0" comment="A4扫描仪设备诊断" />
+	<item ui="26" url="systemdiagnose/resetalldevice.html"   iscontainer="0" comment="复位所有设备" />
+	
+	<item ui="getCaptureCards" url="totalmanage/exception/getcapturecards.html"   iscontainer="0" comment="打印吞卡记录" />
+	<item ui="setCashUnits" url="totalmanage/setCashUnits.html"   iscontainer="0" comment="设置钱箱张数" />
+	<item ui="11" url="totalmanage/accounts.html"   iscontainer="0" comment="打印结帐" />
+	<item ui="totalList" url="totalmanage/totalList.html"   iscontainer="0" comment="清机管理列表页" />
+	<item ui="defineMenu:" url="maintenance/definemenu.html"   iscontainer="1" comment="定制菜单" />
+	<item ui="handleGuide" url="maintenance/maintenance.html"   iscontainer="1" comment="维护主界面" />
+	<item ui="TOTALMANAGE" url="totalmanage/totalList.html"   iscontainer="0" comment="清机管理列表页" />
+	<item ui="161" url="totalmanage/cashunitsmanage/getcashunits.html"   iscontainer="0" comment="显示加钞信息" />
+	<item ui="Dmenu_3" url="systemconfig/index.html"   iscontainer="0" comment="系统设置首页" />
+	<item ui="311" url="systemconfig/atm/setatmno.html"   iscontainer="0" comment="设置ATM号" />
+	<item ui="313" url="systemconfig/atm/changesystemtime.html"   iscontainer="0" comment="修改系统时间" />
+	<item ui="314" url="systemconfig/atm/setjouno.html"   iscontainer="0" comment="设置流水号" />
+	<item ui="319" url="systemconfig/atm/setmaxamount.html"   iscontainer="0" comment="设置最大限额" />
+	<item ui="33" url="systemconfig/atm/showmasterkeykvv.html"   iscontainer="0" comment="显示主密钥KVV值" />
+	<item ui="34" url="systemconfig/setcimcurrency.html"   iscontainer="0" comment="设置存款面额" />
+	<item ui="19" url="systemconfig/vendordependentmode.html"   iscontainer="0" comment="厂商模式" />
+	<item ui="Dmenu_365" url="systemconfig/upgrade/upgrade9250.html"   iscontainer="0" comment="9250固件升级" />
+	<item ui=":Menu_4" url="dailymaintenance/index.html"   iscontainer="0" comment="日常维护首页" />
+	<item ui="43" url="dailymaintenance/queryparameter.html"   iscontainer="0" comment="参数查询" />
+	<item ui="44" url="dailymaintenance/errorinquiry.html"   iscontainer="0" comment="错误查询" />
+	<item ui="45" url="dailymaintenance/modifypassword.html"   iscontainer="0" comment="修改用户密码" />
+	<item ui=":Menu_5" url="loghandle/index.html"   iscontainer="0" comment="日常维护首页" />
+	<item ui="52" url="loghandle/copyjournal.html"   iscontainer="0" comment="拷贝流水" />
+	<item ui="53" url="loghandle/totalprint.html"   iscontainer="0" comment="结账流水说明" />
+	<item ui=":Menu_6" url="helpguid/index.html"   iscontainer="0" comment="使用帮助首页" />
+	<item ui="6" url="helpguid/help.html"   iscontainer="0" comment="安装凭条打印机" />
+	<item ui=":Menu_162" url="totalmanage/cashunitsmanage/clearcashunits.html"   iscontainer="0" comment="清理钱箱" />
+	<!--<item ui="194" url="totalmanage/cashunitsmanage/clearrecycleunits.html"   iscontainer="0" comment="清理回收箱" />-->
+	<item ui="default" url="default.html"   iscontainer="0" comment="默认页面" />
+	<item ui="141" url="totalmanage/exception/currentperiodexception.html"   iscontainer="0" comment="本周期异常交易" />
+	<item ui="142" url="totalmanage/exception/previousperiodexception.html"   iscontainer="0" comment="上周期异常交易" />
+	<item ui="143" url="totalmanage/exception/specifiedperiodexception.html"   iscontainer="0" comment="指定周期异常交易" />
+	<item ui="144" url="totalmanage/exception/clearmachineperiodexception.html"   iscontainer="0" comment="清机周期异常交易" />
+	<item ui="15" url="totalmanage/exception/getcapturecards.html"   iscontainer="0" comment="打印吞卡记录" />
+	<item ui="181" url="transactioninquiry/inquireabnormaltransaction/expbyjouno.html"   iscontainer="0" comment="按流水号查异常" />
+	<item ui="182" url="transactioninquiry/inquireabnormaltransaction/expbyaccountno.html"   iscontainer="0" comment="按账号查异常" />
+	<item ui="183" url="transactioninquiry/inquireabnormaltransaction/expbytransaction.html"   iscontainer="0" comment="按交易查异常" />
+	<item ui="184" url="transactioninquiry/inquireabnormaltransaction/expbydate.html"   iscontainer="0" comment="按日期查异常" />
+	<item ui="185" url="transactioninquiry/inquireabnormaltransaction/expbydatatime.html"   iscontainer="0" comment="按时间查异常" />
+	<item ui="Dmenu_1000" url="transactioninquiry/inquireabnormaltransaction/inquireabnormaltransaction.html"   iscontainer="0" comment="异常交易查询结果" />
+	<item ui="MALFUNCTIONGUIDE" url="dailymaintenance/resolveerror.html"   iscontainer="1" comment="错误帮助页" />
+	<item ui="Dmenu_331" url="systemconfig/atm/setatmip/setatmpip.html"   iscontainer="0" comment="设置前置IP" />
+	<item ui="Dmenu_332" url="systemconfig/atm/setatmip/setatmvip.html"   iscontainer="0" comment="设置V端IP" />
+	<item ui="1811" url="transactioninquiry/inquireabnormaltransaction/expbyjouno.html"   iscontainer="0" comment="按流水号查本周期异常" />
+	<item ui="1812" url="transactioninquiry/inquireabnormaltransaction/expbyaccountno.html"   iscontainer="0" comment="按账号查本周期异常" />
+	<item ui="1813" url="transactioninquiry/inquireabnormaltransaction/expbytransaction.html"   iscontainer="0" comment="按交易本周期查异常" />
+	<item ui="1814" url="transactioninquiry/inquireabnormaltransaction/expbydate.html"   iscontainer="0" comment="按日期查本周期异常" />
+	<item ui="1815" url="transactioninquiry/inquireabnormaltransaction/expbydatatime.html"   iscontainer="0" comment="按时间查本周期异常" />
+	<item ui="Dmenu_3152" url="systemconfig/atm/setatmip/setatmpip.html"   iscontainer="0" comment="设置前置IP" />
+	<item ui="Dmenu_3153" url="systemconfig/atm/setatmip/setVTMAip.html"   iscontainer="0" comment="设置A端IP" />
+	<item ui="Dmenu_3154" url="systemconfig/atm/setatmip/setVNCIP.html"   iscontainer="0" comment="设置VNCIP" />
+	<item ui="Dmenu_3155" url="systemconfig/atm/setatmip/setVIDEOIP.html"   iscontainer="0" comment="设置视频IP" />
+	<item ui="Dmenu_3156" url="systemconfig/atm/setatmip/setuploadip.html"   iscontainer="0" comment="设置上传IP" />
+	<item ui="274" url="systemdiagnose/statusindicator.html"   iscontainer="0" comment="状态指示灯测试" />
+	<item ui="512" url="loghandle/reprintjournal/reprintbycardnumber.html"   iscontainer="0" comment="按卡号补打流水" />
+	<item ui="511" url="loghandle/reprintjournal/reprintbydate.html"   iscontainer="0" comment="按时间补打流水" />
+	<item ui="513" url="loghandle/reprintjournal/reprintbyjournalnumber.html"   iscontainer="0" comment="按流水号补打流水" />
+	<item ui=":Menu_59" url="loghandle/versiontracing.html"   iscontainer="0" comment="版本追踪" />
+	<item ui="19" url="totalmanage/cashunitsmanage/cashunitsoper.html"   iscontainer="0" comment="清理钱箱" />
+	<item ui="46" url="dailymaintenance/lightcontrol.html"   iscontainer="0" comment="灯控测试" />
+	
+	<item ui="194" url="totalmanage/cardmanage/initcardbox.html"   iscontainer="0" comment="显示卡箱信息" />
+	<item ui="194_1" url="totalmanage/cardmanage/addcard.html"   iscontainer="0" comment="加卡" />
+	<item ui="194_01" url="totalmanage/cardmanage/numberset.html"   iscontainer="0" comment="设置卡信息" />
+	
+	<item ui="195" url="totalmanage/cardmanage/initukeybox.html"   iscontainer="0" comment="显示Ukey箱信息" />
+	<item ui="195_1" url="totalmanage/cardmanage/addukey.html"   iscontainer="0" comment="加Ukey" />
+	<item ui="195_01" url="totalmanage/cardmanage/numberset.html"   iscontainer="0" comment="设置Ukey信息" />
+	<item ui="Dmenu_171" url="inquiry/inquirybyserialno.html"   iscontainer="0" comment="" />
+	<item ui="Dmenu_172" url="inquiry/inquirybyjournalno.html"   iscontainer="0" comment="" />
+	<item ui="Dmenu_173" url="inquiry/inquirybycardno.html"   iscontainer="0" comment="" />
+	
+	<item ui="123" url="systemdiagnose/device/DisorderCardModule/DepositCardToSlot.html"   iscontainer="0" comment="乱序发卡器加卡" />
+	<item ui="121" url="systemdiagnose/device/DisorderCardModule/PrintTotalForCardUnit.html"   iscontainer="0" comment="乱序发卡器加卡" />
+</config>

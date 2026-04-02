@@ -1,0 +1,2322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+标记TransactionFieldConfig包含了报文接口定义的所有的域，域所包含的字段说明如下所示：
+
+BitID 						“BitID是-1，-2等负数的Field，与主位图或者扩展位图没有关系，不会在位图上有所体现”
+Description 			参考《银行卡联网联合技术规范V2.0 第2部分 报文接口规范.pdf》
+<Field BitID="-1" Description="报文头部">
+FieldDefaultData					域数据，关键字
+FieldDataLen			域数据长度，字节为单位
+FieldDataCoding		域数据编码方式，ASCII或者BCD
+FieldCheckData		域数据的验证数据
+	<Data FieldDefaultData="0110000000"   FieldDataLen="10"  FieldDataCoding="ASCII"  FieldCheckData=""></Data>
+VarFieldLenType		域长度类型
+VarFieldLenCoding	域长度编码
+
+<DataPadding LeftPadding="L" RightPadding="R"/> 
+
+ 	<VAR  VarFieldLenType="VAR_LL" VarFieldLenCoding="ASCII" ></VAR>
+
+FieldLogFlag			此域是否以明文方式记日志
+ 	<Flag FieldLogFlag="true"></Flag>
+</Field>
+
+    
+对于指定的交易，如INQ查询交易，需要用到的域，罗列在<INQ>之下，表示INQ交易只使用这些域，其XML结构跟TransactionFieldConfig的一样。
+如果在指定交易下，其中的某些域的字段有别于TransactionFieldConfig的定义，可以在指定的交易下，额外列出差异的标识和属性
+如果没有额外列出，认为此域的字段跟TransactionFieldConfig的定义一致，没有特殊化。
+-->
+ 
+
+
+<Packages>
+
+
+	<!--在响应报文返回后，解包成功，并且响应码为成功下，校验一些打包与解包的数据
+	FieldName指定要校验的数据的Key
+	IsMandatory为1表示，校验时，此域必须存在并且数据相等，为0表示，检验时，此域可以不存在，如果存在才校验
+	
+	
+	CheckIsMandatory 的取值为：
+	true时，表示此域必须存在 ，并且需要校验
+	false时，表示此域存在则校验，不存在就不校验
+	不存在时，表示此域不校验 
+
+	FieldCheckData 的取值为：
+	空或不存在时，表示打包数据与解包的数据进行校验
+	其它情况，表示解包的数据与此域配置的数据进行校验	
+	
+	CheckMode 的取值为：
+	int时，表示按数值的方式校验
+	string时，表示按字符串的方式校验
+	不存在或其它情况时， 表示按字符串的方式校验
+
+	--> 
+
+
+
+	<TransactionFieldConfig HeadLength="4" HeadLengthCoding="ASCII" FieldSeparator="" BitmapFieldID="0" MaskFieldName="">
+		<HeaderFields>
+		</HeaderFields>
+		<BitmapFields IsConvertToUpper="0" IsDeleteValid="0" IsTrimMulSpace="0">
+			<Field BitID="1" Description="交易码">
+				<Data FieldName="F_TransCode" FieldDataLen="3" FieldDataCoding="ASCII" />
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"   CheckIsMandatory="true" CheckMode="string"/>
+			</Field>			
+			<Field BitID="2" Description="设备号 or 外设编号">
+				<Data FieldName="F_TERMINALID"  FieldBinding="core_TerminalID"  FieldDataLen="8" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true" CheckIsMandatory="true" />
+			</Field>
+			<Field BitID="3" Description="币值 1 状态">
+				<Data FieldName="F_Curr1Status" FieldDefaultData="0" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="4" Description="币值 2 状态">
+				<Data FieldName="F_Curr2Status" FieldDefaultData="2" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="5" Description="币值 3 状态">
+				<Data FieldName="F_Curr3Status" FieldDefaultData="N" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="6" Description="币值 4 状态">
+				<Data FieldName="F_Curr4Status" FieldDefaultData="N" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="7" Description="日志打印机状态">
+				<Data FieldName="F_LogPrtStatus" FieldDefaultData="0" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="8" Description="凭条打印机状态">
+				<Data FieldName="F_CrdPrtStatus" FieldDefaultData="0" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="9" Description="存款箱状态">
+				<Data FieldName="F_CashBoxStatus" FieldDefaultData="1" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="10" Description="ATM/CDM 状态">
+				<Data FieldName="F_MachineStatus" FieldDefaultData="O" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="11" Description="币值 1 本次出钞数">
+				<Data FieldName="F_Curr1OutCnt" FieldDefaultData="00" FieldDataLen="2" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="12" Description="币值 2 本次出钞数">
+				<Data FieldName="F_Curr2OutCnt" FieldDefaultData="00" FieldDataLen="2" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="13" Description="币值 3本次出钞数">
+				<Data FieldName="F_Curr3OutCnt" FieldDefaultData="00" FieldDataLen="2" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="14" Description="币值 4本次出钞数">
+				<Data FieldName="F_Curr4OutCnt" FieldDefaultData="00" FieldDataLen="2" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="15" Description="上次币值 1 补钞数">
+				<Data FieldName="F_Curr1LtCnt" FieldDefaultData="0000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="16" Description="上次币值 2 补钞数">
+				<Data FieldName="F_Curr2LtCnt" FieldDefaultData="0000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="17" Description="上次币值 3 补钞数">
+				<Data FieldName="F_Curr3LtCnt" FieldDefaultData="0000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="18" Description="上次币值 4 补钞数">
+				<Data FieldName="F_Curr4LtCnt" FieldDefaultData="0000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="19" Description="本周期币值 1 补钞数">
+				<Data FieldName="F_Curr1TsCnt" FieldDefaultData="0000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+				<DataPadding LeftPadding="0"/>
+			</Field>
+			<Field BitID="20" Description="本周期币值 2 补钞数">
+				<Data FieldName="F_Curr2TsCnt" FieldDefaultData="0000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+				<DataPadding LeftPadding="0"/>
+			</Field>
+			<Field BitID="21" Description="本周期币值 3 补钞数">
+				<Data FieldName="F_Curr3TsCnt" FieldDefaultData="0000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+				<DataPadding LeftPadding="0"/>
+			</Field>
+			<Field BitID="22" Description="本周期币值 4 补钞数">
+				<Data FieldName="F_Curr4TsCnt" FieldDefaultData="0000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+				<DataPadding LeftPadding="0"/>
+			</Field>
+			<Field BitID="23" Description="本周期币值 1 Rejected">
+				<Data FieldName="F_Curr1CycCnt" FieldDefaultData="0000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="24" Description="本周期币值 2 Rejected">
+				<Data FieldName="F_Curr2CycCnt" FieldDefaultData="0000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>			
+			<Field BitID="25" Description="本周期币值 3 Rejected">
+				<Data FieldName="F_Curr3CycCnt" FieldDefaultData="0000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="26" Description="本周期币值 4 Rejected">
+				<Data FieldName="F_Curr4CycCnt" FieldDefaultData="0000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="27" Description="本日终周期取款笔数">
+				<Data FieldName="F_CycCwdNum" FieldDefaultData="0000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="28" Description="本日终周期取款金额">
+				<Data FieldName="F_CycCwdSum" FieldDefaultData="00000000000" FieldDataLen="11" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="29" Description="本日终周期存款笔数">
+				<Data FieldName="F_CycDepnum" FieldDefaultData="0000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="30" Description="本日终周期存款金额">
+				<Data FieldName="F_CycDepSum" FieldDefaultData="00000000000" FieldDataLen="11" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="31" Description="本日终周期转帐笔数">
+				<Data FieldName="F_CycTfrNum" FieldDefaultData="0000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="32" Description="本日终周期转帐金额">
+				<Data FieldName="F_CycTfrSum" FieldDefaultData="00000000000" FieldDataLen="11" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="33" Description="本日终周期吞卡数">
+				<Data FieldName="F_CardRet" FieldDefaultData="00" FieldDataLen="2" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="34" Description="流水号">
+				<Data FieldName="F_SERIALNUM" FieldDataLen="6"  FieldBinding="core_SerialNumber"  FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+				<DataPadding LeftPadding="0"/>
+			</Field>
+			<Field BitID="35" Description="币种">
+				<Data FieldName="F_CcyNbr" FieldDefaultData="1" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="36" Description="Track2数据">
+				<Data FieldName="F_TRACK2" FieldDefaultData="0" FieldDataLen="37" FieldBinding="core_Track2"  FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<DataPadding RightPadding=" " /> 				
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="37" Description="Track3数据">
+				<Data FieldName="F_TRACK3" FieldDefaultData=" " FieldDataLen="104" FieldBinding="core_Track3"  FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<DataPadding RightPadding=" "/> 		
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="38" Description="交易卡号">
+				<Data FieldName="F_PAN" FieldDefaultData="0" FieldDataLen="19"  FieldBinding="core_PAN"  FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<DataPadding RightPadding=" "/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="39" Description="卡密码">
+				<Data FieldName="F_PINDATAEx" FieldDefaultData="                "  FieldBinding="core_Pin" FieldDataLen="16" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="40" Description="转帐卡号">
+				<Data FieldName="F_PANID2" FieldDefaultData="                   "  FieldBinding="core_OtherAccount"  FieldDataLen="19" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<DataPadding RightPadding=" "/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="41" Description="交易金额">
+				<Data FieldName="F_AMOUNT" FieldDefaultData="00000000000"  FieldBinding="core_TransAmountMultiply100"  FieldDataLen="11" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<DataPadding LeftPadding="0"/>
+				<Flag FieldLogFlag="true"  CheckIsMandatory="true" CheckMode="int"/>
+			</Field>
+			<Field BitID="42" Description="被冲正的原流水号">
+				<Data FieldName="F_OldAtmcTrace" FieldDefaultData="999999" FieldDataLen="6" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="43" Description="例外信息码">
+				<Data FieldName="F_ExCode" FieldDefaultData="0000" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="44" Description="交易时间">
+				<Data FieldName="F_TIME_yyMMddHHmm" FieldDataLen="10"  FieldBinding="core_TransTimeyyMMddHHmm"  FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="45" Description="私有数据">
+				<Data FieldName="F_Private" FieldDefaultData="0" FieldDataLen="16" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<DataPadding RightPadding="0"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="46" Description="卡序列号，必须是三个空格，三个空格时插入磁条卡P端才不会用作MAC运算">
+				<Data FieldName="F_23DATA" FieldDefaultData="   "  FieldBinding="core_ICSequenceNumber" FieldDataLen="3" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="47" Description="服务点输入方式码">
+				<Data FieldName="F_SERVEPOINT" FieldDefaultData="02"  FieldBinding="core_POSEntryMode" FieldDataLen="2" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<DataPadding SubString="0,2"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="48" Description="新增PBOC 数据元">
+				<Data FieldName="F_55DATA" FieldDefaultData=" "  FieldBinding="core_55Data"  FieldDataLen="512" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<DataPadding RightPadding=" "/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="49" Description="终端读取能力">
+				<Data FieldName="F_TerEtp" FieldDefaultData="5" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="50" Description="IC卡条件代码">
+				<Data FieldName="F_ICCondCDE" FieldDefaultData="0" FieldDataLen="1" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="51" Description="MAC">
+				<Data FieldName="F_MAC" FieldDataLen="16" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			
+				
+			
+			
+			<Field BitID="10006" Description="帐户可用资金">
+				<Data FieldName="F_AvalBl" FieldDataLen="11" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="10007" Description="帐户余额">
+				<Data FieldName="F_OnlnBl" FieldDataLen="11" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="10008" Description="响应码">
+				<Data FieldName="F_RESPONSECODE" FieldDataLen="2" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="10015" Description="本周期币值 1 出钞数">
+				<Data FieldName="F_Curr1CycCnt" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="10016" Description="本周期币值 2 出钞数">
+				<Data FieldName="F_Curr2CycCnt" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="10017" Description="本周期币值 3 出钞数">
+				<Data FieldName="F_Curr3CycCnt" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			<Field BitID="10018" Description="本周期币值 4 出钞数">
+				<Data FieldName="F_Curr4CycCnt" FieldDataLen="4" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+
+
+			<Field BitID="20010" Description="MAC KEY">
+				<Data FieldName="F_MACKEY_DOWNLOADED" FieldDataLen="48" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			
+			
+			<Field BitID="30001" Description="脚本处理结果">
+				<Data FieldName="F_ScriptResult" FieldDataLen="2" FieldDefaultData="00" FieldDataCoding="ASCII" FieldCheckData=""/>
+				<VAR VarFieldLenType="FIXED" VarFieldLenCoding="ASCII"/>
+				<Flag FieldLogFlag="true"/>
+			</Field>
+			
+			
+		</BitmapFields>
+	</TransactionFieldConfig>
+	
+	
+	<CWD Description="4.1.1	ATM取款">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="CWD"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="42" Description=""/>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="47" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49" Description=""/>
+			<Field BitID="50" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</CWD>
+	
+	
+		<CWD_Resp Description="4.1.1	ATM取款 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description=""/>
+			<Field BitID="10007" Description=""/>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</CWD_Resp>
+	
+	
+	
+	<TFR Description="4.1.2	ATM转账">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="TFR"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="42" Description=""/>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="47" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49" Description=""/>
+			<Field BitID="50" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</TFR>
+	
+	
+	
+		<TFR_Resp Description="4.1.2	ATM转账 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description=""/>
+			<Field BitID="10007" Description=""/>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</TFR_Resp>
+	
+	
+	
+	
+	
+	
+	
+	<CWC Description="4.1.3	ATM取款冲正">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="CWC"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="42" Description="">
+				<Data   FieldBinding="proj_F_OldAtmcTrace"  />
+			</Field>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="47" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49" Description=""/>
+			<Field BitID="50" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</CWC>
+	
+	
+	
+		<CWC_Resp Description="4.1.3	ATM取款冲正 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description=""/>
+			<Field BitID="10007" Description=""/>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</CWC_Resp>
+	
+	
+	
+	
+	
+	
+	<TFC Description="4.1.4	ATM转账冲正">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="TFC"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="42" Description=""/>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="47" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49" Description=""/>
+			<Field BitID="50" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</TFC>
+	
+	
+	
+		<TFC_Resp Description="4.1.4	ATM转账冲正 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description=""/>
+			<Field BitID="10007" Description=""/>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</TFC_Resp>
+	
+	
+	
+	
+	<ADI Description="4.1.5	CDM存款请求">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="CDI"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="42" Description=""/>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="47" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49" Description=""/>
+			<Field BitID="50" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</ADI>
+	
+	
+	
+		<ADI_Resp Description="4.1.5	CDM存款请求 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description=""/>
+			<Field BitID="10007" Description=""/>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</ADI_Resp>
+	
+	
+	
+	
+	<DEP Description="4.1.6	CDM存款确认">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="CDP"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="42" Description=""/>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="47" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49" Description=""/>
+			<Field BitID="50" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</DEP>
+	
+	
+	
+		<DEP_Resp Description="4.1.6	CDM存款确认 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description=""/>
+			<Field BitID="10007" Description=""/>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</DEP_Resp>
+	
+	
+	
+	
+	
+	<ICBDZHQC Description="4.1.7	指定账号圈存">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="ZQC"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="42" Description=""/>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="47" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49" Description=""/>
+			<Field BitID="50" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</ICBDZHQC>
+	
+	
+	
+		<ICBDZHQC_Resp Description="4.1.7	指定账号圈存 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description=""/>
+			<Field BitID="10007" Description=""/>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</ICBDZHQC_Resp>
+	
+	
+	
+	
+	
+	
+	<ICBDZHQCCZ Description="4.1.8	指定账号圈存冲正">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="ZWC"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="42" Description="">
+			  <Data   FieldBinding="proj_F_OldAtmcTrace"  />
+			</Field>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="47" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49" Description=""/>
+			<Field BitID="50" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</ICBDZHQCCZ>
+	
+	
+	
+		<ICBDZHQCCZ_Resp Description="4.1.8	指定账号圈存冲正 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description=""/>
+			<Field BitID="10007" Description=""/>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</ICBDZHQCCZ_Resp>
+	
+	
+	
+	
+	
+	<XQC Description="4.1.9	现金圈存">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="XQC"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="42" Description=""/>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="47" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49" Description=""/>
+			<Field BitID="50" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</XQC>
+	
+	
+	
+		<XQC_Resp Description="4.1.9	现金圈存 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description=""/>
+			<Field BitID="10007" Description=""/>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</XQC_Resp>
+	
+	
+	
+	
+	
+	<XWC Description="4.1.10	现金圈存冲正">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="XWC"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="42" Description=""/>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="47" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49" Description=""/>
+			<Field BitID="50" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</XWC>
+	
+	
+	
+		<XWC_Resp Description="4.1.10	现金圈存冲正 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description=""/>
+			<Field BitID="10007" Description=""/>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</XWC_Resp>
+	
+	
+	
+	
+	
+	
+	<INQ Description="4.2.1	ATM查询余额">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="INQ"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="42" Description=""/>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="47" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49" Description=""/>
+			<Field BitID="50" Description=""/>		
+			<Field BitID="51" Description="MAC"/>	
+		</BitmapFields>
+	</INQ>
+	
+		<INQ_Resp Description="4.2.1	ATM查询余额 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description="">
+					<Data FieldDataLen="12"/>
+				</Field>
+			<Field BitID="10007" Description="">
+					<Data FieldDataLen="12"/>
+				</Field>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</INQ_Resp>
+	
+	
+	
+	
+	
+	<PIN Description="4.2.2	ATM卡密码修改">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="PIN"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="42" Description=""/>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description="">
+					<Data FieldName="F_PINDATA_NEW_Ex" FieldDefaultData="0"  FieldBinding="core_NewPin"  FieldDataLen="16" FieldDataCoding="ASCII" FieldCheckData=""/> 
+			</Field>
+			<Field BitID="46" Description=""/>
+			<Field BitID="47" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49" Description=""/>
+			<Field BitID="50" Description=""/>		
+			<Field BitID="51" Description="MAC"/>	
+		</BitmapFields>
+	</PIN>
+	
+		<PIN_Resp Description="4.2.2	ATM卡密码修改">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description=""/>
+			<Field BitID="10007" Description=""/>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</PIN_Resp>
+	
+	
+	
+	
+	<FNA Description="4.2.3	ATM转入卡号户名查询（本行卡）">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="FNA"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description="">
+			  <Data FieldName="F_PAN" FieldBinding="core_OtherAccount" />
+			</Field>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description="">
+				<Flag  CheckIsMandatory="NO_CHECK" />
+			</Field>
+			<Field BitID="42" Description=""/>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="47" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49" Description=""/>
+			<Field BitID="50" Description=""/>			
+		</BitmapFields>
+	</FNA>
+	
+		<FNA_Resp Description="4.2.3	ATM转入卡号户名查询（本行卡） 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description=""/>
+			<Field BitID="10007" Description=""/>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</FNA_Resp>
+	
+	
+	
+	<RQK Description="4.3.1	ATM申请通信密钥">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="RQK"/>
+			</Field>
+			<Field BitID="2" Description="">
+				
+			</Field>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description="">
+						<Flag  CheckIsMandatory="NO_CHECK" /> 
+			</Field>
+			<Field BitID="42" Description=""/>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>	
+		</BitmapFields>
+	</RQK>
+	
+		<RQK_Resp Description="4.3.1	ATM申请通信密钥 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description="">
+					<Data FieldDataLen="11"/>
+				</Field>
+			<Field BitID="10007" Description="">
+					<Data FieldDataLen="11"/>
+				</Field>
+			<Field BitID="10008" Description="响应码"/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="20010" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+		</BitmapFields>
+	</RQK_Resp>
+	
+	
+	<TTI Description="4.3.2	ATM补钞">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="FFI"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description=""/>			
+
+			<Field BitID="42" Description=""/>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>
+		</BitmapFields>
+	</TTI>
+	
+		<TTI_Resp Description="4.3.2	ATM补钞 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description=""/>
+			<Field BitID="10007" Description=""/>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+		</BitmapFields>
+	</TTI_Resp>
+	
+	
+	<CUT Description="4.3.3	ATM日终">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="CUT"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="42" Description=""/>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>		
+		</BitmapFields>
+	</CUT>
+	
+		<CUT_Resp Description="4.3.3	ATM日终 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description=""/>
+			<Field BitID="10007" Description=""/>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+		</BitmapFields>
+	</CUT_Resp>
+	
+	<AEX Description="4.3.4	ATM例外">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="AEX"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="42" Description=""/>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="47" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49" Description=""/>
+			<Field BitID="50" Description=""/>			
+		</BitmapFields>
+	</AEX>
+	
+		<AEX_Resp Description="4.3.4	ATM例外 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description=""/>
+			<Field BitID="10007" Description=""/>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</AEX_Resp>
+	
+	
+	
+	
+	
+	<ICTZ Description="4.4.1	ATM脚本处理通知">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+							<Data FieldDefaultData="SCR"/>
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="3" Description=""/>
+			<Field BitID="4" Description=""/>
+			<Field BitID="5" Description=""/>
+			<Field BitID="6" Description=""/>
+			<Field BitID="7" Description=""/>
+			<Field BitID="8" Description=""/>
+			<Field BitID="9" Description=""/>
+			<Field BitID="10" Description=""/>
+			<Field BitID="11" Description=""/>
+			<Field BitID="12" Description=""/>
+			<Field BitID="13" Description=""/>
+			<Field BitID="14" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="19" Description=""/>
+			<Field BitID="20" Description=""/>
+			<Field BitID="21" Description=""/>
+			<Field BitID="22" Description=""/>
+			<Field BitID="23" Description=""/>
+			<Field BitID="24" Description=""/>
+			<Field BitID="25" Description=""/>
+			<Field BitID="26" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="34" Description=""/>
+			<Field BitID="35" Description=""/>
+			<Field BitID="36" Description=""/>
+			<Field BitID="37" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="39" Description=""/>
+			<Field BitID="40" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="42" Description="">
+					<Data   FieldBinding="proj_F_OldAtmcTrace"  />
+			</Field>
+			<Field BitID="43" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="45" Description=""/>
+			<Field BitID="30001" Description="脚本处理结果"/> 
+			<Field BitID="46" Description=""/>
+			<Field BitID="47" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="49" Description=""/>
+			<Field BitID="50" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</ICTZ>
+	
+	
+	
+		<ICTZ_Resp Description="4.4.1	ATM脚本处理通知 响应报文">
+		<Header>
+		</Header>
+		<BitmapFields>
+			<Field BitID="1">
+			</Field>
+			<Field BitID="2" Description=""/>
+			<Field BitID="38" Description=""/>
+			<Field BitID="44" Description=""/>
+			<Field BitID="41" Description=""/>
+			<Field BitID="10006" Description=""/>
+			<Field BitID="10007" Description=""/>
+			<Field BitID="10008" Description=""/>
+			<Field BitID="45" Description="私有数据在响应报文中，长度不一样，为48">
+							<Data FieldDataLen="48"/>
+			</Field>
+			<Field BitID="34" Description=""/>
+			<Field BitID="15" Description=""/>
+			<Field BitID="16" Description=""/>
+			<Field BitID="17" Description=""/>
+			<Field BitID="18" Description=""/>
+			<Field BitID="10015" Description=""/>
+			<Field BitID="10016" Description=""/>
+			<Field BitID="10017" Description=""/>
+			<Field BitID="10018" Description=""/>
+			<Field BitID="27" Description=""/>
+			<Field BitID="28" Description=""/>
+			<Field BitID="29" Description=""/>
+			<Field BitID="30" Description=""/>
+			<Field BitID="31" Description=""/>
+			<Field BitID="32" Description=""/>
+			<Field BitID="33" Description=""/>
+			<Field BitID="46" Description=""/>
+			<Field BitID="48" Description=""/>
+			<Field BitID="51" Description=""/>
+		</BitmapFields>
+	</ICTZ_Resp>
+	
+	
+		<MAC Description="5.1	请求报文MAC块字段">
+		<Header>
+		</Header>
+		<BitmapFields FieldSeparator="32">
+				<Field BitID="1" Description="交易码"/>
+				<Field BitID="2" Description="设备号 or 外设编号"/>
+				<Field BitID="34" Description="流水号"/>
+				<Field BitID="35" Description="币种"/>
+				<Field BitID="38" Description="交易卡号">
+					<Data FieldName="F_PAN" FieldDefaultData="0"  FieldBinding="core_PAN"   FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+					<VAR VarFieldLenType="VAR" VarFieldLenCoding="ASCII"/>
+					<DataPadding RightPadding=""/> 
+				</Field>
+				<Field BitID="41" Description="交易金额"/>
+				<!--Field BitID="40" Description="转帐卡号"/-->
+				<Field BitID="44" Description="交易时间"/>
+				<Field BitID="46" Description="卡序列号  在IC卡交易中使用">
+					<Data FieldDefaultData=""  FieldBinding="core_ICSequenceNumber" />
+					<Flag FieldIsOptional="true" />
+				</Field>
+		</BitmapFields>
+		</MAC>			
+		<MAC_Resp Description="5.2	响应报文MAC块字段">
+		<Header>
+		</Header>
+		<BitmapFields FieldSeparator="32">
+				<Field BitID="1" Description="交易码"/>
+				<Field BitID="2" Description="设备号 or 外设编号"/>				
+				<Field BitID="38" Description="交易卡号">
+					<Data FieldName="F_PAN" FieldDefaultData="0" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+					<VAR VarFieldLenType="VAR" VarFieldLenCoding="ASCII"/>
+					<DataPadding RightPadding="" LeftTrim=" " RightTrim=" " /> 
+				</Field>
+				<Field BitID="10008" Description="响应码"/>
+				<Field BitID="44" Description="交易时间"/>					
+				<Field BitID="34" Description="流水号"/>
+				<Field BitID="46" Description="卡序列号   在IC卡交易中使用">
+					<Flag FieldIsOptional="true" />
+					<DataPadding RightPadding="" LeftTrim=" " RightTrim=" " /> 
+				</Field>
+		</BitmapFields>
+		</MAC_Resp>
+		
+		
+		
+		<TFR_MAC Description="5.1	请求报文MAC块字段">
+		<Header>
+		</Header>
+		<BitmapFields FieldSeparator="32">
+				<Field BitID="1" Description="交易码"/>
+				<Field BitID="2" Description="设备号 or 外设编号"/>
+				<Field BitID="34" Description="流水号"/>
+				<Field BitID="35" Description="币种"/>
+				<Field BitID="38" Description="交易卡号">
+					<Data FieldName="F_PAN" FieldDefaultData="0" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+					<VAR VarFieldLenType="VAR" VarFieldLenCoding="ASCII"/>
+					<DataPadding RightPadding=""/> 
+				</Field> 
+				<Field BitID="40" Description="转帐卡号">
+					<Data FieldDefaultData="0" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+					<VAR VarFieldLenType="VAR" VarFieldLenCoding="ASCII"/>
+					<DataPadding RightPadding=""/> 
+				</Field> 
+				<Field BitID="41" Description="交易金额"/>
+				<Field BitID="44" Description="交易时间"/>
+				<Field BitID="46" Description="卡序列号  在IC卡交易中使用">
+					<Data FieldDefaultData="" />
+					<Flag FieldIsOptional="true" />
+				</Field>
+		</BitmapFields>
+		</TFR_MAC>			
+		<TFR_MAC_Resp Description="5.2	响应报文MAC块字段">
+		<Header>
+		</Header>
+		<BitmapFields FieldSeparator="32">
+				<Field BitID="1" Description="交易码"/>
+				<Field BitID="2" Description="设备号 or 外设编号"/>
+				<Field BitID="38" Description="交易卡号">
+					<Data FieldName="F_PAN" FieldDefaultData="0" FieldDataLen="VAR" FieldDataCoding="ASCII" FieldCheckData=""/>
+					<VAR VarFieldLenType="VAR" VarFieldLenCoding="ASCII"/>
+					<DataPadding RightPadding="" LeftTrim=" " RightTrim=" " /> 
+				</Field>
+				<Field BitID="10008" Description="响应码"/>
+				<Field BitID="44" Description="交易时间"/>					
+				<Field BitID="34" Description="流水号"/>
+				<Field BitID="46" Description="卡序列号   在IC卡交易中使用">
+					<Flag FieldIsOptional="true" />
+					<DataPadding RightPadding="" LeftTrim=" " RightTrim=" " /> 
+				</Field>
+		</BitmapFields>
+		</TFR_MAC_Resp> 
+		
+		
+</Packages>

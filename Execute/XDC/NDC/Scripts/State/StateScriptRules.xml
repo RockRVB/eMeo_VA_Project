@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- Comments are shown as below
+  ****************************************************************************************************
+  * [1] Local state and download state map setting
+  * [2] State not exist and go to default "exit" state
+  *****************************************************************************************************
+-->
+
+<Root>  
+  <LocalStateMap>    
+    <!-- Local State defined by ATM side, the same as ISO8583 states
+    * The mapping between local state and download state from host 
+    * If the local state exists, the download state will be replaced by local state
+    * Sample:
+    *    <Item HostState="000"  LocalState="000" Enable="0"/>
+    -->
+    
+  </LocalStateMap>
+
+  <ReservedStateMap>
+    <!-- Define the map setting for all screens to support ADA voice promotion 
+     * Sample:
+     *   <Item HostState="000"  ReservedState="000" Enable="0"/>
+    -->
+    
+  </ReservedStateMap> 
+  
+ <Priority>    
+      <!-- 
+       ************************************************************************
+       * If above item exists, it will use the setting value according to the settiong
+       * If the setting value doesn't exsits, will go to host map setting or fatal exception flow definition: 
+       *   0 -
+       *      [1] First step:   Local Screen configuration.
+       *      [2] Second step:  Host download state configuraiton
+       *      [3] Finally step: Fatal error exception reports
+       ************************************************************************
+       *   1 - 
+       *      [1] First step:   Host download state configuraitons
+       *      [2] Finally step: Fatal error exception reports
+       ************************************************************************
+       -->   
+      <Item key ="ScreenMap"  Priority ="0"/>     
+      
+  </Priority>
+
+</Root>

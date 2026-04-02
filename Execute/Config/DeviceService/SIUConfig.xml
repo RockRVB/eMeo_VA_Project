@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ServiceName：设备的服务名
+ErrorCode：  错误码 用于记录最近一次的设备错误物理码 默认为"ErrorCode"，可以不用配置，系统会自己按顺序查找 
+-->
+<SensorAndLight ServiceName="SIU30" />

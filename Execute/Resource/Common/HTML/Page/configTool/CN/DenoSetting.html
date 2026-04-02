@@ -1,0 +1,358 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+    <script defer type="text/javascript" src="../../../js/configTool/ShowResource.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../css/configTool/ConfigEditing.css" />
+    <script type="text/javascript">
+
+        //<!--控件命名规则为Input+类型+序号或Select+类型+序号-->
+        var string;
+        var obj;
+        var string1;
+        function Actived(string) {
+
+            var p0 = string;
+            var p1 = document.getElementById('Select' + p0 + 1);
+            var p2 = document.getElementById('Input' + p0 + 2);
+            var p3 = document.getElementById('Select' + p0 + 2);
+            var p4 = document.getElementById(p0);
+
+            if (p4.checked) {
+                p1.disabled = false;
+                p2.disabled = false;
+                p3.disabled = false;
+                p3.selectedIndex = 0;
+            }
+            else {
+                p1.disabled = true;
+                p2.disabled = true;
+                p3.disabled = true;
+                p3.selectedIndex = 1;
+            }
+        }
+
+        //<!--页面加载，绑定面额，控制是否置灰-->
+        function Load() {
+            for (var i = 1; i <= 8; i++) {
+                var p1 = document.getElementById('Input' + i + 1);
+                var p2 = document.getElementById('Select' + i + 2);
+                var p3 = document.getElementById('Select' + i + 1);
+                var p4 = document.getElementById('Input' + i + 2);
+                var p5 = document.getElementById(i);
+
+
+                //<!--获取钞票面额，用;分割-->
+                var p6 = document.getElementById("InputCurrencyList");
+                var list = new Array();
+                list = p6.value.split(";");
+                for (j = 0; j <= list.length; j++) {
+                    p3.options.add(new Option(list[j]));
+
+                    if (p1.value == list[j]) p3.selectedIndex = j;
+
+                }
+                if (p2.selectedIndex == 0) {
+                    p3.disabled = false;
+                    p4.disabled = false;
+                    p2.disabled = false;
+                    p5.checked = true;
+                }
+            }
+        }
+        function BindCurrency(obj, string1) {
+            var p1 = document.getElementById('Input' + string1 + 1);
+            p1.value = obj.options[obj.selectedIndex].text;
+        }
+    </script>
+</head>
+<body onload="Load()">
+    <div id="Div4">
+        <input id="InputCurrencyList" style="display: none" type="text" content="{Binding item file=XDC\Tools\GrgCassetteSetting\Currency.xml xpath=/CurrencyList mode=2}" />
+        <form method="post">
+        <div class="btnDIV">
+            <input id="Submit3" type="submit" value="Cancel" tag="OnCancel" />
+            <input id="Submit4" type="submit" value="Submit" tag="OnConfirm" />
+        </div>
+        <br />
+        <div class="contentDIV">
+            <fieldset name="Group1">
+                <legend class="FontSize">Current denomination setting</legend>
+                <br>
+                <table id="Table1">
+                    <tr id="Tr1">
+                        <td>Type</td>
+                        <td>Currency</td>
+                        <td>Denomination</td>
+                        <td>Enabled</td>
+                        <td>Selected</td>
+                    </tr>
+                    <tr id="Tr2">
+                        <td>
+                            <span>A</span>
+                        </td>
+                        <td>
+                            <input class="TableInput1" id="Input11" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='1'] mode=2}"
+                                style="display: none" />
+                            <select class="TableInput1" id="Select11" type="select" onchange="BindCurrency(this,1)"
+                                disabled="false">
+                            </select>
+                        </td>
+                        <td>
+                            <input class="TableInput1" id="Input12" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='1'] mode=2}"
+                                disabled="false" />
+                        </td>
+                        <td>
+                            <select id="Select12" type="select" selectvalue="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='1'] mode=2}"
+                                disabled="false">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="TableInput2" type="checkbox" id="1" onclick="Actived(1)">
+                        </td>
+                    </tr>
+                    <tr id="Tr3">
+                        <td>
+                            <span>B</span>
+                        </td>
+                        <td>
+                            <input class="TableInput1" id="Input21" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='2'] mode=2}"
+                                style="display: none" />
+                            <select class="TableInput1" id="Select21" type="select" onchange="BindCurrency(this,2)"
+                                disabled="false">
+                        </td>
+                        <td>
+                            <input class="TableInput1" id="Input22" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='2'] mode=2}"
+                                disabled="false" />
+                        </td>
+                        <td>
+                            <select id="Select22" type="select" selectvalue="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='2'] mode=2}"
+                                disabled="false">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="TableInput2" type="checkbox" id="2" onclick="Actived(2)">
+                        </td>
+                    </tr>
+                    <tr id="Tr4">
+                        <td>
+                            <span>C</span>
+                        </td>
+                        <td>
+                            <input class="TableInput1" id="Input31" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='3'] mode=2}"
+                                style="display: none" />
+                            <select class="TableInput1" id="Select31" type="select" onchange="BindCurrency(this,3)"
+                                disabled="false">
+                        </td>
+                        <td>
+                            <input class="TableInput1" id="Input32" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='3'] mode=2}"
+                                disabled="false" />
+                        </td>
+                        <td>
+                            <select id="Select32" type="select" selectvalue="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='3'] mode=2}"
+                                disabled="false">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="TableInput2" type="checkbox" id="3" onclick="Actived(3)">
+                        </td>
+                    </tr>
+                    <tr id="Tr5">
+                        <td>
+                            <span>D</span>
+                        </td>
+                        <td>
+                            <input class="TableInput1" id="Input41" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='4'] mode=2}"
+                                style="display: none" />
+                            <select class="TableInput1" id="Select41" type="select" onchange="BindCurrency(this,4)"
+                                disabled="false">
+                        </td>
+                        <td>
+                            <input class="TableInput1" id="Input42" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='4'] mode=2}"
+                                disabled="false" />
+                        </td>
+                        <td>
+                            <select id="Select42" type="select" selectvalue="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='4'] mode=2}"
+                                disabled="false">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="TableInput2" type="checkbox" id="4" onclick="Actived(4)">
+                        </td>
+                    </tr>
+                    <tr id="Tr6">
+                        <td>
+                            <span>E</span>
+                        </td>
+                        <td>
+                            <input class="TableInput1" id="Input51" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='5'] mode=2}"
+                                style="display: none" />
+                            <select class="TableInput1" id="Select51" type="select" onchange="BindCurrency(this,5)"
+                                disabled="false">
+                        </td>
+                        <td>
+                            <input class="TableInput1" id="Input52" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='5'] mode=2}"
+                                disabled="false" />
+                        </td>
+                        <td>
+                            <select id="Select52" type="select" selectvalue="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='5'] mode=2}"
+                                disabled="false">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="TableInput2" type="checkbox" id="5" onclick="Actived(5)">
+                        </td>
+                    </tr>
+                    <tr id="Tr7">
+                        <td>
+                            <span>F</span>
+                        </td>
+                        <td>
+                            <input class="TableInput1" id="Input61" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='6'] mode=2}"
+                                style="display: none" />
+                            <select class="TableInput1" id="Select61" type="select" onchange="BindCurrency(this,6)"
+                                disabled="false">
+                        </td>
+                        <td>
+                            <input class="TableInput1" id="Input62" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='6'] mode=2}"
+                                disabled="false" />
+                        </td>
+                        <td>
+                            <select id="Select62" type="select" selectvalue="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='6'] mode=2}"
+                                disabled="false">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="TableInput2" type="checkbox" id="6" onclick="Actived(6)">
+                        </td>
+                    </tr>
+                    <tr id="Tr8">
+                        <td>
+                            <span>G</span>
+                        </td>
+                        <td>
+                            <input class="TableInput1" id="Input71" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='7'] mode=2}"
+                                style="display: none" />
+                            <select class="TableInput1" id="Select71" type="select" onchange="BindCurrency(this,7)"
+                                disabled="false">
+                        </td>
+                        <td>
+                            <input class="TableInput1" id="Input72" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='7'] mode=2}"
+                                disabled="false" />
+                        </td>
+                        <td>
+                            <select id="Select72" type="select" selectvalue="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='7'] mode=2}"
+                                disabled="false">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="TableInput2" type="checkbox" id="7" onclick="Actived(7)">
+                        </td>
+                    </tr>
+                    <tr id="Tr9">
+                        <td>
+                            <span>H</span>
+                        </td>
+                        <td>
+                            <input class="TableInput1" id="Input81" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='8'] mode=2}"
+                                style="display: none" />
+                            <select class="TableInput1" id="Select81" type="select" onchange="BindCurrency(this,8)"
+                                disabled="false">
+                        </td>
+                        <td>
+                            <input class="TableInput1" id="Input82" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='8'] mode=2}"
+                                disabled="false" />
+                        </td>
+                        <td>
+                            <select id="Select82" type="select" selectvalue="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='8'] mode=2}"
+                                disabled="false">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="TableInput2" type="checkbox" id="8" onclick="Actived(8)">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <br>
+            <fieldset name="Group2" style="display: none">
+                <legend class="FontSize">Denomination update</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <label>
+                                Type</label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" disabled="false">
+                                <option>A</option>
+                                <option>B</option>
+                                <option>C</option>
+                                <option>D</option>
+                                <option>E</option>
+                                <option>F</option>
+                                <option>G</option>
+                                <option>H</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                Currency</label>
+                        </td>
+                        <td>
+                            <input id="Input1" type="Text" disabled="false" content="{Binding keepAlive file=Config\NetworkConfig.xml xpath=/NetConfig/NetworkService[@name='IPNetworkService']/Sessions/Session[@name='ATMP1'] mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                Denomination</label>
+                        </td>
+                        <td>
+                            <input id="Input2" type="Text" content="{Binding keepAlive file=Config\NetworkConfig.xml xpath=/NetConfig/NetworkService[@name='IPNetworkService']/Sessions/Session[@name='ATMP1'] mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                Enabled</label>
+                        </td>
+                        <td>
+                            <select id="Select2" type="select" selectvalue="{Binding type file=Config\NetworkConfig.xml xpath=/NetConfig/NetworkService[@name='IPNetworkService']/Sessions/Session[@name='ATMP1'] mode=2}">
+                                <option value="TCP">Yes</option>
+                                <option value="TCP">No</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center">
+                            <input id="InputAdd" type="submit" value="Update" tag="">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <br />
+        </div>
+        </form>
+    </div>
+</body>
+</html>

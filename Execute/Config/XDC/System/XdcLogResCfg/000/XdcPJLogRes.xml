@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<DeviceName>
+		<Item key="CardReader" value="CARD DEV"/>
+		<Item key="ReceiptPrinter" value="RCPT PRN"/>
+		<Item key="JournalPrinter" value="JOUNAL PRN"/>
+		<Item key="CashDispenser" value="CDM DEV"/>
+		<Item key="CashDeposit" value="CIM DEV"/>
+		<Item key="Envelope" value="EDU DEV"/>
+		<Item key="CashShutter" value="CASH SHUTTER"/>
+		<Item key="EPPKeypad" value="EPP DEV"/>
+		<Item key="TTU" value="TTU DEV"/>
+		<Item key="Barcode" value="BARCODE"/>
+		<Item key="CoinDispenser" value="COIN DISPENSER"/>		
+	</DeviceName>
+	<LogRes>
+		<Item key="IDS_HardwareWarning" value="#WARNING: [deviceName] ([logicalCode][separator][physicalCode])" deviceName="" logicalCode="" separator="/" physicalCode="" description="Hardware Warning Error"/>
+		<Item key="IDS_HardwareError" value="##ERROR: [deviceName] ([logicalCode][separator][physicalCode])" deviceName="" logicalCode="" separator="/" physicalCode="" description="Hardware Fatal Error"/>
+	</LogRes>
+</Root>

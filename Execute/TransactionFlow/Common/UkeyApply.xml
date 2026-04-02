@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow name="UkeyApply">
+  <Head type="GRGWorkflow" author="wjw" timeStamp="2013/08/16 19:15:12" comment="The workflow design is for IBToken" />
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start" callVisible="0">
+      <Forward event="OnConfirm" targetID="ID_GetDevStatusForUkey" />
+    </Start>
+
+	<GetDevStatusEx ID="ID_GetDevStatusForUkey" UI="UI_Waiting" comment="Get device status" devType="UkeyDispenser" callVisible="0" homeVisible="0">
+      <Forward event="OnNormal" targetID="ID_SelectUkeyType" />
+      <Forward event="OnWarn" targetID="ID_SelectUkeyType" />
+      <Forward event="OnFail" targetID="ID_GetDevStatusForUkeyRight" />
+    </GetDevStatusEx>
+
+    <GetDevStatusEx ID="ID_GetDevStatusForUkeyRight" UI="UI_Waiting" comment="Get device status" devType="UkeyRightDispenser" callVisible="0">
+      <Forward event="OnNormal" targetID="ID_SelectUkeyType" />
+      <Forward event="OnWarn" targetID="ID_SelectUkeyType" />
+      <Forward event="OnFail" targetID="ID_SelectActiveUkey" />
+    </GetDevStatusEx>
+	
+	
+    <VTMSelectFunction ID="ID_SelectActiveUkey" UI="UI_SelectActiveUkey" timeout="60000" homeVisible="1" transTypeMap="[F2,ACTIVEUKEY]">
+      <Forward event="OnActiveUkey" targetID="ID_ActiveUkey" />
+	  <Forward event="OnBack" targetID="9999"/>
+    </VTMSelectFunction>
+	
+    <!--select OPEN Ukey Or Activite Ukey-->
+    <VTMSelectFunction ID="ID_SelectUkeyType" UI="UI_SelectUkeyType" timeout="60000" homeVisible="1" transTypeMap="[F1,ISSUEUKEY][F2,ACTIVEUKEY]">
+      <Forward event="OnNewUkey" targetID="ID_SetTransTypeNewUkey" />
+      <Forward event="OnActiveUkey" targetID="ID_ActiveUkey" />
+	  <Forward event="OnBack" targetID="9999"/>
+    </VTMSelectFunction>
+
+	<SetData ID="ID_SetTransTypeNewUkey" saveBuffer="{VTM_TransTypeName,0}" value="VTM_Standard_NewUKey">
+      <Forward event="OnConfirm" targetID="ID_CompareLoginSuccessfulFlag"/>
+    </SetData>
+	
+    <!-- Invoke the NewAccount workflow-->
+    <InvokeWorkflow ID="ID_ActiveUkey" name="UkeyActive" comment="Invoke Activite Ukey workflow" fallBackAfterEnd="1">
+      <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+    </InvokeWorkflow>
+
+    <CompareData ID="ID_CompareLoginSuccessfulFlag" comment="" compareBuffer="{LoginSuccessfulFlag}">
+      <Forward event="OnEqualTrue" targetID="ID_RequestTransCheckKTWY" />
+      <DefaultForward targetID="ID_SetBackFlagFalse" />
+    </CompareData>
+	
+	<!--设置返回按钮标志位的值为False-->
+	<SetData ID="ID_SetBackFlagFalse" saveBuffer="{VTM_BackFlag,0}" value="False">
+      <Forward event="OnConfirm" targetID="ID_InvokeAuthorizationWorkflow" />
+    </SetData>
+
+    <!-- Invoke the Authorization workflow-->
+    <InvokeWorkflow ID="ID_InvokeAuthorizationWorkflow" name="Authorization" comment="Invoke Authorization workflow" fallBackAfterEnd="0" index="0">
+      <Forward event="OnConfirm" targetID="ID_CompareBackFlag"/>
+    </InvokeWorkflow>
+	
+	<!--比较返回按钮标志位的值-->
+	<CompareData ID="ID_CompareBackFlag" comment="" compareBuffer="{VTM_BackFlag}">
+      <Forward event="OnEqualTrue" targetID="ID_SelectUkeyType" />
+      <DefaultForward targetID="ID_CompareLoginSuccessfulFlagAgain" />
+    </CompareData>
+
+    <CompareData ID="ID_CompareLoginSuccessfulFlagAgain" comment="" compareBuffer="{LoginSuccessfulFlag}">
+      <Forward event="OnEqualTrue" targetID="ID_RequestTransCheckKTWY" />
+      <DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+    </CompareData>
+
+    <!-- <GetDevStatusEx ID="ID_GetDevStatusForUkey" UI="UI_Waiting" comment="Get device status" devType="UkeyDispenser" callVisible="0" homeVisible="0"> -->
+      <!-- <Forward event="OnNormal" targetID="ID_CompareLoginSuccessfulFlag" /> -->
+      <!-- <Forward event="OnWarn" targetID="ID_CompareLoginSuccessfulFlag" /> -->
+      <!-- <Forward event="OnFail" targetID="ID_GetDevStatusForUkeyRight" /> -->
+    <!-- </GetDevStatusEx> -->
+
+    <!-- <GetDevStatusEx ID="ID_GetDevStatusForUkeyRight" UI="UI_Waiting" comment="Get device status" devType="UkeyRightDispenser" callVisible="0"> -->
+      <!-- <Forward event="OnNormal" targetID="ID_CompareLoginSuccessfulFlag" /> -->
+      <!-- <Forward event="OnWarn" targetID="ID_CompareLoginSuccessfulFlag" /> -->
+      <!-- <Forward event="OnFail" targetID="ID_DevError" /> -->
+    <!-- </GetDevStatusEx> -->
+
+	<!--Check Agin Video Connection-->
+	<!-- 判断视频状态 -->
+    <!-- STATUS_END = 0,        未初始化前的状态，登陆前状态  -->
+    <!-- STATUS_INITIAL_REQ,    初始化请求状态, 登陆中状态  -->
+    <!-- STATUS_IDLE,           初始化成功后还未呼叫时的空闲状态  -->
+    <!-- STATUS_CALL_REQ,       呼叫发起请求状态  -->
+    <!-- STATUS_IN_TALKING,     通话中状态  -->
+    <!-- STATUS_RELEASE_REQ,    呼叫发起释放状态  -->
+    <!-- STATUS_ENDING_REQ,     发起结束初始化状态  -->
+    <!-- STATUS_ANSWER_REQ,     应答中，此时点击应答，等有TALKING事件上报后，将迁移到STATUS_IN_TALKING  -->
+    <!-- STATUS_IN_CALLING,     正在 来电中， 也就是收到振铃事件；对于AVAYA，主叫会收到振铃事件但被叫反而不会收到振铃事件  -->
+    <!-- STATUS_IN_REJECTING,   正在拒绝中  -->
+    <!-- STATUS_NETWORK_ERROR,  网络故障  -->
+    <CompareData ID="ID_CompareVideoStatus" comment="" compareBuffer="{VTM_VideoStatusWrapper}">
+      <Forward event="OnEqualSTATUS_IN_TALKING" targetID="ID_BeginTransaction" />
+      <DefaultForward targetID="ID_RequestTransCheckKTWY" />
+    </CompareData>
+	
+    <BeginTransaction ID="ID_BeginTransaction" UI="UI_WaitingNoVoice" timeout="60000">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail"/>
+        <State name="TimeOutError" UI="UI_TransTimeOut"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_RequestTransCheckKTWY"/>
+      <Forward event="OnFail" targetID="ID_ConnectAgentFail"/>
+    </BeginTransaction>
+
+    <!--查询是否开通网银-->
+    <RequestTrans ID="ID_RequestTransCheckKTWY" UI="UI_RequestTrans" transType="VTM_OL_BANK_CHK" comment=" ">
+      <States>
+        <State name="PackFail" UI="UI_GeneralError" />
+        <State name="ConnectFail" UI="UI_GeneralError" />
+        <State name="SendFail" UI="UI_GeneralError" />
+        <State name="ReceiveFail" UI="UI_GeneralError" />
+        <State name="ReceiveTimeout" UI="UI_GeneralError" />
+        <State name="NetworkFail" UI="UI_GeneralError" />
+        <State name="UnpackFail" UI="UI_GeneralError" />
+        <State name="HardwareError" UI="UI_GeneralError" />
+      </States>
+      <Forward event="OnConfirm" targetID="ID_CompareKTWYField48Data" />
+      <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnHostRefuse" targetID="ID_HostRefuse" />
+      <DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+    </RequestTrans>
+
+    <WaitSleep ID="ID_HostRefuse" UI="UI_HostResponseFailed" timeout="5000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+    </WaitSleep>
+
+    <CompareData ID="ID_CompareKTWYField48Data" comment="" compareBuffer="{VTM_Field48Data}">
+      <Forward event="OnEqualY" targetID="ID_RequestTransCheckUkeyStatus" />
+      <DefaultForward targetID="ID_NotOnlineBank" />
+    </CompareData>
+
+    <WaitSleep ID="ID_NotOnlineBank" UI="UI_NotOnlineBank" timeout="5000">
+      <Forward event="OnContinue" targetID="ID_OtherTrans" />
+    </WaitSleep>
+
+    <!--查询是否已有Ukey-->
+    <RequestTrans ID="ID_RequestTransCheckUkeyStatus" UI="UI_Waiting" comment="Check Ukey Status" transType="VTM_UKEY_CHK" homeVisible="0">
+      <States>
+        <State name="PackFail" UI="UI_GeneralError" />
+        <State name="ConnectFail" UI="UI_GeneralError" />
+        <State name="SendFail" UI="UI_GeneralError" />
+        <State name="ReceiveFail" UI="UI_GeneralError" />
+        <State name="ReceiveTimeout" UI="UI_GeneralError" />
+        <State name="NetworkFail" UI="UI_ConnectFail" />
+        <State name="UnpackFail" UI="UI_GeneralError" />
+        <State name="HardwareError" UI="UI_DevError" />
+      </States>
+      <Forward event="OnConfirm" targetID="ID_CompareCheckUkeyStatusField48Data" />
+      <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="OnHostRefuse" targetID="ID_HostRefuse" />
+      <DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+    </RequestTrans>
+
+    <!--是否有Ukey-->
+    <CompareData ID="ID_CompareCheckUkeyStatusField48Data" comment="" compareBuffer="{VTM_Field48Data}">
+      <Forward event="OnEqualY" targetID="ID_ReplaceUkeyEnquiry" />
+      <DefaultForward targetID="ID_IsIssuanceUkey" />
+    </CompareData>
+
+    <!--是否需要发Ukey-->
+    <VTMSelectFunction ID="ID_IsIssuanceUkey" UI="UI_IsIssuanceUkey"  timeout="60000" homeVisible="0" index="1">
+      <Forward event="OnYes" targetID="ID_RequestTransForUkeyIssuance" />
+      <Forward event="OnNo" targetID="ID_OtherTrans" />
+    </VTMSelectFunction>
+
+    <!--进行置换Ukey-->
+    <VTMSelectFunction ID="ID_ReplaceUkeyEnquiry" UI="UI_UkeyReplaceConfirmation"  timeout="60000" homeVisible="0" index="1">
+      <Forward event="OnYes" targetID="ID_RequestTransForUkeyIssuance" />
+      <Forward event="OnNo" targetID="ID_OtherTrans" />
+    </VTMSelectFunction>
+
+    <!--请求发Ukey-->
+    <RequestTrans ID="ID_RequestTransForUkeyIssuance" UI="UI_Waiting" comment="Ukey issuance" transType="VTM_UKEY_DISP" homeVisible="0">
+      <States>
+        <State name="PackFail" UI="UI_GeneralError" />
+        <State name="ConnectFail" UI="UI_GeneralError" />
+        <State name="SendFail" UI="UI_GeneralError" />
+        <State name="ReceiveFail" UI="UI_GeneralError" />
+        <State name="ReceiveTimeout" UI="UI_NoSureTransResult" />
+        <State name="NetworkFail" UI="UI_ConnectFail" />
+        <State name="UnpackFail" UI="UI_GeneralError" />
+        <State name="HardwareError" UI="UI_DevError" />
+      </States>
+      <Forward event="OnConfirm" targetID="ID_SetUkeySupplyFlag" />
+      <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="OnHostRefuse" targetID="ID_HostRefuse" />
+      <DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+    </RequestTrans>
+
+	<SetData ID="ID_SetUkeySupplyFlag" saveBuffer="{VTM_UKEYSUPPLY_FLAG}" value="3">
+		<Forward event="OnConfirm" targetID="ID_DispenseUkey"/>
+	</SetData>
+	
+    <!--发Ukey-->
+    <DispenseUkey ID="ID_DispenseUkey" UI="UI_Waiting">
+      <States>
+        <State name="DispenseUkeyError" UI="UI_DevError" />
+      </States>
+      <Forward event="OnContinue" targetID="ID_DispenseUkeySuccess" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </DispenseUkey>
+
+    <!--拿Ukey-->
+    <DispenseUkeySuccess ID="ID_DispenseUkeySuccess" UI="UI_Waiting" homeEnable="0"  timeout="30000" homeVisible="0" index="2">
+      <States>
+        <State name="EjectUkeySuccess" UI="UI_TakeUKey" />
+        <State name="EjectUkeyError" UI="UI_DevError" />
+      </States>
+      <Forward event="OnContinue" targetID="ID_OtherTrans" />
+      <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnTimeout" targetID="ID_ReturnUkey" />
+      <DefaultForward targetID="ID_ReturnUkey" />
+    </DispenseUkeySuccess>
+
+    <ReturnUkey ID="ID_ReturnUkey" UI="UI_ReturnUkey" homeVisible="0">
+      <States>
+        <State name="ReturnUkeyError" UI="UI_ReturnUkeyError" />
+      </States>
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow" />
+    </ReturnUkey>
+
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+
+    <WaitSleep ID="ID_BarcodeError1" UI="UI_GeneralError" timeout="5000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+    </WaitSleep>
+
+    <WaitSleep ID="ID_ConnectAgentFail" UI="UI_ConnectFail" timeout="5000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+    </WaitSleep>
+
+    <WaitSleep ID="ID_DevError" UI="UI_DevError" timeout="5000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+    </WaitSleep>
+
+    <VTMSelectFunction ID="ID_OtherTrans" UI="UI_NeedOtherBusiness" timeout="30000" homeVisible="0">
+      <Forward event="OnYes" targetID="9999" />
+      <Forward event="OnNo" targetID="ID_InvokeCloseTransWorkflow" />
+    </VTMSelectFunction>
+
+    <InvokeWorkflow ID="ID_InvokeRequestAgent_WF" name="RequestAgent_WF" comment="Invoke help workflow" fallBackAfterEnd="1">
+      <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+    </InvokeWorkflow>
+	
+    <End ID="9999" comment="End">
+    </End>
+
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnHardwareError" targetID="ID_BarcodeError1" />
+    <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow" />
+    <Forward event="OnFail" targetID="ID_BarcodeError1" />
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+    <Forward event="OnCancelTimeOut" targetID="ID_InvokeCloseTransWorkflow" />
+    <Forward event="OnCancel" targetID="ID_OtherTrans" />
+    <Forward event="OnRollbackForError" targetID="ID_InvokeCloseTransWorkflow" />
+    <Forward event="OnExit" targetID="ID_InvokeCloseTransWorkflow" />
+    <Forward event="OnBack" targetID="9999" />
+    <Forward event="OnHelp" targetID="ID_InvokeRequestAgent_WF"/>
+    <DefaultForward targetID="9999" />
+  </DefaultForward>
+</Workflow>

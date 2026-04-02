@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+
+  <Screen name="UI_ReadSuccess" uri="Common\ReadSuccessCheque.xaml" cache="0">
+  </Screen>
+
+  <Screen name="UI_ReadAcceptSuccess" uri="Common\RetractSuccessCheque.xaml" cache="0">
+  </Screen>
+
+  <Screen name="UI_TakeChk" uri="CloseTrans\TakePaperChk.xaml" cache="0">
+  </Screen>
+
+  <Screen name="UI_ReChkFeed" uri="Common\RetractAgainCheque.xaml" cache="0">
+  </Screen>
+
+  <Screen name="UI_ReChkForm" uri="Common\RetractFormCheque.xaml" cache="0">
+  </Screen>
+
+  <Screen name="UI_InputChequeInfo" uri="ChequeDeposit\InputChequeInfo.xaml" cache="0">
+  </Screen>
+
+</Screens>
+

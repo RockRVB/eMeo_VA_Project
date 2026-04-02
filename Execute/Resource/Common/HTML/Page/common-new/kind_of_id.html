@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=""></script>
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <style>
+        .g-row{
+            padding: 20px;
+        }
+        .g-card{
+            width: 100%;    
+            border-radius: 10px;
+        }
+        .g-main .main-title{
+            padding: 80px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <g-header>
+            <img slot='left' class='logo' src="../../images/logo.png" alt="">
+            <g-button class="exit-btn" slot='right' id='exitBtn' ids='ids_Exit' transparent round>Exit</g-button>
+        </g-header>
+        <g-main>
+            <h2 ids='ids_Common_selectIdcardOrPassport' class='main-title' ids="ids_Common_selectIdcardOrPassport">We need to scan your ID card. Which kind do you have? </h2>
+            <g-swiper freemode>
+                <div class="swiper-slide">
+                    <g-row class="card-wrapper" :gutter='80'>
+                        <g-col :span='8'>
+                            <g-card @click='goto("OnIdCard")'>
+                                <img slot='header' src="../../images/Common/old_id.png" style='width:120px'/>
+                                <p slot='footer' ids='ids_Common_card'>ID card</p>
+                            </g-card>
+                        </g-col>
+						<g-col :span='8'>
+                            <g-card @click='goto("OnPassport")'>
+                                <img slot='header' src="../../images/Common/passport.png" style='width:120px'/>
+                                <p slot='footer' ids='ids_Common_Passport'>Passport</p>
+                            </g-card>
+                        </g-col>
+                        <!-- <g-col :span='8'> -->
+                            <!-- <g-card @click='goto("OnCCCD")'> -->
+                                <!-- <img slot='header' src="../../images/Common/new_id.png" alt=""> -->
+                                <!-- <p slot='footer' ids='ids_Common_Biometrics'>Citizen ID card</p> -->
+                            <!-- </g-card> -->
+                        <!-- </g-col> -->
+                        <g-col :span='8'></g-col>
+
+                    </g-row>
+                </div>
+            </g-swiper>
+        </g-main>
+        <!-- <g-footer>
+            <g-button id='OnCancel' type='button' ids='ids_Btn_cancel' tag='OnCancel' round transparent>Cancel</g-button>
+            <g-button class="command-btn" id='OnConfirm' type='button' ids='ids_Btn_confirm'round>Confirm</g-button>
+        </g-footer> -->
+    </div>
+</body>
+</html>
+<script>
+    new Base({}).$mount('#app')
+</script>
+
+

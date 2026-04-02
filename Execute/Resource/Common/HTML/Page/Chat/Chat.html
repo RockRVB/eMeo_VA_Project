@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/vue-i18n.js"></script>
+    <script src="../../js/jquery-3.7.0.js"></script>
+    <script src="../../js/coreScript.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css" />
+    <link rel="stylesheet" href="../../css/animate.grg.css" />
+    <link rel="stylesheet" href="../../css/ibank.css" />
+    <style>
+      html {
+        background: unset;
+      }
+
+      #app {
+        position: relative;
+      }
+
+      .header-box {
+        position: relative;
+        width: 100%;
+        height: 60px;
+        background: #296CFF;
+        border-radius: 8px 8px 0px 0px;
+        padding: 0 20px;
+        box-sizing: border-box;
+        z-index: 10;
+      }
+
+      .header-left-box {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        font-size: 24px;
+        font-family: Alibaba Sans;
+      }
+
+      .header-left-box .client-head-portrait {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        background-color: #999;
+        border-radius: 50%;
+      }
+
+      .header-left-box .text {
+        margin-left: 6px;
+      }
+
+      .header-left-box .text span {
+        margin-right: 8px;
+      }
+
+      .header-left-box .text span:last-child {
+        margin-right: 0;
+      }
+
+      .header-left-box img[src=''], .header-left-box img:not([src='']) {
+        opacity: 1;
+      }
+
+      .close-box {
+        position: absolute;
+        display: flex;
+        width: 40px;
+        height: 40px;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .close-box img {
+        display: inline-block;
+      }
+
+      .prompt-message-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        width: 100%;
+        font-size: 20px;
+        font-family: Alibaba Sans;
+        color: #999999;
+        text-align: center;
+        padding: 0 20px 10px;
+        height: 54px;
+        box-sizing: border-box;
+        z-index: 10;
+      }
+
+      .prompt-message-box::before,
+      .prompt-message-box::after {
+        display: inline-block;
+        content: '.';
+        width: 100px;
+        height: 1px;
+        background:#E5E5E5;
+      }
+
+      /* 中间信息内容 */
+      .message-box {
+        position: absolute;
+        width: 100%;
+        height: calc(100vh - 292px);
+        top: 114px;
+        padding: 0 20px;
+        box-sizing: border-box;
+        overflow: auto;
+        z-index: 1;
+      }
+
+      .message-box .message-list .list-item .other-box {
+        display: flex;
+        margin-bottom: 16px;
+      }
+
+      .message-box .message-list .list-item .oneself-box {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 16px;
+      }
+
+      .message-box .message-list .list-item .oneself-box .item-left {
+        text-align: right;
+        margin-right: 8px;
+      }
+
+      .message-box .message-list .list-item .oneself-box .item-left .label-box {
+        margin: 0 4px 0 0;
+      }
+
+      .message-box .message-list .list-item .item-left {
+        display: flex;
+        align-items: flex-end;
+      }
+
+      .message-box .message-list .list-item .avatar-class {
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+
+      .message-box .message-list .list-item .avatar-class img {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .message-box .message-list .list-item .item-left .time-box {
+        font-family: Alibaba Sans;
+        font-size: 16px;
+        color: #999999;
+      }
+
+      .message-box .message-list .list-item .item-left .talk-info {
+        max-width: 50vw;
+        font-size: 18px;
+        color: #231815;
+        text-align: left;
+        font-family: Alibaba Sans;
+        padding: 10px;
+        background-color: #E9E9E9;
+        border-radius: 8px;
+        margin-top: 2px;
+        line-height: 25px;
+        box-sizing: border-box;
+      }
+
+      .message-box .message-list .list-item .oneself-box .item-left .talk-info {
+        background-color: #578CFF;
+        color: #ffffff;
+      }
+
+      .message-box .message-list .list-item .label-box {
+        vertical-align: bottom;
+        color: #D80200;
+        font-size: 14px;
+        margin-left: 4px;
+        font-family: Alibaba Sans;
+      }
+
+      .message-box .message-list .list-item .label-box.is-read {
+        color: #00A24D;
+      }
+
+      /**/
+      .send-message-box {
+        position: absolute;
+        width: 100%;
+        height: 178px;
+        left: 0;
+        bottom: 0;
+        border-top: 1px solid #E5E5E5;
+        z-index: 9;
+      }
+
+      .send-message-box .send-input-box {
+        width: 100%;
+        height: calc(100% - 68px);
+        padding: 10px 20px 0;
+        box-sizing: border-box;
+      }
+
+      .send-message-box .send-input-box .chat-input-box {
+        width: 100%;
+        height: calc(100% - 10px);
+        font-size: 20px;
+        font-family: Alibaba Sans;
+        border: none;
+        outline: none;
+        resize: none;
+      }
+
+      .send-message-box .operation-box {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 68px;
+        padding: 0 20px;
+        box-sizing: border-box;
+        bottom: 0;
+      }
+
+      .send-message-box .regular-box {
+        margin-top: 6px;
+        cursor: pointer;
+      }
+
+      .send-message-box .operation-box .send-btn {
+        width: 100px;
+        height: 48px;
+        line-height: 48px;
+        background: #296CFF;
+        border-radius: 8px;
+        font-family: Alibaba Sans;
+        font-size: 20px;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .send-message-box .operation-box .send-btn:active {
+        background: #2C83EF;
+      }
+
+      .send-message-box .operation-box .empty-message-box {
+        position: absolute;
+        right: 10px;
+        bottom: 75px;
+        color: #000000;
+        font-size: 14px;
+        background: #FFFFFF;
+        box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.2);
+        border-radius: 4px;
+        border: 1px solid #E5E5E5;
+        padding: 10px;
+        box-sizing: border-box;
+        font-family: Alibaba Sans;
+      }
+
+      .send-message-box .operation-box .empty-message-box .triangle-box {
+        position: absolute;
+        width: 0;
+        height: 0;
+        bottom: -8px;
+        left: 50%;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #fff;
+      }
+
+      .send-message-box .operation-box .common-quotations-box {
+        position: absolute;
+        bottom: 70px;
+        left: 20px;
+        width: 310px;
+        height: 145px;
+        background: #FFFFFF;
+        box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.2);
+        border-radius: 4px;
+        border: 1px solid #E5E5E5;
+      }
+
+      .send-message-box .operation-box .common-quotations-box .common-quotations-list {
+        height: 100%;
+        font-size: 20px;
+        color: #333333;
+        font-family: Alibaba Sans;
+        padding: 10px;
+        box-sizing: border-box;
+        overflow: scroll;
+      }
+
+      .send-message-box .operation-box .common-quotations-box .common-quotations-list li {
+        width: 100%;
+        padding: 8px 10px;
+        cursor: pointer;
+        box-sizing: border-box;
+      }
+
+      .send-message-box .operation-box .common-quotations-box .common-quotations-list li:active,
+      .send-message-box .operation-box .common-quotations-box .common-quotations-list li:hover {
+        background: rgba(0,114,255,0.1);
+        border-radius: 4px;
+      }
+
+      .line-box {
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        left: 0;
+        bottom: 178px;
+        background: rgba(230, 230, 230, 0);
+        z-index: 100;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="header-box">
+        <div class="header-left-box">
+          <img class="client-head-portrait" :src="otherAvatarImg" alt="">
+          <div class="text">
+            <!-- <span>Chatting</span><span>with</span><span>8908098</span> -->
+            <span>{{currentTextList?.chatWinTitle}}</span><span>{{currentTeller}}</span>
+          </div>
+        </div>
+        <div class="close-box" @click="closeEvent">
+          <img :src="closeImg" alt="">
+        </div>
+      </div>
+      <div class="prompt-message-box">
+        <!-- <span>To optimize the service, the dialog will be recorded in the system for further query</span> -->
+        <span>{{currentTextList?.chatWinTopTxt}}</span>
+      </div>
+      <div class="message-box" ref="chatMessages">
+        <ul class="message-list">
+          <li class="list-item" v-for="(item, index) in messages" :key="index">
+            <div v-if="item?.sender == 'other'" class="other-box">
+              <div class="avatar-class">
+                <img :src="otherAvatarImg" alt="">
+              </div>
+              <div class="item-left">
+                <div class="item-left-content">
+                  <div class="time-box">{{ item?.chatTime }}</div>
+                  <div class="talk-info">
+                    {{ item?.content }}
+                  </div>
+                </div>
+                <!-- <div class="label-box is-read" v-if="item?.isRead">Read</div>
+                <div class="label-box" v-else>Unread</div> -->
+              </div>
+            </div>
+            <div v-if="item?.sender == 'me'" class="oneself-box">
+              <div class="item-left">
+                <div class="label-box is-read" v-if="item?.isRead">Read</div>
+                <div class="label-box" v-else>Unread</div>
+                <div class="item-left-content">
+                  <div class="time-box">{{ item?.chatTime }}</div>
+                  <div class="talk-info">
+                    {{ item?.content }}
+                  </div>
+                </div>
+              </div>
+              <div class="avatar-class">
+                <img :src="meAvatarImg" alt="">
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="send-message-box">
+        <div class="send-input-box">
+          <textarea v-model="chatInfo" ref="chatInput" class="chat-input-box" :placeholder="currentTextList?.plsEnterTxt" @keyup.enter="sendEvent"></textarea>
+        </div>
+        <div class="operation-box">
+          <div class="regular-box" @click="commonQuotationsEvent">
+            <img class="message-img" :src="showCommonQuotationsBox? commonQuotationsImg : commonQuotationsDisableImg" alt="">
+          </div>
+          <div type='button' class="send-btn" @click="sendEvent">{{currentTextList?.sendBtn}}</div>
+          <div v-if="showEmptyMessageBox" class="empty-message-box">
+            <!-- 不能发送空白信息 -->
+            {{currentTextList?.emptyMessageTxt}}
+            <div class="triangle-box"></div>
+          </div>
+          <div v-if="showCommonQuotationsBox" class="common-quotations-box">
+            <ul class="common-quotations-list">
+              <li v-for="(item, index) in commonQuotationsData" :key="index" @click="selectCommonQuotationsEvent(item, index)">{{ item }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="line-box"></div>
+    </div>
+  </body>
+</html>
+<script>
+  let app = new Base({
+    i18n: i18n,
+    data: {
+      chatInfo: '',
+      otherAvatarImg: '../../images/img_2.4/face_success.png',
+      meAvatarImg: '../../images/img_2.4/face_failure.png',
+      closeImg: '../../images/close-bold-img.png',
+      commonQuotationsImg: '../../images/message.png',
+      commonQuotationsDisableImg: '../../images/disable-message.png',
+      showEmptyMessageBox: false,
+      showCommonQuotationsBox: false,
+      messages: [
+        // { content: 'Please carry your identity with you at the ATM', isRead: true, sender: 'me', chatTime: '2024-07-19 00:00:00' },
+        // { content: 'Please carry your identity with you at the ATM Please carry your identity with you at the ATM Please carry your identity with you at the ATM Please carry your identity with you at the ATM', isRead: false, sender: 'other', chatTime: '2024-07-19 00:00:00' },
+      ],
+      commonQuotationsData: ['Okay, thank you.', 'Confirmed', 'OK, documents confirmed'],
+      timer: null,
+      currentTextList:[],
+      currentTeller: '',
+    },
+    methods: {
+      getTime: function() {
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let hour = date.getHours();
+        let minute = date.getMinutes();
+        let second = date.getSeconds();
+        month = month < 10 ? ("0" + month) : month;
+        day = day < 10 ? ("0" + day) : day;
+        hour = hour < 10 ? ("0" + hour) : hour;
+        minute = minute < 10 ? ("0" + minute) : minute;
+        second = second < 10 ? ("0" + second) : second;
+        let setTime = hour + ':' + minute + ':' + second;
+        let setDate = year + '-' + month + '-' + day;
+        return setDate + ' ' + setTime;
+      },
+      chatInputEnter: function() {
+        let _this = this;
+        if (this.chatInfo.trim() == '') {
+          this.showEmptyMessageBox = true;
+          this.chatInfo = '';
+          clearTimeout(this.timer);
+          this.timer = setTimeout(()=> {
+            this.showEmptyMessageBox = false;
+          }, 2000)
+        } else {
+          let info = { content: this.chatInfo, isRead: false, sender: 'other', chatTime: this.getTime() };
+          this.messages.push(info);
+          this.$nextTick(() => {
+            const chatMessages = this.$refs.chatMessages;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            _this.chatInfo = '';
+          });
+        }
+      },
+      sendEvent: function() {
+        let _this = this;
+        console.log('chatInfo',this.chatInfo);
+        if (this.chatInfo.trim() == '') {
+          _this.chatInfo = '';
+          this.showEmptyMessageBox = true;
+          clearTimeout(this.timer);
+          this.timer = setTimeout(()=> {
+            this.showEmptyMessageBox = false;
+          }, 2000)
+        } else {
+          let info = { content: this.chatInfo, isRead: false, sender: 'me', chatTime: this.getTime() };
+          sendChatInfoToTool(info.content,info.chatTime);//通知程序端
+          this.messages.push(info);
+          this.$nextTick(() => {
+            const chatMessages = this.$refs.chatMessages;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            _this.chatInfo = '';
+          });
+        }
+        this.$refs.chatInput.focus();
+      },
+      commonQuotationsEvent: function() {
+        this.showCommonQuotationsBox = !this.showCommonQuotationsBox;
+      },
+      selectCommonQuotationsEvent: function (item, index) {
+        this.chatInfo = item;
+        this.$refs.chatInput.focus();
+      },
+      closeEvent: function() {
+        console.log('close');
+        let clickMsg = { msgType: 'event', name: 'closeClick' };
+        window.chrome.webview.postMessage(clickMsg);
+      },
+    },
+    computed: {},
+    mounted: function () {
+      let _this = this;
+      document.addEventListener('click', function(event) {
+        if (!(event.target.getAttribute('class') == 'message-img' || event.target.getAttribute('class') == 'regular-box')) {
+          _this.showCommonQuotationsBox = false;
+        }
+      });
+      let sendMessageBox = document.querySelector('.send-message-box');
+      let messageBox = document.querySelector('.message-box');
+      let lineBox = document.querySelector('.line-box');
+      let body = document.querySelector('body');
+      let windowHeight = window.innerHeight;
+      let messageBoxClientHeight = messageBox.clientHeight;
+      lineBox.addEventListener('mouseover', (event) => {
+        event.preventDefault();
+        lineBox.style.cursor = 'n-resize';
+      })
+      lineBox.addEventListener('mousedown', (e) => {
+        event.preventDefault();
+        lineBox.style.cursor = 'n-resize';
+        console.log(e.clientY);
+        body.addEventListener('mousemove', moveFun);
+      })
+      lineBox.addEventListener('mouseup', (event) => {
+        lineBox.style.cursor = 'default';
+      })
+      body.addEventListener('mouseup', () => {
+        event.preventDefault();
+        body.removeEventListener('mousemove', moveFun);
+      })
+      lineBox.addEventListener('touchmove', (event) => {
+        let clientY = event.targetTouches[0].clientY;
+        if (clientY > 160 && (windowHeight - 178) > clientY) {
+          lineBox.style.top = clientY + 'px';
+          messageBox.style.top = -(messageBoxClientHeight - clientY) + 'px';
+          sendMessageBox.style.height = `calc(100vh - ${clientY}px)`;
+        }
+      })
+      function moveFun(event) {
+        const { clientX, clientY } = event;
+        if (clientY > 160 && (windowHeight - 178) > clientY) {
+          lineBox.style.top = clientY + 'px';
+          messageBox.style.top = -(messageBoxClientHeight - clientY) + 'px';
+          sendMessageBox.style.height = `calc(100vh - ${clientY}px)`;
+        }
+      }
+    },
+  }).$mount("#app");
+</script>

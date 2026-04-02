@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!-- 
+	 * Main control character definition for screen script
+	 * [1] The control character of screen script 
+	 -->
+	<ControlCharacter>
+		<Item key="[0x08]" value="BackCursorOnePos" name="BS" existSub="0" description="Moves the cursor back one position"/>
+		<Item key="[0x0D]" value="FirstPosInCurrentRow" name="CR" existSub="0" description="Moves the cursor to the first position in the current row."/>
+		<Item key="[0x0C]" value="ClearScr" name="FF" existSub="0" description="Clear the screen and position in the cursor to position @,@ on the display grid."/>
+		<Item key="[0x09]" value="ShowTrack1" name="HT" existSub="0" description="Causes the name encoded on track 1 of the card to be displayed"/>
+		<Item key="[0x0A]" value="CurColumnNextRow" name="LF" existSub="0" description="Moves the cursor to the current column in the next row"/>
+		<Item key="[0x0F]" value="SetPosition" name="SI" existSub="0" description="Sets the cursor to the position by next two characters"/>
+		<Item key="[0x0E]" value="InsertScrOrResFile" name="SO" existSub="0" description="Insert nested screen(maximum 5 levels) or resource file"/>
+		<Item key="[0x0B]" value="SecondaryCharSet" name="VT" existSub="0" description="Set the secondary character set for following next character"/>
+		<Item key="[0x1B]" value="SpecialFeature" name="ESC" existSub="1" description="Enable video. Shows the screen display"/>
+	</ControlCharacter>
+	<!--
+	 * Sub control character definition for screen special features
+	 * [1] The control character of screen script 
+	 * [2] The field "mainKey" map to the ControlCharacter field "key"
+	 -->
+	<SpecialFeature>
+		<Item key="IconAnimation" introducer0="[0x1B]" introducer1="A" identifier="0"/>
+		<Item key="DisplayBufContent" introducer0="[0x1B]" introducer1="B" identifier="0"/>
+		<Item key="SelectColor" introducer0="[0x1B]" introducer1="C" identifier="0"/>
+		<Item key="AnimationDelay" introducer0="[0x1B]" introducer1="D" identifier="0"/>
+		<Item key="SelectFont" introducer0="[0x1B]" introducer1="F" identifier="0"/>
+		<Item key="SelCharSetAndDisplayMode" introducer0="[0x1B]" introducer1="G" identifier="0"/>
+		<Item key="SelectForegroundColor" introducer0="[0x1B]" introducer1="H" identifier="0"/>
+		<Item key="InsertScr" introducer0="[0x1B]" introducer1="I" identifier="0"/>
+		<Item key="UseColorWheel" introducer0="[0x1B]" introducer1="J" identifier="0"/>
+		<Item key="InitiateScrolling" introducer0="[0x1B]" introducer1="K" identifier="0"/>
+		<Item key="SetLanguageBank" introducer0="[0x1B]" introducer1="L" identifier="0"/>
+		<Item key="ChangeResolution" introducer0="[0x1B]" introducer1="M" identifier="0"/>
+		<Item key="SelectPaletteRegisters" introducer0="[0x1B]" introducer1="N" identifier="0"/>
+		<Item key="SelectDACSetup" introducer0="[0x1B]" introducer1="O" identifier="0"/>
+		<Item key="DisplayIcon" introducer0="[0x1B]" introducer1="P" identifier="0"/>
+		<Item key="DisplayCheckImg" introducer0="[0x1B]" introducer1="Q" identifier="0"/>
+		<Item key="RepeatCell" introducer0="[0x1B]" introducer1="R" identifier="0"/>
+		<Item key="TileNoAddressArea" introducer0="[0x1B]" introducer1="T" identifier="0"/>
+		<Item key="TileRectArea" introducer0="[0x1B]" introducer1="U" identifier="0"/>
+		<Item key="DisplayBufContentV" introducer0="[0x1B]" introducer1="V" identifier="0"/>
+		<Item key="SelectBlinking" introducer0="[0x1B]" introducer1="W" identifier="0"/>
+		<Item key="PositionCursor" introducer0="[0x1B]" introducer1="X" identifier="0"/>
+		<Item key="SelectSpecialEffectTime" introducer0="[0x1B]" introducer1="Y" identifier="0"/>
+		<Item key="SelectTouchScrTemplate" introducer0="[0x1B]" introducer1="ZC" identifier="0"/>
+		<Item key="DefineTouchScrConfigData" introducer0="[0x1B]" introducer1="ZD" identifier="0"/>
+		<Item key="TouchScrConfigData" introducer0="[0x1B]" introducer1="ZE" identifier="0"/>
+		<Item key="DisplayFLCAnimation" introducer0="[0x1B]" introducer1="ZF" identifier="0"/>
+		<Item key="DisplayTouchScrBtn" introducer0="[0x1B]" introducer1="ZI" identifier="0"/>
+		<Item key="DisplayOutTouchScrBtn" introducer0="[0x1B]" introducer1="ZO" identifier="0"/>
+		<Item key="MediaPlayerControl" introducer0="[0x1B]" introducer1="ZU" identifier="0"/>
+		<Item key="MpegSetupPlay" introducer0="[0x1B]" introducer1="ZU&quot;MPEGPlay&quot;" identifier="0"/>
+		<Item key="ScreenMarker" introducer0="[0x1B]" introducer1="ZV&quot;ScrnMark&quot;" identifier="0"/>
+		<Item key="DateTimeTemplate" introducer0="[0x1B]" introducer1=":" identifier="0"/>
+		<Item key="FadeOutTransition" introducer0="[0x1B]" introducer1="&lt;" identifier="0"/>
+		<Item key="ChangeRowSize" introducer0="[0x1B]" introducer1="=" identifier="0"/>
+		<Item key="FadeInTransition" introducer0="[0x1B]" introducer1="&gt;" identifier="0"/>
+		<Item key="SpriteAnimation" introducer0="[0x1B]" introducer1="?" identifier="0"/>
+		<Item key="ViewOfDepositCheck" introducer0="[0x1B]" introducer1="@" identifier="0"/>
+		<Item key="ChangeDisplayInIdle" introducer0="[0x1B]" introducer1="[" identifier="z"/>
+	</SpecialFeature>
+	<!-- 
+	 * The format of sub-control character definition for screen special features
+	 -->
+	<SubCtrFormat>
+		<!-- The definition of Icon Animation-->
+		<IconAnimation>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="A" size="1" identifier="1"/>
+			<Item key="2" value="[StartIconNum]" size="3" setValue="1"/>
+			<Item key="3" value="[NumOfIcon]" size="1" setValue="1"/>
+			<Item key="4" value="[DelayOfIconAniDisplay]" size="3" setValue="1"/>
+		</IconAnimation>
+		
+		<!-- The definition of Display Buffer Content-->
+		<DisplayBufContent>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="B" size="1" identifier="1"/>
+			<Item key="2" value="[DisplayBufId]" size="3" setValue="1"/>
+		</DisplayBufContent>
+		
+		<!-- The definition with format of sub section "SelectColor" -->
+		<SelectColor>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="C" size="1" identifier="1"/>			
+			<Item key="2" value="[BackgroundValue]" size="1" setValue="1"/>
+			<Item key="3" value="[ForegroundValue]" size="1" setValue="1"/>
+		</SelectColor>
+		
+		<!-- The definition with format of sub section "SelectColor Format" -->
+		<SelectColor01>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="C" size="1" identifier="1"/>
+			<Item key="2" value="Z" size="1" identifier="1"/>
+			<Item key="3" value="[BackgroundRedValue]" size="3" setValue="1"/>
+			<Item key="4" value="[BackgroundGreenValue]" size="3" setValue="1"/>
+			<Item key="5" value="[BackgroundBlueValue]" size="3" setValue="1"/>
+			<Item key="6" value="[ForegroundRedValue]" size="3" setValue="1"/>
+			<Item key="7" value="[ForegroundGreenValue]" size="3" setValue="1"/>
+			<Item key="8" value="[ForegroundBlueValue]" size="3" setValue="1"/>
+		</SelectColor01>
+		
+		<!-- The definition with format of sub section "AnimationDelay" -->
+		<AnimationDelay>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="D" size="1" identifier="1"/>
+			<Item key="2" value="[DelayOfAnimation]" size="3" setValue="1"/>
+		</AnimationDelay>
+		
+		<!-- The definition with format of sub section "SelectFont" -->
+		<SelectFont>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="F" size="1" identifier="1"/>
+			<Item key="2" value="[CharacterSet]" size="1"  setValue="1"/>
+			<!-- 
+			[0] If the length of the font name is less than 2, should be 
+				valid from 0 - 7, E, F, G, and @
+            [1] If the lenght of the font name is greater than 1, should be
+				the font name of any trueType or openType font 
+			-->
+			<Item key="3" value="[FontName]" size="var" setValue="1" separator = "&quot;"/>
+			<!-- 
+			[0] If the length of the font name is less than 2, should be 
+				valid from normal, blinking, inverse, or blinking inverse)
+            [1] If the lenght of the font name is greater than 1, should be
+				the desired point size of the font 
+			-->			
+			<Item key="4" value="[DisplayMode]" size="1" setValue="1" />
+			<Item key="5" value="[EncodingType]" size="0" setValue="1" />
+			<Item key="6" value="[FontSize]" size="0" setValue="1" />
+			<Item key="7" value="[PureText]" size="var" setValue="1" />
+		</SelectFont>
+		
+		<!-- The definition with format of sub section "SelCharSetAndDisplayMode" -->
+		<SelCharSetAndDisplayMode>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="G" size="1" identifier="1"/>
+			<!--
+			 0 			 - Basic (standard and alternate character sets)
+			 1 			 - Heivetica character set
+			 2 through 7 -  Icon character sets
+			-->
+			<Item key="2" value="[CharSet]" size="1" setValue="1"/>
+			<!--
+			 0 - Normal
+			 1 - Blinking
+			 2 - Inverse video
+			 3 - Blinking and inverse video
+			-->			
+			<Item key="3" value="[DisplayMode]" size="1" setValue="1"/>
+		</SelCharSetAndDisplayMode>
+		
+		<!-- The definition with format of sub section "SelectForegroundColor" -->
+		<SelectForegroundColor>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="H" size="1" identifier="1"/>
+			<Item key="2" value="[DACColor]" size="3" setValue="1"/>
+		</SelectForegroundColor>
+		
+		
+		<!-- The definition with format of sub section "UseColorWheel" -->
+		<UseColorWheel>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="J" size="1" identifier="1"/>
+			<Item key="2" value="[ScrBlinkColorCtrCmd]" loopIdentifer=""  maxLoop="20"  size = "3" setValue="1"/>
+			<Item key="3" value="[0x1B]" size="6"	identifier="1"/>
+		</UseColorWheel>
+		
+		<!-- The definition with format of sub section "InitiateScrolling" -->
+		<InitiateScrolling>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="K" size="1" identifier="1"/>
+			<!-- 
+			[U] - Up
+			[D] - Down
+			[L] - Left
+			[R] - Right
+			 -->
+			<Item key="2" value="[ScrollDirection]" size="1" setValue="1"/>
+			<Item key="3" value="[ScrollScr]" size="3" setValue="1"/>
+			<Item key="4" value="[ScrollTopRow]" size="1" setValue="1"/>
+			<Item key="5" value="[ScrollBotttomRow]" size="1" setValue="1"/>
+			<Item key="6" value="[ScrollDelay]" size="3" setValue="1"/>
+		</InitiateScrolling>
+		
+		
+		<!-- The definition with format of sub section "SetLanguageBank" -->
+		<SetLanguageBank>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="L" size="1" identifier="1"/>
+			<Item key="2" value="[LanguageBankNum]" size="3" setValue="1"/>
+		</SetLanguageBank>
+		
+		<!-- The definition with format of sub section "ChangeResolution" -->
+		<ChangeResolution>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="M" size="1" identifier="1"/>
+			<!-- 
+			00 - 640  * 480 16 Colors
+			01 - 320  * 240 256 Colors	
+			02 - 320  * 200 256 Colors	
+			03 - 640  * 480 256 Colors	
+			04 - 1024 * 768 256 Colors	
+			05 - 800  * 600 256 Colors	
+			-->
+			<Item key="2" value="[ResolutionIndex]" size="2" setValue="1"/>
+		</ChangeResolution>
+		
+		<!-- The definition with format of sub section "SelectPaletteRegisters" -->
+		<SelectPaletteRegisters>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="N" size="1" identifier="1"/>
+			<!-- Custom Palette. 
+			Create a palette file to set up a custom palette for 16-color icons.
+			-->
+			<Item key="2" value="[CustomPalette]" size="3" setValue="1"/>
+		</SelectPaletteRegisters>
+		
+		<!-- The definition with format of sub section "SelectDACSetup" -->
+		<SelectDACSetup>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="O" size="1" identifier="1"/>
+			<!-- DAC setup numbers range from 256 through 999 -->
+			<Item key="2" value="[DACSetupNum]" size="3" setValue="1"/>
+		</SelectDACSetup>
+		
+		<!-- The definition with format of sub section "DisplayIcon" -->
+		<DisplayIcon>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="P" size="1" identifier="1"/>
+			<!-- Icon name from 000 through 999 -->
+			<Item key="2" value="[IconName]" size="3" setValue="1"/>
+			<!-- 
+			0 - Normal Video
+			1 - Blinking Video
+			2 - Inverse video
+			3 - Blinking inverse video
+			4 - Sprinke image (VGA Plus only)
+			5 - Wipe image (VGA Plus only)
+			-->
+			<Item key="3" value="[IconShownMode]" size="1" setValue="1"/>
+		</DisplayIcon>
+		
+		<!-- The definition with format of sub section "DisplayCheckImg" -->
+		<DisplayCheckImg>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="Q" size="1" identifier="1"/>
+		</DisplayCheckImg>
+		
+		<!-- The definition with format of sub section "RepeatCell" -->
+		<RepeatCell>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="R" size="1" identifier="1"/>
+			<Item key="2" value="[RepeatTimes]" size="3" setValue="1"/>
+			<Item key="3" value="[RepeatBackgroundColor]" size="1" setValue="1"/>
+			<Item key="4" value="[RepeatForegroundColor]" size="1" setValue="1"/>
+			<Item key="5" value="[CellValue]" size="1" setValue="1"/>
+		</RepeatCell>
+		
+		<!-- The definition with format of sub section "TileNoAddressArea" -->
+		<TileNoAddressArea>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="T" size="1" identifier="1"/>
+			<Item key="2" value="[TileBackgroundColor]" size="1" setValue="1"/>
+			<Item key="3" value="[TileForegroundColor]" size="1" setValue="1"/>
+			<Item key="4" value="[CellValue]" size="1" setValue="1"/>
+		</TileNoAddressArea>		
+
+		<!-- The definition with format of sub section "TileRectArea" -->
+		<TileRectArea>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="U" size="1" identifier="1"/>
+			<Item key="2" value="[UpperRow]" size="1" setValue="1"/>
+			<Item key="3" value="[UpperColumn]" size="1" setValue="1"/>
+			<Item key="4" value="[LowerRow]" size="1" setValue="1"/>
+			<Item key="5" value="[LowerColumn]" size="1" setValue="1"/>
+			<Item key="6" value="[TileBackgroundColor]" size="1" setValue="1"/>
+			<Item key="7" value="[TileForegroundColor]" size="1" setValue="1"/>
+			<Item key="8" value="[CellValue]" size="1" setValue="1"/>
+		</TileRectArea>
+		
+		<!-- The definition with format of sub section "DisplayBufContent" -->
+		<DisplayBufContentV>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="V" size="1" identifier="1"/>
+			<!-- valid value A through Z 
+				 or 256 to 355.
+			-->
+			<Item key="2" value="[BufName]" size="3" setValue="1"/>
+			<Item key="3" value="[DisplayTemplateNum]" size="2" setValue="1"/>
+		</DisplayBufContentV>
+		
+		<!-- The definition with format of sub section "SelectBlinking" -->
+		<SelectBlinking>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="W" size="1" identifier="1"/>
+			<Item key="2" value="[UpperRow]" size="1" setValue="1"/>
+			<Item key="3" value="[UpperColumn]" size="1" setValue="1"/>
+			<Item key="4" value="[LowerRow]" size="1" setValue="1"/>
+			<Item key="5" value="[LowerColumn]" size="1" setValue="1"/>	
+			<Item key="6" value="[BlinkRate]" size="1" setValue="1"/>
+		</SelectBlinking>
+		
+		<!-- The definition with format of sub section "PositionCursor" -->
+		<PositionCursor>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="X" size="1" identifier="1"/>
+			<!-- The range of XXXX is 0 through 9999 -->
+			<Item key="2" value="[xCoordinate]" size="4" setValue="1"/>
+			<!-- The range of YYYY is 0 through 9999 -->
+			<Item key="3" value="[yCoordinate]" size="4" setValue="1"/>
+		</PositionCursor>
+		
+		<!-- The definition with format of sub section "SelectSpecialEffectTime" -->
+		<SelectSpecialEffectTime>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="Y" size="1" identifier="1"/>
+			<!--
+			[0] > - Adjust time for ESC > control sequence. Default value is 0300 millisecond
+			[1] < - Adjust time for ESC < control sequence. Default value is 0300 millisecond 
+            [2] P - Adjust time for ESC P control sequence. Default value is 0500 millisecond. This applies to sprinkle and wipe only.
+			-->
+			<Item key="2" value="[xCoordinate]" size="4" setValue="1"/>
+			<!-- The range of YYYY is 0 through 9999 -->
+			<Item key="3" value="[yCoordinate]" size="4" setValue="1"/>
+		</SelectSpecialEffectTime>
+
+		<!-- The definition with format of sub section "SelectTouchScrTemplate" -->
+		<SelectTouchScrTemplate>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="ZC" size="2" identifier="1"/>
+			<!-- The value for current screen is ASCII format (Template number) 	-->
+			<Item key="2" value="[TemplateNum]" size="4" setValue="1"/>
+			<!-- The range of YYYY is 0 through 9999 -->
+			<Item key="3" value="[yCoordinate]" size="4" setValue="1"/>
+		</SelectTouchScrTemplate>
+
+		
+		<!-- The definition with format of sub section "DefineTouchScrConfigData" -->
+		<DefineTouchScrConfigData>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="ZD" size="2" identifier="1"/>
+			<!-- Function Key (Refer to the following table) -->
+			<Item key="2" value="[FunctionKey]" size="2" setValue="1"/>			
+			<Item key="3" value="[xLowCoordinate]" size="4" setValue="1"/>
+			<Item key="4" value="[xHighCoordinate]" size="4" setValue="1"/>
+			<Item key="5" value="[yLowCoordinate]" size="4" setValue="1"/>
+			<Item key="6" value="[yHigCoordinate]" size="4" setValue="1"/>
+			<Item key="7" value="[IconNum]" size="4" setValue="1"/>
+		</DefineTouchScrConfigData>
+		
+		<!-- Touch Screen Configuration Data -->
+		<TouchScrConfigData>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="ZE" size="2" identifier="1"/>
+			<!-- Parameter is the template number  -->
+			<Item key="2" value="[TemplateNum]" size="3" setValue="1"/>
+			<Item key="3" value="[FileName]" size="var" setValue="1"/>	
+		</TouchScrConfigData>
+		
+		<!-- Display FLC/FLI Animation -->
+		<DisplayFLCAnimation>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="ZF" size="2" identifier="1"/>
+			<Item key="2" value="[FileName]" size="var" setValue="1"/>			
+			<!-- 
+             W - A value of W indicates that VGA Plus displays the animated graphic file once. Wait for
+				 it to complete, then continue screen processing.
+             R - A value of R indicates that VGA Plus displays the animated graphic file repeatedly
+				 until encoutering an ESC M or FF control sequence. Continue screen processing while
+				 the animation is active
+			-->
+			<Item key="3" value="[AValueOfVGA]" size="1" setValue="1"/>
+			<Item key="4" value="[xCoordinate]" size="4" setValue="1"/>
+			<Item key="5" value="[yCoordinate]" size="4" setValue="1"/>
+		</DisplayFLCAnimation>
+
+		<!-- Media Player Control -->
+		<MediaPlayerControl>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="ZU&quot;MPEGPlay&quot;" size="12" identifier="1"/>
+			<Item key="2" value="1" size="1" identifier="1"/>
+			<!-- Play on or off switch
+			0 - Off (set up MPEG window but do not begin play)
+			1 - On  (set up MPEG window and begin play immediately)
+			-->
+			<Item key="3" value="[CtrParameter]" size="1" setValue="1"/>
+			<Item key="4" value="[FileName]" size="var" setValue="1" separator = "&quot;"/>
+			<Item key="5" value="[xCoordinate]" size="4" setValue="1"/>
+			<Item key="6" value="[yCoordinate]" size="4" setValue="1"/>
+			<Item key="7" value="[HeightOfMpeg]" size="4" setValue="1"/>
+			<Item key="8" value="[WidthOfMpeg]" size="4" setValue="1"/>
+			<!-- Colorkey state:
+			0 - Disabled
+			1 - Enabled, with user colorkey management
+			2 - Enabled, with automatic colorkey management
+            -->
+			<Item key="9" value="[ColorkeyState]" size="1" setValue="1"/>
+			<Item key="10" value="[ColorPaletteIndex]" size="3" setValue="1"/>
+			<Item key="11" value="[PlayMode]" size="1" setValue="1"/>
+		</MediaPlayerControl>		
+
+		<!-- Screen Marker -->
+		<ScreenMarker>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="ZV" size="2" identifier="1"/>
+			<Item key="2" value="[UrlPara]" size="var" setValue="1"/>
+			<Item key="3" value="[Coordinate]" size="4" setValue="1"/>
+			<!-- 
+			T - Positions the browser window along the top edge of the sceen, with a height ssss
+			B - Positions the browser window along the bottom edge of the screen, with a height ssss
+			L - Positions the browser window along the left edge of the screen, with a width ssss
+			R - Positions the browser window along the right edge of the screen, with a width ssss
+			F - Displays a fullscreen browser window, where the size is assumed to be the entire screen, and
+				the parameter ssss is ignored.
+			M - Maintains the currently-displayed browser window without reloading the web page or changing its size
+                (underlying non-browser screen data is still processed, even when the browser window is a full screen window).
+				If a browser window is not currently visible, the terminal ignores this control sequence.Although p is the 
+				only parameter that is processed,all the parameters must be present to ensure correct parsing of the control 
+				sequence.
+			-->
+			<Item key="4" value="[Position]" size="1" setValue="1"/>
+			<!-- The number of seconds to wait for a URL to successfully load. -->
+			<Item key="5" value="[NumOfSeconds]" size="3" setValue="1"/>
+			<!-- A backup screen number must be provided for fullscreen browser windows (when the value of p is F).-->
+			<Item key="6" value="[BakScrNum]" size="3" setValue="1"/>
+		</ScreenMarker>
+		
+		<!-- The definition with format of sub section "ChangeDisplayInIdle" -->
+		<ChangeDisplayInIdle>
+			<Item key="0" value="[0x1B]" size="6"	identifier="1"/>
+			<Item key="1" value="[" size="1"	identifier="1"/>
+			<Item key="2" value="[Interval]" size="3" setValue="1"/>
+			<Item key="3" value="z" size="1"	identifier="1"/>
+		</ChangeDisplayInIdle>
+		
+		<!-- The definition with format of sub section "ChangeColorSetting" -->
+		<ChangeColorSetting>
+			<Item key="0" value="[0x1B]" size="6"	identifier="1"/>
+			<Item key="1" value="[" size="1"	identifier="1"/>
+			<Item key="2" value="[Value1]" size="2" setValue="1"/>
+			<Item key="3" value=";" size="1" identifier="1"/>
+			<Item key="4" value="[Value2]" size="2" setValue="1"/>
+			<Item key="5" value="m" size="1"	identifier="1"/>
+		</ChangeColorSetting>
+				
+	</SubCtrFormat>
+	
+	<!--Valid value for key parameter(ff) are defined in the following table -->
+	<FunctionKey>
+		<Item key="Key0" value="00" size="2"/>
+		<Item key="Key1" value="01" size="2"/>
+		<Item key="Key2" value="02" size="2"/>
+		<Item key="Key3" value="03" size="2"/>
+		<Item key="Key4" value="04" size="2"/>
+		
+		<Item key="Key5" value="05" size="2"/>
+		<Item key="Key6" value="06" size="2"/>
+		<Item key="Key7" value="07" size="2"/>
+		<Item key="Key8" value="08" size="2"/>
+		<Item key="Key9" value="09" size="2"/>
+		
+		<Item key="DecimalPoint" value="0." size="2"/>
+		
+		<Item key="FDKA" value="[0x1B]A" size="7"/>
+		<Item key="FDKB" value="[0x1B]B" size="7"/>
+		<Item key="FDKC" value="[0x1B]C" size="7"/>
+		<Item key="FDKD" value="[0x1B]D" size="7"/>
+		
+		<Item key="FDKE" value="[0x1B]E" size="7"/>
+		<Item key="FDKF" value="[0x1B]F" size="7"/>
+		<Item key="FDKG" value="[0x1B]G" size="7"/>
+		<Item key="FDKH" value="[0x1B]H" size="7"/>	
+		<Item key="FDKI" value="[0x1B]I" size="7"/>
+		
+		<Item key="FDKJ" value="[0x1B]J" size="7"/>
+		<Item key="FDKK" value="[0x1B]K" size="7"/>
+		<Item key="FDKL" value="[0x1B]L" size="7"/>
+		<Item key="FDKM" value="[0x1B]M" size="7"/>			
+	</FunctionKey>
+	
+	<!-- The element of voice sub-control format for sub section "BlinkAndColorCtr" -->
+	<BlinkAndColorCtrList>
+		<!-- The definition of Blinking commands with format of sub section "ScreenBlinkColorCtrCmd" -->
+		<BlinkCmd>
+			<Item key="00" value="DefaultColorAndBlinkOff"/>
+			<Item key="10" value="SetBlinkOn"/>
+			<Item key="11" value="SetBlinkOff"/>
+		</BlinkCmd>
+		<!-- The foregroiund color control commands" -->
+		<ForeColorCtrl>
+			<Item key="black" low="20" high="B0"/>
+			<Item key="red" low="21" high="B1"/>
+			<Item key="green" low="B2" high="22"/>
+			<Item key="yellow" low="B3" high="23"/>
+			<Item key="blue" low="24" high="B4"/>
+			<Item key="magenia" low="25" high="B5"/>
+			<Item key="cyan" low="26" high="B6"/>
+			<Item key="white" low="B7" high="27"/>
+		</ForeColorCtrl>
+		<!-- The backgroiund color control commands" -->
+		<BackColorCtrl>
+			<Item key="black" low="30" high="C0"/>
+			<Item key="red" low="31" high="C1"/>
+			<Item key="green" low="C2" high="32"/>
+			<Item key="yellow" low="C3" high="33"/>
+			<Item key="blue" low="34" high="C4"/>
+			<Item key="magenia" low="35" high="C5"/>
+			<Item key="cyan" low="36" high="C6"/>
+			<Item key="white" low="C7" high="37"/>
+			<Item key="transparent" low="null" high="80"/>
+		</BackColorCtrl>
+		<!-- The default foregroiund color control commands" -->
+		<DefaultForeColorCtrl>
+			<Item key="black" low="60" high="F0"/>
+			<Item key="red" low="61" high="F1"/>
+			<Item key="green" low="F2" high="62"/>
+			<Item key="yellow" low="F3" high="63"/>
+			<Item key="blue" low="64" high="F4"/>
+			<Item key="magenia" low="65" high="F5"/>
+			<Item key="cyan" low="66" high="F6"/>
+			<Item key="white" low="F7" high="67"/>
+		</DefaultForeColorCtrl>
+		<!-- The default backgroiund color control commands" -->
+		<DefaultBackColorCtrl>
+			<Item key="black" low="70" high="G0"/>
+			<Item key="red" low="11" high="G1"/>
+			<Item key="green" low="G2" high="72"/>
+			<Item key="yellow" low="G3" high="73"/>
+			<Item key="blue" low="74" high="G4"/>
+			<Item key="magenia" low="75" high="G5"/>
+			<Item key="cyan" low="76" high="G6"/>
+			<Item key="white" low="G7" high="77"/>
+		</DefaultBackColorCtrl>
+	</BlinkAndColorCtrList>
+	<ColorList>
+		<Item key="black" value="1"/>
+		<Item key="red" value="2"/>
+		<Item key="green" value="3"/>
+		<Item key="yellow" value="4"/>
+		<Item key="blue" value="5"/>
+		<Item key="magenia" value="6"/>
+		<Item key="cyan" value="7"/>
+		<Item key="white" value="8"/>
+		<Item key="transparent" value="9"/>
+	</ColorList>
+	
+	<!--
+		* Comment: 
+		* Define the position with rows and columns on the CRT
+		* With 20 rows, and 40 columns from DDC protocol standard
+		* [1] The row defintion(@,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,0,1,2,3).
+		* [2] The column definition(@,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,0,1,2,3,4,5,6,7,8,9,:,;,<,=,>,?,P,Q,R,S,T,U,V,W) 
+	-->	
+	<CRTPosition>
+		<Row>
+			<Item key="@" value="0"/>
+			<Item key="A" value="1"/>
+			<Item key="B" value="2"/>
+			<Item key="C" value="3"/>
+			<Item key="D" value="4"/>
+			<Item key="E" value="5"/>
+			<Item key="F" value="6"/>
+			<Item key="G" value="7"/>
+			<Item key="H" value="8"/>
+			<Item key="I" value="9"/>
+			<Item key="J" value="10"/>
+			<Item key="K" value="11"/>
+			<Item key="L" value="12"/>
+			<Item key="M" value="13"/>
+			<Item key="N" value="14"/>
+			<Item key="O" value="15"/>
+			<Item key="0" value="16"/>
+			<Item key="1" value="17"/>
+			<Item key="2" value="18"/>
+			<Item key="3" value="19"/>
+		</Row>
+		<Column>
+			<Item key="@" value="0"/>
+			<Item key="A" value="1"/>
+			<Item key="B" value="2"/>
+			<Item key="C" value="3"/>
+			<Item key="D" value="4"/>
+			<Item key="E" value="5"/>
+			<Item key="F" value="6"/>
+			<Item key="G" value="7"/>
+			<Item key="H" value="8"/>
+			<Item key="I" value="9"/>
+			<Item key="J" value="10"/>
+			<Item key="K" value="11"/>
+			<Item key="L" value="12"/>
+			<Item key="M" value="13"/>
+			<Item key="N" value="14"/>
+			<Item key="O" value="15"/>
+			<Item key="0" value="16"/>
+			<Item key="1" value="17"/>
+			<Item key="2" value="18"/>
+			<Item key="3" value="19"/>
+			<Item key="4" value="20"/>
+			<Item key="5" value="21"/>
+			<Item key="6" value="22"/>
+			<Item key="7" value="23"/>
+			<Item key="8" value="24"/>
+			<Item key="9" value="25"/>
+			<Item key=":" value="26"/>
+			<Item key=";" value="27"/>
+			<!--  The key value is "<"-->
+			<Item key="&lt;" value="28"/>
+			<Item key="=" value="29"/>
+			<!--  The key value is ">"-->
+			<Item key="&gt;" value="30"/>
+			<Item key="?" value="31"/>
+			<Item key="P" value="32"/>
+			<Item key="Q" value="33"/>
+			<Item key="R" value="34"/>
+			<Item key="S" value="35"/>
+			<Item key="T" value="36"/>
+			<Item key="U" value="37"/>
+			<Item key="V" value="38"/>
+			<Item key="W" value="39"/>			
+		</Column>
+		<FDKTouchScr>
+			<Item key="L1" value="LeftFDK1" startRow="H" endRow="J" startColumn="@" endColumn="3"/>
+			<Item key="L2" value="LeftFDK2" startRow="K" endRow="M" startColumn="@" endColumn="3"/>
+			<Item key="L3" value="LeftFDK3" startRow="N" endRow="0" startColumn="@" endColumn="3"/>
+			<Item key="L4" value="LeftFDK4" startRow="1" endRow="3" startColumn="@" endColumn="3"/>
+			<Item key="R1" value="RightFDK1" startRow="H" endRow="J" startColumn="4" endColumn="W"/>
+			<Item key="R2" value="RightFDK2" startRow="K" endRow="M" startColumn="4" endColumn="W"/>
+			<Item key="R3" value="RightFDK3" startRow="N" endRow="0" startColumn="4" endColumn="W"/>
+			<Item key="R4" value="RightFDK4" startRow="1" endRow="3" startColumn="4" endColumn="W"/>
+		</FDKTouchScr>
+
+	<!-- 
+ * FDK shifting function, defines the Screen dislpay position of each FDK key after shifting.
+ * IsEnable is the function switch, 0 is off and 1 is on.
+ * Donnot change the key name for each FDK key, it must keep the same with protocol
+ * if shifting is enabled, please change the FDKTouchScr to the same value
+ -->
+		<FDKShifting>
+			<Item key="IsEnable" value = "0"/>
+			<Item key="F" value="LeftFDK1" startRow="H" endRow="I" startColumn="@" endColumn="3"/>
+			<Item key="G" value="LeftFDK2" startRow="K" endRow="L" startColumn="@" endColumn="3"/>
+			<Item key="H" value="LeftFDK3" startRow="N" endRow="O" startColumn="@" endColumn="3"/>
+			<Item key="I" value="LeftFDK4" startRow="1" endRow="2" startColumn="@" endColumn="3"/>
+			<Item key="A" value="RightFDK1" startRow="H" endRow="I" startColumn="4" endColumn="W"/>
+			<Item key="B" value="RightFDK2" startRow="K" endRow="L" startColumn="4" endColumn="W"/>
+			<Item key="C" value="RightFDK3" startRow="N" endRow="O" startColumn="4" endColumn="W"/>
+			<Item key="D" value="RightFDK4" startRow="1" endRow="2" startColumn="4" endColumn="W"/>
+		</FDKShifting>
+	</CRTPosition>
+	<!-- 
+ * The format of Track 1 data 
+ * From The data format, the data with [] should be found 
+ * and put it into interface after receving the string data
+ -->
+	<Track1Name>
+		<FormatA>
+			<Item key="0" value="%" description="Start Sentinel" size="1" identifier="1"/>
+			<Item key="1" value="A" description="Format Code" size="1" identifier="1"/>
+			<Item key="2" value="[Surname]" description="Surname" size="var" setValue="1" terminate = "/"/>
+			<Item key="3" value="[FirstName]" description="First name and title" size="var" setValue="1" terminate = "^"/>
+			<Item key="4" value="[DiscData]" description="Discretionary data" size="var" setValue="1" terminate = "?"/>
+			<Item key="5" value="[LRC]" description="LRC" size="var" setValue="1"/>
+		</FormatA>
+		<FormatB>
+			<Item key="0" value="%" description="Start Sentinel" size="1" identifier="1"/>
+			<Item key="1" value="B" description="Format Code" size="1" identifier="1"/>
+			<Item key="2" value="[AccountNum]" description="Account Number(optional up to 19 characters)" size="var" setValue="1" terminate = "^"/>
+			<Item key="3" value="[CountryCode]" description="Country Code (optional)" size="0" setValue="1"/>
+			<Item key="4" value="[Surname]" description="Surname" size="var" setValue="1" terminate = "/"/>
+			<Item key="5" value="[FirstName]" description="First name and title" size="var" setValue="1" terminate = "^"/>
+			<Item key="6" value="[DiscData]" description="Discretionary data" size="var" setValue="1" terminate = "?"/>
+			<Item key="7" value="[LRC]" description="LRC" size="var" setValue="1"/>
+		</FormatB>
+	</Track1Name>
+	
+	<ThaiCharacterConvertTable>
+		<SymbolConverter>
+			<Item key="25" value="ั่"/>
+			<Item key="26" value="ั้"/>
+			<Item key="27" value="ั๊"/>
+			<Item key="28" value="ั๋"/>
+			<Item key="2D" value="ิ่"/>
+			<Item key="2E" value="ิ้"/>
+			<Item key="2F" value="ิ๊"/>
+			<Item key="30" value="ิ๋"/>
+			<Item key="31" value="ิ์"/>
+			<Item key="32" value="ี่"/>
+			<Item key="33" value="ี้"/>
+			<Item key="34" value="ี๊"/>
+			<Item key="35" value="ิ๋"/>
+			<Item key="36" value="ึ่"/>
+			<Item key="37" value="ึ้"/>
+			<Item key="38" value="ึ๊"/>
+			<Item key="39" value="ึ๋"/>
+			<Item key="3A" value="ื่"/>
+			<Item key="3B" value="ื้"/>
+			<Item key="3C" value="ื๊"/>
+			<Item key="3D" value="ื๋"/>
+			<Item key="47" value="็"/>
+			<Item key="48" value="่"/>
+			<Item key="49" value="้"/>
+			<Item key="4A" value="๊"/>
+			<Item key="4B" value="๋"/>
+			<Item key="4C" value="์"/>		
+			<Item key="51" value="ั"/>
+			<Item key="53" value="ำ"/>
+			<Item key="54" value="ิ"/>
+			<Item key="55" value="ี"/>
+			<Item key="56" value="ึ"/>
+			<Item key="57" value="ื"/>
+			<Item key="58" value="ุ"/>
+			<Item key="59" value="ู"/>
+			<Item key="5A" value="ฺ"/>
+			<Item key="67" value="็"/>
+			<Item key="68" value="่"/>
+			<Item key="69" value="้"/>
+			<Item key="6A" value="๊"/>
+			<Item key="6B" value="๋"/>
+			<Item key="6C" value="์"/>
+		</SymbolConverter>
+	</ThaiCharacterConvertTable>
+</Root>

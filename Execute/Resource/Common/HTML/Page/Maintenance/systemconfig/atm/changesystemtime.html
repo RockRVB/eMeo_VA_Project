@@ -1,0 +1,63 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>改系统时间</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../../css/maintenance/cn.css" />
+<script src="../../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../../js/jquery-ui.min.js"></script>
+<script src="../../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../../js/maintenance/common/global.js"></script>
+<script src="../../../../js/maintenance/component/components.js"></script>
+<script src="../../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../../js/maintenance/ui/maintenance/systemconfig/atm/changesystemtime.js"></script>
+</head>
+
+<body>
+<!--界面容器-->
+<div class="wrapper change-system-time">
+	<div class="g-margin-wrapper"> 
+		<!--左边-->
+		<div class="g-left-wrapper">
+			<div class="g-left"> 
+				<!--开始时间文字-->
+				<div class="g-start-text"> <span id="STATIC_TITLE" type="STATIC_TXT" ids="IDS_SystemTime">请输入系统时间，然后按“确定”</span> </div>
+				<!--开始日期-->
+				<div class="g-start-date">
+					<input id="INPUT_YEAR" type="text" class="input-text"  value="" maxlength="4" validchars = "0123456789">
+					<span id="STATIC_YEAR" type="STATIC_TXT" class="g-datetime-span" ids="IDS_YearMenu_313">年</span>
+					<input id="INPUT_MONTH" type="text" class="input-text"  value="" maxlength="2" validchars = "0123456789">
+					<span id="STATIC_MONTH" type="STATIC_TXT" class="g-datetime-span" ids="IDS_MonthMenu_313">月</span>
+					<input id="INPUT_DAY" type="text" class="input-text"  value="" maxlength="2" validchars = "0123456789">
+					<span id="STATIC_DAY" type="STATIC_TXT" class="g-datetime-span" ids="IDS_DayMenu_313">日</span> </div>
+				<!--开始时间-->
+				<div class="g-start-time">
+					<input id="INPUT_HOUR" type="text" class="input-text"  value="" maxlength="2" validchars = "0123456789">
+					<span id="STATIC_HOUR" type="STATIC_TXT" class="g-datetime-span" ids="IDS_HourMenu_313">时</span>
+					<input id="INPUT_MINUTE" type="text" class="input-text"  value="" maxlength="2" validchars = "0123456789">
+					<span id="STATIC_MINUTE" type="STATIC_TXT" class="g-datetime-span" ids="IDS_MinuteMenu_313">分</span>
+					<input id="INPUT_SECOND" type="text" class="input-text"  value="" maxlength="2" validchars = "0123456789">
+					<span id="STATIC_SECOND" type="STATIC_TXT" class="g-datetime-span" ids="IDS_SecondMenu_313">秒</span> </div>
+				<!--出错提示-->
+				<div class="g-prompt"> <span id="STATIC_PROMPT" type="STATIC_TXT"></span> </div>
+			</div>
+			
+		</div>
+		<!--右边-->
+		<div class="g-right"> 
+			<!--键盘-->
+			<div id="KEYBOARD_NUMBER_1" type="KEYBOARD_NUMBER" class="keyboard-number"> 
+				<!--键盘操作提示-->
+				<div id="keyboard-tip" class="keyboard-tip clear none" ids="IDS_KeyboardTip">按00键可以在输入框和键盘之间切换</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

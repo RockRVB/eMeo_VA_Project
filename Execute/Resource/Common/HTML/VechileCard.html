@@ -1,0 +1,528 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td style="width: 460px; padding-left: 20px;">
+                <div>
+                    <img style="width: 200px" src="logo.jpg" />
+                </div>
+                <div style="font-size: 25px; text-align: center; line-height: 50px; padding-left: 90px;">
+                    **银行信用卡申请单</div>
+            </td>
+            <td style="text-align: right;">
+                <img src="barcode.jpg" id="imgBarCode" style="width: 200px; height: 80;" />
+            </td>
+        </tr>
+    </table>
+    <div style="border: solid 1px #CCCCCC; width: 740px; margin: 0 0 0 0;">
+        <div style="background-color: #CCCCCC; line-height: 20px; text-indent: 10px; font-size: 14px;">
+            基本信息</div>
+        <table width="720px;" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="width: 100px; text-align: right; font-size: 12px; line-height: 18px;">
+                    姓&nbsp;&nbsp;&nbsp;&nbsp;名：
+                </td>
+                <td style="font-size: 12px; width: 260px;" id="txtName">
+                     
+                </td>
+                <td style="width: 100px; text-align: right; font-size: 12px;">
+                    性&nbsp;&nbsp;&nbsp;别：
+                </td>
+                <td style="font-size: 12px; width: 260px;" id="txtSex">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-size: 12px; line-height: 18px;">
+                    拼&nbsp;&nbsp;&nbsp;&nbsp;音：
+                </td>
+                <td style="font-size: 12px;" id="txtPinYin">
+                     
+                </td>
+                <td style="text-align: right; font-size: 12px;">
+                    出生年月日：
+                </td>
+                <td style="font-size: 12px;" id="txtBirthDate">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-size: 12px; line-height: 18px;">
+                    国&nbsp;&nbsp;&nbsp;&nbsp;籍：
+                </td>
+                <td style="font-size: 12px;">
+                    中国
+                </td>
+                <td style="text-align: right; font-size: 12px;">
+                    证件有效期：
+                </td>
+                <td style="font-size: 12px;" id="txtValidDate">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-size: 12px; line-height: 18px;">
+                    手机号码：
+                </td>
+                <td style="font-size: 12px;" id="txtMobilePhone">
+                     
+                </td>
+                <td style="text-align: right; font-size: 12px;">
+                    教育程度：
+                </td>
+                <td style="font-size: 12px;" id="txtDegree">
+                    本科
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-size: 12px; line-height: 18px;">
+                    证件类型：
+                </td>
+                <td style="font-size: 12px;">
+                    身份证
+                </td>
+                <td style="text-align: right; font-size: 12px;">
+                    证件号码：
+                </td>
+                <td style="font-size: 12px;" id="txtIDCard">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-size: 12px; line-height: 18px;">
+                    发证机关：
+                </td>
+                <td style="font-size: 12px;" id="txtOrg">
+                     
+                </td>
+                <td style="text-align: right; font-size: 12px;">
+                    婚姻状况：
+                </td>
+                <td style="font-size: 12px;" id="txtMarriage">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-size: 12px; line-height: 18px;">
+                    电子邮箱：
+                </td>
+                <td style="font-size: 12px;" id="txtMail">
+                     
+                </td>
+                <td style="text-align: right; font-size: 12px;">
+                </td>
+                <td style="font-size: 12px;">
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-size: 12px; line-height: 18px;">
+                    户籍所在地：
+                </td>
+                <td style="font-size: 12px;" id="txtBorthAddr">
+                     
+                </td>
+                <td style="text-align: right; font-size: 12px;">
+                </td>
+                <td style="font-size: 12px;">
+                </td>
+            </tr>
+        </table>
+        <div style="background-color: #CCCCCC; line-height: 20px; text-indent: 10px; font-size: 14px;">
+            附加信息</div>
+        <table width="720px;" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="width: 100px; text-align: right; font-size: 12px; line-height: 18px;">
+                    住宅类型：
+                </td>
+                <td style="font-size: 12px;">
+                    <label id="HouseTypeValue">月租</label><label id="PayAmount">1000</label>
+                </td>
+                <td style="width: 100px; text-align: right; font-size: 12px;">
+                    居住年数：
+                </td>
+                <td style="font-size: 12px; width: 260px;" id="txtBideYear">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-size: 12px; line-height: 18px;">
+                    住宅地址：
+                </td>
+                <td style="font-size: 12px;" id="txtHouseAddr">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-size: 12px; line-height: 18px;">
+                    住宅电话：
+                </td>
+                <td style="font-size: 12px;" id="txtHouseTelephone">
+                     
+                </td>
+                <td style="text-align: right; font-size: 12px;">
+                    邮政编码：
+                </td>
+                <td style="font-size: 12px;" id="txtPostCode">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-size: 12px;">
+                    车辆品牌：
+                </td>
+                <td style="font-size: 12px;" id="txtVehicleClass">
+                     
+                </td>
+                <td style="text-align: right; font-size: 12px;">
+                    车辆号码：
+                </td>
+                <td style="font-size: 12px;" id="txtVehicleID">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-size: 12px; line-height: 18px;">
+                    他行信用卡：
+                </td>
+                <td style="font-size: 12px;">
+                    <label id="txtCreditcardCount">
+                         </label>家，总授信额度为<label id="txtTotalLimitAmount"> </label>万元
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-size: 12px; line-height: 18px;">
+                    是否我行客户：
+                </td>
+                <td style="font-size: 12px;" id="OtherBankFlag">
+                     
+                </td>
+            </tr>
+        </table>
+        <div style="background-color: #CCCCCC; line-height: 20px; text-indent: 10px; font-size: 14px;">
+            工作情况</div>
+        <table width="720px;" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="text-align: right; font-size: 12px; width: 100px; line-height: 18px;">
+                    单位全称：
+                </td>
+                <td style="font-size: 12px; width: 140px;" id="txtCompanyName">
+                     
+                </td>
+                <td style="width: 100px; text-align: right; font-size: 12px;">
+                    任职部门：
+                </td>
+                <td style="font-size: 12px; width: 140px; width: 130px;" id="txtDepartment">
+                     
+                </td>
+                <td style="width: 100px; text-align: right; font-size: 12px;">
+                    职务/岗位：
+                </td>
+                <td style="font-size: 12px; width: 140px;" id="txtJob">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-size: 12px; line-height: 18px;">
+                    年薪：
+                </td>
+                <td style="font-size: 12px;" id="txtYearSalary">
+                     
+                </td>
+                <td style="text-align: right; font-size: 12px;">
+                    单位性质：
+                </td>
+                <td style="font-size: 12px;" id="txCompanyType">
+                     
+                </td>
+                <td style="text-align: right; font-size: 12px;">
+                    职位级别：
+                </td>
+                <td style="font-size: 12px;" id="txJobLevel">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-size: 12px; line-height: 18px;">
+                    单位地址：
+                </td>
+                <td style="font-size: 12px;" colspan="5" id="txJobLevel">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-size: 12px; line-height: 18px;">
+                    单位电话：
+                </td>
+                <td style="font-size: 12px;" id="txCompanyPhone">
+                     
+                </td>
+                <td style="text-align: right; font-size: 12px;">
+                    邮政编码：
+                </td>
+                <td style="font-size: 12px;" id="txPostCode">
+                     
+                </td>
+                <td style="text-align: right; font-size: 12px;">
+                    行业性质：
+                </td>
+                <td style="font-size: 12px;" id="txIndustryType">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-size: 12px; line-height: 18px;">
+                    总工龄年数：
+                </td>
+                <td style="font-size: 12px;" id="txWorkingAge">
+                     
+                </td>
+                <td style="text-align: right; font-size: 12px;">
+                    本单位任职年数：
+                </td>
+                <td style="font-size: 12px;" id="txWorkedYear">
+                     
+                </td>
+                <td style="text-align: right; font-size: 12px;">
+                    员工人数：
+                </td>
+                <td style="font-size: 12px;" id="txtStaffNum">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left; text-indent: 20px; font-size: 12px; line-height: 18px;"
+                    colspan="6">
+                    职称(你是否获得过专业技术证书或职称证书)：<label style="font-size: 12px;" id="txtJobTitle">无</label>
+                </td>
+            </tr>
+        </table>
+        <div style="background-color: #CCCCCC; line-height: 20px; text-indent: 10px; font-size: 14px;
+            font-family: 宋体;">
+            直系亲属信息</div>
+        <table width="720px;" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="font-size: 12px; width: 100px; text-align: right; line-height: 18px;">
+                    中文姓名：
+                </td>
+                <td style="font-size: 12px; width: 260px;" id="DirectName">
+                     
+                </td>
+                <td style="font-size: 12px; width: 100px; text-align: right;">
+                    与持卡人关系：
+                </td>
+                <td style="font-size: 12px; width: 260px;" id="DirectRelation">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size: 12px; width: 100px; text-align: right; line-height: 18px;">
+                    住宅电话：
+                </td>
+                <td style="font-size: 12px; width: 260px;" id="DirectHomeTelephone">
+                    
+                </td>
+                <td style="font-size: 12px; width: 100px; text-align: right;">
+                    手机号码：
+                </td>
+                <td style="font-size: 12px; width: 260px;" id="DirectMobiephone">
+                    
+                </td>
+            </tr>
+        </table>
+        <div style="background-color: #CCCCCC; line-height: 20px; text-indent: 10px; font-size: 14px;
+            font-family: 宋体;">
+            紧急联系人信息</div>
+        <table width="720px;" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="font-size: 12px; width: 100px; text-align: right; line-height: 18px;">
+                    中文姓名：
+                </td>
+                <td style="font-size: 12px; width: 260px;" id="UrgencyName">
+                     
+                </td>
+                <td style="font-size: 12px; width: 100px; text-align: right;">
+                    与持卡人关系：
+                </td>
+                <td style="font-size: 12px; width: 260px;" id="UrgencyRelation">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size: 12px; width: 100px; text-align: right; line-height: 18px;">
+                    住宅电话：
+                </td>
+                <td style="font-size: 12px; width: 260px;" id="UrgencyHomeTelephone">
+                     
+                </td>
+                <td style="font-size: 12px; width: 100px; text-align: right;">
+                    手机号码：
+                </td>
+                <td style="font-size: 12px; width: 260px;" id="UrgencyMobiephone">
+                     
+                </td>
+            </tr>
+        </table>
+        <div style="background-color: #CCCCCC; line-height: 20px; text-indent: 10px; font-size: 14px;
+            font-family: 宋体;">
+            账单邮寄设置</div>
+        <table width="720px;" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="font-size: 12px; width: 100px; text-align: right; line-height: 18px;">
+                    账单类型：
+                </td>
+                <td style="font-size: 12px; width: 140px;" id="BillType">
+                     
+                </td>
+                <td style="font-size: 12px; width: 100px; text-align: right;">
+                    卡片寄往地址：
+                </td>
+                <td style="font-size: 12px; width: 140px;" id="BillAddr">
+                     
+                </td>
+                <td style="font-size: 12px; width: 100px; text-align: right;">
+                    账单寄往地址：
+                </td>
+                <td style="font-size: 12px; width: 140px;" id="CardAddr">
+                     
+                </td>
+            </tr>
+        </table>
+        <div style="background-color: #CCCCCC; line-height: 20px; text-indent: 10px; font-size: 14px;
+            font-family: 宋体;">
+            卡片选择</div>
+        <table width="720px;" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="font-size: 12px; width: 100px; text-align: right; line-height: 18px;">
+                    卡名称：
+                </td>
+                <td style="font-size: 12px; width: 140px;" id="CreditCardID">
+                     
+                </td>
+                <td style="font-size: 12px; width: 100px; text-align: right;">
+                    卡类：
+                </td>
+                <td style="font-size: 12px; width: 140px;" id="UniteFlag">
+                     
+                </td>
+                <td style="font-size: 12px; width: 100px; text-align: right;">
+                    卡别：
+                </td>
+                <td style="font-size: 12px; width: 140px;" id="CreditCardLevel">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size: 12px; text-align: left; text-indent: 10px; line-height: 18px;"
+                    colspan="6">
+                    是否开通瞬时通业务：<label id="OpenSST" style="font-size: 12px; text-align: left;"> </label>
+                </td>
+            </tr>
+        </table>
+        <div style="background-color: #CCCCCC; line-height: 20px; text-indent: 10px; font-size: 14px;
+            font-family: 宋体;">
+            特色功能选择</div>
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="font-size: 12px;  width:170px;  text-align: right; line-height: 18px;">
+                    **车主卡自选免费保险类型：
+                </td>
+                <td style="font-size: 12px; text-align:left;  width:180px;  " id="VehicleInsuranceChecked">
+                     
+                </td>
+                <td style="font-size: 12px; width:170px;  text-align: right;">
+                    **车主自选加油优惠类型：
+                </td>
+                <td style="font-size: 12px; width:180px;  " id="AdddOilIntegralChecked">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size: 12px; text-align: right;">
+                    车辆信息（车主卡持有项目）：
+                </td>
+                <td></td> <td style="font-size: 12px;  text-align: right; line-height: 18px;">
+                    车牌号码：
+                </td>
+                <td style="font-size: 12px; " id="VehicleID">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size: 12px;  text-align: right; line-height: 18px;">
+                    车辆品牌：
+                </td>
+                <td style="font-size: 12px;  " id="VehicleClass">
+                     
+                </td>
+                <td style="font-size: 12px;  text-align: right;">
+                    购入价：
+                </td>
+                <td style="font-size: 12px; " id="BuyAmount">
+                     <label>万元</label>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size: 12px; text-align: right; line-height: 18px;">
+                    购入时间：
+                </td>
+                <td style="font-size: 12px; " id="BuyDay">
+                     
+                </td>
+                <td style="font-size: 12px;   text-align: right;">
+                    有无按揭：
+                </td>
+                <td style="font-size: 12px; " id="IntegralChecked">
+                     
+                </td>
+            </tr>           
+        </table>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="border: solid 1px #666666; padding: 10px; width: 180px;">
+                    <div style="font-weight: bold; font-size: 15px;">
+                        请将以下内容抄写到右边空白方框中:</div>
+                    <div style="text-align: left; font-size: 13px; margin-top: 10px;">
+                        本人已阅读全部申请材料，充分了解并清除知晓该信用卡产品的相关信息，愿意遵守客户协议的各项规则。
+                    </div>
+                </td>
+                <td style="width: 350px; border-top: solid 1px #666666; border-bottom: solid 1px #666666;
+                    border-right: solid 1px #666666;">
+                    &nbsp;
+                </td>
+                <td rowspan="2">
+                    <img src="bottomin.jpg" />
+                </td>
+            </tr>
+            <tr style="height: 5px;">
+                <td collspan="2">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <table style="width: 350; border: solid 1px #666666;" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td style="line-height: 130px; width: 120px; text-align: center; border-right: solid 1px #666666;">
+                                <img id="imgQRCode" src="QRCode.jpg" border="0" height="130px" width="110px" />
+                            </td>
+                            <td style="padding-left: 10px;">
+                                <div style="line-height: 40px;">
+                                    客户签名：
+                                </div>
+                                <div style="line-height: 40px;">
+                                    签字日期：</div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

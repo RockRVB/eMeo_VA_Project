@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+  <Screen name="UI_AllRefuse" uri="CreditCard\AllRefuse.html" cache="0">
+  </Screen>
+  <Screen name="UI_ChooseCard" uri="CreditCard\ChooseCard.html" cache="0">
+  </Screen>
+  <Screen name="UI_ShowProcess" uri="CreditCard\CardProtol.html" cache="0">
+  </Screen>
+  <Screen name="UI_IdentityAuthFailForCard" uri="CreditCard\IDValidateFailure.html" cache="0">
+  </Screen>
+  <Screen name="UI_AuditingFailCard" uri="CreditCard\AuditingFail.html" cache="0">
+  </Screen>
+  <Screen name="UI_FillForm" uri="CreditCard\InputUserInfo.html" cache="0">
+    <Templates>
+        <Template name="CAREER_LIST">
+        <td style="display:none">
+          <span id="careerKey" type="text" content="{Binding Key}"></span>
+        </td>
+        <td>
+          <span id="careerValue" type="text" content="{Binding Value}"></span>
+        </td>
+               
+      </Template>
+           
+    </Templates>
+  </Screen>
+  <Screen name="UI_FillPassportForm" uri="CreditCard\InputUserInfoPassport.html" cache="0">
+    <Templates>
+              <Template name="CAREER_LIST">
+        <td style="display:none">
+          <span id="careerKey" type="text" content="{Binding Key}"></span>
+        </td>
+        <td>
+          <span id="careerValue" type="text" content="{Binding Value}"></span>
+        </td>
+               
+      </Template>
+           
+    </Templates>
+  </Screen>
+  <Screen name="UI_DispenseCard" uri="CreditCard\CreatAccount.html" cache="0">
+  </Screen>
+  <Screen name="UI_InputPinCard" uri="CreditCard\SetPassword.html" cache="0">
+    <Triggers>
+      <EventTrigger condition="show">
+        <Setter target="PromptIcon" property="visible" value="0"/>
+      </EventTrigger>
+      <EventTrigger condition="InputNewPinUnmatch">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+        <Setter target="Prompt" property="content" value="(IDS_PasswordUnMatchTip)"/>
+      </EventTrigger>
+      <EventTrigger condition="LengthNotEnough">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+        <Setter target="Prompt" property="content" value="(IDS_InputPinLengthNotEnough)"/>
+      </EventTrigger>
+    </Triggers>
+  </Screen>
+  <Screen name="UI_ScanDoc" uri="Exhibition\VN\page\kyc\29_scan_the_signed.html" cache="0">
+  </Screen>
+  <Screen name="UI_IsPrintReceiptAfterCard" uri="CreditCard\IsPrintReceiptAfterCard.html" cache="0"/>
+  <Screen name="UI_CashInShowResultCard" uri="CreditCard\CountCashResult.html" cache="0">
+    <Triggers>
+      <EventTrigger condition="show">
+        <PlaySound source="(Voice_CountingCashResult)"/>
+      </EventTrigger>
+      <PropertyTrigger target="F4" property="visible" value="0">
+        <Setter target="prompt" property="visible" value="0"/>
+        <Setter target="promptContinue" property="visible" value="0"/>
+      </PropertyTrigger>
+    </Triggers>
+  </Screen>
+  <!--等待放钞-->
+  <Screen name="UI_CashInWaitForNoteInsertCard" uri="CreditCard\FirstWaitForInsertCash.html" cache="0">
+    <Triggers>
+      <EventTrigger condition="show">
+        <PlaySound source="(Voice_FirstWaitForInsertCash)"/>
+      </EventTrigger>
+    </Triggers>
+  </Screen>
+  <Screen name="UI_CannotOpenCardPrompt" uri="CreditCard\CannotOpenCardPrompt.html">
+  </Screen>
+  <Screen name="UI_OpenCardAgreement" uri="CreditCard\CardProtol4MCRD.html" cache="0">
+  </Screen>
+  <Screen name="UI_InputUserInfo4MCRD" uri="CreditCard\InputUserInfo4MCRD.html" cache="0">
+    <Templates>
+      <Template name="CAREER_LIST">
+        <td style="display:none">
+          <span id="careerKey" type="text" content="{Binding Key}"></span>
+        </td>
+        <td>
+          <span id="careerValue" type="text" content="{Binding Value}"></span>
+        </td>
+      </Template>
+    </Templates>
+  </Screen>
+  <Screen name="UI_ReviewInfo" uri="CreditCard\ReviewInfo.html" cache="0">
+  </Screen>
+  <Screen name="UI_InputPinCard4MCRD" uri="CreditCard\SetPassword4MCRD.html" cache="0">
+    <Triggers>
+      <EventTrigger condition="show">
+        <Setter target="PromptIcon" property="visible" value="0"/>
+      </EventTrigger>
+      <EventTrigger condition="InputNewPinUnmatch">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+        <Setter target="Prompt" property="content" value="(IDS_PasswordUnMatchTip)"/>
+      </EventTrigger>
+      <EventTrigger condition="LengthNotEnough">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+        <Setter target="Prompt" property="content" value="(IDS_InputPinLengthNotEnough)"/>
+      </EventTrigger>
+    </Triggers>
+  </Screen>
+  <Screen name="UI_STMAValidateFail" uri="CreditCard\STMAValidateFail.html" cache="0">
+  </Screen>
+  <Screen name="UI_STMAValidateSuccess" uri="CreditCard\STMAValidateSuccess.html" cache="0">
+  </Screen>
+  <Screen name="UI_InputUserInfo4STM" uri="CreditCard\InputUserInfo4STM.html" cache="0">
+    <Templates>
+              	<Template name="CAREER_LIST">
+        <td style="display:none">
+          <span id="careerKey" type="text" content="{Binding Key}"></span>
+        </td>
+        <td>
+          <span id="careerValue" type="text" content="{Binding Value}"></span>
+        </td>
+               
+      </Template>
+           
+    </Templates>
+  </Screen>
+  <!--账户下的所有卡信息-->
+  <!--<Screen name="UI_AllBankCardInfo" uri="CreditCard\AllBankCardInfo.html" cache="0">
+    <Templates>
+      <Template name="ALLBANKCARDINFO">
+        <input id="selected" type="radio" name="cards" state="{Binding Selected  mode=2}">
+          <span id="cardNumber" type="text" content="{Binding CardNumber}"></span>
+          <span id="cardType" type="text" content="{Binding CardType}"></span>
+        </input>
+        <br/>
+      </Template>
+    </Templates>
+  </Screen>-->
+  <Screen name="UI_AllBankCardInfo" uri="CreditCard\AllBankCardInfo.html" cache="0">
+        <Templates>
+              <Template name="ALLBANKCARDINFO">
+        <td style="width:50%">
+          <span id="cardNum" type="text" content="{Binding CardNum}"></span>
+        </td>
+        <td style="width:50%">
+          <span id="cardType" type="text" content="{Binding CardType}"></span>
+        </td>
+      </Template>
+    </Templates>
+  </Screen>
+  <Screen name="UI_InputUserInfoForChangeCard" uri="CreditCard\InputUserInfoForChangeCard.html" cache="0">
+      <Templates>
+              <Template name="CAREER_LIST">
+        <td style="display:none">
+          <span id="careerKey" type="text" content="{Binding Key}"></span>
+        </td>
+        <td>
+          <span id="careerValue" type="text" content="{Binding Value}"></span>
+        </td>
+               
+      </Template>
+           
+    </Templates>
+  </Screen>
+  <Screen name="UI_InputUserInfoPassportForChangeCard" uri="CreditCard\InputUserInfoPassportForChangeCard.html" cache="0">
+      <Templates>
+              <Template name="CAREER_LIST">
+        <td style="display:none">
+          <span id="careerKey" type="text" content="{Binding Key}"></span>
+        </td>
+        <td>
+          <span id="careerValue" type="text" content="{Binding Value}"></span>
+        </td>
+               
+      </Template>
+           
+    </Templates>
+  </Screen>
+
+
+</Screens>
+

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<FaceDetectConfig>
+  <!--人脸活体检测配置-->
+  <!--
+		IdentInterval：采集人脸的时间间隔
+		BroadRatioRect：人脸区域扩边比例，默认可输入为0.0
+		BroadRatioImg：保存的图像中，人脸扩边比例，默认可使用1.0
+		ImgMaxSize：保存图像的最大尺寸
+		DrawRectColor：绘制人脸区域方框的颜色
+		DrawRectWidth：绘制人脸区域方框的宽度
+		videoDevice：多个摄像头时，采用哪个摄像头
+		Width：窗体工作区的宽度
+		Height：窗体工作区的高度
+		X：窗体水平起始位置
+		Y：窗体垂直起始位置
+		OutputImgPath：人脸图片保存路径
+		GifPath：窗体加载，摄像头还未打开时，过渡GIF图的路径
+	-->
+  <FaceIdentifyInfo IdentInterval="200" BroadRatioRect="0.0" BroadRatioImg="1.0" ImgMaxSize="800" DrawRectColor="#FF0000" DrawRectWidth="2" videoDevice="0" 
+  Width="640" Height="480" X="75" Y="95" OutputImgPath="FaceImage" GifPath="D:\GrgBanking\eCAT\Resource\Common\Image\CN\QX.gif" />
+  
+</FaceDetectConfig>

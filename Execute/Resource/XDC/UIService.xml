@@ -1,0 +1,852 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- ***********************************************************************************************
+	 本文件配置了界面信息，包括界面的位置，初始界面，母板地址，是否全屏，最上，以及屏幕映射表等信息。
+	 界面服务支持两种类型的脚本文件:html网页和WPF脚本文件xaml。界面服务被根据脚本文件的后缀名，自动判断
+	 是何种脚本，然后采用合适的展示技术渲染界面。
+     <Window>节点配置了界面窗口的信息，包括以下属性:
+		 name: 窗口的名称                                    （可选）
+         motherboard: 指定母板地址                           （必须）
+         initPage: 界面服务打开后，初始显示的屏幕名称        （可选）
+             注意: 必须是屏幕映射表中已经配置的屏幕名称
+         location: 指定界面窗口在桌面上的位置.此属性值是      (可选)全屏设置为1时，可以忽略
+				   以空格分隔的4个数字组成的字符串。4个数字从
+				   左到右依次表示界面窗口的左，上，宽度，高度 
+                   单位是像素。例如"0 0 800 600" 表示位置是
+                   左(0)上(0)宽度(800)高度(600)                                             
+             注意: 此属性在fullscreen指定为0的时候才有效
+         topmost: 设置界面窗口处于TOPMOST状态，值为0则不设置,
+				  值为非0则设置，不指定该值，则默认为0        (可选)
+         showcursor: 设置是否显示光标.值为0则不显示，值为非0
+					 则显示。不指定该值，则默认为0            (可选)
+		 fullscreen: 设置是否全屏显示。值为0则不显示，值为非0
+                     则显示。不指定该值，则默认为0            (可选)
+		<Window> 节点包含了
+		<Screens> 节点配置了屏幕映射集合信息，描述了屏幕的共  
+				  有配置信息，包含以下属性:
+			site: 描述屏幕存在的位置                          (必须)
+            xamlPath: 描述xaml脚本文件的base路径              (必须)
+            htmlPath: 描述html脚本文件的base路径              (必须)
+            urlPrefix: 描述url传输协议前缀，默认是file:///    (可选)        
+                       支持3种协议: 
+                       file:/// 本地文件协议
+                       http:// 基于http的传输协议
+                       ftp:// 基于ftp的传输协议
+			host: 指定主机的网络路径名。该值可以设置域名和
+                  点分格式的路径名。值"localhost"特定值本地
+                  主机。该值默认为"localhost"                 (可选)
+            <Screen> 设置了一个屏幕映射的配置信息，有以下属性:
+               name: 屏幕映射的关键名称，代码调用界面服务的
+					 ShowScreen函数时需要传递该值。           (必须)
+               uri: 指定屏幕脚本文件相对于基础路径的相对路径  (必须)
+              <Screen>节点下有2个子节点:
+                <Triggers>描述了配置于该屏幕的触发器集合,有以下
+                          子节点:
+                  <EventTrigger> 描述了事件触发器，可以指定在
+                                 何种事件发生后触发。有以下属性:
+                        注意: 屏幕切换的时候，界面服务会自动发送
+                              以下2个事件:
+                         preshow: 当指定显示屏幕已经解析完成，
+								  但还没不可见的时候发送此事件
+                         show: 当指定显示屏幕已经可见后，立即发送
+                               此事件.
+                      condition: 描述了触发的条件。           (必须)
+                   <EventTrigger>的子节点定义了触发器触发后，
+                                 需要执行的动作，这些动作将按照
+                                 从上到下的顺序依次执行。
+								 有以下子节点:
+                     <BeginStoryboard>节点描述了启动storyboard动作
+                <Storyboards>节点描述了storyboard的集合。storyboard
+                             的子节点描述了多段动画和声音的播放时间线
+                             有以下子节点：
+                    <MediaTimeline> 描述了多媒体播放的时间线
+                    <SlideshowTimeline>描述了幻灯片播放的时间线
+                    <SlideshowTimelineFrame>描述了幻灯片按照帧播放的时间线   
+     *********************************************************************************************** -->
+<Window name="eCAT" motherBoard="Resource\WPF\MainWindow.xaml" initPage="UI_Init" showCursor="1" fullScreen="0">
+	<Screens site="Pages" xamlPath="Resource\WPF\" htmlPath="Resource\Common\HTML\Page\" urlPrefix="file:///" host="localhost">
+		<Screen name="UI_Init" uri="Foundation\Startup.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_Init)"/>
+				</EventTrigger>
+				<EventTrigger condition="test">
+					<BeginStoryboard name="Demo"/>
+				</EventTrigger>
+			</Triggers>
+			<!--Storyboards>
+				<Storyboard name="Demo">
+					<MediaTimeline begin="0" target="ad" source="\Resource\Video\ad.swf" repeatBehavior="forever"/>
+					<MediaTimeline begin="0" source="\Resource\Voice\001.mp3" repeatBehavior="2"/>
+					<SlideshowTimeline begin="0" from="Resource\Common\Image\CN\InsertCard\0.jpg" to="Resource\Common\Image\CN\InsertCard\8.jpg" target="ad" duration="90000" repeatBehavior="forever">
+					</SlideshowTimeline>
+					<SlideshowTimelineFrame begin="0" target="ad" duration="10000" repeatBehavior="forever">
+						<Frame keytime="0" uri="Resource\Common\Image\CN\InsertCard\1.jpg"/>
+						<Frame keytime="8000" uri="Resource\Common\Image\CN\InsertCard\5.jpg"/>
+						<Frame keytime="3000" uri="Resource\Common\Image\CN\InsertCard\3.jpg"/>
+						<Frame keytime="6000" uri="Resource\Common\Image\CN\InsertCard\2.jpg"/>
+					</SlideshowTimelineFrame>
+				</Storyboard>
+			</Storyboards-->
+		</Screen>
+		<!--XDC的启动画面-->
+		<Screen name="UI_InitXDC" uri="Foundation\StartupXDC.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_InitXDC)"/>
+				</EventTrigger>
+				<EventTrigger condition="test">
+					<BeginStoryboard name="Demo"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_Shutdown" uri="Foundation\Shutdown.html">
+		</Screen>
+		<Screen name="UI_list" uri="Foundation\listtable.html">
+			<Templates>
+				<Template name="trans">
+					<TD context="{Binding dateTime}"/>
+					<TD context="{Binding serialNumber}"/>
+					<TD context="{Binding tranType}"/>
+					<TD context="{Binding amnout}"/>
+					<TD context="{Binding fee}"/>
+				</Template>
+			</Templates>
+		</Screen>
+		<Screen name="UI_ZeroState" uri="Foundation\ZeroState.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<BeginStoryboard name="adShow"/>
+					<BeginStoryboard name="aniButton"/>
+				</EventTrigger>
+			</Triggers>
+			<Storyboards>
+				<Storyboard name="adShow">
+					<SlideshowTimeline begin="0" baseUri="Resource\Common\Image\CN\InsertCard\" target="Advertisement" duration="20000" repeatBehavior="forever">
+					</SlideshowTimeline>
+				</Storyboard>
+				<Storyboard name="aniButton">
+					<SlideshowTimelineFrame begin="0" baseUri="Resource\Common\Image\CN\" target="bgimg" duration="2000" repeatBehavior="forever">
+						<Frame keytime="0" uri="Btn_NoCardDeposit_left_up.png"/>
+						<Frame keytime="1000" uri="Btn_NoCardDeposit_left_dw.png"/>
+					</SlideshowTimelineFrame>
+				</Storyboard>
+			</Storyboards>
+		</Screen>
+		<Screen name="UI_SelectLanguage" uri="Foundation\SelectLanguage.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_SelectLanguage)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_SelectLanguageForNoCardTrans" uri="NoCardDeposit\SelectLanguageForNoCardTrans.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_SelectLanguage)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InputPin" uri="Foundation\InputPin.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<BeginStoryboard name="adShow"/>
+					<PlaySound source="(Voice_InputPin)"/>
+				</EventTrigger>
+			</Triggers>
+			<Storyboards>
+				<Storyboard name="adShow">
+					<SlideshowTimeline begin="0" baseUri="Resource\Common\Image\CN\InputPin\" target="Advertisement" duration="6000" repeatBehavior="forever">
+					</SlideshowTimeline>
+				</Storyboard>
+			</Storyboards>
+		</Screen>
+		<Screen name="UI_SafePrompt" uri="Foundation\SafePrompt.html">
+			<Triggers>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_NoDoorEnterMaintenance" uri="Foundation\NoDoorEnterMaintenance.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_InputPin)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_ShowICCashLoadNeedConfirm" uri="ICModule\ShowICCashLoadNeedConfirm.html">
+			<Triggers>
+      </Triggers>
+		</Screen>
+		<Screen name="UI_SelectAccountType" uri="Foundation\SelectAccountType.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_SelectAccountType)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_ShowAccountInfo" uri="NoCardDeposit\ShowAccountInfo.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_ConfirmDepositInfo)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_ReInputPin" uri="Foundation\ReInputPin.html">
+		</Screen>
+		<Screen name="UI_MainMenu" uri="Foundation\MainMenu.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_MainMenu)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_MainMenuECASH" uri="Foundation\MainMenuECASH.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_MainMenu)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_QueryTagValue" uri="Inquiry\QueryTagValue.html">
+		</Screen>
+		<Screen name="UI_StopService" uri="Foundation\StopService.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_OutOfService)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_RecoveringDev" uri="Foundation\StopService.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_OutOfService)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_OutOfService" uri="Foundation\StopService.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_OutOfService)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_RequestTrans" uri="Foundation\RequestTrans.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_TransactionIsBeing)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_IsPrintReceipt" uri="Foundation\IsPrintReceipt.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_IsPrintReceipt)"/>
+				</EventTrigger>
+				<EventTrigger condition="CardNotInserted">
+					<Setter target="Prompt" property="content" value="(IDS_Cancel)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_HostRefuse" uri="Foundation\ShowHostRefuse.html">
+		</Screen>
+		<Screen name="UI_HostRefuseContinueService" uri="Foundation\HostRefuseContinueService.html">  
+		</Screen>
+		<Screen name="UI_HostRefuseNoContinue" uri="Foundation\HostRefuseNoContinue.html">  
+		</Screen>
+		<Screen name="UI_HostRefuseNoCardNoContinue" uri="Foundation\HostRefuseNoCardNoContinue.html">  
+		</Screen>
+		<Screen name="UI_PrintingReceipt" uri="Foundation\PrintingReceipt.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_PrintingReceipt)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_PrintReceiptSuccess" uri="Foundation\PrintReceiptSuccess.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_PrintReceiptSuccess)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_PrintReceiptFail" uri="Foundation\PrintReceiptFail.html">
+		</Screen>
+		<Screen name="UI_CannotPrintReceipt" uri="Foundation\CannotPrintReceipt.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_CannotPrintReceipt)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CannotPrintReceiptForNoCardTrans" uri="Foundation\CannotPrintReceiptForNoCardTrans.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_CannotPrintReceipt)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_Operating" uri="Foundation\Operating.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_TransactionIsBeing)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_OperatingDoubleLanguage" uri="Foundation\OperatingDoubleLanguage.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_TransactionIsBeing)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_OperatingNoCounter" uri="Foundation\OperatingNoCounter.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_TransactionIsBeing)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_OperatingNoCounterDoubleLanguage" uri="Foundation\OperatingNoCounterDoubleLanguage.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_TransactionIsBeing)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InquiryResult" uri="Inquiry\InquiryResult.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_InquiryResult)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InquiryResultIC" uri="Inquiry\InquiryResultIC.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_InquiryResult)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_ShowMinistatementIC" uri="ICModule\ICShowMinistatement.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_InquiryResult)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InputOldPin" uri="ChangePin\InputOldPin.html">
+			<Triggers>
+				<EventTrigger condition="show">
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InputNewPin" uri="ChangePin\InputNewPin.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_InputNewPin)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InputNewPinAgain" uri="ChangePin\InputNewPinAgain.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_InputNewPinAgain)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InputNewPinUnmatch" uri="ChangePin\InputNewPinUnmatch.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_InputNewPinUnmatch)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InputOldNewPinSame" uri="ChangePin\InputOldNewPinSame.html">
+		</Screen>
+		<Screen name="UI_ChangePinSuccess" uri="ChangePin\ChangePinSuccess.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_ChangePinSuccess)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InputTransferAccount" uri="Transfer\InputTransferAccount.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_InputTransferAccount)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InputICLoadAmount" uri="ICModule\ICInputICLoadAmount.html">
+			<Triggers>
+				<EventTrigger condition="show">
+				</EventTrigger>
+				<EventTrigger condition="InputAmountError">
+					<Setter target="Prompt" property="content" value="(IDS_InputAmountError)"/>
+					<PlaySound source="(Voice_InputAmountError)"/>
+				</EventTrigger>
+				<EventTrigger condition="InputAmountExceedsLimit">
+					<Setter target="Prompt" property="content" value="(IDS_InputAmountExceedLimit)"/>
+					<PlaySound source="(Voice_InputAmountError)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InputTransferAccountAgain" uri="Transfer\InputTransferAccountAgain.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_InputTransferAccountAgain)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InputTransferAccountUnmatch" uri="Transfer\InputTransferAccountUnmatch.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_InputTransferAccountUnmatch)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InputAccountSameAsPAN" uri="Transfer\InputAccountSameAsPAN.html">
+		</Screen>
+		<Screen name="UI_InputTransferAmount" uri="Transfer\InputTransferAmount.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_InputTransferAmount)"/>
+				</EventTrigger>
+				<EventTrigger condition="InputAmountError">
+					<Setter target="Prompt" property="content" value="(IDS_InputAmountError)"/>
+					<PlaySound source="(Voice_InputAmountError)"/>
+				</EventTrigger>
+				<EventTrigger condition="InputAmountExceedsLimit">
+					<Setter target="Prompt" property="content" value="(IDS_InputTransferAmountExceedsLimit)"/>
+					<PlaySound source="(Voice_InputAmountError)"/>
+				</EventTrigger>
+				<EventTrigger condition="InputAmountLessThanLimit">
+					<Setter target="Prompt" property="content" value="(IDS_InputTransferAmountLessThanLimit)"/>
+					<PlaySound source="(Voice_InputAmountError)"/>
+				</EventTrigger>
+				<EventTrigger condition="InputAmountMultipleError">
+					<Setter target="Prompt" property="content" value="(IDS_InputTransferAmountMultipleError)"/>
+					<PlaySound source="(Voice_InputAmountError)"/>
+				</EventTrigger>
+				<EventTrigger condition="InputAmountExceedICAvailableRechargeAmount">
+					<Setter target="Prompt" property="content" value="(IDS_InputAmountExceedICAvailableRechargeAmount)"/>
+					<PlaySound source="(Voice_InputAmountError)"/>
+				</EventTrigger>
+				<EventTrigger condition="InputAmountExceedICBalance">
+					<Setter target="Prompt" property="content" value="(IDS_InputAmountExceedICBalance)"/>
+					<PlaySound source="(Voice_InputAmountError)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_ShowTransferInfo" uri="Transfer\ShowTransferInfo.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_ShowTransferInfo)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_ShowICLoadResult" uri="ICModule\ICShowICLoadResult.html">
+			<Triggers>
+				<EventTrigger condition="show">
+        			</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_TransferSuccess" uri="Transfer\TransferSuccess.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_TransferSuccess)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InputWithdrawalAmount" uri="Withdrawal\InputWithdrawalAmount.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_InputWithdralAmount)"/>
+				</EventTrigger>
+				<EventTrigger condition="InputWithdrawalAmountError">
+					<Setter target="Prompt" property="content" value="(IDS_InputWithdrawalAmountError)"/>
+					<PlaySound source="(Voice_InputWithdrawalAmountError)"/>
+				</EventTrigger>
+				<EventTrigger condition="InputWithdrawalAmountExceedsLimit">
+					<Setter target="Prompt" property="content" value="(IDS_InputWithdrawalAmountExceedsLimit)"/>
+					<PlaySound source="(Voice_InputWithdrawalAmountExceedsLimit)"/>
+				</EventTrigger>
+				<EventTrigger condition="InputWithdrawalAmountExceedsCassetteAmount">
+					<Setter target="Prompt" property="content" value="(IDS_InputWithdrawalAmountExceedsCassetteAmount)"/>
+					<PlaySound source="(Voice_InputWithdrawalAmountExceedsCassetteAmount)"/>
+				</EventTrigger>
+				<EventTrigger condition="InputWithDrawalAmountDenominateError">
+					<Setter target="Prompt" property="content" value="(IDS_InputWithDrawalAmountDenominateError)"/>
+					<PlaySound source="(Voice_InputWithDrawalAmountDenominateError)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_DispenseAmountError" uri="Withdrawal\DispenseAmountError.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_ServiceUnavailable)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_RejectingCash" uri="Withdrawal\RejectingCash.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_TransactionIsBeing)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_RejectCashForHardwareError" uri="Withdrawal\RejectCashForHardwareError.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_ServiceUnavailable)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_RejectCashFail" uri="Withdrawal\RejectCashFail.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_ServiceUnavailable)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_PresentCash" uri="Withdrawal\PresentCash.html">
+ 		</Screen>
+		<Screen name="UI_TakeCash" uri="Withdrawal\TakeCash.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_TakeCash)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_RetractingCash" uri="Withdrawal\RetractingCash.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_TransactionIsBeing)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_RetractCashForTimeout" uri="Withdrawal\RetractCashForTimeout.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_RetractCashForTimeout)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_RetractCashForHardwareError" uri="Withdrawal\RetractCashForHardwareError.html">
+		</Screen>
+		<Screen name="UI_RetractNoCash" uri="Withdrawal\RetractNoCash.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_ServiceUnavailable)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_RetractCashFail" uri="Withdrawal\RetractCashFail.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_ServiceUnavailable)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CashInShowResult" uri="Deposit\WhetherContinueInputCash.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_CountingCashResult)"/>
+				</EventTrigger>
+				<PropertyTrigger target="F4" property="visible" value="0">
+					<Setter target="prompt" property="visible" value="0"/>
+					<Setter target="promptContinue" property="visible" value="0"/>
+				</PropertyTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CashInStart" uri="Deposit\CIMSelfCheck.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_TransactionIsBeing)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InputCashEmpty" uri="Deposit\InputCashEmpty.html">
+		</Screen>
+		<Screen name="UI_InputCashEmptyForError" uri="Deposit\InputCashEmptyForError.html">
+		</Screen>
+		<Screen name="UI_InputCashEmptyForCashInEnd" uri="Deposit\CIMSelfCheck.html">
+		</Screen>
+		<Screen name="UI_InputCashEmptyForRefusedNoteToomuch" uri="Deposit\InputCashEmptyForRefusedNoteToomuch.html">
+		</Screen>
+		<Screen name="UI_CashIn" uri="Deposit\FirstWaitForInsertCash.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_FirstWaitForInsertCash)"/>
+				</EventTrigger>
+				<EventTrigger condition="loadDenoFailure">
+					<Setter target="divPrompt1" property="visible" value="0"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_NoteInserted4AutoShutter" uri="Deposit\WaitForInsertCashForAutoShutter.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_FirstWaitForInsertCash)"/>
+				</EventTrigger>
+				<EventTrigger condition="CancelCommand">
+					<Setter target="F8" property="visible" value="0"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CountingNote" uri="Deposit\CountingCash.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_CountingCash)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CashInEnd" uri="Deposit\CashInEnd.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_CashInEndSuccess)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CashInEndForCommError" uri="Deposit\CashInEndForCommError.html">
+		</Screen>
+		<Screen name="UI_HostRefuseAndCashInRollback" uri="Deposit\HostRefuseAndCashInRollback.html">
+		</Screen>
+		<Screen name="UI_CashInRollbackForNetworkFailed" uri="Deposit\NetworkFailedAndCashInRollback.html">
+		</Screen>
+		<Screen name="UI_RollbackForExceedICAvailableRechargeAmount" uri="Deposit\RollbackForExceedICAvailableRechargeAmount.html">
+		</Screen>
+		<Screen name="UI_CashInEndNoCash" uri="Deposit\Operating.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_TransactionIsBeing)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CashInEndSuccess" uri="Deposit\CashInEndSuccess.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_CashInEndSuccess)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_WaitForNoteInsertNoCash" uri="Deposit\WaitForInsertCashButNoCash.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_CountingButNoCash)"/>
+				</EventTrigger>
+				<EventTrigger condition="loadDenoFailure">
+					<Setter target="divPrompt1" property="visible" value="0"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CashInRetract" uri="Deposit\TimeoutRetractCash.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_TimeoutRetractCash)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CashInRetractForRepeatNumReject" uri="Deposit\CashInRetractForRepeatNumReject.html">
+		</Screen>
+		<Screen name="UI_OperationTimeoutRetractCash" uri="Deposit\OperationTimeoutRetractCash.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_TimeoutRetractCash)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CashInRetractForError" uri="Deposit\RetractCashForError.html">
+		</Screen>
+		<Screen name="UI_CashInRollback" uri="Deposit\EjectCashToCustomer.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_RejectingCash)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CashInRollbackForRepeatNumReject" uri="Deposit\CashInRollbackForRepeatNumReject.html">
+		</Screen>
+		<Screen name="UI_CashInWaitForNoteTaken" uri="Deposit\WaitCustomerToTakeCash.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_CancelDepositPleaseTakeCash)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CancelWaitForNoteTaken" uri="Deposit\WaitCustomerToTakeCashForCancel.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_CancelDepositPleaseTakeCash)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CashInWaitForNoteTakenForError" uri="Deposit\WaitCustomerToTakeCashForError.html">
+		</Screen>
+		<Screen name="UI_CashInWaitForNoteTakenForCommError" uri="Deposit\WaitCustomerToTakeCashForCommError.html">
+		</Screen>
+		<Screen name="UI_CashInWaitForNoteTakenRefused" uri="Deposit\WaitCustomerToTakeCashRefused.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_WaitCustomerToTakeCashRefused)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CashInWaitForNoteTakenToomuch" uri="Deposit\WaitCustomerToTakeCashToomuch.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_WaitCustomerToTakeCashToomuch)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CashInWaitForNoteInsert" uri="Deposit\FirstWaitForInsertCash.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_FirstWaitForInsertCash)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_ArrangeCash" uri="Deposit\ArrangeCash.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_CashErrorPosition)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_WaitForNoteInsert4ArrangeCash" uri="Deposit\WaitForInsertCash4ArrangeCash.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_CashErrorPosition)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CashInWaitForNoteTakenForOverLimit" uri="Deposit\WaitCustomerToTakeCashForInputTimesOverlimit.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_PleaseTakeCash)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InputNoCardDepositAccount" uri="NoCardDeposit\InputNoCardDepositAccount.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_InputNoCardDepositAccount)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_EjectingCard" uri="CloseTrans\EjectingCard.html">
+		</Screen>
+		<Screen name="UI_TakeCard" uri="CloseTrans\TakeCard.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_TakeCard)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_TransTimeOut" uri="CloseTrans\TransTimeOut.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_TransTimeOut)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_KeyError" uri="CloseTrans\KeyError.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_ErrorPressKey)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InvalidCard" uri="CloseTrans\InvalidCard.html">
+		</Screen>
+		<Screen name="UI_HardwareError" uri="CloseTrans\HardwareError.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_ServiceUnavailable)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_GeneralError" uri="CloseTrans\GeneralError.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_ServiceUnavailable)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CapturingCard" uri="CloseTrans\CapturingCard.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_TransactionIsBeing)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CaptureCardForTimeout" uri="CloseTrans\CaptureCardForTimeout.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_CaptureCardForTimeout)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_CaptureCard" uri="CloseTrans\CaptureCard.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_CaptureCard)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_ThankYou" uri="CloseTrans\ThankYou.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_ThankYou)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_InputWithdrawalAmountExceedRetryTimes" uri="CloseTrans\InputWithdrawalAmountExceedRetryTimes.html">
+		</Screen>
+		<Screen name="UI_Reversal" uri="Foundation\StopService.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_OutOfService)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_GetPassword" uri="EPP\GetPassword.html">
+		</Screen>
+		<Screen name="UI_GetPassword2" uri="EPP\GetPassword2.html">
+		</Screen>
+		<Screen name="UI_SecureKeyEntry" uri="EPP\SecurKeyEntry.html">
+		</Screen>
+		<Screen name="UI_SecureKeyEntryA" uri="EPP\SecurKeyEntryA.html">
+		</Screen>
+		<Screen name="UI_SecureKeyEntry2" uri="EPP\SecurKeyEntry2.html">
+		</Screen>
+		<Screen name="UI_ImportKey" uri="EPP\EPPProcess.html">
+		</Screen>
+		<Screen name="UI_ExitFlow" uri="EPP\EPPExitFlow.html">
+		</Screen>
+		<Screen name="UI_VerifyCheckValue" uri="EPP\VerifyCheckValue.html">
+		</Screen>
+		<Screen name="UI_ExchangeInfo" uri="Transfer\InputExchargeInfo.html">
+		</Screen>
+		<Screen name="UI_RollbackForHardwareError" uri="Deposit\RolllbackForHardwareError.html">
+		</Screen>
+		<!--IC卡相关-->
+		<Screen name="UI_ICTransactionIsBeing" uri="ICModule\ICTransactionIsBeing.html">
+		</Screen>
+		<Screen name="UI_ICMoreAppSelect" uri="ICModule\ICMoreAppSelect.html">
+		</Screen>
+		<Screen name="UI_ICInquiryResult" uri="ICModule\ICInquiryResult.html">
+			<Triggers>
+				<EventTrigger condition="show">
+					<PlaySound source="(Voice_InquiryResult)"/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+		<Screen name="UI_ICTransCancel" uri="ICModule\ICTransCancel.html">
+		</Screen>
+		<Screen name="UI_ARPCFail" uri="ICModule\ICShowARPCFail.html">
+		</Screen>
+		<Screen name="UI_AppLock" uri="ICModule\ICShowAppLock.html">
+		</Screen>
+		<Screen name="UI_InputQCAmount" uri="ICModule\ICInputQCAmount.html">
+		</Screen>
+	</Screens>
+</Window>

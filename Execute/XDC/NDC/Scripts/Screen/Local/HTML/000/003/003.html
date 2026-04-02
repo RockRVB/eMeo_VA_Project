@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1280, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Home</title>
+    <link rel="stylesheet" href="../../../../../../../../Resource/Common/HTML/css/VA/style.css">
+    <script src="../../../../../../../../Resource/Common/HTML/js/coreScript.js"></script>
+    <script src="common.js"></script>
+    <script src="../../../../../../../../Resource/Common/HTML/js/VA/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div class="stm-layout">
+        <!-- Header -->
+
+        <stm-header></stm-header>
+
+        <!-- Body -->
+        <main class="stm-body">
+            <div class="stm-content">
+                
+                <!-- Insert Card Banner -->
+                <div class="insert-card-wrapper">
+                    <div class="insert-card-inner">
+                        <p ids="ids_VAB_pls_insert_card">Please insert your card.</p>
+                    </div>
+                </div>
+
+                <!-- Call to action -->
+                <h2  ids="ids_VAB_home_title" class="stm-subtitle">Quý khách vui lòng chọn 01 giao dịch bên dưới</h2>
+
+                <!-- Cards Grid -->
+                <div class="stm-cards-grid">
+                    <div class="stm-cards-row">
+                        <!-- Card 1 -->
+                        <div class="stm-card" id="mo-tai-khoan">
+                            <stm-card
+                                    icon-url="../../../../../../../../Resource/Common/HTML/images/VA/icon-open-account.png"
+                                    title="Mở tài khoản"
+                                    ids="ids_VAB_open_account"
+                                    id="mo-tai-khoan"
+                            >
+                            </stm-card>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="stm-card" id="nop-tien">
+                            <stm-card
+                                    icon-url="../../../../../../../../Resource/Common/HTML/images/VA/icon-money.png"
+                                    title="Nộp tiền"
+                                    ids="ids_VAB_deposit"
+                            >
+                            </stm-card>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="stm-card" id="rut-tien">
+                            <stm-card
+                                    icon-url="../../../../../../../../Resource/Common/HTML/images/VA/icon-withdraw.png"
+                                    title="Rút tiền"
+                                    ids="ids_VAB_withdraw"
+                            >
+                            </stm-card>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="stm-card" id="chuyen-khoan">
+                            <stm-card
+                                    icon-url="../../../../../../../../Resource/Common/HTML/images/VA/icon-transfer.png"
+                                    title="Chuyển khoản"
+                                    ids="ids_VAB_transfer"
+                            >
+                            </stm-card>
+                        </div>
+                    </div>
+
+                    <div class="stm-cards-row">
+                        <!-- Card 5 -->
+                        <div class="stm-card" id="tktk">
+                            <stm-card
+                                    icon-url="../../../../../../../../Resource/Common/HTML/images/VA/icon-savings.png"
+                                    title="Tài khoản tiết kiệm"
+                                    ids="ids_VAB_tktk"
+                            >
+                            </stm-card>
+                        </div>
+                        <!-- Card 6 -->
+                        <div class="stm-card" id="dk-vay">
+                            <stm-card
+                                    icon-url="../../../../../../../../Resource/Common/HTML/images/VA/icon-loan.png"
+                                    title="Đăng ký vay"
+                                    ids="ids_VAB_dang_ky_vay"
+                            >
+                            </stm-card>
+                        </div>
+                        <!-- Card 7 -->
+                        <div class="stm-card" id="dk-ph-the">
+                            <stm-card
+                                    icon-url="../../../../../../../../Resource/Common/HTML/images/VA/icon-card.png"
+                                    title="Đăng ký phát hành thẻ"
+                                    ids="ids_VAB_card_publish"
+                            >
+                            </stm-card>
+                        </div>
+                        <!-- Card 8 -->
+                        <div class="stm-card card-disabled" id="dich-vu-khac">
+                            <stm-card
+                                    icon-url="../../../../../../../../Resource/Common/HTML/images/VA/icon-other.png"
+                                    title="Dịch vụ khác"
+                                    ids="ids_VAB_other_service"
+                            >
+                            </stm-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <stm-footer></stm-footer>
+    </div>
+</body>
+<script src="../../../../../../../../Resource/Common/HTML/js/VA/scale.js"></script>
+<script>
+    $(document).ready(function() {
+
+    })
+</script>
+</html>

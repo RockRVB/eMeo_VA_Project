@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<UIListItemCollection name="transDetail">
+		<ListItem>
+			<Item key="dateTime" value="2012/10/12 08:23:45" />
+			<Item key="tranType" value="CWD" />
+			<Item key="amnout" value="1200" />
+			<Item key="fee" value="0" />
+			<Item key="serialNumber" value="000012" />
+		</ListItem>
+		<ListItem>
+			<Item key="dateTime" value="2012/10/14 08:23:45" />
+			<Item key="tranType" value="CWD" />
+			<Item key="amnout" value="2000" />
+			<Item key="fee" value="0" />
+			<Item key="serialNumber" value="000013" />
+		</ListItem>
+		<ListItem>
+			<Item key="dateTime" value="2010/10/12 08:23:45" />
+			<Item key="tranType" value="DEP" />
+			<Item key="amnout" value="30000" />
+			<Item key="fee" value="0" />
+			<Item key="serialNumber" value="000016" />
+		</ListItem>
+		<ListItem>
+			<Item key="dateTime" value="2012/12/12 08:23:45" />
+			<Item key="tranType" value="CWD" />
+			<Item key="amnout" value="300000" />
+			<Item key="fee" value="0" />
+			<Item key="serialNumber" value="000018" />
+		</ListItem>
+		<ListItem>
+			<Item key="dateTime" value="2012/12/20 08:23:45" />
+			<Item key="tranType" value="FRY" />
+			<Item key="amnout" value="20000" />
+			<Item key="fee" value="0" />
+			<Item key="serialNumber" value="000020" />
+		</ListItem>
+	</UIListItemCollection>
+</Config>

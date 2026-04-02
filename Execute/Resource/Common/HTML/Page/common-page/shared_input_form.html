@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../js/vue.min.js"></script>
+  <script src="../../js/grg-ui.min.js"></script>
+  <script src="../../js/vue-i18n.js"></script>
+  <script src="../../js/jquery-3.7.0.js"></script>
+  <script src="../../js/class/layer/layer.js"></script>
+  <script src="../../js/index.js"></script>
+  <script src="../../js/coreScript.js"></script>
+  <script src="../../js/ibank.js"></script>
+  <link rel="stylesheet" href="../../css/grg-ui.min.css">
+  <link rel="stylesheet" href="../../css/animate.grg.css">
+  <link rel="stylesheet" href="../../css/ibank.css">
+  <style>
+    .grg-main {
+      display: flex;
+      justify-content: space-between;
+      /* visibility: hidden; */
+    }
+
+    .main-content-box {
+      width: 100%;
+      text-align: center;
+    }
+
+    .g-form {
+      display: flex;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      color: #231815;
+      margin-top: 30px;
+    }
+
+    .g-form-item {
+      width: 48.5%;
+      padding-bottom: 20px !important;
+    }
+
+    .g-form .g-form-item-label {
+      color: #231815;
+      font-size: 28px;
+      font-family: 'Alibaba Sans';
+    }
+
+    .g-form .g-input {
+      background: #e9f0ff;
+      border-radius: 10px;
+      color: #231815;
+      font-size: 24px;
+      font-family: 'Alibaba Sans';
+      border: none;
+    }
+
+    .g-radio {
+      font-size: 24px;
+      font-family: 'Alibaba Sans';
+    }
+
+    .g-radio .g-radio-circle {
+      border-color: #666;
+    }
+
+    .g-radio-checked .g-radio-circle {
+      border-color: #1890ff;
+    }
+
+    .custom-icon {
+      display: inline-block;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+
+    .name-icon {
+      background-image: url('../../images/img_2.4/form_icon/name-icon.png');
+    }
+
+    .birth-date-icon {
+      background-image: url('../../images/img_2.4/form_icon/birth-date-icon.png');
+    }
+
+    .id-number-icon {
+      background-image: url('../../images/img_2.4/form_icon/id-number-icon.png');
+    }
+
+    .phone-icon {
+      background-image: url('../../images/img_2.4/form_icon/phone-icon.png');
+    }
+
+    .email-icon {
+      background-image: url('../../images/img_2.4/form_icon/email-icon.png');
+    }
+
+    .address-icon {
+      background-image: url('../../images/img_2.4/form_icon/address-icon.png');
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="grg-header" class="grg-header">
+    </div>
+    <div id="grg-main" class="grg-main animate_grg_zoomIn">
+      <div class="count-down">
+        <div class="count-down-2" id="Counter" type="countdown" content="{Binding Count}"></div>
+      </div>
+      <div class="main-content-box">
+        <div class="title" id="text1" ids="ids_opac_inputInformation">Please Input Your Personal Information</div>
+        <div class="form-box">
+          <g-form :model="formModel" ref="form" :rules="ruleValidate" label-position='top'>
+            <g-form-item label="Customer Name" prop="name" ids='ids_opac_name'>
+              <g-input content='{Binding CustomerName mode=2}' v-model="formModel.name" prefix="custom-icon name-icon"
+                id="customer-name">
+              </g-input>
+            </g-form-item>
+            <g-form-item label="Gender" prop="gender" ids='ids_opac_gender'>
+              <input type="text" hidden content='{Binding Gender mode=2}' v-model='formModel.gender'>
+              <g-radio-group v-model="formModel.gender" id="customer-gender">
+                <g-radio value="0"><span ids="ids_Common_Male">Male</span></g-radio>
+                <g-radio value="1"><span ids="ids_Common_Female">Female</span></g-radio>
+              </g-radio-group>
+            </g-form-item>
+            <g-form-item label="Birth Date" prop="birthDate" ids='ids_opac_birth'>
+              <g-input v-model="formModel.birthDate" content='{Binding Birthdate mode=2}' type='date'
+                prefix="custom-icon birth-date-icon" id="customer-birthDate">
+                <g-button slot='cancel-btn' round color='info' ids='ids_Btn_cancel'>Cancel</g-button>
+                <g-button slot='confirm-btn' round transparent ids='ids_Btn_confirm'>Confirm</g-button>
+              </g-input>
+            </g-form-item>
+            <g-form-item label="ID Number" prop="passportNo" ids='ids_opac_IDNo'>
+              <g-input content='{Binding IDNumber mode=2}' v-model="formModel.passportNo" id="customer-idNumber"
+                prefix="custom-icon id-number-icon"></g-input>
+            </g-form-item>
+            <g-form-item label="ID Type" prop="expire" ids='ids_opac_IDType'>
+              <input type="text" hidden content='{Binding Expire mode=2}' v-model='formModel.expire'>
+              <g-radio-group v-model="formModel.expire" style="width:600px;" id="customer-expire">
+                <g-radio value="0" style="width:200px; margin-bottom: 10px;">Id Card</g-radio>
+                <g-radio value="1" style="width:300px;">Soilder Card</g-radio>
+                <g-radio value="2" style="width:200px; margin-bottom: 10px;">Passport</g-radio>
+                <g-radio value="3" style="width:200px;">Other</g-radio>
+              </g-radio-group>
+            </g-form-item>
+            <g-form-item label="Phone Number" prop="phoneNum" ids='ids_opac_phone' id="customer-phoneNumber">
+              <g-input type='number' content='{Binding Phone mode=2}' v-model="formModel.phoneNum"
+                prefix="custom-icon phone-icon"></g-input>
+            </g-form-item>
+            <g-form-item label="Email" prop="email" ids='ids_opac_email' id="customer-email">
+              <g-input content='{Binding Email mode=2}' v-model="formModel.email" type='email'
+                prefix="custom-icon email-icon"></g-input>
+            </g-form-item>
+            <g-form-item label="Address" prop="address" ids='ids_opac_address' id="customer-address">
+              <g-input content='{Binding Address mode=2}' v-model="formModel.address"
+                prefix="custom-icon address-icon"></g-input>
+            </g-form-item>
+          </g-form>
+          <input type="text" hidden content='{Binding changeSources.name mode=2}' v-model='changeSources.name'>
+          <input type="text" hidden content='{Binding changeSources.gender mode=2}' v-model='changeSources.gender'>
+          <input type="text" hidden content='{Binding changeSources.birthDate mode=2}' v-model='changeSources.birthDate'>
+          <input type="text" hidden content='{Binding changeSources.passportNo mode=2}' v-model='changeSources.passportNo'>
+          <input type="text" hidden content='{Binding changeSources.expire mode=2}' v-model='changeSources.expire'>
+          <input type="text" hidden content='{Binding changeSources.phoneNum mode=2}' v-model='changeSources.phoneNum'>
+          <input type="text" hidden content='{Binding changeSources.email mode=2}' v-model='changeSources.email'>
+          <input type="text" hidden content='{Binding changeSources.address mode=2}' v-model='changeSources.address'>
+          
+        </div>
+        <div class="button-box only-page-button-box">
+          <div class="grg-btn grg-cancel" id='OnCancel' tag='OnCancel' type='button' ids="ids_Btn_cancel">
+            <img class="icon-img" src="../../images/img_2.4/icon-cancel.png" alt="">Cancel
+          </div>
+          <div :class='["grg-btn", formModel.idnumber ? "grg-confirm" : "grg-cancel"]'
+            :type='formModel.idnumber ? "button" : ""' tag='OnConfirm' ids="ids_Btn_confirm">
+            <img class="icon-img" src="../../images/img_2.4/icon-ok.png" alt="">Confirm
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+  var app = new Base({
+    i18n: i18n,
+    data: {
+      formModel: {
+        name: '',
+        gender: '',
+        birthDate: '',
+        passportNo: '',
+        expire: '',
+        phoneNum: '',
+        email: '',
+        address: ''
+      },
+      changeSources: {
+        name: 'user',
+        gender: 'user',
+        birthDate: 'user',
+        passportNo: 'user',
+        expire: 'user',
+        phoneNum: 'user',
+        email: 'user',
+        address: 'user'
+      },
+      changeTimers: {
+        name: null,
+        gender: null,
+        birthDate: null,
+        passportNo: null,
+        expire: null,
+        phoneNum: null,
+        email: null,
+        address: null
+      },
+      aaa: false,
+    },
+    methods: {
+      calRootFontSize: function () {
+        const html = document.getElementsByTagName('html')[0]
+        const pageWidth = html.clientWidth
+        const pageHeight = html.clientHeight
+        if (pageWidth < pageHeight) {
+          html.style.fontSize = pageWidth / 10 + 'px'
+        } else {
+          html.style.fontSize = pageHeight / 10 + 'px'
+        }
+      },
+      handleSubmit: function () {
+        this.$refs.form.validate(function (valid) {
+          if (valid) {
+            this.aaa = true;
+            goto('OnConfirm')
+          }
+          else {
+            this.aaa = false;
+          }
+        }.bind(this))
+      },
+      handleReset: function () {
+        this.$refs.form.resetFields();
+      },
+      submitWithDebounce: function (field, newVal, oldVal) {
+        if (this.changeSources[field] === 'user') {
+          if (this.changeTimers[field]) {
+            clearTimeout(this.changeTimers[field]); //清除之前的定时器
+          }
+          this.changeTimers[field] = setTimeout(() => {
+            webhost.submit(field, "OnInputChange", { id: field, value: newVal });
+            console.log('-------------------------------------> change', { id: field, value: newVal });
+          }, 500); //500ms后无变化再提交
+        } else {//此时是由teller改变的，忽略本次修改的submit，并主动改回changeSources标志默认值user
+          this.changeSources[field] = 'user';
+        }
+      },
+    },
+    computed: {
+      ruleValidate: function () {
+        return {
+          name: [{
+            required: true,
+            message: this.$t('createAccount.name'),
+            trigger: 'change'
+          }],
+          birthDate: [{
+            required: true,
+            message: this.$t('createAccount.birthdate'),
+            trigger: 'change'
+          }],
+          gender: [{
+            required: true,
+            message: this.$t('createAccount.gender'),
+            trigger: 'change'
+          }],
+          email: [{
+            type: 'email',
+            message: this.$t('createAccount.email'),
+            trigger: 'change'
+          }],
+          phoneNum: [{
+            message: this.$t('createAccount.phoneNum'),
+            trigger: 'change',
+            pattern: /^[0-9]{6,}$/
+          }]
+        }
+      },
+      formData: {
+        set: function (v) {
+          v ? this.formModel = Object.assign(this.formModel, JSON.parse(v)) : {}
+        },
+        get: function () {
+          return JSON.stringify(this.formModel)
+        }
+      }
+    },
+    mounted: function () {
+      this.calRootFontSize()
+      var _this = this
+      window.onload = function () {
+        var initData = document.querySelector('#formData').value
+        initData ? _this.formData = initData : ''
+        changeValueListener(document.querySelector('#formData'), function (val) {
+          _this.formData = val
+        })
+      }
+    },
+    watch: {
+      'formModel.name': function (newVal, oldVal) {
+        this.submitWithDebounce('name', newVal, oldVal);
+      },
+      'formModel.gender': function (newVal, oldVal) {
+        this.submitWithDebounce('gender', newVal, oldVal);
+      },
+      'formModel.birthDate': function (newVal, oldVal) {
+        this.submitWithDebounce('birthDate', newVal, oldVal);
+      },
+      'formModel.passportNo': function (newVal, oldVal) {
+        this.submitWithDebounce('passportNo', newVal, oldVal);
+      },
+      'formModel.expire': function (newVal, oldVal) {
+        this.submitWithDebounce('expire', newVal, oldVal);
+      },
+      'formModel.phoneNum': function (newVal, oldVal) {
+        this.submitWithDebounce('phoneNum', newVal, oldVal);
+      },
+      'formModel.email': function (newVal, oldVal) {
+        this.submitWithDebounce('email', newVal, oldVal);
+      },
+      'formModel.address': function (newVal, oldVal) {
+        this.submitWithDebounce('address', newVal, oldVal);
+      }
+    },
+
+  }).$mount('#app')
+</script>

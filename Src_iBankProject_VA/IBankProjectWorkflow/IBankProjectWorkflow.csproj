@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F8FF8465-781A-415C-9224-63C28C5EA798}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IBankProjectWorkflow</RootNamespace>
+    <AssemblyName>IBankProjectWorkflow</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Execute\Business\Workflow\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Execute\Business\Workflow\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>eCATAct.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Attribute4ECAT">
+      <HintPath>..\..\Execute\BaseImplement\Attribute4ECAT.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BusinessServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\BusinessServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="eCATBusinessServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\eCATBusinessServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ECATWorkflow">
+      <HintPath>..\..\Execute\Business\Workflow\ECATWorkflow.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IBankProjectBusinessServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\IBankProjectBusinessServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="LogProcessorService">
+      <HintPath>..\..\Execute\GeneralService\LogProcessorService.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SessionRecordServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\SessionRecordServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="VTMBusinessServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\VTMBusinessServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VTMBusinessServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\VTMBusinessServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VTMWorkflow">
+      <HintPath>..\..\Execute\Business\Workflow\VTMWorkflow.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="WorkflowBaseImp">
+      <HintPath>..\..\Execute\BaseImplement\WorkflowBaseImp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="XDCBusinessServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\XDC\XDCBusinessServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IBankProjectWorkflowImp.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="eCATAct.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

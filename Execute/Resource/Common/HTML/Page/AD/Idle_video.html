@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+    }
+    video {
+      width: 100vw;
+      height: 100vh;
+    }
+	
+	 <!-- body { -->
+      <!-- width: 1600px; -->
+      <!-- height: 900px; -->
+      <!-- overflow: hidden; -->
+      <!-- margin: 0; -->
+    <!-- } -->
+    <!-- video { -->
+      <!-- width: 1600px; -->
+      <!-- height: 900px; -->
+    <!-- } -->
+  </style>
+</head>
+
+<body>
+  <header>
+    <div id="showTime"></div>
+  </header>
+  <div class="slider">
+    <video width="100" height="100" muted id="video" loop>
+	  <!-- <source src="../../../ad/CNB_VTM_AD_Video_merge_720P_30FPS.mp4" type="video/mp4" /> -->
+	  <!-- <source src="../../../ad/VIDEO_LED_MIXED.webm" type="video/webm" /> -->
+      <source src="../../../ad/VIDEO_LED_MIXED.mp4" type="video/mp4" />
+	        <!-- <source src="../../../ad/view.mp4" type="video/mp4" /> -->
+      browser can not support video
+    </video>
+  </div>
+
+</body>
+
+</html>
+
+<script>
+  window.onload = function () {
+    video.play();
+  };
+
+  <!-- var vList = ['../../../ad/VIDEO_LED.mp4', '../../../ad/VIDEO_LED_EN.mp4', '../../../ad/VIDEO_LED_CN.mp4']; // 初始化播放列表 -->
+  <!-- var vLen = vList.length; -->
+  <!-- var curr = 1; -->
+  <!-- var video = document.getElementById("video"); -->
+  <!-- video.addEventListener('ended', function () { -->
+    <!-- play(); -->
+  <!-- }); -->
+
+  <!-- function play() { -->
+    <!-- video.src = vList[curr]; -->
+    <!-- video.load(); -->
+    <!-- video.play(); -->
+    <!-- curr++ -->
+    <!-- if (curr >= vLen) { -->
+      <!-- curr = 0; //重新循环播放 -->
+    <!-- } -->
+  <!-- } -->
+
+</script>

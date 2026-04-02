@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Msg>
+    <!--  Send Supply Counters.
+		*  This solicited status message is sent to central terminal command message ( a command code of '4'). 
+		-->
+    <Item key="g1" value="2" size="1" restriction="Mandatory" />
+    <!-- Transaction serial number (TSN). Contains the TSN of the last transaction processed by the terminal. If this does not correspond to the last 
+		* TSN  sent to Central. It means that the transaction has not been initiated and the counters have not been updated.  
+		-->
+    <Item key="g2" value="[LastTrans.LastTransSerialNum]" size="4" restriction="Mandatory" />
+    <!-- Accynykated Transaction Count. Defines the total number of detected transaction attemps since the terminal was installed or the non-volatile terminal memory was last corrupted.
+		 * The count is reset to 0 after 9, 999, 999 transacitons.
+		 *  A transaction attempt is detected when it is recognised that the TSN received from Central is different from the previously received TSN.
+		*  Up to host decision.
+		-->
+    <Item key="g3" value="[SupplyCounters.AccumulatedTransCount]" size="7" restriction="Mandatory" />
+    <!--  Notes In cassettes. Consists of 4 five-digits decimal counts of the total number of notes remaining in cassette types 1, 2, 3 and 4.  
+		 * The counts are set by supervisor functions and are decremented on each dispense transaction..
+		 *  The counts are zero if not set by and 'Add Cash' or 'Set Standard Cash' supervisor function. The count contains 65535 ( the decimal 
+		 * .equivalent of 0FFF hex).
+		-->
+    <Item key="g4" value="[SupplyCounters.NotesInCassettes]" size="20" restriction="Mandatory" />
+    <!--  Notes Rejected. Consists of 4 five-digits decimal counts of the total number of notes moved to the reject bin from cassette types 1, 2, 3 and 4.  
+		 * Although fields 'g4' and 'g5' may not be totally accurate, the sum of these counts for a particular cassette does accurately represent the different
+		 *  between the original number of notes added and the number of notes dispensed.
+		-->
+    <Item key="g5" value="[SupplyCounters.NotesRejected]" size="20" restriction="Mandatory" />
+    <!--  Notes Dispensed. Consists of 4 five-digits decimal counts of the total number of notes dispensed from cassette types 1, 2, 3 and 4.  
+		 * These counts are consistent with note counts reported since the counts were last cleared by a supervisor transaction.
+		 *  If a transaction is prematurely stopped by a power failure. These counts are updated to reflect the number of notes dispensed up to 
+		 * the time of power failure..
+		-->
+    <Item key="g6" value="[SupplyCounters.NotesDispensed]" size="20" restriction="Mandatory" />
+    <!--  Last Transaction Notes Dispensed. Consists of 4 five-digits decimal counts of the total number of notes dispensed on the last transaction processed by the terminal.  
+		 *  The count includes cards captured up to and including the trasnaction defined 'g2'
+		-->
+    <Item key="g7" value="[LastTrans.LastTransNotesDispensed]" size="20" restriction="Mandatory" />
+    <!--  Card Captured. Consists of 1 five-digits decimal counts of the number of cards captured since the count was cleared by a supervisor transaction .  
+		 *  This field allows Central to recover note counts after power failure, even if the power failure occurred in the middle of a dispense operation.
+		-->
+    <Item key="g8" value="[SupplyCounters.CardCaptured]" size="5" restriction="Mandatory" />
+    <!--  Envelopes Deposited. Consists of 1 five-digits decimal counts of the number of envelopes deposited since the count was last cleared by a supervisor transaction .  
+		 *  The count includes envelopes deposited up to and including the transaction defined in filed 'g2'.
+		-->
+    <Item key="g9" value="[SupplyCounters.EnvelopesDeposited]" size="5" restriction="Mandatory" />
+    <!--  Envelopes Deposited. Consists of 1 five-digits decimal counts of the number of envelopes deposited since the count was last cleared by a supervisor transaction .  
+		 *  The count includes envelopes deposited up to and including the transaction defined in filed 'g2'.
+		-->
+    <Item key="g10" value="[SupplyCounters.CameraFilmRemaining]" size="5" restriction="Mandatory" />
+    <!--  Last Envelope Serial Number. The last envelope serial number is always 00000.-->
+    <Item key="g11" value="00000" size="5" restriction="Mandatory" />
+    <!-- Group Separator  -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <!--  Bunch Note Acceptor (BNA) counters - refunded.-->
+    <Item key="g70" value="[SupplyCounters.BNATotalRefunded]" size="5" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <!--  Bunch Note Acceptor (BNA) counters - rejected -->
+    <Item key="g71" value="[SupplyCounters.BNATotalRejected]" size="5" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <!--  Bunch Note Acceptor (BNA) counters - encashed -->
+    <Item key="g72" value="[SupplyCounters.BNATotalEncashed]" size="5" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <!--  Bunch Note Acceptor (BNA) counters - Escrow -->
+    <Item key="g73" value="[SupplyCounters.BNATotalEscrow]" size="5" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]" />
+    <!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+    <Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]" />
+  </Msg>
+</Root>

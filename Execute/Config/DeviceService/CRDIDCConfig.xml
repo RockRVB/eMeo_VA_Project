@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--ServiceName：           设备的服务名
+    ReadTracks ：           读取的磁道标志
+    ErrorCode ：            错误码 用于记录最近一次的设备错误物理码 默认为""，可以不用配置，系统会自己按顺序查找  
+-->
+<CardReader ServiceName="CardDispenserIDC" ReadTracks="1,2,3,IC"/>

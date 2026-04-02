@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  ****************************************************************************************************
+  * [1] Function command definition 
+  * [2] The map setting between DDC function and DDC command  
+  *****************************************************************************************************
+-->
+<Root>
+	<!-- Define the basic function command with unit definition-->
+	<KeyBoard>
+		<Item key="A" value="F1" YDCkey="KEYA" WebID="0" MsgType="5002" WebCaption="F1"/>
+		<Item key="B" value="F2" YDCkey="KEYB" WebID="1" MsgType="5002" WebCaption="F2"/>
+		<Item key="C" value="F3" YDCkey="KEYC" WebID="2" MsgType="5002" WebCaption="F3"/>
+		<Item key="D" value="F4" YDCkey="KEYD" WebID="3" MsgType="5002" WebCaption="F4"/>
+		<Item key="F" value="F5" YDCkey="KEYF" WebID="4" MsgType="5002" WebCaption="F5"/>
+		<Item key="G" value="F6" YDCkey="KEYG" WebID="5" MsgType="5002" WebCaption="F6"/>
+		<Item key="H" value="F7" YDCkey="KEYH" WebID="6" MsgType="5002" WebCaption="F7"/>
+		<Item key="I" value="F8" YDCkey="KEYI" WebID="7" MsgType="5002" WebCaption="F8"/>
+		<Item key="CANCEL" value="CANCEL" YDCkey="KEYCANCEL" WebID="8" MsgType="5006" WebCaption="GRG_EIDT"/>
+		<Item key="CLEAR" value="CLEAR" YDCkey="KEYCLR" WebID="9" MsgType="5006" WebCaption="GRG_EIDT"/>
+		<Item key="ENTER" value="ENTER" YDCkey="KEYENTER" WebID="10" MsgType="5006" WebCaption="GRG_EIDT"/>
+		<Item key="KEY00" value="00" YDCkey="KEY00" WebID="11" MsgType="5006" WebCaption="GRG_EIDT"/>
+		<Item key="KEYDOT" value="." YDCkey="KEYDOT" WebID="12" MsgType="5006" WebCaption="GRG_EIDT"/>
+		<Item key="KEYALTER" value="SPACE" YDCkey="KEYALTER" WebID="13" MsgType="5006" WebCaption="GRG_EIDT"/>
+		<Item key="0" value="0" YDCkey="KEY0" WebID="14" MsgType="5006" WebCaption="GRG_EIDT"/>
+		<Item key="1" value="1" YDCkey="KEY1" WebID="15" MsgType="5006" WebCaption="GRG_EIDT"/>
+		<Item key="2" value="2" YDCkey="KEY2" WebID="16" MsgType="5006" WebCaption="GRG_EIDT"/>
+		<Item key="3" value="3" YDCkey="KEY3" WebID="17" MsgType="5006" WebCaption="GRG_EIDT"/>
+		<Item key="4" value="4" YDCkey="KEY4" WebID="18" MsgType="5006" WebCaption="GRG_EIDT"/>
+		<Item key="5" value="5" YDCkey="KEY5" WebID="19" MsgType="5006" WebCaption="GRG_EIDT"/>
+		<Item key="6" value="6" YDCkey="KEY6" WebID="20" MsgType="5006" WebCaption="GRG_EIDT"/>
+		<Item key="7" value="7" YDCkey="KEY7" WebID="21" MsgType="5006" WebCaption="GRG_EIDT"/>
+		<Item key="8" value="8" YDCkey="KEY8" WebID="22" MsgType="5006" WebCaption="GRG_EIDT"/>
+		<Item key="9" value="9" YDCkey="KEY9" WebID="23" MsgType="5006" WebCaption="GRG_EIDT"/>
+		<Item key="KEYPIN" value="*" YDCkey="KEYPIN" WebID="24" MsgType="5007" WebCaption="GRG_PIN_INPUT"/>
+		<Item key="*" value="*" YDCkey="KEYPIN" WebID="24" MsgType="5007" WebCaption="GRG_PIN_INPUT"/>
+	</KeyBoard>
+	<ReceiveKey>
+		<Item key="CANCEL" value="CANCEL"/>
+		<Item key="CLEAR" value="CLEAR"/>
+		<Item key="ENTER" value="ENTER"/>
+		<Item key="KEY00" value="00"/>
+		<Item key="DECPOINT" value="."/>
+		<Item key="0" value="0"/>
+		<Item key="1" value="1"/>
+		<Item key="2" value="2"/>
+		<Item key="3" value="3"/>
+		<Item key="4" value="4"/>
+		<Item key="5" value="5"/>
+		<Item key="6" value="6"/>
+		<Item key="7" value="7"/>
+		<Item key="8" value="8"/>
+		<Item key="F1" value="A"/>
+		<Item key="F2" value="B"/>
+		<Item key="F3" value="C"/>
+		<Item key="F4" value="D"/>
+		<Item key="F5" value="F"/>
+		<Item key="F6" value="G"/>
+		<Item key="F7" value="H"/>
+		<Item key="F8" value="I"/>
+		<Item key="FDK1" value="A"/>
+		<Item key="FDK2" value="B"/>
+		<Item key="FDK3" value="C"/>
+		<Item key="FDK4" value="D"/>
+		<Item key="FDK5" value="F"/>
+		<Item key="FDK6" value="G"/>
+		<Item key="FDK7" value="H"/>
+		<Item key="FDK8" value="I"/>
+	</ReceiveKey>
+	<VariableName>
+		<Item key="XDC_LANGUAGE_BASE" value="DDC_LANGUAGE_BANK" comment="XDC_LANGUAGE_BASE"/>
+		<Item key="XDC_CURRENT_FIT_NEXT_STATE" value="DC_FIT_SWITCH_INDEX" comment="XDC_CURRENT_FIT_NEXT_STATE"/>
+		<Item key="066" value="DC_GEN_B_BUFFER" comment="XDC_BUFFER_B"/>
+		<Item key="067" value="DC_GEN_C_BUFFER" comment="XDC_BUFFER_C"/>
+		<Item key="065" value="DC_AMOUNT_BUFFER" comment="XDC_BUFFER_AMOUNT"/>
+		<Item key="089" value="DC_TRACK2" comment="XDC_BUFFER_TRACK2_DATA"/>
+		<!--Item key="089" value="DC_TRACK2"/-->
+		<Item key="XDC_CARD_INFO_PAN" value="CCCRM_ROUTINGCODE" comment="XDC_CARD_INFO_PAN"/>
+		<Item key="079" value="DC_OPCODE_BUFFER" comment="XDC_BUFFER_OPERATION_CODE"/>
+	</VariableName>
+	<VariableInit>
+		<Item key="DC_FIT_PAN" value=""/>
+		<Item key="DC_CURR_FIT_ENTRY" value=""/>
+		<Item key="DCWEB_INPUT_S" value=""/>
+		<Item key="DC_NUM_INPUT_BUFFER" value=""/>
+		<Item key="CCCRM_LANGUAGE_BANK" value=""/>
+		<Item key="CCCRM_TERMINALID" value=""/>
+	</VariableInit>
+</Root>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<!--冲正标志：1：一般冲正，2：掉电冲正（暂不支持）-->
+	<ReversalFlag value="1"/>
+
+	<!--冲正最大重试次数，如果配置为0表示无限冲正-->
+	<MaxRetryCount value="1"/>
+
+	<!--每次冲正间隔时间，以毫秒为单位-->
+	<IntervalTime value="60000"/>
+
+	<!--冲正交易映射，配置交易类型对应的冲正交易类型-->
+	<ReversalTransMap>
+		<Map transType="CWD" reversalTransType="CWC"/>
+		<Map transType="ICBDZHQC" reversalTransType="ICBDZHQCCZ"/>
+		<Map transType="ICFBDZHQC" reversalTransType="ICFBDZHQCCZ"/>
+	</ReversalTransMap>
+
+	<!--接包失败或超时需要冲正的交易集合，以竖线分隔-->
+	<TimeoutNeedReversal value="CWD|ICBDZHQC|ICFBDZHQC"/>
+
+	<!--解包失败需要冲正的交易集合，以竖线分隔-->
+	<UnpackFailNeedReversal value="CWD|ICBDZHQC|ICFBDZHQC"/>
+
+	<!--冲正交易是否需要增加流水号，从第2次冲正开始，首次冲正强行增加流水号-->
+	<NeedAddSerialNumber value="1"/>
+
+	<!--当冲正收包超时且仍有剩余冲正次数时，是否签到成功后再冲正-->
+	<NeedRQKIfReversalRecvTimeout value="0"/>
+</Config>

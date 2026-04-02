@@ -1,0 +1,603 @@
+.content {
+  text-align: center;
+}
+
+.title {
+  font-size: 40px;
+}
+
+.visible {
+  visibility: visible !important;
+}
+
+.btn_type_1 {
+  width: 360px;
+}
+
+.btn_type_2 {
+  width: 280px;
+}
+
+.form_wrapper .label {
+  text-align: left;
+  visibility: hidden;
+  color: #ac82c4;
+}
+
+.table_type_2 table tbody tr:nth-child(odd) {
+  background-color: transparent;
+  color: #FFF;
+  font-family: 'tpb_neo_sans'
+}
+
+.table_type_2 table tbody tr:nth-child(even) {
+  background-color: #6b3b8f;
+  color: #FFF;
+  font-family: 'tpb_neo_sans'
+}
+
+span.vietnam_text {
+  position: absolute;
+  top: 8.5px;
+  font-size: 40px;
+}
+
+span.vietnam_text_bold {
+  position: absolute;
+  top: 8px;
+  font-size: 43px;
+  font-weight: bold;
+}
+
+.deposit_success td.wrap_vietnam,
+.count_result td.wrap_vietnam {
+  position: relative;
+  padding-right: 70px
+}
+
+/* count_result */
+.count_result td.wrap_vietnam_bold {
+  position: relative;
+  padding-right: 80px
+}
+.count_result td:nth-child(2) {
+  text-align: center;
+  padding: 0;
+}
+.count_result table tr th,
+.count_result table tr td {
+  width: 420px !important;
+}
+.count_result table tr:first-child th:nth-child(1),
+.count_result table tr:first-child th:nth-child(2) {
+  border-right: none;
+}
+.count_result table tr:last-child td:first-child {
+  border-bottom-left-radius: 20px;
+}
+.count_result table tr:last-child td:last-child {
+  border-bottom-right-radius: 20px;
+}
+.count_result .content_title {
+  margin-top: 70px;
+}
+.count_result .content_table {
+  margin-top: 60px;
+  height: 485px;
+  text-align: center;
+}
+.count_result .content_button {
+  margin-top: 145px;
+}
+.count_result .bt {
+  width: 330px;
+}
+.count_result .bt_cancel,
+.count_result .bt_addcash {
+  margin-right: 60px;
+}
+
+/* 03_insert_card */
+.insert_card .img_content {
+  margin-left: 168px;
+}
+
+/* enter_pin */
+.enter_pin .content_title {
+  margin-top: 73px;
+  line-height: 1.2;
+}
+.enter_pin .description {
+  color: #FFF;
+  font-size: 33px;
+  line-height: 1.4;
+}
+.enter_pin .content_img {
+  margin-top: 35px;
+  margin-left: 195px;
+}
+.enter_pin .content_img img {
+  height: 550px;
+}
+.enter_pin .content_pin {
+  display: flex;
+  flex-direction: row;
+  width: 740px;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+.enter_pin .wrapper_pin {
+  height: 95px;
+  width: 110px;
+  border: 2px solid #ac82c4;
+  border-radius: 20px;
+  position: relative;
+}
+.enter_pin .wrapper_pin div.pin_sign {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+}
+.enter_pin .content_pin div:not(:last-child) {
+  margin-right: 18px;
+}
+.enter_pin .content_error {
+  visibility: hidden;
+  color: red;
+}
+
+/* deposit_type */
+.deposit_type .content_deposit_type .content_title {
+  margin-top: 385px;
+}
+.deposit_type .content_deposit_type .content_button {
+  margin-top: 83px;
+}
+.deposit_type .content_deposit_type .bt_other_account {
+  margin-right: 105px;
+}
+.deposit_type .content_button .bt {
+  width: 440px;
+  height: 90px;
+}
+
+/* kind_of_card */
+.kind_of_card .content_title {
+  margin-top: 385px;
+}
+.kind_of_card .content_button {
+  margin-top: 83px;
+}
+.kind_of_card .bt_other_account {
+  margin-right: 105px;
+}
+.kind_of_card .bt {
+  width: 340px;
+  height: 90px;
+}
+.kind_of_card .bt.bt_new_id_card,
+.kind_of_card .bt.bt_old_id_card {
+  margin-right: 70px;
+}
+
+.insert_id_scanner_box .img_content {
+  margin-left: 350px;
+}
+
+/* card_disabled */
+.card_disabled .img_content{
+  margin-left: 190px;
+  margin-top: 40px;
+}
+
+/* insert_cash */
+.insert_cash .content_title {
+  margin-top: 70px;
+}
+.insert_cash .content_button {
+  margin-top: 40px;
+}
+.insert_cash .bt_cancel {
+  margin-right: 126px;
+}
+.insert_cash span.vietnam_text {
+  position: relative;
+  top: 9.5px;
+  font-size: 45px;
+}
+.insert_cash .content_instruction {
+  width: 1490px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.insert_cash .instruction_img {
+  float: left;
+  width: 800px;
+}
+.insert_cash .instruction_text {
+  float: right;
+  width: 610px;
+}
+.insert_cash .instruction_title {
+  text-align: left;
+  font-size: 45px;
+  font-family: 'tpb_neo_sansbold';
+  margin-top: 20px;
+}
+.insert_cash .instruction_number {
+  line-height: 123px;
+  vertical-align: middle;
+  margin-top: 24px;
+  height: 123px;
+  width: 258px;
+  float: left;
+  border: 1px solid #fff;
+  text-align: center;
+  font-size: 40px;
+  margin-right: 27px;
+}
+.insert_cash .instruction_desc {
+  text-align: left;
+  margin-left: 57px;
+  margin-top: 30px;
+  font-size: 34px;
+}
+.insert_cash ul {
+  padding: 0px;
+}
+.insert_cash li {
+  list-style: none;
+  background: url(../img/bullet.png) no-repeat;
+}
+.insert_cash div.wrap_vietnam {
+  position: relative;
+}
+
+/* counting_notes */
+.counting_notes .content {
+  margin-top: 280px;
+}
+.counting_notes .content_title {
+  margin-top: 40px;
+}
+
+/* max_notes_exceeded, rejected_notes */
+.max_notes_exceeded .img_content,
+.rejected_notes .img_content {
+  margin-left: 310px;
+  margin-top: 40px;
+}
+
+/* take_receipt */
+.take_receipt .img_content {
+  margin-left: -310px;
+}
+
+/* another_transaction */
+.another_transaction .content_title {
+  margin-top: 230px;
+}
+.another_transaction .content_row {
+  display: flex;
+  flex-direction: 'row';
+  margin: 80px auto 145px;
+  width: 1080px;
+}
+.another_transaction .bt_menu {
+  display: block;
+  float: left;
+  width: 340px;
+  height: 260px;
+  padding-top: 147px;
+  margin-left: 25px;
+  font-size: 32px;
+  color: #fff;
+  text-align: center;
+  background: url(../img/menu_deposit.png) no-repeat center 39px #2c71ff;
+}
+.another_transaction .bt_menu_withdraw {
+  background: url(../img/menu_withdraw.png) no-repeat center 39px #00a7f6;
+}
+.another_transaction .bt.bt_menu_saving {
+  background: url(../img/menu_savings_account.png) no-repeat center 39px #89c541;
+}
+.another_transaction .bt.bt_orange {
+  width: 280px;
+}
+
+/* remove_card */
+.remove_card .img_content {
+  margin-top: 87px;
+  margin-left: 168px;
+}
+
+/* unable_to_print */
+.unable_to_print .bt {
+  width: 280px;
+}
+.unable_to_print .bt_no {
+  margin-right: 120px;
+}
+
+/* Deposit Path 1 */
+
+/* 09_select_account */
+.select_account .deposit_owner .content_title {
+  margin-top: 83px
+}
+.select_account .deposit_owner .content_table {
+  margin-top: 70px;
+}
+.select_account .deposit_owner .account_table {
+  margin: 0 auto;
+  width: 1150px !important;
+}
+.select_account .deposit_owner .account_table div {
+  font-size: 36px !important;
+}
+.select_account .deposit_owner .account_header {
+  font-family: 'tpb_neo_sansbold';
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.select_account .deposit_owner .account_table .account_header {
+  background-color: #FFFFFF;
+  color: #5E2E87;
+}
+.select_account .deposit_owner .account_table .account_body  {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background: linear-gradient(150deg, #9258B3, #5E2E87);
+}
+
+.select_account .account_table .nano{
+  width: 100%;
+  height: 493px;
+}
+
+.select_account .account_table .nano-content{
+  padding: 0;
+}
+
+.select_account .deposit_owner .account_header div:nth-child(1),
+.select_account .deposit_owner .account_row div:nth-child(1) {
+  float: left;
+  padding-top: 10px;
+}
+.select_account .deposit_owner .account_header div:nth-child(2),
+.select_account .deposit_owner .account_row div:nth-child(2) {
+  float: right;
+  padding-top: 10px;
+}
+.select_account .deposit_owner .account_header div {
+  text-align: center;
+}
+.select_account .deposit_owner .account_row div:nth-child(2) {
+  text-align: right;
+  padding-right: 40px;
+}
+.select_account .deposit_owner .account_row div:nth-child(1) {
+  border-right: 1px solid #ac82c4;
+  border-bottom: 1px solid #ac82c4;
+}
+.select_account .deposit_owner .account_row div:nth-child(2) {
+  border-bottom: 1px solid #ac82c4;
+}
+.select_account .deposit_owner .account_row:last-child div {
+  border-bottom: none;
+}
+.select_account .deposit_owner .account_header div:nth-child(1),
+.select_account .deposit_owner .account_header div:nth-child(2),
+.select_account .deposit_owner .account_row div:nth-child(1),
+.select_account .deposit_owner .account_row div:nth-child(2) {
+  width: 50% !important;
+  height: 70.5px;
+}
+.select_account .account_row {
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* 15_deposit_success */
+.deposit_success .deposit_owner .content_title {
+  margin-top: 80px;
+}
+.deposit_success .deposit_owner .content_table {
+  margin-top: 10px;
+}
+.deposit_owner table tr td:first-child {
+  width: 420px;
+}
+.deposit_owner table tr td:last-child {
+  width: 570px
+}
+.deposit_success .main .content_menu {
+  margin-top: 113px;
+}
+.deposit_success .main .content_button {
+  margin-top: 55px;
+}
+.deposit_success .main .bt_no {
+  margin-right: 60px;
+}
+
+/* Deposit path 2 */
+
+/* confirm_id_card_no */
+.confirm_id_card_no .content_title{
+  margin-top: 210px;
+}
+.confirm_id_card_no .content_input{
+  margin-top: 135px;
+}
+.confirm_id_card_no .form_wrapper {
+  width: 615px;
+  height: 40px;
+  margin: 0 auto;
+}
+.confirm_id_card_no input {
+  width: 100%;
+  margin-top: 20px;
+}
+.confirm_id_card_no #AccountNo_keyboard {
+  width: 420px;
+}
+.confirm_id_card_no .content_button {
+  margin-top: 306px;
+}
+.confirm_id_card_no .bt {
+  width: 300px;
+  height: 90px;
+}
+
+/* please_check_info */
+.please_check_info .content_title {
+  margin: 100px auto 0;
+  max-width: 1300px;
+  height: 80px;
+  line-height: 1;
+}
+.please_check_info .content_img {
+  margin-top: 60px;
+  margin-left: 413px;
+}
+
+/* scan_signed_document */
+.scan_signed_document .content_title {
+  margin-top: 95px;
+}
+.scan_signed_document .content_img {
+  margin-top: 41px;
+  margin-left: 705px;
+}
+
+/* insert_signed_document */
+.insert_signed_document .content_title {
+  margin-top: 95px;
+}
+.insert_signed_document .content_img {
+  margin-top: 87px;
+  margin-left: 705px;
+}
+
+/* deposit_success */
+.deposit_success .deposit_path_2 .content_title {
+  margin-top: 80px;
+}
+.deposit_success .deposit_path_2 .content_table {
+  margin-top: 52px;
+}
+
+/* Deposit Path 3 */
+
+/* 07_select_account */
+.select_account .deposit_other .content_title{
+  margin-top: 150px;
+}
+.select_account .deposit_other .content_input{
+  margin-top: 135px;
+}
+.select_account .deposit_other .form_wrapper {
+  width: 615px;
+  height: 40px;
+  margin: 0 auto;
+}
+.select_account .deposit_other input {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.select_account .deposit_other .form_detail{
+  margin-top: 100px;
+}
+
+.select_account .deposit_other #AccountNo_keyboard {
+  width: 420px;
+}
+.select_account .deposit_other .content_button {
+  margin-top: 166px;
+}
+.select_account .deposit_other .bt {
+  width: 300px;
+  height: 90px;
+}
+.select_account .deposit_other .bt_cancel {
+  margin-right: 125px;
+}
+
+.select_account .error_text{
+  color: #fff000;
+  font-size: 20px;
+  position: absolute;
+}
+
+/* 08_select_account_confirm */
+
+.select_account_confirm .deposit_other .content_title{
+  margin-top: 150px;
+}
+.select_account_confirm .deposit_other .content_input{
+  margin-top: 135px;
+}
+.select_account_confirm .deposit_other .form_wrapper {
+  width: 615px;
+  height: 40px;
+  margin: 0 auto;
+}
+.select_account_confirm .deposit_other input {
+  width: 100%;
+  margin-top: 20px;
+}
+.select_account_confirm .deposit_other .form_account_name {
+  margin-top: 100px;
+}
+.select_account_confirm .deposit_other .content_button {
+  margin-top: 166px;
+}
+.select_account_confirm .deposit_other .bt {
+  width: 300px;
+  height: 90px;
+}
+.select_account_confirm .deposit_other input {
+  color: #ac82c4;
+}
+.select_account_confirm .deposit_other .bt_cancel {
+  margin-right: 125px;
+}
+
+/* 13_deposit_success */
+
+.deposit_success .deposit_other .content_title {
+  margin-top: 80px;
+}
+.deposit_success .deposit_other .content_table {
+  margin-top: 52px;
+}
+.deposit_success table {
+  width: 995px;
+}
+.deposit_success table tr td:first-child {
+  width: 420px;
+}
+.deposit_success table tr td:last-child {
+  width: 570px;
+}
+
+/* Deposit Path 4 */
+
+.deposit_success .deposit_path_4 .content_title {
+  margin-top: 80px;
+}
+.deposit_success .deposit_path_4 .content_table {
+  margin-top: 52px;
+}
+/* Deposit Path 5 */
+
+.deposit_non_customer_open_current_account .bt.bt_orange {
+  width: 500px;
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="GB2312"?>
+<Root>
+  <ImagePath Path="pack://SiteOfOrigin:,,,/Resource/Resource/Images/ukey/"/>
+  <Background ImageSource="bg_title bar.png"/>
+  <ButtonBackground NomalImage="" CompleteImage="bg_pick on 2.png" ProcessImage="bg_pick on.png"/>
+  <ButtonIcon NomalIcon="" ProcessIcon="icon_process.png" CompleteIcon="icon_complete.png"/>
+  <Line LinePath="line_cut of arrows.png"/>
+  <CNRowList>
+    <Row ID="1" Name="阅读协议"/>
+    <Row ID="2" Name="设置密码"/>
+    <Row ID="3" Name="领取Ukey"/>
+  </CNRowList>
+  <ENRowList>
+    <Row ID="1" Name="Terms and Conditions"/>
+    <Row ID="2" Name="Set password"/>
+    <Row ID="3" Name="Issue Ukey"/>
+  </ENRowList>
+</Root>

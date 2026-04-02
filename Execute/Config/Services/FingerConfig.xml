@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+  <!-- 服务器 10.53.253.11 10.53.25.188-->
+  <Server Host="10.1.13.138" Port="9997" Protocol="https" />
+  <!-- 登录-->
+  <Yonghu xingming="" kouling="" />
+  <!-- 页面超时 -->
+  <Timeout value="60000" />
+  <!-- 请求超时 -->
+  <RequestTimeout value="15000" />
+  <!-- 银行代码 -->
+  <BankCode value="012" />
+  <!-- 终端代码 -->
+  <TerminalID value="181050446" />
+  <token value="bf0237a5806e162c39a3441889e14e03" />
+  <!-- 接口 -->
+  <FingerAPI>
+    <!-- key接口 -->
+    <LoginServer value="/FingerprintService/Login" />
+    <CheckFinger value="/FingerprintService/CheckFinger" />
+    <RegisterFinger value="/FingerprintService/Register" />
+    <MatchFinger value="/FingerprintService/MatchFinger" />
+    <AddFinger value="/FingerprintService/AddFinger" />
+    <UpdateFinger value="/FingerprintService/UpdateFinger" />
+    <DeleteFingerByIndex value="/FingerprintService/DeleteByIndex" />
+    <DeleteAllFinger value="/FingerprintService/DeleteAll" />
+  </FingerAPI>
+</Config>

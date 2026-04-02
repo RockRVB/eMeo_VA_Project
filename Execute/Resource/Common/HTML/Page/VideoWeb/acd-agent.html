@@ -1,0 +1,432 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>iVideo</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  <link href="css/a.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="resources/layui/css/layui.css" media="all">
+
+  <script src="resources/layui/jquery.js"></script>
+  <script src="resources/layui/layui.js"></script>
+  <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+
+  <link href="resources/jquery.selectBoxIt.css" type="text/css" rel="stylesheet" />
+  <script src="resources/jquery.selectBoxIt.js"></script>
+
+  <script src="resources/scripts/axure/axQuery.js"></script>
+  <script src="resources/scripts/axure/globals.js"></script>
+  <script src="resources/scripts/axutils.js"></script>
+  <script src="resources/scripts/axure/annotation.js"></script>
+  <script src="resources/scripts/axure/axQuery.std.js"></script>
+  <script src="resources/scripts/axure/doc.js"></script>
+  <script src="resources/document.js"></script>
+  <script src="resources/scripts/messagecenter.js"></script>
+  <script src="resources/scripts/axure/events.js"></script>
+  <script src="resources/scripts/axure/recording.js"></script>
+  <script src="resources/scripts/axure/action.js"></script>
+  <script src="resources/scripts/axure/expr.js"></script>
+  <script src="resources/scripts/axure/geometry.js"></script>
+  <script src="resources/scripts/axure/flyout.js"></script>
+  <script src="resources/scripts/axure/ie.js"></script>
+  <script src="resources/scripts/axure/model.js"></script>
+  <script src="resources/scripts/axure/repeater.js"></script>
+  <script src="resources/scripts/axure/sto.js"></script>
+  <script src="resources/scripts/axure/utils.temp.js"></script>
+  <script src="resources/scripts/axure/variables.js"></script>
+  <script src="resources/scripts/axure/drag.js"></script>
+  <script src="resources/scripts/axure/move.js"></script>
+  <script src="resources/scripts/axure/visibility.js"></script>
+  <script src="resources/scripts/axure/style.js"></script>
+  <script src="resources/scripts/axure/adaptive.js"></script>
+  <script src="resources/scripts/axure/tree.js"></script>
+  <script src="resources/scripts/axure/init.temp.js"></script>
+  <script src="resources/data.js"></script>
+  <script src="resources/scripts/axure/legacy.js"></script>
+  <script src="resources/scripts/axure/viewer.js"></script>
+  <script src="resources/scripts/axure/math.js"></script>
+  <script type='text/javascript' src="./ivideo-agent-sdk_v1.0.1.js"></script>
+<style>
+.layui-layer-setwin .layui-layer-close2 {
+	display: none !important;
+}
+ .layui-layer-content {
+    font-size: 30px !important;
+}
+</style>
+  <script>
+	var ws;
+	var connectionState = false; //连接状态
+	function WebSocketInit() {
+		//ws = new WebSocket("ws://10.1.24.129:8863/cmd");
+		//判断是否已经连接
+		if (connectionState && ws.readyState == WebSocket.OPEN){			
+			return;
+		}
+		//获取ip及端口
+		var ip = "localhost";
+		var port = "10086";
+		var url = "/VideoWebCmd";
+		//判空
+		if (ip == null || ip == "" || port == null || port == "" || url == null || url == "") {
+			//layer.msg('请检查ip及端口及url是否为空');		
+			return;
+		}
+		var newurl = "ws://" + ip + ":" + port + url;
+		ws = new WebSocket(newurl);
+		//window.localStorage.setItem("ws", ws);
+		if ("WebSocket" in window) {
+			ws.onopen = function () {
+				connectionState = true;
+				console.log("连接成功...");
+				ws.send(JSON.stringify({msgType:'event',name:'videowebsocketsuccess'}));
+			};
+
+			ws.onmessage = function (evt) {
+				var received_msg = evt.data;
+				if (typeof (received_msg) == 'object') {
+					console.log("数据已接收..." + JSON.stringify(received_msg));
+				} else {
+					var receivedMsgObj = JSON.parse(received_msg);
+					if ("func" == receivedMsgObj['msgType']) {
+						if("login" == receivedMsgObj['name'])
+						{
+							var ip = receivedMsgObj['args'].ip;
+							var port = receivedMsgObj['args'].port;
+							var id = receivedMsgObj['args'].id;
+							login(ip,port,id);
+						}
+						else if("disconnect" == receivedMsgObj['name'])
+						{
+							disconnectCall();
+						}
+						
+					}
+					
+					console.log("数据已接收..." + received_msg);
+				}			
+			};
+
+			ws.onerror = function (evt) {				
+				console.log("onerror:" + evt.data);
+			};
+
+			ws.onclose = function () {				
+				// 关闭 websocket
+				console.log("onclose")
+				console.log("连接已关闭...");
+				// 断线重连
+				WebSocketInit();		
+			};
+		}
+		else {
+			// 浏览器不支持 WebSocket
+			console.log("您的浏览器不支持 WebSocket!");
+		}
+	}
+	
+	WebSocketInit();
+	
+	let remoteStreamOk = false;
+	
+    const agent = new iVideoAcdSdk.Agent();
+    let agentStatus = 'offline';
+	
+	function login(ip,port,id) {
+		if(agentStatus !== 'offline') {
+          return ;
+        }
+		const userid = id;
+		var serverurl = "wss://" + ip + ":" + port +"/ivideo-acd";
+        agent.startup({useP2P: false, // 目前不支持P2P
+                     url: serverurl,
+                     userid,
+                     secret: 'xxx', // 目前不验证密钥
+                     attributes: {display: '您的直属客服', yy: 'xx'},
+                    })
+        .then( () => {
+		  agent.setStatus('AVAILABLE')
+            .then(() => {
+              agentStatus = 'available';
+			  $('select#status').data('selectBoxIt').selectOption(agentStatus);
+            })
+            .catch(reason => {
+              $('select#status').data('selectBoxIt').selectOption(agentStatus); // 还原为前一状态
+              console.error(`change agent status failed: ${reason}`);
+            });
+		  
+          console.info('startup successfully');
+		  ws.send(JSON.stringify({msgType:'event',name:'loginvideowebsuccess'}));
+        })
+        .catch(reason =>{
+			console.error(`startup error: ${JSON.stringify(reason)}`);
+			ws.send(JSON.stringify({msgType:'event',name:'loginvideowebfail'}));
+		});
+	}
+
+	function disconnectCall() {
+		console.info('call disconnectCall');
+        agent.disconnectCall('normal')
+        .catch(reason => console.error(`disconnectCall error: ${JSON.stringify(reason)}`));
+	}
+	
+	function checkRemoteStream() {
+		console.info('checkRemoteStream');
+		if(!remoteStreamOk){
+			console.info('remoteStream is not ok');
+			ws.send(JSON.stringify({msgType:'event',name:'OnVideoDisconnect'}));
+		}
+	}
+	
+    layui.use('layer', function () {
+      var $ = layui.jquery, layer = layui.layer;
+    });
+
+    $(window).unload(function () {
+
+    })
+    $(document).ready(function () {
+      agent.onAgentStatusChanged = function(status) {
+        switch(status) {
+          case 'ONLINE': agentStatus = 'online'; break;
+          case 'AVAILABLE': agentStatus = 'available'; break;
+          case 'SERVICE': agentStatus = 'busy'; break;
+          case 'AUX': agentStatus = 'aux'; break;
+          case 'ACW': agentStatus = 'acw'; break;
+        }
+		ws.send(JSON.stringify({msgType:'statuschange',status:agentStatus}));
+        $('select#status').data('selectBoxIt').selectOption(agentStatus);
+      }
+      // 响铃事件
+      agent.onRinging = function (callid, queue, timeout, customer) {
+        console.info(`CB(onRinging) ${callid} ${queue} ${timeout}`);
+		console.log('accept call');
+		//setTimeout(checkRemoteStream,15000); 
+          agent.acceptCall({data: 'agent'})
+          .then( () => {
+            console.log('accept call successfully');
+			
+			 layui.use('layer', function(){
+			  var layer = layui.layer;
+				layer.closeAll(); 
+			});
+			
+			ws.send(JSON.stringify({msgType:'event',name:'acceptcallsuccess'}));
+          })
+          .catch( reason => {
+			console.error(`accept call error: ${reason}`);
+			ws.send(JSON.stringify({msgType:'event',name:'acceptcallfail'}));
+		  });
+      };
+      // 通话已断开
+      agent.onCallDisconncted =  function (reason) {
+        console.info(`CB(onCallDisconncted): ${reason}`);
+		ws.send(JSON.stringify({msgType:'event',name:'OnVideoDisconnect'}));
+        agent.disconnectCall('remote disconnected')
+        .catch(reason => console.error(`disconnectCall error: ${JSON.stringify(reason)}`));
+      };
+      // 本地视频流已创建
+      agent.onLocalStreamCreated = function (stream) {
+        console.info(`CB(onLocalStreamCreated): ${stream.id}`);
+        stream.publish()
+        .then( () => {
+          // 播放媒体流。参数为html标签（如"div"）的id
+          stream.play('local');
+          console.info(`local stream publish successfully`);
+		  ws.send(JSON.stringify({msgType:'event',name:'localstreampublishsuccess'}));
+        })
+        .catch( reason => {
+          console.info(`local stream publish error: ${JSON.stringify(reason)}`);
+		  ws.send(JSON.stringify({msgType:'event',name:'localstreampublishfail'}));
+          // 异常。挂断通话
+          customer.disconnectCall('local stream exception')
+          .catch(reason => console.error(`disconnectCall error: ${JSON.stringify(reason)}`));
+        });
+      };
+      // 远端发布了视频流
+      agent.onRemoteStreamCreated = function(userid, stream) {
+        console.info(`CB(onRemoteStreamCreated): ${userid} ${stream.id}`);
+        stream.subscribe()
+        .then( () => {
+          stream.play('remote');
+		  remoteStreamOk = true;
+          console.info(`remote stream subscribe successfully`);
+		  ws.send(JSON.stringify({msgType:'event',name:'remotestreampublishsuccess'}));
+        })
+        .catch( reason => {
+          console.info(`remote stream subscribe error: ${JSON.stringify(reason)}`);
+		  ws.send(JSON.stringify({msgType:'event',name:'remotestreampublishfail'}));
+          // 异常。挂断通话
+          customer.disconnectCall('remote stream exception')
+          .catch(reason => console.error(`disconnectCall error: ${JSON.stringify(reason)}`));
+        });
+      }
+      // 远端静音
+      agent.onRemoteStreamPaused = function() {
+		ws.send(JSON.stringify({msgType:'event',name:'onRemoteStreamPaused'}));
+        console.info(`CB(onRemoteStreamPaused)`);
+      }
+      // 远端静音
+      agent.onRemoteStreamResumed = function() {
+		ws.send(JSON.stringify({msgType:'event',name:'onRemoteStreamResumed'}));
+        console.info(`CB(onRemoteStreamResumed)`);
+      }
+      // 接收到文本消息
+      agent.onTextMessage = function(userid, text) {
+		ws.send(JSON.stringify({msgType:'event',name:'onTextMessage'}));
+        console.info(`CB(onTextMessage): ${userid} ${text}`);
+      };
+      // 发生错误
+      agent.onError = function(type,reason) {
+	     ws.send(JSON.stringify({msgType:'event',name:'agentonError'}));
+		agent.disconnectCall('remote disconnected')
+        .catch(reason => console.error(`disconnectCall error: ${JSON.stringify(reason)}`));
+		
+		agent.setStatus('AVAILABLE')
+            .then(() => {
+              agentStatus = 'available';
+			  $('select#status').data('selectBoxIt').selectOption(agentStatus);
+            })
+            .catch(reason => {
+              $('select#status').data('selectBoxIt').selectOption(agentStatus); // 还原为前一状态
+              console.error(`change agent status failed: ${reason}`);
+            });
+      }
+
+      $("#btnHangUp").click(function () {
+        console.info('click hand up');
+        agent.disconnectCall('normal')
+        .catch(reason => console.error(`disconnectCall error: ${JSON.stringify(reason)}`));
+      });
+
+      $("#btnVideoChange").click(function () {
+
+      });
+
+      $("#btnDesktopRecord").click(function () {
+
+      });
+      $("#btnSnap").click(function () {
+
+      });
+      $("#btnOpenModal").click(function () {
+        
+      });
+    });
+
+    $axure.utils.getTransparentGifPath = function () { return 'resources/images/transparent.gif'; };
+    $axure.utils.getOtherPath = function () { return 'resources/Other.html'; };
+    $axure.utils.getReloadPath = function () { return 'resources/reload.html'; };
+
+    function updateStatus(status) {
+	 agent.setStatus(status)
+            .then(() => {
+              switch(status) {
+			  case 'ONLINE': agentStatus = 'online'; break;
+			  case 'AVAILABLE': agentStatus = 'available'; break;
+			  case 'SERVICE': agentStatus = 'busy'; break;
+			  case 'AUX': agentStatus = 'aux'; break;
+			  case 'ACW': agentStatus = 'acw'; break;
+			  }
+			  $('select#status').data('selectBoxIt').selectOption(agentStatus);
+            })
+            .catch(reason => {
+              $('select#status').data('selectBoxIt').selectOption(agentStatus); // 还原为前一状态
+              console.error(`update agent status failed: ${reason}`);
+            });
+    }
+    
+	
+    jQuery(function ($) {
+	 layui.use('layer', function(){
+		  var layer = layui.layer;
+		  
+			layer.open({
+			shade: 0.8,
+		  content: 'Connecting Video<br/><br/>Please Wait......',
+		title: false,
+		btn: [],
+		})
+		});
+      $('select#status').selectBoxIt({ autoWidth: false });
+      $("select#status").bind({
+        "option-click": function (ev, obj) {
+          const status = $(this).val();
+          // 界面只能选择就绪(available)和休息(aux)
+          // 并且只有当前状态为已登录未就绪(online)或就绪(available)时才能选择休息
+          // 只有当前状态为文档处理(acw)和休息(aux)时才能选择就绪
+          if((agentStatus==='available' || agentStatus==='online') && status==='aux') {
+            agent.setStatus('AUX')
+            .then(() => {
+              agentStatus = status;
+            })
+            .catch(reason => {
+              $('select#status').data('selectBoxIt').selectOption(agentStatus); // 还原为前一状态
+              console.error(`change agent status failed: ${reason}`);
+            });
+          } else if((agentStatus==='acw' || agentStatus==='aux' || agentStatus==='online') && status==='available') {
+            agent.setStatus('AVAILABLE')
+            .then(() => {
+              agentStatus = status;
+            })
+            .catch(reason => {
+              $('select#status').data('selectBoxIt').selectOption(agentStatus); // 还原为前一状态
+              console.error(`change agent status failed: ${reason}`);
+            });
+          } else {
+            $('select#status').data('selectBoxIt').selectOption(agentStatus);// 还原为前一状态
+          }
+        }
+      });
+    });
+  </script>
+
+</head>
+
+<body>
+  <div class="topWhole">
+
+    <div class="logo"><img src="images/logo.png"> </div>
+
+    <div class="rightbuttomwhole">
+
+      <select id="status" name="status" class="themes">
+        <option value="offline" data-iconurl="images/offline.png">
+          OFFLINE
+        </option>
+        <option value="online" data-iconurl="images/online.png">
+          ONLINE
+        </option>
+        <option value="available" data-iconurl="images/idle.png">
+          AVAILABLE
+        </option>
+        <option value="busy" data-iconurl="images/busy.png">
+          IN SERVICE
+        </option>
+        <option value="acw" data-iconurl="images/acw.png">
+          ACW
+        </option>
+        <option value="aux" data-iconurl="images/rest.png">
+          AUX(HAVE A REST)
+        </option>
+      </select>
+
+    </div>
+  </div>
+
+  <div class="contentWhole">
+    <div class="contentleft">
+      <div id="remote" style="background-color:#FFFFFF;border:#000000 solid 1px;width:100%; height:calc(100% - 2px);">
+      </div>
+
+    </div>
+    <div class="contentright">
+      <div id="local" class="contentrighttop">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

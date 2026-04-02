@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Root>
+
+<!-- Error defined for each state format -->
+<ErrorDefine>
+	 <ValidState>
+		 <Item key="0" value="000-254" 		description="valid state number from 000 - 254"/>
+		 <Item key="1" value="256-999" 		description="valid state number from 256 - 999"/>
+	 </ValidState>
+</ErrorDefine>
+
+<!-- 
+ * The sub-conditions/elements for each state
+ -->
+<CardRead>
+   <ReadCondition>
+    	<Item key="0" value="Track3" 				description="Bit 0"/>
+		<Item key="1" value="Track2" 				description="Bit 1"/>
+		
+		<Item key="2" value="Track1" 				description="Bit 2"/>
+		<Item key="3" value="SmartData" 		description="Bit 3"/>
+		
+		<Item key="4" value="Reserved" 			description="Bit 4"/>
+		<Item key="5" value="Reserved" 			description="Bit 5"/>
+		
+		<Item key="6" value="Reserved" 			description="Bit 6"/>
+		<Item key="7" value="Reserved" 			description="Bit 7"/>
+   </ReadCondition>
+</CardRead>
+
+<!-- 
+ * State type: four FDK Selection Function  
+ * Define the operation code buffer byte in which keycode for the select FDK is stored.
+ -->
+<FourFdkSelFunc>
+   <BufLocation>
+    	<Item key="000" value="1"/>
+		<Item key="001" value="2" />
+		
+		<Item key="002" value="3"/>
+		<Item key="003" value="4"/>
+		
+		<Item key="004" value="5"/>
+		<Item key="005" value="6"/>
+		
+		<Item key="006" value="7"/>
+		<Item key="007" value="8"/>
+   </BufLocation>
+</FourFdkSelFunc>
+
+<!-- 
+ * State type: Amount Check State  
+ -->
+<AmountCheck>
+
+<!-- Specify which buffer is to be checked -->
+   <BufToBeChecked>
+       	<Item key="000" value="AmtBuf" 	description="Amount buffer"/>
+		<Item key="001" value="BufferB" 	description="Buffer B  (If more than 12 digits, return false)"/>		
+		<Item key="002" value="BufferC"	description="Buffer C. (If more than 12 digits, return false)"/>
+   </BufToBeChecked>
+   
+   <!-- Number of decimal places used in specified buffe, igored if table entry 8 is '000' -->
+   <NumOfDecimalPlaces>
+       	<Item key="000" value="0"/>
+		<Item key="001" value="1"/>		
+		<Item key="002" value="2"/>
+		<Item key="003" value="3"/>		
+		<Item key="004" value="4"/>
+   </NumOfDecimalPlaces>   
+   
+</AmountCheck>
+
+	<!-- 
+       * The state format definition of Information Entry State type
+-    -->
+<InformationEntry>
+	<!-- Buffer and display parameters(Range 000 - 003) -->
+	<BufDisplayPara MinLen="3">
+		 <Item key="000"  	value="X_C"  description="Display 'X' and store data in buffer C"/>
+		 <Item key="001"	value="D_C"  description="Display clear data and store data in buffer C"/>
+		 
+		 <Item key="002"  	value="X_B"  description="Display 'X' and store data in buffer B"/>
+		 <Item key="003"	value="D_B"  description="Display clear data and store data in buffer B"/>
+	</BufDisplayPara>
+</InformationEntry>
+
+	<!-- 
+       * The state format definition of Transaction Request State type
+-    -->
+<TransactionRequest>
+	<!-- Track 2 Data Send Modifier -->
+	<Track2Condition>
+		 <Item key="000"  	value="0"  description="Don't send data"/>
+		 <Item key="001"	value="1"  description="Send Data"/>
+	</Track2Condition>
+	
+	<!-- Track 1/3 Data Send Modifier [1] value map to Track 1 Data [2]exValue map to Track 3 Data -->
+	<Track1And3Condition>
+		 <Item key="000"  	value="0" 	exValue="0" />
+		 <Item key="001"	value="0"   	exValue="1"/>
+		 
+		 <Item key="002"  	value="1" 	exValue="0" />
+		 <Item key="003"	value="1"   	exValue="1"/>
+		 
+		 <Item key="004"  	value="0" 	exValue="0" />
+		 <Item key="005"	value="0"   	exValue="1"/>
+		 
+		 <Item key="006"  	value="1" 	exValue="0" />
+		 <Item key="007"	value="1"   	exValue="1"/>		 
+	</Track1And3Condition>
+
+	<!--  Select Extension Format  [1] value map to  format: Standard format - 0, extention format - 1  [2] exValue map to send buffer A or not. -->
+	<PINBufFormat>
+		 <Item key="000"  	value="0" 	exValue="0"/>
+		 <Item key="001"	value="0" 	exValue="1"/>
+		 
+		 <Item key="128"  	value="1" 	exValue="0" />
+		 <Item key="129"	value="1"   	exValue="1"/> 
+	</PINBufFormat>	
+</TransactionRequest>
+
+	<!-- 
+       * The state format definition of Transaction Request Extension State type
+-    -->
+	<TransactionRequestEx>
+		<!--  buffer B and/or C sent in such values -->
+		<BufBC>
+			 <Item key="000"  	value="none"  description="Don't send data"/>
+			 <Item key="001"	value="B"  		description="Send Buffer B"/>
+		 
+			 <Item key="002"	value="C"  		description="Send Buffer C"/>
+			 <Item key="003"	value="BC"  	description="Send Buffer B and C"/>
+		</BufBC>
+	
+		<!-- Send Optional Data Fields 'A' - 'H' (Range 000 - 255)  [1] key map to bit. [2] value map to the field ID -->
+		<SndOpFieldAH>
+			 <Item key="1"  	value="A" />
+			 <Item key="2"	value="B" />
+		 
+			 <Item key="3"  	value="C"/>
+			 <Item key="4"	value="D"/>
+		 
+			 <Item key="5"  	value="E" />
+			 <Item key="6"	value="F"/>
+		 
+			 <Item key="7"  	value="G"/>
+			 <Item key="8"	value="H"/>		 
+		</SndOpFieldAH>
+	
+		<!-- Send Optional Data Fields 'I' - 'L' (Range 000 - 255) -->
+		<SndOpFieldIL>
+			 <Item key="1"  	value="I" />
+			 <Item key="2"	value="J"/>
+		 
+			 <Item key="3"  	value="K"/>
+			 <Item key="4"	value="L"/>
+		 
+			 <Item key="5"  	value="none"/>
+			 <Item key="6"	value="none"/>
+		 
+			 <Item key="7"  	value="none"/>
+			 <Item key="8"	value="none"/>		 
+		</SndOpFieldIL>
+	
+		<!-- Send Optional Data Fields 'Q' - 'a' (Range 000 - 255) -->
+		<SndOpFieldQa>
+			 <Item key="1"  	value="Q" />
+			 <Item key="2"	value="R"/>
+		 
+			 <Item key="3"  	value="S"/>
+			 <Item key="4"	value="none"/>
+		 
+			 <Item key="5"  	value="U"/>
+			 <Item key="6"	value="V"/>
+		 
+			 <Item key="7"  	value="w"/>
+			 <Item key="8"	value="a"/>		 
+		</SndOpFieldQa>
+	
+		<!-- Send Optional Data Fields for others (Range 000 - 255) -->
+		<SndOpOthers>
+			 <Item key="1"  	value="Q" />
+			 <Item key="2"	value="R"/>
+		 
+			 <Item key="3"  	value="S"/>
+			 <Item key="4"	value="none"/>
+		 
+			 <Item key="5"  	value="U"/>
+			 <Item key="6"	value="V"/>
+		 
+			 <Item key="7"  	value="w"/>
+			 <Item key="8"	value="a"/>		 
+		</SndOpOthers>
+	
+		<!-- EMV CAM Processing Flag (Range 000 - 001) -->
+		<EMVCamProcessFlag>
+			 <Item key="000"  	value="0" description="Do not perform CAM processing." />
+			 <Item key="001"	value="1" description="Perform CAM processing"/>	 
+		</EMVCamProcessFlag>
+</TransactionRequestEx>
+
+	<!-- 
+       * The state format definition of Camera Control State type
+-    -->
+	<CameraCtr>
+		<!-- Buffer and display parameters(Range 000 - 001) -->
+		<PicType>
+			 <Item key="000"  	value="Format-0"  description="Fixed Format Camera(with format configuration)"/>
+			 <Item key="001"	value="Format-1"  description="Variable Format Camera(With variable camera format configuration)"/>
+		</PicType>
+	</CameraCtr>
+
+	<!-- 
+       * The state format definition of Extension Enahnce Amount Entryl State type
+-    -->
+	<EnAmountEntryEx>	
+	<!--  Amount Inputting Buffer  -->
+	<AmtBuf>
+		 <Item key="000"  	value="AmtBuf" 	 description="Amount Buffer"/>		 
+		 <Item key="001"	value="B" 			description="Buffer B"/>
+		 <Item key="002" 	value="C"		 	description="Buffer Cr"/>
+	</AmtBuf>
+	
+	<!--  Language Dependent Screen Flag -->
+	<LangDependScrFlag>
+		 <Item key="000"  	value="0" 	description="Not Language Dependent"/>
+		 <Item key="001"	value="1" 	description="Language Dependent."/>
+	</LangDependScrFlag>
+	</EnAmountEntryEx>
+	
+		<!-- 
+    * The state format definition of Extension Customer-Selectable PIN State type
+-    -->
+	<CustomerSelPinEx>
+		<!--  Specifies which attempts are to be verified locally -->
+		<LocalVerifyForNewPair>
+			 <Item key="000"  	value="0" 	description="Do not verify locally."/>
+			 <Item key="001"	value="1" 	description="Verify both attempts locally."/>
+		</LocalVerifyForNewPair>
+	</CustomerSelPinEx>
+	
+	<!-- 
+    * The state format definition of Smart FIT Check State type
+-    -->
+	<SmartFITCheck>
+		<!--  Card Return Flag (Tells the terminal when the card should be returned to the cardholder -->
+		<CardReturnFlag>
+			 <Item key="000"  	value="0" 	description="eject the card immediately"/>
+			 <Item key="001"	value="1" 	description="return the card as specified by a Transaction Reply message.."/>	
+		</CardReturnFlag>
+	</SmartFITCheck>
+	
+	<!-- 
+		*The state format definition of Cheque Accept State type
+-    -->
+	<ChequeAccept>
+		<!--  Leave/Capture Option. It is used to decide what action to take if a physically unacceptable or jammed cheque is presented for return. -->
+		<LeaveOrCapOp>
+			 <Item key="000"  	value="0" 	description="Leave at throat"/>
+			 <Item key="001"	value="1" 	description="Capture unacceptable cheque to bin 1."/>	
+		</LeaveOrCapOp> 
+		
+		<!--  Cheque Entry Retries. It represents the number of cheque entry retries the cardholder is allowed during the execution of the state. -->
+		<ChequeEntryRetry>
+			 <Item key="000"  	value="0" 	description="Do not allow cardholder retries."/>
+			 <Item key="001"	value="1" 	description="Allow one further retry following initial rejection.."/>
+ 			 <Item key="002"	value="1" 	description="Allow two further retry following initial rejection.."/>
+ 			 <Item key="003"	value="1" 	description="Allow three further retry following initial rejection.."/>	
+		</ChequeEntryRetry>
+		
+		<!--  Cancel Key Mask. Specifies the Cancel FDK which is active when the 'Please Insert Cheuqe' screen is displayed.. -->
+		<CancelKeyMask>
+			 <Item key="0"  	value="FDKA" 	description="Bit 0 map to FDK A"/>
+			 <Item key="1"	value="FDKB" 	description="Bit 1 map to FDK B"/>
+ 			 <Item key="2"	value="FDKC" 	description="Bit 2 map to FDK C"/>
+ 			 <Item key="3"	value="FDKD" 	description="Bit 3 map to FDK D"/>
+ 			 
+			 <Item key="4"  	value="FDKA" 	description="Bit 4 map to FDK F"/>
+			 <Item key="5"	value="FDKB" 	description="Bit 5 map to FDK G"/>
+ 			 <Item key="6"	value="FDKC" 	description="Bit 6 map to FDK H"/>
+ 			 <Item key="7"	value="FDKD" 	description="Bit 7 map to FDK I"/>		 			 
+		</CancelKeyMask>		
+		
+		<!--  Deposit Key Mask. Specifies the Deposit FDK which is active when the 'Further Processing' screen is displayed.. -->
+		<DepositKeyMask>
+			 <Item key="0"  	value="FDKA" 	description="Bit 0 map to FDK A"/>
+			 <Item key="1"	value="FDKB" 	description="Bit 1 map to FDK B"/>
+ 			 <Item key="2"	value="FDKC" 	description="Bit 2 map to FDK C"/>
+ 			 <Item key="3"	value="FDKD" 	description="Bit 3 map to FDK D"/>
+ 			 
+			 <Item key="4"  	value="FDKA" 	description="Bit 4 map to FDK F"/>
+			 <Item key="5"	value="FDKB" 	description="Bit 5 map to FDK G"/>
+ 			 <Item key="6"	value="FDKC" 	description="Bit 6 map to FDK H"/>
+ 			 <Item key="7"	value="FDKD" 	description="Bit 7 map to FDK I"/>		 			 
+		</DepositKeyMask>
+	</ChequeAccept>
+	
+	<!-- 
+		*The state format definition of Time-Out State type
+-    -->
+	<Timeout>
+		<!--  The timer definiation in following condctions. -->
+		 <Timer>
+				 <Item key="KBEntryTimer"  										value="00" 								description="Timer 00 expires on a keyboard entry state."/>
+				 <Item key="EnvelopeDeppositTimer"  						value="04" 								description="Timer 04 expires during a deposit transaction(Envelope not inserted)."/>
+				 
+				 <Item key="NightSafeDepositTimer" 							value="08" 								description="Timer 08 expires during a night safe deposit transaction."/>
+				 <Item key="InterTransScrTimer"  								value="[InterTransScrTimer]" 	description="Screen timer from interaction transaction response message expires when numeric key or FDKs pressed.."/>
+
+				 <Item key="DocEnter" 												value="94" 								description="Timer 94 expires enter a document within the period specified by Timer 94."/>
+				 <Item key="CashAcceptEnterNoteTimer"  				value="77" 								description="Timer 77 expires enter note in cash accept state."/>	
+				 
+				 <Item key="RemoveNoteBNATimer"  						value="78" 								description="Timer 78 expires remove returned notes from a BNA or GBxx without the retract option set."/>		 
+		 </Timer>
+	</Timeout>			
+</Root>

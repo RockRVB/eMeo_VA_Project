@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--  Power Failure
+		*  This message is sent during power-up to tell Central that a power interruption has occured. Central can use the configuraiton ID contained in this message.
+		*   to check if a download is needed before sending a Start Up Terminal Command message to put the terminal In-Service.
+		-->
+  <PowerFailure>
+    <!-- Device Identification Graphic. -->
+    <Item key="e1" value="B" size="1" restriction="Mandatory" />
+    <!--   Device Status.. This contains the configuration identification number (0000-9999) of the customisation data stored on disk.
+		*  Central can use this information to check if a download is needed before putting the terminal in-service. A value of '0000' 
+		*  indicates that a download must be performed.
+ 		-->
+    <Item key="e2" value="[ConfigurationID]" size="1" restriction="Mandatory" />
+  </PowerFailure>
+</Root>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Manager>
+		<!--
+		folder： 以eCAT执行文件的路径为基准下的文件夹
+		alias:   服务组件的别名
+		enable： 表明该设备是否可用：1为可用，0为不可用
+		cfg；    表明对应设备的配置文件		
+		-->		
+		<!--界面管理-->
+		<UIManager folder="UIService\" basePath="Resource\">
+			<UIServiceInWeb alias="Main" enable="1" cfg="UIService.xml"/>
+		</UIManager>
+		<!--网络管理器-->
+		<NetworkManager folder="NetworkService\" cfg="config\NetworkConfig.xml">
+			<IPNetworkService alias="Default" enable="1" cfg="IPNetworkServiceConfig.xml"/>
+			<SDLCNetworkService alias="Default" enable="0" cfg="IPNetworkServiceConfig.xml"/>
+		</NetworkManager>
+		<!--数据库管理器-->
+		<DBAccessManager folder="DBAccessService\">
+		</DBAccessManager>
+		<!--加解密管理器-->
+		<EncryptManager folder="EncryptService\">
+		</EncryptManager>
+		<!--文件传送管理器-->
+		<FileTransferManager folder="FileTransferService\" basePath="config\">
+			<FtpTransfer enable="1" cfg="FtpTransferServiceConfig.xml" />
+			<HttpTransfer enable="1" cfg="HttpTransferServiceConfig.xml" />
+		</FileTransferManager>
+		<!--通用管理器-->
+		<GenericManager folder="GeneralService\">
+			<DataCache>
+				<MemoryDataCache alias="Default" enable="1" cfg="MemoryDataCacheServiceConfig.xml"/>
+				<Databasecache enable="1" cfg="DatabasecacheConfig.xml"/>
+			</DataCache>
+		</GenericManager>
+		<ResourceManager cfg="Config\Kernel\ResourceManagerConfig.xml"/>
+		<!--业务管理器-->
+		<BusinessManager name="eCAT" service="IBankProjectBusinessService" cfg="Config\Kernel\eCATBusinessConfig.xml">
+		</BusinessManager>
+	</Manager>
+</Configuration>

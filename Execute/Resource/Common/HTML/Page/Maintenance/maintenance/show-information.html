@@ -1,0 +1,36 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>显示错误信息</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/maintenance/cn.css" />
+<script src="../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../js/jquery-ui.min.js"></script>
+<script src="../../../js/maintenance/common/global.js"></script>
+<script src="../../../js/maintenance/component/components.js"></script>
+<script src="../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../js/maintenance/ui/custom-ui.js"></script>
+</head>
+
+<body>
+<!--界面容器-->
+<div class="wrapper show-information">
+  <div class="g-margin-wrapper"> 
+    <!--滚动文本框-->
+    <div id="STATIC_TXTBOX" type="TEXTBOX" class="textbox-panel"></div>
+    <!--提示文字-->
+    <div id="STATIC_PROMPT" type="STATIC_TXT" class="g-prompt-text" color="#e01e1e" disabledColor="#000000" flashType="color"></div>
+    <!--按钮区域-->
+    <div class="g-button-zone">
+      <button id="FUN_OK" type="button" class="button-common"> <span class="tip"></span> <span class="button-text" ids="IDS_Ok"></span> </button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

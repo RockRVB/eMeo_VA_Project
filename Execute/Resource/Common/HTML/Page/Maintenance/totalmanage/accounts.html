@@ -1,0 +1,78 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>打印结帐</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/maintenance/cn.css" />
+<script src="../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../js/jquery-ui.min.js"></script>
+<script src="../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../js/maintenance/common/global.js"></script>
+<script src="../../../js/maintenance/component/components.js"></script>
+<script src="../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../js/maintenance/ui/maintenance/totalmanage/accounts.js"></script>
+</head>
+
+<body>
+<!--界面容器-->
+<div class="wrapper accounts">
+	<div class="g-margin-wrapper"> 
+		<!--滚动文本框START-->
+		<div id="STATIC_TXTBOX" type="TEXTBOX" class="textbox-panel"> 
+			<!--按钮区域-->
+			<div class="textbox-button-zone">
+				<div class="middle-outer">
+					<div class="middle-inner center">
+						<button class="button-page" mark="top"> <span class="tip"></span> <span class="button-text button-scroll-top"><span class="button-scroll-border"></span><span class="button-scroll-arrow"></span></span> </button>
+						<button class="button-page textbox-button-vspace" mark="up"> <span class="tip"></span> <span class="button-text button-scroll-up"></span></button>
+						<button class="button-page textbox-button-vspace" mark="down"> <span class="tip"></span> <span class="button-text button-scroll-down"></span> </button>
+						<button class="button-page textbox-button-vspace" mark="bottom"> <span class="tip"></span> <span class="button-text button-scroll-bottom"><span class="button-scroll-arrow"></span><span class="button-scroll-border"></span></span> </button>
+					</div>
+				</div>
+			</div>
+			<!--面板容器-->
+			<div class="grg-panel"> 
+				<!--面板容器-头部-->
+				<div class="grg-panel-title textbox-title"> </div>
+				<!--面板容器-内容-->
+				<div class="grg-panel-content textbox-content-wrapper">
+					<textarea class="textbox-content" wrap="off" readonly></textarea>
+				</div>
+			</div>
+		</div>
+		<!--滚动文本框END-->
+		<!--提示文字-->
+		<div id="STATIC_PROMPT" type="STATIC_TXT" class="g-prompt-text" color="#e01e1e" disabledColor="#000000" flashType="color"></div>
+		<!--按钮区域-->
+		<div class="g-button-zone">
+			<button id="FUN_PRINT" type="button" class="button-common mr5"> <span class="tip"></span> <span class="button-text" ids="IDS_ReceiptPrintMenu_11">凭条打印</span> </button>
+			<button id="FUN_J-PRINT" type="button" class="button-common mr5"> <span class="tip"></span> <span class="button-text" ids="IDS_JournalPrintMenu_11">记录电子流水</span> </button>
+			<button id="FUN_EXPORT" type="button" class="button-common"> <span class="tip"></span> <span class="button-text" ids="IDS_ExportMenu_11">导出</span> </button>
+			<button id="FUN_CLEAR" type="button" class="button-common"> <span class="tip"></span> <span class="button-text" ids="IDS_ClearRecord">CLEAR</span> </button>
+
+             <!--  <button id="FUN_-UPSTEP" type="button" class="button-common flow-button-hspace disabled"> 
+				<span class="tip"></span>
+				<span class="button-text" ids="IDS_PreviousHandleGuide">上一步</span>
+			</button>
+			<button id="FUN_-DWONSTEP" type="button" class="button-common flow-button-hspace"> 
+				<span class="tip"></span>
+				<span class="button-text" ids="IDS_NextHandleGuide">下一步</span>
+			</button>
+			<button id="FUN_-BACK" type="button" class="button-common"> 
+				<span class="tip"></span>
+				<span class="button-text" ids="IDS_ReturnMalfunctionGuide">返回</span>
+			</button> -->
+
+			
+
+		</div>
+	</div>
+</div>
+</body>
+</html>

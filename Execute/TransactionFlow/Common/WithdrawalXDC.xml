@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="WithdrawalXDC">
+  <Head type="GRGWorkflow" author="HXL" timeStamp="2013/10/7 15:15:12" comment="The workflow design is for withdrawal"/>
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start" homeVisible="0">
+      <Forward event="OnConfirm" targetID="ID_GetDevStatusForRPTR"/>
+    </Start>
+
+<!-- 检查凭条状态 -->
+    <GetDevStatus ID="ID_GetDevStatusForRPTR" comment="Get device status" devType="RPTR">
+      <Forward event="OnNormal" targetID="ID_Login"/>
+      <Forward event="OnWarn" targetID="ID_Login"/>
+      <Forward event="OnFail" targetID="ID_CheckRPTRStatus"/>
+    </GetDevStatus>
+
+       <VTMSelectFunction ID="ID_CheckRPTRStatus" UI="UI_CheckRPTRStatusResult" timeout="30000" digitalVoiceKey="">
+         <Forward event="OnConfirm" targetID="ID_Login" /> 
+         <Forward event="OnNo" targetID="ID_InvokeCloseTransWorkflow" />
+       </VTMSelectFunction>
+
+
+    <InvokeWorkflow ID="ID_Login" name="Login" comment="insert card and input pin">
+      <Forward event="OnConfirm" targetID="ID_InputWithdrawalAmount"/>
+    </InvokeWorkflow>
+
+    <InputWithdrawalAmount ID="ID_InputWithdrawalAmount" UI="UI_InputWithdrawalAmount" digitalVoiceKey="action_070" comment="Input withdrawal amount" keyValueMap="[F1,100][F2,200][F3,500][F4,1000][F5,2000][F6,5000]" maxRetryTimes="0" homeVisible="1">
+      <Forward event="OnConfirm" targetID="ID_RequestTrans"/>
+      <Forward event="OnOtherAmount" targetID="ID_SelectTransType"/>
+    </InputWithdrawalAmount>
+
+  	<RequestTransForXDC ID="ID_RequestTrans" UI="" transType="CWD" msgID="TransactionRequestWD" inputPinTimes="5" operationCode="AA_A_C__"  comment="xdc Login request" decimalLen="2">
+	  <States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+        <State name="SendFail" UI="UI_GeneralError"/>
+        <State name="ReceiveFail" UI="UI_GeneralError"/>
+        <State name="ReceiveTimeout" UI="UI_GeneralError"/>
+        <State name="NetworkFail" UI="UI_GeneralError"/>
+        <State name="UnpackFail" UI="UI_GeneralError"/>
+        <State name="HardwareError" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_DispenseCash"/>
+	  <Forward event="OnFail" targetID="ID_ReadyBFailWithdraw"/>
+      <Forward event="OnPackFail" targetID="ID_GetDevStatusForCloseTrans"/>
+      <Forward event="OnConnectFail" targetID="ID_GetDevStatusForCloseTrans"/>
+      <Forward event="OnSendFail" targetID="ID_GetDevStatusForCloseTrans"/>
+      <Forward event="OnReceiveFail" targetID="ID_GetDevStatusForCloseTrans"/>
+      <Forward event="OnReceiveTimeout" targetID="ID_GetDevStatusForCloseTrans"/>
+      <Forward event="OnNetworkFail" targetID="ID_GetDevStatusForCloseTrans"/>
+      <Forward event="OnUnpackFail" targetID="ID_GetDevStatusForCloseTrans"/>
+      <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+      <Forward event="OnReInputPin" targetID="ID_ReInputPin"/>
+	  <Forward event="OnFallback" targetID="ID_RequestTrans"/>
+	  <Forward event="OnTryAgain" targetID="ID_TryAgain"/>
+	  <Forward event="OnICAppLoadedFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnInputTimesOverlimit" targetID="ID_CloseTransactionReturnCard"/>
+    </RequestTransForXDC>
+	
+	
+	
+	<RequestTransForXDC ID="ID_ReadyBFailWithdraw" msgID="ReadyB" comment="xdc readyb request" timeOut="-1" >
+      <States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_GetDevStatusForCloseTrans"/>
+    </RequestTransForXDC>
+	
+	<InputPin ID="ID_ReInputPin" UI="UI_ReInputPin" digitalVoiceKey="action_008" comment="ReInput password">
+		<Forward event="OnConfirm" targetID="ID_RequestTrans"/>
+	</InputPin>
+    <!--主机拒绝，显示拒绝码对应的提示信息，然后退卡-->
+    <Prompt ID="ID_HostRefuse" UI="UI_HostRefuse" digitalVoiceKey="" timeout="5000" comment="show host refuse">
+      <Forward event="OnTimeout" targetID="ID_GetDevStatusForCloseTrans"/>
+      <Forward event="OnFail" targetID="ID_GetDevStatusForCloseTrans"/>
+    </Prompt>
+    <DispenseCash ID="ID_DispenseCash" UI="UI_PresentCash" digitalVoiceKey="" comment="Dispense cash">
+      <States>
+        <State name="DispenseAmountError" UI="UI_DispenseAmountError"/>
+        <State name="RejectingCash" UI="UI_RejectingCash"/>
+        <State name="RejectCashForHardwareError" UI="UI_RejectCashForHardwareError"/>
+        <State name="RejectCashFail" UI="UI_RejectCashFail"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_PresentCash"/>
+      <Forward event="OnHardwareError" targetID="ID_GetDevStatusForCloseTrans"/>
+    </DispenseCash>
+    <PresentCash ID="ID_PresentCash" UI="UI_PresentCash" digitalVoiceKey="" comment="Present cash">
+      <States>
+        <State name="TakeCash" UI="UI_TakeCash"/>
+        <State name="RetractingCash" UI="UI_RetractingCash"/>
+        <State name="RetractCashForTimeout" UI="UI_RetractCashForTimeout"/>
+        <State name="RetractCashForHardwareError" UI="UI_RetractCashForHardwareError"/>
+        <State name="RetractNoCash" UI="UI_RetractNoCash"/>
+        <State name="RetractCashFail" UI="UI_RetractCashFail"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_ReadyBWithDraw"/>
+      <Forward event="OnHardwareError" targetID="ID_GetDevStatusForCloseTrans"/>
+    </PresentCash>
+	
+	
+	<RequestTransForXDC ID="ID_ReadyBWithDraw" msgID="ReadyB" comment="xdc readyb request" timeOut="-1" >
+      <States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_GetDevStatus"/>
+    </RequestTransForXDC>
+    <GetDevStatus ID="ID_GetDevStatus" comment="Get device status" devType="RPTR">
+      <Forward event="OnNormal" targetID="ID_IsPrintReceipt"/>
+      <Forward event="OnWarn" targetID="ID_IsPrintReceipt"/>
+      <Forward event="OnFail" targetID="ID_WithdrawedResultForNoPTR"/>
+    </GetDevStatus>
+    
+    <Prompt ID="ID_WithdrawedResultForNoPTR" UI="UI_WithdrawedResultForNoPTR" digitalVoiceKey="" timeout="4000">
+      <DefaultForward event="OnConfirm" targetID="ID_SelectTransType"/>
+    </Prompt>
+    <!-- 是否打印凭条 -->
+    <SelectFunctionBase ID="ID_IsPrintReceipt" UI="UI_IsPrintReceiptAfterCWD" digitalVoiceKey="action_072">
+      <Forward event="OnYes" targetID="ID_PrintReceiptForCloseTrans"/>
+      <Forward event="OnCancel" targetID="ID_SelectTransType"/>
+    </SelectFunctionBase>
+    <!-- 开始打印凭条 -->
+    <PrintReceipt ID="ID_PrintReceipt" UI="UI_Waiting" formName="" showTime="2000">
+      <States>
+        <State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+        <State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_PrintReceiptForCloseTrans"/>
+    </PrintReceipt>
+    <GetDevStatus ID="ID_GetDevStatusForCloseTrans" comment="Get device status for closing transaction" devType="RPTR">
+      <Forward event="OnNormal" targetID="ID_PrintReceiptForCloseTrans"/>
+      <Forward event="OnWarn" targetID="ID_PrintReceiptForCloseTrans"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </GetDevStatus>
+    <PrintReceipt ID="ID_PrintReceiptForCloseTrans" UI="UI_Waiting" digitalVoiceKey="" formName="" showTime="2000">
+      <States>
+        <State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess_CommonPage"/>
+        <State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflowMain"/>
+    </PrintReceipt>
+    <End ID="9999" comment="End">
+    </End>
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="ID_SelectTransType"/>
+    </InvokeWorkflow>
+    <InvokeWorkflow ID="ID_TryAgain" name="Main" comment="IC returns TryAgain" actionID="ID_ICMoreAppSelectForMainMenu" syn="0">
+    </InvokeWorkflow>
+    <InvokeWorkflow ID="ID_SelectTransType" name="SelectTransType" comment="return SelectTransType page"  syn="0">
+    </InvokeWorkflow>
+	<InvokeWorkflow ID="ID_InvokeCloseTransWorkflowMain" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+  </DefaultForward>
+</Workflow>
+

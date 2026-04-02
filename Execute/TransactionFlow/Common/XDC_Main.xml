@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="XDCMain">
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for main flow"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_XDCPowerUp"/>
+		</Start>
+		<XDCPowerUp ID="ID_XDCPowerUp" UI="" comment="">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</XDCPowerUp>
+		<End ID="9999" comment="End">
+		</End>
+	</Activities>
+	<DefaultForward>
+
+	</DefaultForward>
+</Workflow>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--  Device Fault Status Information Field
+		*  When the status Description is '8' - Device Fault. 
+		-->
+  <Data>
+		<Item key="f" value="8" size="1" restriction="Mandatory"/>
+  </Data>
+</Root>

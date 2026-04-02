@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=""></script>
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <style>
+        .g-main {
+            padding: 0 3%;
+        }
+        .card {
+            width: 300px;
+            padding: 0 20px 20px;
+            margin: 0 auto;
+        }
+        .card .img-wrapper{
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            max-width: 400px;
+            max-height: 400px;
+        }
+        .card .img-wrapper img{
+            width: 100%;
+            vertical-align: top;
+        }
+        .card .img-desc {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 25px;
+        }
+        .card .img-desc > p {
+            text-align: left;
+        }
+        .card .img-desc em {
+            float: right;
+        }
+        .g-swiper {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <g-header>
+            <img slot='left' class='logo' src="../../images/logo.png" alt="">
+            <g-button class="exit-btn" slot='right' id='exitBtn' ids='ids_Exit' transparent>Exit</g-button>
+        </g-header>
+        <g-main>
+            <h2 ids='ids_face_faceIdenResult' class='main-title'>Face identify result</h2>
+            <g-row >
+                <g-col :span='7' :offset='2'>
+                    <div class="card">
+                        <div class="img-wrapper">
+                            <img type="img" src="../../images/people.png" id='curPhoto' content='{Binding curPhoto}' alt="">
+							<!-- <img type="img" id='curPhoto' content='{Binding curPhoto}' alt=""> -->
+                        </div>
+                        <p ids='ids_face_curPhoto'>Current photo</p>
+                    </div>
+                </g-col>
+                <g-col :span='13' class='compare-wrapper'>
+                    <g-swiper freemode slides-per-view='auto' :spaceBetween='10' @init='handleInit'>
+                        <g-swiper-slide class="card" v-for='v in compareDataShow'>
+                            <div class="img-wrapper">
+                                <img :src="v.pic" alt="">
+                            </div>
+                            <div class='img-desc'>
+                                <p>
+                                    <span ids='ids_face_rate'>Rate</span>: <em>{{v.rate}}</em>
+                                </p>
+                                <p>
+                                    <span ids='ids_face_uid'>User Id</span>: <em>{{v.userid}}</em>
+                                </p>
+                                <p>
+                                    <span ids='ids_face_username'>User Name</span>: <em>{{v.username}}</em>
+                                </p>
+                            </div>
+                        </g-swiper-slide>
+                    </g-swiper>
+                </g-col>
+            </g-row>
+        </g-main>
+        <g-footer :height='150'>
+            <g-button class="command-btn" id='OnCancel' type='button' ids='ids_Btn_cancel' tag='OnCancel' round transparent>Cancel</g-button>
+            <g-button class="command-btn" id='OnConfirm' type='button' ids='ids_Btn_confirm' tag='OnConfirm' round>Confirm</g-button>
+        </g-footer>
+        <!-- example: [{pic:xx, rate:xx, userid: xx, username: xx}, ...] -->
+        <input type="text" hidden id='compareData' content='{ Binding compareData }' v-model='compareData'>
+    </div>
+</body>
+</html>
+
+<script>
+    var app = new Base({
+        data: {
+            swiper: null,
+            swiperSlideWidth: {},
+            compareData: '[{"pic":"../../images/people.png","rate":"99%","userid":"123","username":"张三"},{"pic":"../../images/people.png","rate":"99%","userid":"123","username":"张三"},{"pic":"../../images/people.png","rate":"99%","userid":"123","username":"张三"}]'
+        },
+        computed: {
+            compareDataShow: function() {
+                return this.compareData && JSON.parse(this.compareData)
+            }
+        },
+        methods: {
+            handleInit: function(swiper) {
+                this.swiperSlideWidth = {'width': document.querySelector('.swiper-slide').clientWidth * this.compareDataShow.length + 'px', 'display': 'flex'}
+                this.$nextTick(function() {
+                    swiper.update()
+                })
+            }
+        },
+        created: function() {
+            window.onload = function() {
+                this.compareData = document.querySelector('#compareData').value || '[]'
+            }.bind(this)
+        }
+    }).$mount('#app')
+</script>

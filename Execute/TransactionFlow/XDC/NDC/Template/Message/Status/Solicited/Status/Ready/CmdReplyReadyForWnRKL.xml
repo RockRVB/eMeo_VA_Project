@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<Msg>
+		<Item key="f" value="9" size="1" restriction="Mandatory"/>
+		<!--Start: Added By Bxue for RKL-->
+		<Item key="g" value="[SolicitedStatus.WnRKLInformation.ReadyForWnRKL.KVVKeyLoaded]" size="6" restriction="Mandatory"/>
+		<!--End-->
+	</Msg>
+</Root>

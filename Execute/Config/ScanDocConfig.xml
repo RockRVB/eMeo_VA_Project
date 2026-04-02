@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<CameraConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SonWindow>
+    <X>100</X>
+    <Y>100</Y>
+    <Height>300</Height>
+    <Width>300</Width>
+  </SonWindow>
+  <ParentWindow>
+    <X>100</X>
+    <Y>100</Y>
+    <Height>500</Height>
+    <Width>500</Width>
+  </ParentWindow>
+</CameraConfig>

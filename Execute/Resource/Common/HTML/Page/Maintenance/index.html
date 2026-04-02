@@ -1,0 +1,127 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+<meta charset="utf-8">
+<title>TwinScreen</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<link rel="stylesheet" type="text/css" href="../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../css/maintenance/cn.css" multi-language/>
+<script src="../../js/jquery-3.7.0.min.js"></script>
+<script src="../../js/jquery-ui.min.js"></script>
+<script src="../../js/maintenance/common/common.js"></script>
+<script src="../../js/maintenance/common/global.js"></script>
+<script src="../../js/maintenance/system/command.js"></script>
+<script src="../../js/maintenance/system/socket.js"></script>
+<script src="../../js/maintenance/config/ui-mapping.js"></script>
+
+<script src="../../js/maintenance/component/components.js"></script>
+<script src="../../js/maintenance/system/ui-config.js"></script>
+<script src="../../js/maintenance/system/ui-data.js"></script>
+<script src="../../js/maintenance/system/language-config.js"></script>
+<script src="../../js/maintenance/system/language-data.js"></script>
+<script src="../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../js/maintenance/system/ui-manage.js"></script>
+<script src="../../js/maintenance/ui/entrance.js"></script>
+<script type="text/javascript">
+	/******************** 
+	 作用:获取GeneralConfig.xml文件中Maintenance语言设置
+	 作者:xjyong
+	 版本:V1.0
+	 时间:2017-07-17
+    ********************/
+	$(function(){
+		var url = window.location.href;
+		var idx = url.indexOf("&");
+		var language = "CN";
+		if(idx > 0){
+			var str = url.substring(idx+1);
+			var arr = str.split("=");
+			if(arr.length > 1){
+				language = arr[1];
+			}
+		}
+		Common.setLanguage(language);
+	})
+</script>
+</head>
+
+<body>
+<!--提示框-->
+<div id="prompt-box" class="none"> 
+	<!--遮罩-->
+	<div class="prompt-box-mask"> </div>
+	<div class="middle-outer absolute-left">
+		<div class="middle-inner"> 
+			<!--外包装-->
+			<div id="prompt-box-wrapper" class="prompt-box-wrapper">
+				<!--头部-->
+				<div id="prompt-box-header" class="none"></div>
+				<div id="icon-and-content" class="icon-and-content"> 
+					<!--内容-->
+					<div id="prompt-box-content" class=""><div id="prompt-content-ui"></div><span id="prompt-box-icon" class="animation-loading"></span><span id="prompt-box-text">操作正在进行...</span></div>
+				</div>
+				
+				<!--底部-->
+				<div id="prompt-box-footer" class="">
+					<button id="FUN_OK" class="button-prompt"> <span class="tip"></span> <span class="button-text" ids="IDS_Ok">确  定</span> </button>
+					<button id="FUN_CANCEL" class="button-prompt prompt-button-hspace"> <span class="tip"></span> <span class="button-text" ids="IDS_Cancel">取  消</span> </button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--界面容器-->
+<div class="wrapper index"> 
+	<!--调试窗口开始-->
+	<div class="Debugbox none" id="ShowDebugInfo"></div>
+
+	<!--调试窗口结束-->
+	<!--头部-->
+	<div class="index-header"> 
+		<!--左上角图像-->
+		<div class="top-left-image"> </div>
+		<!--状态图标-->
+		<div class="state-image"> 
+			<!--当前状态描述-->
+			<div class="state-description"> <span mark="state-init" ids="IDS_Init">&nbsp;</span> <span mark="state-normal" ids="IDS_Normal">&nbsp;</span> <span mark="state-login" ids="IDS_Login">&nbsp;</span> <span mark="state-maintenance" ids="IDS_Maintenance">&nbsp;</span> <span mark="state-outofservice" ids="IDS_OutOfService">&nbsp;</span> <span mark="state-offline" ids="IDS_OffLine">&nbsp;</span> </div>
+		</div>
+		<!--网络状态图标-->
+		<div class="net-state-image"> </div>
+		<!--下部边框-->
+		<div class="bottom-border"> </div>
+		
+		<!--ATM号和分行号-->
+		<div class="atm-banknumber-container"> 
+			<!--ATM号-->
+			<div class="index-atm"> <span id="VSTATIC_ATMNO" ids="IDS_Atmno" class="none">&nbsp;</span> </div>
+			<!--ATM号-值-->
+			<div class="index-atm-value"> <span id="STATIC_ATMNO" linkId="VSTATIC_ATMNO">&nbsp;</span> </div>
+			
+			<!--分行号-->
+			<div class="index-banknumber"> <span id="VSTATIC_BANKNO" ids="IDS_Bankno" class="none">&nbsp;</span> </div>
+			<!--分行号-值-->
+			<div class="index-banknumber-value"> <span id="STATIC_BANKNO" linkId="VSTATIC_BANKNO">&nbsp;</span> </div>
+			
+			<!--网络-->
+			<div class="index-net"> <span id="STATIC_NETSTATE" ids="IDS_Nesttate" class="none">&nbsp;</span> </div>
+		</div>
+		<!--当前用户和时间-->
+		<div class="currentuser-time-container"> 
+			<!--当前用户-->
+			<div class="index-userid"> <span id="VSTATIC_USERID" ids="IDS_UserId" class="none">&nbsp;</span> </div>
+			<!--当前用户-值-->
+			<div class="index-userid-value"> <span id="STATIC_USERID" linkId="VSTATIC_USERID">&nbsp;</span> </div>
+			
+			<!--时间-->
+			<div class="index-time"> <span id="STATIC_CURRENT_TIME" ></span> </div>
+		</div>
+	</div>
+	
+	<!--用于加载不同的父级界面-->
+	<div class="top-container"><iframe id="top-container" name="top-container" width="100%" height="100%" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe></div>
+    <!--用于加载不同的子级界面-->
+	<!--<div id="child-container"><iframe id="child-container" name="child-container" width="100%" height="100%" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe></div>-->
+</div>
+</body>
+</html>

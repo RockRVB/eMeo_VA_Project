@@ -1,0 +1,321 @@
+﻿body {
+	left: 0px;
+	top: 0px;
+	margin: 0px;
+	background-image: none;
+	background-repeat: no-repeat;
+	background-position: center;
+	overflow: hidden;
+}
+
+input {
+	readonly:expression(this.readOnly=true);
+}
+
+.backgroundDiv {
+	background-image: url(../../Image/CN/Bkimg_800.png);
+	position: absolute;
+	width: 800px;
+	height: 600px;
+	z-index: -1;
+}
+
+.dateDiv {
+	position: absolute;
+	left: 30%;
+	top: 2%;
+	font-family: Tahoma;
+	font-size: 19px;
+	color: red;
+	text-align: center;
+}
+
+.deviceStatusDiv {
+	position: absolute;
+	width: 438px;
+	height: 40px;
+	left: 23%;
+	top: 90%;
+	margin-top: -100px;
+	border: solid 0px red;
+	color: red;
+	font-family: Tahoma;
+	font-size: 22px;
+	text-align: center;
+}
+
+.zeroStateDiv {
+	position: absolute;
+	left: 0px;
+	z-index: -1;
+}
+
+.buttonLeft {
+	position: absolute;
+	width: 167px;
+	top: 7px;
+	font-family: Tahoma;
+	font-size: 25px;
+	color: yellow;
+	text-align: center;
+	left: 26px;
+}
+
+.buttonLeftCommonStyle {
+	position: absolute;
+	width: 167px;
+	top: 5px;
+	font-family: 微软雅黑;
+	font-size: 25px;
+	color: yellow;
+	text-align: center;
+	letter-spacing: 1pt;
+	left: 26px;
+}
+
+.buttonLeftForLongText {
+	position: absolute;
+	width: 167px;
+	top: 9px;
+	font-family: Tahoma;
+	font-size: 20px;
+	color: yellow;
+	text-align: center;
+	left: 26px;
+}
+
+.buttonLeftForTwoLines {
+	position: absolute;
+	width: 167px;
+	top: 6px;
+	font-family: Tahoma;
+	font-size: 20px;
+	color: yellow;
+	text-align: center;
+	left: 26px;
+	line-height: 18px
+}
+
+.buttonRight {
+	position: absolute;
+	width: 167px;
+	top: 7px;
+	font-family: Tahoma;
+	font-size: 25px;
+	color: yellow;
+	text-align: center;
+	left: 6px;
+}
+
+.buttonRightCommonStyle {
+	position: absolute;
+	width: 167px;
+	top: 5px;
+	font-family: 微软雅黑;
+	font-size: 25px;
+	color: yellow;
+	text-align: center;
+	letter-spacing: 1pt;
+	left: 6px;
+}
+
+.buttonRightForLongText {
+	position: absolute;
+	width: 167px;
+	top: 9px;
+	font-family: Tahoma;
+	font-size: 20px;
+	color: yellow;
+	text-align: center;
+	left: 6px;
+}
+
+.buttonRightForTwoLines {
+	position: absolute;
+	width: 167px;
+	top: 6px;
+	font-family: Tahoma;
+	font-size: 20px;
+	color: yellow;
+	text-align: center;
+	left: 6px;
+	line-height: 18px
+}
+
+.mainDivOneLine {
+	margin-top: 115px;
+	margin-bottom: 75px;
+	font-family: Tahoma;
+	font-size: 32px;
+	font-weight: bold;
+	color: yellow;
+	text-align: center;
+}
+
+.mainDivOneLineCommonStyle {
+	margin-top: 115px;
+	margin-bottom: 75px;
+	font-family: 微软雅黑;
+	font-size: 32px;
+	font-weight: bold;
+	color: yellow;
+	text-align: center;
+	letter-spacing: 1pt;
+}
+
+.mainDivTwoLines {
+	margin-top: 116px;
+	margin-bottom: 28px;
+	font-family: Tahoma;
+	font-size: 32px;
+	font-weight: bold;
+	color: yellow;
+	text-align: center;
+}
+
+.mainDivThreeLines {
+	margin-top: 115px;
+	margin-bottom: 75px;
+	font-family: Tahoma;
+	font-size: 32px;
+	font-weight: bold;
+	color: yellow;
+	text-align: center;
+}
+
+.mainDivMiddle {
+	margin-top: 220px;
+	font-family: Tahoma;
+	font-size: 32px;
+	font-weight: bold;
+	color: yellow;
+	text-align: center;
+}
+
+.mainDivUpperMiddle {
+	margin-top: 173px;
+	font-family: Tahoma;
+	font-size: 32px;
+	font-weight: bold;
+	color: yellow;
+	text-align: center;
+}
+
+.inputDiv {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.inputDivRightAlign1 {
+	margin-top: 20px;
+	text-align: right;
+	width: 66%;
+}
+
+.inputDivRightAlign2 {
+	margin-top: 20px;
+	text-align: right;
+	width: 75%;
+}
+
+.inputPrompt {
+	height: 100%;
+	margin-bottom: 8px;
+	font-family: Tahoma;
+	font-size: 25px;
+	color: yellow;
+	font-weight: bold;
+}
+
+.inputPromptForInquiryResult {
+	height: 100%;
+	margin-bottom: 8px;
+	font-family: Tahoma;
+	font-size: 25px;
+	color: yellow;
+	font-weight: bold;
+	margin-left: -110px;
+}
+
+.inputTextLeftAlign {
+	font-family: Tahoma;
+	font-size: 23px;
+	font-weight: bold;
+	color: black;
+	text-align: Left;
+}
+
+.inputTextCenterAlign {
+	font-family: Tahoma;
+	font-size: 23px;
+	font-weight: bold;
+	color: black;
+	text-align: center;
+}
+
+.inputTextRightAlign {
+	font-family: Tahoma;
+	font-size: 23px;
+	font-weight: bold;
+	color: black;
+	text-align: right;
+}
+
+.promptDiv {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.promptNormalText {
+	font-family: Tahoma;
+	font-size: 20px;
+	color: yellow;
+}
+
+.promptKeyText {
+	font-family: Tahoma;
+	font-size: 20px;
+	color: red;
+}
+
+.videoDiv {
+	margin-top: 30px;
+	text-align: center;
+}
+
+.CounterDiv {
+	position:absolute;
+	top: 4px;
+	right: 20px;
+	font-family: Tahoma;
+	font-size: 46px;
+	font-weight: bold;
+	color: red;
+	text-align: right;
+	letter-spacing: 1pt;
+}
+
+.CounterNum {
+	width:33px;
+	text-align:right;
+	padding:2px;
+}
+
+.CounterTable {
+	table-layout:fixed;
+	height:100%;
+	border-collapse:collapse;
+	border:solid 0px black;
+}
+
+.marqueeDiv {
+	position: absolute;
+	left: 210px;
+	right: 210px;
+	top: 550px;
+	font-family: Tahoma;
+	font-size: 25px;
+	color: red;
+	text-align: center;
+	letter-spacing: 1pt;
+}

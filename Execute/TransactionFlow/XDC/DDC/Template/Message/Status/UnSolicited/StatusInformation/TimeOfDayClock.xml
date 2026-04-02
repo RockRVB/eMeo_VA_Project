@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!--  Time-Of-Day Clock
+		*  Indicates that the Time-Of-Day Clock is not available. Central can either keep the terminal out-of-service or return it to service.
+		-->
+		
+	<TimeOfDayClock>
+		<!-- Device Identification Graphic. -->
+		<Item key="e1" 																		value="A"  																	size="1" 				restriction="Mandatory"/>
+		
+		<!--   Device Status.
+		*  '1' - Clock reset but running
+	    *  '2' - Clock has stopped.
+ 		-->
+		<Item key="e2" 																		value="[TimeOfDayClockDevStatus]"  						size="1" 				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																size="1"				restriction="Mandatory"/>
+		
+		<!--  Error Severity.
+		*  '2' -  Warning - Clock reset.
+		*  '4' -  Fatal - clock malfunction.
+		-->
+		<Item key="e3" 																		value="[TimeOfDayClockErrSeverity]"  						size="0-14" 		restriction="Optional"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																size="1"				restriction="[OptionCtrl.NoUse]"/>
+		
+		<!--  Diagnostic Status.Used for logging errors. The length of the field is variable(because it is hardware-dependent) and may be omitted if 
+		* if there is no error condition to be reported. The field will always be present if preceded by an error severity field with a value of 1 or greater.
+		* There are certain rules which are followed by all devices.
+		* Characters 1 and 2 contain a main error status value. (M-Status) in the range 0 -99, transmitted as 2 characters which give the decimal representation.
+		* of the M-Status value.
+		* M-Status is used mainly as an error log to assist machine servicing. It may also be used in a transaction log to supplementTransaction status or Device.
+		* status information.
+        * Characters 3 to n (M-Data) 
+		-->
+		<Item key="e4" 																		value="[TimeOfDayClockDiagnosticStatus]"  			size="var" 			restriction="[OptionCtrl.NoUse]"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																size="1"				restriction="[OptionCtrl.NoUse]"/>
+		
+		<!--  Suplies Status. Contains information related to the state of supplies (paper, currency, magnetic cards, envelopes, inkwells, documents)
+		 * in the terminal. This field contains one character for each supplies container managed by the device.Each character is always coded in the same 
+		 * in same way.
+		-->
+		<Item key="e5" 																		value="[TimeOfDayClockSuppliesStatus]"  				size="0-8" 			restriction="[OptionCtrl.NoUse]"/>
+		
+	</TimeOfDayClock>	
+</Root>

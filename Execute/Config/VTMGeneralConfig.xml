@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VTMGeneralConfig>
+  <IntConfig>
+    <!--提示框弹出超时时间，单位：秒-->
+    <Item key="PromptTimeout" value="30" />
+    <Item key="PromptAssi" value="30" />
+    <Item key="PromptTimeout4CloseTrans" value="30" />
+    <Item key="AlarmTimeout" value="5" />
+    <Item key="VTM_SecondsForEntryIdle" value="10" />
+    <Item key="VTM_MaxPaymentAmount" value="50000"/>
+	<Item key="CountAgain" value="2"/>	
+	<Item key="SimilarFloat" value="40" />
+  </IntConfig>
+  <StringConfig>
+    <Item key="Local_BranchNumber" value="01" />
+    <Item key="TellerNumber" value="3302"/>
+    <!--终端主密钥名称  TS.1010017100000.TMK-->
+    <Item key="TellerTMKName" value=""/>
+    <!--终端工作密钥名称  TS.1010017100000.TPK-->
+    <Item key="TellerTPKName" value=""/>
+	<!-- VNC代理服务名 -->
+    <Item key="VideoClassId" value="{2B2598F6-00C9-4083-840A-B589B4EFE62F}"/>
+	
+    <Item key="VncProxyServiceName" value="GrgVncProxyService"/>
+	<!-- VNC客户端OCX控件注册CLSID -->
+    <Item key="VncOcxClassId" value="{10A4C17B-B386-4FF8-B033-6324C2B9F2E1}"/>
+	<!-- 需要通过ECAT来启动的VNC客户端（与OCX控件同目录）的exe程序，以“|”分隔 -->
+    <Item key="VncExeToStartup" value="GrgiSynPointer.exe|GrgiSynServer.exe"/>
+	<Item key="VncProxyConfig" value="D:\GRGBanking\VNC-VTM\vnc\config.ini"/>
+	<Item key="VNC-VTMConfig" value="D:\GRGBanking\VNC-Proxy\GrgVncProxy\GrgVncProxy\ProxyTaskInfo.xml"/>
+	
+	<!--是否设置二维码增加Logo图片，0-false不增加Logo图片，1-true设置增加Logo图片-->
+	<Item key="BoolShowLogo" value="0" />
+	<!--设置二维码Logo图片路径-->
+	<Item key="LogoImagePath" value="" />
+	<!--是否设置二维码颜色，0-false不设置，默认为黑色，1-true启动设置，须设置以下BackgroundColorValue参数进行设置-->
+	<Item key="BoolShowDifferentColorBarcode" value="0" />
+	<!--设置二维码图片颜色，0-为默认黑色，1-为默认绿色，2-为默认红色，3-为自主设置RBG值设置不同颜色,则需设置以下三个参数设置颜色-->
+	<Item key="BackgroundColorValue" value="0" />
+	<!--当BackgroundColorValue设置为3时,可启用此二维码图片RGB颜色R值-->
+	<Item key="RValue" value="0" />
+	<!--当BackgroundColorValue设置为3时,可启用二维码图片RGB颜色G值-->
+	<Item key="GValue" value="0" />
+	<!--当BackgroundColorValue设置为3时,可启用二维码图片RGB颜色B值-->
+	<Item key="BValue" value="0" />
+  </StringConfig>
+  <MediaConfig>
+    <Item key="Flash_FormBack" value="FormBack" />
+    <Item key="Flash_FormPrint" value="FormPrint" />
+    <Item key="Flash_InsertCard" value="InsertCard" />
+    <Item key="Flash_TakeCard" value="TakeCard" />
+    <Item key="Flash_InsertIDCard" value="InsertIDCard" />
+    <Item key="Flash_TakeIDCard" value="TakeIDCard" />
+    <Item key="Flash_PutMoney" value="PutMoney" />
+    <Item key="Flash_TakeMoney" value="TakeMoney" />
+    <Item key="Flash_Signature" value="Signature" />
+    <Item key="Flash_Inputpin" value="Inputpin" />
+  </MediaConfig>
+  <VideoStrategy>
+    <ConnectionBroken>
+      <CloseTransaction transactionTypeCollection="ApplyDebitCard,ApplyCreditCard,ActiveCreditCard,InfoModify,JXY,TPB,TTZNT" />
+    </ConnectionBroken>
+	<!-- 视频连接后业务画面是否永不超时 -->
+	<ConnectionPageTimeOut IsNeverTimedOut="False"/>
+	<ActionControlShowVideo IsActionControlShowVideo="False"/>
+  </VideoStrategy>
+
+  <Trans>
+    <Tran tranType="VTM_NEWACC_CURRENT" tranID="60001">
+      <Steps>
+        <Step index="0" stepName="交易开始"  parentID="-1"/>
+        <Step index="1" stepName="卡片类型" parentID="0" />
+        <Step index="2" stepName="阅读协议" parentID="0" />
+
+        <Step index="3" stepName="身份认证"  parentID="-1"/>
+        <Step index="4" stepName="读取身份证" parentID="3" />
+        <Step index="5" stepName="连接视频" parentID="3" />
+        <Step index="6" stepName="拍照" parentID="3" />
+        <Step index="7" stepName="审核身份" parentID="3" /> 
+        
+        <Step index="8" stepName="信息录入" parentID="-1" />
+        
+        <Step index="9" stepName="资料填写" parentID="-1" />
+        <Step index="10" stepName="打印表单" parentID="9" />
+        <Step index="11" stepName="表单扫描" parentID="9" />
+        <Step index="12" stepName="表单审核" parentID="9" />
+        <Step index="13" stepName="表单回收" parentID="9" />
+        
+        <Step index="14" stepName="发卡处理" parentID="-1"/>
+        <Step index="15" stepName="存款" parentID="14" />
+        <Step index="16" stepName="密码设置" parentID="14" />
+        <Step index="17" stepName="取卡" parentID="14" />
+        <Step index="18" stepName="交易完成" parentID="-1" />
+      </Steps>
+    </Tran>
+	
+	<!-- 澳大利亚开卡流程 -->
+	<Tran tranType="VTM_NEWACC_CURRENT_AUS" tranID="60020">
+      <Steps>
+        <Step index="0" stepName="Start Transaction"  parentID="-1"/>
+        <Step index="1" stepName="Select Card" parentID="0" />
+        <Step index="2" stepName="Terms and Conditions" parentID="0" />
+
+        <Step index="3" stepName="ID Authentication"  parentID="-1"/>
+        <Step index="4" stepName="Document Scanning" parentID="3" />
+	<Step index="5" stepName="Scanning Examination" parentID="3" />
+        <Step index="6" stepName="Apply Video" parentID="3" />
+        <Step index="7" stepName="Photo Shot" parentID="3" />
+        <Step index="8" stepName="Confirm Identity" parentID="3" /> 
+        
+        <Step index="9" stepName="Information Input" parentID="-1" />
+        
+        <Step index="10" stepName="Document recovery" parentID="-1" />
+        <Step index="11" stepName="Print Form" parentID="10" />
+        <Step index="12" stepName="Form Scan" parentID="10" />
+        <Step index="13" stepName="Form Review" parentID="10" />
+        <Step index="14" stepName="Form Return" parentID="10" />
+        
+        <Step index="15" stepName="Card Processing" parentID="-1"/>
+        <Step index="16" stepName="Cash Deposit" parentID="15" />
+        <Step index="17" stepName="PIN Set" parentID="15" />
+        <Step index="18" stepName="Take Card" parentID="15" />
+        <Step index="19" stepName="Transaction Completed" parentID="-1" />
+      </Steps>
+    </Tran>		
+	
+<!-- 小额贷款流程 -->
+    <Tran tranType="VTM_NEW_LOAN" tranID="60030">
+      <Steps>
+        <Step index="0" stepName="Start Transaction"  parentID="-1"/>
+        <Step index="1" stepName="Terms and Conditions" parentID="0" />
+
+        <Step index="2" stepName="ID Authentication"  parentID="-1"/>
+        <Step index="3" stepName="Scan ID Card" parentID="2" />
+        <Step index="4" stepName="Apply Video" parentID="2" />
+        <Step index="5" stepName="Photo Shot" parentID="2" />
+        <Step index="6" stepName="Confirm Identity" parentID="2" />       
+        <Step index="7" stepName="Information Input" parentID="2" />
+        
+        <Step index="8" stepName="Document recovery" parentID="-1" />
+        <Step index="9" stepName="Print Form" parentID="8" />
+        <Step index="10" stepName="Form Scan" parentID="8" />
+        <Step index="11" stepName="Form Review" parentID="8" />
+        <Step index="12" stepName="Form Return" parentID="8" />
+   
+        <Step index="13" stepName="Transaction Completed" parentID="-1" />
+      </Steps>
+    </Tran>
+
+ <Tran tranType="VTM_SIGN" tranID="70001">
+      <Steps>
+
+        <Step index="0" stepName="Start Transaction"  parentID="-1"/>
+        <Step index="1" stepName="Insert Card" parentID="0" />
+        <Step index="2" stepName="Terms and Conditions" parentID="0" />
+
+        <Step index="3" stepName="ID Authentication"  parentID="-1"/>
+        <Step index="4" stepName="Scan ID Card" parentID="3" />
+        <Step index="5" stepName="Apply Video" parentID="3" />
+        <Step index="6" stepName="Photo Shot" parentID="3" />
+        <Step index="7" stepName="Confirm Identity" parentID="3" />        
+
+        <Step index="8" stepName="Document recovery" parentID="-1" />
+        <Step index="9" stepName="Print Form" parentID="8" />
+        <Step index="10" stepName="Form Scan" parentID="8" />
+        <Step index="11" stepName="Form Review" parentID="8" />
+        <Step index="12" stepName="Form Return" parentID="8" />
+        
+		<Step index="13" stepName="PIN Set" parentID="-1"/> 
+		
+		<!-- <Step index="8" stepName="PIN Set" parentID="-1"/>
+		
+		<Step index="9" stepName="Document recovery" parentID="-1" />
+        <Step index="10" stepName="Print Form" parentID="9" />
+        <Step index="11" stepName="Form Scan" parentID="9" />
+        <Step index="12" stepName="Form Review" parentID="9" />
+        <Step index="13" stepName="Form Return" parentID="9" />-->
+		
+        <Step index="14" stepName="Ukey Processing" parentID="-1"/>
+        <Step index="15" stepName="Take Ukey" parentID="14" />
+        <Step index="16" stepName="Transaction Completed" parentID="-1" />
+        
+      </Steps>
+    </Tran>
+   <Tran tranType="VTM_SIGN_NEW" tranID="70002">
+      <Steps>
+        <Step index="0" stepName="Start Transaction"  parentID="-1"/>
+        <Step index="1" stepName="Apply Video" parentID="0" />
+        <Step index="2" stepName="Insert Card" parentID="0" />
+        <Step index="3" stepName="Terms and Conditions" parentID="0" />
+ 
+      
+        <Step index="4" stepName="Input Password" parentID="-1"/>
+ 
+        <Step index="5" stepName="Document recovery" parentID="-1" />
+        <Step index="6" stepName="Print Form" parentID="5" />
+        <Step index="7" stepName="Form Return" parentID="5" />
+        
+        <Step index="8" stepName="Ukey Processing" parentID="-1" />
+        <Step index="9" stepName="Take Ukey" parentID="8" />
+        <Step index="10" stepName="Transaction Completed" parentID="-1" />
+        
+      </Steps>
+    </Tran>
+
+	<Tran tranType="VTM_Microcredit" tranID="60006">
+      <Steps>
+        <Step index="0" stepName="Start Transaction"  parentID="-1"/>
+        <Step index="1" stepName="Terms and Conditions"  parentID="-1"/> 
+        <Step index="2" stepName="ID Authentication"  parentID="-1"/>
+        <Step index="3" stepName="Form Filling"  parentID="-1"/>
+        <Step index="4" stepName="ID card Scan"  parentID="-1"/>
+        <Step index="5" stepName="Transaction Completed"  parentID="-1"/>
+      </Steps>
+    </Tran>
+
+	<Tran tranType="VTM_Standard_GeneralHelp" tranID="80000">
+      <Steps>
+      </Steps>
+    </Tran>
+
+	<Tran tranType="VTM_Standard_OpenAccount" tranID="80001">
+      <Steps>
+        <Step index="0" stepName="Authorize"  parentID="-1"/>
+        <Step index="1" stepName="Read Agreement"  parentID="-1"/> 
+        <Step index="2" stepName="Fill Form"  parentID="-1"/>
+        <Step index="3" stepName="Sign"  parentID="-1"/>
+        <Step index="4" stepName="Take Photo"  parentID="-1"/>
+        <Step index="5" stepName="Scan Fingerprint/FingerVein"  parentID="-1"/>
+        <Step index="6" stepName="Transaction Completed"  parentID="-1"/>
+      </Steps>
+    </Tran>
+
+	<Tran tranType="VTM_Standard_NewCard" tranID="80002">
+      <Steps>
+        <Step index="0" stepName="Authorize"  parentID="-1" key="readAgreement"/>
+        <Step index="1" stepName="Select Card"  parentID="-1" key="scanPassport"/> 
+        <Step index="2" stepName="Read Agreement"  parentID="-1" key="customerInfo"/>
+        <Step index="3" stepName="Fill Form"  parentID="-1" key="sign"/>
+        <Step index="4" stepName="Sign"  parentID="-1" key="printSign"/>
+        <Step index="5" stepName="Input New PIN"  parentID="-1" key="scanSign"/>
+        <Step index="6" stepName="Transaction Completed"  parentID="-1" key="printingCard"/>
+		<Step index="7" stepName="Transaction Completed"  parentID="-1" key="userSetPassword"/>
+		<Step index="8" stepName="Transaction Completed"  parentID="-1" key="printReceipt"/>
+      </Steps>
+    </Tran>
+
+	<Tran tranType="VTM_Standard_ReplaceCard" tranID="80003">
+      <Steps>
+        <Step index="0" stepName="Authorize"  parentID="-1"/>
+        <Step index="1" stepName="Read Agreement"  parentID="-1"/> 
+        <Step index="2" stepName="Select Old Card"  parentID="-1"/>
+        <Step index="3" stepName="Select New Card"  parentID="-1"/>
+        <Step index="4" stepName="Fill Form"  parentID="-1"/>
+        <Step index="5" stepName="Sign"  parentID="-1"/>
+        <Step index="6" stepName="Transaction Completed"  parentID="-1"/>
+      </Steps>
+    </Tran>
+
+	<Tran tranType="VTM_Standard_NewUKey" tranID="80004">
+      <Steps>
+        <Step index="0" stepName="Authorize"  parentID="-1"/>
+        <Step index="1" stepName="Question"  parentID="-1"/> 
+        <Step index="2" stepName="Transaction Completed"  parentID="-1"/>
+      </Steps>
+    </Tran>
+
+	<Tran tranType="VTM_Standard_ActivateUKey" tranID="80005">
+      <Steps>
+        <Step index="0" stepName="Authorize"  parentID="-1"/>
+        <Step index="1" stepName="Scan Barcode"  parentID="-1"/> 
+        <Step index="2" stepName="Input Activation Code"  parentID="-1"/> 
+        <Step index="3" stepName="Transaction Completed"  parentID="-1"/>
+      </Steps>
+    </Tran>
+
+  </Trans>
+  <CardDispenserType CardType="VISA,UNIONPAY"></CardDispenserType>
+</VTMGeneralConfig>

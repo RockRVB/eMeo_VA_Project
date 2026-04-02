@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!-- Device Identifier between device identifier and device name(Associated configuration data -->
+	<Msg>
+	 	</Msg>
+	<Data>
+	</Data>
+	<DataNull>
+	</DataNull>
+</Root>

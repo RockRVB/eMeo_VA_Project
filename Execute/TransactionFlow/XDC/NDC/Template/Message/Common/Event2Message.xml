@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<EventSendMessage>
+		<Item ID="51" MsgID="UnsolicitedStatus.CashHandler" Param="" MsgConidtion="[SendCondition.DeviceEventOccur.CashHandler]"/>
+		<Item ID="52" MsgID="UnsolicitedStatus.JournalPrinter" Param=""/>
+		<Item ID="53" MsgID="UnsolicitedStatus.JournalPrinter" Param=""/>
+		<Item ID="54" MsgID="UnsolicitedStatus.JournalPrinter" Param=""/>
+		<Item ID="100" MsgID="UnsolicitedStatus.CardReader" Param="" MsgConidtion="[SendCondition.DeviceStatusChange.CardReader]"/>
+		<Item ID="101" MsgID="UnsolicitedStatus.ReceiptPrinter" Param="" MsgConidtion="[SendCondition.DeviceStatusChange.ReceiptPrinter]"/>
+		<Item ID="102" MsgID="UnsolicitedStatus.JournalPrinter" Param="" MsgConidtion="[SendCondition.DeviceStatusChange.JournalPrinter]"/>
+		<Item ID="103" MsgID="UnsolicitedStatus.CashHandler" Param="" MsgConidtion="[SendCondition.DeviceStatusChange.CashHandler]"/>
+		<Item ID="104" MsgID="BNA_AutoSatus" Param="" MsgConidtion="[SendCondition.DeviceStatusChange.CashAcceptor]" Special="0"/>
+		<Item ID="105" MsgID="UnsolicitedStatus.Encryptor" Param="" MsgConidtion="[SendCondition.DeviceStatusChange.Encryptor]"/>
+		<!--Item ID="106" MsgID="UnsolicitedStatus.SensorAndLight" Param="" MsgConidtion="[SendCondition.DeviceStatusChange.SensorAndLight]"/-->
+		<Item ID="107" MsgID="UnsolicitedStatus.EnvelopeDispenser" Param="" MsgConidtion="[SendCondition.DeviceStatusChange.EnvelopeDispenser]"/>
+		<Item ID="108" MsgID="UnsolicitedStatus.EnvelopeDepository" Param="" MsgConidtion="[SendCondition.DeviceStatusChange.EnvelopeDepository]"/>
+		<Item ID="109" MsgID="UnsolicitedStatus.BarCodeReader" Param="" MsgConidtion="[SendCondition.DeviceStatusChange.BarCodeReader]"/>		
+		<Item ID="110" MsgID="UnsolicitedStatus.Sensors.SensorChange" Param="" MsgConidtion="[SendCondition.DeviceStatusChange.Sensors.SensorChange]"/>
+		<Item ID="500" MsgID="UnsolicitedStatus.Sensors.ModeChange" Param="" MsgConidtion=""/>
+		<Item ID="501" MsgID="UnsolicitedStatus.Sensors.ModeChange" Param="" MsgConidtion=""/>
+	</EventSendMessage>
+	<HostCheck>
+		<Item ID="CardReader" EventID="100"/>
+		<Item ID="ReceiptPrinter" EventID="101"/>
+		<Item ID="JournalPrinter" EventID="102"/>
+		<Item ID="CashHandler" EventID="103"/>
+		<Item ID="CashAcceptor" EventID="104"/>
+		<Item ID="Encryptor" EventID="105"/>
+		<Item ID="EnvelopeDispenser" EventID="107"/>
+		<Item ID="EnvelopeDepository" EventID="108"/>	
+		<Item ID="BarCodeReader" EventID="109"/>		
+	</HostCheck>
+	<!--举例，如果项目要求已经发送了22...8D1,不需要发送12...8D1 则配置删除待发送的12...8D1-->
+	<RemoveSendMessage>
+		<Item SendID="Solicited.Status.DeviceFault.CardReader" RemoveID="UnsolicitedStatus.CardReader"/>
+	</RemoveSendMessage>
+</Root>

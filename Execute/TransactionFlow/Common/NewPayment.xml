@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+	<!-- 现金缴费流程-->
+<Workflow name="NewPayment">
+  <Head type="GRGWorkflow" author="HXL" timeStamp="2013/10/7 15:15:12" comment="The workflow design is for withdrawal"/>
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start" homeVisible="0">
+      <Forward event="OnConfirm" targetID="ID_SetEnableDigitalHumanMenuCmd"/>
+    </Start>
+
+	<!-- 允许数字人在此交易中触发意图菜单 -->
+	<SetData ID="ID_SetEnableDigitalHumanMenuCmd" saveBuffer="{EnableDigitalHumanMenuCmd,0}" value="1">
+		<Forward event="OnConfirm" targetID="ID_SelectLoginWay"/>
+	</SetData>
+	
+	<!-- 选择登录方式（护照或QRCode） -->
+	<SelectFunction ID="ID_SelectLoginWay" UI="UI_SelectLoginWay" digitalVoiceKey="action_046">
+		<Forward event="OnPassport" targetID="ID_ScanPassportByScanner"/>
+		<Forward event="OnQRCode" targetID="ID_ScanQRCode"/>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+	</SelectFunction>
+	
+	
+	<!-- 放入护照 -->
+	<PassportScan  ID="ID_ScanPassportByScanner" UI="UI_insertpassport_new" digitalVoiceKey="action_116||||action_047" CallingMethodType="0" manualScan="0" homeVisible="0" timeout="30000">
+      <States>
+        <State name="TakePassport" UI="UI_takepassport_new" />
+        <State name="ScanningPassport" UI="UI_reading_passport" />
+		    <State name="ScanError" UI="UI_scan_passport_failure" />
+        <State name="HardwareError" UI="UI_hardware_error" />
+      </States>
+      <Forward event="OnContinue" targetID="ID_SelectBillType" />
+      <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />	  
+      <Forward event="OnFail" targetID="ID_ScanPassportAgain" />
+    </PassportScan>
+	
+	<Prompt ID="ID_ScanPassportAgain" UI="UI_ScanPassportAgain" digitalVoiceKey="action_016" timeout="60000" comment="">
+	  <Forward event="OnConfirm" targetID="ID_ScanPassportByScanner" />
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+	</Prompt>
+	
+	<ScanBarcodeAction ID="ID_ScanQRCode" UI="UI_ScanBarCode_Profile" digitalVoiceKey="|||action_048" timeout="60000">
+	  <States>
+        <State name="GetDevStatusError" UI="UI_hardware_error"></State>
+		<State name="TimeOutError" UI="UI_timeout"></State>
+		<State name="ReadError" UI="UI_hardware_error"></State>
+      </States>
+      <!-- <Forward event="OnConfirm" targetID="ID_CheckAppointmentMessage" /> -->
+	  <Forward event="OnConfirm" targetID="ID_SelectBillType" />
+	  <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="OnReadError" targetID="ID_InvokeCloseTransWorkflow" /> 
+	  <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+    </ScanBarcodeAction>
+
+	<!-- 选择缴费账单 -->
+	<SelectBill ID="ID_SelectBillType" UI="UI_SelectBillType" digitalVoiceKey="|action_049" timeout="30000">
+		<States>
+			<State name="TimeOutError" UI="UI_timeout"></State>
+		</States>
+		<Forward event="OnConfirm" targetID="ID_ShowBillInfo"/>
+		<Forward event="OnBack" targetID="ID_SelectLoginWay"/>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnELECTRICITY" targetID="ID_SetCurrentBillTypeELECTRICITY"/>
+		<Forward event="OnWATER" targetID="ID_SetCurrentBillTypeWATER"/>
+		<Forward event="OnGAS" targetID="ID_SetCurrentBillTypeGAS"/>
+	</SelectBill>
+
+	<!-- 数字人设置当前意图交易类型 -->
+	<SetData ID="ID_SetCurrentBillTypeELECTRICITY" saveBuffer="{payment_BillType,0}" value="Electricity">
+		<Forward event="OnConfirm" targetID="ID_SetPaymentAmount"/>
+	</SetData>
+	<SetData ID="ID_SetCurrentBillTypeWATER" saveBuffer="{payment_BillType,0}" value="Water">
+		<Forward event="OnConfirm" targetID="ID_SetPaymentAmount"/>
+	</SetData>
+	<SetData ID="ID_SetCurrentBillTypeGAS" saveBuffer="{payment_BillType,0}" value="Gas">
+		<Forward event="OnConfirm" targetID="ID_SetPaymentAmount"/>
+	</SetData>
+	<SetData ID="ID_SetPaymentAmount" saveBuffer="{payment_Amount,0}" value="50">
+		<Forward event="OnConfirm" targetID="ID_ShowBillInfo"/>
+	</SetData>
+	
+	<!--展示账单信息-->
+	<ShowBillInfo ID="ID_ShowBillInfo" UI="UI_ShowBillInfo" digitalVoiceKey="||action_050" timeout="30000">
+	  <States>
+        <State name="GeneralError" UI="UI_general_error"></State>
+		<State name="TimeOutError" UI="UI_timeout"></State>
+      </States>
+		<!-- <Forward event="OnConfirm" targetID="ID_SelectPaymentWay" /> -->
+		<Forward event="OnConfirm" targetID="ID_SetCurrentCurrency" />
+		<Forward event="OnBack" targetID="ID_SelectBillType"/>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+	</ShowBillInfo>
+	
+	<!--选择支付方式-->
+	<SelectFunction ID="ID_SelectPaymentWay" UI="UI_SelectPaymentWay_Payment" digitalVoiceKey="action_051">
+		<Forward event="OnCash" targetID="ID_SetCurrentCurrency"/>
+		<Forward event="OnBack" targetID="ID_ShowBillInfo"/>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+	</SelectFunction>
+	
+	<!--设置当前货币-->
+	<SetData ID="ID_SetCurrentCurrency" saveBuffer="{core_CurrentCurrency,0}" value="CNY">
+		<Forward event="OnConfirm" targetID="ID_CashInStart"/>
+	</SetData>
+	
+	
+	<!-- 开始存款 -->
+	<CashInStart ID="ID_CashInStart" UI="UI_CashInStart" digitalVoiceKey="">
+		<Forward event="OnConfirm" targetID="ID_CashInWaitForNoteInsert"/>
+	</CashInStart>
+	
+	<!-- 等待放入钞票，这一步会显示缴费金额 -->
+	<CashInWaitForNoteInsert ID="ID_CashInWaitForNoteInsert" UI="UI_CashInPutCash" digitalVoiceKey="action_053|action_075||action_053">
+		<States>
+			<State name="WaitForNoteInsertNoCash" UI="UI_CashInPutCash"/>
+			<State name="OperationIsProcessing" UI="UI_OperatingNoCounter"/>
+			<State name="ArrangeCash" UI="UI_WaitForNoteInsert4ArrangeCash"/>
+		</States>
+		<Forward event="OnConfirm" targetID="ID_CashIn"/>
+		<Forward event="OnCancel" targetID="ID_CashInWaitForNoteTaken"/>
+		<Forward event="OnTimeout" targetID="ID_CashIn"/>
+		<Forward event="OnKeyError" targetID="ID_InputCashEmptyForError"/>
+		<Forward event="OnFail" targetID="ID_CashInWaitForNoteTakenInsertError"/>
+		<Forward event="OnRollbackForError" targetID="ID_CashInRollbackForError"/>
+		<Forward event="OnRollback" targetID="ID_CashInRollback"/>
+		<Forward event="OnCashInEnd" targetID="ID_InputCashEmptyForTimeout"/>
+		<Forward event="OnHardwareError" targetID="ID_InputCashEmptyForError"/>
+		<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+		<Forward event="OnNoteTaken" targetID="ID_CancelWaitForNoteTaken"/>
+		<Forward event="OnNoteTakenForEmpty" targetID="ID_CancelWaitForNoteTakenForEmpty"/>
+	</CashInWaitForNoteInsert>
+	
+	<!-- 点钞 -->
+	<CashIn ID="ID_CashIn" UI="UI_CountingNote" digitalVoiceKey="action_053|action_075||action_054" maxRefusedNotesCount="20" waitShutterCloseTime="2000">
+		<States>
+			<State name="NoteInserted" UI="UI_CashInPutCash"/>
+			<State name="OperationIsProcessing" UI="UI_OperatingNoCounter"/>
+			<State name="ArrangeCash" UI="UI_CashIn4ArrangeCash"/>
+		</States>
+		<Forward event="OnContinue" targetID="ID_CashInShowResult"/>
+		<Forward event="OnNoteRefused" targetID="ID_CashInWaitForNoteTakenRefused"/>
+		<Forward event="OnFail" targetID="ID_CashInRollbackForError"/>
+		<Forward event="OnNoCashInCsTs" targetID="ID_CashInShowResult"/>
+		<Forward event="OnCashToomuch" targetID="ID_CashInWaitForNoteTakenToomuch"/>
+		<Forward event="OnRefusedNotetoomuch" targetID="ID_CashInWaitForNoteTakenRefusedNoteToomuch"/>
+		<Forward event="OnHardwareError" targetID="ID_InputCashEmptyForError"/>
+		<Forward event="OnRollback" targetID="ID_CashInRollback"/>
+		<Forward event="OnCashInEnd" targetID="ID_InputCashEmpty"/>
+		<Forward event="OnCancel" targetID="ID_CashInWaitForNoteTaken"/>
+	</CashIn>
+	
+	<!-- 等待不可识别钞票取走 -->
+	<CashInWaitForNoteTaken ID="ID_CashInWaitForNoteTakenRefused" UI="UI_OperatingNoCounter" digitalVoiceKey="|action_075" journalKeyName="IDS_TakeRejectCash">
+		<States>
+			<State name="WaitForNoteTaken" UI="UI_CashInWaitForNoteTakenRefused"/>
+		</States>
+		<Forward event="OnContinue" targetID="ID_CashInShowResult"/>
+		<Forward event="OnTimeout" targetID="ID_CashInRetract"/>
+		<Forward event="OnRollback" targetID="ID_CashInRollbackForError"/>
+		<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+		<Forward event="OnCashInEndForError" targetID="ID_InputCashEmptyForError"/>
+	</CashInWaitForNoteTaken>
+	
+	<!--展示点钞结果，并判断是否大于等于账单金额，小于则提示-->
+	<ShowCashInResult ID="ID_CashInShowResult" UI="UI_ShowCashInResult" digitalVoiceKey="|action_074">
+		<States>
+			<State name="NotEnoughError" UI="UI_CashInShowResultForNotEnough"/>
+		</States>
+		<Forward event="OnConfirm" targetID="ID_CashInEnd"/>
+		<!--继续放钞-->
+		<Forward event="OnYes" targetID="ID_ShowScreen"/>
+		<Forward event="OnNo" targetID="ID_CashInRollback"/>
+	</ShowCashInResult>
+	
+	<ShowScreen ID="ID_ShowScreen" UI="UI_OperatingNoCounter" digitalVoiceKey="action_075">
+		<Forward event="OnContinue" targetID="ID_CashInWaitForNoteInsert"/>
+	</ShowScreen>
+	
+	
+	<!-- 客户取消，等待钞票取走 -->
+	<CashInWaitForNoteTaken ID="ID_CashInWaitForNoteTakenRollback" UI="UI_OperatingNoCounter" digitalVoiceKey="action_070|action_075">
+		<States>
+			<State name="WaitForNoteTaken" UI="UI_TakeCash"/>
+		</States>
+		<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_CashInRetract"/>
+		<Forward event="OnRollback" targetID="ID_CashInRollbackForError"/>
+		<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+		<Forward event="OnCashInEndForError" targetID="ID_InputCashEmptyForError"/>
+	</CashInWaitForNoteTaken>
+	
+	<!-- 设备故障，退回钞票 -->
+	<CashInRollback ID="ID_CashInRollbackForError" UI="UI_RollbackForHardwareError" digitalVoiceKey="||action_056">
+		<States>
+			<State name="RollbackForHardwareError" UI="UI_RollbackForHardwareError"/>
+			<State name="RollbackForTSNoCash" UI="UI_RollbackForHardwareError"/>
+		</States>
+		<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+		<!--等待拿钞-->
+		<Forward event="OnWaitForNoteTaken" targetID="ID_CashInWaitForNoteTakenRollbackForError"/>
+		<Forward event="OnFail" targetID="ID_PrintReceipt"/>
+		<!--退钞失败，回收-->
+		<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+	</CashInRollback>
+	
+	<!-- 回收 -->
+	<CashInRetract ID="ID_CashInRetract" UI="UI_CashInRetract" digitalVoiceKey="action_057">
+		<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+	</CashInRetract>
+	
+	<!-- 回滚，退回钞票 -->
+	<CashInRollback ID="ID_CashInRollback" UI="UI_CashInRollback" digitalVoiceKey="|||action_058">
+		<States>
+			<State name="RollbackForHardwareError" UI="UI_RollbackForHardwareError"/>
+			<State name="RollbackForTSNoCash" UI="UI_OperatingNoCounter"/>
+			<State name="RollbackForExceedICAvailableRechargeAmount" UI="UI_RollbackForExceedICAvailableRechargeAmount"/>
+		</States>
+		<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnWaitForNoteTaken" targetID="ID_CashInWaitForNoteTakenRollback"/>
+		<Forward event="OnFail" targetID="ID_CashInRetractForError"/>
+		<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+	</CashInRollback>
+	
+	<!-- 故障回收 -->
+	<CashInRetract ID="ID_CashInRetractForError" UI="UI_CashInRetractForError" digitalVoiceKey="action_059">
+		<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+	</CashInRetract>
+	
+	<!-- 存钞 -->
+	<CashInEnd ID="ID_CashInEnd" UI="UI_CashInEnd" digitalVoiceKey="|" timeout="5000">
+		<States>
+			<State name="CashInEndSuccess" UI="UI_CashInEndSuccess"/>
+		</States>
+		<Forward event="OnConfirm" targetID="ID_ChangeDispenseCash"/>
+	</CashInEnd>
+
+	<!-- 找零 -->
+	<ChangeDispense ID="ID_ChangeDispenseCash" UI="UI_PresentCash"  digitalVoiceKey="||||||" timeout="30000">
+		<States>
+			<State name="DispenseAmountError" UI="UI_DispenseAmountError"/>
+			<State name="RejectingCash" UI="UI_RejectingCash"/>
+			<State name="RejectCashForHardwareError" UI="UI_RejectCashForHardwareError"/>
+			<State name="RejectCashFail" UI="UI_RejectCashFail"/>
+			<State name="ChangeZero" UI="UI_ChangeZero"/>
+			<State name="TimeOutError" UI="UI_timeout"></State>
+		</States>
+		<Forward event="OnConfirm" targetID="ID_PresentCash"/>
+		<!--找零金额为0时走OnYes-->
+		<Forward event="OnYes" targetID="ID_GetDevStatusForChangeZero"/>
+		<Forward event="OnNo" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_IsPrintReceipt"/>
+		<Forward event="OnHardwareError" targetID="ID_GetDevStatusForCloseTrans"/>
+	</ChangeDispense>
+	
+	<PresentCash ID="ID_PresentCash" UI="UI_Change"  digitalVoiceKey="||||||action_061" comment="Present cash">
+      <States>
+        <State name="TakeCash" UI="UI_Change"/>
+        <State name="RetractingCash" UI="UI_RetractingCash"/>
+        <State name="RetractCashForTimeout" UI="UI_RetractCashForTimeout"/>
+        <State name="RetractCashForHardwareError" UI="UI_RetractCashForHardwareError"/>
+        <State name="RetractNoCash" UI="UI_RetractNoCash"/>
+        <State name="RetractCashFail" UI="UI_RetractCashFail"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_GetDevStatus"/>
+      <Forward event="OnHardwareError" targetID="ID_GetDevStatusForCloseTrans"/>
+    </PresentCash>
+	
+	<GetDevStatus ID="ID_GetDevStatus" comment="Get device status" devType="RPTR">
+      <Forward event="OnNormal" targetID="ID_IsPrintReceipt"/>
+      <Forward event="OnWarn" targetID="ID_IsPrintReceipt"/>
+      <Forward event="OnFail" targetID="ID_WithdrawedResultForNoPTR"/>
+    </GetDevStatus>
+	
+	<GetDevStatus ID="ID_GetDevStatusForChangeZero" comment="Get device status" devType="RPTR">
+      <Forward event="OnNormal" targetID="ID_PrintReceipt"/>
+      <Forward event="OnWarn" targetID="ID_PrintReceipt"/>
+      <Forward event="OnFail" targetID="ID_WithdrawedResultForNoPTR"/>
+    </GetDevStatus>
+	
+	<!-- 是否打印凭条 -->
+    <SelectFunctionBase ID="ID_IsPrintReceipt" UI="UI_IsPrintReceiptAfterPayment" digitalVoiceKey="action_055" >
+      <Forward event="OnYes" targetID="ID_PrintReceipt"/>
+      <Forward event="OnNo" targetID="ID_InvokeCloseTransWorkflow"/>
+    </SelectFunctionBase>
+    <!-- 开始打印凭条 -->
+    <PrintReceipt ID="ID_PrintReceipt" UI="UI_Waiting"  digitalVoiceKey="||" formName="" showTime="2000">
+      <States>
+        <State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess_CommonPage"/>
+        <State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+      </States>
+      <!-- <Forward event="OnConfirm" targetID="ID_SendAppointmentMessage"/> -->
+	  <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+    </PrintReceipt>
+	
+	
+	<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+	
+	<End ID="9999" comment="End">
+	</End>
+    
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+  </DefaultForward>
+</Workflow>

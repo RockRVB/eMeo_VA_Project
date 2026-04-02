@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+  <Screen name="UI_CoinCashInShowResult" uri="Coin\CoinShowResult.html" cache="0">
+  </Screen>
+  
+   <Screen name="UI_CountingCoin" uri="Coin\CountingCoin.html" cache="0">
+  </Screen>
+  <Screen name="UI_NoteInserted4AutoShutter_Coin" uri="Coin\CountingCoin.html" cache="0">
+  </Screen>
+</Screens>
+
+
+
+
+

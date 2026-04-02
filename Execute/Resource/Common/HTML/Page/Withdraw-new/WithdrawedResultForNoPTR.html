@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=""></script>
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <style>
+        .list {
+            width: 60%;
+            margin: 0 auto;
+        }
+        .list li {
+            height: 100px;
+            padding: 0 20px;
+            line-height: 100px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid;
+        }
+        .list li:nth-child(2n+1) {
+            background: rgba(176,196,222, .3)
+        }
+        .ask-container p{
+            margin: 100px 0 30px;
+        }
+        .btn-group .g-button:first-child {
+            margin-right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <g-header :height='100'>
+            <img slot='left' class='logo' src="../../images/logo.png" alt="">
+            <g-button class="exit-btn" slot='right' id='exitBtn' ids='ids_Exit' transparent>Exit</g-button>
+        </g-header>
+        <g-main>
+            <h2 ids='ids_withdraw_complete' class='main-title' ids="ids_withdraw_complete">Withdraw complete</h2>
+            <ul class="list">
+                <li>
+                    <span ids="ids_withdraw_Amount">Withdraw amount</span>
+                    <span>
+                        ￥<em type='textblock' id='withdrawAmount' content='{Binding withdrawAmount mode=2}'>12</em>
+                    </span>
+                </li>
+                <li>
+                    <span>New balance</span>
+                    <span>
+                        ￥<em type='textblock' id='newBalance' content='{Binding newBalance mode=2}'>34</em>
+                    </span>
+                </li>
+            </ul>
+            <div class="ask-container">
+                <p></p>
+                <div class="btn-group">
+                    <g-button round tag='OnConfirm' id='OnConfirm' ids='ids_Btn_confirm'>Confirm</g-button>
+                </div>
+            </div>
+        </g-main>
+
+    </div>
+</body>
+</html>

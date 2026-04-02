@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../js/vue.min.js"></script>
+  <script src="../../js/grg-ui.min.js"></script>
+  <script src="../../js/vue-i18n.js"></script>
+  <script src="../../js/jquery-3.7.0.js"></script>	<script src="../../js/class/layer/layer.js"></script>	<script src="../../js/index.js"></script>
+  <script src="../../js/ibank.js"></script>
+  <link rel="stylesheet" href="../../css/grg-ui.min.css">
+  <link rel="stylesheet" href="../../css/animate.grg.css">
+  <link rel="stylesheet" href="../../css/ibank.css">
+  <style>
+    .select-currency-btn-box {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 100%;
+      margin-top: 100px;
+    }
+
+    .select-currency-btn {
+      position: relative;
+      width: 415px;
+      height: 186px;
+      border-radius: 24px;
+      font-size: 28px;
+      color: #333333;
+      background: #FFFFFF;
+      box-shadow: 0px 2px 20px 0px rgba(28, 42, 74, 0.23);
+      text-align: center;
+      margin-right: 60px;
+      padding: 0 30px;
+      box-sizing: border-box;
+
+    }
+
+    .select-currency-btn .currency-convert-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .select-currency-btn .currency-convert-box img {
+      display: inline-block;
+      width: 150px;
+    }
+
+    .select-currency-btn .currency-convert-box .arrows {
+      display: inline-block;
+      width: 30px;
+      margin-top: -30px;
+    }
+
+    .select-currency-btn:last-child {
+      margin-right: 0;
+    }
+
+    .select-currency-btn img {
+      margin-top: 24px;
+    }
+
+    .select-currency-btn .btn-text {
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      box-shadow: 0px 2px 20px 0px rgba(28, 42, 74, 0.23);
+    }
+
+    .btn:active {
+      box-shadow: 0px 2px 20px 0px rgba(28, 42, 74, 0.23);
+    }
+
+    .coming-soon-box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 166px;
+      height: 32px;
+      background: #F1F1F1;
+      border-radius: 24px 0px 10px 0px;
+      font-size: 20px;
+    }
+
+    .select-currency-btn-shade {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.5);
+      left: 0;
+      top: 0;
+    }
+    .grg-main-bg{
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="grg-header" class="grg-header">
+    </div>
+    <div class="grg-main-bg">
+      <div id="grg-main" class="grg-main animate_grg_fadeInRight">
+        <div v-if="showCountDown" class="count-down">
+          <div class="count-down-2">{{ countDownNum }}</div>
+        </div>
+        <div class="main-content-box">
+          <div class="title" ids="ids_Common_selectcurrency">Please select the currency</div>
+          <div class="select-currency-btn-box">
+            <div v-for="(item, index) in currencyData" :key="index"
+              :class="['select-currency-btn', item.disable ? '' : 'btn']"
+              @click="item.disable ? '' : event(item)">
+              <div class="currency-convert-box">
+                <div>
+                  <img :src="item.iconUrl" alt="">
+                  <div class="btn-text">{{ item.text }}</div>
+                </div>
+                <img class="arrows" src="../../images/img_2.4/convert-img.png" alt="">
+                <div>
+                  <img :src="item.iconUrlConvert" alt="">
+                  <div class="btn-text">{{ item.textConvert }}</div>
+                </div>
+              </div>
+              <div v-if="item.disable" class="coming-soon-box"  ids="ids_Common_Comingsoon">Coming soon</div>
+              <div v-if="item.disable" class="select-currency-btn-shade"></div>
+            </div>
+          </div>
+        </div>
+		
+        
+        <div class="button-box" style="margin-top: 100px; justify-content:center;position:relative;">
+          <div v-if="item.show" v-for="(item, index) in buttonBtnData" :class="['grg-btn', item.type]"
+            @click="buttonBtnEvent(item.eventName)" :key="index">
+            <img class="icon-img" :src="item.iconUrl" alt="">
+            <span :ids="item.ids">{{ item.text }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+  var app = new Base({
+    i18n: i18n,
+    data: {
+      buttonBtnData: [{
+          type: 'grg-cancel',
+          text: 'Cancel',
+          iconUrl: '../../images/img_2.4/icon-cancel.png',
+          eventName: 'cancel',
+		  ids:'ids_Btn_cancel',
+          show: true		  
+        },
+        {
+          type: 'grg-cancel',
+          text: 'Back',
+          iconUrl: '../../images/img_2.4/icon-back.png',
+          eventName: 'back',
+		  ids:'IDS_MediaReturnToConfirm',
+          show: true		  
+        },
+        {
+          type: 'grg-confirm',
+          text: 'Confirm',
+          iconUrl: '../../images/img_2.4/icon-ok.png',
+          eventName: 'confirm',
+		  ids:'ids_Btn_confirm',
+          show: false		  
+        },
+      ],
+      currencyData: [{
+          text: 'USD',
+          textConvert: 'CNY',
+          iconUrl: '../../images/img_2.4/usd-big-img.png',
+          iconUrlConvert: '../../images/img_2.4/cny-big-img.png',
+          eventName: 'CNY',
+          disable: false,
+        },
+        {
+          text: 'CNY',
+          textConvert: 'USD',
+          iconUrl: '../../images/img_2.4/cny-big-img.png',
+          iconUrlConvert: '../../images/img_2.4/usd-big-img.png',
+          eventName: 'USD',
+          disable: true,
+        }
+      ],
+      showCountDown: true,
+      countDownNum: 60,
+    },
+    methods: {
+      event(type) {
+        let _this = this;
+		console.log('getitem: '+type.text)
+		console.log('getitem: '+type.textConvert)
+        switch (type.eventName.toLowerCase()) {
+          case 'cny':
+            goto('OnConfirm');
+            break;
+          case 'usd':
+            goto('OnConfirm');
+            break;
+        }
+      },
+      buttonBtnEvent(type) {
+        let _this = this;
+        switch (type.toLowerCase()) {
+          case 'cancel':
+            goto('OnCancel');
+            break;
+          case 'back':
+            goto('OnBack');
+            break;
+        }
+      },
+    },
+    computed: {},
+    mounted: function () {
+      let _this = this;
+      exitEventFun(function () {
+        console.log('执行滑动完成' + '退出执行');
+      });
+    }
+  }).$mount('#app')
+</script>

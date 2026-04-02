@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<NDCMessageServiceConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BaseSetting>
+    <Item Name="NetWorkSession" Value="ATMP2" />
+	<Item Name="MsgEncode" Value="UTF8" />
+	<Item Name="ProtocolType" Value="NDC" />
+    <Item Name="LUNO" Value="981" />
+    <Item Name="ConfigurationID" Value="0000" />
+    <Item Name="MessagePath" Value="\TransactionFlow\XDC\NDC\MessageList.xml" />
+    <Item Name="LTSN" Value="0039" />
+    <Item Name="MsgCoodinationNumberIndex" Value="8" />
+	<Item Name="ForceFallbackFlag" Value="1" />
+	<Item Name="OpenComLogSensitiveFlag" Value="0" />
+	<Item Name="KeepConnect" Value="0" />
+	<Item Name="EMVFlag" Value="1" />
+	<Item Name="VerifyHostMac" Value="1" />
+	<Item Name="ReversalTrans" Value="00" />
+  </BaseSetting>
+  
+  <!-- Track2 Mask Preserve Setting -->
+  <Track2MaskSetting>
+	<Item Name="StartPosition" Value="14"/>
+    <Item Name="EndPosition" Value="17"/>
+  </Track2MaskSetting>
+  
+  <!-- CassetteID -->
+  <CassetteSetting>
+	<Item Name="CassetteType1" Value="00100"/>
+    <Item Name="CassetteType2" Value="0100A"/>
+    <Item Name="CassetteType3" Value="00050"/>
+    <Item Name="CassetteType4" Value="0050A"/>
+  </CassetteSetting>
+  <!-- Denomination Of each Type -->
+  <CassetteDenominationSetting>
+	<Item Name="CassetteType1" Value="100"/>
+    <Item Name="CassetteType2" Value="100"/>
+    <Item Name="CassetteType3" Value="50"/>
+    <Item Name="CassetteType4" Value="50"/>
+  </CassetteDenominationSetting>
+  <!-- Deposit 'w' Data -->
+  <MapOfNoteID>
+	<Item Name="60983" Value="01"/>
+	<Item Name="60982" Value="02"/>
+	<Item Name="60981" Value="03"/>
+	<Item Name="60980" Value="04"/>
+  </MapOfNoteID>
+  
+  <TransactionMapping>
+	<Item Name="ChequeDeposit" Value="TransactionRequestChequeDep"/>
+	<Item Name="Withdraw" Value="TransactionRequestWD"/>
+    <Item Name="CheckPin" Value="TransactionRequestAUT"/>
+    <Item Name="PinChange" Value="TransactionRequestChangePin"/>
+    <Item Name="SupplyCounter" Value="TransactionRequestUpdateSupplyCounter"/>
+	<Item Name="Interactive" Value="InteractiveResponse"/>
+	<Item Name="ReadyB" Value="ReadyB"/>
+	<Item Name="BalanceInquiry" Value="TransactionRequestBalance"/>
+	<Item Name="Transfer" Value="TransactionRequestTransfer"/>
+	<Item Name="Deposit" Value="TransactionRequestDeposit"/>
+  </TransactionMapping>
+  
+  <EMVTransID>
+	<Item Name="TransactionRequestWD" Value="01"/>
+	<Item Name="TransactionRequestAUT" Value="00"/>
+	<Item Name="TransactionRequestChangePin" Value="07"/>
+	<Item Name="TransactionRequestDeposit" Value="21"/>
+	<Item Name="TransactionRequestBalance" Value="31"/>
+	<Item Name="TransactionRequestTransfer" Value="40"/>
+  </EMVTransID>
+  
+  <EMVSetting>
+    <Item Name="Identifier" Value="SV077" />
+    <Item Name="TransReqFromIni" Value="DataObjForTransReq" />
+    <Item Name="ReadBReqFromIni" Value="DataObjForCompData" />
+	<Item Name="SearchTagType" Value="1" />
+	<Item Name="TagName" Value="9F03,9F02,9F34,9C,57,5A,5F2A,5F34,82,8C,95,9A,9F06,9F10,9F1A,9F26,9F27,9F33,9F36,9F37" />
+    <!--match with TagValue,separate with ','  for example "9F37,9F53" -->
+    <Item Name="TagValue" Value="000000000000,,,,,,,,,,,,,,,,,,," />
+    <!--match with TagName,separate with ','  for example "0000,0000" -->
+	<Item Name="ContactLessTag" Value="9F03,9F02,9F34,9C,57,5A,5F2A,5F34,82,8C,95,9A,9F06,9F10,9F1A,9F26,9F27,9F33,9F36,9F37" />
+	<!--Amount Decimal Count 0,1 or 2-->
+    <Item Name="AmountDecimalCount" Value="2" />
+    <!--PartialUpdateAID 0 : Full Update, delete all perivous resgistered AID     1: Partial Update, add new AID and modified ones-->
+    <Item Name="PartialUpdateAID" Value="0" />
+	<Item Name="DefaultAID" Value="A000000541" />
+  </EMVSetting>
+  
+</NDCMessageServiceConfig>

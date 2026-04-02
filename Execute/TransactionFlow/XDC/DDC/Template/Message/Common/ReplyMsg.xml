@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<Root>
+	<ReplyMsg>
+		<Item key="Unknown">
+			<Ready value="Solicited.Status.CmdReplyReady"/>
+			<Reject value="Reject_NotSupported"/>
+		</Item>
+		<!--  Terminal Commands message  -->
+		<Item key="TerminalCommand.ConfigurationInformation">
+			<Ready value="Solicited.Status.DeviceFault.ConfigurationInformation"/>
+		</Item>
+		<Item key="TerminalCommand.SupplyCountersRetrieve">
+			<Ready value="Solicited.Status.DeviceFault.SupplyCounts"/>
+		</Item>
+		<Item key="TerminalCommand.SupplyCountersRetrieveClear">
+			<Ready value="Solicited.Status.DeviceFault.SupplyCounts"/>
+		</Item>
+		<Item key="TerminalCommand.SupplyCountersRetrieveEn">
+			<Ready value="Solicited.Status.DeviceFault.SupplyCountsEn"/>
+		</Item>
+		<Item key="TerminalCommand.SupplyCountersRetrieveEnClearSet">
+			<Ready value="Solicited.Status.DeviceFault.SupplyCountsEn"/>
+		</Item>
+		<Item key="TerminalCommand.ConfigurationInformation.WincorCashInStatusInformation">
+			<Ready value="Solicited.Status.TerminalState.WinCorCashInStatusInformation"/>
+		</Item>
+		<Item key="TerminalCommand.SupplyCounters.WincorCashInSupplyCounters">
+			<Ready value="Solicited.Status.TerminalState.WincorCashInSupplyCounters"/>
+		</Item>
+		<!-- wincro rkl start-->
+		<Item key="TerminalCommand.WnRKL.Sign_Capabilities">
+			<Ready value="Solicited.Status.WnRKL.Sign_Capabilities"/>
+		</Item>
+		<Item key="TerminalCommand.WnRKL.Sign_EPP_ID">
+			<Ready value="Solicited.Status.WnRKL.Sign_EPP_ID"/>
+		</Item>
+		<Item key="TerminalCommand.WnRKL.Sign_EPP_PK">
+			<Ready value="Solicited.Status.Sign_EPP_PK"/>
+		</Item>
+		<Item key="TerminalCommand.WnRKL.EPP_KVV">
+			<Ready value="Solicited.Status.WnRKL_ReplyReady.EPP_KVV"/>
+		</Item>
+		<!--
+		<Item key="EPP_encryption_decryption_certificate">
+			<Ready value="Solicited.Status.EPP_PK"/>
+		</Item>
+		<Item key="EPP_signature_verification_certificate">
+			<Ready value="Solicited.Status.EPP_PK"/>
+		</Item>
+		<Item key="EPP_Start_key_exchange">
+			<Ready value="Solicited.Status.EPP_PK"/>
+		</Item>
+		-->
+		<Item key="DataCommand.CustomisationData.EncryptionKeyChange.WnRKL_Sign_LoadHSM_PK">
+			<Ready value="Solicited.Status.CmdReplyReady"/>
+		</Item>
+		<Item key="DataCommand.CustomisationData.EncryptionKeyChange.WnRKL_Sign_LoadMaster">
+			<Ready value="Solicited.Status.WnRKL_ReplyReady.EPP_MasterKVV"/>
+		</Item>
+		<Item key="DataCommand.CustomisationData.EncryptionKeyChange.WnRKL_Sign_LocalComm">
+			<Ready value="Solicited.Status.WnRKL_ReplyReady.EPP_LocalCommKVV"/>
+		</Item>
+		<!-- wincro rkl end-->
+		<Item key="TerminalCommandEn.DateTime.Get"/>
+		<Item key="DataCommand.EncryptionKeyChange.NewMaster_M">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewComm_M">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewComm_C">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewComm_BKey">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewMac_M">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewMac_C">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewMac_BKey">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewVMaster_VM">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.VisaKeyTabl">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewVMaster_M">
+			<MsgAttribute value="NoAutoRepaly,PutQueue"/>
+		</Item>
+		<Item key="TerminalCommand.InService">
+			<MsgAttribute value="NoAutoRepaly,PutQueue"/>
+		</Item>
+		<Item key="TerminalCommand.OutService">
+			<MsgAttribute value="NoAutoRepaly,PutQueue"/>
+		</Item>
+		<Item key="TerminalCommand.ConditionalOutService">
+			<MsgAttribute value="NoAutoRepaly,PutQueue"/>
+		</Item>
+		<!-- Customisation Data Commands -->
+		<Item key="DataCommand.CustomisationData.StateTable">
+			<MsgAttribute value="ContainMAC"/>
+		</Item>
+		<Item key="DataCommand.CustomisationData.FITData">
+			<MsgAttribute value="ContainMAC"/>
+		</Item>
+		<!--  Transaction Reply Command message  -->
+		<Item key="FunctionCommand4">
+			<NoAutoRepaly value="1"/>
+			<MsgAttribute value="NoAutoRepaly,RequestResponse,ContainMAC"/>
+		</Item>
+		<Item key="FunctionCommand7">
+			<NoAutoRepaly value="1"/>
+			<MsgAttribute value="NoAutoRepaly,RequestResponse,ContainMAC"/>
+		</Item>
+		<Item key="DataCommand.OpenAccountRelationship">
+			<NoAutoRepaly value="1"/>
+			<MsgAttribute value="NoAutoRepaly,RequestResponse"/>
+		</Item>
+		<Item key="TerminalCommand.RKL_InitiateKeyExchange">
+			<Ready value="Solicited.Status.CmdReplyReady"/>
+		</Item>
+		<Item key="TerminalCommand.RKL_EPPPublicKeySerialNumber">
+			<Ready value="Solicited.Status.RklData"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.RKL_DeletePublicKey">
+			<Ready value="Solicited.Status.CmdReplyReady"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.RKL_LoadPublicKey">
+			<Ready value="Solicited.Status.CmdReplyReady"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.RKL_LoadInitialKey">
+			<Ready value="Solicited.Status.CmdReplyReady"/>
+		</Item>
+	</ReplyMsg>
+	<MCON>
+		<Item Receive="1" key="FunctionCommand7" value="j"/>
+		<Item Receive="1" key="FunctionCommand4" value="j"/>
+		<Item Receive="0" key="TransactionRequest.Format0" value="[Options.F3.ExtendedRangeForMessageCoordinationNumber]"/>
+		<Item Receive="0" key="TransactionRequest.Format1" value="[Options.F3.ExtendedRangeForMessageCoordinationNumber]"/>
+		<Item Receive="0" key="TransactionRequest.InterTransResponse" value="[Options.F3.ExtendedRangeForMessageCoordinationNumber]"/>
+	</MCON>
+	<ResponseCtrl>
+		<Item key="TransactionRequest.Format0" value="DataCommand.OpenAccountRelationship"/>
+		<Item key="TransactionRequest.Format1" value="DataCommand.OpenAccountRelationship"/>
+		<Item key="TransactionRequest.InterTransResponse" value="DataCommand.OpenAccountRelationship"/>
+	</ResponseCtrl>
+	<RequestResponseMsgID>
+		<Item key="TransactionRequest.Format0"/>
+		<Item key="TransactionRequest.Format1"/>
+		<Item key="TransactionRequest.InterTransResponse"/>
+	</RequestResponseMsgID>
+	<ReceiveMessage>
+		<Group>
+			<Item key="DataCommand.ExtendedEncryptionKeyChange">
+				<Item FieldID="h" FieldName="EPPKeyValue"/>
+			</Item>
+			<Item key="DataCommand.EncryptionKeyChange">
+				<Item FieldID="h" FieldName="EPPKeyValue"/>
+			</Item>
+			<ReceiveMessage>
+				<Group>
+					<Item key="DataCommand.ExtendedEncryptionKeyChange">
+						<Item FieldID="h" FieldName="EPPKeyValue"/>
+					</Item>
+					<Item key="DataCommand.EncryptionKeyChange">
+						<Item FieldID="h" FieldName="EPPKeyValue"/>
+					</Item>
+					<Item key="TerminalCommand.ReceiveRKLInformation">
+						<Item FieldID="h" FieldName="EPPKeyValue"/>
+					</Item>
+				</Group>
+			</ReceiveMessage>
+		</Group>
+	</ReceiveMessage>
+</Root>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../../css/default.css" />
+<link rel="stylesheet" type="text/css" href="../../css/Button.css" />
+<SCRIPT type="text/javascript" src="../../js/util.js" ></SCRIPT>
+<style>
+.content__container1{
+  transform: translateY(-50%);
+  width: 100%;
+}
+</style>
+</head>
+<body>
+	<header>
+		<div id="logo">
+			welcome to use
+		</div>
+		<div id="showTime"></div>	
+	</header>
+	<div class="content only_title">
+		<div class="content__container1{">ACCOUNT: <!--fill begin-->19284559.25 <!--fill end--></div>
+		<BR>
+		<div class="content__container1{">NAME: <!--fill begin-->TESTUSER_28 <!--fill end--></div>
+		<BR>
+		<div class="content__container1{">AMOUNT: <!--fill begin-->100.00 <!--fill end--></div>
+	  </div>
+	  
+	  <div id="btn_container" >
+          <ul>
+            <li class="exit" >
+			<div id="F8" tag="F8" type="Button" >ENTER</div>
+			</li>
+            <li class="yes" >
+			<div id="F6" tag="F6" type="Button" >CANCEL</div>
+			</li>
+          </ul>
+        </div>
+<!--
+<script type="text/javascript">
+	
+	function IsLetter(dataText)
+	{
+		if(dataText.length <= 0)
+		{
+				return -1;
+		}
+		
+		for(var i=0; i<dataText.length; ++i)
+		{
+			var letterText = dataText.charAt(i);
+			if((letterText>='a'&&letterText<='z')||(letterText>='A'&&letterText<='Z'))
+			{
+				 return i;
+			}
+		}
+		
+		return -1;
+	}
+	
+	function ConvertLower(dataText)
+	{ 
+		var indexDataText = IsLetter(dataText);
+		if(indexDataText < 0)
+		{
+			 return dataText;
+		}
+		var subHead = dataText.substring(0, indexDataText+1);
+		var subText = dataText.substring(indexDataText+1);
+		subText = subText.toLocaleLowerCase();
+		dataText = subHead + subText
+		return dataText; 
+	}
+
+   	 var dataText1 ="YOUR BALANCE IS";
+	 var dataText2 ="BALANCE  ";
+	 var dataText3 =" ￥1,904,406.91";
+	 var dataText4 ="";
+	 var dataText5 ="";
+	 var dataText6 ="";
+	 var dataText7 ="";
+	 var dataText8 ="";
+	 
+	 dataText1 = ConvertLower(dataText1);
+	 dataText2 = ConvertLower(dataText2);
+	 dataText3 = ConvertLower(dataText3);
+	 dataText4 = ConvertLower(dataText4);
+	 dataText5 = ConvertLower(dataText5);
+	 dataText6 = ConvertLower(dataText6);
+	 dataText7 = ConvertLower(dataText7);
+	 dataText8 = ConvertLower(dataText8);
+
+
+
+	var reg = /(<br>){2,}/g;
+	var lis = document.getElementsByClassName('content__container');
+	lis[0].innerHTML = (dataText1 + "<br>" + dataText2 + "<br>" + dataText3 + "<br>" + dataText4).replace(reg,"<br>");
+	lis[0].innerHTML += (dataText5 + "<br>" + dataText6 + "<br>" + dataText7 + "<br>" + dataText8).replace(reg,"<br>");
+	//document.write(tableObject);
+
+</script>
+-->
+	  
+<!--		
+<body>
+<div class="backgroundDiv">
+  <div class="CounterDiv" style="display:none" id="Counter" type="countdown" content="{Binding Count}" visible="{Binding CouterVisible}"> </div>
+  <div class="mainDivOneLine" ids="IDS_InquiryResult"> </div>
+  <div class="inputDiv"> <span class="inputPromptForInquiryResult" ids="IDS_AccountBalance"></span>
+    <input class="inputTextLeftAlign" id="AccountBalance" type="text" size="19" content="{Binding AccountBalance}" />
+  </div>
+  <div class="inputDiv"> <span class="inputPromptForInquiryResult" ids="IDS_AvailableBalance"></span>
+    <input class="inputTextLeftAlign" id="AvailableBalance" type="text" size="19" content="{Binding AvailableBalance}" />
+  </div>
+  <div class="f4Div" id="F4" tag="OnF4" type="Button" visible="{Binding F4_Visible}"> <img src="../../../Image/CN/Btn_Bg1_right_up.png" id="bgimg" up="(btnbg1rightup)" down="(btnbg1rightdw)" /> <span class="buttonRight" ids="IDS_Withdrawal"></span> </div>
+  <div class="f5Div" id="F5" tag="OnF5" type="Button" visible="{Binding F5_Visible}"> <img src="../../../Image/CN/Btn_Bg1_left_up.png" id="bgimg" up="(btnbg1leftup)" down="(btnbg1leftdw)" /> <span class="buttonLeft" ids="IDS_Transfer"></span> </div>
+  <div class="f6Div" id="F6" tag="OnF6" type="Button" visible="{Binding F6_Visible}"> <img src="../../../Image/CN/Btn_Bg1_right_up.png" id="bgimg" up="(btnbg1rightup)" down="(btnbg1rightdw)" /> <span class="buttonRight" ids="IDS_Deposit"></span> </div>
+  <div class="f7Div" id="F7" tag="OnCancel" type="Button"> <img src="../../../Image/CN/Btn_Bg2_left_up.png" id="bgimg" up="(btnbg2leftup)" down="(btnbg2leftdw)" /> <span class="buttonLeft" ids="IDS_TakeCard"></span> </div>
+  <div class="f8Div" id="F8" tag="OnContinue" type="Button"> <img src="../../../Image/CN/Btn_Bg2_right_up.png" id="bgimg" up="(btnbg2rightup)" down="(btnbg2rightdw)" /> <span class="buttonRight" ids="IDS_Return"></span> </div>
+</div>
+-->
+</body>
+</html>

@@ -1,0 +1,1071 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- *******************************************************************************************************************
+
+	* Author:Leo.Feng
+	* Date  :2016-04-19
+	* NetworkName:是指在NetworkConfig.xml配置文件下的session,指定本服务使用的网络和端口。 
+    * LUNO:是指NDC消息的LUNO
+    * 类似{Binding OPC}的数据绑定，可以绑定多个值如：{Binding OPC|MAC|Amount|...}
+    * 类似{BaseXDC XYZ}的绑定，则是说XDC协议相关的配置，无需多做处理。只要XYZ配置正确即可。
+    * LifeCycle:(默认0)指定绑定的数据池，0：TransactionDataCache;1:CardHolderDataCache;2:TerminalDataCache;3:WorkflowDataCache
+	* 类似{DateTime yyMMddHHmmss}的数据绑定，绑定当前的系统时间。
+	*其中ReplyFields是指定当前消息上发后，接收回复消息数据，此时FieldName指定庶保存的域，FieldValue为内容保存到该数据池。
+	*其中ResponseChecks是用以判断当满足其中条件时，ResponseChecks则返回码是正确的。否则结果为失败或超时。Operator表示操作符，==，>=,<=,!=,match等
+********************************************************************************************************************** -->
+<NDCMessage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MessageList>
+	<Msg MessageID="MacFault" NextMessageID="">
+      <FieldList>
+        <Field FieldName="Message Class" FieldValue="2"  />
+        <Field FieldName="Message Sub-Class" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Logical Unit Number (LUNO)" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Status Descriptor" FieldValue="C"  />
+        <Field FieldName="FS" FieldValue=""  />	
+        <Field FieldName="Device Identification" FieldValue="1"  />
+      </FieldList>
+      <ReplyFields>
+      </ReplyFields>
+    </Msg>
+    <Msg MessageID="PowerFailued" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="1"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Device Identification" FieldValue="B"  />
+        <Field FieldName="Device Status" FieldValue="{Binding core_ConfigurationID}" LifeCycle="2" />
+      </FieldList>
+    </Msg>
+	<Msg MessageID="DeviceError" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="1"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Device Identification" FieldValue="{Binding core_DeviceID}" LifeCycle="2" />
+        <Field FieldName="Device Status" FieldValue="{Binding core_DeviceStatus}" LifeCycle="2" />
+		<Field FieldName="FS" FieldValue="FS"  />
+		<Field FieldName="Error Severity" FieldValue="{Binding core_ErrorSeverity}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+		<Field FieldName="Diagnostic Status (M-status plus M-data)" FieldValue="{Binding core_DiagnosticStatus}" LifeCycle="2" />
+		<Field FieldName="FS" FieldValue="FS"  />
+		<Field FieldName="Supplies Status" FieldValue="{Binding core_SuppliesStatus}" LifeCycle="2" />
+      </FieldList>
+    </Msg>
+	<Msg MessageID="DeviceStatus" NextMessageID="">
+      <FieldList>
+        <Field FieldName="Message Class" FieldValue="1"  />
+        <Field FieldName="Message Sub-Class" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Logical Unit Number (LUNO)" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Device Identification" FieldValue="E"  />
+        <Field FieldName="Transaction Status (T-code)" FieldValue="0"  />
+        <Field FieldName="Transaction Status (T-data)" FieldValue="00"  />
+        <Field FieldName="Transaction Status (T-data)" FieldValue="00"  />
+        <Field FieldName="Transaction Status (T-data)" FieldValue="00"  />
+        <Field FieldName="Transaction Status (T-data)" FieldValue="00"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Error Severity (complete device)" FieldValue="0"  />
+        <Field FieldName="Error Severity (cassette type 1)" FieldValue="{Binding core_ErrorSeverityCassType1}" LifeCycle="2" />
+        <Field FieldName="Error Severity (cassette type 2)" FieldValue="{Binding core_ErrorSeverityCassType2}" LifeCycle="2" />
+        <Field FieldName="Error Severity (cassette type 3)" FieldValue="{Binding core_ErrorSeverityCassType3}" LifeCycle="2" />
+        <Field FieldName="Error Severity (cassette type 4)" FieldValue="{Binding core_ErrorSeverityCassType4}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Diagnostic Status (M-status plus M-data)" FieldValue="10"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Supplies Status (reject bin)" FieldValue="1"  />
+        <Field FieldName="Supplies Status (cassette type 1)" FieldValue="{Binding core_SuppliesStatusCassType1}" LifeCycle="2" />
+        <Field FieldName="Supplies Status (cassette type 2)" FieldValue="{Binding core_SuppliesStatusCassType2}" LifeCycle="2" />
+        <Field FieldName="Supplies Status (cassette type 3)" FieldValue="{Binding core_SuppliesStatusCassType3}" LifeCycle="2" />
+        <Field FieldName="Supplies Status (cassette type 4)" FieldValue="{Binding core_SuppliesStatusCassType4}" LifeCycle="2" />
+      </FieldList>
+      <ReplyFields>
+      </ReplyFields>
+    </Msg>
+    <Msg MessageID="SupplyCounter" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="2"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Descriptro" FieldValue="F"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="MessageIdentifier" FieldValue="2"  />
+        <Field FieldName="TransactionSerialNumber" FieldValue="{Binding core_ConfigurationID}" LifeCycle="2" />
+        <Field FieldName="AccumulatedTransactionCount" FieldValue="0000000"  />
+        <Field FieldName="NotesInCassettleType1" FieldValue="{Binding core_NotesInCassType1}" LifeCycle="2" />
+        <Field FieldName="NotesInCassettleType2" FieldValue="{Binding core_NotesInCassType2}" LifeCycle="2"/>
+        <Field FieldName="NotesInCassettleType3" FieldValue="{Binding core_NotesInCassType3}" LifeCycle="2"/>
+        <Field FieldName="NotesInCassettleType4" FieldValue="{Binding core_NotesInCassType4}" LifeCycle="2"/>
+        <Field FieldName="NotesRejectInCassettleType1" FieldValue="{Binding core_NotesRejectedInCassType1}" LifeCycle="2" />
+        <Field FieldName="NotesRejectInCassettleType2" FieldValue="{Binding core_NotesRejectedInCassType2}" LifeCycle="2" />
+        <Field FieldName="NotesRejectInCassettleType3" FieldValue="{Binding core_NotesRejectedInCassType3}" LifeCycle="2" />
+        <Field FieldName="NotesRejectInCassettleType4" FieldValue="{Binding core_NotesRejectedInCassType4}" LifeCycle="2" />
+        <Field FieldName="NotesDispensedInCassettleType1" FieldValue="{Binding core_NotesDispensedInCassType1}" LifeCycle="2" />
+        <Field FieldName="NotesDispensedInCassettleType2" FieldValue="{Binding core_NotesDispensedInCassType2}" LifeCycle="2" />
+        <Field FieldName="NotesDispensedInCassettleType3" FieldValue="{Binding core_NotesDispensedInCassType3}" LifeCycle="2" />
+        <Field FieldName="NotesDispensedInCassettleType4" FieldValue="{Binding core_NotesDispensedInCassType4}" LifeCycle="2" />
+		<Field FieldName="LastTransactionNotesDispensedcassettetype1" FieldValue="00000"  />
+        <Field FieldName="LastTransactionNotesDispensedcassettetype2" FieldValue="00000"  />
+        <Field FieldName="LastTransactionNotesDispensedcassettetype3" FieldValue="00000"  />
+        <Field FieldName="LastTransactionNotesDispensedcassettetype4" FieldValue="00000"  />
+        <Field FieldName="CardCaptured" FieldValue="{Binding core_CardCaptureCount}" LifeCycle="2" />
+        <Field FieldName="EnvelopDeposit" FieldValue="00000"  />
+        <Field FieldName="CamerFilmRemaining" FieldValue="00000"  />
+        <Field FieldName="LastEnvelopSerialNumber" FieldValue="00000"  />
+        <Field FieldName="Reversal" FieldValue=""  />
+      </FieldList>
+    </Msg>
+    <Msg MessageID="ConfigurationInformation" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="2"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Descriptro" FieldValue="F"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="MessageIdentifier" FieldValue="1"  />
+        <Field FieldName="TransactionSerialNumber" FieldValue="0000" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Multi-FS-1" FieldValue="00000000000000000000000000000000000000"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Multi-FS-2" FieldValue="1F7F000901000680000000C7000001010200107F7F0000000000010000000000000000000000"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Multi-FS-3" FieldValue="00011011000000022220000000"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="SensorStatus" FieldValue="000000011111"  />
+      </FieldList>
+    </Msg>
+    <Msg MessageID="HardwareConfiguration" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="2"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Descriptro" FieldValue="F"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="MessageIdentifier" FieldValue="H"  />
+        <Field FieldName="ConfigurationIDIdentifier" FieldValue="A"  />
+        <Field FieldName="ConfigurationID" FieldValue="1128"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Product Class Identifier" FieldValue="B"  />
+        <Field FieldName="Product Class" FieldValue="0E"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Hardware configuration Indentifier" FieldValue="C"  />
+        <Field FieldName="Device Identifier" FieldValue="C"  />
+        <Field FieldName="Hardware Configuration" FieldValue="00"  />
+      </FieldList>
+    </Msg>
+    <Msg MessageID="SuppliesData" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="2"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Descriptro" FieldValue="F"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="MessageIdentifier" FieldValue="I"  />
+        <Field FieldName="Supplies status Identifier" FieldValue="A"  />
+        <Field FieldName="Device Identifier" FieldValue="D"  />
+        <Field FieldName="Supplies Status" FieldValue="1"  />
+        <Field FieldName="GS" FieldValue="GS"  />
+        <Field FieldName="Device Identifier" FieldValue="E"  />
+        <Field FieldName="Supplies Status" FieldValue="10300"  />
+      </FieldList>
+    </Msg>
+    <Msg MessageID="FitnessData" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="2"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Descriptro" FieldValue="F"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="MessageIdentifier" FieldValue="J"  />
+        <Field FieldName="Hardware Fitness Identifier" FieldValue="A"  />
+        <Field FieldName="Device Identifier" FieldValue="A"  />
+        <Field FieldName="Fitness" FieldValue="0"  />
+      </FieldList>
+    </Msg>
+    <Msg MessageID="TamperAndSensorStatus" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="2"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Descriptro" FieldValue="F"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="MessageIdentifier" FieldValue="K"  />
+        <Field FieldName="Sensor status Identifier" FieldValue="A"  />
+        <Field FieldName="Sensor Status" FieldValue="00000"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Tamper Indicator Identifier" FieldValue="B"  />
+        <Field FieldName="Tamper Status" FieldValue="00011111"  />
+      </FieldList>
+    </Msg>
+    <Msg MessageID="SoftwareAndReleaseNumber" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="2"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Descriptor" FieldValue="F"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="MessageIdentifier" FieldValue="L"  />
+        <Field FieldName="Release Number Identifier" FieldValue="A"  />
+        <Field FieldName="Release Number" FieldValue="000000"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Software ID Identifier" FieldValue="B"  />
+        <Field FieldName="NDC Software ID" FieldValue="G531-0283"  />
+      </FieldList>
+    </Msg>
+    <Msg MessageID="LocalConfigurationOption" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="2"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Descriptor" FieldValue="F"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="MessageIdentifier" FieldValue="M"  />
+        <Field FieldName="Local Options Identifier" FieldValue="A"  />
+        <Field FieldName="Local Options Digits" FieldValue=""  />
+      </FieldList>
+    </Msg>
+    <Msg MessageID="NotesDefinition" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="2"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Descriptor" FieldValue="F"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="MessageIdentifier" FieldValue="N"  />
+        <Field FieldName="Accepted Bills Identifier" FieldValue="A"  />
+        <Field FieldName="Bill type information" FieldValue=""  />
+      </FieldList>
+    </Msg>
+    <Msg MessageID="DateAndTime" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="2"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Descriptor" FieldValue="F"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="MessageIdentifier" FieldValue="5"  />
+        <Field FieldName="TOD Clock Status" FieldValue="0"  />
+        <Field FieldName="Terminal Date/Time" FieldValue="{DateTime yyMMddHHmmss}"  />
+      </FieldList>
+    </Msg>
+    <Msg MessageID="ConfigurationID" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="2"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Descriptor" FieldValue="F"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="MessageIdentifier" FieldValue="6"  />
+        <Field FieldName="Configuration ID" FieldValue="1128"  />
+      </FieldList>
+    </Msg>
+    <Msg MessageID="EppKeyKvv" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="2"  />
+        <Field FieldName="MessageSubClass" FieldValue="3"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Information Identifier" FieldValue="3"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="New Key Verification" FieldValue="{Binding core_NewKvv}"  />
+      </FieldList>
+    </Msg>
+    <Msg MessageID="SpecialCommandReject" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="2"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Descriptor" FieldValue="C"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Value" FieldValue="{Binding core_StatusValue}"  />
+        <Field FieldName="Status Qualifier" FieldValue="{Binding core_StatusQualifier}"  />
+      </FieldList>
+    </Msg>
+    <Msg MessageID="ReadyB" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="2"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Descriptro" FieldValue="B"  />
+      </FieldList>
+    </Msg>
+	<Msg MessageID="Ready9" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="2"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Descriptro" FieldValue="9"  />
+      </FieldList>
+    </Msg>
+	<Msg MessageID="EnterSupervisor" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="1"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Descriptro" FieldValue="P21"  />
+      </FieldList>
+    </Msg>
+	<Msg MessageID="ExitSupervisor" NextMessageID="">
+      <FieldList>
+        <Field FieldName="MessageClass" FieldValue="1"  />
+        <Field FieldName="MessageSubClass" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Luno" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="FS" FieldValue="FS"  />
+        <Field FieldName="Status Descriptro" FieldValue="P20"  />
+      </FieldList>
+    </Msg>
+	
+	<Msg MessageID="TransactionRequestAUT" NextMessageID="" MACing="1">
+      <FieldList>
+        <Field FieldName="Message Class" FieldValue="1"  />
+        <Field FieldName="Message Sub-Class" FieldValue="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Logical Unit Number (LUNO)" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Time Variant Number" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Top of Receipt Transaction Flag" FieldValue="1"  />
+        <Field FieldName="Message Co-Ordination Number" FieldValue="{BaseXDC Co-OrdinationNumber}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 2 Data" FieldValue="{Binding core_FormatTrack2}" LifeCycle="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 3 Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Operation Code Data" FieldValue="{Binding core_OperationCode}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Amount Entry Field" FieldValue="{Binding core_OriginalWithdrawalAmountXDC}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="PIN Buffer (Buffer A)" FieldValue="{Binding core_Pin}"  LifeCycle="1" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer B" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer C" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 1 Identifier" FieldValue=""  />
+        <Field FieldName="Track 1 Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Transaction Status Data Identifier" FieldValue="2"  />
+        <Field FieldName="Last Transaction Serial Number" FieldValue="{BaseXDC LTSN}"  />
+        <Field FieldName="Last Status Issued" FieldValue="1"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 1)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 2)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 3)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 4)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Coinage Amount Dispensed" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 1)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 2)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 3)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 4)" FieldValue=""  />
+        <Field FieldName="Last Cash Deposit Transaction Direction" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Refunded" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Rejected" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Encashed" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes to Escrow" FieldValue=""  />
+      </FieldList>
+	  <ResponseChecks>
+        <Field FieldName="d" FieldValue="033" Operator="=="  />
+	  </ResponseChecks>
+	  <ReplyFields>
+		<Field FieldName="h" FieldValue="core_EMVReceiveData"  />
+      </ReplyFields>
+	  <!-- Type = 1: Error Pin ;Type= 2:Invalid Card-->
+	  <ErrorTypeChecks>
+        <Field FieldName="d" FieldValue="138" Operator="=="  ErrorType="1" ErrorFieldName="g" ErrorFieldValue="core_ErrorScreenData"/>
+		<Field FieldName="d" FieldValue="115" Operator="=="  ErrorType="2" ErrorFieldName="g" ErrorFieldValue="core_ErrorScreenData"/>
+	  </ErrorTypeChecks>
+    </Msg>
+	
+	<Msg MessageID="TransactionRequestUpdateSupplyCounter1" NextMessageID="">
+      <FieldList>
+        <Field FieldName="Message Class" FieldValue="1"  />
+        <Field FieldName="Message Sub-Class" FieldValue="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Logical Unit Number (LUNO)" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Time Variant Number" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Top of Receipt Transaction Flag" FieldValue="1"  />
+        <Field FieldName="Message Co-Ordination Number" FieldValue="{BaseXDC Co-OrdinationNumber}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 2 Data" FieldValue="{Binding core_AdminTrackData}"  LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 3 Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Operation Code Data" FieldValue="{Binding core_OperationCode}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Amount Entry Field" FieldValue="{Binding core_NotesInCassType1ForUpdate}" LifeCycle="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="PIN Buffer (Buffer A)" FieldValue="{Binding core_AdminPin}"  LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer B" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer C" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 1 Identifier" FieldValue=""  />
+        <Field FieldName="Track 1 Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Transaction Status Data Identifier" FieldValue="2"  />
+        <Field FieldName="Last Transaction Serial Number" FieldValue="{BaseXDC LTSN}"  />
+        <Field FieldName="Last Status Issued" FieldValue="1"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 1)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 2)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 3)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 4)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Coinage Amount Dispensed" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 1)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 2)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 3)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 4)" FieldValue=""  />
+        <Field FieldName="Last Cash Deposit Transaction Direction" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Refunded" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Rejected" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Encashed" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes to Escrow" FieldValue=""  />
+      </FieldList>
+	  <ResponseChecks>
+        <Field FieldName="d" FieldValue="182" Operator="=="  />
+	  </ResponseChecks>
+    </Msg>
+	
+	<Msg MessageID="TransactionRequestUpdateSupplyCounter2" NextMessageID="">
+      <FieldList>
+        <Field FieldName="Message Class" FieldValue="1"  />
+        <Field FieldName="Message Sub-Class" FieldValue="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Logical Unit Number (LUNO)" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Time Variant Number" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Top of Receipt Transaction Flag" FieldValue="1"  />
+        <Field FieldName="Message Co-Ordination Number" FieldValue="{BaseXDC Co-OrdinationNumber}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 2 Data" FieldValue="{Binding core_AdminTrackData}"  LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 3 Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Operation Code Data" FieldValue="{Binding core_OperationCode}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Amount Entry Field" FieldValue="{Binding core_NotesInCassType2ForUpdate}" LifeCycle="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="PIN Buffer (Buffer A)" FieldValue="{Binding core_AdminPin}"  LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer B" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer C" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 1 Identifier" FieldValue=""  />
+        <Field FieldName="Track 1 Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Transaction Status Data Identifier" FieldValue="2"  />
+        <Field FieldName="Last Transaction Serial Number" FieldValue="{BaseXDC LTSN}"  />
+        <Field FieldName="Last Status Issued" FieldValue="1"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 1)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 2)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 3)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 4)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Coinage Amount Dispensed" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 1)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 2)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 3)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 4)" FieldValue=""  />
+        <Field FieldName="Last Cash Deposit Transaction Direction" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Refunded" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Rejected" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Encashed" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes to Escrow" FieldValue=""  />
+      </FieldList>
+	  <ResponseChecks>
+        <Field FieldName="d" FieldValue="182" Operator="=="  />
+	  </ResponseChecks>
+    </Msg>
+	
+	<Msg MessageID="TransactionRequestUpdateSupplyCounter3" NextMessageID="">
+      <FieldList>
+        <Field FieldName="Message Class" FieldValue="1"  />
+        <Field FieldName="Message Sub-Class" FieldValue="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Logical Unit Number (LUNO)" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Time Variant Number" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Top of Receipt Transaction Flag" FieldValue="1"  />
+        <Field FieldName="Message Co-Ordination Number" FieldValue="{BaseXDC Co-OrdinationNumber}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 2 Data" FieldValue="{Binding core_AdminTrackData}"  LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 3 Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Operation Code Data" FieldValue="{Binding core_OperationCode}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Amount Entry Field" FieldValue="{Binding core_NotesInCassType3ForUpdate}" LifeCycle="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="PIN Buffer (Buffer A)" FieldValue="{Binding core_AdminPin}"  LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer B" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer C" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 1 Identifier" FieldValue=""  />
+        <Field FieldName="Track 1 Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Transaction Status Data Identifier" FieldValue="2"  />
+        <Field FieldName="Last Transaction Serial Number" FieldValue="{BaseXDC LTSN}"  />
+        <Field FieldName="Last Status Issued" FieldValue="1"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 1)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 2)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 3)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 4)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Coinage Amount Dispensed" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 1)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 2)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 3)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 4)" FieldValue=""  />
+        <Field FieldName="Last Cash Deposit Transaction Direction" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Refunded" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Rejected" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Encashed" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes to Escrow" FieldValue=""  />
+      </FieldList>
+	  <ResponseChecks>
+        <Field FieldName="d" FieldValue="182" Operator="=="  />
+	  </ResponseChecks>
+    </Msg>
+	
+	<Msg MessageID="TransactionRequestUpdateSupplyCounter4" NextMessageID="">
+      <FieldList>
+        <Field FieldName="Message Class" FieldValue="1"  />
+        <Field FieldName="Message Sub-Class" FieldValue="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Logical Unit Number (LUNO)" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Time Variant Number" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Top of Receipt Transaction Flag" FieldValue="1"  />
+        <Field FieldName="Message Co-Ordination Number" FieldValue="{BaseXDC Co-OrdinationNumber}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 2 Data" FieldValue="{Binding core_AdminTrackData}"  LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 3 Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Operation Code Data" FieldValue="{Binding core_OperationCode}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Amount Entry Field" FieldValue="{Binding core_NotesInCassType4ForUpdate}" LifeCycle="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="PIN Buffer (Buffer A)" FieldValue="{Binding core_AdminPin}"  LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer B" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer C" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 1 Identifier" FieldValue=""  />
+        <Field FieldName="Track 1 Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Transaction Status Data Identifier" FieldValue="2"  />
+        <Field FieldName="Last Transaction Serial Number" FieldValue="{BaseXDC LTSN}"  />
+        <Field FieldName="Last Status Issued" FieldValue="1"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 1)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 2)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 3)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 4)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Coinage Amount Dispensed" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 1)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 2)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 3)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 4)" FieldValue=""  />
+        <Field FieldName="Last Cash Deposit Transaction Direction" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Refunded" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Rejected" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Encashed" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes to Escrow" FieldValue=""  />
+      </FieldList>
+	  <ResponseChecks>
+        <Field FieldName="d" FieldValue="182" Operator="=="  />
+	  </ResponseChecks>
+    </Msg>
+
+
+      <Msg MessageID="TransactionRequestWD" NextMessageID="">
+      <FieldList>
+        <Field FieldName="Message Class" FieldValue="1"  />
+        <Field FieldName="Message Sub-Class" FieldValue="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Logical Unit Number (LUNO)" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Time Variant Number" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Top of Receipt Transaction Flag" FieldValue="1"  />
+        <Field FieldName="Message Co-Ordination Number" FieldValue="{BaseXDC Co-OrdinationNumber}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 2 Data" FieldValue="{Binding core_FormatTrack2}" LifeCycle="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 3 Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Operation Code Data" FieldValue="{Binding core_OperationCode}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Amount Entry Field" FieldValue="{Binding core_OriginalWithdrawalAmountXDC}" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="PIN Buffer (Buffer A)" FieldValue="{Binding core_Pin}"  LifeCycle="1" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer B" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer C" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 1 Identifier" FieldValue=""  />
+        <Field FieldName="Track 1 Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Transaction Status Data Identifier" FieldValue="2"  />
+        <Field FieldName="Last Transaction Serial Number" FieldValue="{BaseXDC LTSN}"  />
+        <Field FieldName="Last Status Issued" FieldValue="1"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 1)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 2)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 3)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 4)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Coinage Amount Dispensed" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 1)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 2)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 3)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 4)" FieldValue=""  />
+        <Field FieldName="Last Cash Deposit Transaction Direction" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Refunded" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Rejected" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Encashed" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes to Escrow" FieldValue=""  />
+      </FieldList>
+      <ReplyFields>
+        <Field FieldName="e" FieldValue="core_NotesToDispense"  />
+        <Field FieldName="f" FieldValue="core_ScreenData"  />
+		<Field FieldName="g" FieldValue="core_RecepitPrintData"  />
+		<Field FieldName="h" FieldValue="core_EMVReceiveData"  />
+      </ReplyFields>
+	  <ResponseChecks>
+        <Field FieldName="a" FieldValue="40" Operator="=="  />
+        <!--Field FieldName="b" FieldValue="{Binding core_LUNO}" Operator="==" LifeCycle="2" /-->
+		<!--Field FieldName="d" FieldValue="528" Operator="=="  /-->
+		<Field FieldName="f" FieldValue="A|2|8|B|C|5" Operator="OPmatch"  />
+		<Field FieldName="g" FieldValue="000" Operator=">"  />
+	  </ResponseChecks>
+	  <ErrorTypeChecks>
+        <Field FieldName="d" FieldValue="528" Operator="!="  ErrorType="1" ErrorFieldName="g" ErrorFieldValue="core_ErrorScreenData"/>
+	  </ErrorTypeChecks>
+    </Msg>
+	
+	<Msg MessageID="ArpcFault" NextMessageID="">
+      <FieldList>
+        <Field FieldName="Message Class" FieldValue="2"  />
+        <Field FieldName="Message Sub-Class" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Logical Unit Number (LUNO)" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Status Descriptor" FieldValue="8"  />
+        <Field FieldName="FS" FieldValue=""  />	
+        <Field FieldName="Device Identification" FieldValue="c"  />
+        <Field FieldName="Device Status" FieldValue="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Error Severity (complete device)" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Diagnostic Status (M-status plus M-data)" FieldValue="{Binding Device.SmartCard.DiagnosticStatus}"  />
+        <Field FieldName="FS" FieldValue=""  />
+      </FieldList>
+      <ReplyFields>
+      </ReplyFields>
+    </Msg>
+
+    <Msg MessageID="ReversalMsg" NextMessageID="">
+      <FieldList>
+        <Field FieldName="Message Class" FieldValue="2"  />
+        <Field FieldName="Message Sub-Class" FieldValue="2"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Logical Unit Number (LUNO)" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Status Descriptor" FieldValue="8"  />
+        <Field FieldName="FS" FieldValue=""  />
+		
+        <Field FieldName="Device Identification" FieldValue="E"  />
+        <Field FieldName="Transaction Status (T-code)" FieldValue="4"  />
+        <Field FieldName="Transaction Status (T-data)" FieldValue="00"  />
+        <Field FieldName="Transaction Status (T-data)" FieldValue="00"  />
+        <Field FieldName="Transaction Status (T-data)" FieldValue="00"  />
+        <Field FieldName="Transaction Status (T-data)" FieldValue="00"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Error Severity (complete device)" FieldValue="0"  />
+        <Field FieldName="Error Severity (cassette type 1)" FieldValue="{Binding core_ErrorSeverityCassType1}" LifeCycle="2" />
+        <Field FieldName="Error Severity (cassette type 2)" FieldValue="{Binding core_ErrorSeverityCassType2}" LifeCycle="2" />
+        <Field FieldName="Error Severity (cassette type 3)" FieldValue="{Binding core_ErrorSeverityCassType3}" LifeCycle="2" />
+        <Field FieldName="Error Severity (cassette type 4)" FieldValue="{Binding core_ErrorSeverityCassType4}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Diagnostic Status (M-status plus M-data)" FieldValue="10"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Supplies Status (reject bin)" FieldValue="1"  />
+        <Field FieldName="Supplies Status (cassette type 1)" FieldValue="{Binding core_SuppliesStatusCassType1}" LifeCycle="2" />
+        <Field FieldName="Supplies Status (cassette type 2)" FieldValue="{Binding core_SuppliesStatusCassType2}" LifeCycle="2" />
+        <Field FieldName="Supplies Status (cassette type 3)" FieldValue="{Binding core_SuppliesStatusCassType3}" LifeCycle="2" />
+        <Field FieldName="Supplies Status (cassette type 4)" FieldValue="{Binding core_SuppliesStatusCassType4}" LifeCycle="2" />
+      </FieldList>
+      <ReplyFields>
+      </ReplyFields>
+    </Msg>
+
+    <Msg MessageID="InteractiveResponse" NextMessageID="">
+      <FieldList>
+        <Field FieldName="Message Class" FieldValue="1"  />
+        <Field FieldName="Message Sub-Class" FieldValue="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Logical Unit Number (LUNO)" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Time Variant Number" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Top of Receipt Transaction Flag" FieldValue="1"  />
+        <Field FieldName="Message Co-Ordination Number" FieldValue="{BaseXDC Co-OrdinationNumber}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 2 Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 3 Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Operation Code Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Amount Entry Field" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="PIN Buffer (Buffer A)" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer B" FieldValue="{Binding core_LastKeyPress}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer C" FieldValue=""  />
+      </FieldList>
+	  <ReplyFields>
+	    <Field FieldName="d" FieldValue="core_InterActiveKeys"  />
+        <Field FieldName="e" FieldValue="core_NotesToDispense"  />
+        <Field FieldName="f" FieldValue="core_ScreenData"  />
+		<Field FieldName="g" FieldValue="core_RecepitPrintData"  />
+		<Field FieldName="h" FieldValue="core_EMVReceiveData"  />
+      </ReplyFields>
+	  <ResponseChecks>
+        <Field FieldName="a" FieldValue="40" Operator="=="  />
+        <!--Field FieldName="b" FieldValue="{Binding core_LUNO}" Operator="==" LifeCycle="2" /-->
+		<!--Field FieldName="d" FieldValue="528" Operator="=="  /-->
+		<Field FieldName="e" FieldValue="0" Operator=">"  />
+	  </ResponseChecks>
+	  <ErrorTypeChecks>
+        <Field FieldName="d" FieldValue="528" Operator="!="  ErrorType="1" ErrorFieldName="g" ErrorFieldValue="core_ErrorScreenData"/>
+	  </ErrorTypeChecks>
+    </Msg>
+
+	<Msg MessageID="TransactionRequestChangePin" NextMessageID="">
+      <FieldList>
+        <Field FieldName="Message Class" FieldValue="1"  />
+        <Field FieldName="Message Sub-Class" FieldValue="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Logical Unit Number (LUNO)" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Time Variant Number" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Top of Receipt Transaction Flag" FieldValue="1"  />
+        <Field FieldName="Message Co-Ordination Number" FieldValue="{BaseXDC Co-OrdinationNumber}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 2 Data" FieldValue="{Binding core_FormatTrack2}" LifeCycle="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 3 Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Operation Code Data" FieldValue="{Binding core_OperationCode}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Amount Entry Field" FieldValue="{Binding core_OriginalWithdrawalAmountXDC}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="PIN Buffer (Buffer A)" FieldValue="{Binding core_Pin}"  LifeCycle="1" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer B" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer C" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 1 Identifier" FieldValue=""  />
+        <Field FieldName="Track 1 Data" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Transaction Status Data Identifier" FieldValue="2"  />
+        <Field FieldName="Last Transaction Serial Number" FieldValue="{BaseXDC LTSN}"  />
+        <Field FieldName="Last Status Issued" FieldValue="1"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 1)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 2)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 3)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 4)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Coinage Amount Dispensed" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 1)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 2)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 3)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 4)" FieldValue=""  />
+        <Field FieldName="Last Cash Deposit Transaction Direction" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Refunded" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Rejected" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Encashed" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes to Escrow" FieldValue=""  />
+		<Field FieldName="FS" FieldValue=""  />
+		<Field FieldName="Mask" FieldValue="U"  />
+		<Field FieldName="PIN Buffer (New)" FieldValue="{Binding core_NewPin}"  LifeCycle="0" />
+      </FieldList>
+	  <ResponseChecks>
+        <Field FieldName="d" FieldValue="124" Operator="=="  />
+	  </ResponseChecks>
+	  <ReplyFields>
+		<Field FieldName="h" FieldValue="core_EMVReceiveData"  />
+      </ReplyFields>
+	  <!-- Type = 1: Error Pin ;Type= 2:Invalid Card-->
+	  <ErrorTypeChecks>
+        <Field FieldName="d" FieldValue="138" Operator="=="  ErrorType="1" ErrorFieldName="g" ErrorFieldValue="core_ErrorScreenData"/>
+	  </ErrorTypeChecks>
+    </Msg>
+	
+	<Msg MessageID="TransactionRequestBalance" NextMessageID="">
+      <FieldList>
+        <Field FieldName="Message Class" FieldValue="1"  />
+        <Field FieldName="Message Sub-Class" FieldValue="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Logical Unit Number (LUNO)" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Time Variant Number" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Top of Receipt Transaction Flag" FieldValue="1"  />
+        <Field FieldName="Message Co-Ordination Number" FieldValue="{BaseXDC Co-OrdinationNumber}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 2 Data" FieldValue="{Binding core_FormatTrack2}" LifeCycle="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 3 Data" FieldValue=""  /> <!-- FieldValue="core_Track3"-->
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Operation Code Data" FieldValue="{Binding core_OperationCode}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Amount Entry Field" FieldValue="{Binding core_OriginalWithdrawalAmountXDC}" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="PIN Buffer (Buffer A)" FieldValue="{Binding core_Pin}"  LifeCycle="1" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer B" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer C" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 1 Identifier" FieldValue=""  />
+        <Field FieldName="Track 1 Data" FieldValue=""  />  <!-- FieldValue="core_Track1"-->
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Transaction Status Data Identifier" FieldValue="2"  />
+        <Field FieldName="Last Transaction Serial Number" FieldValue="{BaseXDC LTSN}"  />
+        <Field FieldName="Last Status Issued" FieldValue="1"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 1)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 2)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 3)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 4)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Coinage Amount Dispensed" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 1)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 2)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 3)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 4)" FieldValue=""  />
+        <Field FieldName="Last Cash Deposit Transaction Direction" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Refunded" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Rejected" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Encashed" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes to Escrow" FieldValue=""  />
+      </FieldList>
+      <ReplyFields>
+        <Field FieldName="f" FieldValue="core_ScreenData"  />
+		<Field FieldName="h" FieldValue="core_EMVReceiveData"  />
+      </ReplyFields>
+	  <ResponseChecks>
+        <Field FieldName="a" FieldValue="40" Operator="=="  />
+		<Field FieldName="f" FieldValue="3|5|9" Operator="OPmatch"  />
+	  </ResponseChecks>
+	  <ErrorTypeChecks>
+        <Field FieldName="d" FieldValue="074" Operator="!="  ErrorType="1" ErrorFieldName="g" ErrorFieldValue="core_ErrorScreenData"/>
+	  </ErrorTypeChecks>
+    </Msg>
+	
+	
+	<Msg MessageID="TransactionRequestDeposit" NextMessageID="">
+      <FieldList>
+        <Field FieldName="Message Class" FieldValue="1"  />
+        <Field FieldName="Message Sub-Class" FieldValue="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Logical Unit Number (LUNO)" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Time Variant Number" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Top of Receipt Transaction Flag" FieldValue="1"  />
+        <Field FieldName="Message Co-Ordination Number" FieldValue="{BaseXDC Co-OrdinationNumber}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 2 Data" FieldValue="{Binding core_FormatTrack2}" LifeCycle="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 3 Data" FieldValue=""  /> <!-- FieldValue="core_Track3"-->
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Operation Code Data" FieldValue="{Binding core_OperationCode}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Amount Entry Field" FieldValue="{Binding core_OriginalDepositAmount}" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="PIN Buffer (Buffer A)" FieldValue="{Binding core_Pin}"  LifeCycle="1" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer B" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer C" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 1 Identifier" FieldValue=""  />
+        <Field FieldName="Track 1 Data" FieldValue=""  />  <!-- FieldValue="core_Track1"-->
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Transaction Status Data Identifier" FieldValue="2"  />
+        <Field FieldName="Last Transaction Serial Number" FieldValue="{BaseXDC LTSN}"  />
+        <Field FieldName="Last Status Issued" FieldValue="1"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 1)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 2)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 3)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 4)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Coinage Amount Dispensed" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 1)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 2)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 3)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 4)" FieldValue=""  />
+        <Field FieldName="Last Cash Deposit Transaction Direction" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Refunded" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Rejected" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Encashed" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes to Escrow" FieldValue=""  />
+		<Field FieldName="FS" FieldValue=""  />
+		<Field FieldName="Device ID w" FieldValue="w"  />
+		<Field FieldName="representing a note type" FieldValue="{Binding core_NDC_Deposit_wData}"  />
+		
+      </FieldList>
+      <ReplyFields>
+        <Field FieldName="f" FieldValue="core_ScreenData"  />
+		<Field FieldName="h" FieldValue="core_EMVReceiveData"  />
+      </ReplyFields>
+	  <ResponseChecks>
+        <Field FieldName="a" FieldValue="40" Operator="=="  />
+		<Field FieldName="f" FieldValue="-" Operator="OPmatch"  />
+	  </ResponseChecks>
+	  <ErrorTypeChecks>
+        <Field FieldName="d" FieldValue="074" Operator="!="  ErrorType="1" ErrorFieldName="g" ErrorFieldValue="core_ErrorScreenData"/>
+	  </ErrorTypeChecks>
+    </Msg>
+	
+	<Msg MessageID="TransactionRequestTransfer" NextMessageID="">
+      <FieldList>
+        <Field FieldName="Message Class" FieldValue="1"  />
+        <Field FieldName="Message Sub-Class" FieldValue="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Logical Unit Number (LUNO)" FieldValue="{Binding core_LUNO}" LifeCycle="2" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Time Variant Number" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Top of Receipt Transaction Flag" FieldValue="1"  />
+        <Field FieldName="Message Co-Ordination Number" FieldValue="{BaseXDC Co-OrdinationNumber}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 2 Data" FieldValue="{Binding core_FormatTrack2}" LifeCycle="1"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 3 Data" FieldValue=""  /> <!-- FieldValue="core_Track3"-->
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Operation Code Data" FieldValue="{Binding core_OperationCode}"  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Amount Entry Field" FieldValue="{Binding core_OriginalWithdrawalAmountXDC}" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="PIN Buffer (Buffer A)" FieldValue="{Binding core_Pin}"  LifeCycle="1" />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer B" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="General Purpose Buffer C" FieldValue=""  />
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Track 1 Identifier" FieldValue=""  />
+        <Field FieldName="Track 1 Data" FieldValue=""  />  <!-- FieldValue="core_Track1"-->
+        <Field FieldName="FS" FieldValue=""  />
+        <Field FieldName="Transaction Status Data Identifier" FieldValue="2"  />
+        <Field FieldName="Last Transaction Serial Number" FieldValue="{BaseXDC LTSN}"  />
+        <Field FieldName="Last Status Issued" FieldValue="1"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 1)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 2)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 3)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Notes Dispensed (cassette type 4)" FieldValue="00000"  />
+        <Field FieldName="Last Transaction Coinage Amount Dispensed" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 1)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 2)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 3)" FieldValue=""  />
+        <Field FieldName="Last Transaction Coins Dispensed (hopper 4)" FieldValue=""  />
+        <Field FieldName="Last Cash Deposit Transaction Direction" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Refunded" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Rejected" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes Encashed" FieldValue=""  />
+        <Field FieldName="Total Number Of Notes to Escrow" FieldValue=""  />
+      </FieldList>
+      <ReplyFields>
+        <Field FieldName="f" FieldValue="core_ScreenData"  />
+		<Field FieldName="h" FieldValue="core_EMVReceiveData"  />
+      </ReplyFields>
+	  <ResponseChecks>
+        <Field FieldName="a" FieldValue="40" Operator="=="  />
+		<Field FieldName="f" FieldValue="3|5|9" Operator="OPmatch"  />
+	  </ResponseChecks>
+	  <ErrorTypeChecks>
+        <Field FieldName="d" FieldValue="074" Operator="!="  ErrorType="1" ErrorFieldName="g" ErrorFieldValue="core_ErrorScreenData"/>
+	  </ErrorTypeChecks>
+    </Msg>
+
+  </MessageList>
+</NDCMessage>

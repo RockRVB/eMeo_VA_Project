@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Application>
+    <Item key="IsEnable" value="0" valueType="string" />
+    <Item key="IsSentECB" value="1" valueType="string" />
+    <Item key="IsShowPage" value="1" valueType="string" />
+    <Item key="CashInContainL2L3" value="1" valueType="string" />
+    <Item key="IsRetractL2" value="1" valueType="string" />
+    <Item key="IsRetractL3" value="1" valueType="string" />
+    <Item key="SentL2Amount" value="0" valueType="string" />
+    <Item key="SentL3Amount" value="0" valueType="string" />
+    <Item key="IsPrintL2Info" value="0" valueType="string" />
+    <Item key="IsPrintL3Info" value="0" valueType="string" />
+    <Item key="L2StorageArea" value="" valueType="string" />
+    <Item key="L3StorageArea" value="" valueType="string" />
+    <Item key="L4StorageArea" value="" valueType="string" />
+    <Item key="IsPrintTotal" value="0" valueType="string" />
+    <Item key="RowNum" value="4" valueType="string" />
+    <Item key="ColNum" value="0" valueType="string" />
+  </Application>
+  <MapOfNoteId>
+    <Item key="01" currency="CNY" denomination="5" />
+    <Item key="02" currency="CNY" denomination="10" />
+    <Item key="03" currency="CNY" denomination="20" />
+    <Item key="04" currency="CNY" denomination="50" />
+    <Item key="05" currency="CNY" denomination="100" />
+  </MapOfNoteId>
+</Root>

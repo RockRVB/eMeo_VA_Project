@@ -1,0 +1,619 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<title></title>
+<script defer type="text/javascript" src="../../../js/ShowResource.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../css/ConfigEditing.css" />
+<script type="text/javascript">
+
+<!--控件命名规则为Input+类型+序号或Select+类型+序号-->
+
+function Actived(string)
+{
+var p0=string;
+var p1=document.getElementById('Input'+p0+1);
+var p2=document.getElementById('Input'+p0+6);
+var p4=document.getElementById('Select'+p0+1);
+var p5=document.getElementById(p0);
+
+if(p5.checked)
+{
+	p1.disabled=false;
+	p4.disabled=false;
+	p2.value="1";
+}
+else
+{
+	p1.disabled=true;
+	p4.disabled=true;
+	p2.value="0";
+}
+
+}
+
+<!--页面加载事件，判断是否置灰，判断enabled类型-->
+function Load()
+{
+ for(var i=1;i<=8;i++)
+ {
+ var p0=document.getElementById('Input'+i+4);
+ var p1=document.getElementById('Select'+i+1);
+ var p3=document.getElementById('Select'+i+2);
+ var p4=document.getElementById('Input'+i+1);
+ var p5=document.getElementById(i);
+ var p6=document.getElementById('Input'+i+6);
+ if(p0.value == "") continue;
+ var p50=document.getElementById('Hidden'+p0.value+2);
+ var p60=document.getElementById('Hidden'+p0.value+1);
+ var p70=document.getElementById('Hidden'+p0.value+3);
+ var p51=document.getElementById('Input'+i+2);
+ var p61=document.getElementById('Input'+i+3);
+ var p71=document.getElementById('Select'+i+2);
+ 
+ if(p4.value!="")
+ {
+   
+   if(p6.value=="1") 
+   {
+     p1.disabled=false;
+     p4.disabled=false;
+     p5.checked=true;
+   }
+   else
+   {
+     p5.checked=false;
+   }
+   if(p70.value=="1") 
+       p71.selectedIndex=0;
+   else
+       p71.selectedIndex=1;
+ }
+ else
+  {
+     p1.disabled=true;
+     p4.disabled=true;
+     p51.disabled=true;
+     p61.disabled=true;
+     p5.checked=false;
+    
+  }
+   if(p0.value!="")
+     {
+      p51.value=p50.value;
+      p61.value=p60.value;
+      p71.value=p70.value;
+      p1.selectedIndex=p0.value-1;
+      
+     }
+ }
+}
+
+function UpdateMapSetting()
+{
+  var p0;
+  var p1;
+  for(i=1;i<=8;i++)
+  {
+    p0=document.getElementById('Input'+i+4);
+    p1=document.getElementById('Select'+i+1);
+    p2=document.getElementById('Input'+i+1);
+    p3=document.getElementById('Input'+i+5);
+    p4=document.getElementById('Input'+i+6);
+    p5=document.getElementById(i);
+    if(p2.value=="")
+    {    
+     p4.value="0";
+    }
+    else if(p5.checked)
+    {
+     p0.value=p1.selectedIndex+1;
+     p4.value="1";
+    }
+    p3.value=p2.value;
+  }
+}
+
+function Bind(string2)
+{
+
+  var p5=document.getElementById('Hidden'+string2+2);
+  var p6=document.getElementById('Hidden'+string2+1);
+  var p7=document.getElementById('Hidden'+string2+3);
+  var p51=document.getElementById('Input'+string2+2);
+  var p61=document.getElementById('Input'+string2+3);
+  var p71=document.getElementById('Select'+string2+2);
+  
+  p51.value=p5.value;
+  p61.value=p6.value;
+  if(p7.value=="1")
+	   p71.selectedIndex=0;
+  else
+	   p71.selectedIndex=1;
+}
+
+
+function Update(string1)
+{
+ var p1=document.getElementById('Input'+string1+4);
+ var p2=document.getElementById('Select'+string1+1);
+ var p3=document.getElementById('Input'+string1+5);
+ var p4=document.getElementById('Input'+string1+1);
+ 
+ p1.value=p2.selectedIndex+1;
+ p3.value=p4.value;
+
+  var p5=document.getElementById('Hidden'+p1.value+2);
+  var p6=document.getElementById('Hidden'+p1.value+1);
+  var p7=document.getElementById('Hidden'+p1.value+3);
+  var p51=document.getElementById('Input'+string1+2);
+  var p61=document.getElementById('Input'+string1+3);
+  var p71=document.getElementById('Select'+string1+2);
+  
+  var p0=document.getElementById('Input'+string1+6);
+  
+  p51.value=p5.value;
+  p61.value=p6.value;
+  if(p7.value=="1")
+	   {p71.selectedIndex=0;}
+  else
+	   {p71.selectedIndex=1;}
+   
+   p0.value=p7.value;
+}
+
+</script>
+</head>
+<body onload="Load()">
+<div id="Div5">	
+	<form method="post">
+	<fieldset name="Group2">
+		<legend class="FontSize">Current cassette setting</legend>
+		<br>
+		<table id="Table1">				
+			<tr>
+				
+				<td >
+					Cassette ID
+				</td>
+				<td >
+					Denomination
+				</td>
+				<td>
+					Currency
+				</td>
+				<td>
+					Type
+				</td>
+				<td>
+					Enabled
+				</td>
+				<td>
+					Selected
+				</td>	
+			</tr>
+	<!--钱箱1-->
+			<tr>
+				<td>
+					<input class="TableInput3" id="Input11" type="Text" content="{Binding cassetteID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='1'] mode=2}" disabled="false"/>
+				</td>
+				<td>
+				    <input class="TableInput3" id="Input12" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='1']  mode=2}" disabled="false"/>
+				</td>
+				<td>
+				    <input class="TableInput3" id="Input13" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='1']  mode=2}" disabled="false"/>
+				</td>
+			
+				<td>
+				   <input id="Input14" type="Text" style="display:none" content="{Binding denoTypeID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='1'] mode=2}" />
+				   <input id="Input15" type="Text" style="display:none" content="{Binding cassetteID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='1'] mode=2}" />
+				   <input id="Input16" type="Text" style="display:none" content="{Binding tag file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='1'] mode=2}" />
+				   <select id="Select11" type="select" disabled="false" onchange="Update(1)">
+				   <option>A</option>
+				   <option>B</option>
+				   <option>C</option>
+				   <option>D</option>
+				   <option>E</option>
+				   <option>F</option>
+				   <option>G</option>
+				   <option>H</option>
+				   </select> 
+				</td>
+				<td>
+				   <select id="Select12" type="select" disabled="false" selectValue="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='1'] mode=2}">
+						<option value="1">Yes</option>
+						<option value="0">No</option>
+				   </select>
+				</td>
+				<td >
+				   <input class="TableInput4" type="checkbox" id="1"  onclick="Actived(1)">
+				</td>
+			</tr>
+	<!--钱箱2-->		
+			<tr>
+				<td>
+					<input class="TableInput3" id="Input21" type="Text" content="{Binding cassetteID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='2'] mode=2}" disabled="false"/>
+				</td>
+				<td>
+				    <input class="TableInput3" id="Input22" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='2']  mode=2}" disabled="false"/>
+				</td>
+				<td>
+				    <input class="TableInput3" id="Input23" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='2']  mode=2}" disabled="false"/>
+				</td>
+			
+				<td>
+				 <input id="Input24" type="Text" style="display:none" content="{Binding denoTypeID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='2'] mode=2}" />
+				 <input id="Input25" type="Text" style="display:none" content="{Binding cassetteID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='2'] mode=2}" />
+				 <input id="Input26" type="Text" style="display:none" content="{Binding tag file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='2'] mode=2}" />
+				<select id="Select21" type="select" disabled="false" onchange="Update(2)">
+				   <option>A</option>
+				   <option>B</option>
+				   <option>C</option>
+				   <option>D</option>
+				   <option>E</option>
+				   <option>F</option>
+				   <option>G</option>
+				   <option>H</option>
+				</select>
+				</td>
+				<td>
+				    <select id="Select22" type="select" disabled="false" selectValue="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='2'] mode=2}">
+						<option value="1">Yes</option>
+						<option value="0">No</option>
+				   </select>
+				</td>
+				<td >
+				   <input class="TableInput4" type="checkbox" id="2"  onclick="Actived(2)">
+				</td>
+			</tr>
+	<!--钱箱3-->		
+			<tr>
+				<td>
+					<input class="TableInput3" id="Input31" type="Text" content="{Binding cassetteID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='3'] mode=2}" disabled="false"/>
+				</td>
+				<td>
+				    <input class="TableInput3" id="Input32" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='3']  mode=2}" disabled="false"/>
+				</td>
+				<td>
+				    <input class="TableInput3" id="Input33" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='3']  mode=2}" disabled="false"/>
+				</td>
+			
+				<td>
+				 <input id="Input34" type="Text" style="display:none" content="{Binding denoTypeID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='3'] mode=2}" />
+				 <input id="Input35" type="Text" style="display:none" content="{Binding cassetteID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='3'] mode=2}" />
+				 <input id="Input36" type="Text" style="display:none" content="{Binding tag file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='3'] mode=2}" />
+				<select id="Select31" type="select" disabled="false" onchange="Update(3)">
+				   <option>A</option>
+				   <option>B</option>
+				   <option>C</option>
+				   <option>D</option>
+				   <option>E</option>
+				   <option>F</option>
+				   <option>G</option>
+				   <option>H</option>
+				</select>
+				</td>
+				<td>
+				    <select id="Select32" type="select" disabled="false" selectValue="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='3'] mode=2}">
+						<option value="1">Yes</option>
+						<option value="0">No</option>
+				   </select>
+				</td>
+				<td >
+				   <input class="TableInput4" type="checkbox" id="3"  onclick="Actived(3)">
+				</td>
+			</tr>
+	<!--钱箱4-->		
+			<tr>
+				<td>
+					<input class="TableInput3" id="Input41" type="Text" content="{Binding cassetteID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='4'] mode=2}" disabled="false"/>
+				</td>
+				<td>
+				    <input class="TableInput3" id="Input42" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='4']  mode=2}" disabled="false"/>
+				</td>
+				<td>
+				    <input class="TableInput3" id="Input43" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='4']  mode=2}" disabled="false"/>
+				</td>
+			
+				<td>
+				 <input id="Input44" type="Text" style="display:none" content="{Binding denoTypeID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='4'] mode=2}" />
+				 <input id="Input45" type="Text" style="display:none" content="{Binding cassetteID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='4'] mode=2}" />
+				 <input id="Input46" type="Text" style="display:none" content="{Binding tag file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='4'] mode=2}" />
+				<select id="Select41" type="select" disabled="false" onchange="Update(4)">
+				   <option>A</option>
+				   <option>B</option>
+				   <option>C</option>
+				   <option>D</option>
+				   <option>E</option>
+				   <option>F</option>
+				   <option>G</option>
+				   <option>H</option>
+				</select>
+				</td>
+				<td>
+				   <select id="Select42" type="select" disabled="false" selectValue="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='4'] mode=2}">
+						<option value="1">Yes</option>
+						<option value="0">No</option>
+				   </select>
+				</td>
+				<td >
+				   <input class="TableInput4" type="checkbox" id="4"  onclick="Actived(4)">
+				</td>
+			</tr>
+			
+	<!--钱箱5-->		
+			<tr>
+				<td>
+					<input class="TableInput3" id="Input51" type="Text" content="{Binding cassetteID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='5'] mode=2}" disabled="false"/>
+				</td>
+				<td>
+				    <input class="TableInput3" id="Input52" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='5']  mode=2}" disabled="false"/>
+				</td>
+				<td>
+				    <input class="TableInput3" id="Input53" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='5']  mode=2}" disabled="false"/>
+				</td>
+			
+				<td>
+				 <input id="Input54" type="Text" style="display:none" content="{Binding denoTypeID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='5'] mode=2}" />
+				 <input id="Input55" type="Text" style="display:none" content="{Binding cassetteID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='5'] mode=2}" />
+				 <input id="Input56" type="Text" style="display:none" content="{Binding tag file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='5'] mode=2}" />
+				<select id="Select51" type="select" disabled="false" onchange="Update(5)">
+				   <option>A</option>
+				   <option>B</option>
+				   <option>C</option>
+				   <option>D</option>
+				   <option>E</option>
+				   <option>F</option>
+				   <option>G</option>
+				   <option>H</option>
+				</select>
+				</td>
+				<td>
+				  <select id="Select52" type="select" disabled="false" selectValue="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='5'] mode=2}">
+						<option value="1">Yes</option>
+						<option value="0">No</option>
+				  </select>
+				</td>
+				<td >
+				   <input class="TableInput4" type="checkbox" id="5"  onclick="Actived(5)" >
+				</td>
+			</tr>
+	<!--钱箱6-->		
+			<tr>
+				<td>
+					<input class="TableInput3" id="Input61" type="Text" content="{Binding cassetteID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='6'] mode=2}" disabled="false"/>
+				</td>
+				<td>
+				    <input class="TableInput3" id="Input62" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='6']  mode=2}" disabled="false"/>
+				</td>
+				<td>
+				    <input class="TableInput3" id="Input63" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='6']  mode=2}" disabled="false"/>
+				</td>
+			
+				<td>
+				 <input id="Input64" type="Text" style="display:none" content="{Binding denoTypeID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='6'] mode=2}" />
+				 <input id="Input65" type="Text" style="display:none" content="{Binding cassetteID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='6'] mode=2}" />
+				 <input id="Input66" type="Text" style="display:none" content="{Binding tag file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='6'] mode=2}" />
+				<select id="Select61" type="select" disabled="false" onchange="Update(6)">
+				   <option>A</option>
+				   <option>B</option>
+				   <option>C</option>
+				   <option>D</option>
+				   <option>E</option>
+				   <option>F</option>
+				   <option>G</option>
+				   <option>H</option>
+				</select>
+				</td>
+				<td>
+				   <select id="Select62" type="select" disabled="false" selectValue="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='6'] mode=2}">
+						<option value="1">Yes</option>
+						<option value="0">No</option>
+				   </select>
+				</td>
+				<td >
+				   <input class="TableInput4" type="checkbox" id="6"  onclick="Actived(6)" >
+				</td>
+			</tr>
+			
+    <!--钱箱7-->		
+			<tr>
+				<td>
+					<input class="TableInput3" id="Input71" type="Text" content="{Binding cassetteID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='7'] mode=2}" disabled="false"/>
+				</td>
+				<td>
+				    <input class="TableInput3" id="Input72" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='7']  mode=2}" disabled="false"/>
+				</td>
+				<td>
+				    <input class="TableInput3" id="Input73" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='7']  mode=2}" disabled="false"/>
+				</td>
+			
+				<td>
+				 <input id="Input74" type="Text" style="display:none" content="{Binding denoTypeID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='7'] mode=2}" />
+				 <input id="Input75" type="Text" style="display:none" content="{Binding cassetteID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='7'] mode=2}" />
+				 <input id="Input76" type="Text" style="display:none" content="{Binding tag file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='7'] mode=2}" />
+				<select id="Select71" type="select" disabled="false" onchange="Update(7)">
+				   <option>A</option>
+				   <option>B</option>
+				   <option>C</option>
+				   <option>D</option>
+				   <option>E</option>
+				   <option>F</option>
+				   <option>G</option>
+				   <option>H</option>
+				</select>
+				</td>
+				<td>
+				    <select id="Select72" type="select" disabled="false" selectValue="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='7'] mode=2}">
+						<option value="1">Yes</option>
+						<option value="0">No</option>
+				   </select>
+				</td>
+				<td >
+				   <input class="TableInput4" type="checkbox" id="7" onclick="Actived(7)" >
+				</td>
+			</tr>
+	<!--钱箱8-->		
+			<tr>
+				<td>
+					<input class="TableInput3" id="Input81" type="Text" content="{Binding cassetteID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='8'] mode=2}" disabled="false"/>
+				</td>
+				<td>
+				    <input class="TableInput3" id="Input82" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='8']  mode=2}" disabled="false"/>
+				</td>
+				<td>
+				    <input class="TableInput3" id="Input83" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='8']  mode=2}" disabled="false"/>
+				</td>
+			
+				<td>
+				 <input id="Input84" type="Text" style="display:none" content="{Binding denoTypeID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='8'] mode=2}" />
+				  <input id="Input85" type="Text" style="display:none" content="{Binding cassetteID file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='8'] mode=2}" />
+				  <input id="Input86" type="Text" style="display:none" content="{Binding tag file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/MapSetting/MapItem[@keyID='8'] mode=2}" />
+				<select id="Select81" type="select" disabled="false" onchange="Update(8)">
+				   <option>A</option>
+				   <option>B</option>
+				   <option>C</option>
+				   <option>D</option>
+				   <option>E</option>
+				   <option>F</option>
+				   <option>G</option>
+				   <option>H</option>
+				</select>
+				</td>
+				<td>
+				   <select id="Select82" type="select" disabled="false" selectValue="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/Cassette/CassetteItem[@keyID='8'] mode=2}">
+						<option value="1">Yes</option>
+						<option value="0">No</option>
+				   </select>
+				</td>
+				<td >
+				   <input class="TableInput4" type="checkbox" id="8" onclick="Actived(8)" >
+				</td>
+			</tr>
+		</table>
+	 </fieldset><BR>
+		
+	<input id="Submit1" type="submit" value="Cancel" tag="OnCancel" ><input id="Submit2" type="submit" value="Submit" tag="OnConfirm" onclick="UpdateMapSetting()"></form>
+	<!--隐藏域获取钱箱的类型及参数-->
+		<div style="display:none">
+		 <table  style="display:none">				
+			<tr>
+				<td>
+					<span>A</span>
+				</td>
+				<td>
+					<input id="Hidden11" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='1'] mode=2}" />
+				</td>
+				<td>
+				    <input  id="Hidden12" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='1'] mode=2}" />
+				</td>
+				<td>
+				    <input id="Hidden13" type="text" content="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='1'] mode=2}"/>	
+				</td>
+							
+			</tr>
+			<tr>
+				<td>
+					<span>B</span>
+				</td>
+				<td>
+				 <input id="Hidden21" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='2'] mode=2}" />
+				</td>
+				<td>
+				    <input  id="Hidden22" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='2'] mode=2}" />
+				</td>
+				<td>
+				 <input  id="Hidden23" type="Text" content="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='2'] mode=2}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>C</span>
+				</td>
+				<td>
+					 <input id="Hidden31" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='3'] mode=2}" />
+				</td>
+				<td>
+				    <input id="Hidden32" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='3'] mode=2}" />
+				</td>
+				<td>
+				   <input id="Hidden33" type="Text" content="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='3'] mode=2}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>D</span>
+				</td>
+				<td>
+					 <input id="Hidden41" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='4'] mode=2}" />
+				</td>
+				<td>
+				    <input id="Hidden42" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='4'] mode=2}"/>
+				</td>
+				<td>
+				    <input id="Hidden43" type="Text" content="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='4'] mode=2}"/>
+				</td>
+			</tr>
+			<tr id="Tr6">
+				<td>
+					<span>E</span>
+				</td>
+				<td>
+					 <input id="Hidden51" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='5'] mode=2}" />
+				</td>
+				<td>
+				    <input id="Hidden52" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='5'] mode=2}" />
+				</td>
+				<td>
+				    <input id="Hidden53" type="Text" content="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='5'] mode=2}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>F</span>
+				</td>
+				<td>
+					 <input id="Hidden61" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='6'] mode=2}" />
+				</td>
+				<td>
+				    <input  id="Hidden62" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='6'] mode=2}" />
+				</td>
+				<td>
+				 <input id="Hidden63" type="Text" content="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='6'] mode=2}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>G</span>
+				</td>
+				<td>
+					 <input  id="Hidden71" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='7'] mode=2}" />
+				</td>
+				<td>
+				    <input  id="Hidden72" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='7'] mode=2}" />
+				</td>
+				<td>
+				 <input id="Hidden73" type="Text" content="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='7'] mode=2}" />
+			    </td>
+			</tr>
+			
+			<tr>
+				<td>
+					<span>H</span>
+				</td>
+				<td>
+					 <input id="Hidden81" type="Text" content="{Binding currency file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='8'] mode=2}"/>
+				</td>
+				<td>
+				    <input id="Hidden82" type="Text" content="{Binding denomination file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='8'] mode=2}" />
+				</td>
+				<td>
+				    <input id="Hidden83" type="Text" content="{Binding enabled file=Config\XDC\MainConfig\CassetteSetting.xml xpath=/Root/DenominationType/DenoItem[@denoTypeID='8'] mode=2}" />
+				</td>
+			</tr>
+		</table>
+		<BR>
+</div>
+</div>
+</body> 
+</html>

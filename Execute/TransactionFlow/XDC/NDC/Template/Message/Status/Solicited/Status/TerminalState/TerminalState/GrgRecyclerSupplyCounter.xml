@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<GrgRecyclerSupplyCounter>
+		<!--  Send Supply Counters for GRG recycler
+		*  This solicited status message is sent to central terminal command message ( a command code of '5'). 
+		-->
+		<Item key="g" value="s" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<Item key="h" value="[GrgRecycler.GRGSupplyCounters.NumberOfCashInTransactions]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<Item key="i" value="[GrgRecycler.GRGSupplyCounters.NumberOfRetractOperations]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<Item key="j1" value="[GrgRecycler.GRGSupplyCounters.LoadNotesInCassettes.Type1]" size="1" restriction="Mandatory"/>
+		<Item key="j2" value="[GrgRecycler.GRGSupplyCounters.LoadNotesInCassettes.Type2]" size="1" restriction="Mandatory"/>
+		<Item key="j3" value="[GrgRecycler.GRGSupplyCounters.LoadNotesInCassettes.Type3]" size="1" restriction="Mandatory"/>
+		<Item key="j4" value="[GrgRecycler.GRGSupplyCounters.LoadNotesInCassettes.Type4]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<Item key="k1" value="[GrgRecycler.GRGSupplyCounters.RemainNotesInCassettes.Type1]" size="1" restriction="Mandatory"/>
+		<Item key="k2" value="[GrgRecycler.GRGSupplyCounters.RemainNotesInCassettes.Type2]" size="1" restriction="Mandatory"/>
+		<Item key="k3" value="[GrgRecycler.GRGSupplyCounters.RemainNotesInCassettes.Type3]" size="1" restriction="Mandatory"/>
+		<Item key="k4" value="[GrgRecycler.GRGSupplyCounters.RemainNotesInCassettes.Type4]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<Item key="l1" value="[GrgRecycler.GRGSupplyCounters.RejectNotesInCassettes.Type1]" size="1" restriction="Mandatory"/>
+		<Item key="l2" value="[GrgRecycler.GRGSupplyCounters.RejectNotesInCassettes.Type2]" size="1" restriction="Mandatory"/>
+		<Item key="l3" value="[GrgRecycler.GRGSupplyCounters.RejectNotesInCassettes.Type3]" size="1" restriction="Mandatory"/>
+		<Item key="l4" value="[GrgRecycler.GRGSupplyCounters.RejectNotesInCassettes.Type4]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<Item key="m1" value="[GrgRecycler.GRGSupplyCounters.DispensedNotesInCassettes.Type1]" size="1" restriction="Mandatory"/>
+		<Item key="m2" value="[GrgRecycler.GRGSupplyCounters.DispensedNotesInCassettes.Type2]" size="1" restriction="Mandatory"/>
+		<Item key="m3" value="[GrgRecycler.GRGSupplyCounters.DispensedNotesInCassettes.Type3]" size="1" restriction="Mandatory"/>
+		<Item key="m4" value="[GrgRecycler.GRGSupplyCounters.DispensedNotesInCassettes.Type4]" size="1" restriction="Mandatory"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<Item key="n1" value="[GrgRecycler.GRGSupplyCounters.DepositedNotesInCassettes.Type1]" size="1" restriction="Mandatory"/>
+		<Item key="n2" value="[GrgRecycler.GRGSupplyCounters.DepositedNotesInCassettes.Type2]" size="1" restriction="Mandatory"/>
+		<Item key="n3" value="[GrgRecycler.GRGSupplyCounters.DepositedNotesInCassettes.Type3]" size="1" restriction="Mandatory"/>
+		<Item key="n4" value="[GrgRecycler.GRGSupplyCounters.DepositedNotesInCassettes.Type4]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<Item key="o" value="[GrgRecycler.GRGSupplyCounters.NotesMixed.NumOfNotesId]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<Item key="p" value="[GrgRecycler.GRGSupplyCounters.NotesMixed.NotesIdAndCountNums]" size="1" restriction="Mandatory"/>
+	</GrgRecyclerSupplyCounter>
+</Root>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Msg>
+    <!--  Message Class and the message is Solicited message  -->
+    <Item key="b" value="2" size="1" restriction="Mandatory" />
+  </Msg>
+</Root>

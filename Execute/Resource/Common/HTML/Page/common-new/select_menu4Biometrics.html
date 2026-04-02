@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select item</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/vue-i18n.js"></script>
+    <script src="../../js/jquery-3.7.0.js"></script>
+	<script src="../../js/class/layer/layer.js"></script>
+	<script src="../../js/index.js"></script>
+    <script src="../../js/coreScript.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/animate.grg.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <style>
+        .main-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .main-custom-btn-box {
+            margin-top: 121px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 1470px;
+        }
+
+        .card-img-btn {
+            margin-top: 83px;
+            margin-bottom: 19px;
+            width: 160px;
+            height: 160px;
+        }
+
+        .card-text-btn {
+            height: 32px;
+            font-size: 32px;
+            font-weight: 400;
+            color: #333333;
+            line-height: 32px;
+            text-transform: uppercase;
+            font-family: "Alibaba Sans";
+            text-align: center;
+        }
+
+        .btn-position{
+            position: absolute;
+            bottom: 70px;
+        }
+
+        @media only screen and (width: 1280px) {
+            .grg-main .main-title{
+                margin-top: 40px;
+            }
+            .main-custom-btn-box {
+                margin-top: 54px;
+                width: 920px;
+            }
+            .main-custom-btn:first-child{
+                margin-bottom: 40px;
+            }
+            .main-custom-btn:first-child div {
+                margin-top: -8px;
+                letter-spacing: -1px;
+            }
+
+            .main-custom-btn:last-child div {
+                letter-spacing: -1px;
+            }
+
+            .main-custom-btn {
+                width: 276px;
+                height: 260px;
+            }
+
+            .card-img-btn {
+                margin-top: 24px;
+                margin-bottom: 15px;
+                width: 154px;
+                height: 154px;
+            }
+
+            .card-text-btn {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <div id="grg-header" class="grg-header">
+    </div>
+    <div id="grg-main" class="grg-main animate_grg_fadeInRight_other">
+       <!--  <div class="count-down">
+            <div class="count-down-2">60</div>
+        </div> -->
+        <div class="main-title"ids='ids_Common_selectproject'>Please select the item</div>
+        <div class="main-btn">
+            <div class="main-custom-btn-box">
+                <div class="main-custom-btn" @click='goto("OnCreateCustomerAccount")'>
+                    <img class="card-img-btn" src="../../images/img_2.4/customer_account@2x.png">
+                    <div class="card-text-btn" ids='ids_CreateCustomerAccount'>Create CustomerAccount</div>
+                </div>
+                <div class="main-custom-btn" @click='goto("OnFingerprint")'>
+                    <img class="card-img-btn" src="../../images/img_2.4/finger_print@2x.png">
+                    <div class="card-text-btn" ids='ids_finger_fingerprint'>Finger Print</div>
+                </div>
+                <div class="main-custom-btn" @click='goto("OnFingervein")'>
+                    <img class="card-img-btn" src="../../images/img_2.4/finger_vein@2x.png">
+                    <div class="card-text-btn" ids='ids_Common_fingerVein'>Finger Vein</div>
+                </div>
+                <div class="main-custom-btn" @click='goto("OnFace")'>
+                    <img class="card-img-btn" src="../../images/img_2.4/face_recognitio@2x.png">
+                    <div class="card-text-btn" ids='ids_Common_faceRecog'>Face Recognition</div>
+                </div>
+            </div>
+            <button class="btn-retry btn-position" id='OnBack' type='button' ids='ids_Btn_back' tag='OnBack'>
+                <img class="btn-img-ok" src="../../images/img_2.4/icon-back@2x.png">
+                Back
+            </button>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+    var app = new Base({
+        i18n: i18n,
+        data: {},
+        methods: {},
+        computed: {},
+        mounted: function () {
+        }
+    }).$mount('#app')
+</script>

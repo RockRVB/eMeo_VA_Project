@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Root>
+	<!--  PIN Block Format  -->
+	<PBFMT>
+		<!--  Diebold without co-ordincation number  -->
+		<Item key="0"		value="DieboldWithoutCN"/>
+		
+		<!--  Diebold with co-ordincation number. Not supported by Advanced NDC  -->
+		<Item key="1"		value="DieboldWithCN"/>
+		
+		<!--  ISO format 0  -->
+		<Item key="2"		value="ISOFormat0"/>
+		
+		<!--  ISO format 1. Not supported by Advanced NDC.  -->
+		<Item key="3"		value="ISOFormat1"/>
+		
+		<!--  ISO format 3.  -->
+		<Item key="4"		value="ISOFormat1"/>
+		
+		<!--  BANKSYS  -->
+		<Item key="5"		value="BankSys"/>				
+	</PBFMT>
+</Root>

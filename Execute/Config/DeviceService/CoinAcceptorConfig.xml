@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Definition of RetractArea:
+#define     WFS_CIM_POSNULL                       (0x0000)
+#define     WFS_CIM_POSINLEFT                     (0x0001)
+#define     WFS_CIM_POSINRIGHT                    (0x0002)
+#define     WFS_CIM_POSINCENTER                   (0x0004)
+#define     WFS_CIM_POSINTOP                      (0x0008)
+#define     WFS_CIM_POSINBOTTOM                   (0x0010)
+#define     WFS_CIM_POSINFRONT                    (0x0020)	32
+#define     WFS_CIM_POSINREAR                     (0x0040)
+
+#define     WFS_CIM_POSOUTLEFT                     (0x0080)
+#define     WFS_CIM_POSOUTRIGHT                    (0x0100)
+#define     WFS_CIM_POSOUTCENTER                   (0x0200)
+#define     WFS_CIM_POSOUTTOP                      (0x0400)
+#define     WFS_CIM_POSOUTBOTTOM                   (0x0800)
+#define     WFS_CIM_POSOUTFRONT                    (0x1000)	4096
+#define     WFS_CIM_POSOUTREAR                     (0x2000)
+
+for wincor cim
+Open_OutShutterPosition="4096" Open_InShutterPosition="32"     
+
+ServiceName               设备的服务名   
+RetractArea               没用到?     
+RetractAreaIndex          表示当指定回收到回收箱时，目的回收箱的编号，从1开始，最大不超过回收箱的数目。如果是0，表示由SP自己决定目的回收箱。
+CashInUseRecycleUnits     表示存钞时是否使用回收箱，默认0，支持0，1
+IsAddCash4Logic           NCR机器少数机型(如NCR6632)只支持逻辑加钞要配成1，其他配成0
+MixNumber                 没用到?
+Open_OutShutterPosition   打开外闸门所在的位置，默认0
+Close_OutShutterPositio   关闭外闸门所在的位置，默认0
+Open_InShutterPosition    打开内闸门所在的位置，默认0 
+Close_InShutterPosition   关闭内闸门所在的位置，默认0
+IsSuppP6                  是否支持P6，默认0,表示不支持
+ResetToOutputPosition     用来判断是否用8340机芯reset方式来reset，默认0表示不是，1表示是
+-->
+<CoinAcceptor ServiceName="Coin_CIM" RetractArea="RETRACT" RetractAreaIndex="1" IsAddCash4Logic="0" CashInUseRecycleUnits="0" MixNumber="2" Open_OutShutterPosition="0" Open_InShutterPosition="0" Close_OutShutterPosition="0" Close_InShutterPosition="0" IsSuppP6="0" ResetToOutputPosition="0"/>

@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- When expression="dictionary" didn't get the value,the "[xmlvariable]" would get keyword.nofind in "Condition Section",the "[xmlvariable]" would get default value in "Result Section"  -->
+<Root>
+	<Device>
+		<!--"Device Status"-->
+		<!--"设备的状态" -->
+		<Enable CashDispenser="1"/>
+		<Information>
+			<CashDispenser IntermediateStackerIsEmpty="True" OutPositionIsEmpty="True" DeviceState="ONLINE" MediaState="CUSTOP" LastErrorCode="" IsSuccess="True" IsFailure="False" Cancelled="False" UserState="10" TransportIsEmpty="True" Shutter="CLOSED" IntermediateStacker="EMPTY" OutPosition="EMPTY" Transport="OK"/>
+			<Cassette>
+      </Cassette>
+			<CassetteHope>
+      </CassetteHope>
+			<CassettePhysical>
+      </CassettePhysical>
+		</Information>
+		<Initiation>
+			<!--0:No Configuration-->
+			<!--0:没有配置  -->
+			<DenominationID Hope1="0" Hope2="0" Hope3="0" Hope4="0"/>
+		</Initiation>
+		<Capability>
+			<CashDispenser SupportStacker="True" SupportShutter="True" IsSuccess="True" IsFailure="False" Cancelled="False" UserState="10" MaxDispenseNotes="200"/>
+		</Capability>
+	</Device>
+	<Calculate>
+		<!--"Device Port Variate" Offering for outer useage, comes form the "Device Status" and "Calculation Function"-->
+		<!--提供给外部使用的"设备接口变量"，由"设备的状态"通过"计算公式"算得出。 -->
+		<Status work="0" MDS=":00:00:00">
+			<Fitness Handler="0" DispenserHandler="4"/>
+			<!--missing:0 ,OK:1,Low Empty:2,else 3-->
+			<SuppliesStatus RejectBin="1" CassetteType1="1" CassetteType2="3" CassetteType3="3" CassetteType4="3" RetractBin="1" RejectRetract="1"/>
+		</Status>
+		<Sensor Hope1="1" Hope2="1" Hope3="1" Hope4="1" RejectBin="1"/>
+		<DenominationID Hope1="0" Hope2="0" Hope3="0" Hope4="0"/>
+	</Calculate>
+	<AfterCalculate>
+		<!--For the 2nd Transform to "Device Port Variate"(when the "spare port variate" changes),below configuration for "Calculation Function"-->
+		<!--Item ID="Device Port Variate Xpath" default = "if nothing result shows ,it will assign this value"-->
+		<!--对"设备接口变量"进行第二次转换（有设"备接口变量"有变化时），以下配置为"计算公式。 -->
+		<!-- Item ID="设备接口变量Xpath" default="如果没有计算结果，就赋为此值。" -->
+		<Item ID="/Root/Calculate/Status/SuppliesStatus/@RejectRetract" default="0">
+			<Result value="[xmlvariable]">
+				<xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@RejectBin"/>
+				<Condition value="[xmlvariable]" operand="MISSING" operator="!=">
+					<xmlvariable value="/Root/Device/Information/Cassette/RejectBin/@Status"/>
+				</Condition>
+				<Condition value="[xmlvariable]" operand="MISSING" operator="!=">
+					<xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status"/>
+				</Condition>
+				<Condition value="[xmlvariable]" operand="[xmlvariable2]" operator="&gt;=">
+					<xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@RejectBin"/>
+					<xmlvariable2 value="/Root/Calculate/Status/SuppliesStatus/@RetractBin"/>
+				</Condition>
+			</Result>
+			<Result value="[xmlvariable]">
+				<xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@RetractBin"/>
+				<Condition value="[xmlvariable]" operand="MISSING" operator="!=">
+					<xmlvariable value="/Root/Device/Information/Cassette/RejectBin/@Status"/>
+				</Condition>
+				<Condition value="[xmlvariable]" operand="MISSING" operator="!=">
+					<xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status"/>
+				</Condition>
+			</Result>
+			<Result value="[xmlvariable]">
+				<xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@RejectBin"/>
+				<Condition value="[xmlvariable]" operand="MISSING" operator="!=">
+					<xmlvariable value="/Root/Device/Information/Cassette/RejectBin/@Status"/>
+				</Condition>
+			</Result>
+			<Result value="[xmlvariable]">
+				<xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@RetractBin"/>
+				<Condition value="[xmlvariable]" operand="MISSING" operator="!=">
+					<xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item ID="/Root/Calculate/Status/@MDS" default=":00:00:00">
+			<Result value=":38:00:0F">
+				<Condition value="[xmlvariable]" operand="4" operator="==">
+					<xmlvariable value="/Root/Calculate/Status/@fitness"/>
+				</Condition>
+			</Result>
+		</Item>
+	</AfterCalculate>
+	<Configuration>
+		<!--For the first time transform of "Device Port Variate",below configuration for "calculation function"-->
+		<!--Item source="if this value changed , it will calculate " ID=" device port variate Xpath" default = "if no results , it will assign this value" -->
+		<!--对"设备接口变量"进行第一次转换，以下配置为"计算公式"。 -->
+		<!--Item source="此位置的值变化时，进行计算" ID="设备接口变量Xpath" default="如果没有计算出结果，就赋为此值。" -->		
+		<Item source="/Root/Device/Information/CashDispenser" ID="/Root/Calculate/Status/Fitness/@DispenserHandler" default="0">
+			<Result value="4">
+				<Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+					<xmlvariable value="/Root/Device/Information/CashDispenser/@DeviceState" xmldoc="DataCashDispenser.xml"/>
+				</Condition>
+			</Result>
+			<Result value="4">
+				<Condition value="[xmlvariable]" operand="CUSTOP" operator="==">
+					<xmlvariable value="/Root/Device/Information/CashDispenser/@MediaState" xmldoc="DataCashDispenser.xml"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/Cassette/RejectBin" ID="/Root/Calculate/Status/SuppliesStatus/@RejectBin" default="4">
+			<Result value="1">
+				<Condition value="[xmlvariable]" operand="OK" operator="==">
+					<xmlvariable value="/Root/Device/Information/Cassette/RejectBin/@Status"/>
+				</Condition>
+			</Result>
+			<Result value="0">
+				<Condition value="[xmlvariable]" operand="MISSING" operator="match">
+					<xmlvariable value="/Root/Device/Information/Cassette/RejectBin/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/Cassette/RetractBin" ID="/Root/Calculate/Status/SuppliesStatus/@RetractBin" default="4">
+			<Result value="1">
+				<Condition value="[xmlvariable]" operand="OK" operator="==">
+					<xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status"/>
+				</Condition>
+			</Result>
+			<Result value="0">
+				<Condition value="[xmlvariable]" operand="MISSING" operator="match">
+					<xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/CassetteHope/Hope1" ID="/Root/Calculate/Status/SuppliesStatus/@CassetteType1" default="3">
+			<Result value="1">
+				<Condition value="[xmlvariable]" operand="OK|FULL|HIGH" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@Status"/>
+				</Condition>
+			</Result>
+			<Result value="2">
+				<Condition value="[xmlvariable]" operand="LOW|EMPTY" operator="==">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@Status"/>
+				</Condition>
+			</Result>
+			<Result value="0">
+				<Condition value="[xmlvariable]" operand="MISSING" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@Status"/>
+				</Condition>
+			</Result>
+			<Result value="3">
+				<Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/CassetteHope/Hope2" ID="/Root/Calculate/Status/SuppliesStatus/@CassetteType2" default="3">
+			<Result value="1">
+				<Condition value="[xmlvariable]" operand="OK|FULL|HIGH" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@Status"/>
+				</Condition>
+			</Result>
+			<Result value="2">
+				<Condition value="[xmlvariable]" operand="LOW|EMPTY" operator="==">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@Status"/>
+				</Condition>
+			</Result>
+			<Result value="0">
+				<Condition value="[xmlvariable]" operand="MISSING" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/CassetteHope/Hope3" ID="/Root/Calculate/Status/SuppliesStatus/@CassetteType3" default="3">
+			<Result value="1">
+				<Condition value="[xmlvariable]" operand="OK|FULL|HIGH" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@Status"/>
+				</Condition>
+			</Result>
+			<Result value="2">
+				<Condition value="[xmlvariable]" operand="LOW|EMPTY" operator="==">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@Status"/>
+				</Condition>
+			</Result>
+			<Result value="0">
+				<Condition value="[xmlvariable]" operand="MISSING" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/CassetteHope/Hope4" ID="/Root/Calculate/Status/SuppliesStatus/@CassetteType4" default="3">
+			<Result value="1">
+				<Condition value="[xmlvariable]" operand="OK|FULL|HIGH" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@Status"/>
+				</Condition>
+			</Result>
+			<Result value="2">
+				<Condition value="[xmlvariable]" operand="LOW|EMPTY" operator="==">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@Status"/>
+				</Condition>
+			</Result>
+			<Result value="0">
+				<Condition value="[xmlvariable]" operand="MISSING" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<!-- set cassette sensor status -->
+		<Item source="/Root/Device/Information/Cassette/RejectBin" ID="/Root/Calculate/Sensor/@RejectBin" default="1">
+			<Result value="0">
+				<Condition value="[xmlvariable]" operand="MISSING" operator="match">
+					<xmlvariable value="/Root/Device/Information/Cassette/RejectBin/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/CassetteHope/Hope1" ID="/Root/Calculate/Sensor/@Hope1" default="1">
+			<Result value="0">
+				<Condition value="[xmlvariable]" operand="MISSING" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/CassetteHope/Hope2" ID="/Root/Calculate/Sensor/@Hope2" default="1">
+			<Result value="0">
+				<Condition value="[xmlvariable]" operand="MISSING" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/CassetteHope/Hope3" ID="/Root/Calculate/Sensor/@Hope3" default="1">
+			<Result value="0">
+				<Condition value="[xmlvariable]" operand="MISSING" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/CassetteHope/Hope4" ID="/Root/Calculate/Sensor/@Hope4" default="1">
+			<Result value="0">
+				<Condition value="[xmlvariable]" operand="MISSING" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+	</Configuration>
+	<Signal>
+		<!--"Device port variate","Device Status" when they change, it will send the event-->
+		<!--"设备接口变量"，"设备的状态" 发生变化时，发送事件 -->
+		<Item value="/Root/Calculate/Status/Fitness/@Handler" DataEventID="103"/>
+		<Item value="/Root/Calculate/Status/Fitness/@CassetteType1" DataEventID="103"/>
+		<Item value="/Root/Calculate/Status/Fitness/@CassetteType2" DataEventID="103"/>
+		<Item value="/Root/Calculate/Status/Fitness/@CassetteType3" DataEventID="103"/>
+		<Item value="/Root/Calculate/Status/Fitness/@CassetteType4" DataEventID="103"/>
+		<Item value="/Root/Calculate/Status/SuppliesStatus/@RejectBin" DataEventID="103"/>
+		<Item value="/Root/Calculate/Status/SuppliesStatus/@CassetteType1" DataEventID="103"/>
+		<Item value="/Root/Calculate/Status/SuppliesStatus/@CassetteType2" DataEventID="103"/>
+		<Item value="/Root/Calculate/Status/SuppliesStatus/@CassetteType3" DataEventID="103"/>
+		<Item value="/Root/Calculate/Status/SuppliesStatus/@CassetteType4" DataEventID="103"/>
+		<Item value="/Root/Calculate/Sensor/@RejectBin" DataEventID="110"/>
+		<Item value="/Root/Calculate/Sensor/@Hope1" DataEventID="110"/>
+		<Item value="/Root/Calculate/Sensor/@Hope2" DataEventID="110"/>
+		<Item value="/Root/Calculate/Sensor/@Hope3" DataEventID="110"/>
+		<Item value="/Root/Calculate/Sensor/@Hope4" DataEventID="110"/>
+	</Signal>
+	<DataEvent>
+		<!--Signal: when any event happens,it will be sent.-->
+		<!--Signal 有事件发生，发送事件 -->
+		<!--Item ID="103" enable="1"/-->
+	</DataEvent>
+		<!--
+        "Calculation Function"Statement
+		<Item ID="Variate xpath" default="if nothing result got from the calculation，It will assign this value">
+			<Result value="calculation result">
+                 if" value operator operand" is true,then return result as 1, otherwise continue. 
+				<Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+					<xmlvariable value="/Root/Device/Information/CashDispenser/@DeviceState" xmldoc="DataCashDispenser.xml"/>
+				</Condition>
+			</Result>
+			<Result value="calculation result 2">
+				<Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+					<xmlvariable value="/Root/Device/Information/CashDispenser/@DeviceState" xmldoc="DataCashDispenser.xml"/>
+				</Condition>
+			</Result>
+            ......
+	-->
+	<!--
+        Condition of "Calculation Function"Statement
+				<Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+					<xmlvariable value="/Root/Device/Information/CashDispenser/@DeviceState" xmldoc="DataCashDispenser.xml"/>
+				</Condition>
+				1.the value of "value" and "operand" ：
+					a.Assign for [xmlvariable*] follow subnode as <xmlvariable* value="xpath"/>
+					(remark: * for any character)
+					return the value of Xpath
+					b.others
+					return the value itself about its string.
+                2.operator value  
+                a. "==":
+                    {
+                        return (value == operator);
+
+                    }
+
+                b. "!=":
+                    {
+                        return (value != operator);
+
+                    }
+
+                c. ">=":
+                    {
+                        return (int.Parse(value) >= int.Parse(operator));
+                    }
+
+                d. "<=":
+                    {
+                        return (int.Parse(value) <= int.Parse(operator));
+                    }
+
+                e. "match":
+                    {
+                        Regex r = new Regex(operator);  
+                        Match m = r.Match(value);  
+                        return m.Success;
+                    }
+                f. "!match":
+                    {
+                        Regex r = new Regex(operator);
+                        Match m = r.Match(value);
+                        return !m.Success;
+                    }
+
+                g. "&":
+					{
+						return value & operator
+					}          
+            
+	-->
+	<!--
+        "计算公式"说明
+		<Item ID="变量的xpath" default="如果没有计算出结果，就赋为此值">
+			<Result value="计算结果1">
+                 如果  value operator operand  为真则返计算结果1，否继续计算。
+				<Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+					<xmlvariable value="/Root/Device/Information/CashDispenser/@DeviceState" xmldoc="DataCashDispenser.xml"/>
+				</Condition>
+			</Result>
+			<Result value="计算结果2">
+				<Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+					<xmlvariable value="/Root/Device/Information/CashDispenser/@DeviceState" xmldoc="DataCashDispenser.xml"/>
+				</Condition>
+			</Result>
+            ......
+	-->
+	<!--
+        "计算公式"中Condition说明
+				<Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+					<xmlvariable value="/Root/Device/Information/CashDispenser/@DeviceState" xmldoc="DataCashDispenser.xml"/>
+				</Condition>
+				1.value 和 operand取值：
+					a.赋值为[xmlvariable*]后面有子节点<xmlvariable* value="xpath"/>
+					(注：* 任意个字符)
+					返回xpath所指的值
+					b.其它
+					返回本身字符串的值。
+                2.operator 取值  
+                a. "==":
+                    {
+                        return (value == operator);
+
+                    }
+
+                b. "!=":
+                    {
+                        return (value != operator);
+
+                    }
+
+                c. ">=":
+                    {
+                        return (int.Parse(value) >= int.Parse(operator));
+                    }
+
+                d. "<=":
+                    {
+                        return (int.Parse(value) <= int.Parse(operator));
+                    }
+
+                e. "match":
+                    {
+                        Regex r = new Regex(operator);  
+                        Match m = r.Match(value);  
+                        return m.Success;
+                    }
+                f. "!match":
+                    {
+                        Regex r = new Regex(operator);
+                        Match m = r.Match(value);
+                        return !m.Success;
+                    }
+
+                g. "&":
+					{
+						return value & operator
+					}          
+            
+	-->
+	
+</Root>

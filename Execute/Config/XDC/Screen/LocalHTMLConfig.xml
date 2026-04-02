@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  ****************************************************************************************************
+  
+	** Author: RayMond Lau (2013/09/23)
+	** Description: the current configuration file is mainly about the configuration information of the interface dynamic display variable data
+	**
+	** < ScreenValueMap > : screen data map, embedded in the fill begin node of the current screen
+	The key in the * * Item node: the screen number currently displayed;
+	** value: the TXT file that holds the variable data (save the data to be embedded);
+	** UpdateFromLocal: update the data from the local HTML folder, or read the TXT content (the file path) sent by the host.
+	** Regex: regular expressions, which are used to extract variable values from variable files (which correspond to fill begin and variable logic files in HTML, which can support multiple Regex)
+	**
+	** CimDataTemplate: deposit data template (display amount)
+	** CimDataColumnTemplate: the deposit data column display template (the interface is shown in the order of the template);Currency: Currency, Value: denomination, Amount: one denomination Amount
+	** TotalName: TOTAL amount (e.g. TOTAL: 2000 CNY)
+	** Author: RayMond Lau (2013/09/23)
+
+
+  ** Description：当前配置文件主要是保存界面动态显示变量数据的配置信息
+  ** 
+  ** <ScreenValueMap>：屏幕数据映射，嵌入到当前屏幕的 fill begin节点
+  ** Item节点中的key：当前显示的屏幕号；
+  **             value：保存变量数据的txt文件（保存要嵌入的数据）；
+  **			 UpdateFromLocal：更新数据是否来自本地HTML文件夹，否则读主机下发的txt内容(决定文件路径)
+  ** Regex：正则表达式，是用于从变量文件提取变量值（与HTML中的fill begin、变理文件内容对应，可支持多个Regex）
+  **
+  ** CimDataTemplate：存款数据模板（显示存入金额）
+  ** CimDataColumnTemplate：存款数据列显示模板（界面按模板列顺序显示）；Currency:币种，Value:面额,Amount:某一种面额总金额
+  ** TotalName:总金额（如  TOTAL:2000 CNY）
+  **
+  **
+  *****************************************************************************************************
+-->
+<Root>
+  <ScreenValueMap>
+    <!--Key - current Screen Number , value - Preserve Screen Number for reShow Data-->
+	<!-- key-当前显示的屏幕号, vaule-回显示数据所保存的屏幕号, value-->
+    <Item key="074" value="075" UpdateFromLocal="True">
+      <Regex Pattern="GI\s*(\d+\.\d+\s*)"/>	  
+    </Item>
+	<Item key="888" value="888" UpdateFromLocal="True">
+	  <Regex Pattern="CDACCOUNT:\s*(\d*)"/>
+      <Regex Pattern="EDNAME:\s*(\w*)"/>	  
+	  <Regex Pattern="GDAMOUNT:\s*(\d+\.\d*)"/>
+    </Item>
+    <Item key="312" value="200" UpdateFromLocal="False">
+      <Regex Pattern="J1(.+?\s)"/>
+      <Regex Pattern="M1+(.+)"/>
+    </Item>
+    <Item key="240" value="200" UpdateFromLocal="False">
+      <Regex Pattern="GD(.+?\s)"/>
+      <Regex Pattern="MD(.+)"/>
+    </Item>
+    <Item key="151" value="200" UpdateFromLocal="False">
+      <Regex Pattern="GD(.+?\s)"/>
+      <Regex Pattern="JD(.+                 )"/>
+      <Regex Pattern="MD(.+ )"/>
+    </Item>
+	<!--According to 0x0f Separator auto extract match Screen reshows data config:AutoGetFieldValue, true-Auto Extract Match ,False - Not Auto Extract Match -->
+	<!--binding reshow data to variate :UseVariableAttach ， true - Binding with variate , false - Not Binding with variate,the rule of variate :ShowText_Buffer1  ShowText_Buffer2  ShowText_Buffer3...-->
+    <!-- 根据0x0f分隔符自动提取匹配屏幕回显数据配置AutoGetFieldValue,true-自动提取匹配，false-不自动提取匹配-->
+    <!-- 通过变量绑定回显数UseVariableAttach,true-变量绑定 false-不以变量绑定, 变量名规则ShowText_Buffer1  ShowText_Buffer2  ShowText_Buffer3...-->
+    <Item key="162" value="200" UpdateFromLocal="False" AutoGetFieldValue="True" UseVariableAttach="True">
+    </Item>
+	<Item ID="CIM" key="909" value="9090" UpdateFromLocal="True">
+	</Item>
+  </ScreenValueMap>
+  
+  <CimDataTemplate>
+    <CimDataColumnTemplate>
+      <Currency></Currency>
+      <Value></Value>
+      <Number></Number>
+      <Amount></Amount>
+    </CimDataColumnTemplate>
+    <TotalName>TOTAL</TotalName>
+  </CimDataTemplate>
+</Root>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--  Send Date/Time Information. This solicited status messages is sent to response to a 
+		*	Send Date Time Terminal Command message  (a command code of '8'). 
+		-->
+  <SendDateTimeInfo>
+    <Item key="g1" value="5" size="1" restriction="Mandatory" />
+    <!--  TOD Clock Status. This field has the following values.
+		* 0 - Time is actual 
+		* 1 - Time is default (clock not loaded with actual time).
+		* 2 - TOD malfunction.
+		-->
+    <Item key="g2" value="[SolicitedStatus.TerminalState.TODClockStatus]" size="1" restriction="Mandatory" />
+    <!--  Terminal Date/Time. The actual date and time returned by the terminal clock in the following format.:
+		* YY 	= Year ('00'  - '99')
+		* MM 	= Month ("01" - '12')
+		* DD 	= Dayr ('01' - '31')
+		* HH 	= Hour ("00" - '23')
+		* MM 	= Year ('00'  - '59')
+		* SS 	= Second ("00" - '59')
+		* If 00 <= YY <= 89, the year is taken to be in the range 2000 <= YY <= 2089.
+		* If 00 <= YY <= 90, the year is taken to be in the range 1990 <= YY <= 1999.
+		-->
+    <Item key="g3" value="[SolicitedStatus.TerminalState.TerminalDateTime]" size="12" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]" />
+    <!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+    <Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]" />
+  </SendDateTimeInfo>
+</Root>

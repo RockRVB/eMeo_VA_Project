@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<Workflow name="FingerprintWorkFlow">
+  <Head type="GRGWorkflow" author="Alson" timeStamp="" comment="" />
+  <DataPool />
+  <Activities>
+    <Start ID="0" UI="" comment="Start">
+      <Forward event="OnConfirm" targetID="ID_FingerSelectFunction" />
+    </Start>
+	
+		<SelectFunction ID="ID_FingerSelectFunction" UI="UI_FingerSelectMenu" comment="cannot print receipt">
+			<Forward event="OnMatch" targetID="ID_FingerToMatch"/>
+			<Forward event="Onregister" targetID="ID_FingerToRegister"/>
+			<Forward event="OnDelete" targetID="ID_FingerToDelete"/>
+			<Forward event="OnDeleteAll" targetID="ID_FingerToDeleteAll"/>
+		</SelectFunction>
+		
+		<InvokeWorkflow ID="ID_FingerToMatch" name="FingerPrintMatchForFB" comment="FingerPrintMatch workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_FingerToRegister" name="FingerPrintRegisterForFB" comment="FingerPrintRegister workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<SetData ID="ID_FingerToDelete" comment="" saveBufferBool="{FingerPrintDeleteAllTemplate}" value="false">
+			<DefaultForward targetID="ID_FBLOGIN"/>
+		</SetData>
+		<SetData ID="ID_FingerToDeleteAll" comment="" saveBufferBool="{FingerPrintDeleteAllTemplate}" value="true">
+			<DefaultForward targetID="ID_FBLOGIN"/>
+		</SetData>	
+		<RequestTransViaRestful ID="ID_FBLOGIN" UI="UI_CommonProcessing" transType="FBLOGIN"  transFormat="json">
+		  <States>
+			<State name="PackFail" UI="UI_general_error"/>
+			<State name="ConnectFail" UI="UI_general_error"/>
+			<State name="SendFail" UI="UI_general_error"/>
+			<State name="ReceiveFail" UI="UI_general_error"/>
+			<State name="ReceiveTimeout" UI="UI_general_error"/>
+			<State name="NetworkFail" UI="UI_general_error"/>
+			<State name="UnpackFail" UI="UI_general_error"/>
+			<State name="HardwareError" UI="UI_general_error"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_FBLoginResult"/>
+		  <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+		</RequestTransViaRestful>
+		<FBLoginResult ID="ID_FBLoginResult" UI="" comment="" timeout="60000" >
+		  <Forward event="OnConfirm" targetID="ID_FingerInputCifToMatch" />
+		  <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+		</FBLoginResult>
+		<InputIdNumberFB ID="ID_FingerInputCifToMatch" UI="UI_InputFaceRegisterInfo" comment="cannot print receipt">
+			<Forward event="OnConfirm" targetID="ID_GetCustomerInfo"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InputIdNumberFB>
+		<RequestTransViaRestful ID="ID_GetCustomerInfo" UI="UI_CommonProcessing" transType="GetCustomerInfo"  transFormat="json">
+		  <States>
+			<State name="PackFail" UI="UI_general_error"/>
+			<State name="ConnectFail" UI="UI_general_error"/>
+			<State name="SendFail" UI="UI_general_error"/>
+			<State name="ReceiveFail" UI="UI_general_error"/>
+			<State name="ReceiveTimeout" UI="UI_general_error"/>
+			<State name="NetworkFail" UI="UI_general_error"/>
+			<State name="UnpackFail" UI="UI_general_error"/>
+			<State name="HardwareError" UI="UI_general_error"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_GetCustomerInfoResultFB"/>
+		  <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+		</RequestTransViaRestful>
+		<GetCustomerInfoResultFB ID="ID_GetCustomerInfoResultFB"  comment="" timeout="300000" >
+		  <Forward event="OnConfirm" targetID="ID_FingerprintScan" />
+		  <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+		</GetCustomerInfoResultFB>
+		<FingerprintCreateTemplateFB ID="ID_FingerprintScan" UI="UI_FingerEnroll" comment="">
+			<States>
+				<State name="FingerError" UI="UI_FingerShowError"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_GetTemplateId"/>
+			<Forward event="OnFail" targetID="ID_FingerShowError"/>
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+		</FingerprintCreateTemplateFB>
+		<RequestTransViaRestful ID="ID_GetTemplateId" UI="UI_CommonProcessing" transType="GetFingerprintTemplateId"  transFormat="json">
+		  <States>
+			<State name="PackFail" UI="UI_general_error"/>
+			<State name="ConnectFail" UI="UI_general_error"/>
+			<State name="SendFail" UI="UI_general_error"/>
+			<State name="ReceiveFail" UI="UI_general_error"/>
+			<State name="ReceiveTimeout" UI="UI_general_error"/>
+			<State name="NetworkFail" UI="UI_general_error"/>
+			<State name="UnpackFail" UI="UI_general_error"/>
+			<State name="HardwareError" UI="UI_general_error"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_CompareDeleteAllFlag"/>
+		  <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+		</RequestTransViaRestful>
+		<CompareData ID="ID_CompareDeleteAllFlag" comment="" compareBuffer="{FingerPrintDeleteAllTemplate}"> 
+		  <Forward event="OnEqualTrue" targetID="ID_DeleteAllRequest" />
+		  <DefaultForward targetID="ID_DeleteRequest" />
+		</CompareData>
+		<RequestTransViaRestful ID="ID_DeleteAllRequest" UI="UI_CommonProcessing" transType="DeleteAllFingerprint"  transFormat="json">
+		  <States>
+			<State name="PackFail" UI="UI_general_error"/>
+			<State name="ConnectFail" UI="UI_general_error"/>
+			<State name="SendFail" UI="UI_general_error"/>
+			<State name="ReceiveFail" UI="UI_general_error"/>
+			<State name="ReceiveTimeout" UI="UI_general_error"/>
+			<State name="NetworkFail" UI="UI_general_error"/>
+			<State name="UnpackFail" UI="UI_general_error"/>
+			<State name="HardwareError" UI="UI_general_error"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_DeleteResultFB"/>
+		  <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+		</RequestTransViaRestful>
+		<RequestTransViaRestful ID="ID_DeleteRequest" UI="UI_CommonProcessing" transType="DeleteFingerprint"  transFormat="json">
+		  <States>
+			<State name="PackFail" UI="UI_general_error"/>
+			<State name="ConnectFail" UI="UI_general_error"/>
+			<State name="SendFail" UI="UI_general_error"/>
+			<State name="ReceiveFail" UI="UI_general_error"/>
+			<State name="ReceiveTimeout" UI="UI_general_error"/>
+			<State name="NetworkFail" UI="UI_general_error"/>
+			<State name="UnpackFail" UI="UI_general_error"/>
+			<State name="HardwareError" UI="UI_general_error"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_DeleteResultFB"/>
+		  <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+		</RequestTransViaRestful>
+		<FingerprintDeleteResultFB ID="ID_DeleteResultFB"  comment="" timeout="300000" >
+		  <Forward event="OnConfirm" targetID="ID_FingerDeleteSuccess" />
+		  <Forward event="OnFail" targetID="ID_FingerDeleteFail" />
+		</FingerprintDeleteResultFB>
+		<Prompt ID="ID_FingerDeleteSuccess" UI="UI_FingerShowSuccess" comment="" timeout="3000">
+          <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+		  <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+        </Prompt>
+		<Prompt ID="ID_FingerDeleteFail" UI="UI_FingerShowError" comment="" timeout="3000">
+          <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+		  <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+        </Prompt>
+	
+    <End ID="9999" UI="" comment="End" />
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" UI="" comment="Invoke close trans workflow" name="CloseTrans">
+      <Forward event="OnConfirm" targetID="9999" />
+    </InvokeWorkflow>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnHardwareError" targetID="ID_DevError" />
+    <Forward event="OnFail" targetID="ID_EventError" />
+    <Forward event="OnTimeout" targetID="ID_GoTimeOut" />
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+  </DefaultForward>
+</Workflow>

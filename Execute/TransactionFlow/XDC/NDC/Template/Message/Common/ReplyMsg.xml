@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<RejectMsgCode>
+		<Item key="ID" value="Reject_NotSupported"/>
+	</RejectMsgCode>
+	<ReplyMsg>
+		<Item key="Unknown">
+			<Ready value="Solicited.Status.CmdReplyReady"/>
+			<Reject value="Reject_NotSupported"/>
+		</Item>
+		<Item key="TerminalCommand.ConfigurationInformation.ConfigurationInformation">
+			<Ready value="Solicited.Status.TerminalState.ConfigurationInformation"/>
+		</Item>
+		<Item key="TerminalCommand.ConfigurationInformation.HardwareConfiguration">
+			<Ready value="Solicited.Status.TerminalState.HardwareConfiguration"/>
+		</Item>
+		<Item key="TerminalCommand.ConfigurationInformation.SuppliesData">
+			<Ready value="Solicited.Status.TerminalState.SuppliesData"/>
+		</Item>
+		<Item key="TerminalCommand.ConfigurationInformation.FitnessData">
+			<Ready value="Solicited.Status.TerminalState.FitnessData"/>
+		</Item>
+		<Item key="TerminalCommand.ConfigurationInformation.TamperSensorStatusData">
+			<Ready value="Solicited.Status.TerminalState.TamperSensorStatusData"/>
+		</Item>
+		<Item key="TerminalCommand.ConfigurationInformation.SoftwareIDReleaseNumberData">
+			<Ready value="Solicited.Status.TerminalState.SoftwareIDReleaseNumberData"/>
+		</Item>
+		<Item key="TerminalCommand.ConfigurationInformation.ConfigurationInformationEnhance">
+			<Ready value="Solicited.Status.TerminalState.ConfigurationInformationEnhance"/>
+		</Item>
+		<Item key="TerminalCommand.ConfigurationInformation.LocalConfigurationOptionDigits">
+			<Ready value="Solicited.Status.TerminalState.LocalConfigurationOptionDigits"/>
+		</Item>
+		<Item key="TerminalCommand.ConfigurationInformation.NoteDefinitions">
+			<Ready value="Solicited.Status.TerminalState.NoteDefinitions"/>
+		</Item>
+		<Item key="TerminalCommand.ConfigurationInformation.WincorCashInStatusInformation">
+			<Ready value="Solicited.Status.TerminalState.WinCorCashInStatusInformation"/>
+		</Item>
+		<Item key="TerminalCommand.ConfigurationID">
+			<Ready value="Solicited.Status.TerminalState.ConfigurationID"/>
+		</Item>
+		<Item key="TerminalCommand.SupplyCounters.Basic">
+			<Ready value="Solicited.Status.TerminalState.SupplyCountersBasic"/>
+		</Item>
+		<Item key="TerminalCommand.SupplyCounters.Extended">
+			<Ready value="Solicited.Status.TerminalState.SupplyCountersExtended"/>
+		</Item>
+		<Item key="TerminalCommand.SupplyCounters.WincorCashInSupplyCounters">
+			<Ready value="Solicited.Status.TerminalState.WincorCashInSupplyCounters"/>
+		</Item>
+		<Item key="TerminalCommand.TallyInformation">
+			<Ready value="Solicited.Status.TerminalState.TallyInformation"/>
+		</Item>
+		<Item key="TerminalCommand.ErrorLogInformation">
+			<Ready value="Solicited.Status.TerminalState.ErrorLogInformation"/>
+		</Item>
+		<Item key="TerminalCommand.DateTime">
+			<Ready value="Solicited.Status.TerminalState.DateTimeInformation"/>
+		</Item>
+		<Item key="TerminalCommand.GrgRecyclerCmd.GrgRecyclerSupplyCounterRequestCmd">
+			<Ready value="Solicited.Status.TerminalState.DateTimeInformation"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewMaster_M">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewComm_M">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewComm_C">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewComm_BKey">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewMac_M">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewMac_C">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewMac_BKey">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewVMaster_VM">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.VisaKeyTabl">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.NewVMaster_M">
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<!-- 1-7==>3 -->
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.NewMaster_M">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.NewKVV"/>
+			<Reject value="Reject_Hardware"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.NewComm_M">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.NewKVV"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.NewComm_TR31">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.NewKVV"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.NewMac_TR31">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.NewKVV"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.LoadHSMPublicKeyByTR34">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.KeyLoaded"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.LoadTR31KBPKeyByTR34">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.NewKVV"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.ReLoadHSMPublicKeyRebindEPPByTR34">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.KeyLoaded"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.ReLoadHSMPublicKeyForceRebindEPPByTR34">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.KeyLoaded"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.DeleteHSMPublicKeyUnbindEPPByTR34">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.EPPUnbound"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.DeleteHSMPublicKeyForceUnbindEPPByTR34">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.KeyLoaded"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.LoadHostCertificate">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.KeyLoaded"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.SendSSTCertificate">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.SSTCertificate"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.SendHOSTCertificate">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.HOSTCertificate"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.StartAuthenticated">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.AuthenticationToken"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.ExtendedCapabilities">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.ExtendedCapabilities"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.ExtendedKeyStatus">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.ExtendedKeyStatus"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.LoadAKeyPKCS7">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.NewKVV"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.NewComm_C">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.NewKVV"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.NewComm_BKey">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.NewKVV"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.NewMac_M">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.NewKVV"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.NewMac_C">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.NewKVV"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.NewMac_BKey">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.NewKVV"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.NewVMaster_VM">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.NewKVV"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.VisaKeyTabl">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.NewKVV"/>
+		</Item>
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.NewVMaster_M">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.NewKVV"/>
+		</Item>
+		<!-- N==>7 -->
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.SendSSTRandomNumber">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.ATMRandomNumber"/>
+		</Item>
+		<!-- R==>5 -->
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.LoadNCRSubPublicKeyAndSignature">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.KeyLoaded"/>
+			<DeviceSupport value="[Capability.Encryptor.RKL]"/>
+		</Item>
+		<!-- B==>5 -->
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.LoadHSMPublicKeyAndSignature">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.KeyLoaded"/>
+			<DeviceSupport value="[Capability.Encryptor.RKL]"/>
+		</Item>
+		<!-- C==>3 -->
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.LoadAKeyWRSA">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.NewKVV"/>
+			<DeviceSupport value="[Capability.Encryptor.RKL]"/>
+		</Item>
+		<!-- F==>1 -->
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.SendEPPSerialNumber">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.EPPSerialNumberSignature"/>
+			<DeviceSupport value="[Capability.Encryptor.RKL]"/>
+		</Item>
+		<!-- G==>2 -->
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.SendEPPPublicKey">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.EPPPublicKeySignature"/>
+			<DeviceSupport value="[Capability.Encryptor.RKL]"/>
+		</Item>
+		<!-- H==>4 -->
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.SendAllKVVs">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.KeysStatus"/>
+			<DeviceSupport value="[Capability.Encryptor.RKL]"/>
+		</Item>
+		<!-- H==>J -->
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.SetKeyEntryMode">
+			<Ready value="Solicited.EncryptorInitialisationData.KeyEntryMode"/>
+			<DeviceSupport value="[Capability.Encryptor.RKL]"/>
+		</Item>
+		<!-- Q==>B -->
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.SendEncryptorCapabilitiesAndState">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.EncryptorCapabilitiesState"/>
+			<DeviceSupport value="[Capability.Encryptor.RKL]"/>
+		</Item>
+		<!-- S==>C -->
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.DeleteHSMPublicKey">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.KeyDeleted"/>
+			<DeviceSupport value="[Capability.Encryptor.RKL]"/>
+		</Item>
+		<!-- T==>C -->
+		<Item key="DataCommand.ExtendedEncryptionKeyChange.DeleteNCRSubPublicKey">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.EncryptorInitialisationData.KeyDeleted"/>
+			<DeviceSupport value="[Capability.Encryptor.RKL]"/>
+		</Item>
+		<Item key="TerminalCommand.InService">
+			<MsgAttribute value="PutQueue,NoAutoRepaly"/>
+		</Item>
+		<Item key="TerminalCommand.OutService">
+			<MsgAttribute value="PutQueue,NoAutoRepaly"/>
+		</Item>
+		<!--Start: Added by Bxue-->
+		<Item key="TerminalCommand.ReceiveRKLInformation.EPPCapabilities">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.Status.RKLInformation.EPPCapabilities"/>
+			<Reject value="Reject_Hardware"/>
+			<deviceSupport value="[Capability.Encryptor.RKL]"/>
+		</Item>
+		<Item key="TerminalCommand.ReceiveRKLInformation.EPPIDSignature">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.Status.RKLInformation.EPPIDAndSignature"/>
+			<Reject value="Reject_Hardware"/>
+			<deviceSupport value="[Capability.Encryptor.RKL]"/>
+		</Item>
+		<Item key="TerminalCommand.ReceiveRKLInformation.EPPPublicKeySignature">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.Status.RKLInformation.EPPPublickeyAndSignature"/>
+			<Reject value="Reject_Hardware"/>
+			<deviceSupport value="[Capability.Encryptor.RKL]"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.LoadHSMPublickeySignature">
+			<MsgAttribute value="PutQueue"/>
+			<Ready value="Solicited.Status.CmdReplyReady"/>
+			<Reject value="Reject_RSASignatureVerificationFailed"/>
+			<deviceSupport value="[Capability.Encryptor.RKL]"/>
+		</Item>
+		<Item key="DataCommand.EncryptionKeyChange.LoadAkeySignature">
+			<Ready value="Solicited.Status.CmdReplyReadyForWnRKL"/>
+			<Reject value="Reject_RSASignatureVerificationFailed"/>
+			<deviceSupport value="[Capability.Encryptor.RKL]"/>
+			<MsgAttribute value="PutQueue"/>
+		</Item>
+		<!--End-->
+		<!-- Customisation Data Commands -->
+		<Item key="DataCommand.CustomisationData.StateTable">
+			<MsgAttribute value="ContainMAC"/>
+		</Item>
+		<Item key="DataCommand.CustomisationData.FITData">
+			<MsgAttribute value="ContainMAC"/>
+		</Item>
+		<!--  Transaction Reply Command message  -->
+		<Item key="DataCommand.InterTransResponse">
+			<MsgAttribute value="NoAutoRepaly,RequestResponse"/>
+		</Item>
+		<Item key="TransactionReplyCommand">
+			<MsgAttribute value="NoAutoRepaly,RequestResponse,ContainMAC"/>
+		</Item>
+		<!--others-->
+		<Item key="ElectronicJournal.AcknowledgeUploadBlock">
+			<Ready value="Solicited_UploadEJData"/>
+		</Item>
+		<Item key="ElectronicJournal.EJOptionsAndTimers">
+			<Ready value="Solicited_UploadEJData"/>
+		</Item>
+	</ReplyMsg>
+	<MCON>
+		<Item Receive="0" key="TransactionRequest" value="[Options.MCONRange]"/>
+		<Item Receive="0" key="ReplytoInteractiveTransactionResponse" value="[Options.MCONRange]"/>
+		<Item Receive="1" key="TransactionReplyCommand" value="o"/>
+	</MCON>
+	<ResponseCtrl>
+		<Item key="TransactionRequest" value="DataCommand.InterTransResponse"/>
+		<Item key="ReplytoInteractiveTransactionResponse" value="DataCommand.InterTransResponse"/>
+	</ResponseCtrl>
+	<ReceiveMessage>
+		<Group>
+			<Item key="DataCommand.ExtendedEncryptionKeyChange">
+				<Item FieldID="h" FieldName="EPPKeyValue"/>
+			</Item>
+			<Item key="DataCommand.EncryptionKeyChange">
+				<Item FieldID="h" FieldName="EPPKeyValue"/>
+			</Item>
+			<Item key="TerminalCommand.ReceiveRKLInformation">
+				<Item FieldID="h" FieldName="EPPKeyValue"/>
+			</Item>
+		</Group>
+	</ReceiveMessage>
+</Root>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!-- Mode  Property
+		* The bit value of  for each key value. 
+		* The value of key is bit value, and the key is only 0 and 1.
+		*  If the ModeSwitch is '0011', the condiction of swithc will be enabled in "OutOfService" and "InService" mode
+	-->
+	<ModeSwich>
+		<!--  Message will be accept to be sent or received in out-of-service mode  -->
+		<Item key="0" value="OutOfService"/>
+		<!--  Message will be accept to be sent or received in Maintenance  mode  -->
+		<Item key="1" value="InMaintenance"/>
+		<!--  Message will be accept to be sent or received in In-Service  mode  -->
+		<Item key="2" value="InService"/>
+		<!--  Message will be accept to be sent or received in consumer in progress  mode  -->
+		<Item key="3" value="TransactionState"/>
+	</ModeSwich>
+	<!-- Main configuration -->
+	<Main>
+		<!--  Terminal to central message  -->
+		<Item key="TerminalToCentralMsg" value="1"/>
+		<!--  Central to terminal message  -->
+		<Item key="CentralToTerminalMsg" value="1"/>
+	</Main>
+	<!--  Terminal to central messages  -->
+	<TerminalToCentralMsg>
+	</TerminalToCentralMsg>
+	<!--  Central to terminal  messages  -->
+	<CentralToTerminalMsg>
+		<!--  Terminal Commands message  -->
+		<Item key="TerminalCommand.InService" ModeSwich="1111" value="1"/>
+		<Item key="TerminalCommand.OutService" ModeSwich="1111" value="1"/>
+		<Item key="TerminalCommand.ConditionalOutService" ModeSwich="1010" value="1"/>
+		<Item key="TerminalCommand.ConfigurationInformation" ModeSwich="1111" value="1"/>
+		<Item key="TerminalCommand.SupplyCountersRetrieve" ModeSwich="1111" value="1"/>
+		<Item key="TerminalCommand.SupplyCountersRetrieveClear" ModeSwich="1000" value="1"/>
+		<Item key="TerminalCommand.SupplyCountersRetrieveEn" ModeSwich="1111" value="1"/>
+		<Item key="TerminalCommand.SupplyCountersRetrieveEnClearSet" ModeSwich="1000" value="1"/>
+		<Item key="TerminalCommand.RunSelfTest" ModeSwich="1010" value="1"/>
+		<Item key="TerminalCommand.SupplyCounters" ModeSwich="1110" value="1"/>
+		<Item key="TerminalCommand.SupplyCounters.WincorCashInSupplyCounters" ModeSwich="1110" value="1"/>
+		<Item key="TerminalCommand.ConfigurationInformation.WincorCashInStatusInformation" ModeSwich="1110" value="1"/>
+		<Item key="TerminalCommand.ConfigureCashInNoteID" ModeSwich="1100" value="1"/>
+		<Item key="TerminalCommand.RKL_InitiateKeyExchange" ModeSwich="1111" value="1"/>
+		<Item key="TerminalCommand.RKL_EPPPublicKeySerialNumber" ModeSwich="1111" value="1"/>
+		<!-- Customisation Data Commands -->
+		<Item key="DataCommand.CustomisationData.StateTable" ModeSwich="1100" value="1"/>
+		<Item key="DataCommand.CustomisationData.Screen" ModeSwich="1100" value="1"/>
+		<Item key="DataCommand.CustomisationData.ConfigurationParameters" ModeSwich="1100" value="1"/>
+		<Item key="DataCommand.CustomisationData.FITData" ModeSwich="1100" value="1"/>
+		<Item key="DataCommand.CustomisationData.FormatTemplate" ModeSwich="1100" value="1"/>
+		<Item key="DataCommand.CustomisationData.CurrencyAcceptorBillTypes" ModeSwich="1100" value="1"/>
+		<Item key="DataCommand.CustomisationData.ConfigurationIDNumber" ModeSwich="1100" value="1"/>
+		<Item key="DataCommand.CustomisationData.EnhancedConfigurationParameters" ModeSwich="1100" value="1"/>
+		<Item key="DataCommand.OpenAccountRelationship" ModeSwich="0001" value="1"/>
+		<!--? PIN Data Load -->
+		<Item key="DataCommand.CustomisationData.DateTime" ModeSwich="1100" value="1"/>
+		<Item key="DataCommand.CustomisationData.MessageAuthenticationFieldSelection" ModeSwich="1100" value="1"/>
+		<!--? Dispenser Currency Cassette Mapping Table Load-->
+		<!--  Transaction Reply Command message  -->
+		<Item key="FunctionCommand4" ModeSwich="0001" value="1"/>
+		<Item key="FunctionCommand7" ModeSwich="0001" value="1"/>
+		<Group>
+			<Item key="DataCommand.WincorCustomisationData" ModeSwich="1100" value="1"/>
+			<Item key="DataCommand.CustomisationData" ModeSwich="1100" value="1"/>
+			<Item key="DataCommand.EncryptionKeyChange" ModeSwich="1111" value="1"/>
+			<Item key="TerminalCommandEn" ModeSwich="1110" value="1"/>
+		    <Item key="TerminalCommand.wincroRKL" ModeSwich="1000" value="1"/>				
+		</Group>
+		<OnlyTransactionRequeststate>
+			<Item key="DataCommand.OpenAccountRelationship"/>
+			<Item key="FunctionCommand4"/>
+			<Item key="FunctionCommand7"/>
+		</OnlyTransactionRequeststate>
+	</CentralToTerminalMsg>
+</Root>

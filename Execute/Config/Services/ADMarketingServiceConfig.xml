@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+port:
+-->
+<ADMarketingConfig exeName="\ADMarketing\StartAD.bat" remotePort="18186" cmd="/ad" PageTimeout="300000" MessageTimeout="3000">
+<TimePoints>
+	<InnerPreRun>
+		<TimePoint name="E" stateNumber="010,030,040"/>
+	</InnerPreRun>
+	<InnerEndRun>
+		<TimePoint name="B" stateNumber="010,030,040"/>
+	</InnerEndRun>
+	<SpecificTimePoints>
+		<!-- <TimePoint name="A" stateNumber="000"/> -->
+	</SpecificTimePoints>
+</TimePoints>
+</ADMarketingConfig>
+

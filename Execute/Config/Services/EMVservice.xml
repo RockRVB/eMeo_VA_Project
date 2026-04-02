@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmvPBOCConfig>
+	<!--调用非接的方式：0-使用emvkernel的方式，1-使用xfs3.3非接指令-->
+	<ContactLessMode value="1"/>
+	<IsCardLockEject value="1"/>
+	<IsAppLockEject value="1"/>
+	<IsAppListEmptyEject value="1"/>
+	<IsInvalidCardEject value="1"/>
+	<IsTransCancelEject value="1"/>
+	<IsReversalIfExecuteScriptFail value="1"/>
+	<!--在提示交易不接受之前是否提示交易终止：0-不提示，1-提示，默认不提示-->
+	<ShowTerminateBeforeNotAccept value="1"/>
+	<!--是否自动匹配应该首选语言，0-不匹配，1-匹配，默认匹配-->
+	<MatchAppPreferenceLanguage value="1" />
+	<TransFieldTags>
+		<Default value="9F26,9F27,9F10,9F37,9F36,95,9A,9C,9F02,5F2A,82,9F1A,9F03,9F33,9F34,9F35,9F1E,84,9F09,9F41,91,71,72,9F63"/>		
+		<PIN value="" />
+		<CWC value="9F36,95,9F1E,9F10,DF31"/>
+		<!--根据P端规范配置TFR,DEP交易时ARQC,QRPC校验失败，需要使用Default配置才能通过，所以暂时注释TRF及DEP的配置-->
+		<!--TFR value="9F36,95" /-->
+		<!--DEP value="9F36,95" /-->
+		<ICTZ value="9F33,95,9F37,9F1E,9F10,9F26,9F36,82,DF31,9F1A,9A"/>
+		<ICBZHDQCCZ value="9F36,95,9F1E,9F10,DF31"/>
+		<ICFBZHDQCCZ value="9F36,95,9F1E,9F10,DF31"/>
+		<ICXJCZCZ value="9F36,95,9F1E,9F10,DF31"/>
+		<ICQTQR value="9F36" />
+	</TransFieldTags>
+	
+	<!--IC卡9C TAG的值
+	交易类型(0x9C)：
+	值      含义
+	00 - 商品和服务(Goods and Service)
+	01 - 现金(Cash)
+	02 - 调整(Adjustment)
+	20 - 退款(Returns)
+	21 - 存款(Deposits)
+	22 - 调整或返现(Adjustment or Cashback)
+	30 - 可用金额查询(Available funds inquiry)
+	31 - 余额查询(Balance inquiry)
+	40 - 转账(Card holder accounts transfer)
+	70 - 修改密码(Pin change);
+	-->
+	<IC9C value="[INQ,30][CWD,01][DEP,21][PIN,70][TFR,40][ICBDZHQC,60][ICQT,61][ICFBDZHQC,62][ICXJCZ,63]"/>
+	
+	<!--交易类型对应的脚本通知类型，配置形式与上面的IC9C相同，默认为ICTZ，如[ICBDZHQC,ICTZ]-->
+	<ScriptNotice value="[ICQT,ICQTQR]"/>
+	
+	<!--脚本通知需要收包的原始交易类型，用竖线分隔，默认只发不收
+	如圈存和圈提的脚本通知需要又发又收，可配置为<ScriptNoticeNeedReceive value="ICBDZHQC|ICZZQT"/>
+	-->
+	<ScriptNoticeNeedReceive value=""/>
+	
+	<!--对于需要收包的脚本通知，如果脚本通知未完成（如连接失败、收包超时等），最大重发脚本通知的次数，默认不重发
+	-1表示不重发；
+	0表示无限重发直到收到返回包为止；
+	其他大于0的数字表示重发的次数。
+	-->
+	<MaxReSendScriptNoticeCount value="-1"/>
+
+	<!--重发脚本通知间隔时间，以毫秒为单位-->
+	<ReSendScriptNoticeIntervalTime value="60000"/>
+	
+	<!--重发脚本通知时是否需要增加流水号-->
+	<ReSendScriptNoticeAddSerialNumber value="0"/>
+	
+	<!--属于IC卡现金充值的交易类型，以竖线分隔
+	核心会处理这种交易类型的存款限额：存款金额不能超过IC卡可圈存金额
+	-->
+	<ICCashRecharge value="ICXJCZ"/>
+	
+	<!--属于IC卡圈存的交易类型，以竖线分隔
+	核心会处理这种交易类型的圈存限额：输入的圈存金额不能超过IC卡可圈存金额
+	-->
+	<ICLoad value="ICBDQC|ICBDZHQC|ICFBDZHQC|ICQYZHQC"/>
+	
+	<!--属于IC卡圈提的交易类型，以竖线分隔
+	核心会处理这种交易类型的圈存限额：输入的圈提金额不能超过IC卡余额
+	-->
+	<ICUnLoad value="ICQT"/>
+	<!--IC卡圈提确认交易映射，配置交易类型对应的交易确认类型--> 
+   <ICUnLoadConfirmMap> 
+      <Map transType="ICQT" confirmTransType="ICQTQR"/> 
+   </ICUnLoadConfirmMap>
+</EmvPBOCConfig>

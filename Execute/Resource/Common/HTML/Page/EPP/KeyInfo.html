@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=""></script>
+    <title>key设置</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <style>
+		.g-main {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			margin-top: -100px;
+		}
+		.g-input {
+			border-color: #fff;
+			box-shadow: 0 0 0 2px #dceeff;
+			text-align: center;
+			height: 80px;
+			font-size: 40px;
+			max-width: 860px;
+			margin: 50px 0;
+		}
+		.g-input:disabled {
+			background-color: transparent;
+			color: #fff;
+		}
+		.g-main .sm-main-title {
+			margin: 0;
+		}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <g-header :height='100'>
+            <img slot='left' class='logo' src="../../images/logo.png" alt="">
+            
+        </g-header>
+        <g-main>
+            <h2 ids='ids_epp_VerifyCheckValue' class='sm-main-title'>Key Check Value:</h2>
+            <input class='g-input' type='text' value='123' disabled id='GetPassword' content='{Binding Password mode=2}'>
+            <p ids='ids_epp_VerifyCheckValueTip'>Please Press 'Enter' to Continue, press 'Cancel' to Exit</p>
+        </g-main>
+    </div>
+</body>
+</html>

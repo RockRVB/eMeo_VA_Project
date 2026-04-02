@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--  'C' (0x43) EPP Capabilities	-->
+  <EPPCapabilities>
+    <!--'C' (0x43)EPP Capabilities-->
+    <Item key="g1" value="C" size="1" restriction="Manduary" />
+    <Item key="g2" value="[SolicitedStatus.WnRKLInformation.EPPCapabilities.Status]" size="1" restriction="Manduary" />
+    <Item key="g2-2" value="[SolicitedStatus.WnRKLInformation.EPPCapabilities.Vendor]" size="2" restriction="Manduary" />
+  </EPPCapabilities>
+</Root>

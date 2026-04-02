@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!--  Cheque Processing Module
+		*  This message gives details of a Cheque Processing Module(CPM) reponse to a Transaction Reply Command message.
+	-->
+		
+	<ChequeProcessingModule>
+		<!-- Device Identification Graphic. -->
+		<Item key="e1" 																		value="q"  																				size="1" 				restriction="Mandatory"/>
+		
+		<!--  Transaction Status/Device Status. Gives details of a CPM operation in response to a transction reply command message.
+		*  Error Code 1
+		*       '0' - Successful operation, but an exception condition occured. . 
+		*       '1' - Cancel selected/Time-out occurs during processing (enry/retrieval) of cheque. Due to one of the following. 
+		*           [1] Cardholder did not insrt a cheque. 
+        *           [2] Cardholder inserted cheque which was not successfully accepted, but retrieved by cardholder.
+		*       '2' - CPM failure. 
+		*       '3' - Cheque detected at Power-up
+		*       '4' - Error, no access (error on bin)
+		*       '5' - Cheque jam.
+		*       '6' - Cheque jam, no access.
+		*  Error Position  2:
+		*       ' '  -  Non-hardware status reported, or error position not known (severity Good, Suspend or Fatal).
+		*       'E'  - Cheque entry/re-entry error (Suspend or Fatal). 
+		*       'F'  - Image Lifting error (Suspend or Fatal)
+		*       'J'  - Eject error (Suspend or Fatal)
+		*       'C'  - Capture error (Suspend or Fatal)
+		*       'W' - Endorse error (Suspend or Fatal)
+		*       'P'  -  Power-fail error. Last cheque endorse (Error code 3, Suspend only)
+		*       'N'  - Power-fail error. Last cheque not endorse (Error code 3, Suspend only)
+		-->
+		<Item key="e2" 																		value="[Device.IPM.DevStatus]"																			   size="1" 					restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																			size="1"					restriction="Mandatory"/>
+		
+		<!--  Error Severity. Standard code, except that Error Code 3, Suspend is not returned -->
+		<Item key="e3" 																		value="[ChequeProcessingModuleErrSeverity]"  					size="1" 					restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																			size="1"					restriction="Mandatory"/>
+		
+		<!--  Diagnostic Status. -->
+		<Item key="e4" 																		value="00000000000000"  													size="var" 				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																			size="1"					restriction="Mandatory"/>
+		
+		<!--  Suplies Status-->
+		<Item key="e5" 																		value="00000000000000"  													size="14" 				restriction="Mandatory"/>
+		
+	</ChequeProcessingModule>	
+</Root>

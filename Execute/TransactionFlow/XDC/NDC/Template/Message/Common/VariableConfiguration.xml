@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<StateTable>
+		<DataLengthMin value="7"/>
+		<Transaction>
+			<Exit>
+				<ClearXDC_BUFFER_AMOUNT value="0"/>
+			</Exit>
+		</Transaction>
+	</StateTable>
+	<Fit>
+		<DataLengthMin value="7"/>
+	</Fit>
+	<!-- Device Identifier between device identifier and device name(Associated configuration data -->
+	<Message>
+		<Send>
+			<Item key="unknown" replyready="1" sensitive="1"/>
+			<CardRejectBeforeDispenser sendCashHandle="1"/>
+			<Sensitive>
+				<Item key="[MAC]"/>
+				<Item key="[Buffer.C]"/>
+				<Item key="[Buffer.B]"/>
+				<Item key="[Buffer.PIN]"/>
+				<Item key="[Buffer.Track1]"/>
+				<Item key="[Buffer.Track2]"/>
+				<Item key="[Buffer.Track3]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.NewKVV]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.MasterKeyKVV"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.MACKeyKVV]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.CommunicationKeyKVV]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.RSAKVV]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.BKeyKVV]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.TR31KeyKVV]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.EPPPublicKey]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.EPPPublicKeySignature]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.EPPSerialNumber]"/>
+				<Item key="[SolicitedStatus.EncryptorInitData.EPPSerialNumberSignature]"/>
+				<Item key="[SolicitedStatus.WnRKLInformation.EPPIDAndSignature.EPPID]"/>
+				<Item key="[SolicitedStatus.WnRKLInformation.EPPIDAndSignature.EPPIDSignature]"/>
+				<Item key="[SolicitedStatus.WnRKLInformation.EPPPublickeyAndSignature.EPPPK]"/>
+				<Item key="[SolicitedStatus.WnRKLInformation.EPPPublickeyAndSignature.EPPPKSignature]"/>
+				<Item key="[Msg.Transaction.Emv_ICCDataObjects]"/>
+				<Item key="[Msg.Transaction.Emv_ICCDataObjects.5A]"/>
+				<Item key="[Msg.Transaction.Emv_ICCDataObjects.57]"/>
+				<Item key="[Buffer.M]"/>
+				<Item key="[Msg.Transaction.CSP_1]"/>
+				<Item key="[Msg.Transaction.CSP_2]"/>				
+			</Sensitive>
+		</Send>
+		<Receive>
+			<MAC>
+				<Item Sensitive="1"/>
+			</MAC>
+			<Sensitive>				
+				<Item key="DataCommand.EncryptionKeyChange" FieldName="EPPKeyValue"/>
+			</Sensitive>
+		</Receive>
+	</Message>
+	<TestUI>
+		<Item value="/Root/Device/Information/{0}/@DeviceState">
+			<Item value="ONLINE"/>
+			<Item value="HWERROR"/>
+		</Item>
+		<Item value="/Root/Device/Information/Manual/@RecoverFail">
+			<Item value="0"/>
+			<Item value="1"/>
+		</Item>
+		<Case>
+			<Item value="CardReader"/>
+			<Item value="EnvelopeDispenser"/>
+			<Item value="Encryptor"/>
+			<Item value="DataEvent"/>
+			<Item value="DataGeneral"/>
+			<Item value="unknown"/>
+			<Item value="BarCodeReader"/>
+			<Item value="CashAcceptor"/>
+			<Item value="SensorAndLight">
+				<Item value="/Root/Device/Information/Door/@SAFE">
+					<Item value="CLOSED"/>
+					<Item value="OPEN"/>
+				</Item>
+				<Item value="/Root/Device/Information/Door/@OPERATORSWITCH">
+					<Item value="RUN"/>
+					<Item value="SUPERVISOR"/>
+				</Item>
+				<Item value="/Root/Device/Information/Door/@CABINET">
+					<Item value="CLOSED"/>
+					<Item value="OPEN"/>
+				</Item>
+			</Item>
+			<Item value="JournalPrinter">
+				<Item value="/Root/Device/Information/JournalPrinter/@PaperStatus">
+					<Item value="FULL"/>
+					<Item value="LOW"/>
+					<Item value="OUT"/>
+				</Item>
+			</Item>
+			<Item value="ReceiptPrinter">
+				<Item value="/Root/Device/Information/ReceiptPrinter/@PaperStatus">
+					<Item value="FULL"/>
+					<Item value="LOW"/>
+					<Item value="OUT"/>
+				</Item>
+			</Item>
+			<Item value="CashDispenser">
+				<Item value="/Root/Device/Information/Cassette/Type1/@Status">
+					<Item value="EMPTY"/>
+					<Item value="INOP"/>
+					<Item value="MISSING"/>
+					<Item value="FULL"/>
+					<Item value="NOREF"/>
+					<Item value="MANIP"/>
+				</Item>
+				<Item value="/Root/Device/Information/Cassette/Type2/@Status">
+					<Item value="EMPTY"/>
+					<Item value="INOP"/>
+					<Item value="MISSING"/>
+					<Item value="FULL"/>
+					<Item value="NOREF"/>
+					<Item value="MANIP"/>
+				</Item>
+				<Item value="/Root/Device/Information/Cassette/Type3/@Status">
+					<Item value="EMPTY"/>
+					<Item value="INOP"/>
+					<Item value="MISSING"/>
+					<Item value="FULL"/>
+					<Item value="NOREF"/>
+					<Item value="MANIP"/>
+				</Item>
+				<Item value="/Root/Device/Information/Cassette/Type4/@Status">
+					<Item value="EMPTY"/>
+					<Item value="INOP"/>
+					<Item value="MISSING"/>
+					<Item value="FULL"/>
+					<Item value="NOREF"/>
+					<Item value="MANIP"/>
+				</Item>
+			</Item>
+		</Case>
+	</TestUI>
+</Root>

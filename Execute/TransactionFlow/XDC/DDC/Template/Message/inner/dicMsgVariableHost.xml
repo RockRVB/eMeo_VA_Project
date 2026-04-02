@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<Msg>
+		<Unsolicited>
+			<CardReader>
+				<Item size="2" key="Status" value="80"/>
+			</CardReader>
+			<ReceiptPrinter>
+				<Item size="6" key="Status" value="000000"/>
+			</ReceiptPrinter>
+			<JournalPrinter>
+				<Item size="6" key="Status" value="000000"/>
+			</JournalPrinter>
+			<Alarm>
+				<!--Reload : wheter reload the default value of the template.0: not reload; 1:reload ; None: reload-->
+				<!--reload 是否重新加载模板的默认值。0-不加载;1-重新加载;没有-重新加载 -->
+				<Item size="2" key="Status" value="00" reload="0"/>
+			</Alarm>
+		</Unsolicited>
+	</Msg>
+	<Device>
+		<BarCodeReader>
+			<Item size="9" key="MDS" value=":00:00:0F"/>
+		</BarCodeReader>
+		<PINPad>
+			<Item size="9" key="MDS" value=":00:00:0F"/>
+		</PINPad>
+		<CashAcceptor>
+			<Item size="9" key="MDS" value=":00:00:00"/>
+		</CashAcceptor>
+	</Device>
+</Root>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=""></script>
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/vue-i18n.js"></script>
+    <script src="../../js/jquery-3.7.0.js"></script>
+    <script src="../../js/class/layer/layer.js"></script>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/coreScript.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/animate.grg.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <style>
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            color: #000;
+            padding-top: 80px;
+        }
+
+        .btn-group .g-button {
+            width: 40%;
+            padding: 0;
+            line-height: 80px;
+            margin-bottom: 30px;
+            line-height: 70px;
+            border-radius: 8px;
+            font-family: Arial;
+            font-size: 28px;
+            margin-right: 30px;
+            text-align: center;
+            background: linear-gradient(180deg, #FFFFFF 0%, #F4F8FF 100%);
+            box-shadow: inset 0px 0px 6px 0px #FFFFFF;
+            border: 2px solid #296CFF;
+            color: #296cff;
+        }
+
+        .divider {
+            display: block;
+            margin: 0 auto;
+            height: 100%;
+            width: 2px;
+            background: #fff;
+        }
+
+        .g-input-wrapper {
+            width: 40%;
+            height: 70px;
+            margin: 0px auto 100px;
+        }
+
+        .g-input-wrapper input {
+            height: 100%;
+            font-size: 35px;
+        }
+
+        .g-input-wrapper i {
+            font-size: 50px;
+            height: 100%;
+            color: #fff;
+        }
+
+        .g-footer {
+            justify-content: flex-end;
+        }
+
+        .keyboard {
+            width: 100%;
+        }
+
+        .keyboard .hg-button {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            flex-grow: 1;
+            margin: 5px 10px;
+        }
+
+        .keyboard .hg-button span {
+            font-size: 25px;
+        }
+
+        .g-input-wrapper .g-input {
+            background: #e9f0ff;
+            border-radius: 10px;
+            color: #231815;
+            font-size: 24px;
+            font-family: 'Alibaba Sans';
+            margin-top: 80px;
+            border: #868686 solid 1px;
+        }
+
+        .button-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 24px;
+            color: #231815;
+            font-family: 'Alibaba Sans';
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="grg-header" class="grg-header">
+        </div>
+        <div id="grg-main" class="grg-main animate_grg_fadeInRight">
+            <div class="main-content-box">
+                <!-- 为了实现EventTrigger -->
+                <div class="title" style="margin-top: 5%;" ids="ids_withdraw_selectAmount">Please select
+                    amount</div>
+                <g-input clearable v-model='amount' ref='input' hide-keyboard id='saveBuffer'
+                    content='{Binding saveBuffer mode=2}'></g-input>
+                <g-row type="flex" justify="space-around">
+                    <g-col :span='10'>
+                        <div class="btn-group">
+                            <g-button class="grg-btngrg-btn" v-for='(v,i) in moneytype' round transparent
+                                @click='moneyBtn(v)' :id="'F'+(i+1)">￥{{v}}</g-button>
+                        </div>
+                    </g-col>
+                    <g-col :span='4'>
+                        <span class="divider"></span>
+                    </g-col>
+                    <g-col :span='10'>
+                        <g-keyboard :options='keyboardOpt' type='number' v-model='amount' :show-preview='false'
+                            ref='keyboard'></g-keyboard>
+                    </g-col>
+                </g-row>
+                <div class="button-box">
+                    <div class="button-row">
+                        <div class="grg-btn grg-cancel" id='OnConfirm' type='button' tag='OnCancel'>
+                            <img class="icon-img" src="../../images/img_2.4/icon-cancel.png" alt="">Cancel
+                        </div>
+                        <div class="grg-btn grg-confirm" id='OnConfirm' type='button' tag='OnConfirm'>
+                            <img class="icon-img" src="../../images/img_2.4/icon-ok.png" alt="">Confirm
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    new Base({
+        data: {
+            timer: null,
+            amount: '',
+            moneytype: [100, 500, 800, 1000, 2000],
+            oldamount: '',
+            keyboardOpt: {
+                layout: {
+                    default: [
+                        '7 8 9',
+                        '4 5 6',
+                        '1 2 3',
+                        '{bksp} 0 {clear}'
+                    ],
+                },
+            },
+        },
+        methods: {
+            moneyBtn: function (v) {
+                this.amount = v + ''
+                this.focus()
+            },
+            focus: function () {
+                this.inputDom.focus()
+            },
+            onClear: function () {
+                this.amount = ''
+            },
+            setCaret: function () {
+                this.focus()
+                var pos = this.keyboard.caretPosition
+                this.setInputCaretPosition(this.inputDom, pos || this.amount.length)
+            },
+            setInputCaretPosition: function (ele, pos) {
+                if (ele && ele.setSelectionRange) {
+                    ele.focus();
+                    setTimeout(function () {
+                        ele.setSelectionRange(pos, pos);
+                    }, 0)
+                }
+            },
+        },
+        watch: {
+            amount: function (n) {
+                this.setCaret()
+            }
+        },
+        computed: {
+            inputDom: function () {
+                return this.$refs.input.$refs.input
+            },
+            keyboard: function () {
+                return this.$refs.keyboard.keyboard
+            }
+        },
+        created: function () {
+            this.timer = setInterval(function () {
+                var saveBuffer = document.querySelector('#saveBuffer').value
+                if (this.oldamount == saveBuffer) return
+                this.oldamount = this.amount = saveBuffer
+            }.bind(this), 300)
+        },
+        mounted: function () {
+            this.setCaret()
+        },
+        beforeDestory: function () {
+            this.keyboard.clearInput()
+            clearInterval(this.timer)
+        }
+    }).$mount('#app')
+
+</script>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--  'I' (0x49)EPP ID (serial number) and signature
+	-->
+  <EPPIDAndSignature>
+    <!--'I' (0x49)EPP ID (serial number) and signature-->
+    <Item key="g1" value="I" size="1" restriction="Manduary" />
+    <Item key="g2" value="[SolicitedStatus.WnRKLInformation.EPPIDAndSignature.EPPID]" size="8-16" restriction="Manduary" />
+    <Item key="[FS]" value="[FS]" size="1" restriction="Manduary" />
+    <Item key="g2-2" value="[SolicitedStatus.WnRKLInformation.EPPIDAndSignature.EPPIDSignature]" size="var" restriction="Manduary" />
+  </EPPIDAndSignature>
+</Root>

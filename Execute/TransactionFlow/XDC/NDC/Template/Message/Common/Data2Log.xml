@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!--Filter: "ATMBootup";"ATMMode"; "DeviceError"; "DeviceWarning"; "Maintenance"; "HostJournal"; 
+"CardCapture";"CardInsert";"DispenseResult"; "DispenseDetail";"HostDispenseData";
+"FuncCmd"; "Others";-->
+	<DeviceDoc>
+		<Item value="DataCashDispenser.xml[FS]/Root/Calculate/Sensor/@Hope1[FS]0" log="HOPE  1 PUT OUT!" Filter="DeviceError"/>
+		<Item value="DataCashDispenser.xml[FS]/Root/Calculate/Sensor/@Hope1[FS]1" log="HOPE  1 INSERT!" Filter="DeviceError"/>
+		<Item value="DataCashDispenser.xml[FS]/Root/Calculate/Sensor/@Hope2[FS]0" log="HOPE  2 PUT OUT!" Filter="DeviceError"/>
+		<Item value="DataCashDispenser.xml[FS]/Root/Calculate/Sensor/@Hope2[FS]1" log="HOPE  2 INSERT!" Filter="DeviceError"/>
+		<Item value="DataCashDispenser.xml[FS]/Root/Calculate/Sensor/@Hope3[FS]0" log="HOPE  3 PUT OUT!" Filter="DeviceError"/>
+		<Item value="DataCashDispenser.xml[FS]/Root/Calculate/Sensor/@Hope3[FS]1" log="HOPE  3 INSERT!" Filter="DeviceError"/>
+		<Item value="DataCashDispenser.xml[FS]/Root/Calculate/Sensor/@Hope4[FS]0" log="HOPE  4 PUT OUT!" Filter="DeviceError"/>
+		<Item value="DataCashDispenser.xml[FS]/Root/Calculate/Sensor/@Hope4[FS]1" log="HOPE  4 INSERT!" Filter="DeviceError"/>
+	</DeviceDoc>
+	<Message>
+		<!--Item value="UnsolicitedStatus.Sensors.SensorChange"  log="" Filter = "DeviceError"/-->
+	</Message>
+</Root>

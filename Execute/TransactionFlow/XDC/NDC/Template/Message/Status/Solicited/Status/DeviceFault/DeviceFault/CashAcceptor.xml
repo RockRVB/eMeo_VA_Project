@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!--  GRG Bundle Notes Acceptor
+		*  This messge gives details of cash acceptor status information in following sections
+		-->
+	<CashAcceptor>
+		<!-- Device Identification Graphic. -->
+		<Item key="e1" value="w" size="1" restriction="Mandatory"/>
+		<!--   Transaction/Device Status. (T-code plus T-data). Gives specific information about the situation that 
+		* has happened during the cash in transaction, valid range 0 - 8
+		* Character 1 (T-code) can be:
+		*   '0'  - Successful operation. but an exception occured.
+		*   '1'  - Cancel selected/Time-out occured during the Enabled Cash state
+		*   '2'  - Envelope/document jam or envelope/document deposit failed. The cardholder has access. This status is also returned if there
+		*            any doubt about cardholder access.
+		*   '3'  - Error
+		-->
+		<Item key="g2_1" value="[Device.BNA.DevStatus]" size="var" restriction="Mandatory"/>					
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Error Severity.  Standard code.-->
+		<Item key="g3" value="[Device.BNA.Fitness]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Diagnostic Status. (M-status plus M-data). The M-status describes the main error found. -->
+		<Item key="e4" value="[Device.BNA.DiagnosticStatus]" size="var" restriction="Optional"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Suplies Status Indicates the state of the Deposit Bin.
+		*  This field is not sent with the message when a deposit time-out occurs. States reported are:
+		 * '0' - No envelope deposited.
+		 * '1' - No overfill condition.
+		 * '4' - Overfill detected.
+		-->
+		<Item key="e5" value="[Device.BNA.SuppliesStatus]" size="1" restriction="Mandatory"/>
+	</CashAcceptor>
+</Root>

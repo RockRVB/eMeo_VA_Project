@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!-- 
+ * Main control character definition for screen script
+ * [1] The control character of screen script 
+ -->
+	<ControlCharacter>
+		<Item key="[0x0C]" value="ClearScr" name="FF" existSub="0" description="Clear the screen and position in the cursor in the top left. Set blinking off and reset all to default."/>
+		<Item key="[0x0E]" value="InsertScrOrResFile" name="SO" existSub="0" description="Insert nested screen(maximum 5 levels) or resource file"/>
+		<Item key="[0x0F]" value="SetPosition" name="SI" existSub="0" description="Sets the cursor to the position by next two characters"/>
+		<Item key="[0x09]" value="ShowTrack1" name="HT" existSub="0" description="Causes the name encoded on track 1 of the card to be displayed"/>
+		<Item key="[0x11]" value="EnableVideo" name="DC1" existSub="0" description="Enable video. Shows the screen display"/>
+		<Item key="[0x12]" value="DisableVideo" name="DC2" existSub="0" description="Disable video"/>
+		<Item key="[0x1B]" value="SpecialFeature" name="ESC" existSub="1" description="Enable video. Shows the screen display"/>
+		<Item key="[0x0D]" value="NewLine" name="CR" existSub="0" description="Go the left-Hand in the next new line"/>
+		<Item key="[0x0B]" value="SecondaryCharSet" name="VT" existSub="0" description="Set the secondary character set for following next character"/>
+	</ControlCharacter>
+	<!--
+ * Sub control character definition for screen special features
+ * [1] The control character of screen script 
+ * [2] The field "mainKey" map to the ControlCharacter field "key"
+ -->
+	<SpecialFeature>
+		<Item key="Voice" introducer0="[0x1B]" introducer1="P" identifier="0"/>
+		<Item key="BlinkAndColorCtr" introducer0="[0x1B]" introducer1="[" identifier="m"/>
+		<Item key="ChangeDisplayInIdle" introducer0="[0x1B]" introducer1="[" identifier="z"/>
+		<Item key="SetPrimaryCharSet" introducer0="[0x1B]" introducer1="(" identifier="null"/>
+		<Item key="SetSecondaryCharSet" introducer0="[0x1B]" introducer1=")" identifier="null"/>
+		<Item key="LeftMarginCtr" introducer0="[0x1B]" introducer1="[" identifier="p"/>
+		<Item key="LogoCtrl" introducer0="[0x1B]" introducer1="P" identifier="1"/>
+		<Item key="PicCtrl" introducer0="[0x1B]" introducer1="P" identifier="2"/>
+		<Item key="SetModeCtr" introducer0="[0x1B]" introducer1="P" identifier="i"/>
+		<Item key="DisplyImgFileCtr" introducer0="[0x1B]" introducer1="P" identifier="E"/>
+		<Item key="LiftChequeImgCtr" introducer0="[0x1B]" introducer1="P" identifier="S"/>
+		<Item key="BunchChequeValueDisplayCtrl" introducer0="[0x1B]" introducer1="P" identifier="w"/>
+	</SpecialFeature>
+	
+	<!-- 
+ * The format of sub-control character definition for screen special features
+ -->
+	<SubCtrFormat>
+		<BunchChequeValueDisplayCtrl>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="P" size="1" identifier="1"/>
+			<Item key="2" value="w" size="1" identifier="1"/>
+			<Item key="3" value="[ValueSelector]" size="3" setValue="1"/>
+			<Item key="4" value=";" size="1" identifier="1"/>
+			<Item key="5" value="[ValueFormatScreen]" size="3" setValue="1"/>
+			<Item key="6" value="[0x1B]" size="6"  identifier="1"/>
+			<Item key="7" value="\" size="1" identifier="1"/>
+		</BunchChequeValueDisplayCtrl>
+		
+		<!-- The definition with format of sub section "Voice" -->
+		<Voice>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="P" size="1" identifier="1"/>
+			<Item key="2" value="0" size="1" identifier="1"/>
+			<Item key="3" value="[MsgNum]" size="var" setValue="1" terminate=";"/>
+			<Item key="4" value=";" size="1" identifier="1"/>
+			<Item key="5" value="[Parameter]" size="var" setValue="1" identifier="1"/>
+			<Item key="6" value="[0x1B]" size="6"  identifier="1"/>
+			<Item key="7" value="\" size="1" identifier="1"/>
+		</Voice>
+		
+		<!-- The definition with format of sub section "BlinkAndColorCtr" -->
+		<BlinkAndColorCtr>
+			<Item key="0" value="[0x1B]" size="6"	identifier="1"/>
+			<Item key="1" value="[" size="1"	identifier="1"/>
+			<Item key="2" value="[ScrBlinkColorCtrCmd]" loopIdentifer=";"  maxLoop="3"  size = "2"/>
+			<Item key="3" value="m" size="1"	identifier="1"/>
+		</BlinkAndColorCtr>
+		
+		<!-- The definition with format of sub section "ChangeDisplayInIdle" -->
+		<ChangeDisplayInIdle>
+			<Item key="0" value="[0x1B]" size="6"	identifier="1"/>
+			<Item key="1" value="[" size="1"	identifier="1"/>
+			<Item key="2" value="[Interval]" size="3" setValue="1"/>
+			<Item key="3" value="z" size="1"	identifier="1"/>
+		</ChangeDisplayInIdle>
+		
+		<!-- The definition with format of sub section "SetPrimaryCharSet" -->
+		<SetPrimaryCharSet>
+			<Item key="0" value="[0x1B]" size="6" identifier="1"/>
+			<Item key="1" value="(" size="1"	identifier="1"/>
+			<Item key="2" value="[CharSet]" size="1" setValue="1"/>
+		</SetPrimaryCharSet>
+		
+		<!-- The definition with format of sub section "SetSecondaryCharSet" -->
+		<SetSecondaryCharSet>
+			<Item key="0" value="[0x1B]" size="6"	 identifier="1"/>
+			<Item key="1" value=")" size="1"	 identifier="1"/>
+			<Item key="2" value="[CharSet]" size="1"	setValue="1"/>
+		</SetSecondaryCharSet>
+		
+		<!-- The definition with format of sub section "LeftMarginCtr" -->
+		<LeftMarginCtr>
+			<Item key="0" value="[0x1B]" size="6"	 identifier="1"/>
+			<Item key="1" value="[" size="1"	 identifier="1"/>
+			<Item key="2" value="[ColumnNum]" size="2"	setValue="1"/>
+			<Item key="3" value="p" size="1"	 identifier="1"/>
+		</LeftMarginCtr>
+		
+		<!-- The definition with format of sub section "LogoCtrl" -->
+		<LogoCtrl>
+			<Item key="0" value="[0x1B]" size="6"	 identifier="1"/>
+			<Item key="1" value="P" size="1"	 identifier="1"/>
+			<Item key="2" value="1" size="1"	 identifier="1"/>
+			<Item key="3" value="[LogoNum]" size="2"	setValue="1"/>
+			<Item key="4" value="[0x1B]" size="6"	 identifier="1"/>
+			<Item key="5" value="\" size="1"	 identifier="1"/>
+		</LogoCtrl>
+		
+		<!-- The definition with format of sub section "PicCtrl" -->
+		<PicCtrl>
+			<Item key="0" value="[0x1B]" size="6"	 identifier="1"/>
+			<Item key="1" value="P" size="1"	 identifier="1"/>
+			<Item key="2" value="2" size="1"	 identifier="1"/>
+			<Item key="3" value="[PicNum]" size="var"	setValue="1"/>
+			<Item key="4" value="[0x1B]" size="6"	 identifier="1"/>
+			<Item key="5" value="\" size="1"	 identifier="1"/>
+		</PicCtrl>
+		
+		<!-- The definition with format of sub section "SetModeCtr" -->
+		<SetModeCtr>
+			<Item key="0" value="[0x1B]" size="6"	 identifier="1"/>
+			<Item key="1" value="P" size="1"	 identifier="1"/>
+			<Item key="2" value="i" size="1"	 identifier="1"/>
+			<Item key="3" value="[DisplayMode]" size="var"	setValue="1"/>
+			<Item key="4" value="[0x1B]" size="6"	 identifier="1"/>
+			<Item key="5" value="\" size="1"	 identifier="1"/>
+		</SetModeCtr>
+		<!-- The definition with format of sub section "DisplyImgFileCtr" -->
+		<DisplyImgFileCtr>
+			<Item key="0" value="[0x1B]" size="6"	 identifier="1"/>
+			<Item key="1" value="P" size="1"	 identifier="1"/>
+			<Item key="2" value="E" size="1"	 identifier="1"/>
+			<Item key="3" value="[PicNum]" size="var"	setValue="1"/>
+			<Item key="4" value="[0x1B]" size="6"	 identifier="1"/>
+			<Item key="5" value="\" size="1"	 identifier="1"/>
+		</DisplyImgFileCtr>
+		
+		<!-- The definition with format of sub section "LiftChequeImgCtr" -->
+		<LiftChequeImgCtr>
+			<Item key="0" value="[0x1B]" size="6"	 identifier="1"/>
+			<Item key="1" value="P" size="1"	 identifier="1"/>
+			<Item key="2" value="S" size="1"	 identifier="1"/>
+			<Item key="3" value="(" size="1"	 identifier="1"/>
+			<Item key="4" value="[Scaling]" size="var"	setValue="1"/>
+			<Item key="5" value=")" size="1"	 identifier="1"/>
+			<Item key="6" value="[ImgPath]" size="var"	setValue="1"/>
+			<Item key="7" value="/" size="1"	 identifier="1"/>
+			<Item key="8" value="[FileName]" size="var"	setValue="1"/>
+			<Item key="9" value="[0x1B]" size="6"	 identifier="1"/>
+			<Item key="10" value="\" size="1"	 identifier="1"/>
+		</LiftChequeImgCtr>		
+	</SubCtrFormat>
+	
+	<!-- The element of voice sub-control format for sub section "BlinkAndColorCtr" -->
+	<BlinkAndColorCtrList>
+		<!-- The definition of Blinking commands with format of sub section "ScreenBlinkColorCtrCmd" -->
+		<BlinkCmd>
+			<Item key="00" value="DefaultColorAndBlinkOff"/>
+			<Item key="10" value="SetBlinkOn"/>
+			<Item key="11" value="SetBlinkOff"/>
+		</BlinkCmd>
+		
+		<!-- The foregroiund color control commands" -->
+		<ForeColorCtrl>
+			<Item key="black" low="20" high="B0"/>
+			<Item key="red" low="21" high="B1"/>
+			<Item key="green" low="B2" high="22"/>
+			<Item key="yellow" low="B3" high="23"/>
+			<Item key="blue" low="24" high="B4"/>
+			<Item key="magenia" low="25" high="B5"/>
+			<Item key="cyan" low="26" high="B6"/>
+			<Item key="white" low="B7" high="27"/>
+		</ForeColorCtrl>
+		
+		<!-- The backgroiund color control commands" -->
+		<BackColorCtrl>
+			<Item key="black" low="30" high="C0"/>
+			<Item key="red" low="31" high="C1"/>
+			<Item key="green" low="C2" high="32"/>
+			<Item key="yellow" low="C3" high="33"/>
+			<Item key="blue" low="34" high="C4"/>
+			<Item key="magenia" low="35" high="C5"/>
+			<Item key="cyan" low="36" high="C6"/>
+			<Item key="white" low="C7" high="37"/>
+			<Item key="transparent" low="null" high="80"/>
+		</BackColorCtrl>
+		
+		<!-- The default foregroiund color control commands" -->
+		<DefaultForeColorCtrl>
+			<Item key="black" low="60" high="F0"/>
+			<Item key="red" low="61" high="F1"/>
+			<Item key="green" low="F2" high="62"/>
+			<Item key="yellow" low="F3" high="63"/>
+			<Item key="blue" low="64" high="F4"/>
+			<Item key="magenia" low="65" high="F5"/>
+			<Item key="cyan" low="66" high="F6"/>
+			<Item key="white" low="F7" high="67"/>
+		</DefaultForeColorCtrl>
+		
+		<!-- The default backgroiund color control commands" -->
+		<DefaultBackColorCtrl>
+			<Item key="black" low="70" high="G0"/>
+			<Item key="red" low="71" high="G1"/>
+			<Item key="green" low="G2" high="72"/>
+			<Item key="yellow" low="G3" high="73"/>
+			<Item key="blue" low="74" high="G4"/>
+			<Item key="magenia" low="75" high="G5"/>
+			<Item key="cyan" low="76" high="G6"/>
+			<Item key="white" low="G7" high="77"/>
+		</DefaultBackColorCtrl>
+	</BlinkAndColorCtrList>
+
+<ColorList>
+		<Item key="black" value="1"/>
+		<Item key="red" value="2"/>
+		<Item key="green" value="3"/>
+		<Item key="yellow" value="4"/>
+		<Item key="blue" value="5"/>
+		<Item key="magenia" value="6"/>
+		<Item key="cyan" value="7"/>
+		<Item key="white" value="8"/>
+		<Item key="transparent" value="9"/>
+</ColorList>	
+	
+<!--
+* Comment: 
+* Define the position with rows and columns on the CRT
+* With 16 rows, and 32 columns from NDC protocol standard
+* [1] The row defintion(@,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O).
+* [2] The column definition(@,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,0,1,2,3,4,5,6,7,8,9,:,;,<,=,>,?) 
+ -->
+	<CRTPosition>
+		<Row>
+			<Item key="@" value="0"/>
+			<Item key="A" value="1"/>
+			<Item key="B" value="2"/>
+			<Item key="C" value="3"/>
+			<Item key="D" value="4"/>
+			<Item key="E" value="5"/>
+			<Item key="F" value="6"/>
+			<Item key="G" value="7"/>
+			<Item key="H" value="8"/>
+			<Item key="I" value="9"/>
+			<Item key="J" value="10"/>
+			<Item key="K" value="11"/>
+			<Item key="L" value="12"/>
+			<Item key="M" value="13"/>
+			<Item key="N" value="14"/>
+			<Item key="O" value="15"/>
+		</Row>
+		<Column>
+			<Item key="@" value="0"/>
+			<Item key="A" value="1"/>
+			<Item key="B" value="2"/>
+			<Item key="C" value="3"/>
+			<Item key="D" value="4"/>
+			<Item key="E" value="5"/>
+			<Item key="F" value="6"/>
+			<Item key="G" value="7"/>
+			<Item key="H" value="8"/>
+			<Item key="I" value="9"/>
+			<Item key="J" value="10"/>
+			<Item key="K" value="11"/>
+			<Item key="L" value="12"/>
+			<Item key="M" value="13"/>
+			<Item key="N" value="14"/>
+			<Item key="O" value="15"/>
+			<Item key="0" value="16"/>
+			<Item key="1" value="17"/>
+			<Item key="2" value="18"/>
+			<Item key="3" value="19"/>
+			<Item key="4" value="20"/>
+			<Item key="5" value="21"/>
+			<Item key="6" value="22"/>
+			<Item key="7" value="23"/>
+			<Item key="8" value="24"/>
+			<Item key="9" value="25"/>
+			<Item key=":" value="26"/>
+			<Item key=";" value="27"/>
+			<!--  The key value is "<"-->
+			<Item key="&lt;" value="28"/>
+			<Item key="=" value="29"/>
+			<!--  The key value is ">"-->
+			<Item key="&gt;" value="30"/>
+			<Item key="?" value="31"/>
+		</Column>
+		
+		<FDKTouchScr>
+		  <Item key="L1" value="LeftFDK1" startRow="E" endRow="G"  startColumn="@" endColumn="O" />
+		  <Item key="L2" value="LeftFDK2" startRow="H" endRow="J"   startColumn="@" endColumn="O" />
+		  <Item key="L3" value="LeftFDK3" startRow="K" endRow="M"   startColumn="@" endColumn="O" />
+		  <Item key="L4" value="LeftFDK4" startRow="N" endRow="O"   startColumn="@" endColumn="O" />
+		  
+		  <Item key="R1" value="RightFDK1" startRow="E" endRow="G"  startColumn="0" endColumn="?" />
+		  <Item key="R2" value="RightFDK2" startRow="H" endRow="J"   startColumn="0" endColumn="?" />
+		  <Item key="R3" value="RightFDK3" startRow="K" endRow="M"   startColumn="0" endColumn="?" />
+		  <Item key="R4" value="RightFDK4" startRow="N" endRow="O"   startColumn="0" endColumn="?" />		  	  
+		</FDKTouchScr>
+	<!-- 
+ * FDK shifting function, defines the Screen dislpay position of each FDK key after shifting.
+ * IsEnable is the function switch, 0 is off and 1 is on.
+ * Donnot change the key name for each FDK key, it must keep the same with protocol
+ * if shifting is enabled, please change the FDKTouchScr to the same value
+ -->
+		<FDKShifting>
+			<Item key="IsEnable" value = "0"/>
+			<Item key="I" value="LeftFDK1" startRow="F" endRow="F" startColumn="@" endColumn="3"/>
+			<Item key="H" value="LeftFDK2" startRow="I" endRow="I" startColumn="@" endColumn="3"/>
+			<Item key="G" value="LeftFDK3" startRow="L" endRow="L" startColumn="@" endColumn="3"/>
+			<Item key="F" value="LeftFDK4" startRow="O" endRow="O" startColumn="@" endColumn="3"/>
+			<Item key="A" value="RightFDK1" startRow="F" endRow="F" startColumn="4" endColumn="W"/>
+			<Item key="B" value="RightFDK2" startRow="I" endRow="I" startColumn="4" endColumn="W"/>
+			<Item key="C" value="RightFDK3" startRow="L" endRow="L" startColumn="4" endColumn="W"/>
+			<Item key="D" value="RightFDK4" startRow="O" endRow="O" startColumn="4" endColumn="W"/>
+		</FDKShifting>
+		<!--
+		<PureTextShifting>
+			<Item key="y" value="0" nousenum="111"/>
+		</PureTextShifting>
+		-->
+	</CRTPosition>
+	
+	<!-- 
+ * The format of Track 1 data 
+ * From The data format, the data with [] should be found 
+ * and put it into interface after receving the string data
+ -->
+	<Track1Name>
+		<FormatA>
+			<Item key="0" value="%" description="Start Sentinel" size="1" identifier="1"/>
+			<Item key="1" value="A" description="Format Code" size="1" identifier="1"/>
+			<Item key="2" value="[Surname]" description="Surname" size="var" setValue="1" terminate = "/"/>
+			<Item key="3" value="[FirstName]" description="First name and title" size="var" setValue="1" terminate = "^"/>
+			<Item key="4" value="[DiscData]" description="Discretionary data" size="var" setValue="1" terminate = "?"/>
+			<Item key="5" value="[LRC]" description="LRC" size="var" setValue="1"/>
+		</FormatA>
+		<FormatB>
+			<Item key="0" value="%" description="Start Sentinel" size="1" identifier="1"/>
+			<Item key="1" value="B" description="Format Code" size="1" identifier="1"/>
+			<Item key="2" value="[AccountNum]" description="Account Number(optional up to 19 characters)" size="var" setValue="1" terminate = "^"/>
+			<Item key="3" value="[CountryCode]" description="Country Code (optional)" size="0" setValue="1"/>
+			<Item key="4" value="[Surname]" description="Surname" size="var" setValue="1" terminate = "/"/>
+			<Item key="5" value="[FirstName]" description="First name and title" size="var" setValue="1" terminate = "^"/>
+			<Item key="6" value="[DiscData]" description="Discretionary data" size="var" setValue="1" terminate = "?"/>
+			<Item key="7" value="[LRC]" description="LRC" size="var" setValue="1"/>
+		</FormatB>
+	</Track1Name>
+	
+	<ThaiCharacterConvertTable>
+		<MainConverter>
+			<Item key="20" value=" "/>
+			<Item key="21" value="ก"/>
+			<Item key="22" value="ข"/>
+			<Item key="23" value="ฃ"/>
+			<Item key="24" value="ค"/>
+			<Item key="25" value="ฅ"/>
+			<Item key="26" value="ฆ"/>
+			<Item key="27" value="ง"/>
+			<Item key="28" value="จ"/>
+			<Item key="29" value="ฉ"/>
+			<Item key="2A" value="ช"/>
+			<Item key="2B" value="ซ"/>
+			<Item key="2C" value="ฌ"/>
+			<Item key="2D" value="ญ"/>
+			<Item key="2E" value="ฎ"/>
+			<Item key="2F" value="ฏ"/>
+			<Item key="30" value="0"/>
+			<Item key="31" value="1"/>
+			<Item key="32" value="2"/>
+			<Item key="33" value="3"/>
+			<Item key="34" value="4"/>
+			<Item key="35" value="5"/>
+			<Item key="36" value="6"/>
+			<Item key="37" value="7"/>
+			<Item key="38" value="8"/>
+			<Item key="39" value="9"/>
+			<Item key="3A" value="บ"/>
+			<Item key="3B" value="ป"/>
+			<Item key="3C" value="ผ"/>
+			<Item key="3D" value="ฝ"/>
+			<Item key="3E" value="พ"/>
+			<Item key="3F" value="ฟ"/>
+			<Item key="40" value="ภ"/>
+			<Item key="41" value="ม"/>
+			<Item key="42" value="ย"/>
+			<Item key="43" value="ร"/>
+			<Item key="44" value="ฤ"/>
+			<Item key="45" value="ล"/>
+			<Item key="46" value="ฦ"/>
+			<Item key="47" value="ว"/>
+			<Item key="48" value="ศ"/>
+			<Item key="49" value="ษ"/>
+			<Item key="4A" value="ส"/>
+			<Item key="4B" value="ห"/>
+			<Item key="4C" value="ฬ"/>
+			<Item key="4D" value="อ"/>
+			<Item key="4E" value="ฮ"/>
+			<Item key="4F" value="ฯ"/>
+			<Item key="50" value="ะ"/>
+			<Item key="51" value="ั"/>
+			<Item key="52" value="า"/>
+			<Item key="53" value="ำ"/>
+			<Item key="54" value="ิ"/>
+			<Item key="55" value="ี"/>
+			<Item key="56" value="ึ"/>
+			<Item key="57" value="ื"/>
+			<Item key="58" value="ุ"/>
+			<Item key="59" value="ู"/>
+			<Item key="5A" value="ฺ"/>
+			<Item key="5B" value="┴"/>
+			<Item key="5C" value="┬"/>
+			<Item key="5D" value="├"/>
+			<Item key="5E" value="┤"/>
+			<Item key="5F" value="฿"/>
+
+			<Item key="60" value="เ"/>
+			<Item key="61" value="แ"/>
+			<Item key="62" value="โ"/>
+			<Item key="63" value="ใ"/>
+			<Item key="64" value="ไ"/>
+			<Item key="65" value="ๅ"/>
+			<Item key="66" value="ๆ"/>
+			<Item key="67" value="็"/>
+			<Item key="68" value="่"/>
+			<Item key="69" value="้"/>
+			<Item key="6A" value="๊"/>
+			<Item key="6B" value="๋"/>
+			<Item key="6C" value="์"/>
+			<Item key="6D" value=":"/>
+			<Item key="6E" value="*"/>
+			<Item key="6F" value="๏"/>
+			<Item key="70" value="ฐ"/>
+			<Item key="71" value="ฑ"/>
+			<Item key="72" value="ฒ"/>
+			<Item key="73" value="ณ"/>
+			<Item key="74" value="ด"/>
+			<Item key="75" value="ต"/>
+			<Item key="76" value="ถ"/>
+			<Item key="77" value="ท"/>
+			<Item key="78" value="ธ"/>
+			<Item key="79" value="น"/>
+			<Item key="7A" value=","/>
+			<Item key="7B" value=""/>
+			<Item key="7C" value=""/>
+			<Item key="7D" value=""/>
+			<Item key="7E" value=""/>
+			<Item key="7F" value=""/>
+		</MainConverter>
+		<SubConverter>
+			<Item key="21" value=""/>
+			<Item key="22" value=""/>
+			<Item key="23" value=""/>
+			<Item key="24" value=""/>
+			<Item key="25" value="ั่"/>
+			<Item key="26" value="ั้"/>
+			<Item key="27" value="ั๊"/>
+			<Item key="28" value="ั๋"/>
+			<Item key="29" value=""/>
+			<Item key="2A" value=""/>
+			<Item key="2B" value=""/>
+			<Item key="2C" value=""/>
+			<Item key="2D" value="ิ่"/>
+			<Item key="2E" value="ิ้"/>
+			<Item key="2F" value="ิ๊"/>
+			<Item key="30" value="ิ๋"/>
+			<Item key="31" value="ิ์"/>
+			<Item key="32" value="ี่"/>
+			<Item key="33" value="ี้"/>
+			<Item key="34" value="ี๊"/>
+			<Item key="35" value="ิ๋"/>
+			<Item key="36" value="ึ่"/>
+			<Item key="37" value="ึ้"/>
+			<Item key="38" value="ึ๊"/>
+			<Item key="39" value="ึ๋"/>
+			<Item key="3A" value="ื่"/>
+			<Item key="3B" value="ื้"/>
+			<Item key="3C" value="ื๊"/>
+			<Item key="3D" value="ื๋"/>
+			<Item key="3E" value=""/>
+			<Item key="3F" value=""/>
+			<Item key="40" value="เ"/>
+			<Item key="41" value="แ"/>
+			<Item key="42" value="โ"/>
+			<Item key="43" value="ใ"/>
+			<Item key="44" value="ไ"/>
+			<Item key="45" value="ๅ"/>
+			<Item key="46" value="ๆ"/>
+			<Item key="47" value="็"/>
+			<Item key="48" value="่"/>
+			<Item key="49" value="้"/>
+			<Item key="4A" value="๊"/>
+			<Item key="4B" value="๋"/>
+			<Item key="4C" value="์"/>
+			<Item key="4D" value=":"/>
+			<Item key="4E" value="*"/>
+			<Item key="4F" value="๏"/>
+			<Item key="50" value="ฐ"/>
+			<Item key="51" value="ฑ"/>
+			<Item key="52" value="ฒ"/>
+			<Item key="53" value="ณ"/>
+			<Item key="54" value="ด"/>
+			<Item key="55" value="ต"/>
+			<Item key="56" value="ถ"/>
+			<Item key="57" value="ท"/>
+			<Item key="58" value="ธ"/>
+			<Item key="59" value="น"/>
+			<Item key="5A" value=""/>
+			<Item key="5B" value=""/>
+			<Item key="5C" value=""/>
+			<Item key="5D" value=""/>
+			<Item key="5E" value=""/>
+			<Item key="5F" value=""/>
+		</SubConverter>
+		
+		<SymbolConverter>
+			<Item key="25" value="ั่"/>
+			<Item key="26" value="ั้"/>
+			<Item key="27" value="ั๊"/>
+			<Item key="28" value="ั๋"/>
+			<Item key="2D" value="ิ่"/>
+			<Item key="2E" value="ิ้"/>
+			<Item key="2F" value="ิ๊"/>
+			<Item key="30" value="ิ๋"/>
+			<Item key="31" value="ิ์"/>
+			<Item key="32" value="ี่"/>
+			<Item key="33" value="ี้"/>
+			<Item key="34" value="ี๊"/>
+			<Item key="35" value="ิ๋"/>
+			<Item key="36" value="ึ่"/>
+			<Item key="37" value="ึ้"/>
+			<Item key="38" value="ึ๊"/>
+			<Item key="39" value="ึ๋"/>
+			<Item key="3A" value="ื่"/>
+			<Item key="3B" value="ื้"/>
+			<Item key="3C" value="ื๊"/>
+			<Item key="3D" value="ื๋"/>
+			<Item key="47" value="็"/>
+			<Item key="48" value="่"/>
+			<Item key="49" value="้"/>
+			<Item key="4A" value="๊"/>
+			<Item key="4B" value="๋"/>
+			<Item key="4C" value="์"/>		
+			<Item key="51" value="ั"/>
+			<Item key="53" value="ำ"/>
+			<Item key="54" value="ิ"/>
+			<Item key="55" value="ี"/>
+			<Item key="56" value="ึ"/>
+			<Item key="57" value="ื"/>
+			<Item key="58" value="ุ"/>
+			<Item key="59" value="ู"/>
+			<Item key="5A" value="ฺ"/>
+			<Item key="67" value="็"/>
+			<Item key="68" value="่"/>
+			<Item key="69" value="้"/>
+			<Item key="6A" value="๊"/>
+			<Item key="6B" value="๋"/>
+			<Item key="6C" value="์"/>
+		</SymbolConverter>
+	</ThaiCharacterConvertTable>
+</Root>

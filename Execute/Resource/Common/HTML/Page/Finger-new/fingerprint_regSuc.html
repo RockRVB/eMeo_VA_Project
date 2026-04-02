@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=""></script>
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+</head>
+<body>
+    <div id="app">
+        <g-header :height='100'>
+            <img slot='left' class='logo' src="../../images/logo.png" alt="">
+            <g-button class="exit-btn" slot='right' id='exitBtn' ids='ids_Exit' transparent round>Exit</g-button>
+        </g-header>
+        <g-main>
+            <h2 ids='ids_finger_fingerprintMatchSuc' class='main-title'>Finger print match Successful!</h2>
+            <img src="../../images/success.gif" style="width: 25%" alt="">
+            <p>
+                <span ids='ids_finger_customerName'>Customer Name</span>: 
+                <span type='textblock' id='info1' content='{Binding info1 mode=2}'>123</span>
+            </p>
+        </g-main>
+    </div>
+</body>
+</html>

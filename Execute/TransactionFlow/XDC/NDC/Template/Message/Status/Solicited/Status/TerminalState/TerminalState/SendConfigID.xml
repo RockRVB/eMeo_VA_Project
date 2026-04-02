@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!--  
+		*   Send Configuration ID. This solicited status messages is sent to response to a 
+		*	Send Configuration ID terminal Command message  (a command code of '3'). 
+		-->
+	<SendConfigID>
+		<Item key="g1" value="6" size="1" restriction="Mandatory"/>
+		<!--  Configuration ID. Contains the last four-digit configuration ID number (0000 - 9999) sent to the terminal from Central. 	-->
+		<Item key="g2" value="[ConfigurationID]" size="4" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]"/>
+		<!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+		<Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]"/>
+	</SendConfigID>
+</Root>

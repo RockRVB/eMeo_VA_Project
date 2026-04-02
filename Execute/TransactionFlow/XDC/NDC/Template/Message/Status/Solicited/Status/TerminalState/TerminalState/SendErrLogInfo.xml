@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+		<!--  Send Error Log Information.
+		*  Error log reporting is not supported in Advance NDC 2.06 or later. A default message is returned with g1, g2, g3 = 00 and g4 = 000101000000
+		* 	This solicited status message is sent to central in response to a Send Error Log Group Terminal Command message (a command code of '6'). 
+		-->
+	<SendErrLogInfo>
+		<!--  Message Identifier. This message has identifier '4' -->
+		<Item key="g1" 						value="4"  																	size="1" 							restriction="Mandatory"/>
+		
+		<!--  Group number. Contains the group number of the requested tallies ('A' to 'N' or 'V' 
+		* TSN  sent to Central. It means that the transaction has not been initiated and the counters have not been updated.  
+		*  'A' - Processor or System
+		*  'B' - Commnuications 
+		*  'C' - SST devices.
+		-->
+		<Item key="g2" 						value="[SolicitedStatus.TerminalState.ErrLogGroupNum]"										size="1"							restriction="Mandatory"/>
+		
+		<!--  New Entries. As error log reporting is not supported. this field always = 00.
+		-->
+		<Item key="g3" 						value="00"																	size="2"							restriction="Mandatory"/>
+		
+		<!--   Date Last Cleared.  As error log reporting is not supported. this field always = 000101000000 
+		* Contains default date and time in the following format.
+		* YY 	= Year ('00')
+		* MM 	= Month ('01')
+		* DD 	= Day('01')
+		* HH  	= Hour ('00')
+		* MM 	= Minute ('00')
+		* SS		= Second ('00')
+		-->
+		<Item key="g4" 						value="000101000000"												size="12"						restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]"/>
+		<!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+		<Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]"/>
+		
+	</SendErrLogInfo>
+	
+</Root>

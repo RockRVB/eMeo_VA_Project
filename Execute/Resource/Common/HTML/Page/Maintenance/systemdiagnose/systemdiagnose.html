@@ -1,0 +1,239 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>系统自动诊断</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/maintenance/cn.css" />
+<script src="../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../js/jquery-ui.min.js"></script>
+<script src="../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../js/maintenance/common/global.js"></script>
+<script src="../../../js/maintenance/component/components.js"></script>
+<script src="../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../js/maintenance/ui/maintenance/systemdiagnose/systemdiagnose.js"></script>
+</head>
+
+<body>
+<!--界面容器-->
+<div class="wrapper system-diagnose"> 
+	<!--背景-->
+	<div class="bg-wrapper"> 
+		<!--ATM机型容器-->
+		<div class="atm-container"> 
+			<!--错误提示信息-->
+			<div id="STATIC_ERROR_INFORMATION" type="STATIC_TXT" class="error-information" color="0xFF0000" scrollColor="0xFF0000"></div>
+			<!--ATM机型-->
+			<!--imgType: swf默认加载该机型目录Flash文件,img加载样式背景PNG图;  devNameAndLine: 设备名称和线条, 1显示 0不显示-->
+			<div class="atm-type" id="atm-box" imgType="img" devNameAndLine="0"> 	
+				<!--ATM机器图片-->
+				<div id="atm-flash">
+					<embed class="atm-swf" wmode="opaque" id="atmSWF" style="top:0px;width:500px;height:650px;" src="..\..\..\..\Image\CN\maintenance\atm\H68.swf" > </embed>
+				</div>
+				<div id="atm-pic" style="top:10px;">
+					<img id="atm-img" class="atm-image none" src="..\..\..\..\Image\CN\maintenance\atm\DEFAULT.png"  alt=""/>
+				</div>
+				<!--ATM部件具体信息[凭条打印机]-->
+				<div class="atm-device-box single-device-printer none"> 
+					<!--部件名称-->
+					<div class="atm-device-name">
+						<span ids="IDS_Printer">凭条打印机</span>
+					</div>
+					<!--线条图片-->
+					<div class="atm-device-line"></div>
+					<!--部件状态-->
+					<div class="atm-device-state"></div>
+				</div>
+				<!--ATM部件具体信息[流水打印机]-->
+				<div class="atm-device-box single-device-jprinter none"> 
+					<!--部件名称-->
+					<div class="atm-device-name">
+						<span ids="IDS_Jprinter">流水打印机</span>
+					</div>
+					<!--线条图片-->
+					<div class="atm-device-line"></div>
+					<!--部件状态-->
+					<div class="atm-device-state"></div>
+				</div>
+				<!--ATM部件具体信息[读卡器]-->
+				<div class="atm-device-box single-device-cardreader none"> 
+					<!--部件名称-->
+					<div class="atm-device-name">
+						<span ids="IDS_CardReader">读卡器</span>
+					</div>
+					<!--线条图片-->
+					<div class="atm-device-line"></div>
+					<!--部件状态-->
+					<div class="atm-device-state atm-device-state-warning"></div>
+				</div>
+				<!--ATM部件具体信息[键盘]-->
+				<div class="atm-device-box single-device-keypad none"> 
+					<!--部件名称-->
+					<div class="atm-device-name">
+						<span ids="IDS_Keypad">键盘</span>
+					</div>
+					<!--线条图片-->
+					<div class="atm-device-line"></div>
+					<!--部件状态-->
+					<div class="atm-device-state atm-device-state-error"></div>
+				</div>
+				<!--ATM部件具体信息[机芯]-->
+				<div class="atm-device-box single-device-dispenser none"> 
+					<!--部件名称-->
+					<div class="atm-device-name">
+						<span ids="IDS_Dispenser">机芯</span>
+					</div>
+					<!--线条图片-->
+					<div class="atm-device-line"></div>
+					<!--部件状态-->
+					<div class="atm-device-state atm-device-state-normal"></div>
+				</div>
+				<!--ATM部件具体信息[信封存款]-->
+				<div class="atm-device-box single-device-envelope none"> 
+					<!--部件名称-->
+					<div class="atm-device-name">
+						<span ids="IDS_Envelope">信封存款</span>
+					</div>
+					<!--线条图片-->
+					<div class="atm-device- line"></div>
+					<!--部件状态-->
+					<div class="atm-device-state atm-device-state-normal"></div>
+				</div>
+
+			</div>
+		</div>
+		<!--ATM部件容器-->
+		<div class="atm-device-container">
+			<!--ATM部件信息-->
+			<div id="atm-device-information">
+				<!--翻页按钮-->
+				<div class="type-table-paging none">
+					<div class="middle-outer">
+						<div class="middle-inner">
+							<button class="button-page" mark="prev" dataToSend="78" id="prev"><span class="tip"></span> <span class="button-text">▲</span></button>
+							<button class="button-page" mark="next"><span class="tip"></span> <span class="button-text">▼</span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--ATM部件模板-->
+			<div id="atm-device-template" style="top: 20px !important;height:150px;width:97%;border:0px solid #ff0000;overflow-y:scroll;overflow-x:hidden">
+				<div class="atm-device-row single-line none" style="font-size:1.8rem;line-height:1.5;margin-bottom:20px;"><span ids="IDS_ReceiptPrinter">凭条打印机:</span><span id="STATIC_PRINTER" canScroll="1" type="STATIC_TXT" class="atm-device-color-normal">加载中...</span></div>
+				<div class="atm-device-row single-line none" style="font-size:1.8rem;line-height:1.5;margin-bottom:20px;"><span ids="IDS_JournalPrinter">流水打印机:</span><span id="STATIC_JPRINTER" canScroll="1"  type="STATIC_TXT"  class="atm-device-color-normal">加载中...</span></div>
+				<div class="atm-device-row single-line none" style="font-size:1.8rem;line-height:1.5;margin-bottom:20px;"><span ids="IDS_DevCardReader">读卡器:</span><span id="STATIC_CARDREADER" canScroll="1" type="STATIC_TXT" class="atm-device-color-normal">加载中...</span></div>
+				<div class="atm-device-row single-line none" style="font-size:1.8rem;line-height:1.5;margin-bottom:20px;"><span ids="IDS_DevKeypad">键盘:</span><span id="STATIC_KEYPAD" type="STATIC_TXT" canScroll="1"  class="atm-device-color-normal">加载中...</span></div>
+				<div class="atm-device-row single-line none" style="font-size:1.8rem;line-height:1.5;margin-bottom:20px;"><span ids="IDS_DevDispenser">机芯:</span><span id="STATIC_DISPENSER" type="STATIC_TXT" canScroll="1"  class="atm-device-color-normal">加载中...</span></div>
+				<div class="atm-device-row single-line none" style="font-size:1.8rem;line-height:1.5;margin-bottom:20px;"><span ids="IDS_EnvelopeDepositUnit">信封存款:</span><span id="STATIC_ENVELOPE" canScroll="1" type="STATIC_TXT" class="atm-device-color-normal">加载中...</span></div>
+				<div class="atm-device-row single-line none" style="font-size:1.8rem;line-height:1.5;margin-bottom:20px;"><span ids="IDS_CardDispenser">发卡器:</span><span id="STATIC_CARDDISPENSER" type="STATIC_TXT" canScroll="1"  class="atm-device-color-normal">加载中...</span></div>
+				<div class="atm-device-row single-line none" style="font-size:1.8rem;line-height:1.5;margin-bottom:20px;"><span ids="IDS_UKeyLDispenser">左UKEY发放器:</span><span id="STATIC_UKEYDISPENSER" type="STATIC_TXT" canScroll="1"  class="atm-device-color-normal">加载中...</span></div>
+				<div class="atm-device-row single-line none" style="font-size:1.8rem;line-height:1.5;margin-bottom:20px;"><span ids="IDS_UKeyRDispenser">右UKEY发放器:</span><span id="STATIC_UKEYRIGHTDISPENSER" type="STATIC_TXT" canScroll="1"  class="atm-device-color-normal">加载中...</span></div>
+				<div class="atm-device-row single-line none" style="font-size:1.8rem;line-height:1.5;margin-bottom:20px;"><span ids="IDS_IDReader">身份证读卡器:</span><span id="STATIC_IDREADER" type="STATIC_TXT" canScroll="1"  class="atm-device-color-normal">加载中...</span></div>
+				<div class="atm-device-row single-line none" style="font-size:1.8rem;line-height:1.5;margin-bottom:20px;"><span ids="IDS_FingerScnr">指纹:</span><span id="STATIC_FINGERSCNR" type="STATIC_TXT" canScroll="1"  class="atm-device-color-normal">加载中...</span></div>
+				<div class="atm-device-row single-line none" style="font-size:1.8rem;line-height:1.5;margin-bottom:20px;"><span ids="IDS_FingerVein">指静脉:</span><span id="STATIC_FINGERVEIN" type="STATIC_TXT" canScroll="1"  class="atm-device-color-normal">加载中...</span></div>
+				<div class="atm-device-row single-line none" style="font-size:1.8rem;line-height:1.5;margin-bottom:20px;"><span ids="IDS_Passport">护照:</span><span id="STATIC_PASSPORT" type="STATIC_TXT" canScroll="1"  class="atm-device-color-normal">加载中...</span></div>
+				<div class="atm-device-row single-line none" style="font-size:1.8rem;line-height:1.5;margin-bottom:20px;"><span ids="IDS_Barcode">二维码:</span><span id="STATIC_BRCODE" type="STATIC_TXT" canScroll="1"  class="atm-device-color-normal">加载中...</span></div>
+			</div>
+			
+			<!--表格控件-->
+			<div id="table_1" class="type-table diagnose_table" type="TABLE" style="top: 166.625px !important;"> 
+				<!--翻页按钮-->
+				<div class="type-table-paging">
+					<div class="middle-outer">
+						<div class="middle-inner">
+							<button class="button-page" mark="prev" dataToSend="78" id="prev"><span class="tip"></span> <span class="button-text">▲</span></button>
+							<button class="button-page" mark="next"><span class="tip"></span> <span class="button-text">▼</span></button>
+						</div>
+					</div>
+				</div>
+				<div class="type-table-container table_margin_top ">
+					<table>
+						<thead>
+							<tr class="tr_height">
+								<th><span  ids="IDS_IdNormal">ID</span></th>
+								<th><span  ids="IDS_Remain">剩余张数</span></th>
+								<th><span  ids="IDS_DemoNormal">面额</span></th>
+								<th><span  ids="IDS_TypeNormal">类型</span></th>
+								<th><span  ids="IDS_Status">状态</span></th>
+								<th><span  ids="IDS_CurrencyNormal">币种</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><span id="STATIC_CASHBOXID1"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXCOUNT1"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXDOM1"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXTYPE1"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXSTATUS1"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXCURRENCY1"  type="STATIC_TXT" ></span></td>
+							</tr>
+							<tr>
+								<td><span id="STATIC_CASHBOXID2"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXCOUNT2"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXDOM2"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXTYPE2"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXSTATUS2"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXCURRENCY2"  type="STATIC_TXT" ></span></td>
+							</tr>
+							<tr>
+								<td><span id="STATIC_CASHBOXID3"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXCOUNT3"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXDOM3"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXTYPE3"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXSTATUS3"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXCURRENCY3"  type="STATIC_TXT" ></span></td>
+							</tr>
+							<tr>
+								<td><span id="STATIC_CASHBOXID4"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXCOUNT4"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXDOM4"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXTYPE4"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXSTATUS4"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXCURRENCY4"  type="STATIC_TXT" ></span></td>
+							</tr>
+							<tr>
+								<td><span id="STATIC_CASHBOXID5"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXCOUNT5"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXDOM5"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXTYPE5"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXSTATUS5"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXCURRENCY5"  type="STATIC_TXT" ></span></td>
+							</tr>
+							<tr>
+								<td><span id="STATIC_CASHBOXID6"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXCOUNT6"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXDOM6"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXTYPE6"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXSTATUS6"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXCURRENCY6"  type="STATIC_TXT" ></span></td>
+							</tr>
+							<tr>
+								<td><span id="STATIC_CASHBOXID7"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXCOUNT7"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXDOM7"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXTYPE7"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXSTATUS7"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXCURRENCY7"  type="STATIC_TXT" ></span></td>
+							</tr>
+							<tr>
+								<td><span id="STATIC_CASHBOXID8"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXCOUNT8"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXDOM8"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXTYPE8"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXSTATUS8"  type="STATIC_TXT" ></span></td>
+								<td><span id="STATIC_CASHBOXCURRENCY8"  type="STATIC_TXT" ></span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!--表格控件END-->
+		</div>
+	</div>
+</div>
+</body>
+</html>

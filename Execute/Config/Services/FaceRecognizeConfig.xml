@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<!-- Vendor Type: 0-ZhuoShi，1-Pixel -->
+	<VendorType value="0" />
+	
+    <!-- FaceServer -->
+	<Server Host="10.252.39.14" Port="8781" Protocol="http" />
+	
+	<!-- 服务器-像素 -->
+	<!-- <Server Host="10.1.24.17" Port="9980" Protocol="http" /> -->
+	
+	<!-- Port for File Server, just for Pixel -->
+	<FileServerPort value="8000" />
+	
+	<!-- X-GB-Client-Id -->
+	<XGBClientId value="bytest" />
+		
+	<!-- Post Request timeout -->
+	<RequestTimeout value="15000" />
+	
+	<!-- The timeout of Dual Cameral waiting for customer to scan face, unit is minute -->
+	<DualCameraCapturePicTimout value="30" />
+</Config>

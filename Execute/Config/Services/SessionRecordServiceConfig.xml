@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Config>
+<TransactionFlag startResult="Start" successResult="Success"/>
+  <Transactions>
+    <Transaction name="AccountOpen" Workflow="NewAccount" comment="">
+      <!-- if first met, break. order by priorityKey -->
+	  <!-- split by ";" to get the format -->
+      <Condition result="Start" priorityKey="0"> 
+        $(CurActionId)=="ID_CardProtol"
+      </Condition>
+      <Condition result="Success" priorityKey="1">
+        $(CurActionId)=="ID_CheckFormImage" &amp;&amp; $(LastCondition)=="OnConfirm"
+		<SetData key="AccountNo" value="{Sacom_NewAccountNo};[****]####$|#### "/>
+      </Condition>
+      <Condition result="Fail" priorityKey="2">
+        $(CurActionId)=="ID_CheckFormImage"
+      </Condition>
+    </Transaction>
+    
+    <Transaction name="CardIssue" Workflow="IBankProjectCardIssue" comment="">
+      <Condition result="Start" priorityKey="0">
+        $(CurActionId)=="ID_CardProtol"
+      </Condition>
+      <Condition result="Success" priorityKey="1">
+        $(CurActionId)=="ID_DispenseCardSuccess" &amp;&amp; $(LastCondition)=="OnContinue"
+		<SetData key="CardNo" value="{core_PAN};[****]####$|#### "/>
+      </Condition>
+      <Condition result="Fail" priorityKey="2">
+        $(CurActionId)=="ID_DispenseCardSuccess"
+		<SetData key="CardNo" value="{core_PAN};[****]####$|#### "/>
+      </Condition>
+	    <Condition result="Capture" priorityKey="3">
+        $(CurActionId)=="ID_ReturnCardForHardwareError"
+		<SetData key="CardNo" value="{core_PAN};[****]####$|#### "/>
+      </Condition>
+    </Transaction>
+  </Transactions>
+</Config>

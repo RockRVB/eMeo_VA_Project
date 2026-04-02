@@ -1,0 +1,529 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="VAB_Deposit">
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2026/04/02 19:15:12" comment="The workflow design is for Deposit"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_TransactionFlowStart"/>
+		</Start>
+		<WriteEJLog ID="ID_TransactionFlowStart" LogData ="***==================================================*;   TRANSACTION START: DEPOSIT" >
+			<Forward event="OnConfirm" targetID="ID_CreateSessionIDNumber"/>		
+		</WriteEJLog>
+		<VAB_CreateSessionIDNumber ID="ID_CreateSessionIDNumber">
+			<Forward event="OnNext" targetID="ID_InvokeLoginWorkflow" />
+		</VAB_CreateSessionIDNumber>
+		<InvokeWorkflow ID="ID_InvokeLoginWorkflow" name="Login" comment="Invoke login trans workflow">
+			<Forward event="OnConfirm" targetID="ID_QueryCIFInfo"/>
+		</InvokeWorkflow>
+		<RequestTransViaRestful ID="ID_QueryCIFInfo" UI="UI_VAB_Processing" transType="Customer" transFormat="json" timeout="60000">
+			<States>
+				<State name="PackFail" UI=""/>
+				<State name="ConnectFail" UI=""/>
+				<State name="SendFail" UI=""/>
+				<State name="ReceiveFail" UI=""/>
+				<State name="ReceiveTimeout" UI=""/>
+				<State name="NetworkFail" UI=""/>
+				<State name="UnpackFail" UI=""/>
+				<State name="HardwareError" UI=""/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_CompareCIFStatus"/>
+			<Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnHostRefuse" targetID="ID_TransactionfailAndfindAnotherMethod"/>
+		</RequestTransViaRestful>
+		<CompareData ID="ID_CompareCIFStatus" comment="" compareBuffer="{VAB_Cif_Status}">
+		  <Forward event="OnEqualActive" targetID="ID_CashInStart" />
+		  <Forward event="OnEqualInActive" targetID="ID_InvokeCloseTransWorkflow" />
+		  <DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+		</CompareData>
+		<!-- 开始存款 -->
+		<CashInStart ID="ID_CashInStart" UI="UI_VAB_Processing">
+			<Forward event="OnConfirm" targetID="ID_CashInWaitForNoteInsert"/>
+		</CashInStart>
+		<!-- 显示操作正在进行中界面 -->
+		<ShowScreen ID="ID_ShowScreen" UI="UI_OperatingNoCounter">
+			<Forward event="OnContinue" targetID="ID_CashInWaitForNoteInsert"/>
+		</ShowScreen>
+		<!-- 等待放入钞票 -->
+		<CashInWaitForNoteInsert ID="ID_CashInWaitForNoteInsert" UI="UI_CashInWaitForNoteInsert">
+			<States>
+				<State name="WaitForNoteInsertNoCash" UI="UI_WaitForNoteInsertNoCash"/>
+				<State name="OperationIsProcessing" UI="UI_OperatingNoCounter"/>
+				<State name="ArrangeCash" UI="UI_WaitForNoteInsert4ArrangeCash"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_CashIn"/>
+			<Forward event="OnCancel" targetID="ID_CashInWaitForNoteTaken"/>
+			<Forward event="OnTimeout" targetID="ID_CashIn"/>
+			<Forward event="OnKeyError" targetID="ID_InputCashEmptyForError"/>
+			<Forward event="OnFail" targetID="ID_CashInWaitForNoteTakenInsertError"/>
+			<Forward event="OnRollbackForError" targetID="ID_CashInRollbackForError"/>
+			<Forward event="OnRollback" targetID="ID_CashInRollback"/>
+			<Forward event="OnCashInEnd" targetID="ID_InputCashEmptyForTimeout"/>
+			<Forward event="OnHardwareError" targetID="ID_InputCashEmptyForError"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+			<Forward event="OnNoteTaken" targetID="ID_CancelWaitForNoteTaken"/>
+			<Forward event="OnNoteTakenForEmpty" targetID="ID_CancelWaitForNoteTakenForEmpty"/>
+		</CashInWaitForNoteInsert>
+		<!-- 无钞取消处理 -->
+		<CancelCashIn ID="ID_InputCashEmpty" UI="UI_InputCashEmpty">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</CancelCashIn>
+		<!-- 存款等待放钞直接取消 -->
+		<CancelCashIn ID="ID_InputCashEmptyAtFirstTime" UI="UI_InputCashUserCancel">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</CancelCashIn>
+		
+		<!-- 无钞开关门失败处理 -->
+		<CancelCashIn ID="ID_InputCashEmptyForError" UI="UI_InputCashEmptyForError">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</CancelCashIn>
+		<!-- 有钞取消(未点钞)处理 -->
+		<CancelCashIn ID="ID_InputCashEmptyForCashInEnd" UI="UI_InputCashEmptyForCashInEnd">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</CancelCashIn>
+		<!-- 无钞超时处理 -->
+		<CancelCashIn ID="ID_InputCashEmptyForTimeout" UI="UI_InputCashEmpty">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</CancelCashIn>
+		<!-- 拒绝太多处理 -->
+		<CancelCashIn ID="ID_InputCashEmptyForRefusedNoteToomuch" UI="UI_InputCashEmptyForRefusedNoteToomuch">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</CancelCashIn>
+		<!-- 等待钞票取走 -->
+		<CashInWaitForNoteTaken ID="ID_CashInWaitForNoteTaken" UI="UI_OperatingNoCounter">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_CashInWaitForNoteTaken"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_InputCashEmptyForCashInEnd"/>
+			<Forward event="OnTimeout" targetID="ID_CashInRetract"/>
+			<Forward event="OnRollback" targetID="ID_CashInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+			<Forward event="OnCashInEndForError" targetID="ID_InputCashEmptyForError"/>
+		</CashInWaitForNoteTaken>
+		<!-- 等待钞票取走，钞票位置不正确，重新整理钞票 -->
+		<CashInWaitForNoteTaken ID="ID_CashInWaitForNoteTakenForArrangeCash" UI="UI_OperatingNoCounter">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_ArrangeCash"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_CashInWaitForNoteInsert"/>
+			<Forward event="OnTimeout" targetID="ID_CashInRetract"/>
+			<Forward event="OnRollback" targetID="ID_CashInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+			<Forward event="OnCashInEndForError" targetID="ID_InputCashEmptyForError"/>
+		</CashInWaitForNoteTaken>
+		<!-- 设备故障，等待钞票取走 -->
+		<CashInWaitForNoteTaken ID="ID_CashInWaitForNoteTakenInsertError" UI="UI_OperatingNoCounter">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_CashInWaitForNoteTakenForError"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_InputCashEmptyForError"/>
+			<Forward event="OnTimeout" targetID="ID_CashInRetract"/>
+			<Forward event="OnRollback" targetID="ID_CashInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+			<Forward event="OnCashInEndForError" targetID="ID_InputCashEmptyForError"/>
+		</CashInWaitForNoteTaken>
+		<!-- 等待不可识别钞票取走 -->
+		<CashInWaitForNoteTaken ID="ID_CashInWaitForNoteTakenRefused" UI="UI_OperatingNoCounter" journalKeyName="IDS_TakeRejectCash">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_CashInWaitForNoteTakenRefused"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_CashInShowResult"/>
+			<Forward event="OnTimeout" targetID="ID_CashInRetract"/>
+			<Forward event="OnRollback" targetID="ID_CashInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+			<Forward event="OnCashInEndForError" targetID="ID_InputCashEmptyForError"/>
+		</CashInWaitForNoteTaken>
+		<!-- 客户取消，等待钞票取走 -->
+		<CashInWaitForNoteTaken ID="ID_CashInWaitForNoteTakenRollback" UI="UI_OperatingNoCounter">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_CashInWaitForNoteTaken"/>
+			</States>
+			<Forward event="OnContinue" targetID="9999"/>
+			<Forward event="OnTimeout" targetID="ID_CashInRetract"/>
+			<Forward event="OnRollback" targetID="ID_CashInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+			<Forward event="OnCashInEndForError" targetID="ID_InputCashEmptyForError"/>
+		</CashInWaitForNoteTaken>
+		<!-- 客户取消，先拿走CS的钞，再退TS的钞 -->
+		<CashInWaitForNoteTaken ID="ID_CancelWaitForNoteTaken" UI="UI_OperatingNoCounter">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_CancelWaitForNoteTaken"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_CashInRollback"/>
+			<Forward event="OnTimeout" targetID="ID_CashInRetract"/>
+			<Forward event="OnRollback" targetID="ID_CashInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+			<Forward event="OnCashInEndForError" targetID="ID_InputCashEmptyForError"/>
+		</CashInWaitForNoteTaken>
+		<!-- 客户取消，先拿走CS的钞，再结束存款状态 -->
+		<CashInWaitForNoteTaken ID="ID_CancelWaitForNoteTakenForEmpty" UI="UI_OperatingNoCounter">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_CashInWaitForNoteTaken"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_InputCashEmptyForCashInEnd"/>
+			<Forward event="OnTimeout" targetID="ID_CashInRetract"/>
+			<Forward event="OnRollback" targetID="ID_CashInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+			<Forward event="OnCashInEndForError" targetID="ID_InputCashEmptyForError"/>
+		</CashInWaitForNoteTaken>
+		<!-- 设备故障，等待钞票取走 -->
+		<CashInWaitForNoteTaken ID="ID_CashInWaitForNoteTakenRollbackForError" UI="UI_OperatingNoCounter">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_CashInWaitForNoteTakenForError"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnTimeout" targetID="ID_CashInRetract"/>
+			<Forward event="OnRollback" targetID="ID_CashInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+			<Forward event="OnCashInEndForError" targetID="ID_InputCashEmptyForError"/>
+		</CashInWaitForNoteTaken>
+		<!-- 网络故障，等待钞票取走 -->
+		<CashInWaitForNoteTaken ID="ID_CashInWaitForNoteTakenNetworkFailed" UI="UI_OperatingNoCounter">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_CashInWaitForNoteTakenForCommError"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnTimeout" targetID="ID_CashInRetract"/>
+			<Forward event="OnRollback" targetID="ID_CashInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+			<Forward event="OnCashInEndForError" targetID="ID_InputCashEmptyForError"/>
+		</CashInWaitForNoteTaken>
+		<!-- 钞票放入太多，等待钞票取走 -->
+		<CashInWaitForNoteTaken ID="ID_CashInWaitForNoteTakenToomuch" UI="UI_OperatingNoCounter" journalKeyName="IDS_TakeRejectCash">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_CashInWaitForNoteTakenToomuch"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_CashInShowResult"/>
+			<Forward event="OnTimeout" targetID="ID_CashInRetract"/>
+			<Forward event="OnRollback" targetID="ID_CashInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+			<Forward event="OnCashInEndForError" targetID="ID_InputCashEmptyForError"/>
+		</CashInWaitForNoteTaken>
+		<!-- 钞票位置不正确且放钞次数超限，等待钞票取走 -->
+		<CashInWaitForNoteTaken ID="ID_WaitForNoteTakenForInputTimesOverlimt" UI="UI_OperatingNoCounter">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_CashInWaitForNoteTakenForOverLimit"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_CashInShowResult"/>
+			<Forward event="OnTimeout" targetID="ID_CashInRetract"/>
+			<Forward event="OnRollback" targetID="ID_CashInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+			<Forward event="OnCashInEndForError" targetID="ID_InputCashEmptyForError"/>
+		</CashInWaitForNoteTaken>
+		<!-- 连续拒钞超限后，等待钞票取走 -->
+		<CashInWaitForNoteTaken ID="ID_CashInWaitForNoteTakenRefusedNoteToomuch" UI="UI_OperatingNoCounter" journalKeyName="IDS_TakeRejectCash">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_CashInWaitForNoteTakenRefused"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_InputCashEmptyForRefusedNoteToomuch"/>
+			<Forward event="OnTimeout" targetID="ID_CashInRetract"/>
+			<Forward event="OnRollback" targetID="ID_CashInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+			<Forward event="OnCashInEndForError" targetID="ID_InputCashEmptyForError"/>
+		</CashInWaitForNoteTaken>
+		<!-- 回收 -->
+		<CashInRetract ID="ID_CashInRetract" UI="UI_CashInRetract">
+			<Forward event="OnContinue" targetID="ID_GetDevStatusForCloseTrans"/>
+		</CashInRetract>
+		<CashInRetract ID="ID_CashInRetractForRepeatNumReject" UI="UI_CashInRetractForRepeatNumReject">
+			<Forward event="OnContinue" targetID="ID_GetDevStatusForCloseTrans"/>
+		</CashInRetract>
+		<CashInRetract ID="ID_OperationTimeoutRetractCash" UI="UI_OperationTimeoutRetractCash">
+			<Forward event="OnContinue" targetID="ID_GetDevStatusForCloseTrans"/>
+		</CashInRetract>
+		<!-- 故障回收 -->
+		<CashInRetract ID="ID_CashInRetractForError" UI="UI_CashInRetractForError">
+			<Forward event="OnContinue" targetID="ID_GetDevStatusForCloseTrans"/>
+		</CashInRetract>
+		<!-- 点钞 -->
+		<CashIn ID="ID_CashIn" UI="UI_CountingNote" maxRefusedNotesCount="20" waitShutterCloseTime="2000">
+			<States>
+				<State name="NoteInserted" UI="UI_NoteInserted4AutoShutter"/>
+				<State name="OperationIsProcessing" UI="UI_OperatingNoCounter"/>
+				<State name="ArrangeCash" UI="UI_CashIn4ArrangeCash"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_CashInShowResult"/>
+			<Forward event="OnNoteRefused" targetID="ID_CashInWaitForNoteTakenRefused"/>
+			<Forward event="OnFail" targetID="ID_CashInRollbackForError"/>
+			<Forward event="OnNoCashInCsTs" targetID="ID_CashInShowResult"/>
+			<Forward event="OnCashToomuch" targetID="ID_CashInWaitForNoteTakenToomuch"/>
+			<Forward event="OnRefusedNotetoomuch" targetID="ID_CashInWaitForNoteTakenRefusedNoteToomuch"/>
+			<Forward event="OnHardwareError" targetID="ID_InputCashEmptyForError"/>
+			<Forward event="OnRollback" targetID="ID_CashInRollback"/>
+			<Forward event="OnCashInEnd" targetID="ID_InputCashEmpty"/>
+			<Forward event="OnCancel" targetID="ID_CashInWaitForNoteTaken"/>
+		</CashIn>
+		<!-- 显示点钞结果 -->
+		<CashInShowResult ID="ID_CashInShowResult" UI="UI_CashInShowResult" journalKeyName="IDS_CustomCancel">
+			<Forward event="OnCashInEndForCancel" targetID="ID_InputCashEmpty"/>
+			<Forward event="OnCancel" targetID="ID_CashInRollback"/>
+			<Forward event="OnTimeout" targetID="ID_CompareIsCardInsertedForCashInShowResult"/>
+			<Forward event="OnConfirm" targetID="ID_RequestTrans"/>
+			<Forward event="OnContinue" targetID="ID_ShowScreen"/>
+			<!--Forward event="OnKeyError" targetID="ID_RequestTrans"/-->
+			<Forward event="OnKeyError" targetID="ID_CompareIsCardInsertedForCashInShowResult"/>
+			<Forward event="OnCashInEnd" targetID="ID_InputCashEmptyForTimeout"/>
+			<Forward event="OnHardwareError" targetID="ID_InputCashEmptyForError"/>
+			<Forward event="OnRepeatNumReject" targetID="ID_CashInRollbackForRepeatNumReject"/>
+			<Forward event="OnRepeatNumRetract" targetID="ID_CashInRetractForRepeatNumReject"/>
+		</CashInShowResult>
+		<!-- 检查是否是无卡存款 -->
+		<CompareData ID="ID_CompareIsCardInsertedForCashInShowResult" compareBuffer="{core_CardInserted}" comment="是否有卡存款">
+			<Forward event="OnEqualTrue" targetID="ID_RequestTrans"/>
+			<DefaultForward targetID="ID_CompareIsIsContactLessMode"/>
+		</CompareData>
+	    <!-- 检查是否是非接模式 -->
+	    <IsContactLessMode ID="ID_CompareIsIsContactLessMode"  comment="是否是非接交易">
+            <Forward event="OnConfirm" targetID="ID_RequestTrans"/>
+	       <Forward event="OnContinue" targetID="ID_CashInEndForPassiveNoCard"/>
+        </IsContactLessMode>
+		<!-- 交易请求状态 -->
+		<RequestTrans ID="ID_RequestTrans" UI="UI_RequestTrans" comment="Deposit request">
+		    <States>
+				<State name="TransNotAccepted" UI="UI_ICTransNotAccepted"/>
+				<State name="TransDeclined" UI="UI_ICTransDeclined"/>
+				<State name="TransTerminated" UI="UI_ICTransTerminated"/>
+			</States>
+			<Forward event="OnDepositPassiveSuccess" targetID="ID_CashInEndForPassive"/>
+			<!--Forward event="OnDepositPassiveFail" targetID="ID_HostRefuseAndCashInEnd"/-->
+			<Forward event="OnDepositPassiveFail" targetID="ID_HandleHostRefuse"/>
+			<Forward event="OnConfirm" targetID="ID_CashInEnd"/>
+			<Forward event="OnPackFail" targetID="ID_CashInRollbackForNetworkFailed"/>
+			<Forward event="OnConnectFail" targetID="ID_CashInRollbackForNetworkFailed"/>
+			<Forward event="OnSendFail" targetID="ID_HandleHostRefuse"/>
+			<Forward event="OnReceiveFail" targetID="ID_HandleHostRefuse"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_HandleHostRefuse"/>
+			<Forward event="OnNetworkFail" targetID="ID_HandleHostRefuse"/>
+			<Forward event="OnUnpackFail" targetID="ID_HandleHostRefuse"/>
+			<Forward event="OnHostRefuse" targetID="ID_HandleHostRefuse"/>
+			<Forward event="OnReInputPin" targetID="ID_HandleHostRefuse"/>
+			<Forward event="OnHardwareError" targetID="ID_CashInRollbackForError"/>
+			<Forward event="OnFallback" targetID="ID_RequestTrans"/>
+			<Forward event="OnTryAgain" targetID="ID_TryAgain"/>
+			<Forward event="OnICAppLoadedFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</RequestTrans>
+		<!-- 主机拒绝处理 -->
+		<HandleHostRefuse ID="ID_HandleHostRefuse" UI="">
+			<Forward event="OnHostRefuseAndCashInEnd" targetID="ID_HostRefuseAndCashInEnd"/>
+			<Forward event="OnHostRefuseAndEjectCash" targetID="ID_HostRefuseAndCashInRollback"/>
+		</HandleHostRefuse>
+		<!-- 回滚，退回钞票 -->
+		<CashInRollback ID="ID_CashInRollback" UI="UI_CashInRollback">
+			<States>
+				<State name="RollbackForHardwareError" UI="UI_RollbackForHardwareError"/>
+				<State name="RollbackForTSNoCash" UI="UI_OperatingNoCounter"/>
+				<State name="RollbackForExceedICAvailableRechargeAmount" UI="UI_RollbackForExceedICAvailableRechargeAmount"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnWaitForNoteTaken" targetID="ID_CashInWaitForNoteTakenRollback"/>
+			<Forward event="OnFail" targetID="ID_PrintReceipt"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+		</CashInRollback>
+		<!-- 设备故障，退回钞票 -->
+		<CashInRollback ID="ID_CashInRollbackForError" UI="UI_RollbackForHardwareError">
+			<States>
+				<State name="RollbackForHardwareError" UI="UI_RollbackForHardwareError"/>
+				<State name="RollbackForTSNoCash" UI="UI_RollbackForHardwareError"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnWaitForNoteTaken" targetID="ID_CashInWaitForNoteTakenRollbackForError"/>
+			<Forward event="OnFail" targetID="ID_PrintReceipt"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+		</CashInRollback>
+		<!-- 网络故障，退回钞票 -->
+		<CashInRollback ID="ID_CashInRollbackForNetworkFailed" UI="UI_CashInRollbackForNetworkFailed">
+			<States>
+				<State name="RollbackForHardwareError" UI="UI_RollbackForHardwareError"/>
+				<State name="RollbackForTSNoCash" UI="UI_OperatingNoCounter"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnWaitForNoteTaken" targetID="ID_CashInWaitForNoteTakenNetworkFailed"/>
+			<Forward event="OnFail" targetID="ID_PrintReceipt"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+		</CashInRollback>
+		<!-- 主机拒绝退钞 -->
+		<CashInRollback ID="ID_HostRefuseAndCashInRollback" UI="UI_HostRefuseAndCashInRollback">
+			<States>
+				<State name="RollbackForHardwareError" UI="UI_RollbackForHardwareError"/>
+				<State name="RollbackForTSNoCash" UI="UI_OperatingNoCounter"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnWaitForNoteTaken" targetID="ID_CashInWaitForNoteTakenNetworkFailed"/>
+			<Forward event="OnFail" targetID="ID_PrintReceipt"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+		</CashInRollback>
+		<!-- 重号拒钞退钞 -->
+		<CashInRollback ID="ID_CashInRollbackForRepeatNumReject" UI="UI_CashInRollbackForRepeatNumReject">
+			<States>
+				<State name="RollbackForHardwareError" UI="UI_RollbackForHardwareError"/>
+				<State name="RollbackForTSNoCash" UI="UI_OperatingNoCounter"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnWaitForNoteTaken" targetID="ID_CashInWaitForNoteTakenRollback"/>
+			<Forward event="OnFail" targetID="ID_PrintReceipt"/>
+			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
+		</CashInRollback>
+		<!-- 存钞 -->
+		<CashInEnd ID="ID_CashInEnd" UI="UI_CashInEnd" timeout="5000">
+			<States>
+				<State name="CashInEndSuccess" UI="UI_CashInEndSuccess"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_GetDevStatus"/>
+		</CashInEnd>
+		<!-- 非主动确认存钞（超时） -->
+		<CashInEnd ID="ID_CashInEndForPassive" UI="UI_CashInEnd" timeout="5000">
+			<States>
+				<State name="CashInEndSuccess" UI="UI_CashInEndSuccess"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_GetDevStatusForCloseTrans"/>
+		</CashInEnd>
+		<!-- 无卡存款，主动确认存钞（超时） -->
+		<CashInEnd ID="ID_CashInEndForPassiveNoCard" UI="UI_CashInEndForPassiveNoCard" timeout="5000">
+			<Forward event="OnConfirm" targetID="ID_GetDevStatusForCloseTrans"/>
+		</CashInEnd>
+		<!-- 主机拒绝吞钞 -->
+		<CashInEnd ID="ID_HostRefuseAndCashInEnd" UI="UI_CashInEndForCommError" timeout="5000">
+			<States>
+				<State name="CashInEndSuccess" UI="UI_CashInEndSuccess"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_GetDevStatusForCloseTrans"/>
+		</CashInEnd>
+		<!-- 检查凭条状态 -->
+		<GetDevStatus ID="ID_GetDevStatus" comment="Get device status" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_CompareIsCardInserted"/>
+			<Forward event="OnWarn" targetID="ID_CompareIsCardInserted"/>
+			<Forward event="OnFail" targetID="9999"/>
+		</GetDevStatus>
+		<!-- 检查是否是无卡存款 -->
+		<CompareData ID="ID_CompareIsCardInserted" compareBuffer="{core_CardInserted}" comment="是否有卡存款">
+			<Forward event="OnEqualTrue" targetID="ID_SelectReceiptType"/>
+            <Forward event="OnEqualFalse" targetID="ID_IsContactLessMode"/>
+		</CompareData>
+		<IsContactLessMode ID="ID_IsContactLessMode" >
+			<Forward event="OnConfirm" targetID="ID_SelectReceiptType"/>
+			<Forward event="OnContinue" targetID="ID_SelectReceiptTypeNoCard"/>							
+		</IsContactLessMode>
+		<!-- 选择打印凭证类型 -->
+		<SelectFunction ID="ID_SelectReceiptType" UI="UI_SelectReceiptType" commandMap="[F4,REC][F6,RECOCR]" keyButtons="F4|F6" comment="Select receipt type" defaultEvent="OnContinue">
+			<Forward event="OnF4" targetID="ID_PrintReceipt"/>
+			<Forward event="OnF6" targetID="ID_PrintReceiptOCR"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnContinue" targetID="9999"/>
+		</SelectFunction>
+		<!-- 无卡存款选择打印凭证-->
+		<SelectFunction ID="ID_SelectReceiptTypeNoCard" UI="UI_SelectReceiptTypeNoCard" commandMap="[F4,REC][F6,RECOCR]" keyButtons="F4|F6" comment="Select receipt type" defaultEvent="OnCancel">
+			<Forward event="OnF4" targetID="ID_PrintReceipt"/>
+			<Forward event="OnF6" targetID="ID_PrintReceiptOCR"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		</SelectFunction>
+		<!-- 开始打印凭条 -->
+		<PrintReceipt ID="ID_PrintReceipt" UI="UI_PrintingReceipt" formName="" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_CompareIsCardInserted"/>
+		</PrintReceipt>
+		<!-- 开始打印冠字号凭条 -->
+		<PrintOCRInfo ID="ID_PrintReceiptOCR" UI="UI_PrintingOCRReceipt" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_CompareIsCardInserted"/>
+		</PrintOCRInfo>
+		<!-- 是否打印凭条 
+		<SelectFunction ID="ID_IsPrintReceipt" UI="UI_IsPrintReceipt">
+			<Forward event="OnYes" targetID="ID_PrintReceipt"/>
+			<Forward event="OnNo" targetID="9999"/>
+			<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		</SelectFunction>-->
+		<!-- 开始打印凭条
+		<PrintReceipt ID="ID_PrintReceipt" UI="UI_PrintingReceipt" formName="" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="9999"/>
+		</PrintReceipt> -->
+		<!-- 设备故障或非主动存钞时检查凭条状态 -->
+		<GetDevStatus ID="ID_GetDevStatusForCloseTrans" comment="Get device status for close transaction" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_IsTimeOutForRetract"/>
+			<Forward event="OnWarn" targetID="ID_IsTimeOutForRetract"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</GetDevStatus>
+
+		<!-- 是否超时回收 -->
+		<CompareData ID="ID_IsTimeOutForRetract" compareBuffer="{TimeoutFlag}" comment="是否超时回收，如果是，直接打凭条退出交易">
+			<Forward event="OnEqualTrue" targetID="ID_PrintReceiptForCloseTrans"/>
+            <Forward event="OnEqualFalse" targetID="ID_CompareIsSuportCIMOCR"/>
+			<Forward event="OnEqualNull" targetID="ID_CompareIsSuportCIMOCR"/>
+		</CompareData>
+		<!-- 判断是否开启CIM OCR -->
+		<CompareData ID="ID_CompareIsSuportCIMOCR" compareBuffer="{core_EnableOCRCIM}" comment="是否开启CIM的OCR">
+			<Forward event="OnEqualTrue" targetID="ID_CompareIsCardInsertedCloseTrans"/>
+            <Forward event="OnEqualFalse" targetID="ID_PrintReceiptForCloseTrans"/>
+		</CompareData>
+		
+		<!-- 设备故障或非主动存钞时，检查是否是无卡存款 -->
+		<CompareData ID="ID_CompareIsCardInsertedCloseTrans" compareBuffer="{core_CardInserted}" comment="是否有卡存款">
+			<Forward event="OnEqualTrue" targetID="ID_SelectReceiptTypeCloseTrans"/>
+            <Forward event="OnEqualFalse" targetID="ID_SelectReceiptTypeCloseTransNoCard"/>
+		</CompareData>
+		<!--设备故障或非主动存钞时，无卡存款选择打印凭条-->
+		<SelectFunction ID="ID_SelectReceiptTypeCloseTransNoCard" UI="UI_SelectReceiptTypeCloseTransNoCard" commandMap="[F4,REC][F6,RECOCR]" keyButtons="F4|F6" comment="Select receipt type" defaultEvent="OnCancel">
+			<Forward event="OnF4" targetID="ID_PrintReceiptCloseTrans"/>
+			<Forward event="OnF6" targetID="ID_PrintReceiptOCRCloseTrans"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		</SelectFunction>
+		<!--设备故障或非主动存钞时，有卡存款选择打印凭条-->
+		<SelectFunction ID="ID_SelectReceiptTypeCloseTrans" UI="UI_SelectReceiptTypeCloseTrans" commandMap="[F4,REC][F6,RECOCR]" keyButtons="F4|F6" comment="Select receipt type" defaultEvent="OnContinue">
+			<Forward event="OnF4" targetID="ID_PrintReceiptCloseTrans"/>
+			<Forward event="OnF6" targetID="ID_PrintReceiptOCRCloseTrans"/>
+			<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+		</SelectFunction>
+		<!-- 设备故障或非主动存钞时开始打印冠字号凭条 -->
+		<PrintOCRInfo ID="ID_PrintReceiptOCRCloseTrans" UI="UI_PrintingOCRReceipt" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_CompareIsCardInsertedCloseTrans"/>
+		</PrintOCRInfo>
+		<!-- 设备故障或非主动存钞时开始打印凭条 -->
+		<PrintReceipt ID="ID_PrintReceiptCloseTrans" UI="UI_PrintingReceipt" formName="" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_CompareIsCardInsertedCloseTrans"/>
+		</PrintReceipt>
+		<!-- 设备故障或非主动存钞时开始打印凭条 -->
+		<PrintReceipt ID="ID_PrintReceiptForCloseTrans" UI="UI_PrintingReceipt" formName="" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</PrintReceipt>
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+		</End>
+		<InvokeWorkflow ID="ID_TryAgain" name="Main" comment="IC returns TryAgain" actionID="ID_ICMoreAppSelectForMainMenu" syn="0">
+		</InvokeWorkflow>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

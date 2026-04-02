@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=""></script>
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <style>
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .btn-group .g-button {
+            width: 40%;
+            padding: 0;
+            line-height: 80px;
+            margin-bottom: 30px;
+        }
+        .divider {
+            display: block;
+            margin: 0 auto;
+            height: 100%;
+            width: 2px;
+            background: #fff;
+        }
+        .g-input-wrapper {
+            width: 40%;
+            height: 70px;
+            margin: 0px auto 100px;
+        }
+        .g-input-wrapper input {
+            height: 100%;
+            font-size: 35px;
+        }
+        .g-input-wrapper i {
+            font-size: 50px;
+            height: 100%;
+            color: #fff;
+        }
+        .g-footer {
+            justify-content: flex-end;
+        }
+        .keyboard {
+            width: 100%;
+        }
+        .keyboard .hg-button {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            flex-grow: 1;
+            margin: 5px 10px;
+        }
+        .keyboard .hg-button span{
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <g-header :height='100'>
+            <img slot='left' class='logo' src="../../images/logo.png" alt="">
+            <g-button class="exit-btn" slot='right' id='exitBtn' ids='ids_Exit' transparent>Exit</g-button>
+        </g-header>
+        <g-main>
+			<!-- 为了实现EventTrigger -->
+			<div class="sm-main-title" id="Prompt" type="textblock" ids="IDS_InputMediaAmount">Please select amount</div>
+            <g-input clearable  v-model='amount' ref='input' hide-keyboard id='saveBuffer' content='{Binding saveBuffer mode=2}'></g-input>
+            
+    </div>
+</body>
+</html>
+
+<script>
+    new Base({
+        data: {
+            timer: null,
+            amount: '',
+            moneytype: [100, 500, 1000, 5000, 10000],
+            oldamount: '',
+            keyboardOpt: {
+                layout: {
+                    default: [
+                    '7 8 9',
+                    '4 5 6',
+                    '1 2 3',
+                    '{bksp} 0 {clear}'
+                    ],
+                },
+            },
+        },
+        methods: {
+            moneyBtn: function(v) {
+                this.amount = v + ''
+                this.focus()
+            },
+            focus: function() {
+                this.inputDom.focus()
+            },
+            onClear: function() {
+                this.amount = ''
+            },
+            setCaret: function() {
+                this.focus()
+                var pos = this.keyboard.caretPosition
+                this.setInputCaretPosition(this.inputDom, pos || this.amount.length)
+            },
+            setInputCaretPosition: function(ele, pos) {
+                if (ele && ele.setSelectionRange) {
+                    ele.focus();
+                    setTimeout(function() {
+                        ele.setSelectionRange(pos, pos);
+                    }, 0)
+                }
+            },
+        },
+        watch: {
+            amount: function(n) {
+                this.setCaret()
+            }
+        },
+        computed: {
+            inputDom: function() {
+                return this.$refs.input.$refs.input
+            },
+            keyboard: function() {
+                return this.$refs.keyboard.keyboard
+            }
+        },
+        created: function() {
+            this.timer = setInterval(function() {
+                var saveBuffer = document.querySelector('#saveBuffer').value
+                if(this.oldamount == saveBuffer) return
+                this.oldamount = this.amount = saveBuffer
+            }.bind(this), 300)
+        },
+        mounted: function() {
+            this.setCaret()
+        },
+        beforeDestory: function() {
+            this.keyboard.clearInput()
+            clearInterval(this.timer)
+        }
+    }).$mount('#app')
+
+</script>

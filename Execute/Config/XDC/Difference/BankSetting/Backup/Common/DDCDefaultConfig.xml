@@ -1,0 +1,44 @@
+<Root isLoaded="0">
+  <Update file="Config\Kernel\eCATBusinessConfig.xml">
+  <!--XDCScreenParser在XDC下，必须为1，否则XDC代码会失败，转而跑8583-->
+    <Modify xpath="/BusinessService/Services/DDCScreenParser" attrName="enable" value="1" />
+    <Modify xpath="/BusinessService/Services/NDCScreenParser" attrName="enable" value="0" />
+    <Modify xpath="/BusinessService/Services/XDCPrintData" attrName="enable" value="1" />
+    <Modify xpath="/BusinessService/Services/DDCPrintDataService" attrName="enable" value="1" />
+    <Modify xpath="/BusinessService/Services/NDCPrintDataService" attrName="enable" value="0" />
+    <Modify xpath="/BusinessService/Services/XDCEMVCommonService" attrName="enable" value="1" />
+    <Modify xpath="/BusinessService/Services/DDCEMVService" attrName="enable" value="1" />
+    <Modify xpath="/BusinessService/Services/NDCEMVService" attrName="enable" value="0" />
+    <!--not XDCPowerUp, it is XDCPowerup-->
+    <Modify xpath="/BusinessService" attrName="startup" value="XDCPowerup" />
+  </Update>
+  
+    <!--修改protocol-->
+   <Update file="Config\XDC\MainConfig\MainConfig.xml">
+    <Modify xpath="/Root/Protocol/Item" attrName="value" value="2" />
+   </Update>  
+   <Update file="XDC\Tools\eCATConfigTool\eCATToolConfig.xml">
+    <Modify xpath="/Config/CurrentProtocol/Protocol" attrName="value" value="1" />
+    <Modify xpath="/Config/CurrentProtocol/Protocol" attrName="title" value="DDC" />
+    <Modify xpath="/Config/CurrentProtocol/Protocol" attrName="flag" value="1" />
+   </Update> 
+   
+   <!--修改XdcCimConfig.xml的key值-->
+   <Update file="Config\XDC\MainConfig\XdcCimConfig.xml">
+	   <Modify xpath="/Root/MapOfNoteId/Item[@flag='01']" attrName="key" value="02"/>
+	   <Modify xpath="/Root/MapOfNoteId/Item[@flag='02']" attrName="key" value="01"/>
+	   <Modify xpath="/Root/MapOfNoteId/Item[@flag='03']" attrName="key" value="02"/>
+	   <Modify xpath="/Root/MapOfNoteId/Item[@flag='04']" attrName="key" value="01"/>
+	   
+	   <Modify xpath="/Root/MapOfNoteId/Item[@flag='05']" attrName="key" value="02"/>
+	   <Modify xpath="/Root/MapOfNoteId/Item[@flag='06']" attrName="key" value="01"/>
+	   <Modify xpath="/Root/MapOfNoteId/Item[@flag='07']" attrName="key" value="05"/>
+	   <Modify xpath="/Root/MapOfNoteId/Item[@flag='08']" attrName="key" value="04"/> 
+	     
+	   <Modify xpath="/Root/MapOfNoteId/Item[@flag='09']" attrName="key" value="03"/>
+	   <Modify xpath="/Root/MapOfNoteId/Item[@flag='10']" attrName="key" value="02"/>
+	   <Modify xpath="/Root/MapOfNoteId/Item[@flag='11']" attrName="key" value="01"/>
+	   
+   </Update>
+
+</Root>

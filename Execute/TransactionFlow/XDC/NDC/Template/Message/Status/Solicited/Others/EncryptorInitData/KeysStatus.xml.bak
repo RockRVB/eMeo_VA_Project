@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <EncryptorInitData>
+    <Item key="e" value="4" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--  	* When information identifier = '4':  (Key Status, containing KVVs as follows:)
+        *        characters 6 bytes:        Master Key KVV
+		*        characters 6 bytes:   	  Communication Key KVV
+        *        characters 6 bytes:   	  MAC Key KVV
+        *        characters 6 bytes:   	  B Key KVV
+        *        if a key has not been loaded, its KVV will be six zeroes.
+		-->
+    <Item key="f1" value="[SolicitedStatus.EncryptorInitData.MasterKeyKVV]" size="6" restriction="Mandatory" />
+    <Item key="f2" value="[SolicitedStatus.EncryptorInitData.CommunicationKeyKVV]" size="6" restriction="Mandatory" />
+    <Item key="f3" value="[SolicitedStatus.EncryptorInitData.MACKeyKVV]" size="6" restriction="Mandatory" />
+    <Item key="f4" value="[SolicitedStatus.EncryptorInitData.BKeyKVV]" size="6" restriction="Mandatory" />
+    <Item key="f5" value="[SolicitedStatus.EncryptorInitData.TR31KeyKVV]" size="6" restriction="Mandatory" />
+  </EncryptorInitData>
+</Root>

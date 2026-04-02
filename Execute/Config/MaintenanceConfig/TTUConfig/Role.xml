@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role>
+  <RecordItem>
+    <RoleID>1</RoleID>
+    <LimitMenuID>LogOperate_3,LogOperate_4,AtmSetting_4,TestMenu_5,AtmParameters_6,AtmParameters_7,AtmParameters_8,AtmParameters_9,QueryAbnormalTransactionByTransType_3,CleanMenu_7,QueryAbnormalTransaction_3</LimitMenuID>
+    <AdditionalConditionLimitMenu  file="Config\DevConfig.xml"	xpath="Config/DeviceManager/CIM" attrName="enable" value="0" MaskMenuItem="SystemConfig_3">	
+    </AdditionalConditionLimitMenu>
+  </RecordItem>
+  <RecordItem>
+    <RoleID>2</RoleID>
+    <LimitMenuID>MainMenu_1,LogOperate_3,LogOperate_4,AtmParameters_6,AtmParameters_7,AtmParameters_8,AtmParameters_9,QueryAbnormalTransactionByTransType_3,CleanMenu_7,QueryAbnormalTransaction_3,AtmSetting_4</LimitMenuID>
+    <AdditionalConditionLimitMenu  file="Config\DevConfig.xml"	xpath="Config/DeviceManager/CIM" attrName="enable" value="0" MaskMenuItem="SystemConfig_3">	
+    </AdditionalConditionLimitMenu>
+  </RecordItem>
+</Role>

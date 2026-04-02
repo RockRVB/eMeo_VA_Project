@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SignatureConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <!-- PenBrush：画笔配置，Alpha 透明度，Color 画笔颜色，Width 画笔宽度 -->
+	<!-- SignatureWindow: 装载签名面板的窗体设置，X 相对于屏幕X轴坐标，Y 相对于屏幕Y轴坐标,Height 投影容器高度，Width 投影容器宽度-->
+	<PenBrush>
+		<Alpha>255</Alpha>
+		<Color>Blue</Color>
+		<Width>3</Width>
+	</PenBrush>
+	<SignatureWindow>
+		<X>360</X>
+		<Y>580</Y>
+		<Height>300</Height>
+		<Width>1200</Width>
+	</SignatureWindow>
+</SignatureConfig>

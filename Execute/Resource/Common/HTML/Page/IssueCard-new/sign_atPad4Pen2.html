@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../js/vue.min.js"></script>
+  <script src="../../js/grg-ui.min.js"></script>
+  <script src="../../js/vue-i18n.js"></script>
+  <script src="../../js/jquery-3.7.0.js"></script>	<script src="../../js/class/layer/layer.js"></script>	<script src="../../js/index.js"></script>
+  <script src="../../js/coreScript.js"></script>
+  <script src="../../js/ibank.js"></script>
+  <link rel="stylesheet" href="../../css/grg-ui.min.css">
+  <link rel="stylesheet" href="../../css/animate.grg.css">
+  <link rel="stylesheet" href="../../css/ibank.css">
+  <style>
+    .grg-main {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .open-card-right-box {
+      visibility: hidden;
+    }
+
+    .g-signature {
+      width: 818px;
+      height: 426px;
+      margin-top: 50px;
+      background-image: linear-gradient(#ededed, #ffffff);
+      border: 2px solid #ededed;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="grg-header" class="grg-header">
+    </div>
+    <div id="grg-main" class="grg-main">
+      <!-- <div class="count-down">
+        <div class="count-down-2">60</div>
+      </div> -->
+      <div class="step-box">
+        <div v-for="(item, index) in stepList" class="step-item">
+          <div class="step-left">
+            <div
+              :class='[item.status == "finish" ? "step-circle-finish" : "step-circle", item.status == "active" ? "step-circle-active" : "step-circle"]'>
+              <img v-if="item.status == 'finish'" src="../../images/img_2.4/gou.png" alt="">
+              <span v-else>{{ index + 1 }}</span>
+            </div>
+            <div :class='[item.status == "finish" ? "step-line": "step-dotted-line"]'>
+              <img class="line-arrows" v-if='item.status != "finish"' src="../../images/img_2.4/line-arrows.png" alt="">
+            </div>
+          </div>
+          <div
+            :class='[item.status == "finish" ? "step-right-finish" : "step-right", item.status == "active" ? "step-right-active" : "step-right"]'>
+            {{ item.title }}</div>
+        </div>
+      </div>
+      <div class="open-card-right-box animate_grg_fadeInRight">
+        <div class="title"id="text1" ids="ids_opac_sign">Please sign on the screen</div>
+        <g-signature v-model='signPic_base64' class="g-signature"></g-signature>
+        <div class="button-box">
+          <div class="grg-btn grg-cancel" type='button' ids='ids_Btn_cancel' tag='OnCancel'>
+            <img class="icon-img" src="../../images/img_2.4/icon_cancel.png" alt="">Cancel
+          </div>
+          <div :class='["grg-btn", signPic_base64 ? "grg-confirm" : "grg-cancel"]' @click='clear'ids='ids_Btn_resign'>
+            <img v-if="signPic_base64" class="icon-img" src="../../images/img_2.4/icon_retry_white.png" alt="">
+            <img v-else class="icon-img" src="../../images/img_2.4/icon_retry.png" alt="">Resign
+          </div>
+		  <div :class='["grg-btn", signPic_base64 ? "grg-confirm" : "grg-cancel"]' :type='signPic_base64 ? "button" : ""' ids='ids_Btn_confirm' tag='OnConfirm'>
+            <img v-if="signPic_base64" class="icon-img" src="../../images/img_2.4/icon-ok.png" alt="">
+            <img v-else class="icon-img" src="../../images/img_2.4/icon-ok-blue.png" alt="">Confirm
+          </div>
+		  <input hidden id="signPic_base64" content="{Binding proj_signature mode=2}" v-model='signPic_base64'>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+  var app = new Base({
+    i18n: i18n,
+    data: {
+      stepList: [{
+          status: 'finish',
+          title: 'Scan Passport',
+        },
+        {
+          status: 'finish',
+          title: 'Customer Info',
+        },
+        {
+          status: 'active',
+          title: 'Sign',
+        },
+        {
+          status: 'unFinish',
+          title: 'Print Form',
+        },
+        {
+          status: 'unFinish',
+          title: 'Scan Form',
+        },
+		{
+          status: 'unFinish',
+          title: 'Printing Card',
+        },
+        {
+          status: 'unFinish',
+          title: 'User Set Password',
+        },
+        {
+          status: 'unFinish',
+          title: 'Take Card',
+        },
+        {
+          status: 'unFinish',
+          title: 'Print Receipt',
+        },
+      ],
+      signPic_base64: '',
+    },
+    methods: {
+      clear: function () {
+        this.signPic_base64 = ''
+      }
+    },
+    computed: {},
+    mounted: function () {}
+  }).$mount('#app')
+</script>

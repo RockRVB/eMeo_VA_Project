@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html style="height: 100%;" lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <style>
+    body {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    #root {
+      display: flex;
+      height: 100%;
+      width: 100%;
+    }
+
+    .left {
+      flex: 1;
+      background-color: green;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .right {
+      width: 300px;
+      background-color: red;
+    }
+
+    .video {
+      width: calc(50% - 2px);
+      height: 300px;
+      background-color: black;
+      float: left;
+      border: 1px blue solid;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+  </style>
+  <script type='text/javascript' src="./axios.min.js"></script>
+  <script type='text/javascript' src="./ivideo-room-sdk_v1.0.1.js"></script>
+  <script type='text/javascript'>
+    console.info(window);
+
+    var remoteStream;
+    function onPlayStream() {
+      remoteStream.replay();
+    }
+
+	  // 当产生本地视频流、远端视频流时，创建一个div标签来显示视频
+    function createVideoDiv(id) {
+      const left = document.getElementById('left');
+      const videoDiv = document.createElement("div");
+      videoDiv.classList.add("video");
+      videoDiv.setAttribute("id", id);
+      left.appendChild(videoDiv);
+    }
+    // 媒体流关闭，移除div
+    function removeVideoDiv(id) {
+      const div = document.getElementById(id);
+      if(div) div.parentNode.removeChild(div);
+    }
+    // 创建视频房间
+    const room = window.iVideoRoomSdk.createRoom();
+
+    console.info('room created');
+
+
+	  /****************** 设置房间回调函数 ******************/
+
+    // 网络连接丢失（会自动重试连接，10次）
+    room.onNetLoss =  function () {
+      console.warn(`net loss`);
+    };
+    // 网络连接丢失后，第几次连接重试
+    room.onNetRetrying = function (currentAttempt) {
+      console.info(`net retry, ${currentAttempt} times`);
+    };
+    // 网络不可恢复
+    room.onNetFault = function () {
+      console.error(`net fault`);
+      room.close();
+    };
+    // 参与者的信息发生变化
+    room.onPeerAppDataUpdated = function (data) {
+      console.info(`peer appData updated: ${JSON.stringify(data)}`);
+    };
+
+    // 其他参与进入房间
+    room.onPeerJoined =  function (peerId, appData) {
+      console.info(`peer(${peerId}) joined: appData=${JSON.stringify(appData)}`);
+    };
+	  // 其他参与者离开房间
+    room.onPeerLeaved = function (peerId) {
+      console.info(`peer(${JSON.stringify(peerId)}) leaved`);
+    };
+
+	  // 参与者发布了媒体流
+    room.onPeerPublished = function (peerId, stream) {
+      remoteStream = stream;
+      stream.onWebRtcStateChanged = function (state) {
+        console.info(`remote stream(${stream.id}), state changed: ${state}`);
+      }
+      console.info(`peer published: ${peerId} streamId(${stream.id})`);
+	    // 音视频流关闭事件
+      stream.onClosed = function () {
+        console.info(`peer ${stream.peerId} streamId(${stream.id}) close`);
+        removeVideoDiv(stream.id);
+      };
+      console.info(`remote stream(${stream.id}) audio=${stream.hasAudio} video=${stream.hasVideo} paused=${stream.paused} appData=${JSON.stringify(stream.appData)}`);
+	    // 订阅
+      stream.subscribe()
+      .then(function(){
+		    // 订阅成功，创建div标签
+        createVideoDiv(stream.id); // 创建显示区域
+        const success = stream.play(stream.id); // 播放（显示）
+        if(!success) removeVideoDiv(id);
+      })
+      .catch(function (reason) {
+        console.error(`subscribe exception: ${reason}`);
+      });
+    };
+
+	  // 房间已关闭
+    room.onRoomClosed = function () {
+      console.error(`room closed`);
+    };
+
+    /****************** 设置房间回调函数 END ******************/
+
+    console.info('set callbacks end');
+
+    const run = async function () {
+      try {
+        // 通过URL的Search参数获取房间ID、参与者ID
+        const params = (new URL(document.location)).searchParams;
+        const roomId = params.get('roomId');
+        const peerId = params.get('peerId');
+
+        // 这里请求签名，只用于测试。生产由排队服务调用
+        let response = await axios.post(`https://${window.location.host}/ivideo-rtc-api/${roomId}/${peerId}`, {headers: { 'Content-Type': 'application/json' }});
+
+        if(response.status!==200) {
+          throw `request signature failed - ${response.status} ${response.statusText}`;
+        }
+        
+		    // 获取响应中的签名
+        const {sig} = response.data;
+        console.info(`sig=${sig}`);
+
+        // 进入房间
+        response = await room.join(`wss://${window.location.host}/ivideo-rtc`, roomId, peerId, sig, {nickName: peerId+'.ABC'});
+        console.info('join successfully');
+		    // peers 房间当前人员列表
+        const {peers, appData} = response;
+        console.info(`room aplication data: ${appData}`);
+        // 创建本地媒体流
+        const localStream = room.createLocalStream({display: peerId+"的流"});
+        console.info('create local stream successfully');
+        // 初始化媒体流。这里可以按webrtc MediaStreamConstraints来选择摄像头和麦克风，可以选择分辨率、帧率等
+        await localStream.init(true, {video:{frameRate: 15}, audio:true})
+        console.info('init local stream successfully');
+        // 显示本地媒体流
+        createVideoDiv(localStream.id);
+        localStream.play(localStream.id);
+        // 发布媒体流（房间中其他人会接收到“peer.published”事件）
+        await localStream.publish();
+        console.info('publish local stream successfully');
+
+        if(peers && peers.length>0) {
+          peers.forEach(function ({id, appData}) {
+            console.info(`room peer: ${id} ${JSON.stringify(appData)}`);
+          });
+        }
+      } catch(reason) {
+        console.info(`exception - ${JSON.stringify(reason)}`);
+      }
+    }
+    
+    run();
+
+  </script>
+</head>
+
+<body>
+  <div id="root">
+    <div class="left" id="left">
+    </div>
+    <div class="right">
+      <button onclick="onPlayStream()">添加</button>
+    </div>
+  </div>
+</body>
+</html>

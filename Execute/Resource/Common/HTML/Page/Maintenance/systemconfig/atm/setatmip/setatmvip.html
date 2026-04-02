@@ -1,0 +1,59 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>设置V端IP</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../../../css/maintenance/cn.css" />
+<script src="../../../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../../../js/jquery-ui.min.js"></script>
+<script src="../../../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../../../js/maintenance/common/global.js"></script>
+<script src="../../../../../js/maintenance/component/components.js"></script>
+<script src="../../../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../../../js/maintenance/ui/custom-ui.js"></script>
+</head>
+
+<body>
+<!--界面容器-->
+<div class="wrapper set-atm-vip">
+	<div class="g-margin-wrapper"> 
+		<!--左边-->
+		<div class="g-left-wrapper">
+			<div class="g-left">
+				<div class="set-atm-vip-row"> <span id="STATIC_1" type="STATIC_TXT" class="left-label" ids="IDS_EnterFeelViewIP">新ATMV端IP:</span>
+					<input id="INPUT_IP" type="text" class="input-text"  value="" maxlength="15" validchars="0123456789.">
+				</div>
+				<div class="set-atm-vip-row"> <span id="STATIC_2" type="STATIC_TXT" class="left-label" ids="IDS_EnterFeelViewPort">新ATMV端口号:</span>
+					<input id="INPUT_PORT" type="text" class="input-text"  value="" maxlength="5" validchars="0123456789.">
+				</div>
+				<div class="set-atm-vip-row"> <span id="STATIC_LINK" type="STATIC_TXT" class="left-label" ids="IDS_EnterConnectMode">连接方式:</span>
+					<button id="FUN_0" type="button" class="button-toggle" isAutoSend="0" isToggle="1" parentSelector=".g-left"> <span class="tip"></span> <span class="button-text" ids="IDS_EnterFeelViewLongConnect">长连接</span> </button>
+				</div>
+				<div class="set-atm-vip-row"> <span class="left-label"></span>
+					<button id="FUN_1" type="button" class="button-toggle" isAutoSend="0" isToggle="1" parentSelector=".g-left"> <span class="tip"></span> <span class="button-text" ids="IDS_EnterFeelViewShortConnect">短连接</span> </button>
+				</div>
+				<div class="set-atm-vip-row"> <span class="left-label"></span>
+					<button id="FUN_2" type="button" class="button-toggle" isAutoSend="0" isToggle="1" parentSelector=".g-left"> <span class="tip"></span> <span class="button-text" ids="IDS_EnterFeelViewHalfShortConnect">半短连接</span> </button>
+				</div>
+				<!--操作提示-->
+				<div class="g-prompt"> <span id="STATIC_PROMPT" type="STATIC_TXT"></span> </div>
+			</div>
+		</div>
+		<!--右边-->
+		<div class="g-right"> 
+			<!--键盘-->
+			<div id="KEYBOARD_1" type="KEYBOARD" class="keyboard" firstPage="3" useChangeKey = "0" clearKeyIndex = "29" disableKey="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz;+-*/=@#$%()?,:"> 
+				<!--键盘操作提示-->
+				<div id="keyboard-tip" class="keyboard-tip clear none" ids="IDS_KeyboardTip">按00键可以在输入框和键盘之间切换</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

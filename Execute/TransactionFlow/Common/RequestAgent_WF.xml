@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="RequestAgent_WF">
+  <Head type="GRGWorkflow" author="" timeStamp="" comment="The workflow design is for requesting agent" />
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start" callVisible="0" endflag="1">
+      <Forward event="OnConfirm" targetID="ID_CompareVideoStatus" />
+    </Start>
+	
+	<!--Check Agin Video Connection-->
+	<!-- 判断视频状态 -->
+    <!-- STATUS_END = 0,        未初始化前的状态，登陆前状态  -->
+    <!-- STATUS_INITIAL_REQ,    初始化请求状态, 登陆中状态  -->
+    <!-- STATUS_IDLE,           初始化成功后还未呼叫时的空闲状态  -->
+    <!-- STATUS_CALL_REQ,       呼叫发起请求状态  -->
+    <!-- STATUS_IN_TALKING,     通话中状态  -->
+    <!-- STATUS_RELEASE_REQ,    呼叫发起释放状态  -->
+    <!-- STATUS_ENDING_REQ,     发起结束初始化状态  -->
+    <!-- STATUS_ANSWER_REQ,     应答中，此时点击应答，等有TALKING事件上报后，将迁移到STATUS_IN_TALKING  -->
+    <!-- STATUS_IN_CALLING,     正在 来电中， 也就是收到振铃事件；对于AVAYA，主叫会收到振铃事件但被叫反而不会收到振铃事件  -->
+    <!-- STATUS_IN_REJECTING,   正在拒绝中  -->
+    <!-- STATUS_NETWORK_ERROR,  网络故障  -->
+    <CompareData ID="ID_CompareVideoStatus" comment="" compareBuffer="{VTM_VideoStatusWrapper}">
+      <Forward event="OnEqualSTATUS_IN_TALKING" targetID="ID_VieoAfterAgree" />
+      <Forward event="OnEqualSTATUS_IDLE" targetID="ID_GetAgentState" />
+      <DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+    </CompareData>
+	
+	<WaitSleep ID="ID_VideoConnectFail" UI="UI_VideoConnectFail" timeout="3000" homeVisible="0">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+    </WaitSleep>
+	
+	<GetAgentState ID="ID_GetAgentState" UI="UI_WaitingWithCancel" comment="Get Agent State" homeVisible="0">
+	   <States>
+         <State name="NoAgent" UI="UI_NoAgentOnline"/>
+		 <State name="NetWorkError" UI="UI_ConnectFail"/>
+       </States>
+		<Forward event="OnNoAgent" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnContinue" targetID="ID_Ring"/>
+	</GetAgentState>
+	<!-- Ring an agent -->
+    <RingEx ID="ID_Ring" timeout="60000" UI="UI_WaitingWithCancel" waitpopu="0" homeVisible="0">
+      <States>
+        <State name="ServiceNoResponding" UI="UI_ServiceNoResponding"/>
+		<State name="NetWorkError" UI="UI_ConnectFail"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_BeginTransaction" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </RingEx>
+	
+    <!-- Begin Transaction -->
+    <BeginTransaction ID="ID_BeginTransaction" UI="UI_WaitingNoVoice" transType="VTM_Standard_GeneralHelp" timeout="60000">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail"/>
+        <State name="TimeOutError" UI="UI_TransTimeOut"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_VTARequestGeneralHelpTrans" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </BeginTransaction>
+
+    <!-- Request to go to next step -->
+    <VTARequest ID="ID_VTARequestGeneralHelpTrans" timeout="60000" messageType="2020" act="12" UI="UI_CommonWaiting" ids="IDS_WaitForAgentConfirm">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail"/>
+        <State name="TimeOutError" UI="UI_TransTimeOut"/>
+        <State name="ServiceCloseTrans" UI="UI_ServiceCloseTrans"/>
+		<State name="CameraError" UI="UI_DevError"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_VTARequestVideoRq" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </VTARequest>
+
+    <!-- Request video connection -->
+    <VTARequest ID="ID_VTARequestVideoRq" timeout="60000" messageType="1001" UI="UI_CommonWaiting" ids="IDS_waitVideo">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail"/>
+        <State name="TimeOutError" UI="UI_TransTimeOut"/>
+        <State name="ServiceCloseTrans" UI="UI_ServiceCloseTrans"/>
+		<State name="CameraError" UI="UI_DevError"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_CheckDealActVideo" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </VTARequest>
+
+    <!-- Check whether the agent agree the video connection or not -->
+    <CheckDeal ID="ID_CheckDealActVideo">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail"/>
+      </States>
+      <Forward event="OnYes" targetID="ID_CompareVideoStatusAgain" />
+      <Forward event="OnNo" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </CheckDeal>
+	
+    <CompareData ID="ID_CompareVideoStatusAgain" comment="" compareBuffer="{VTM_VideoStatusWrapper}">
+      <Forward event="OnEqualSTATUS_IN_TALKING" targetID="ID_VTARequestDeviceStatus"/>
+      <DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+    </CompareData>
+	
+    <SendDeviceStatus ID="ID_VTARequestDeviceStatus" timeout="60000" waitpopu="0" UI="UI_WaitingNoVoice">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail"/>
+        <State name="TimeOutError" UI="UI_TransTimeOut"/>
+        <State name="ServiceCloseTrans" UI="UI_ServiceCloseTrans"/>
+		<State name="CameraError" UI="UI_DevError"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_VieoAfterAgree" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </SendDeviceStatus>
+
+    <!-- Show video screen -->
+    <!-- VideoType：1(Maximize agent video, local video is on the bottom right corner), 
+		 2(Maximize local video, agent video is on the bottom right corner), 
+		 3(Agent video only), 4(Local video only), 5(No video) -->
+    <!-- ADName: UI_Idle(Video and AD), UI_Video(Video), UI_TimeTakePhoto(AD while taking photo), UI_AdTrans(AD with pictures) -->
+    <SwitchAd ID="ID_VieoAfterAgree" videoType="1"  ADName="UI_Video" >
+      <States>
+        <State name="SwitchAdError" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnContinue" targetID="9999" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </SwitchAd>
+
+    <!-- Invoke the CloseTrans workflow -->
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+
+    <End ID="9999" comment="End"/>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+  </DefaultForward>
+</Workflow>

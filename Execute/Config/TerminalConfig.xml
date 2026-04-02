@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+  <!--
+	Terminal： 终端
+	ATMNumber：ATM号
+	bankNumber：银行号
+	branchNumber： 分行号
+	ATMType； ATM机型	
+	-->
+  <!-- 参考《10-C-P-V接口技术规范-附录V1.1.0》
+	厂家				   标识VendorId
+	GRGBANKING 广电运通			01
+	NCR 安讯				02
+	DIEBOLD 迪堡				03
+	HITACHI 日立				04
+	WINCOR 德利多富				05
+	YIHUA 怡化				06
+	FUTOP 富托普				07
+	SIEMENS 西门子				08
+	LEAD 立德				09
+	EASTCOM 东信				10
+	KINGTELLER 御银				11
+	国光					12
+	
+	终端类型			   标识ATMTypeId
+	ATM取款机			 	1
+	CDM存款机				2
+	CRS存取款机				3
+	POS					4
+	SPM自助缴费机				5
+	MCM多媒体查询机				6
+	-->
+  <Terminal ATMNumber="02000001" bankNumber="1234" branchNumber="5678" ATMType="H68NL" ATMTypeId="3" ATMAdminID="admin id of ATM for feel view" />
+  <Vendor VendorName="GRGBANKING 广电运通" VendorId="01" />
+</Config>

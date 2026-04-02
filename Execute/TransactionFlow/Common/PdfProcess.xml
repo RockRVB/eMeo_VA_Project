@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="WorkflowActPdfEdit">
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for transfer"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_ActPdfEdit"/>
+		</Start>
+		<ActPdfEdit ID="ID_ActPdfEdit" UI="UI_ActPdfEdit" timeout="60000" comment="Main menu" filename="Resource\source\BankingPlanAndBankingServicesMaintenance.pdf">
+			<Forward event="OnNotFound" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnConfirm" targetID="ID_ActPdfPrint"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		</ActPdfEdit>
+		<ActPdfPrint ID="ID_ActPdfPrint" UI="UI_ActPdfPrint" timeout="60000" comment="Main menu" filename="">
+			<Forward event="OnNotFound" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		</ActPdfPrint>
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+		</End>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

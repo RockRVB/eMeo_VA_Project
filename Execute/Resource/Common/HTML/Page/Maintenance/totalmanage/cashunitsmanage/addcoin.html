@@ -1,0 +1,157 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>加钞</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../../css/maintenance/cn.css" />
+<script src="../../../../js/jquery-2.1.1.min.js"></script>
+<script src="../../../../js/jquery-ui.min.js"></script>
+<script src="../../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../../js/maintenance/common/global.js"></script>
+<script src="../../../../js/maintenance/component/components.js"></script>
+<script src="../../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../../js/maintenance/ui/maintenance/totalmanage/cashunitsmanage/addcash.js"></script>
+<script src="../../../../js/maintenance/ui/maintenance/totalmanage/cashunitsmanage/addcashex.js"></script>
+<!-- <script src="../../../../js/maintenance/ui/maintenance/handlekeyboardaction.js"></script> -->
+</head>
+
+<body onselectstart="return false">
+<!--界面容器-->
+<div class="wrapper add-cash">
+	<div class="add-cash-wrapper"> 
+		<!--左边-->
+		<div class="add-cash-left"> 
+			<!--表格控件-->
+			<div id="table_1" class="type-table reversal-color" type="TABLE" maxRowCount="8" rowCount="8"> 
+				<!--翻页按钮-->
+				<div class="type-table-paging none">
+					<div class="middle-outer">
+						<div class="middle-inner">
+							<button class="button-page" mark="prev" dataToSend="78" id="prev"><span class="tip"></span> <span class="button-text">▲</span></button>
+							<button class="button-page" mark="next"><span class="tip"></span> <span class="button-text">▼</span></button>
+						</div>
+					</div>
+				</div>
+				<div class="type-table-container table_margin_top " style="margin-top: 15px !important;">
+					<table>
+						<thead>
+							<tr class="tr_height">
+								<th><span id="STATIC_CASSETID" ids="IDS_IdMenu_13">ID</span></th>
+								<th><span id="STATIC_CURRENCY" ids="IDS_CurrMenu_13">币种</span></th>
+								<th><span id="STATIC_DENO" ids="IDS_DenoMenu_13">面额</span></th>
+								<th><span id="INPUT_SHEET" ids="IDS_SheetMenu_13">张数</span></th>
+								<th width="80px" ><span id="STATIC_MONEY" ids="IDS_MoneyMenu_13">金额</span></th>
+								<!--th width="100px"><span id="STATIC_CASH" ids="IDS_TotalCountMenu_13">累计加钞张数</span></th>
+								<th width="100px"><span id="STATIC_CURRENT_COUNT" ids="IDS_CURRENT_ADDCASH_COUNT">本次加钞张数</span></th-->
+							</tr>
+						</thead>
+						<tfoot>
+							<tr  class="tr_height">
+								<th colspan="4" class="column-total"><span id="STATIC_TOTAL" ids="IDS_TotalMoneyMenu_13">总金额</span></th>
+								<th><span id="STATIC_TOTALMONEY" type="STATIC_TXT">0</span></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</tfoot>
+						<tbody>
+							<tr class="tr_height">
+								<td><span id="STATIC_CASSETID1" type="STATIC_TXT"></span></td>
+								<td><span id="STATIC_CURRENCY1" type="STATIC_TXT"></span></td>
+								<td><span id="STATIC_DENO1" type="STATIC_TXT"></span></td>
+								<td><input id="INPUT_SHEET1" type="text" class="input-text input-sheet"  value="" maxlength="4" validchars = "0123456789"></td>
+								<td><span id="STATIC_MONEY1" type="STATIC_TXT">0</span></td>
+								<!--td><span id="STATIC_CASH1" type="STATIC_TXT" class="column-total-count">0</span></td>
+								<td><span id="STATIC_CURRENT_COUNT1" type="STATIC_TXT">0</span></td-->
+							</tr>
+							<tr class="tr_height">
+								<td><span id="STATIC_CASSETID2" type="STATIC_TXT"></span></td>
+								<td><span id="STATIC_CURRENCY2" type="STATIC_TXT"></span></td>
+								<td><span id="STATIC_DENO2" type="STATIC_TXT"></span></td>
+								<td><input id="INPUT_SHEET2" type="text" class="input-text input-sheet"  value="" maxlength="4" validchars = "0123456789"></td>
+								<td><span id="STATIC_MONEY2" type="STATIC_TXT">0</span></td>
+								<!--td><span id="STATIC_CASH2" type="STATIC_TXT" class="column-total-count">0</span></td>
+								<td><span id="STATIC_CURRENT_COUNT2" type="STATIC_TXT">0</span></td-->
+							</tr>
+							<tr class="tr_height">
+								<td><span id="STATIC_CASSETID3" type="STATIC_TXT"></span></td>
+								<td><span id="STATIC_CURRENCY3" type="STATIC_TXT"></span></td>
+								<td><span id="STATIC_DENO3" type="STATIC_TXT"></span></td>
+								<td><input id="INPUT_SHEET3" type="text" class="input-text input-sheet"  value="" maxlength="4" validchars = "0123456789"></td>
+								<td><span id="STATIC_MONEY3" type="STATIC_TXT">0</span></td>
+								<!--td><span id="STATIC_CASH3" type="STATIC_TXT" class="column-total-count">0</span></td>
+								<td><span id="STATIC_CURRENT_COUNT3" type="STATIC_TXT">0</span></td-->
+							</tr>
+							<tr class="tr_height">
+								<td><span id="STATIC_CASSETID4" type="STATIC_TXT"></span></td>
+								<td><span id="STATIC_CURRENCY4" type="STATIC_TXT"></span></td>
+								<td><span id="STATIC_DENO4" type="STATIC_TXT"></span></td>
+								<td><input id="INPUT_SHEET4" type="text" class="input-text input-sheet"  value="" maxlength="4" validchars = "0123456789"></td>
+								<td><span id="STATIC_MONEY4" type="STATIC_TXT">0</span></td>
+								<!--td><span id="STATIC_CASH4" type="STATIC_TXT" class="column-total-count">0</span></td>
+								<td><span id="STATIC_CURRENT_COUNT4" type="STATIC_TXT">0</span></td-->
+							</tr>
+							<tr class="tr_height">
+								<td><span id="STATIC_CASSETID5" type="STATIC_TXT"></span></td>
+								<td><span id="STATIC_CURRENCY5" type="STATIC_TXT"></span></td>
+								<td><span id="STATIC_DENO5" type="STATIC_TXT"></span></td>
+								<td><input id="INPUT_SHEET5" type="text" class="input-text input-sheet"  value="" maxlength="4" validchars = "0123456789"></td>
+								<td><span id="STATIC_MONEY5" type="STATIC_TXT">0</span></td>
+								<!--td><span id="STATIC_CASH5" type="STATIC_TXT" class="column-total-count">0</span></td>
+								<td><span id="STATIC_CURRENT_COUNT5" type="STATIC_TXT">0</span></td-->
+							</tr>
+							<tr class="tr_height">
+								<td><span id="STATIC_CASSETID6" type="STATIC_TXT"></span></td>
+								<td><span id="STATIC_CURRENCY6" type="STATIC_TXT"></span></td>
+								<td><span id="STATIC_DENO6" type="STATIC_TXT"></span></td>
+								<td><input id="INPUT_SHEET6" type="text" class="input-text input-sheet"  value="" maxlength="4" validchars = "0123456789"></td>
+								<td><span id="STATIC_MONEY6" type="STATIC_TXT">0</span></td>
+								<!--td><span id="STATIC_CASH6" type="STATIC_TXT" class="column-total-count">0</span></td>
+								<td><span id="STATIC_CURRENT_COUNT6" type="STATIC_TXT">0</span></td-->
+							</tr>
+							<tr class="tr_height">
+								<td><span id="STATIC_CASSETID7" type="STATIC_TXT"></span></td>
+								<td><span id="STATIC_CURRENCY7" type="STATIC_TXT"></span></td>
+								<td><span id="STATIC_DENO7" type="STATIC_TXT"></span></td>
+								<td><input id="INPUT_SHEET7" type="text" class="input-text input-sheet"  value="" maxlength="4" validchars = "0123456789"></td>
+								<td><span id="STATIC_MONEY7" type="STATIC_TXT">0</span></td>
+								<!--td><span id="STATIC_CASH7" type="STATIC_TXT" class="column-total-count">0</span></td>
+								<td><span id="STATIC_CURRENT_COUNT7" type="STATIC_TXT">0</span></td-->
+							</tr>
+							<tr class="tr_height">
+								<td><span id="STATIC_CASSETID8" type="STATIC_TXT"></span></td>
+								<td><span id="STATIC_CURRENCY8" type="STATIC_TXT"></span></td>
+								<td><span id="STATIC_DENO8" type="STATIC_TXT"></span></td>
+								<td><input id="INPUT_SHEET8" type="text" class="input-text input-sheet"  value="" maxlength="4" validchars = "0123456789"></td>
+								<td><span id="STATIC_MONEY8" type="STATIC_TXT">0</span></td>
+								<!--td><span id="STATIC_CASH8" type="STATIC_TXT" class="column-total-count">0</span></td>
+								<td><span id="STATIC_CURRENT_COUNT8" type="STATIC_TXT">0</span></td-->
+							</tr>
+						</tbody>
+					</table>
+					<!--提示文字-->
+					<div id="STATIC_TIP" type="STATIC_TXT" style="float: left;"class="g-prompt-text float-right operation-tip" ids="IDS_InputAmountTip" color="#e01e1e" disabledColor="#000000" flashType="color">Please click confirm after input the amount</div>
+				</div>
+			</div>
+			<!--表格控件END--> 
+		</div>
+		<!--右边-->
+		<div class="add-cash-right"> 
+			<!--键盘-->
+			<div id="KEYBOARD_NUMBER_1" type="KEYBOARD_NUMBER" class="keyboard-number"> 
+				<!--键盘操作提示-->
+				<div id="keyboard-tip" class="keyboard-tip clear none" ids="IDS_KeyboardTip">按00键可以在输入框和键盘之间切换</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+<script type="text/javascript">
+
+</script>
+</html>

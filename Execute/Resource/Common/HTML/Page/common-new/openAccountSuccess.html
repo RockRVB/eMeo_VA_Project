@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../js/vue.min.js"></script>
+  <script src="../../js/grg-ui.min.js"></script>
+  <script src="../../js/vue-i18n.js"></script>
+  <script src="../../js/jquery-3.7.0.js"></script>	<script src="../../js/class/layer/layer.js"></script>	<script src="../../js/index.js"></script>
+  <script src="../../js/coreScript.js"></script>
+  <script src="../../js/ibank.js"></script>
+  <link rel="stylesheet" href="../../css/grg-ui.min.css">
+  <link rel="stylesheet" href="../../css/animate.grg.css">
+  <link rel="stylesheet" href="../../css/ibank.css">
+  <style>
+    .grg-main {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .open-card-right-box {
+      visibility: hidden;
+    }
+
+    .open-card-info {
+      position: absolute;
+      left: 50%;
+      top: 40%;
+      transform: translate(-50%, -40%);
+      width: 580px;
+      border-radius: 8px;
+      text-align: left;
+    }
+
+    .open-card-info .open-card-info-header {
+      position: relative;
+      width: 100%;
+      height: 110px;
+      line-height: 98px;
+      padding-left: 28px;
+      border-radius: 8px 8px 0px 0px;
+      font-size: 32px;
+      font-family: 'Alibaba Sans';
+      font-weight: bold;
+      color: #ffffff;
+      background: linear-gradient(270deg, #88AEFF 0%, #6AB2FF 100%);
+      box-sizing: border-box;
+    }
+
+    .open-card-info .open-card-info-header img {
+      position: absolute;
+      right: -45px;
+      bottom: 10px;
+    }
+
+    .open-card-info .open-card-info-header .account-success-img {
+      position: absolute;
+      right: 28px;
+      top: -10px;
+    }
+
+    .open-card-info-content {
+      position: absolute;
+      width: 580px;
+      top: 98px;
+      background: #ffffff;
+      border-radius: 8px;
+      font-family: 'Alibaba Sans';
+      font-size: 28px;
+      color: #666660;
+      padding: 0 28px;
+      box-sizing: border-box;
+    }
+
+    /* .open-card-info-content .open-card-info-item {
+      height: 103px;
+      line-height: 103px;
+      border-bottom: 1px dashed #cccccc;
+    }
+
+    .open-card-info-content .open-card-info-item:last-child {
+      border-bottom: none;
+    }
+
+    .open-card-info-content .open-card-info-item span:first-child {
+      display: inline-block;
+      width: 250px;
+    }
+
+    .open-card-info-content .open-card-info-item span:last-child {
+      font-size: 32px;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    .open-card-info-content .account-number-item {
+      height: 115px;
+    } */
+
+    .open-card-info-content .open-card-info-item {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 103px;
+      border-bottom: 1px dashed #cccccc;
+    }
+
+   .open-card-info-content .open-card-info-item:last-child {
+      border-bottom: none;
+    }
+
+   .open-card-info-content .open-card-info-item span:first-child {
+      display: inline-block;
+      min-width: 250px;
+    }
+
+    .open-card-info-content .open-card-info-item span:last-child {
+      display: inline-block;
+      width: calc(100% - 250px);
+      font-size: 32px;
+      font-weight: bold;
+      color: #333333;
+      word-wrap: break-word;
+      line-height: 30px;
+    }
+
+    .open-card-info-content .account-number-item {
+      height: 115px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="grg-header" class="grg-header">
+    </div>
+    <div id="grg-main" class="grg-main">
+      <div class="step-box">
+        <div v-for="(item, index) in stepList" class="step-item">
+          <div class="step-left">
+            <div
+              :class='[item.status == "finish" ? "step-circle-finish" : "step-circle", item.status == "active" ? "step-circle-active" : "step-circle"]'>
+              <img v-if="item.status == 'finish'" src="../../images/img_2.4/gou.png" alt="">
+              <span v-else>{{ index + 1 }}</span>
+            </div>
+            <div :class='[item.status == "finish" ? "step-line": "step-dotted-line"]'>
+              <img class="line-arrows" v-if='item.status != "finish"' src="../../images/img_2.4/line-arrows.png" alt="">
+            </div>
+          </div>
+          <div
+            :class='[item.status == "finish" ? "step-right-finish" : "step-right", item.status == "active" ? "step-right-active" : "step-right"]':ids="item.ids">
+            {{ item.title }}</div>
+        </div>
+      </div>
+      <div class="open-card-right-box animate_grg_fadeInRight">
+        <div class="title"id="text1" ids="ids_Common_OpenAccountSuccess">Open account success!</div>
+        <div class="open-card-info">
+          <div class="open-card-info-header">
+            <div id="text1" ids="ids_Common_AccountInformation">Account Information</div>
+            <img src="../../images/img_2.4/accoount-success.png" alt="">
+            <img class="account-success-img" src="" alt="">
+          </div>
+          <div class="open-card-info-content">
+            <div class="open-card-info-item">
+              <span class="account-name" ids='ids_accountAdmin'>Account Name</span>
+              <span content='{Binding CardHolderName mode=2}'>Jack Li</span>
+            </div>
+            <div class="open-card-info-item account-number-item">
+              <span class="account-number"id="text1" ids="ids_accountNum">Account Number</span>
+              <span>01234567890</span>
+            </div>
+          </div>
+        </div>
+        <div class="button-box">
+          <!-- <div class="grg-btn grg-cancel" ids='IDS_Cancel'> -->
+            <!-- <img class="icon-img" src="../../images/img_2.4/icon-cancel.png" alt="">Cancel -->
+          <!-- </div> -->
+          <div class="grg-btn grg-confirm" ids='ids_Btn_confirm' id='OnConfirm' type='button' tag='OnConfirm'>
+            <img class="icon-img" src="../../images/img_2.4/icon-ok.png" alt="">Confirm
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+  var app = new Base({
+    i18n: i18n,
+    data: {
+      stepList: [{
+          status: 'finish',
+          title: 'Scan Passport',
+		  ids:"ids_Common_ScanPassport"
+        },
+        {
+          status: 'finish',
+          title: 'Customer Info',
+		  ids:"ids_Common_CustomerInfo"
+        },
+        {
+          status: 'finish',
+          title: 'Sign',
+		  ids:"ids_Common_Sign"
+        },
+        {
+          status: 'finish',
+          title: 'Print Form',
+		  ids:"ids_Common_PrintForm"
+        },
+        {
+          status: 'finish',
+          title: 'Scan Form',
+		  ids:"ids_Common_ScanForm"
+        },
+        {
+          status: 'active',
+          title: 'Open Account Success',
+		  ids:"ids_Common_OpenAccountSuccess"
+        },
+        {
+          status: 'unFinish',
+          title: 'Print Receipt',
+		  ids:"ids_Common_PrintReceipt"
+        },
+      ],
+      timer: null,
+    },
+    methods: {},
+    created: function () {},
+    computed: {},
+    mounted: function () {
+      let _this = this;
+      let img = document.querySelector('.account-success-img');
+      clearTimeout(_this.timer);
+      _this.timer = setTimeout(() => {
+        img.setAttribute('src', '../../images/img_2.4/accoount-success-hook.png');
+      }, 500)
+    }
+  }).$mount('#app')
+</script>

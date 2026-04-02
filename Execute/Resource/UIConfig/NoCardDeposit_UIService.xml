@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+  <!--输入存款账号-->
+  <Screen name="UI_InputNoCardDepositAccount" uri="NoCardDeposit\InputNoCardDepositAccount.html" cache="0">
+    <Triggers>
+      <EventTrigger condition="show">
+        <PlaySound source="(Voice_InputNoCardDepositAccount)"/>
+        <Setter target="PromptIcon" property="visible" value="0"/>
+      </EventTrigger>
+      <EventTrigger condition="LengthNotEnough">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+      </EventTrigger>
+    </Triggers>
+  </Screen>
+
+  <!--显示账户信息-->
+  <Screen name="UI_ShowAccountInfo" uri="NoCardDeposit\ShowNoCardDepositInfo.html" cache="0">
+    <Triggers>
+      <EventTrigger condition="show">
+        <PlaySound source="(Voice_ConfirmDepositInfo)"/>
+      </EventTrigger>
+    </Triggers>
+  </Screen>
+</Screens>
+
+
+
+
+

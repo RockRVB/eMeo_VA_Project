@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- protocol : DDC -->
+<Root>
+	<SendMessag>
+		<!--Send Message config-->
+		<!--发送消息配置 -->
+		<Item key="TransactionRequest" value="\Transaction\TransRequest.xml" pos="Data">
+			<!--Message ID : TransactionRequest.Format0 -->
+			<!--消息ID:TransactionRequest.Format0 -->
+			<Item key="Format0" value="\Transaction\Format0.xml" pos="Data"/>
+			<Item key="Format1" value="\Transaction\Format1.xml" pos="Data"/>
+			<Item key="InterTransResponse" value="\Transaction\InterTransResponse.xml" pos="Data"/>
+		</Item>
+		<Item key="Solicited" value="\Status\Solicited\Solicited.xml" pos="Data">
+			<Item key="Status" value="\Status\Solicited\Status\SSMElement.xml" pos="Data">
+				<Item key="DeviceFault" value="\Status\Solicited\Status\DeviceFault\DeviceFaultHead.xml" pos="Data">
+					<Item key="CashHandler" value="\Status\Solicited\Status\DeviceFault\DeviceFaultElement.xml" pos="Data" param="BillDispenser"/>
+					<Item key="CardReader" value="\Status\Solicited\Status\DeviceFault\DeviceFaultElement.xml" pos="Data" param="CardReader"/>
+					<Item key="ConfigurationInformation" value="\Status\Solicited\Status\DeviceFault\ConfigurationInformation.xml" pos="Data" param="ConfigurationInformation"/>
+					<Item key="SupplyCounts" value="\Status\Solicited\Status\DeviceFault\DeviceFaultElement.xml" pos="Data" param="SupplyCounts"/>
+					<Item key="SupplyCountsEn" value="\Status\Solicited\Status\DeviceFault\DeviceFaultElement.xml" pos="Data" param="SupplyCounts"/>
+					<Item key="Presenter" value="\Status\Solicited\Status\DeviceFault\DeviceFaultElement.xml" pos="Data" param="Presenter"/>
+					<Item key="WinCorCashInStatus" value="\Status\Solicited\Status\DeviceFault\WinCorCashInStatus.xml" pos="Data"/>
+				</Item>
+				<Item key="Enhandced" value="\Status\Solicited\Status\Enhanced\Enhandced.xml" pos="Data">
+					<Item key="SmartCard" value="\Status\Solicited\Status\Enhanced\Enhandced.xml" pos="SmartCard"/>
+					<Item key="CashAcceptor" value="\Status\Solicited\Status\Enhanced\Enhandced.xml" pos="CashAcceptor"/>
+				</Item>
+				<Item key="CmdReplyReady" value="\Status\Solicited\Status\Ready\CmdReplyReady.xml" pos="Cmd"/>
+				<Item key="TransReplyReady" value="\Status\Solicited\Status\Ready\CmdReplyReady.xml" pos="Trans"/>
+				<Item key="RklData" value="\Status\Solicited\Others\RklData.xml" pos="Cmd"/>
+				<Item key="WinCorCashInTransReplyReady" value="\Status\Solicited\Status\Ready\CmdReplyReady.xml" pos="WinCorCashIn"/>
+				<Item key="SmartCard" value="\Status\Solicited\Status\Ready\CmdReplyReady.xml" pos="SmartCard"/>
+				<Item key="CommandReject" value="\Status\Solicited\Status\CmdReject\CmdReject.xml" pos="CmdReject"/>
+				<Item key="SpecificCommandReject" value="\Status\Solicited\Status\CmdReject\CmdReject.xml" pos="SpecificCmdReject"/>
+				<Item key="SpecificCommandRejectMAC" value="\Status\Solicited\Status\CmdReject\CmdReject.xml" pos="SpecificCmdRejectMAC"/>
+				<Item key="WnRKL" value="\Status\Solicited\Status\RKL\WnRKL.xml" pos="Data">
+					<Item key="Sign_Capabilities" value="\Status\Solicited\Status\RKL\WnRKL.xml" pos="Sign_Capabilities"/>
+					<Item key="Sign_EPP_ID" value="\Status\Solicited\Status\RKL\WnRKL.xml" pos="Sign_EPP_ID"/>
+					<Item key="Sign_EPP_PK" value="\Status\Solicited\Status\RKL\WnRKL.xml" pos="Sign_EPP_PK"/>
+				</Item>
+				<Item key="WnRKL_ReplyReady" value="\Status\Solicited\Status\RKL\WnRKL.xml" pos="DataReplyReady">
+					<Item key="EPP_KVV" value="\Status\Solicited\Status\RKL\WnRKL.xml" pos="EPP_Kvv"/>
+					<Item key="EPP_MasterKVV" value="\Status\Solicited\Status\RKL\WnRKL.xml" pos="EPP_MasterKVV"/>
+					<Item key="EPP_LocalCommKVV" value="\Status\Solicited\Status\RKL\WnRKL.xml" pos="EPP_LocalCommKVV"/>
+				</Item>
+				<Item key="TerminalState" value="\Status\Solicited\Status\TerminalState\TerminalStateElement.xml" pos="TerminalState">
+					<Item key="WinCorCashInStatusInformation" value="\Status\Solicited\Status\TerminalState\TerminalState\WinCorCashInStatusInformation.xml" pos="Msg"/>
+					<Item key="WincorCashInSupplyCounters" value="\Status\Solicited\Status\TerminalState\TerminalState\WincorCashInSupplyCounters.xml" pos="Msg"/>
+				</Item>
+			</Item>
+		</Item>
+		<Item key="UnsolicitedStatus" value="\Status\UnSolicited\USMElementHead.xml" pos="Data">
+			<Item key="PowerFailure" value="\Status\UnSolicited\USMElement.xml" pos="Data" param="PowerFailure"/>
+			<Item key="CardReader" value="\Status\UnSolicited\USMElement.xml" pos="Data" param="CardReader"/>
+			<Item key="CashHandler" value="\Status\UnSolicited\USMElement.xml" pos="Data" param="BillDispenser"/>
+			<Item key="CashPresenter" value="\Status\UnSolicited\USMElement.xml" pos="Data" param="Presenter"/>
+			<Item key="ReceiptPrinter" value="\Status\UnSolicited\USMElement.xml" pos="Data" param="ReceiptPrinter"/>
+			<Item key="JournalPrinter" value="\Status\UnSolicited\USMElement.xml" pos="Data" param="JournalPrinter"/>
+			<Item key="SupervisoSupplySwitches" value="\Status\UnSolicited\USMElement.xml" pos="Data" param="SupervisoSupplySwitches"/>
+			<Item key="Alarm" value="\Status\UnSolicited\USMElement.xml" pos="Data" param="Alarm"/>
+			<Item key="Encryptor" value="\Status\UnSolicited\USMElementEnhanced.xml" pos="Data" param="PINPad"/>
+			<Item key="BarCodeReader" value="\Status\UnSolicited\USMElementEnhanced.xml" pos="Data" param="BarCodeReader"/>
+			<Item key="Camera" value="\Status\UnSolicited\USMElementEnhanced.xml" pos="Data" param="Camera"/>
+			<Item key="CashAcceptor" value="\Status\UnSolicited\USMElementEnhanced.xml" pos="Data" param="CashAcceptor"/>
+			<Item key="SmartCard" value="\Status\UnSolicited\USMElementEnhanced.xml" pos="Data" param="SmartCard"/>
+			<Item key="Enhandced" value="\Status\UnSolicited\USMElementEnhanced.xml" pos="Data" param="SmartCard">
+				<Item key="SmartCard" value="\Status\UnSolicited\USMElementEnhanced.xml" pos="SmartCard"/>
+			</Item>
+			<Item key="WincorCashInstatus" value="\Status\UnSolicited\USMElementEnhanced.xml" pos="Wincor"/>
+			<Item key="RklRequestPublicKey" value="\Status\UnSolicited\RklRequest.xml" pos="PublicKey"/>
+			<Item key="RklRequestInitialKey" value="\Status\UnSolicited\RklRequest.xml" pos="InitialKey"/>
+		</Item>
+	</SendMessag>
+	<ReceiveMessage>
+		<!--Receive Message Config-->
+		<!--接收消息配置 -->
+		<Item key="Head" value="" pos="b">
+			<Item key="TerminalCommand" value="1" pos="f">
+				<Item key="InService" value="1" pos=""/>
+				<Item key="OutService" value="2" pos=""/>
+				<Item key="ConfigurationInformation" value="3" pos=""/>
+				<Item key="SupplyCountersRetrieve" value="9" pos=""/>
+				<Item key="SupplyCountersRetrieveClear" value=":" pos=""/>
+				<Item key="SupplyCountersRetrieveEn" value=";" pos=""/>
+				<Item key="SupplyCountersRetrieveEnClearSet" value="&lt;" pos=""/>
+				<Item key="RunSelfTest" value="=" pos=""/>
+				<Item key="ConditionalOutService" value="&gt;" pos=""/>
+				<Item key="WincroRKL" value="R" pos="g">
+					<Item key="Sign_Capabilities" value="C" pos=""/>
+					<Item key="Sign_EPP_ID" value="I" pos=""/>
+					<Item key="Sign_EPP_PK" value="P" pos=""/>
+					<Item key="Sign_EPP_KVV" value="V" pos=""/>
+					<Item key="Cer_EPP_encryption_decryption_certificate" value="E" pos=""/>
+					<Item key="Cer_EPP_signature_verification_certificate" value="S" pos=""/>
+					<Item key="Cer_EPP_Start_key_exchange" value="K" pos=""/>
+				</Item>
+				<Item key="SupplyCounters" value="4" pos="g">					
+					<Item key="WincorCashInSupplyCounters" value="r" pos=""/>
+				</Item>
+				<Item key="ConfigurationInformation" value="7" pos="g">					
+					<Item key="WincorCashInStatusInformation" value="r" pos=""/>
+				</Item>
+				<Item key="ConfigureCashInNoteID" value="r" pos=""/>
+				<Item key="RKL_InitiateKeyExchange" value="J" pos=""/>
+				<Item key="RKL_EPPPublicKeySerialNumber" value="K" pos=""/>
+			</Item>
+			<Item key="TerminalCommandEn" value="5" pos="f">
+				<Item key="RetrieveVersion" value="026" pos=""/>
+				<Item key="DateTime" value="025" pos="g">
+					<Item key="Set" value="SD" pos=""/>
+					<Item key="Get" value="GD" pos=""/>
+				</Item>
+			</Item>
+			<Item key="DataCommand" value="3" pos="f">
+				<Item key="CustomisationData" value="1" pos="g">
+					<Item key="Screen" value="1" pos=""/>
+					<Item key="StateTable" value="2" pos=""/>
+					<Item key="ConfigurationParameters" value="3" pos=""/>
+					<Item key="FITData" value="5" pos=""/>
+					<Item key="ConfigurationIDNumber" value="6" pos=""/>
+					<Item key="IconDefinitions" value=";" pos=""/>
+					<Item key="CharacterSetDefinitions" value="&lt;" pos=""/>
+					<Item key="CellDatas" value="=" pos=""/>
+					<Item key="FormatTemplate" value="@" pos=""/>
+					<Item key="SubsidiaryApplicationsData" value="A" pos=""/>
+					<Item key="CurrencyAcceptorBillTypes" value="B" pos=""/>
+				</Item>
+				<!--Item key="InterTransResponse" value="2" pos=""/-->
+				<Item key="OpenAccountRelationship" value="2" pos=""/>
+				<Item key="EncryptionKeyChange" value="3" pos="g">
+					<Item key="NewMaster_M" value="1" pos=""/>
+					<Item key="NewComm_M" value="2" pos=""/>
+					<Item key="NewComm_C" value="3" pos=""/>
+					<Item key="NewComm_BKey" value="4" pos=""/>
+					<Item key="NewMac_M" value="5" pos=""/>
+					<Item key="NewMac_C" value="6" pos=""/>
+					<Item key="NewMac_BKey" value="7" pos=""/>
+					<Item key="NewVMaster_VM" value="8" pos=""/>
+					<Item key="VisaKeyTabl" value="9" pos=""/>
+					<Item key="NewVMaster_M" value=":" pos=""/>
+					<Item key="WnRKL_Sign_LoadHSM_PK" value="P" pos=""/>
+					<Item key="WnRKL_Sign_LoadMaster" value="M" pos=""/>
+					<Item key="WnRKL_Sign_LocalComm" value="L" pos=""/>
+					<Item key="RKL_DeletePublicKey" value="E" pos=""/>
+					<Item key="RKL_LoadPublicKey" value="@" pos=""/>
+					<Item key="RKL_LoadInitialKey" value="?" pos=""/>
+				</Item>
+				<Item key="WincorCustomisationData" value="e" pos="g">
+					<Item key="SubsidiaryApplicationsData" value="A" pos=""/>
+				</Item>
+			</Item>
+			<Item key="FunctionCommand4" value="4" pos=""/>
+			<Item key="EnhancedWriteCommand" value="6" pos=""/>
+			<Item key="FunctionCommand7" value="7" pos=""/>
+		</Item>
+	</ReceiveMessage>
+	<ParserField>
+		<!--Explain Message subsection Config-->
+		<!--解释消息分段配置 -->
+		<!--key="Head" is head node -->
+		<Item key="Head">
+			<Field ID="a" split="0, 1,1"/>
+		</Item>
+		<Item key="TerminalCommand">
+			<Field ID="f" split="1 , 3"/>
+		</Item>
+		<Item key="TerminalCommandEn">
+			<Field ID="f" split="3 , -1"/>
+		</Item>
+		<Item key="TerminalCommandEn.DateTime">
+			<Field ID="g" split="2 , -1"/>
+		</Item>
+		<Item key="DataCommand">
+			<Field ID="f" split="1 ,-1"/>
+		</Item>
+		<Item key="DataCommand.CustomisationData.ConfigurationParameters">
+			<Field ID="h" split="1,3,3,3,3,3,-1"/>
+		</Item>
+		
+		<Item key="FunctionCommand4">
+			<Field ID="h" split="4,-1"/>
+			<Field ID="j" split="1,1,-1"/>
+		</Item>
+	</ParserField>
+</Root>

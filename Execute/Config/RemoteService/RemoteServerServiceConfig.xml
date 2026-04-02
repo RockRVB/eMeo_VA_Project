@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--xmlns="http://grgbanking.com/RemoteServerServiceConfigXMLSchema.xsd"-->
+<RemoteServerServiceConfiger >
+<!--intervaltime>2000<intervaltime-->
+  <!--DllFilePath：指定为实际处理远程指令处理的dll-->
+  <!--ConfigFilePath：远程指令处理模块的配置文件路径，相对于程序的运行目录，例如：RemoteService\-->
+  <RemoteServer>
+    <DllFilePath>RemoteService\RemoteServer.dll</DllFilePath>
+    <ConfigFilePath>Config\RemoteService\RemoteServerConfig.xml</ConfigFilePath>
+  </RemoteServer>
+</RemoteServerServiceConfiger>

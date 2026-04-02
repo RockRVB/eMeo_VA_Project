@@ -1,0 +1,581 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Device>
+    <Enable CashAcceptor="1" CassetteType1="0" CassetteType2="0" CassetteType3="0" CassetteType4="0" CassetteType5="0" CassetteType6="0" CassetteType7="0" />
+    <Information>
+      <CashAcceptor IntermediateStackerIsEmpty="True" OutPositionIsEmpty="True" DeviceState="ONLINE" MediaState="OK" LastErrorCode="" IsSuccess="True" IsFailure="False" Cancelled="False" UserState="56" TransportIsEmpty="True" InShutter="CLOSED" OutShutter="CLOSED" IntermediateStacker="EMPTY" OutPosition="EMPTY" InPosition="EMPTY" OutTransport="OK" InTransport="OK" BankNoteReader="OK" IntermediateStackerIsExisted="True" OutInPositionIsEmpty="True" InPositionIsEmpty="True" SafeDoor="CLOSED" LastErrorCodeDesc="" SPVersion="ATM_LAO_LDB_GRG XFS SP4.0 PR3 WITH SP11_B643_20181217" DriverVersion="V1.1.19.5" FirmwareVersion="v1.0b1" CommandString="GetStatusInfo" />
+      <Cassette>
+        <CIN UseType="CASHIN" CurrencyID="   " DenoValue="0" Count="0" InitialCount="0" RejectCount="0" Maximum="1400" Minimum="0" CashInCount="0" Status="OK" PhysicalPositionName="S0_I3" UnitID="S0_I3" usNumber="2" CashOutCount="0" />
+        <RetractBin UseType="RETRACT" CurrencyID="   " DenoValue="0" Count="19" InitialCount="0" RejectCount="0" Maximum="150" Minimum="0" CashInCount="0" Status="OK" PhysicalPositionName="S0_I2" UnitID="S0_I2" usNumber="1" CashOutCount="0" ItemType="ALL" UnitRFID="" DCount="0" PCount="0" RetCount="0" />
+        <Type1 HostType="1" CurrencyID="CNY" DenoValue="50" Count="315" InitialCount="0" RejectCount="0" CashInCount="0" Status="MISSING" UseType="RECYCLING" Maximum="5000" Minimum="0" PhysicalPositionName="S1_I0" UnitID="00001" usNumber="3" CashOutCount="0" />
+        <Type2 HostType="2" CurrencyID="CNY" DenoValue="100" Count="745" InitialCount="0" RejectCount="0" CashInCount="0" Status="MISSING" UseType="RECYCLING" Maximum="5000" Minimum="0" PhysicalPositionName="S3_I0" UnitID="00002" usNumber="5" CashOutCount="0" />
+        <Type3 HostType="3" CurrencyID="CNY" DenoValue="100" Count="800" InitialCount="0" RejectCount="0" CashInCount="0" Status="MISSING" UseType="RECYCLING" Maximum="500" Minimum="0" PhysicalPositionName="S3_I0" UnitID="00003" usNumber="5" CashOutCount="0" />
+        <Type4 HostType="4" CurrencyID="CNY" DenoValue="100" Count="900" InitialCount="0" RejectCount="0" CashInCount="0" Status="MISSING" UseType="RECYCLING" Maximum="500" Minimum="0" PhysicalPositionName="S4_I0" UnitID="00004" usNumber="6" CashOutCount="0" />
+        <Type5 Count="0" RejectCount="0" CashOutCount="0" CashInCount="0" Status="MISSING" />
+        <Type6 Count="0" RejectCount="0" CashOutCount="0" CashInCount="0" Status="MISSING" />
+        <Type7 Count="0" RejectCount="0" CashOutCount="0" CashInCount="0" Status="MISSING" />
+        <RejectBin Status="MISSING" />
+      </Cassette>
+      <CassettePhysical>
+        <ID_S0_I2 UseType="RETRACT" CurrencyID="   " DenoValue="0" Count="19" InitialCount="0" RejectCount="0" Maximum="150" Minimum="0" CashInCount="0" Status="OK" PhysicalPositionName="S0_I2" UnitID="S0_I2" usNumber="1" CashOutCount="0" ItemType="ALL" UnitRFID="" DCount="0" PCount="0" RetCount="0" />
+        <ID_S0_I3 UseType="CASHIN" CurrencyID="   " DenoValue="0" Count="0" InitialCount="0" RejectCount="0" Maximum="750" Minimum="0" CashInCount="0" Status="OK" PhysicalPositionName="S0_I3" UnitID="S0_I3" usNumber="2" CashOutCount="0" ItemType="INDIVIDUAL" UnitRFID="" DCount="0" PCount="0" RetCount="0" />
+        <ID_0000A UseType="RECYCLING" ItemType="INDIVIDUAL" CurrencyID="VND" DenoValue="500000" Count="11" InitialCount="0" RejectCount="0" Maximum="2500" Minimum="0" CashInCount="0" Status="OK" PhysicalPositionName="S1_I0" UnitID="0000A" UnitRFID="" usNumber="3" CashOutCount="0" DCount="0" PCount="0" RetCount="0" />
+        <ID_0000B UseType="RECYCLING" ItemType="INDIVIDUAL" CurrencyID="VND" DenoValue="200000" Count="21" InitialCount="0" RejectCount="0" Maximum="2500" Minimum="0" CashInCount="0" Status="OK" PhysicalPositionName="S2_I0" UnitID="0000B" UnitRFID="" usNumber="4" CashOutCount="0" DCount="0" PCount="0" RetCount="0" />
+        <ID_0000C UseType="RECYCLING" ItemType="INDIVIDUAL" CurrencyID="VND" DenoValue="100000" Count="32" InitialCount="0" RejectCount="0" Maximum="2500" Minimum="0" CashInCount="0" Status="OK" PhysicalPositionName="S3_I0" UnitID="0000C" UnitRFID="" usNumber="5" CashOutCount="0" DCount="0" PCount="0" RetCount="0" />
+        <ID_0000D UseType="RECYCLING" ItemType="INDIVIDUAL" CurrencyID="VND" DenoValue="50000" Count="44" InitialCount="0" RejectCount="0" Maximum="2500" Minimum="0" CashInCount="0" Status="OK" PhysicalPositionName="S4_I0" UnitID="0000D" UnitRFID="" usNumber="6" CashOutCount="0" DCount="0" PCount="0" RetCount="0" />
+        <Notelist>
+          <ID_S0_I2>
+            <Item usNoteID="1428" ulCount="1" />
+          </ID_S0_I2>
+        </Notelist>
+      </CassettePhysical>
+      <CassetteHope>
+        <Hope1 Status="OK" UseType="RECYCLING" ItemType="INDIVIDUAL" CurrencyID="VND" DenoValue="500000" Count="11" InitialCount="0" RejectCount="0" Maximum="2500" Minimum="0" CashInCount="0" PhysicalPositionName="S1_I0" UnitID="0000A" UnitRFID="" usNumber="3" CashOutCount="0" DCount="0" PCount="0" RetCount="0" />
+        <Hope2 Status="OK" UseType="RECYCLING" ItemType="INDIVIDUAL" CurrencyID="VND" DenoValue="200000" Count="21" InitialCount="0" RejectCount="0" Maximum="2500" Minimum="0" CashInCount="0" PhysicalPositionName="S2_I0" UnitID="0000B" UnitRFID="" usNumber="4" CashOutCount="0" DCount="0" PCount="0" RetCount="0" />
+        <Hope3 Status="OK" UseType="RECYCLING" ItemType="INDIVIDUAL" CurrencyID="VND" DenoValue="100000" Count="32" InitialCount="0" RejectCount="0" Maximum="2500" Minimum="0" CashInCount="0" PhysicalPositionName="S3_I0" UnitID="0000C" UnitRFID="" usNumber="5" CashOutCount="0" DCount="0" PCount="0" RetCount="0" />
+        <Hope4 Status="OK" UseType="RECYCLING" ItemType="INDIVIDUAL" CurrencyID="VND" DenoValue="50000" Count="44" InitialCount="0" RejectCount="0" Maximum="2500" Minimum="0" CashInCount="0" PhysicalPositionName="S4_I0" UnitID="0000D" UnitRFID="" usNumber="6" CashOutCount="0" DCount="0" PCount="0" RetCount="0" />
+        <Hope0 UseType="CASHIN" ItemType="INDIVIDUAL" CurrencyID="   " DenoValue="0" Count="0" InitialCount="0" RejectCount="0" Maximum="750" Minimum="0" CashInCount="0" Status="OK" PhysicalPositionName="S0_I3" UnitID="S0_I3" UnitRFID="" usNumber="2" CashOutCount="0" DCount="0" PCount="0" RetCount="0" />
+      </CassetteHope>
+      <!--BNA_HEALTHY BNA_SECONDRETRACT-->
+      <Manual State="BNA_HEALTHY" RecoverFail="0" SecondRetract="BNA_HEALTHY" />
+      <Operation Fun="DeviceRecover" XFSCode="0" VendorCode="0" />
+      <NoteType>
+        <ID_1425 Currency="VND" Denomination="10000" />
+        <ID_1426 Currency="VND" Denomination="20000" />
+        <ID_1427 Currency="VND" Denomination="50000" />
+        <ID_1428 Currency="VND" Denomination="100000" />
+        <ID_1429 Currency="VND" Denomination="200000" />
+        <ID_1430 Currency="VND" Denomination="500000" />
+      </NoteType>
+    </Information>
+    <Event>
+    </Event>
+    <Capability>
+      <CashAcceptor MaxCashInItems="100" IntermediateStacker="100" SupportCurrency="VND:10000,VND:20000,VND:50000,VND:100000,VND:200000,VND:500000" ShutterAutoControl="True" NoteIDs="1425,1426,1427,1428,1429,1430" IsSuccess="True" IsFailure="False" Cancelled="False" UserState="56" SupportShutter="True" RetractArea="RETRACT,STACKER" Positions="INFRONT,OUTREAR" CurrencyExponent="CNY:0" CommandString="GetCapabilityInfo" />
+    </Capability>
+    <Initiation>
+      <DenominationID Hope1="0" Hope2="0" Hope3="0" Hope4="0" Hope0="0" />
+    </Initiation>
+  </Device>
+  <Calculate>
+    <Status work="0">
+      <DevStatus ErrorCode="0" />
+      <Fitness Handler="0" CassetteType1="4" CassetteType2="4" CassetteType3="4" CassetteType4="4" CassetteType5="4" CassetteType6="4" CassetteType7="4" CIN="1" RetractBin="0" Overall="2" />
+      <SuppliesStatus CassetteType1="0" CassetteType2="0" CassetteType3="0" CassetteType4="0" CassetteType5="0" CassetteType6="0" CassetteType7="0" CIN="1" RetractBin="0" RejectBin="1" RejectRetract="1" Overall="1" />
+    </Status>
+  </Calculate>
+  <AfterCalculate>
+    <Item ID="/Root/Calculate/Status/SuppliesStatus/@Overall" default="0">
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="4" operator="==">
+          <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@CIN" />
+        </Condition>
+      </Result>
+      <Result value="3">
+        <Condition value="[xmlvariable]" operand="3" operator="==">
+          <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@CIN" />
+        </Condition>
+      </Result>
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="1" operator="==">
+          <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@CIN" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item ID="/Root/Calculate/Status/Fitness/@Overall" default="0">
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="4" operator="&gt;=">
+          <xmlvariable value="/Root/Calculate/Status/Fitness/@Handler" />
+        </Condition>
+      </Result>
+      <!--
+			<Result value="4">
+				<Condition value="[xmlvariable]" operand="BNA_SECONDRETRACT" operator="==">
+					<xmlvariable value="/Root/Device/Information/Manual/@SecondRetract"/>
+				</Condition>
+			</Result>
+			<Result value="4">
+				<Condition value="[xmlvariable]" operand="4" operator="==">
+					<xmlvariable value="/Root/Calculate/Status/Fitness/@RetractBin"/>
+				</Condition>
+			</Result>
+			<Result value="4">
+				<Condition value="[xmlvariable]" operand="4" operator="==">
+					<xmlvariable value="/Root/Calculate/Status/Fitness/@CIN"/>
+				</Condition>
+			</Result>
+			 -->
+      <Result value="2">
+        <Condition value="[xmlvariable]" operand="2" operator="==">
+          <xmlvariable value="/Root/Calculate/Status/Fitness/@CIN" />
+        </Condition>
+      </Result>
+      <Result value="2">
+        <Condition value="[xmlvariable]" operand="2" operator="&gt;=">
+          <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType1" />
+        </Condition>
+        <Condition value="[xmlvariable]" operand="2" operator="&gt;=">
+          <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType2" />
+        </Condition>
+        <Condition value="[xmlvariable]" operand="2" operator="&gt;=">
+          <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType3" />
+        </Condition>
+        <Condition value="[xmlvariable]" operand="2" operator="&gt;=">
+          <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType4" />
+        </Condition>
+        <Condition value="[xmlvariable]" operand="2" operator="&gt;=">
+          <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType5" />
+        </Condition>
+        <Condition value="[xmlvariable]" operand="2" operator="&gt;=">
+          <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType6" />
+        </Condition>
+        <Condition value="[xmlvariable]" operand="2" operator="&gt;=">
+          <xmlvariable value="/Root/Calculate/Status/Fitness/@CassetteType7" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item ID="/Root/Calculate/Status/DevStatus/@ErrorCode" default="0">
+      <Result value="3">
+        <Condition value="[xmlvariable]" operand="4" operator="==">
+          <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@Overall" />
+        </Condition>
+      </Result>
+      <Result value="3">
+        <Condition value="[xmlvariable]" operand="1" operator="==">
+          <xmlvariable value="/Root/Device/Information/Manual/@RecoverFail" />
+        </Condition>
+      </Result>
+    </Item>
+  </AfterCalculate>
+  <Configuration>
+    <Item source="/Root/Device/Information/CashAcceptor" ID="/Root/Device/Information/Manual/@RecoverFail" default="keyword.nochange">
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="ONLINE" operator="match">
+          <xmlvariable value="/Root/Device/Information/CashAcceptor/@DeviceState" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Manual/" ID="/Root/Calculate/Status/Fitness/@Handler" default="0">
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+          <xmlvariable value="/Root/Device/Information/CashAcceptor/@DeviceState" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+        <Condition value="[xmlvariable]" operand="1" operator="==">
+          <xmlvariable value="/Root/Device/Information/Manual/@RecoverFail" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Result value="4">
+          <Condition value="[xmlvariable]" operand="CUSTOP" operator="==">
+            <xmlvariable value="/Root/Device/Information/CashAcceptor/@MediaState" xmldoc="DataCashAcceptor.xml" />
+          </Condition>
+        </Result>
+        <Condition value="[xmlvariable]" operand="1" operator="==">
+          <xmlvariable value="/Root/Device/Information/Manual/@RecoverFail" />
+        </Condition>
+      </Result>
+    </Item>
+    <!--
+		<Item source="/Root/Device/Information/CashAcceptor" ID="/Root/Calculate/Status/Fitness/@Handler" default="0">
+			<Result value="4">
+				<Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+					<xmlvariable value="/Root/Device/Information/CashAcceptor/@DeviceState" xmldoc="DataCashAcceptor.xml"/>
+				</Condition>
+			</Result>
+			<Result value="4">
+				<Condition value="[xmlvariable]" operand="CUSTOP" operator="==">
+					<xmlvariable value="/Root/Device/Information/CashAcceptor/@MediaState" xmldoc="DataCashAcceptor.xml"/>
+				</Condition>
+			</Result>
+		</Item>
+         -->
+    <Item source="/Root/Device/Information/Cassette/Type1" ID="/Root/Calculate/Status/Fitness/@CassetteType1" default="4">
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="0" operator="==">
+          <xmlvariable value="/Root/Device/Enable/@CassetteType1" />
+        </Condition>
+      </Result>
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="OK|LOW|EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type1/@Status" />
+        </Condition>
+      </Result>
+      <Result value="2">
+        <Condition value="[xmlvariable]" operand="HIGH" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type1/@Status" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type1/@Status" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Cassette/Type2" ID="/Root/Calculate/Status/Fitness/@CassetteType2" default="4">
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="0" operator="==">
+          <xmlvariable value="/Root/Device/Enable/@CassetteType2" />
+        </Condition>
+      </Result>
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="OK|LOW|EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type2/@Status" />
+        </Condition>
+      </Result>
+      <Result value="2">
+        <Condition value="[xmlvariable]" operand="HIGH" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type2/@Status" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type2/@Status" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Cassette/Type3" ID="/Root/Calculate/Status/Fitness/@CassetteType3" default="4">
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="0" operator="==">
+          <xmlvariable value="/Root/Device/Enable/@CassetteType3" />
+        </Condition>
+      </Result>
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="OK|LOW|EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type3/@Status" />
+        </Condition>
+      </Result>
+      <Result value="2">
+        <Condition value="[xmlvariable]" operand="HIGH" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type3/@Status" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type3/@Status" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Cassette/Type4" ID="/Root/Calculate/Status/Fitness/@CassetteType4" default="4">
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="0" operator="==">
+          <xmlvariable value="/Root/Device/Enable/@CassetteType4" />
+        </Condition>
+      </Result>
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="OK|LOW|EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type4/@Status" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+      <Result value="2">
+        <Condition value="[xmlvariable]" operand="HIGH" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type4/@Status" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type4/@Status" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Cassette/Type5" ID="/Root/Calculate/Status/Fitness/@CassetteType5" default="4">
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="0" operator="==">
+          <xmlvariable value="/Root/Device/Enable/@CassetteType5" />
+        </Condition>
+      </Result>
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="OK|LOW|EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type5/@Status" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+      <Result value="2">
+        <Condition value="[xmlvariable]" operand="HIGH" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type5/@Status" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type5/@Status" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Cassette/Type6" ID="/Root/Calculate/Status/Fitness/@CassetteType6" default="4">
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="0" operator="==">
+          <xmlvariable value="/Root/Device/Enable/@CassetteType6" />
+        </Condition>
+      </Result>
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="OK|LOW|EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type6/@Status" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+      <Result value="2">
+        <Condition value="[xmlvariable]" operand="HIGH" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type6/@Status" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type6/@Status" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Cassette/Type7" ID="/Root/Calculate/Status/Fitness/@CassetteType7" default="4">
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="0" operator="==">
+          <xmlvariable value="/Root/Device/Enable/@CassetteType7" />
+        </Condition>
+      </Result>
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="OK|LOW|EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type7/@Status" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+      <Result value="2">
+        <Condition value="[xmlvariable]" operand="HIGH" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type7/@Status" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type7/@Status" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Cassette/RetractBin" ID="/Root/Calculate/Status/Fitness/@RetractBin" default="0">
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="HIGH|OK|LOW|EMPTY" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP|FULL" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/CassettePhysical/ID_S0_I3" ID="/Root/Calculate/Status/Fitness/@CIN" default="4">
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="OK" operator="==">
+          <xmlvariable value="/Root/Device/Information/CassettePhysical/ID_S0_I3/@Status" />
+        </Condition>
+      </Result>
+      <Result value="2">
+        <Condition value="[xmlvariable]" operand="HIGH" operator="match">
+          <xmlvariable value="/Root/Device/Information/CassettePhysical/ID_S0_I3/@Status" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+          <xmlvariable value="/Root/Device/Information/CassettePhysical/ID_S0_I3/@Status" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Cassette/RetractBin" ID="/Root/Calculate/Status/SuppliesStatus/@RetractBin" default="0">
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="HIGH|OK|LOW|EMPTY" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP|FULL" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status" xmldoc="DataCashAcceptor.xml" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Cassette/Type1" ID="/Root/Calculate/Status/SuppliesStatus/@CassetteType1" default="0">
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="OK|LOW|EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type1/@Status" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="FULL" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type1/@Status" />
+        </Condition>
+      </Result>
+      <Result value="3">
+        <Condition value="[xmlvariable]" operand="HIGH" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type1/@Status" />
+        </Condition>
+      </Result>
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type1/@Status" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Cassette/Type2" ID="/Root/Calculate/Status/SuppliesStatus/@CassetteType2" default="0">
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="OK|LOW|EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type2/@Status" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="FULL" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type2/@Status" />
+        </Condition>
+      </Result>
+      <Result value="3">
+        <Condition value="[xmlvariable]" operand="HIGH" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type2/@Status" />
+        </Condition>
+      </Result>
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type2/@Status" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Cassette/Type3" ID="/Root/Calculate/Status/SuppliesStatus/@CassetteType3" default="0">
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="OK|LOW|EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type3/@Status" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="FULL" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type3/@Status" />
+        </Condition>
+      </Result>
+      <Result value="3">
+        <Condition value="[xmlvariable]" operand="HIGH" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type3/@Status" />
+        </Condition>
+      </Result>
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type3/@Status" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Cassette/Type4" ID="/Root/Calculate/Status/SuppliesStatus/@CassetteType4" default="0">
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="OK|LOW|EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type4/@Status" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="FULL" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type4/@Status" />
+        </Condition>
+      </Result>
+      <Result value="3">
+        <Condition value="[xmlvariable]" operand="HIGH" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type4/@Status" />
+        </Condition>
+      </Result>
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type4/@Status" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Cassette/Type5" ID="/Root/Calculate/Status/SuppliesStatus/@CassetteType5" default="0">
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="OK|LOW|EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type5/@Status" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="FULL" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type5/@Status" />
+        </Condition>
+      </Result>
+      <Result value="3">
+        <Condition value="[xmlvariable]" operand="HIGH" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type5/@Status" />
+        </Condition>
+      </Result>
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type5/@Status" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Cassette/Type6" ID="/Root/Calculate/Status/SuppliesStatus/@CassetteType6" default="0">
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="OK|LOW|EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type6/@Status" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="FULL" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type6/@Status" />
+        </Condition>
+      </Result>
+      <Result value="3">
+        <Condition value="[xmlvariable]" operand="HIGH" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type6/@Status" />
+        </Condition>
+      </Result>
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type6/@Status" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Cassette/Type7" ID="/Root/Calculate/Status/SuppliesStatus/@CassetteType7" default="0">
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="OK|LOW|EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type7/@Status" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="FULL" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type7/@Status" />
+        </Condition>
+      </Result>
+      <Result value="3">
+        <Condition value="[xmlvariable]" operand="HIGH" operator="==">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type7/@Status" />
+        </Condition>
+      </Result>
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+          <xmlvariable value="/Root/Device/Information/Cassette/Type7/@Status" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Cassette/CIN" ID="/Root/Calculate/Status/SuppliesStatus/@CIN" default="0">
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="OK|LOW|EMPTY" operator="match">
+          <xmlvariable value="/Root/Device/Information/CassettePhysical/ID_S0_I3/@Status" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="FULL" operator="==">
+          <xmlvariable value="/Root/Device/Information/CassettePhysical/ID_S0_I3/@Status" />
+        </Condition>
+      </Result>
+      <Result value="3">
+        <Condition value="[xmlvariable]" operand="HIGH" operator="==">
+          <xmlvariable value="/Root/Device/Information/CassettePhysical/ID_S0_I3/@Status" />
+        </Condition>
+      </Result>
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+          <xmlvariable value="/Root/Device/Information/CassettePhysical/ID_S0_I3/@Status" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/Manual" ID="/Root/Calculate/Status/DevStatus/@ErrorCode" default="0">
+      <Result value="3">
+        <Condition value="[xmlvariable]" operand="4" operator="==">
+          <xmlvariable value="/Root/Calculate/Status/SuppliesStatus/@Overall" />
+        </Condition>
+      </Result>
+      <Result value="3">
+        <Condition value="[xmlvariable]" operand="1" operator="==">
+          <xmlvariable value="/Root/Device/Information/Manual/@RecoverFail" />
+        </Condition>
+      </Result>
+    </Item>
+  </Configuration>
+  <Signal>
+    <Item value="/Root/Calculate/Status/DevStatus/@ErrorCode" DataEventID="104" />
+    <Item value="/Root/Calculate/Status/Fitness/@Overall" DataEventID="104" />
+    <Item value="/Root/Calculate/Status/SuppliesStatus/@Overall" DataEventID="104" />
+  </Signal>
+</Root>

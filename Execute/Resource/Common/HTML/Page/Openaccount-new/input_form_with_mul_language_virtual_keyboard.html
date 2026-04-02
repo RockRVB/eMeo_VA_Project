@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=""></script>
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/vue-i18n.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <style>
+        .g-form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .g-form-item {
+            width: 45%;
+        }
+        .picker-box-header-confirm, 
+        .picker-box-header-cancle {
+            background-color: transparent;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <g-header :height='100'>
+            <img slot='left' class='logo' src="../../images/logo.png" alt="">
+            <g-button class="exit-btn" slot='right' id='exitBtn' ids='ids_Exit' transparent round>Exit</g-button>
+        </g-header>
+        <g-main>
+            <h2 ids='ids_opac_inputInformation' class='main-title' style="padding: 30px 0">Please input your personal information</h2>
+            <g-form :model="formModel" ref="form" :rules="ruleValidate" label-position='top'>
+                <g-form-item label="Name" prop="name" ids='ids_opac_name'>
+                  <g-input v-model="formModel.name" :type='input_type'></g-input>
+                </g-form-item>
+                <g-form-item label="Gender" prop="gender" ids='ids_opac_gender'>
+                    <g-radio-group v-model="formModel.gender">
+                        <g-radio value="M"><span ids="ids_Common_Male">Male</span></g-radio>
+                        <g-radio value="F"><span ids="ids_Common_Female">Female</span></g-radio>
+                    </g-radio-group>
+                </g-form-item>
+                <g-form-item label="Birth Date" prop="birthDate" ids='ids_opac_birth'>
+                    <g-input v-model="formModel.birthDate" type='date'>
+                        <g-button slot='cancel-btn' round color='info' ids='ids_Btn_cancel'>Cancel</g-button>
+                        <g-button slot='confirm-btn' round transparent ids='ids_Btn_confirm'>Confirm</g-button>
+                    </g-input>
+                </g-form-item>
+                <g-form-item label="Nation" prop="nation" ids='ids_opac_nation'>
+                    <g-input v-model="formModel.nation" :type='input_type'></g-input>
+                </g-form-item>
+                <g-form-item label="Passport No" prop="passportNo" ids='ids_opac_passportNo'>
+                    <g-input v-model="formModel.passportNo"></g-input>
+                </g-form-item>
+                <g-form-item label="Expire" prop="expire" ids='ids_opac_expire'>
+                    <g-input v-model="formModel.expire" type='date'></g-input>
+                </g-form-item>
+                <g-form-item label="Phone No" prop="phoneNum" ids='ids_opac_phone'>
+                    <g-input type='number' v-model="formModel.phoneNum"></g-input>
+                </g-form-item>
+                <g-form-item label="Email" prop="email" ids='ids_opac_email'>
+                    <g-input v-model="formModel.email" type='email'></g-input>
+                </g-form-item>
+                <g-form-item label="Address" prop="address" style="width: 100%;" ids='ids_opac_address'>
+                    <g-input v-model="formModel.address" :type='input_type'></g-input>
+                </g-form-item>
+              </g-form>
+        </g-main>
+        <g-footer>
+            <g-button class="command-btn" id='OnCancel' tag='OnCancel' type='button' round transparent>Cancel</g-button>
+            <g-button class="command-btn" id='OnConfirm' type='button' ids='ids_Btn_confirm' round @click='handleSubmit'>Confirm</g-button>
+        </g-footer>
+
+        <input type="text" hidden id='formData' v-model='formData' content='{Binding FormData mode=2}'>
+    </div>
+</body>
+</html>
+
+<script>
+    var app = new Base({
+        i18n: i18n,
+        data: {
+            formModel: {
+                name: '',
+                gender: '',
+                birthDate: '',
+                nation: '',
+                passportNo:'',
+                expire:'',
+                phoneNum:'',
+                email:'',
+                address:''
+            },
+            input_type: '',
+        },
+        methods: {
+            calRootFontSize: function() {
+                const html = document.getElementsByTagName('html')[0]
+                // caculate rootFontSzie
+                const pageWidth = html.clientWidth
+                const pageHeight = html.clientHeight
+                if (pageWidth < pageHeight) {
+                    html.style.fontSize = pageWidth / 10 + 'px'
+                } else {
+                    html.style.fontSize = pageHeight / 10 + 'px'
+                }
+            },
+            handleSubmit: function() {
+                this.$refs.form.validate(function(valid) {
+                    if (valid) {
+                        goto('OnConfirm')
+                    }
+                }.bind(this))
+            },
+            handleReset: function() {
+                this.$refs.form.resetFields();
+            }
+        },
+        computed: {
+            ruleValidate: function() {
+                return {
+                    name: [{ required: true, message: this.$t('createAccount.name'), trigger: 'change' }],
+                    birthDate: [{ required: true, message: this.$t('createAccount.birthdate'), trigger: 'change' }],
+                    gender: [ { required: true, message: this.$t('createAccount.gender'), trigger: 'change' }],
+                    nation: [ { required: true, message: this.$t('createAccount.nation'), trigger: 'change' }],
+                    email: [{ type: 'email', message: this.$t('createAccount.email'), trigger: 'change' } ],
+                    phoneNum: [{message: this.$t('createAccount.phoneNum'), trigger: 'change', pattern: /^[0-9]{6,}$/}]
+                }
+            },
+            formData:{
+                set: function(v) {
+                    v ? this.formModel = Object.assign(this.formModel, JSON.parse(v)): {}
+                },
+                get: function() {
+                    return JSON.stringify(this.formModel)
+                }
+            }
+        },
+        mounted: function() {
+            this.calRootFontSize()
+            var _this = this 
+            window.onload = function() {
+                var initData  = document.querySelector('#formData').value
+                initData ? _this.formData = initData : ''
+                changeValueListener(document.querySelector('#formData'), function(val) {
+                    _this.formData = val
+                })
+            }
+
+            this.input_type = window.getKeyboardLanguage();
+        }
+    }).$mount('#app')
+</script>

@@ -1,0 +1,282 @@
+@media screen and (max-width:640px) and (max-height:480px){
+	.wrapper{
+		zoom: 55%;
+	}
+	.middle-inner{
+		line-height: 24px;
+	}
+	.wrapper.loginrole-wapp{
+		zoom: 80% !important;
+	}
+	.loginrole{
+		margin-top: 30px!important;
+	}
+	.wrapper.quick{
+		zoom: 45% !important;
+	}
+	.wrapper.set-atm-no{
+		zoom: 52% !important;
+	}
+	.wrapper.indicator-test,.wrapper.help{
+		zoom: 36% !important;
+	}
+	.wrapper.define-menu{
+		zoom: 45% !important;
+	}
+	.wrapper.current-period-exception,.wrapper.previous-period-exception,.wrapper.clear-machine-period-exception,.wrapper.cardreader-test,.wrapper.receipt-printer-test,.wrapper.door-test,.wrapper.cash-device-test,.wrapper.key-test,.wrapper.light-test,.wrapper.query-parameter{
+		zoom: 40% !important;
+	}
+	.wrapper.get-capture-cards,.wrapper.enviorenment-diagnose,.wrapper.network-test,.wrapper.total-print,.wrapper.reset-all-device{
+		zoom: 46% !important;
+	}
+	.wrapper.accounts{
+		zoom: 38% !important;
+	}
+	.button-operate{
+		width: 140px !important;
+	}
+	.button-operate .button-text{
+		width: 55px !important;
+	}
+	.button-common{
+		width: 235px !important;
+	}
+	.set-atm-no .left-label{
+		width: 205px !important;
+	}
+	.wrapper.set-jou-no .left-label{
+		width: 185px !important;
+	}
+	.wrapper.set-atm-pip .left-label,.wrapper.set-atm-vip .left-label{
+		width: 160px !important;
+	}
+	.wrapper.error-inquiry .left-label{
+		width: 275px !important;
+	}
+	/*.flow-button-zone{
+		zoom: 55%;
+		top: 555px;
+	}*/
+}
+@media screen and (min-width:800px) and (max-width:1000px){
+	.wrapper{
+		zoom: 75%;
+	}
+	.wrapper.loginrole-wapp{
+		zoom: 90% !important;
+	}
+	.loginrole{
+		margin-top: 75px!important;
+	}
+	.wrapper.quick{
+		zoom: 55% !important;
+	}
+	.button-operate .button-text{
+		width: 44px !important;
+	}
+	.wrapper.help{
+		zoom: 40% !important;
+	}
+	.wrapper.set-atm-no{
+		zoom: 66% !important;
+	}
+	.wrapper.indicator-test,.wrapper.help{
+		zoom: 43% !important;
+	}
+	.wrapper.define-menu{
+		zoom: 60% !important;
+	}
+	.wrapper.current-period-exception,.wrapper.previous-period-exception,.wrapper.clear-machine-period-exception,.wrapper.cardreader-test,.wrapper.receipt-printer-test,.wrapper.door-test,.wrapper.cash-device-test,.wrapper.key-test,.wrapper.light-test,.wrapper.query-parameter{
+		zoom: 58% !important;
+	}
+	.wrapper.get-capture-cards,.wrapper.enviorenment-diagnose,.wrapper.network-test,.wrapper.total-print,.wrapper.reset-all-device{
+		zoom: 63% !important;
+	}
+	.wrapper.accounts{
+		zoom: 55% !important;
+	}
+	.button-common{
+		width: 160px !important;
+	}
+}
+@media screen and (min-width:1024px) and (max-width:1200px){
+	.wrapper{
+		zoom: 95%;
+	}
+	.wrapper.loginrole-wapp{
+		zoom: 110% !important;
+	}
+	.loginrole{
+		margin-top: 73px!important;
+	}
+	.wrapper.quick{
+		zoom: 72% !important;
+	}
+	.wrapper.set-atm-no{
+		zoom: 1 !important;
+	}
+	.wrapper.indicator-test,.wrapper.help{
+		zoom: 65% !important;
+	}
+	.wrapper.define-menu{
+		zoom: 77% !important;
+	}
+	.wrapper.current-period-exception,.wrapper.previous-period-exception,.wrapper.clear-machine-period-exception,.wrapper.cardreader-test,.wrapper.receipt-printer-test,.wrapper.door-test,.wrapper.cash-device-test,.wrapper.key-test,.wrapper.light-test,.wrapper.query-parameter{
+		zoom: 75% !important;
+	}
+	.wrapper.get-capture-cards,.wrapper.enviorenment-diagnose,.wrapper.network-test,.wrapper.total-print,.wrapper.reset-all-device{
+		zoom: 83% !important;
+	}
+	.wrapper.accounts{
+		zoom: 70% !important;
+	}
+}
+@media screen and (min-width:1280px) and (max-width:1300px){
+	.wrapper{
+		zoom: 125%;
+	}
+	.wrapper.loginrole-wapp{
+		zoom: 140% !important;
+	}
+	.loginrole{
+		margin-top: 90px!important;
+	}
+	.wrapper.quick{
+		zoom: 97% !important;
+	}
+	.wrapper.set-atm-no{
+		zoom: 128% !important;
+	}
+	.wrapper.indicator-test,.wrapper.help{
+		zoom: 88% !important;
+	}
+	.wrapper.define-menu{
+		zoom: 103% !important;
+	}
+	.wrapper.current-period-exception,.wrapper.previous-period-exception,.wrapper.clear-machine-period-exception,.wrapper.cardreader-test,.wrapper.receipt-printer-test,.wrapper.door-test,.wrapper.cash-device-test,.wrapper.key-test,.wrapper.light-test,.wrapper.query-parameter{
+		zoom: 100% !important;
+	}
+	.wrapper.get-capture-cards,.wrapper.enviorenment-diagnose,.wrapper.network-test,.wrapper.total-print,.wrapper.reset-all-device{
+		zoom: 110% !important;
+	}
+	.wrapper.accounts{
+		zoom: 96% !important;
+	}
+}
+/**16:9分辨率专区*/
+@media screen and (min-width:1366px) and (max-width:1400px){
+	.wrapper{
+		zoom: 97%;
+	}
+	.wrapper.loginrole-wapp{
+		zoom: 115% !important;
+	}
+	.wrapper.quick{
+		zoom: 72% !important;
+	}
+	.wrapper.set-atm-no{
+		zoom: 1 !important;
+	}
+	.wrapper.indicator-test,.wrapper.help{
+		zoom: 65% !important;
+	}
+	.wrapper.define-menu{
+		zoom: 76% !important;
+	}
+	.wrapper.current-period-exception,.wrapper.previous-period-exception,.wrapper.clear-machine-period-exception,.wrapper.cardreader-test,.wrapper.receipt-printer-test,.wrapper.door-test,.wrapper.cash-device-test,.wrapper.key-test,.wrapper.light-test,.wrapper.query-parameter{
+		zoom: 73% !important;
+	}
+	.wrapper.get-capture-cards,.wrapper.enviorenment-diagnose,.wrapper.network-test,.wrapper.total-print,.wrapper.reset-all-device{
+		zoom: 82% !important;
+	}
+	.wrapper.accounts{
+		zoom: 70% !important;
+	}
+}
+@media screen and (min-width:1440px) and (max-width:1600px){
+	.wrapper{
+		zoom: 110%;
+	}
+	.wrapper.loginrole-wapp{
+		zoom: 130% !important;
+	}
+	.wrapper.quick{
+		zoom: 85% !important;
+	}
+	.wrapper.set-atm-no{
+		zoom: 120% !important;
+	}
+	.wrapper.indicator-test,.wrapper.help{
+		zoom: 75% !important;
+	}
+	.wrapper.define-menu{
+		zoom: 90% !important;
+	}
+	.wrapper.current-period-exception,.wrapper.previous-period-exception,.wrapper.clear-machine-period-exception,.wrapper.cardreader-test,.wrapper.receipt-printer-test,.wrapper.door-test,.wrapper.cash-device-test,.wrapper.key-test,.wrapper.light-test,.wrapper.query-parameter{
+		zoom: 88% !important;
+	}
+	.wrapper.get-capture-cards,.wrapper.enviorenment-diagnose,.wrapper.network-test,.wrapper.total-print,.wrapper.reset-all-device{
+		zoom: 98% !important;
+	}
+	.wrapper.accounts{
+		zoom: 85% !important;
+	}
+}
+@media screen and (min-width:1680px) and (max-width:1900px){
+	.wrapper{
+		zoom: 128%;
+	}
+	.wrapper.loginrole-wapp{
+		zoom: 150% !important;
+	}
+	.wrapper.quick{
+		zoom: 99% !important;
+	}
+	.wrapper.set-atm-no{
+		zoom: 140% !important;
+	}
+	.wrapper.indicator-test,.wrapper.help{
+		zoom: 92% !important;
+	}
+	.wrapper.define-menu{
+		zoom: 105% !important;
+	}
+	.wrapper.current-period-exception,.wrapper.previous-period-exception,.wrapper.clear-machine-period-exception,.wrapper.cardreader-test,.wrapper.receipt-printer-test,.wrapper.door-test,.wrapper.cash-device-test,.wrapper.key-test,.wrapper.light-test,.wrapper.query-parameter{
+		zoom: 102% !important;
+	}
+	.wrapper.get-capture-cards,.wrapper.enviorenment-diagnose,.wrapper.network-test,.wrapper.total-print,.wrapper.reset-all-device{
+		zoom: 112% !important;
+	}
+	.wrapper.accounts{
+		zoom: 98% !important;
+	}
+}
+@media screen and (min-width:1920px){
+	.wrapper{
+		zoom: 135%;
+	}
+	.wrapper.loginrole-wapp{
+		zoom: 175% !important;
+	}
+	.wrapper.quick{
+		zoom: 1 !important;
+	}
+	.wrapper.set-atm-no{
+		zoom: 129% !important;
+	}
+	.wrapper.indicator-test,.wrapper.help{
+		zoom: 92% !important;
+	}
+	.wrapper.define-menu{
+		zoom: 105% !important;
+	}
+	.wrapper.current-period-exception,.wrapper.previous-period-exception,.wrapper.clear-machine-period-exception,.wrapper.cardreader-test,.wrapper.receipt-printer-test,.wrapper.door-test,.wrapper.cash-device-test,.wrapper.key-test,.wrapper.light-test,.wrapper.query-parameter{
+		zoom: 102% !important;
+	}
+	.wrapper.get-capture-cards,.wrapper.enviorenment-diagnose,.wrapper.network-test,.wrapper.total-print,.wrapper.reset-all-device{
+		zoom: 115% !important;
+	}
+	.wrapper.accounts{
+		zoom: 99% !important;
+	}
+}

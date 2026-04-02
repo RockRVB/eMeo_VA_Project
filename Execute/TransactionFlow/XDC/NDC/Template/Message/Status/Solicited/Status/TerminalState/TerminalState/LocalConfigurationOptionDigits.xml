@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+		<!-- Load Configuration Option Digits.
+		* 	This solicited status message is sent to central in response to a Send Configuration Information Terminal Command message..
+		*  (a command code of '7' with a command modifier of '7')
+		-->
+	<LocalConfigurationOptionDigits>
+		<Item key="g1" 						value="M"  																	size="1" 							restriction="Mandatory"/>
+		
+		<!--  Load Options Identifier 'A'-->
+		<Item key="g2" 						value="A"																	size="1"							restriction="Mandatory"/>
+		
+		<!--  Load Option Digits. These characters represent the values of the local option digits which may be entered using Supervisor mode	-->
+		<Item key="g2-1" 					value="[SolicitedStatus.TerminalState.LocalOptionDigits]"											size="var(16)"					restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 					value="[FS]"																size="1"							restriction="[OptionCtrl.NoUse]"/>
+		
+		<!--  Data Identifier .-->
+		<Item key="g3" 						value="[LocalConfigOptionID]"									size="1"							restriction="[OptionCtrl.NoUse]"/>
+		
+		<!--  Data.-->
+		<Item key="g3-1" 					value="[LocalConfigOptionData]"								size="var"						restriction="[OptionCtrl.NoUse]"/>		
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]"/>
+		<!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+		<Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]"/>
+		
+	</LocalConfigurationOptionDigits>
+	
+</Root>

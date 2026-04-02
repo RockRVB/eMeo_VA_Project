@@ -1,0 +1,9 @@
+<Config>
+  <!--代理服务器连接方式-->
+  <!--ip:ecmproxyserver ip地址-->
+  <!--ip:ecmproxyserver 端口号-->
+  <!--headerLength:报文头长度-->
+  <!--ConfigFilesPath:ecm报文文件存放路径-->
+  <!--networkTimeout:网络超时时间，单位是s-->
+  <ProxyServer ip="127.0.0.1" port="30003" headerLength="8" configFilesPath="Config/ECMConfigFiles" networkTimeout="120"></ProxyServer>
+</Config>

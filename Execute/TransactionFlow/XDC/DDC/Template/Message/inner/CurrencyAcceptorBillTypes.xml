@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<Data>
+		<!--Item key="000" value="CNY0000000100000001" /-->
+		<Item Key="0" Currency="CNY" BillValue="0000000100" BillReleaseNumber="00000" AcceptOption="1"/>
+		<Item Key="1" Currency="CNY" BillValue="0000000050" BillReleaseNumber="00000" AcceptOption="1"/>
+		<Item Key="2" Currency="CNY" BillValue="0000000020" BillReleaseNumber="00000" AcceptOption="1"/>
+		<Item Key="3" Currency="CNY" BillValue="0000000010" BillReleaseNumber="00000" AcceptOption="1"/>
+		<Item Key="4" Currency="CNY" BillValue="0000000005" BillReleaseNumber="00000" AcceptOption="1"/>
+	</Data>
+	<Local>
+		<!--Item Key="0" Currency="CNY" Denomination="100" / -->
+	</Local>
+</Root>

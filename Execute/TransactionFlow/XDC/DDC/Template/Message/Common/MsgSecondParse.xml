@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!-- Device Identifier between device identifier and device name(Associated configuration data -->
+	<Msg>
+		<Item key="Solicited.Status.DeviceFault.CashHandler" value="[Msg.Solicited.BillDispenser.Status]" content="/Root/Data/Dispenser912/Item"/>
+		<Item key="Solicited.Status.DeviceFault.ConfigurationInformation" value="[Msg.Solicited.ConfigurationInformation.DID]" content="/Root/DataNull/Item"/>
+		<Item key="Solicited.Status.DeviceFault.ConfigurationInformation" value="[Msg.Solicited.ConfigurationInformation.Status]" content="/Root/Data/ConfigurationInformation/Item"/>
+		<Item key="Solicited.Status.DeviceFault.ConfigurationInformation" value="[Msg.Solicited.HardwareConfiguration.Status]" content="/Root/Data/HardwareConfiguration/Item"/>
+		<Item key="Solicited.Status.DeviceFault.SupplyCounts" value="[Msg.Solicited.SupplyCounts.Status]" content="/Root/Data/SupplyCounts/Item"/>
+		<Item key="Solicited.Status.DeviceFault.SupplyCountsEn" value="[Msg.Solicited.SupplyCounts.Status]" content="/Root/Data/SupplyCountsEn/Item"/>
+		<!--Item key="TransactionRequest.Format1" value="[Options.F3.ExtendedRangeForMessageCoordinationNumber]"/-->
+	</Msg>
+	<Data>
+		<Dispenser912>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.DeliveryAreaStatus]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.DispenseErrorCode]" size="2" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.PartialDispenseStatus]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position1.CassettePosition]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position1.Demon]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position1.NumberOfBillsDispensed]" size="2" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position1.NumberOfDivertOperations]" size="2" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position1.100BillDispenseFlag]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position1.100BillDivertFlag]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position1.NotApplicable]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position2.CassettePosition]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position2.Demon]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position2.NumberOfBillsDispensed]" size="2" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position2.NumberOfDivertOperations]" size="2" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position2.100BillDispenseFlag]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position2.100BillDivertFlag]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position2.NotApplicable]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position3.CassettePosition]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position3.Demon]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position3.NumberOfBillsDispensed]" size="2" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position3.NumberOfDivertOperations]" size="2" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position3.100BillDispenseFlag]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position3.100BillDivertFlag]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position3.NotApplicable]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position4.CassettePosition]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position4.Demon]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position4.NumberOfBillsDispensed]" size="2" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position4.NumberOfDivertOperations]" size="2" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position4.100BillDispenseFlag]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position4.100BillDivertFlag]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.BillDispenser.Status.Position4.NotApplicable]" size="1" restriction="Mandatory"/>
+		</Dispenser912>
+		<ConfigurationInformation>
+			<Item key="e3" value="[Msg.Solicited.ConfigurationID.DID]" size="9" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.ConfigurationID.Status]" size="9" restriction="Mandatory"/>
+			<Item key="GS" value="[GS]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.HardwareConfiguration.DID]" size="9" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.HardwareConfiguration.Status]" size="9" restriction="Mandatory"/>
+			<Item key="GS" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.Protocol912]"/>
+			<Item key="e3" value="[Msg.Solicited.CheckPoint.DID]" size="9" restriction="[OptionCtrl.Configuration.Protocol912]"/>
+			<Item key="e3" value="[Msg.Solicited.CheckPoint.Status]" size="9" restriction="[OptionCtrl.Configuration.Protocol912]"/>
+			<Item key="GS" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.Protocol912]"/>
+			<Item key="e3" value="[Msg.Solicited.Cassette.DID]" size="9" restriction="[OptionCtrl.Configuration.Protocol912]"/>
+			<Item key="e3" value="[Msg.Solicited.Cassette.Status]" size="9" restriction="[OptionCtrl.Configuration.Protocol912]"/>
+		</ConfigurationInformation>
+		<HardwareConfiguration>
+			<Item key="e3" value="[Msg.Solicited.HardwareConfiguration.Status.Standard]" size="8" restriction="Mandatory"/>
+			<Item key="e3" value="[Msg.Solicited.HardwareConfiguration.Status.Expanded]" size="8" restriction="[Options.F2.ExpandedHardwareConfigurationStatus]"/>
+			<Item key="e3" value="[Msg.Solicited.HardwareConfiguration.Status.Double]" size="7" restriction="[Options.F3.DoubleExpandedHardwareConfigurationStatus]"/>
+			<Item key="e3" value="[Msg.Solicited.HardwareConfiguration.Status.Additional.CashAcceptor]" size="7" restriction="[Options.F3.AdditionalHardwareConfigurationData],[OptionCtrl.Configuration.CashAcceptor]"/>
+		</HardwareConfiguration>
+		<SupplyCounts>
+			<Item key="e3" value="DP01" size="4" restriction="[OptionCtrl.Configuration.Deposits]"/>
+			<Item key="e3" value="[SupplyCounters.Deposits]" size="5" restriction="[OptionCtrl.Configuration.Deposits]"/>
+			<Item key="GS" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.Deposits]"/>
+			<Item key="e3" value="CR01" size="4" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.CardCaptured]" size="9" restriction="Mandatory"/>
+			<Item key="GS" value="[GS]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="DI01" size="4" restriction="Mandatory"/>
+			<Item key="e3" value="[RS]" size="1" restriction="Mandatory"/>
+			<Item key="GS" value="[SupplyCounters.BillDispenser.Position1.DemonUpperCase]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position2.DemonUpperCase]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position3.DemonUpperCase]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position4.DemonUpperCase]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position5.DemonUpperCase]" size="1" restriction="[OptionCtrl.Configuration.DispenseCassettes5]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="Mandatory"/>
+			<Item key="GS" value="[SupplyCounters.BillDispenser.Diverted]" size="1" restriction="Mandatory"/>
+			<Item key="GS" value="[SupplyCounters.BillDispenser.Position1.Dispensed]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position2.Dispensed]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position3.Dispensed]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position4.Dispensed]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position5.Dispensed]" size="1" restriction="[OptionCtrl.Configuration.DispenseCassettes5]"/>
+			<Item key="GS" value="[SupplyCounters.BillDispenser.Dumped]" size="1" restriction="Mandatory"/>
+		</SupplyCounts>
+		<SupplyCountsEn>
+			<Item key="e3" value="DP01" size="4" restriction="[OptionCtrl.Configuration.Deposits]"/>
+			<Item key="e3" value="[SupplyCounters.Deposits]" size="5" restriction="[OptionCtrl.Configuration.Deposits]"/>
+			<Item key="e3" value="[SupplyCounters.CheckBinCount]" size="20" restriction="[OptionCtrl.Configuration.IDM]"/>
+			<Item key="GS" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.Deposits]"/>
+			<Item key="e3" value="CR01" size="4" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.CardCaptured]" size="9" restriction="Mandatory"/>
+			<Item key="GS" value="[GS]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="DI01" size="4" restriction="Mandatory"/>
+			<Item key="e3" value="[RS]" size="1" restriction="Mandatory"/>
+			<Item key="GS" value="[SupplyCounters.BillDispenser.Position1.DemonUpperCase]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position2.DemonUpperCase]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position3.DemonUpperCase]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position4.DemonUpperCase]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position5.DemonUpperCase]" size="1" restriction="[OptionCtrl.Configuration.DispenseCassettes5]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="Mandatory"/>
+			<Item key="GS" value="[SupplyCounters.BillDispenser.Position1.Loaded]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position2.Loaded]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position3.Loaded]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position4.Loaded]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position5.Loaded]" size="1" restriction="[OptionCtrl.Configuration.DispenseCassettes5]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="Mandatory"/>
+			<Item key="GS" value="[SupplyCounters.BillDispenser.Position1.Dispensed]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position2.Dispensed]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position3.Dispensed]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position4.Dispensed]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position5.Dispensed]" size="1" restriction="[OptionCtrl.Configuration.DispenseCassettes5]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="Mandatory"/>
+			<Item key="GS" value="[SupplyCounters.BillDispenser.Position1.Divert1]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position2.Divert1]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position3.Divert1]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position4.Divert1]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position5.Divert1]" size="1" restriction="[OptionCtrl.Configuration.DispenseCassettes5]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="Mandatory"/>
+			<Item key="GS" value="[SupplyCounters.BillDispenser.Position1.Divert2]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position2.Divert2]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position3.Divert2]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position4.Divert2]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position5.Divert2]" size="1" restriction="[OptionCtrl.Configuration.DispenseCassettes5]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="Mandatory"/>
+			<Item key="GS" value="[SupplyCounters.BillDispenser.Position1.Retract]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position2.Retract]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position3.Retract]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position4.Retract]" size="1" restriction="Mandatory"/>
+			<Item key="e3" value="[SupplyCounters.BillDispenser.Position5.Retract]" size="1" restriction="[OptionCtrl.Configuration.DispenseCassettes5]"/>
+			<Item key="GS" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="CI01" size="4" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.NumberOfDenominations]" size="3" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.CurrencyIDs]" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.BillValues]" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.Position0.Deposit]" size="5" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.Position1.Deposit]" size="5" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.Position2.Deposit]" size="5" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.Position3.Deposit]" size="5" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.Position4.Deposit]" size="5" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.Position0.Retract]" size="5" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.Position1.Retract]" size="5" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.Position2.Retract]" size="5" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.Position3.Retract]" size="5" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.Position4.Retract]" size="5" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="CB4" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.CB4]" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="CB3" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.CB3]" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="CB2" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.CB2]" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="RE4" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.RE4]" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="RE3" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.RE3]" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="RE2" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.RE2]" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="A62" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.A62]" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="A63" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="e3" value="[SupplyCounters.CashAcceptor.A63]" size="v" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+			<Item key="RS" value="[RS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/>
+		</SupplyCountsEn>
+	</Data>
+	<DataNull>
+	</DataNull>
+</Root>

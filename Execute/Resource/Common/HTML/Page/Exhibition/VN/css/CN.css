@@ -1,0 +1,405 @@
+﻿body {
+	left: 0px;
+	top: 0px;
+	width:100%;
+	height:100%;
+	margin: 0px;
+	background-image: none;
+	background-repeat: no-repeat;
+	background-position: center;
+	overflow: hidden;
+}
+
+input {
+	readonly:expression(this.readOnly=true);
+}
+
+.backgroundDiv {
+	background-image: url(../../Image/CN/bg.png);
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+.backgroundDiv1 {
+	background-image: url(../../Image/CN/bg_up.png);
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+.dateDiv {
+	position: absolute;
+	left: 30%;
+	top: 2%;
+	font-family: 微软雅黑;
+	font-size: 19px;
+	color: red;
+	text-align: center;
+}
+
+.zeroStateDiv {
+	position: absolute;
+	left: 0px;
+	z-index: -1;
+}
+
+.buttonLeft {
+	position: absolute;
+	width:356px;
+	height:109px;
+	top: 5px;
+	font-family: 微软雅黑;
+	font-size: 56px;
+	color: White;
+	text-align: center;
+	letter-spacing: 1pt;
+	left: 6px;
+}
+
+.buttonLeftCommonStyle {
+	position: absolute;
+	width:356px;
+	height:109px;
+	top: 5px;
+	font-family: 微软雅黑;
+	font-size: 56px;
+	color: White;
+	text-align: center;
+	letter-spacing: 1pt;
+	left: 26px;
+}
+
+.buttonLeftForLongText {
+	position: absolute;
+	width:356px;
+	height:109px;
+	top: 5px;
+	font-family: 微软雅黑;
+	font-size: 56px;
+	color: White;
+	text-align: center;
+	letter-spacing: 1pt;
+	left: 26px;
+}
+
+.buttonLeftForTwoLines {
+	position: absolute;
+	width:356px;
+	height:109px;
+	top: 5px;
+	font-family: 微软雅黑;
+	font-size: 56px;
+	color: White;
+	text-align: center;
+	letter-spacing: 1pt;
+	left: 26px;
+}
+
+.buttonRight {
+	position: absolute;
+	width:356px;
+	height:109px;
+	top: 5px;
+	font-family: 微软雅黑;
+	font-size: 56px;
+	color: White;
+	text-align: center;
+	letter-spacing: 1pt;
+	left: 6px;
+}
+
+.buttonRightCommonStyle {
+	position: absolute;
+	width:356px;
+	height:109px;
+	top: 5px;
+	font-family: 微软雅黑;
+	font-size: 56px;
+	color: White;
+	text-align: center;
+	letter-spacing: 1pt;
+	left: 6px;
+}
+
+.buttonRightForLongText {
+	position: absolute;
+	width:356px;
+	height:109px;
+	top: 5px;
+	font-family: 微软雅黑;
+	font-size: 56px;
+	color: White;
+	text-align: center;
+	letter-spacing: 1pt;
+	left: 6px;
+}
+
+.buttonRightForTwoLines {
+	position: absolute;
+	width:356px;
+	height:109px;
+	top: 5px;
+	font-family: 微软雅黑;
+	font-size: 56px;
+	color: White;
+	text-align: center;
+	letter-spacing: 1pt;
+	left: 6px;
+}
+/*ok*/
+.mainDivOneLine {
+	margin-top: 115px;
+	margin-bottom: 75px;
+	font-family: 微软雅黑;
+	font-size: 55px;
+	font-weight: bold;
+	color: #FF2E2E2E;
+	text-align: center;
+	letter-spacing: 1pt;
+}
+
+.mainDivOneLineCommonStyle {
+	margin-top: 115px;
+	margin-bottom: 75px;
+	font-family: 微软雅黑;
+	font-size: 55px;
+	font-weight: bold;
+	color: #FF2E2E2E;
+	text-align: center;
+	letter-spacing: 1pt;
+}
+
+.mainDivTwoLines {
+	margin-top: 116px;
+	margin-bottom: 28px;
+	font-family: 微软雅黑;
+	font-size: 55px;
+	font-weight: bold;
+	color: #FF2E2E2E;
+	text-align: center;
+	letter-spacing: 1pt;
+}
+
+.mainDivThreeLines {
+	margin-top: 115px;
+	margin-bottom: 75px;
+	font-family: 微软雅黑;
+	font-size: 55px;
+	font-weight: normal;
+	color: #FF2E2E2E;
+	text-align: center;
+	letter-spacing: 1pt;
+}
+
+/*ok*/
+.mainDivMiddle {
+	margin-top: 285px;
+	font-family: 微软雅黑;
+	font-size: 55px;
+	font-weight: normal;
+	color: #FF2E2E2E;
+	text-align: center;
+	letter-spacing: 1pt;
+}
+
+.mainDivUpperMiddle {
+	margin-top: 173px;
+	font-family: 微软雅黑;
+	font-size: 55px;
+	font-weight: normal;
+	color: #FF2E2E2E;
+	text-align: center;
+	letter-spacing: 1pt;
+	border:0px;
+}
+
+.mainDivUpperMiddleLeft {
+	position: absolute;
+	margin-top: 143px;
+	font-family: 微软雅黑;
+	font-size: 55px;
+	font-weight: bold;
+	color: black;
+	text-align: left;
+	letter-spacing: 1pt;
+	left: 16px;
+}
+
+.inputDiv {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.inputDivRightAlign1 {
+	margin-top: 20px;
+	text-align: right;
+	width: 66%;
+}
+
+.inputDivRightAlign2 {
+	margin-top: 20px;
+	text-align: right;
+	width: 75%;
+}
+
+.inputPrompt {
+	height: 100%;
+	margin-bottom: 8px;
+	font-family: 微软雅黑;
+	font-size: 25px;
+	color: #FF2E2E2E;
+	font-weight: bold;
+}
+
+.inputPromptForInquiryResult {
+	height: 100%;
+	margin-bottom: 8px;
+	font-family: 微软雅黑;
+	font-size: 25px;
+	color: #FF2E2E2E;
+	font-weight: bold;
+}
+
+.inputTextLeftAlign {
+	font-family: 微软雅黑;
+	font-size: 23px;
+	font-weight: bold;
+	color: #3e7acb;
+	text-align: Left;
+	background-color:Transparent;
+}
+
+.inputTextCenterAlign {
+	font-family: 微软雅黑;
+	font-size: 23px;
+	font-weight: bold;
+	color: #3e7acb;
+	text-align: center;
+	background-color:Transparent;
+}
+
+.inputTextRightAlign {
+	font-family: 微软雅黑;
+	font-size: 23px;
+	font-weight: bold;
+	color: #3e7acb;
+	text-align: right;
+	background-color:Transparent;
+}
+
+.promptDiv {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.promptNormalText {
+	font-family: 微软雅黑;
+	font-size: 20px;
+	color: #FF2E2E2E;
+}
+
+.promptNormalTextYK {
+	font-family: 微软雅黑;
+	font-size: 20px;
+	font-weight: bold;
+	color: black;
+}
+
+.promptKeyText {
+	font-family: 微软雅黑;
+	font-size: 20px;
+	color: red;
+}
+
+.videoDiv {
+	margin-top: 30px;
+	text-align: center;
+}
+/*
+OK
+*/
+.CounterDiv {
+	position:absolute;
+	top: 10px;
+	right: 36px;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: bold;
+	color: #FFA3A3A3;
+	text-align: right;
+	letter-spacing: 1pt;
+}
+
+.CounterNum {
+	width:33px;
+	text-align:right;
+	padding:2px;
+}
+
+.CounterTable {
+	table-layout:fixed;
+	height:100%;
+	border-collapse:collapse;
+	border:solid 0px black;
+}
+
+.marqueeDiv {
+	position: absolute;
+	left: 210px;
+	right: 210px;
+	top: 550px;
+	font-family: 微软雅黑;
+	font-size: 25px;
+	color: red;
+	text-align: center;
+	letter-spacing: 1pt;
+}
+#ad
+{
+	left:0px;
+	top:0px;
+	width:1920px;
+	height:1080px;
+	margin:0px;
+	
+	background-image:url(../../Image/CN/upper_bg.png); 
+	background-repeat:no-repeat;
+	background-position:center;
+}
+
+#ad1
+{
+	left:0px;
+	top:0px;
+	width:1920px;
+	height:1080px;
+	margin:0px;
+	
+	background-image:url(../../Image/CN/upper_bg.png); 
+	background-repeat:no-repeat;
+	background-position:center;
+}
+
+#photoBackground
+{
+	left:0px;
+	top:0px;
+	width:1920px;
+	height:1080px;
+	margin:0px;	
+	background-image:url(../../../source/background.png); 
+	background-repeat:no-repeat;
+	background-position:center;
+}
+#VideoBackground
+{
+	left:0px;
+	top:0px;
+	width:1920px;
+	height:1080px;
+	margin:0px;	
+	background-image:url(../../../source/bg_video.png); 
+	background-repeat:no-repeat;
+	background-position:center;
+}

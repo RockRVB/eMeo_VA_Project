@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!-- Supplies Data.
+		* 	This solicited status message is sent to central in response to a Send Configuration Information Terminal Command message..
+		*  (a command code of '7' with a command modifier of '2')
+		-->
+  <SuppliesData>
+    <Item key="g1" value="I" size="1" restriction="Mandatory" />
+    <!--  Configuration ID Identifier 'A'	
+		* Configuration ID. This four-character field contains the last four-digit configuration ID number. In the range 0000-9999, sent to the terminal from Central.
+		-->
+    <Item key="g2" value="A" size="1" restriction="Mandatory" />
+    <!--  Device Identifier. This identifies the device to which the following supplies data applies. .-->
+    <Item key="g2-1" value="[Device.CardReader.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.CardReader]" />
+    <Item key="g2-2" value="[Device.CardReader.SuppliesStatus]" size="1" restriction="[OptionCtrl.Configuration.CardReader]" />
+    <!--  CashHandler -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.CashHandler]" />
+    <Item key="g2-3" value="[Device.CashHandler.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.CashHandler]" />
+    <Item key="g2-4" value="[Device.CashHandler.SuppliesStatus]" size="5" restriction="[OptionCtrl.Configuration.CashHandler]" />
+    <!--  EnvelopeDepository -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.EnvelopeDepository]" />
+    <Item key="g2-9" value="[Device.EnvelopeDepository.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.EnvelopeDepository]" />
+    <Item key="g2-10" value="[Device.EnvelopeDepository.SuppliesStatus]" size="3" restriction="[OptionCtrl.Configuration.EnvelopeDepository]" />
+    <!--  ReceiptPrinter -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.ReceiptPrinter]" />
+    <Item key="g2-5" value="[Device.ReceiptPrinter.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.ReceiptPrinter]" />
+    <Item key="g2-6" value="[Device.ReceiptPrinter.SuppliesStatus]" size="4" restriction="[OptionCtrl.Configuration.ReceiptPrinter]" />
+    <!--  JournalPrinter -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.JournalPrinter]" />
+    <Item key="g2-7" value="[Device.JournalPrinter.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.JournalPrinter]" />
+    <Item key="g2-8" value="[Device.JournalPrinter.SuppliesStatus]" size="3" restriction="[OptionCtrl.Configuration.JournalPrinter]" />
+    <!--  EnvelopeDispenser -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.EnvelopeDispenser]" />
+    <Item key="g2-13" value="[Device.EnvelopeDispenser.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.EnvelopeDispenser]" />
+    <Item key="g2-14" value="[Device.EnvelopeDispenser.SuppliesStatus]" size="3" restriction="[OptionCtrl.Configuration.EnvelopeDispenser]" />
+    <!--  Cheque Processor -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.IPM]" />
+    <Item key="g2-11" value="[Device.IPM.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.IPM]" />
+    <Item key="g2-12" value="[Device.IPM.SuppliesStatus]" size="3" restriction="[OptionCtrl.Configuration.IPM]" />
+    <!--  BNA -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <Item key="g2-1w" value="[Device.BNA.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <Item key="g2-2w" value="[Device.BNA.SuppliesStatus]" size="var" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <!--  Secondary Card Reader -->
+    <!-- <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.ContactLessIDC]"/> -->
+    <!-- <Item key="g2-11" value="[Device.ContactLessIDC.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.ContactLessIDC]"/> -->
+    <!-- <Item key="g2-12" value="[Device.ContactLessIDC.SuppliesStatus]" size="3" restriction="[OptionCtrl.Configuration.ContactLessIDC]"/> -->
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.NoUse]" />
+    <!--  Data Identifier .-->
+    <Item key="g3" value="[SuppliesDataID]" size="1" restriction="[OptionCtrl.NoUse]" />
+    <!--  Data.-->
+    <Item key="g3_1" value="[SuppliesData]" size="var" restriction="[OptionCtrl.NoUse]" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]" />
+    <!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+    <Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]" />
+  </SuppliesData>
+</Root>

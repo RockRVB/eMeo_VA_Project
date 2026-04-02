@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saving Group</title>
+    <link rel="stylesheet" href="../../../css/VA/style.css">
+    <script src="../../../js/coreScript.js"></script>
+    <script src="../../../js/VA/common.js"></script>
+    <script src="../../../js/VA/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div class="stm-layout">
+        <!-- Header -->
+
+        <stm-auth-task-header></stm-auth-task-header>
+
+        <!-- Body -->
+        <main class="stm-body transfer-body">
+            <div class="stm-content">
+
+                <h2 class="stm-subtitle" ids="ids_VAB_select_exchange_type">Quý khách vui lòng chọn loại giao dịch</h2>
+
+                <!-- Large Cards Flex Container -->
+                <div class="stm-large-cards">
+                    <!-- Card 1 -->
+                    <div class="stm-card-lg" id="mo-tk-tien-mat">
+                        <stm-card
+                                icon-url="../../../images/VA/card-add.png"
+                                title="Mở tài khoản <br> tiết kiệm bằng tiền mặt"
+                                ids="ids_VAB_open_saving_acc_by_cash"
+                        >
+                        </stm-card>
+                    </div>
+                    <div class="stm-card-lg" id="tat-toan-toan-phan">
+                        <stm-card
+                                icon-url="../../../images/VA/card-add.png"
+                                title="Tất toán toàn phần"
+                                ids="ids_VAB_full_settlement"
+                        >
+                        </stm-card>
+                    </div>
+                    <div class="stm-card-lg" id="tat-toan-mot-phan">
+                        <stm-card
+                                icon-url="../../../images/VA/card-add.png"
+                                title="Tất toán một phần"
+                                ids="ids_VAB_partial_settlement"
+                        >
+                        </stm-card>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <stm-footer></stm-footer>
+    </div>
+</body>
+<script src="../../../js/VA/scale.js"></script>
+<script>
+    $(document).ready(function() {
+
+    })
+</script>
+</html>

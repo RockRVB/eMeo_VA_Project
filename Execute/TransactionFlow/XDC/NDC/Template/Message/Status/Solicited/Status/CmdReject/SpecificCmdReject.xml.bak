@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <CmdReject>
+    <!--  Command reject message  
+		*  1. Terminal receives an illegal command.
+		*  2. Terminal receives illegal data from central.
+		*  3. Terminal receives data while not in the correct mode.
+		-->
+    <!--  Timer Vaiant Number-. The field can contain an eight-digit number derived from the time of day be the terminal for each transaction request.(-0-9, A- F).  -->
+    <Item key="e" value="[TVN]" size="3-9" restriction="[OptionCtrl.EnableMAC]" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]" />
+    <Item key="f" value="C" size="1" restriction="Mandatory" />
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <Item key="g1" value="[SolicitedStatus.CmdReject.StatusValue]" size="1" restriction="Mandatory" />
+    <Item key="g2" value="[SolicitedStatus.CmdReject.StatusQualifier]" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]" />
+    <!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+    <Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]" />
+  </CmdReject>
+</Root>

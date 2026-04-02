@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="SendCard4CounterService">
+  <Head type="GRGWorkflow" author="" timeStamp="" comment="The workflow design is for debit card apply"/>
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start" callVisible="0" endflag="1">
+      <Forward event="OnConfirm" targetID="ID_DispenseCardGetDevStatusEx"/>
+    </Start>
+
+    <!--Check 发卡机 -->
+    <GetDevStatusEx ID="ID_DispenseCardGetDevStatusEx" UI="UI_waiting" comment="Get device status" devType="CRD" callVisible="0" homeVisible="0">
+      <States>
+        <State name="GetDevStatusExError" UI="UI_hardware_error"></State>
+      </States>
+      <Forward event="OnNormal" targetID="ID_IDCReadGetDevStatusEx"/>
+      <Forward event="OnWarn" targetID="ID_IDCReadGetDevStatusEx"/>
+      <Forward event="OnFail" targetID="ID_SetSendCardResultError"/>
+    </GetDevStatusEx>
+
+    <!--Check 读卡器 -->
+    <GetDevStatusEx ID="ID_IDCReadGetDevStatusEx" UI="UI_waiting" comment="Get device status" devType="CRDIDC" callVisible="0" eject="1">
+      <States>
+        <State name="GetDevStatusExError" UI="UI_hardware_error"></State>
+      </States>
+      <Forward event="OnNormal" targetID="ID_DispenseCard"/>
+      <Forward event="OnWarn" targetID="ID_DispenseCard"/>
+      <Forward event="OnFail" targetID="ID_SetSendCardResultError"/>
+    </GetDevStatusEx>
+
+    <!--开始发卡-->
+    <DispenseCard ID="ID_DispenseCard" UI="UI_waiting" homeVisible="0">
+      <States>
+        <State name="DispenseCardError" UI="UI_hardware_error"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_ReadRawData"/>
+      <Forward event="OnHardwareError" targetID="ID_ReturnCard"/>
+    </DispenseCard>
+
+    <!--读卡-->
+    <CRDReadRawData ID="ID_ReadRawData" homeEnable="0" homeVisible="0" maxRetryCount="3">
+      <States>
+        <State name="ReadCardError" UI="UI_hardware_error"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_InputNewPin"/>
+      <Forward event="OnICType" targetID="ID_ICBuildAppList"/>
+      <Forward event="OnFail" targetID="ID_ReturnCard"/>
+      <Forward event="OnHardwareError" targetID="ID_ReturnCard"/>
+    </CRDReadRawData>
+
+    <ICBuildAppList ID="ID_ICBuildAppList" UI="UI_waiting" comment="" homeVisible="0">
+      <Forward event="OnOneApplication" targetID="ID_ICAppLoadedForFirstTime"/>
+      <Forward event="OnMoreApplication" targetID="ID_ICMoreAppSelectForFirstTime"/>
+      <Forward event="OnFallback" targetID="ID_ICGetTrack"/>
+      <Forward event="OnCancel" targetID="ID_ICTransCancel"/>
+    </ICBuildAppList>
+
+    <ICAppLoaded ID="ID_ICAppLoadedForFirstTime" UI="UI_waiting" comment="" homeVisible="0">
+      <Forward event="OnConfirm" targetID="ID_ICGetTrack"/>
+      <Forward event="OnFallback" targetID="ID_ICGetTrack"/>
+      <Forward event="OnTryAgain" targetID="ID_ICMoreAppSelectForFirstTime"/>
+      <Forward event="OnICAppLoadedFail" targetID="ID_ICTransCancel"/>
+    </ICAppLoaded>
+
+    <ICMoreAppSelect ID="ID_ICMoreAppSelectForFirstTime" UI="UI_ICMoreAppSelect" comment="" homeVisible="0">
+      <Forward event="OnConfirm" targetID="ID_ICAppLoadedForFirstTime"/>
+    </ICMoreAppSelect>
+
+    <Prompt ID="ID_ICTransCancel" UI="UI_ICTransCancel" timeout="5000" comment="" homeVisible="0">
+      <Forward event="OnTimeout" targetID="ID_ReturnCard"/>
+      <Forward event="OnFail" targetID="ID_ReturnCard"/>
+    </Prompt>
+
+    <ICGetTrack ID="ID_ICGetTrack" comment="Get IC tracks" homeVisible="0">
+      <Forward event="OnConfirm" targetID="ID_InputNewPin"/>
+    </ICGetTrack>
+	
+	<VTMInputPinEx ID="ID_InputNewPin" comment="Enter your new PIN" digitalVoiceKey="action_007|action_008||action_003" autoEnd="1" minLen="6" maxLen="6" timeout="120000">
+      <States>
+        <State name="InputNewPin" UI="UI_InputPIN_new" />
+        <State name="InputNewPinAgain" UI="UI_InputPINAgain_new" />
+        <State name="InputNewPinUnmatch" UI="UI_InputPINIncorrect_new" />
+      </States>
+      <Forward event="OnConfirm" targetID="ID_SetNewPIN" />
+      <Forward event="OnCancel" targetID="ID_ReturnCardForHardwareError" />
+      <Forward event="OnHardwareError" targetID="ID_ReturnCardForHardwareError" />
+      <Forward event="OnTimeout" targetID="ID_ReturnCardForHardwareError" />
+      <DefaultForward targetID="ID_ReturnCardForHardwareError" />
+    </VTMInputPinEx>
+
+    <SetData ID="ID_SetNewPIN" saveBuffer="{core_Pin}" value="{core_NewPin}">
+      <Forward event="OnConfirm" targetID="ID_DispenseCardSuccess"/>
+    </SetData>
+
+    <RequestTransViaRestful ID="ID_VTMRequestSetPIN" UI="UI_waiting" transType="CounterService_SetPIN" timeout="60000" transFormat="json">
+      <States>
+        <State name="PackFail" UI="UI_general_error"/>
+        <State name="ConnectFail" UI="UI_general_error"/>
+        <State name="SendFail" UI="UI_general_error"/>
+        <State name="ReceiveFail" UI="UI_general_error"/>
+        <State name="ReceiveTimeout" UI="UI_general_error"/>
+        <State name="NetworkFail" UI="UI_general_error"/>
+        <State name="UnpackFail" UI="UI_general_error"/>
+        <State name="HardwareError" UI="UI_general_error"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_DispenseCardSuccess"/>
+      <Forward event="OnPackFail" targetID="ID_ReturnCard"/>
+      <Forward event="OnConnectFail" targetID="ID_ReturnCard"/>
+      <Forward event="OnSendFail" targetID="ID_ReturnCard"/>
+      <Forward event="OnReceiveFail" targetID="ID_ReturnCard"/>
+      <Forward event="OnReceiveTimeout" targetID="ID_ReturnCard"/>
+      <Forward event="OnNetworkFail" targetID="ID_ReturnCard"/>
+      <Forward event="OnUnpackFail" targetID="ID_ReturnCard"/>
+      <Forward event="OnHostRefuse" targetID="ID_ReturnCard"/>
+    </RequestTransViaRestful>
+
+    <!--确认是否印卡,开卡成功等待客户取卡-->
+    <CRDDispenseCardSuccess ID="ID_DispenseCardSuccess" UI="UI_dispense_card" digitalVoiceKey="action_021|action_022|||action_021"  homeEnable="0" IsNeverTimedOut="false" timeout="30000">
+      <States>
+        <State name="EjectWait" UI="UI_dispense_card"/>
+        <State name="TakeCard" UI="UI_takecard_new"/>
+        <State name="EjectCardError" UI="UI_timeout"/>
+        <State name="TransTimeOut" UI="UI_timeout"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_SetSendCardResultSuccess"/>
+      <Forward event="OnHardwareError" targetID="ID_ReturnCardForHardwareError"/>
+      <Forward event="OnTimeout" targetID="ID_ReturnCardForNotTake"/>
+    </CRDDispenseCardSuccess>
+	
+	<!--不拿卡吞卡-->
+	<CRDReturnCard ID="ID_ReturnCardForNotTake" UI="UI_waiting" captureCardReason="1" homeVisible="0">
+      <States>
+        <State name="ReturnCardError" UI="UI_hardware_error"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_SetSendCardResultError"/>
+      <Forward event="OnHardwareError" targetID="ID_SetSendCardResultError"/>
+      <Forward event="OnTakeCardSuccess" targetID="ID_SetSendCardResultSuccess"/>
+    </CRDReturnCard>
+
+	<!--发卡器故障吞卡-->
+	<CRDReturnCard ID="ID_ReturnCardForHardwareError" UI="UI_waiting" captureCardReason="2" homeVisible="0">
+      <States>
+        <State name="ReturnCardError" UI="UI_hardware_error"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_SetSendCardResultError"/>
+      <Forward event="OnHardwareError" targetID="ID_SetSendCardResultError"/>
+    </CRDReturnCard>
+
+    <!-- 吞卡后结束交易 -->
+    <CRDReturnCard ID="ID_ReturnCard" UI="UI_waiting" homeVisible="0">
+      <States>
+        <State name="ReturnCardError" UI="UI_hardware_error"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_SetSendCardResultError"/>
+      <Forward event="OnHardwareError" targetID="ID_SetSendCardResultError"/>
+    </CRDReturnCard>
+	
+	<SetData ID="ID_SetSendCardResultSuccess" saveBuffer="{CounterService_SendCardResult,0}" value="0">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </SetData>
+	
+	<SetData ID="ID_SetSendCardResultError" saveBuffer="{CounterService_SendCardResult,0}" value="-1">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </SetData>	
+
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+	<!--返回主菜单-->
+	<InvokeWorkflow ID="ID_MainAgain" name="Main" comment="IC returns TryAgain" actionID="ID_MainMenu" syn="0">
+    </InvokeWorkflow>
+
+    <End ID="9999" comment="End">
+    </End>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnCusBusy" targetID="ID_CusBusyFail"/>
+    <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnCancel" targetID="ID_OtherTrans"/>
+    <Forward event="OnKeyError" targetID="ID_EventError"/>
+    <Forward event="OnRollbackForError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHelp" targetID="ID_InvokeRequestAgent_WF"/>
+  </DefaultForward>
+</Workflow>

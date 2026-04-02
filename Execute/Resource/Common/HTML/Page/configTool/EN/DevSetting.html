@@ -1,0 +1,849 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+    <script defer type="text/javascript" src="../../../js/configTool/ShowResource.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../css/configTool/ConfigEditing.css" />
+    <style type="text/css">
+    #Div label
+    {
+        width: 100px;
+    }
+    </style>
+</head>
+<body>
+    <div id="Div">
+        <form method="post">
+        <div class="btnDIV">
+            <input id="Submit1" type="submit" value="Cancel" tag="OnCancel" />
+            <input id="Submit2" type="submit" value="Submit" tag="OnConfirm" />
+        </div>
+        <br />
+        <div class="contentDIV">
+            <fieldset name="Group1">
+                <legend class="FontSize">Device Setting</legend>
+                <table>
+                    <!--<tr>
+                    <td>
+                        <label id="labelCDM">
+                            Cash Dispenser</label>
+                    </td>
+                    <td>
+                        <select id="SelectCDM" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/CDM mode=2}">
+                            <option value="0">Not Present</option>
+                            <option value="1">Present</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="textBoxCDM" type="text" content="{Binding ServiceName file=Config\DeviceService\CDMConfig.xml xpath=/CashDispenser mode=2}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label id="labelCIM">
+                            Cash Deposit</label>
+                    </td>
+                    <td>
+                        <select id="SelectCIM" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/CIM mode=2}">
+                            <option value="0">Not Present</option>
+                            <option value="1">Present</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="textBoxCIM" type="text" content="{Binding ServiceName file=Config\DeviceService\CIMConfig.xml xpath=/CashAcceptor mode=2}" />
+                    </td>
+                </tr>
+                <tr style="display: none" description="Coin目前无对应配置文件">
+                    <td>
+                        <label id="labelCoin">
+                            Coin</label>
+                    </td>
+                    <td>
+                        <select id="SelectCoin" type="select" selectvalue="" disabled="false">
+                        </select>
+                    </td>
+                    <td>
+                        <input id="textBoxCoin" type="text" content="" disabled="false" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label id="label1">
+                            TTU</label>
+                    </td>
+                    <td>
+                        <select id="Select1" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/TTU mode=2}">
+                            <option value="0">Not Present</option>
+                            <option value="1">Present</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="textBox101" type="text" content="{Binding ServiceName file=Config\DeviceService\TTUConfig.xml xpath=/TextTerminalUnit mode=2}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            Twin Screen</label>
+                    </td>
+                    <td>
+                        <select id="Select2" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/FlashDevice mode=2}">
+                            <option value="0">Not Present</option>
+                            <option value="1">Present</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="textBox102" type="text" content="{Binding ServiceName file=Config\DeviceService\TTUConfig.xml xpath=/TextTerminalUnit mode=2}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            Journal Printer</label>
+                    </td>
+                    <td>
+                        <select id="Select5" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/JPTR mode=2}">
+                            <option value="0">Not Present</option>
+                            <option value="1">Present</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="textBox103" type="text" content="{Binding ServiceName file=Config\DeviceService\JPTRConfig.xml xpath=/JournalPrinter mode=2}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            PIN Pad</label>
+                    </td>
+                    <td>
+                        <select id="Select6" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/PIN mode=2}">
+                            <option value="0">Not Present</option>
+                            <option value="1">Present</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="textBox104" type="text" content="{Binding ServiceName file=Config\DeviceService\PINConfig.xml xpath=/EPPKeyPad mode=2}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            EPP Mode</label>
+                    </td>
+                    <td>
+                        <select id="Select61" type="select" selectvalue="{Binding EPPMode file=XDC\Tools\eCATConfigTool\eCATToolConfig.xml xpath=/Config/EPPMode mode=2}">
+                            <option value="0">EPP</option>
+                            <option value="1">EPP_PCI</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="textBox1041" type="text" content="{Binding ServiceName file=Config\DeviceService\PINConfig.xml xpath=/EPPKeyPad mode=2}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            SIU</label>
+                    </td>
+                    <td>
+                        <select id="Select7" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/SIU mode=2}">
+                            <option value="0">Not Present</option>
+                            <option value="1">Present</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="textBox105" type="text" content="{Binding ServiceName file=Config\DeviceService\SIUConfig.xml xpath=/SensorAndLight mode=2}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            Card Reader</label>
+                    </td>
+                    <td>
+                        <select id="Select8" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/IDC mode=2}">
+                            <option value="0">Not Present</option>
+                            <option value="1">Present</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="textBox106" type="text" content="{Binding ServiceName file=Config\DeviceService\IDCConfig.xml xpath=/CardReader mode=2}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            Receipt Printer</label>
+                    </td>
+                    <td>
+                        <select id="Select9" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/RPTR mode=2}">
+                            <option value="0">Not Present</option>
+                            <option value="1">Present</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="textBox107" type="text" content="{Binding ServiceName file=Config\DeviceService\RPTRConfig.xml xpath=/ReceiptPrinter mode=2}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            VDM</label>
+                    </td>
+                    <td>
+                        <select id="Select10" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/VDM mode=2}">
+                            <option value="0">Not Present</option>
+                            <option value="1">Present</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="textBox108" type="text" content="{Binding ServiceName file=Config\DeviceService\VDMConfig.xml xpath=/VendorDependentMode mode=2}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            Envelope Depositor</label>
+                    </td>
+                    <td>
+                        <select id="Select11" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/DEP mode=2}">
+                            <option value="0">Not Present</option>
+                            <option value="1">Present</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="textBox109" type="text" content="{Binding ServiceName file=Config\DeviceService\DEPConfig.xml xpath=/Depository mode=2}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            BarCodeScanner</label>
+                    </td>
+                    <td>
+                        <select id="Select12" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/BCR mode=2}">
+                            <option value="0">Not Present</option>
+                            <option value="1">Present</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="textBox120" type="text" content="{Binding ServiceName file=Config\DeviceService\BCRConfig.xml xpath=/BarCodeScanner mode=2}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            Camera</label>
+                    </td>
+                    <td colspan="2">
+                        <select id="Select13" type="select" selectvalue="{Binding value file=Config\XDC\MainConfig\MainConfig.xml xpath=/Root/Application/Item[@key='EnableCameraDevice'] mode=2}">
+                            <option value="0">Not Present</option>
+                            <option value="1">Present</option>
+                        </select>
+                    </td>
+                </tr>-->
+                    <tr>
+                        <td>
+                            <label>FlashDevice</label>
+                        </td>
+                        <td colspan="2">
+                            <select id="Select3" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/FlashDevice mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>HtmlDevice</label>
+                        </td>
+                        <td colspan="2">
+                            <select id="Select4" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/HtmlDevice mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>VDM</label>
+                        </td>
+                        <td colspan="2">
+                            <select id="Select17" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/VDM mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>JPTR</label>
+                        </td>
+                        <td>
+                            <select id="Select1" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/JPTR mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="textBox_JPTR" type="text" content="{Binding ServiceName file=Config\DeviceService\JPTRConfig.xml xpath=/JournalPrinter mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>PIN</label>
+                        </td>
+                        <td>
+                            <select id="Select2" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/PIN mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text_PIN" type="text" content="{Binding ServiceName file=Config\DeviceService\PINConfig.xml xpath=/EPPKeyPad mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>SIU</label>
+                        </td>
+                        <td>
+                            <select id="Select5" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/SIU mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text_SIU" type="text" content="{Binding ServiceName file=Config\DeviceService\SIUConfig.xml xpath=/SensorAndLight mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>IDC<br />(接触式读卡器)</label>
+                        </td>
+                        <td>
+                            <select id="Select6" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/IDC[@cfg='..\Config\DeviceService\IDCConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text_IDCConfig" type="text" content="{Binding ServiceName file=Config\DeviceService\IDCConfig.xml xpath=/CardReader mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>IDC<br />(身份证读取)</label>
+                        </td>
+                        <td>
+                            <select id="Select7" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/IDC[@cfg='..\Config\DeviceService\IDReaderConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text_IDReaderConfig" type="text" content="{Binding ServiceName file=Config\DeviceService\IDReaderConfig.xml xpath=/CardDispenser mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>IDC<br />(ukey读取)</label>
+                        </td>
+                        <td>
+                            <select id="Select8" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/IDC[@cfg='..\Config\DeviceService\UkeyReaderConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text_UkeyReaderConfig" type="text" content="{Binding ServiceName file=Config\DeviceService\UkeyReaderConfig.xml xpath=/CardReader mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>IDC<br />(右ukey读取)</label>
+                        </td>
+                        <td>
+                            <select id="Select9" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/IDC[@cfg='..\Config\DeviceService\UkeyRightReaderConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text_UkeyRightReaderConfig" type="text" content="{Binding ServiceName file=Config\DeviceService\UkeyRightReaderConfig.xml xpath=/CardReader mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>IDC<br />(非接式读卡器)</label>
+                        </td>
+                        <td>
+                            <select id="Select10" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/IDC[@cfg='..\Config\DeviceService\ContactLessIDCConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text1" type="text" content="{Binding ServiceName file=Config\DeviceService\ContactLessIDCConfig.xml xpath=/CardReader mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>RPTR<br />(凭条打印机)</label>
+                        </td>
+                        <td>
+                            <select id="Select11" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/RPTR[@cfg='..\Config\DeviceService\RPTRConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text2" type="text" content="{Binding ServiceName file=Config\DeviceService\RPTRConfig.xml xpath=/ReceiptPrinter mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>RPTR<br />(对帐单打印机)</label>
+                        </td>
+                        <td>
+                            <select id="Select13" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/RPTR[@cfg='..\Config\DeviceService\SPTRConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text4" type="text" content="{Binding ServiceName file=Config\DeviceService\SPTRConfig.xml xpath=/ReceiptPrinter mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>RPTR<br />(发票打印机)</label>
+                        </td>
+                        <td>
+                            <select id="Select14" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/RPTR[@cfg='..\Config\DeviceService\IPTRConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text5" type="text" content="{Binding ServiceName file=Config\DeviceService\IPTRConfig.xml xpath=/ReceiptPrinter mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>CDM<br />(取款机芯)</label>
+                        </td>
+                        <td>
+                            <select id="Select15" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/CDM[@cfg='..\Config\DeviceService\CDMConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text6" type="text" content="{Binding ServiceName file=Config\DeviceService\CDMConfig.xml xpath=/CashDispenser mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>CIM<br />(存款机芯)</label>
+                        </td>
+                        <td>
+                            <select id="Select16" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/CIM[@cfg='..\Config\DeviceService\CIMConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text7" type="text" content="{Binding ServiceName file=Config\DeviceService\CIMConfig.xml xpath=/CashAcceptor mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>BCR</label>
+                        </td>
+                        <td>
+                            <select id="Select18" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/BCR[@cfg='..\Config\DeviceService\BCRConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text8" type="text" content="{Binding ServiceName file=Config\DeviceService\BCRConfig.xml xpath=/BarCodeScanner mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>DEP<br>(信封存款)</br></label>
+                        </td>
+                        <td>
+                            <select id="Select19" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/DEP[@cfg='..\Config\DeviceService\DEPConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text9" type="text" content="{Binding ServiceName file=Config\DeviceService\DEPConfig.xml xpath=/Depository mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Passbook</label>
+                        </td>
+                        <td>
+                            <select id="Select20" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/Passbook[@cfg='..\Config\DeviceService\PassbookConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text10" type="text" content="{Binding ServiceName file=Config\DeviceService\PassbookConfig.xml xpath=/PassbookPrinter mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>CRD<br />(发卡器)</label>
+                        </td>
+                        <td>
+                            <select id="Select21" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/CRD[@cfg='..\Config\DeviceService\CRDConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text11" type="text" content="{Binding ServiceName file=Config\DeviceService\CRDConfig.xml xpath=/CardDispenser mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>CRD<br />(ukey发放器)</label>
+                        </td>
+                        <td>
+                            <select id="Select22" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/CRD[@cfg='..\Config\DeviceService\UkeyConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text12" type="text" content="{Binding ServiceName file=Config\DeviceService\UkeyConfig.xml xpath=/CardDispenser mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>CRD<br />(右ukey发放器)</label>
+                        </td>
+                        <td>
+                            <select id="Select23" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/CRD[@cfg='..\Config\DeviceService\UkeyRightConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text13" type="text" content="{Binding ServiceName file=Config\DeviceService\UkeyRightConfig.xml xpath=/CardDispenser mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>FeedChannel</label>
+                        </td>
+                        <td>
+                            <select id="Select24" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/FeedChannel[@cfg='..\Config\DeviceService\FeedChannelConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text14" type="text" content="{Binding ServiceName file=Config\DeviceService\FeedChannelConfig.xml xpath=/FeedChannel mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>DVRDevice</label>
+                        </td>
+                        <td>
+                            <select id="Select25" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/DVRDevice[@cfg='..\Config\DeviceService\DVRDeviceConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text15" type="text" content="{Binding ServiceName file=Config\DeviceService\DVRDeviceConfig.xml xpath=/DVRDevice mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>PassPort</label>
+                        </td>
+                        <td>
+                            <select id="Select26" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/PassPort[@cfg='..\Config\DeviceService\PPTConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text16" type="text" content="{Binding ServiceName file=Config\DeviceService\PassPortConfig.xml xpath=/EvolisPrinterConfig mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Stamper</label>
+                        </td>
+                        <td>
+                            <select id="Select27" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/Stamper[@cfg='..\Config\DeviceService\DocPrinterConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text17" type="text" content="{Binding ServiceName file=Config\DeviceService\DocPrinterConfig.xml xpath=/DocPrinter mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>CAM<br />(高拍仪)</label>
+                        </td>
+                        <td>
+                            <select id="Select28" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/CAM[@cfg='..\Config\DeviceService\Camera310.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text18" type="text" content="{Binding ServiceName file=Config\DeviceService\Camera310.xml xpath=/HighCamera mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>CAM<br />logitech摄像头</label>
+                        </td>
+                        <td>
+                            <select id="Select29" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/CAM[@cfg='..\Config\DeviceService\CAM30.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text19" type="text" content="{Binding ServiceName file=Config\DeviceService\CAM30.xml xpath=/HighCamera mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>RPTR<br />(A4打印及盖章)</label>
+                        </td>
+                        <td>
+                            <select id="Select30" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/RPTR[@cfg='..\Config\DeviceService\A4PrinterCfg.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text20" type="text" content="{Binding ServiceName file=Config\DeviceService\A4PrinterCfg.xml xpath=/ReceiptPrinter mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>CHK<br />(支票模块)</label>
+                        </td>
+                        <td>
+                            <select id="Select31" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/CHK[@cfg='..\Config\DeviceService\CheckScannerConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text21" type="text" content="{Binding ServiceName file=Config\DeviceService\CheckScannerConfig.xml xpath=/CheckScanner mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>FingerScaner<br />(指纹仪)</label>
+                        </td>
+                        <td>
+                            <select id="Select12" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/FingerScaner[@cfg='..\Config\DeviceService\FingerScan.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text3" type="text" content="{Binding ServiceName file=Config\DeviceService\FingerScan.xml xpath=/FeedChannel mode=2}" />
+                        </td>
+                    </tr>
+                    <!--跟上面出现的BCR设备使用同一个硬件配置文件-->
+                    <!--<tr>
+                        <td>
+                            <label>BarCodeScanner</label>
+                        </td>
+                        <td>
+                            <select id="Select32" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/BCRConfig[@cfg='..\Config\DeviceService\BCRConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text22" type="text" content="{Binding ServiceName file=Config\DeviceService\BCRConfig.xml xpath=/FeedChannel mode=2}" />
+                        </td>
+                    </tr>-->
+                    <tr>
+                        <td>
+                            <label>EvolisPrinter<br />(制卡机)</label>
+                        </td>
+                        <td>
+                            <select id="Select32" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/EvolisPrinter[@cfg='..\Config\DeviceService\EvolisPrinterConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text22" type="text" content="{Binding ServiceName file=Config\DeviceService\EvolisPrinterConfig.xml xpath=/EvolisPrinterConfig mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>PointMan<br />(制卡机)</label>
+                        </td>
+                        <td>
+                            <select id="Select33" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/PointMan[@cfg='..\Config\DeviceService\PointManConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text23" type="text" content="{Binding ServiceName file=Config\DeviceService\PointManConfig.xml xpath=/PointManConfig mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>PassPort</label>
+                        </td>
+                        <td>
+                            <select id="Select34" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/PassPort[@cfg='..\Config\DeviceService\PassPortConfig.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text24" type="text" content="{Binding ServiceName file=Config\DeviceService\PassPortConfig.xml xpath=/EvolisPrinterConfig mode=2}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>CHB</label>
+                        </td>
+                        <td>
+                            <select id="Select35" type="select" selectvalue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/CHB[@cfg='..\Config\DeviceService\CHB.xml'] mode=2}">
+                                <option value="0">Not Present</option>
+                                <option value="1">Present</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>ServiceName</label>
+                        </td>
+                        <td>
+                            <input id="text25" type="text" content="{Binding ServiceName file=Config\DeviceService\CHB.xml xpath=/CHB mode=2}" />
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <br />
+        </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,742 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<script defer type="text/javascript" src="../../js/ShowResource.js"></script>
+</head>
+<body>
+
+<div id="layer1" style="position: absolute; width: 360px; height: 600px; z-index: 1; left: 20px; top: 30px;">	
+	<form method="post">
+	 <fieldset id="Group1">
+		<legend>Configuration Setting</legend>
+		<table style="width: 100%;font-size:12px">
+			<tr>
+				<td>			  
+					<Label type="text">Initial Screen Number</Label>					
+				</td>
+				<td>
+					<input id="textBox101" type="text" size="5" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/Application/Item[@key='InitialScreen'] mode=2}"/>
+				</td>
+				<td>			  
+					<Label type="text">Zero Screen Number</Label>
+				</td>
+				<td>			  
+					<input id="textBox102" type="text" size="5" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/Application/Item[@key='ZeroScreen'] mode=2}"/>			
+				</td>				
+			</tr>
+			<tr>
+				<td>			  
+					<Label type="text">Background Color</Label>
+			  </td>
+			  <td>
+  				<select id="Select1" type="select" selectValue="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/Application/Item[@key='BackgroundColor'] mode=2}">
+					   <option value="1">black</option>
+					   <option value="2">red</option>
+					   <option value="3">green</option>
+					   <option value="4">yellow</option>
+					   <option value="5">blue</option>
+					   <option value="6">magenia</option>
+					   <option value="7">cyan</option>
+					   <option value="8">white</option>
+					   <option value="9">transparent</option>					   		   
+			  	</select>	
+			  </td>
+				<td>
+					<Label type="text">Text Background Color</Label>
+			  </td>
+			  <td>
+					<select id="Select1" type="select" selectValue="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/Application/Item[@key='TextBackgroundColor'] mode=2}">
+					   <option value="1">black</option>
+					   <option value="2">red</option>
+					   <option value="3">green</option>
+					   <option value="4">yellow</option>
+					   <option value="5">blue</option>
+					   <option value="6">magenia</option>
+					   <option value="7">cyan</option>
+					   <option value="8">white</option>
+					   <option value="9">transparent</option>					   		   
+			  	</select>
+				</td>	  
+			</tr>
+			<tr>
+				<td>			  
+					<Label type="text">Foreground Color</Label>
+			  </td>
+			  <td>
+  			 <select id="Select1" type="select" selectValue="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/Application/Item[@key='ForegroundColor'] mode=2}">
+				   <option value="1">black</option>
+				   <option value="2">red</option>
+				   <option value="3">green</option>
+				   <option value="4">yellow</option>
+				   <option value="5">blue</option>
+				   <option value="6">magenia</option>
+				   <option value="7">cyan</option>
+				   <option value="8">white</option>
+				   <option value="9">transparent</option>					   		   
+			  	</select>
+			  </td>
+				<td>			  
+					<Label type="text">Switch Delay</Label>										
+			  </td>	
+			  <td>
+			  	<input id="textBox103" type="text" size="5" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/Application/Item[@key='SwitchDelay'] mode=2}"/>
+			  </td>		  
+			</tr>
+			<tr>
+				<td>			  
+					<Label type="text">Last Screen</Label>										
+			  </td>
+			  <td>
+			  	<input id="textBox104" type="text" size="5" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/Application/Item[@key='LastScreen'] mode=2}"/>
+			  </td>
+				<td>			  
+					<Label type="text">Amount Template Separator</Label>
+				</td>		
+			  <td>
+			  	<input id="textBox105" type="text" size="5" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/Application/Item[@key='AmountTemplateSeparator'] mode=2}"/>
+			</td>	  
+			</tr>		
+			<tr>
+			  <td>
+				<Label type="text">Disable Taskbar</Label>
+			  </td>
+			  <td>
+			  	<input id="textBox106" type="text" size="5" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/Application/Item[@key='DisableTaskbar'] mode=2}"/>
+			  </td>
+			</tr>							
+		</table>
+		</fieldset><BR>
+		<fieldset name="Group2">
+		<legend>Font-0 Setting</legend>
+		<table style="width: 100%;font-size:12px">				
+			<tr>
+				<td>
+					<Label type="text">Name</Label>
+				</td>
+				<td>
+					<input id="Text201" style="width: 60px" type="text" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='0'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Height</Label>
+				</td>
+				<td>
+					<input id="Text202" style="width: 40px" type="text" content="{Binding height file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='0'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Width</Label>
+				</td>
+				<td>
+					<input id="Text203" style="width: 40px" type="text" content="{Binding width file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='0'] mode=2}"/>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<Label type="text">TopIndent</Label>
+				</td>
+				<td>
+					<input id="Text204" style="width: 60px" type="text" content="{Binding topIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='0'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">WordSpace</Label>
+				</td>
+				<td>
+					<input id="Text205" style="width: 40px" type="text" content="{Binding wordSpace file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='0'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">LeftIndent</Label>
+				</td>
+				<td>
+					<input id="Text206" style="width: 40px" type="text" content="{Binding leftIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='0'] mode=2}"/>
+				</td>
+			</tr>				
+		</table>
+	  </fieldset><BR>
+	  <fieldset name="Group3">
+		<legend>Font-1 Setting</legend>
+		<table style="width: 100%;font-size:12px">				
+			<tr>
+				<td>
+					<Label type="text">Name</Label>
+				</td>
+				<td>
+					<input id="Text301" style="width: 60px" type="text" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='1'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Height</Label>
+				</td>
+				<td>
+					<input id="Text302" style="width: 40px" type="text" content="{Binding height file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='1'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Width</Label>
+				</td>
+				<td>
+					<input id="Text303" style="width: 40px" type="text" content="{Binding width file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='1'] mode=2}"/>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<Label type="text">TopIndent</Label>
+				</td>
+				<td>
+					<input id="Text304" style="width: 60px" type="text" content="{Binding topIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='1'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">WordSpace</Label>
+				</td>
+				<td>
+					<input id="Text305" style="width: 40px" type="text" content="{Binding wordSpace file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='1'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">LeftIndent</Label>
+				</td>
+				<td>
+					<input id="Text306" style="width: 40px" type="text" content="{Binding leftIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='1'] mode=2}"/>
+				</td>
+			</tr>				
+		</table>
+	  </fieldset><BR>
+	  <fieldset name="Group4">
+		<legend>Font-2 Setting</legend>
+		<table style="width: 100%;font-size:12px">				
+			<tr>
+				<td>
+					<Label type="text">Name</Label>
+				</td>
+				<td>
+					<input id="Text401" style="width: 60px" type="text" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='2'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Height</Label>
+				</td>
+				<td>
+					<input id="Text402" style="width: 40px" type="text" content="{Binding height file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='2'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Width</Label>
+				</td>
+				<td>
+					<input id="Text403" style="width: 40px" type="text" content="{Binding width file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='2'] mode=2}"/>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<Label type="text">TopIndent</Label>
+				</td>
+				<td>
+					<input id="Text404" style="width: 40px" type="text" content="{Binding topIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='2'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">WordSpace</Label>
+				</td>
+				<td>
+					<input id="Text405" style="width: 40px" type="text" content="{Binding wordSpace file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='2'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">LeftIndent</Label>
+				</td>
+				<td>
+					<input id="Text406" style="width: 40px" type="text" content="{Binding leftIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='2'] mode=2}"/>
+				</td>
+			</tr>				
+		</table>
+	  </fieldset><BR>
+	  <fieldset name="Group5">
+		<legend>Font-3 Setting</legend>
+		<table style="width: 100%;font-size:12px">				
+			<tr>
+				<td>
+					<Label type="text">Name</Label>
+				</td>
+				<td>
+					<input id="Text501" style="width: 60px" type="text" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='3'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Height</Label>
+				</td>
+				<td>
+					<input id="Text502" style="width: 40px" type="text" content="{Binding height file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='3'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Width</Label>
+				</td>
+				<td>
+					<input id="Text503" style="width: 40px" type="text" content="{Binding width file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='3'] mode=2}"/>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<Label type="text">TopIndent</Label>
+				</td>
+				<td>
+					<input id="Text504" style="width: 60px" type="text" content="{Binding topIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='3'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">WordSpace</Label>
+				</td>
+				<td>
+					<input id="Text505" style="width: 40px" type="text" content="{Binding wordSpace file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='3'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">LeftIndent</Label>
+				</td>
+				<td>
+					<input id="Text506" style="width: 40px" type="text" content="{Binding leftIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='3'] mode=2}"/>
+				</td>
+			</tr>				
+		</table>
+	  </fieldset><BR>
+	  		<fieldset name="Group6">
+		<legend>Font-4 Setting</legend>
+		<table style="width: 100%;font-size:12px">				
+			<tr>
+				<td>
+					<Label type="text">Name</Label>
+				</td>
+				<td>
+					<input id="Text601" style="width: 60px" type="text" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='4'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Height</Label>
+				</td>
+				<td>
+					<input id="Text602" style="width: 40px" type="text" content="{Binding height file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='4'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Width</Label>
+				</td>
+				<td>
+					<input id="Text603" style="width: 40px" type="text" content="{Binding width file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='4'] mode=2}"/>
+			  </td>
+			</tr>	
+			<tr>
+				<td>
+					<Label type="text">TopIndent</Label>
+				</td>
+				<td>
+					<input id="Text604" style="width: 60px" type="text" content="{Binding topIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='4'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">WordSpace</Label>
+				</td>
+				<td>
+					<input id="Text605" style="width: 40px" type="text" content="{Binding wordSpace file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='4'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">LeftIndent</Label>
+				</td>
+				<td>
+					<input id="Text606" style="width: 40px" type="text" content="{Binding leftIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='4'] mode=2}"/>
+				</td>
+			</tr>				
+		</table>
+	  </fieldset><BR>
+	  <fieldset name="Group7">
+		<legend>Font-5 Setting</legend>
+		<table style="width: 100%;font-size:12px">				
+			<tr>
+				<td>
+					<Label type="text">Name</Label>
+				</td>
+				<td>
+					<input id="Text701" style="width: 60px" type="text" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='5'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Height</Label>
+				</td>
+				<td>
+					<input id="Text702" style="width: 40px" type="text" content="{Binding height file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='5'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Width</Label>
+				</td>
+				<td>
+					<input id="Text703" style="width: 40px" type="text" content="{Binding width file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='5'] mode=2}"/>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<Label type="text">TopIndent</Label>
+				</td>
+				<td>
+					<input id="Text704" style="width: 60px" type="text" content="{Binding topIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='5'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">WordSpace</Label>
+				</td>
+				<td>
+					<input id="Text705" style="width: 40px" type="text" content="{Binding wordSpace file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='5'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">LeftIndent</Label>
+				</td>
+				<td>
+					<input id="Text706" style="width: 40px" type="text" content="{Binding leftIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='5'] mode=2}"/>
+				</td>
+			</tr>				
+		</table>
+	  </fieldset><BR>
+	  <fieldset name="Group8">
+		<legend>Font-6 Setting</legend>
+		<table style="width: 100%;font-size:12px">				
+			<tr>
+				<td>
+					<Label type="text">Name</Label>
+				</td>
+				<td>
+					<input id="Text801" style="width: 60px" type="text" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='6'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Height </Label>
+				</td>
+				<td>
+					<input id="Text802" style="width: 40px" type="text" content="{Binding height file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='6'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Width</Label>
+				</td>
+				<td>
+					<input id="Text803" style="width: 40px" type="text" content="{Binding width file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='6'] mode=2}"/>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<Label type="text">TopIndent</Label>
+				</td>
+				<td>
+					<input id="Text804" style="width: 60px" type="text" content="{Binding topIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='6'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">WordSpace</Label>
+				</td>
+				<td>
+					<input id="Text805" style="width: 40px" type="text" content="{Binding wordSpace file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='6'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">LeftIndent</Label>
+				</td>
+				<td>
+					<input id="Text806" style="width: 40px" type="text" content="{Binding leftIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='6'] mode=2}"/>
+				</td>
+			</tr>				
+		</table>
+	  </fieldset><BR>
+	  <fieldset name="Group9">
+		<legend>Font-7 Setting</legend>
+		<table style="width: 100%;font-size:12px">				
+			<tr>
+				<td>
+					<Label type="text">Name</Label>
+				</td>
+				<td>
+					<input id="Text801" style="width: 60px" type="text" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='7'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Height</Label>
+				</td>
+				<td>
+					<input id="Text802" style="width: 40px" type="text" content="{Binding height file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='7'] mode=2}"/>
+				</td>
+				<td><Label type="text">Width</Label>
+				</td>
+				<td>
+					<input id="Text803" style="width: 40px" type="text" content="{Binding width file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='7'] mode=2}"/>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<Label type="text">TopIndent</Label>
+				</td>
+				<td>
+					<input id="Text804" style="width: 60px" type="text" content="{Binding topIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='7'] mode=2}">
+				</td>
+				<td>
+					<Label type="text">WordSpace</Label>
+				</td>
+				<td>
+					<input id="Text805" style="width: 40px" type="text" content="{Binding wordSpace file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='7'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">LeftIndent</Label>
+				</td>
+				<td>
+					<input id="Text906" style="width: 40px" type="text" content="{Binding leftIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='7'] mode=2}"/>
+				</td>
+			</tr>				
+		</table>
+	  </fieldset><BR>
+	  <fieldset name="Group10">
+		<legend>Font-8 Setting</legend>
+		<table style="width: 100%;font-size:12px">				
+			<tr>
+				<td>
+					<Label type="text">Name</Label>
+				</td>
+				<td>
+					<input id="Text901" style="width: 60px" type="text" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='8'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Height</Label>
+				</td>
+				<td>
+					<input id="Text902" style="width: 40px" type="text" content="{Binding height file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='8'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Width</Label>
+				</td>
+				<td>
+					<input id="Text903" style="width: 40px" type="text" content="{Binding width file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='8'] mode=2}"/>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<Label type="text">TopIndent</Label>
+				</td>
+				<td>
+					<input id="Text904" style="width: 60px" type="text" content="{Binding topIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='8'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">WordSpace </Label>
+				</td>
+				<td>
+					<input id="Text905" style="width: 40px" type="text" content="{Binding wordSpace file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='8'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">LeftIndent</Label>
+				</td>
+				<td>
+					<input id="Text906" style="width: 40px" type="text" content="{Binding leftIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='8'] mode=2}"/>
+				</td>
+			</tr>				
+		</table>
+	  </fieldset><BR>
+	 	<fieldset name="Group11">
+		<legend>Font-( Setting</legend>
+		<table style="width: 100%;font-size:12px">				
+			<tr>
+				<td>
+					<Label type="text">Name</Label>
+				</td>
+				<td>
+					<input id="Text1001" style="width: 60px" type="text" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='('] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Height</Label>
+				</td>
+				<td>
+					<input id="Text1002" style="width: 40px" type="text" content="{Binding height file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='('] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Width</Label>
+				</td>
+				<td>
+					<input id="Text1003" style="width: 40px" type="text" content="{Binding width file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='('] mode=2}"/>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<Label type="text">TopIndent</Label>
+				</td>
+				<td>
+					<input id="Text1004" style="width: 60px" type="text" content="{Binding topIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='('] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">WordSpace</Label>
+				</td>
+				<td>
+					<input id="Text1005" style="width: 40px" type="text" content="{Binding wordSpace file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='('] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">LeftIndent</Label>
+				</td>
+				<td>
+					<input id="Text1006" style="width: 40px" type="text" content="{Binding leftIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='('] mode=2}"/>
+				</td>
+			</tr>				
+		</table>
+	  </fieldset><BR>
+	  <fieldset name="Group12">
+		<legend>Font-> Setting</legend>
+		<table style="width: 100%;font-size:12px">				
+			<tr>
+				<td>
+					<Label type="text">Name</Label>
+				</td>
+				<td>
+					<input id="Text1101" style="width: 40px" type="text" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='>'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Height</Label>
+				</td>
+				<td>
+					<input id="Text1102" style="width: 40px" type="text" content="{Binding height file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='>'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Width</Label>
+				</td>
+				<td>
+					<input id="Text1103" style="width: 60px" type="text" content="{Binding width file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='>'] mode=2}"/>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<Label type="text">TopIndent</Label>
+				</td>
+				<td>
+					<input id="Text1104" style="width: 60px" type="text" content="{Binding topIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='>'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">WordSpace</Label>
+				</td>
+				<td>
+					<input id="Text1105" style="width: 40px" type="text" content="{Binding wordSpace file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='>'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">LeftIndent</Label>
+				</td>
+				<td>
+					<input id="Text1106" style="width: 40px" type="text" content="{Binding leftIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='>'] mode=2}"/>
+				</td>
+			</tr>				
+		</table>
+	  </fieldset><BR>
+	 	<fieldset name="Group13">
+		<legend>Font-Y Setting</legend>
+		<table style="width: 100%;font-size:12px">				
+			<tr>
+				<td>
+					<Label type="text">Name</Label>
+				</td>
+				<td>
+					<input id="Text1201" style="width: 60px" type="text" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='Y'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Height</Label>
+				</td>
+				<td>
+					<input id="Text1202" style="width: 40px" type="text" content="{Binding height file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='Y'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Width</Label>
+				</td>
+				<td>
+					<input id="Text1203" style="width: 40px" type="text" content="{Binding width file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='Y'] mode=2}"/>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<Label type="text">TopIndent</Label>
+				</td>
+				<td>
+					<input id="Text1204" style="width: 60px" type="text" content="{Binding topIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='Y'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">WordSpace</Label>
+				</td>
+				<td>
+					<input id="Text1205" style="width: 40px" type="text" content="{Binding wordSpace file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='Y'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">LeftIndent</Label>
+				</td>
+				<td>
+					<input id="Text1206" style="width: 40px" type="text" content="{Binding leftIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='Y'] mode=2}"/>
+				</td>
+			</tr>				
+		</table>
+	  </fieldset><BR>
+	 	<fieldset name="Group14">
+		<legend>Font-Z Setting</legend>
+		<table style="width: 100%;font-size:12px">				
+			<tr>
+				<td>
+					<Label type="text">Name</Label>
+				</td>
+				<td>
+					<input id="Text1301" style="width: 60px" type="text" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='Z'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Height</Label>
+				</td>
+				<td>
+					<input id="Text1302" style="width: 40px" type="text" content="{Binding height file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='Z'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Width</Label>
+				</td>
+				<td>
+					<input id="Text1303" style="width: 40px" type="text" content="{Binding width file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='Z'] mode=2}"/>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<Label type="text">TopIndent</Label>
+				</td>
+				<td>
+					<input id="Text1304" style="width: 60px" type="text" content="{Binding topIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='Z'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">WordSpace</Label>
+				</td>
+				<td>
+					<input id="Text1305" style="width: 40px" type="text" content="{Binding wordSpace file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='Z'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">LeftIndent</Label>
+				</td>
+				<td>
+					<input id="Text1306" style="width: 40px" type="text" content="{Binding leftIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='Z'] mode=2}"/>
+				</td>
+			</tr>				
+		</table>
+	  </fieldset><BR>
+	 	<fieldset name="Group15">
+		<legend>Font-Default Setting</legend>
+		<table style="width: 100%;font-size:12px">				
+			<tr>
+				<td>
+					<Label type="text">Name</Label>
+				</td>
+				<td>
+					<input id="Text1401" style="width: 60px" type="text" content="{Binding value file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='default'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Height</Label>
+				</td>
+				<td>
+					<input id="Text1402" style="width: 40px" type="text" content="{Binding height file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='default'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">Width</Label>
+				</td>
+				<td>
+					<input id="Text1403" style="width: 40px" type="text" content="{Binding width file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='default'] mode=2}"/>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<Label type="text">TopIndent</Label>
+				</td>
+				<td>
+					<input id="Text1404" style="width: 60px" type="text" content="{Binding topIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='default'] mode=2}"/>
+				</td>
+				<td>
+					<Label type="text">WordSpace</Label>
+				</td>
+				<td>
+					<input id="Text1405" style="width: 40px" type="text" content="{Binding wordSpace file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='default'] mode=2}"/>
+				</td>
+				<td><Label type="text">LeftIndent</Label>
+				</td>
+				<td>
+					<input id="Text1406" style="width: 40px" type="text" content="{Binding leftIndent file=Config\XDC\Screen\Screen.xml xpath=/Root/FontCfg/Item[@key='default'] mode=2}"/>
+				</td>
+			</tr>				
+		</table>
+	  </fieldset><BR>	  	  
+	<input id="Submit1" type="submit" value="Cancel" tag="OnCancel" ><input id="Submit2" type="submit" value="Submit" tag="OnConfirm" ></form>
+</div>
+</body> 
+</html>

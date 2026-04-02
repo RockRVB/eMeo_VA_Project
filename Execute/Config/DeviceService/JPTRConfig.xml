@@ -1,0 +1,2 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<JournalPrinter pollInterval="500" resumeFilePath="data\JournalResume.db3" ServiceName="JournalPrinter" Supply="UPPER" PrintMode="0" FormName="JournalForm" MediaName="JournalMedia" RePrintLineCount="20" PrintLineCount2From="10" Newline="&#xA;" password="C066AF046A922EBC512B778BFA7AA8C3"  NoRePrintFirstExceptionJournal="0"/>

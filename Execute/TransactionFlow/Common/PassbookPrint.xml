@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="PrintBankbook">
+  <Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for inquiry"/>
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start">
+      <Forward event="OnConfirm" targetID="ID_ZeroStatePassbook"/>
+    </Start>
+    <!--读取存折信息-->
+    <ReadPassbookEx ID="ID_ZeroStatePassbook" UI="UI_ReadPassbook" timeout="60000" readPassBookForm="PassbookReadForm" comment="Zero state" >
+      <States>
+        <State name="ReadingPassbook" UI="UI_Operating"/>
+      </States>
+      <Forward event="OnAcceptPassbook" targetID="ID_RequestTrans" comment=""/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" comment="补登打印机不能用或读Form失败"/>
+      <Forward event="OnInvalidPassbook" targetID="ID_InvalidPassBook" comment="无效存折"/>
+      <Forward event="OnOtherPassbook" targetID="ID_OtherPassbook" comment="他行折不允许交易"/>
+      <Forward event="OnPassbookRead" targetID="ID_SavePassBookPAN" comment=""/>
+    </ReadPassbookEx>
+
+    <SetData ID="ID_SavePassBookPAN" saveBuffer="{prjZeroStatePassBookPAN,2}" value="{core_PAN}">
+      <Forward event="OnConfirm" targetID="ID_RequestTrans" />
+    </SetData>
+
+    <Prompt ID="ID_InvalidPassBook" UI="UI_InvalidPassBook" timeout="3000" comment="存折无效">
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </Prompt>
+
+    <Prompt ID="ID_OtherPassbook" UI="UI_OtherPassBook" timeout="3000" comment="他行折不允许交易">
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </Prompt>
+
+    <RequestTrans ID="ID_RequestTrans" UI="UI_RequestTrans" transType="PASSBOOK" comment="Inquiry request">
+      <States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+        <State name="SendFail" UI="UI_GeneralError"/>
+        <State name="ReceiveFail" UI="UI_GeneralError"/>
+        <State name="ReceiveTimeout" UI="UI_GeneralError"/>
+        <State name="NetworkFail" UI="UI_GeneralError"/>
+        <State name="UnpackFail" UI="UI_GeneralError"/>
+        <State name="HardwareError" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_ComparePassbookDetail"/>
+      <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnContinueService" targetID="ID_HostRefuseContinueService"/>
+      <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+      <Forward event="OnReInputPin" targetID="ID_ReInputPin"/>
+      <Forward event="OnFallback" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnTryAgain" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnICAppLoadedFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </RequestTrans>
+
+    <CompareData ID="ID_ComparePassbookDetail" comment="判断是否有未登折明细" compareBuffer="{prj_NoPassbookDetail},2">
+      <Forward event="OnEqual" targetID="ID_PromptNoDetail"/>
+      <Forward event="OnGreater" targetID="ID_PromptNeedChangePassBook"/>
+      <Forward event="OnLess" targetID="ID_PrintPassBook"/>
+    </CompareData>
+
+    <Prompt ID="ID_PromptNeedChangePassBook" UI="UI_ShowNeedChangePassBook"  timeout="5000" comment="NeedChangePassBook" >
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </Prompt>
+
+    <Prompt ID="ID_PromptNoDetail" UI="UI_NoPassbookDetail" timeout="5000" comment="No passbook detail">
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </Prompt>
+
+    <!-- 开始打印存折 -->
+    <PrintPassbook ID="ID_PrintPassBook" UI="UI_PrintingPassBook" formName="PassbookPrintForm" mediaName="PASSBOOK_MEDIA" showTime="3">
+      <States>
+        <State name="PrintPassbookSuccess" UI="UI_PrintPassBookSuccess"/>
+        <State name="PrintPassbookFail" UI="UI_PrintPassBookFail"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_CompareNeedRequestTrans"/>
+      <Forward event="OnChangePage" targetID="ID_EjectPassbookAndWaitForReinsert"/>
+      <Forward event="OnChangePassBook" targetID="ID_PromptNeedChangePassBook"/>
+      <Forward event="OnRepair" targetID="ID_RequestTrans"/>
+    </PrintPassbook>
+
+    <CompareData ID="ID_CompareNeedRequestTrans" compareBuffer="{prj_NeedRequestTrans},1" comment="是否有未查询数据">
+      <Forward event="OnEqual" targetID="ID_RequestTrans"/>
+      <DefaultForward targetID="ID_InvokeCloseTransWorkflow"/>
+    </CompareData>
+	
+	<!--退存折换页-->
+	<EjectPassbookAndWaitForTaken ID="ID_EjectPassbookAndWaitForReinsert" UI="UI_WaitForChangePage" timeout="30000" minShowTime="3000">
+      <Forward event="OnConfirm" targetID="ID_ReInputPassbook"/>
+    </EjectPassbookAndWaitForTaken>
+
+	<!--重新读存折-->
+    <ReadPassbook ID="ID_ReInputPassbook" UI="UI_IpnutPassBook" readPassBookForm="passbookreadform" timeout="60000" comment="InputPassbook">
+      <States>
+        <State name="ReadingPassbook" UI="UI_Operating"/>
+      </States>
+      <Forward event="OnPassbookRead" targetID="ID_CompareChangePassbook"/>
+      <Forward event="OnInvalidCard" targetID="ID_InvokeCloseTransWorkflow"/>
+    </ReadPassbook>
+
+    <CompareData ID="ID_CompareChangePassbook" comment="Compare two buffer" compareBuffer="{prjZeroStatePassBookPAN},{core_PAN}">
+      <Forward event="OnEqual" targetID="ID_PrintPassBook"/>
+      <DefaultForward targetID="ID_ShowChangePassbook"/>
+    </CompareData>
+
+    <Prompt ID="ID_ShowChangePassbook" UI="UI_ShowChangePassbook"  timeout="3000" comment="ChangePassbook" >
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </Prompt>
+
+    <InputPin ID="ID_ReInputPin" UI="UI_ReInputPin" comment="ReInput password">
+      <Forward event="OnConfirm" targetID="ID_RequestTrans"/>
+    </InputPin>
+
+    <!--主机拒绝，显示拒绝码对应的提示信息，然后返回选择交易界面-->
+    <Prompt ID="ID_HostRefuse" UI="UI_HostRefuse" timeout="5000" comment="show host refuse">
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </Prompt>
+    <Prompt ID="ID_HostRefuseContinueService" UI="UI_HostRefuse" timeout="5000" comment="show host refuse">
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </Prompt>
+
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+    <End ID="9999" comment="End">
+    </End>
+    <End ID="ID_TryAgain" fallBack="ID_ICMoreAppSelectForMainMenu" comment="End">
+    </End>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+  </DefaultForward>
+</Workflow>

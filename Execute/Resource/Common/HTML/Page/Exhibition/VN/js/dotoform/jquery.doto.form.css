@@ -1,0 +1,77 @@
+/*jQuery Doto form  2.1.1*/
+/* select */
+.dotoform-select-wrapper{
+	cursor:pointer;
+	word-wrap:break-word;
+	display:inline-block;
+	padding:2px 0;
+	overflow:hidden;
+	background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAANFJREFUeNqU0bEHAmEYx/G3K9HU1NQUrUccrVE6RVNLaYj+sqYao8Sloanp3NYaTUcc0RQRfR+e4YbrdT18HHeP3/s+zxU8zzNUBw9cjL0mOCGJoiizwYGLLQI0LGEzrLBH5VeTBN7lRNRxRC2jr48lirjiZQuUMB8xmhpaTfW0dYIydpjbduLo84Yhnmhho2O5qRHPmOKTJ9DoD/F1nK6GBroC+TayjZoVKBVijDcGulfZWU9vb/4NlDpgoaPFeuvE5KzSj/dr3Vuo+81dXwEGALMhK+xO4Uc4AAAAAElFTkSuQmCC) no-repeat right center #fff;
+	border:1px solid #ccc;
+}
+
+.dotoform-select-wrapper select.dotoform-bulid{
+	border:none;
+	background:transparent;
+	cursor:pointer;
+	-webkit-appearance:none;
+	-moz-appearance: none;
+	appearance:none;
+}
+
+.dotoform-select-wrapper select.dotoform-bulid option{
+	background-color:#fff;
+	color:#333;
+}
+
+
+
+/* checkbox */
+.dotoform-hide{
+	width:0;
+	height:0;
+	overflow:hidden;
+}
+
+.dotoform-checkbox{
+	border:1px solid #000;
+	width:11px;
+	height:11px;
+	display:inline-block;
+	margin-right:5px;
+	vertical-align:middle !ie7;
+}
+
+.dotoform-checkbox.active{
+	background-color:#000;
+}
+
+.dotoform-checkbox.disabled{
+	border:1px solid #bbb;
+}
+
+.dotoform-checkbox.active.disabled{
+	background-color:#bbb;
+}
+
+/* radio */
+.dotoform-radio{
+	border:1px solid #000;
+	width:11px;
+	height:11px;
+	display:inline-block;
+	margin-right:5px;
+	vertical-align:middle !ie7;
+}
+
+.dotoform-radio.active{
+	background-color:#000;
+}
+
+.dotoform-radio.disabled{
+	border:1px solid #bbb;
+}
+
+.dotoform-radio.active.disabled{
+	background-color:#bbb;
+}

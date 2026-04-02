@@ -1,0 +1,52 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>设置流水号</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../../css/maintenance/cn.css" />
+<script src="../../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../../js/jquery-ui.min.js"></script>
+<script src="../../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../../js/maintenance/common/global.js"></script>
+<script src="../../../../js/maintenance/common/common.js"></script>
+<script src="../../../../js/maintenance/component/components.js"></script>
+<script src="../../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../../js/maintenance/ui/maintenance/systemconfig/atm/setjouno.js"></script>
+</head>
+
+<body>
+<!--界面容器-->
+<div class="wrapper set-jou-no">
+	<div class="g-margin-wrapper"> 
+		<!--左边-->
+		<div class="g-left-wrapper">
+			<div class="g-left">
+				<div class="set-jou-no-row"> <span id="STATIC_1" type="STATIC_TXT" ids="IDS_SerialNumber">请输入你要设置的流水号，然后按“确定”</span> </div>
+				<div class="set-jou-no-row"> <span id="STATIC_2" type="STATIC_TXT" class="left-label" ids="IDS_CurrentSerialNumber">当前流水号：</span> <span id="STATIC_CURRENT_SERIAL" type="STATIC_TXT">000012</span> </div>
+				<div class="set-jou-no-row"> <span id="STATIC_3" type="STATIC_TXT" class="left-label" ids="IDS_SerialNumberLength">流水号最大长度：</span> <span id="STATIC_CURRENT_SERIAL_LEN" type="STATIC_TXT">0</span> </div>
+				<div class="set-jou-no-row" margin="100px">
+					<input id="INPUT_SERAL_NUM" type="text"  class="input-text  set-jou-margin-left"  value="" maxlength="12" validchars = "0123456789">
+				</div>
+				
+				<!--出错提示-->
+				<div class="g-prompt"> <span id="STATIC_PROMPT" type="STATIC_TXT" ></span> </div>
+			</div>
+		</div>
+		<!--右边-->
+		<div class="g-right"> 
+			<!--键盘-->
+			<div id="KEYBOARD_NUMBER_1" type="KEYBOARD_NUMBER" class="keyboard-number"> 
+				<!--键盘操作提示-->
+				<div id="keyboard-tip" class="keyboard-tip clear none" ids="IDS_KeyboardTip">按00键可以在输入框和键盘之间切换</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

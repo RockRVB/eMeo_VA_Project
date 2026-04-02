@@ -1,0 +1,43 @@
+0;{SR}ECUR		{SR}MDENO	{SR}2		{SR}3ESC	{SR}:VAL
+
+1;{SR}F{CUR}		{SR}N{DENO}	{SR}2		{SR}4{ESC}	{SR}<{VAL}
+
+1;{SR}F		{SR}1		J5{CUR}
+
+D
+
+0
+
+1
+
+5
+
+/***********************************by frde 2015-01-20***************************************
+:the spliter.
+after spliter:
+Row1:set the title.[1:visable,0:invisable]
+Row2:set the note verify detail
+Row3:set the total
+Row4:Detail begin row number.
+Row5:detail margin to title
+Row6:detail margin to detail
+Row7:detail margin to total
+
+
+{SR}:Row Number
+{CUR}:Currency
+{DENO}:Denomination
+{ESC}:total for current Row
+{VAL}:total for current row(in Row3,it's the total for the verify count in current state)
+{TNC}:total note count for all denomination
+
+example:
+------------------------------------
+CUR		DENO			ESC		VAL
+
+CNY		100		*		5		500
+CNY		50		*		3		150
+
+TOTAL:	650		CNY
+------------------------------------
+*********************************************************************************************/

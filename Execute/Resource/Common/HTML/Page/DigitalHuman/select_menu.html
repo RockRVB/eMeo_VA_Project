@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../js/vue.min.js"></script>
+  <script src="../../js/grg-ui.min.js"></script>
+  <script src="../../js/vue-i18n.js"></script>
+  <script src="../../js/jquery-3.7.0.js"></script>	<script src="../../js/class/layer/layer.js"></script>	<script src="../../js/index.js"></script>
+  <script src="../../js/jquery.dragscroll.js"></script>
+  <script src="../../js/coreScript.js"></script>
+  <script src="../../js/ibank.js"></script>
+  <link rel="stylesheet" href="../../css/grg-ui.min.css">
+  <link rel="stylesheet" href="../../css/animate.grg.css">
+  <link rel="stylesheet" href="../../css/ibank.css">
+  <style>
+    html {
+      width: 100vw;
+      height: 100vh;
+      background: url(../../images/digital_human/bg.png) no-repeat center/cover;
+    }
+    .grg-header {
+      position: relative;
+      width: 100%;
+      height: 105px;
+      background: unset;
+    }
+
+    .grg-header .logo img {
+      display: inline-block;
+      margin-top: 50px;
+    }
+
+    .grg-header .count-down {
+      top: 42px;
+    }
+
+    .grg-header .count-down .count-down-2 {
+      background-color: #e1eefd;
+    }
+
+    .main-box {
+      position: relative;
+      width: 100%;
+      height: calc(100% - 105px);
+      padding: 0 50px 78px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .main-box .title {
+      font-family: "AlibabaSans-Medium";
+      font-weight: bold;
+      font-size: 40px;
+      color: #333333;
+      text-align: center;
+      margin: 67px 0 25px;
+    }
+
+    .main-box .exit-btn {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      line-height: 65px;
+      background: rgba(255,255,255,0.5);
+      box-shadow: 0px 2px 60px 0px rgba(41,108,255,0.31);
+      border-radius: 33px;
+      border: 2px solid #fff;
+      backdrop-filter: blur(6px);
+      right: 15px;
+      bottom: 95px;
+      font-weight: 500;
+      font-size: 24px;
+      color: #296CFF;
+      text-align: center;
+      font-family: "AlibabaSans-Medium";
+    }
+
+    .main-box .show-voice-box {
+      position: absolute;
+      right: 15px;
+      bottom: 185px;
+    }
+
+    .main-box .title img {
+      vertical-align: 10px;
+    }
+
+    .main-box .content {
+      width: 1080px;
+      height: 670px;
+      background: linear-gradient( 180deg, #FFFFFF 0%, rgba(255,255,255,0.48) 100%);
+      border-radius: 32px;
+      backdrop-filter: blur(20px);
+      text-align: center;
+      overflow: hidden;
+      margin: auto;
+    }
+
+    .main-box .content .btn-group-box {
+      display: flex;
+      flex-wrap:wrap;
+      width: 100%;
+      padding: 0 25px;
+      margin-top: 30px;
+      box-sizing: border-box;
+    }
+
+    .main-box .content .btn-group-box .button-item {
+      width: 343px;
+      height: 200px;
+      font-size: 26px;
+      color: #333333;
+      text-align: center;
+      font-family: "AlibabaSans-Medium";
+      padding-top: 20px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="grg-header">
+      <div class="logo">
+        <img src="../../images/digital_human/logo.png" alt="">
+      </div>
+      <div v-if="showCountDown" class="count-down">
+        <div class="count-down-2">60</div>
+      </div>
+    </div>
+    <div class="main-box">
+      <div class="title">
+        <img src="../../images/digital_human/star-l-img.png" alt="">
+        <span ids="ids_Common_selectbusiness">Select the business you need</span>
+        <img src="../../images/digital_human/star-r-img.png" alt="">
+      </div>
+      <div class="content">
+        <div class="btn-group-box">
+          <div v-for="(item, index) in btnData" :key="index" class="button-item" type="button" :tag='item.tag'>
+            <img :src="item.imgUrl" alt="">
+            <div>{{ item.text }}</div>
+          </div>
+        </div>
+      </div>
+      <div v-if="showExitBtn" class="exit-btn" type="button" tag="OnCancel" ids='ids_Exit'>Exit</div>
+      <div v-if="showVoiceBtn" class="show-voice-box" type='button' id='ControlMicphone' @click="voiceEvent" :tag='voice'>
+        <img :src="voiceImg" alt="">
+      </div>
+    </div>
+    <input id="VoiceMute" type="text" hidden content='{Binding DigitalHuman_VoiceMute mode=2}' v-model="inputVal" value="true"></input>
+  </div>
+</body>
+
+</html>
+<script>
+  var app = new Base({
+    i18n: i18n,
+    data: {
+      btnData: [        
+        {
+          imgUrl: '../../images/digital_human/CARD OPENING.png',
+          text: 'Card Opening',
+          tag: 'OnIssueCard',
+        },
+        {
+          imgUrl: '../../images/digital_human/ACCOUNT OPENING.png',
+          text: 'Account Opening',
+          tag: 'OnNewAccoutApply',
+        },
+        {
+          imgUrl: '../../images/digital_human/BILL PAYMENT.png',
+          text: 'Bill Payment',
+          tag: 'OnPayment',
+        },        
+		    {
+          imgUrl: '../../images/digital_human/FOREIGN EXCHANGE.png',
+          text: 'Foreign Exchange',
+          tag: 'OnExchange',
+        },
+        {
+          imgUrl: '../../images/digital_human/BIOMETRICS.png',
+          text: 'Biometrics',
+          tag: 'OnBiometrics',
+        },
+        {
+          imgUrl: '../../images/digital_human/QR CODE TRANSACTION.png',
+          text: 'QR Code Transaction',
+          tag: 'OnQRCodeWithdrawal',
+        },
+		    {
+          imgUrl: '../../images/digital_human/BALANCE INQUIRY.png',
+          text: 'Balance Inquiry',
+          tag: 'OnBALANCEINQUIRY',
+        },
+        {
+          imgUrl: '../../images/digital_human/PASSWORD MODIFICATION.png',
+          text: 'Password Modification',
+          tag: 'OnPASSWORDMODIFICATION',
+        }
+      ],
+      showCountDown: true,
+      showExitBtn: true,
+      voiceImg: '../../images/digital_human/voice2-img-blue.png',
+      showVoiceBtn: true,
+      flag: true,
+      voice: 'DIGITALHUMANUNMUTE',
+      inputVal: 'true',
+    },
+    methods: {
+      voiceEvent() {
+        let _this = this;
+        _this.flag = !_this.flag;
+        if (_this.flag) {
+          _this.voiceImg = '../../images/digital_human/voice2-img-blue.png';
+          _this.voice = 'DIGITALHUMANUNMUTE';
+        } else {
+          _this.voiceImg = '../../images/digital_human/forbid2-voice-img-blue.png';
+          _this.voice = 'DIGITALHUMANMUTE';
+        }
+      },
+    },
+    watch: {
+      inputVal: function(value) {
+        if (value == 'false') {
+          this.voiceImg = '../../images/digital_human/forbid2-voice-img-blue.png';
+          this.flag = false;
+        } else if (value == 'true') {
+          this.voiceImg = '../../images/digital_human/voice2-img-blue.png';
+          this.flag = true;
+        }
+      },
+    },
+    computed: {},
+    mounted: function () {
+      $('.btn-group-box').dragscroll({
+        direction: 'scrollTop'
+      });
+    }
+  }).$mount('#app')
+</script>

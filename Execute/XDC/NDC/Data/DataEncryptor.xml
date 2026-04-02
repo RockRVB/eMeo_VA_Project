@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Device>
+    <Enable Encryptor="1" />
+    <Information>
+      <Encryptor EncStat="ONLINE" DeviceState="ONLINE" MediaState="unknown" LastErrorCode="" IsSuccess="True" IsFailure="False" Cancelled="False" UserState="53" LastErrorCodeDesc="" SPVersion="ATM_LAO_LDB_GRG XFS SP4.0 PR3 WITH SP11_B643_20181217" DriverVersion="V3.4.9.1" FirmwareVersion="V1.3" CommandString="GetStatusInfo" />
+      <Manual RecoverFail="0" />
+    </Information>
+    <Event>
+    </Event>
+    <Capability>
+      <Encryptor KeyCheckModes="2" IsSuccess="True" IsFailure="False" Cancelled="False" UserState="53" ExtraCapInfo="" REMOTE_KEY_SCHEME="" CommandString="GetCapabilityInfo" />
+    </Capability>
+  </Device>
+  <Calculate>
+    <Status fitness="0" RKL_SIG="0">
+    </Status>
+  </Calculate>
+  <Configuration>
+    <Item source="/Root/Device/Information/Manual" ID="/Root/Calculate/Status/@fitness" default="0">
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="1" operator="==">
+          <xmlvariable value="/Root/Device/Information/Manual/@RecoverFail" />
+        </Condition>
+        <Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+          <xmlvariable value="/Root/Device/Information/Encryptor/@DeviceState" />
+        </Condition>
+      </Result>
+    </Item>
+    <!--
+		<Item source="/Root/Device/Information/Encryptor" ID="/Root/Calculate/Status/@fitness" default="0">
+			<Result value="4">
+				<Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+					<xmlvariable value="/Root/Device/Information/Encryptor/@DeviceState"/>
+				</Condition>
+			</Result>
+		</Item>
+		-->
+    <Item source="/Root/Device/Information/Encryptor" ID="/Root/Calculate/Status/@RKL_SIG" default="0">
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="0x00000001|0x00000003" operator="match">
+          <xmlvariable value="/Root/Device/Capability/Encryptor/@REMOTE_KEY_SCHEME" />
+        </Condition>
+      </Result>
+    </Item>
+  </Configuration>
+  <Signal>
+    <Item value="/Root/Calculate/Status/@fitness" />
+  </Signal>
+  <DataEvent>
+    <Item ID="105" enable="1" />
+  </DataEvent>
+</Root>

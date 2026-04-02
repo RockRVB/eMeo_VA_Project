@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--  Note Definition (Bunch Note Acceptor)
+		*  This solicited status message is ent to central in response to a send note definition terminal command message
+		*  (a command code of '7' with a command modifier of '8'). 
+		-->
+  <NoteDefinitions>
+    <Item key="g1" value="N" size="1" restriction="Mandatory" />
+    <!--  Accepted Bills Identifier 'A'
+		* Bill type information. Up to a maximum of 50 bill types.  
+		-->
+    <Item key="g2_1" value="A" size="1" restriction="Mandatory" />
+    <Item key="g2_2" value="[SolicitedStatus.TerminalState.BillTypeInfo]" size="var" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.ECB6]" />
+    <!--  Data Identifier .-->
+    <Item key="g3" value="C" size="1" restriction="[OptionCtrl.ECB6]" />
+    <!--  Data.-->
+    <Item key="g3-1" value="[SolicitedStatus.TerminalState.ECB6Info]" size="var" restriction="[OptionCtrl.ECB6]" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.ECB6]" />
+    <!--  Data Identifier .-->
+    <Item key="g3-2" value="D" size="1" restriction="[OptionCtrl.ECB6]" />
+    <!--  Data.-->
+    <Item key="g3-3" value="[SolicitedStatus.TerminalState.ECB6Info]" size="var" restriction="[OptionCtrl.ECB6]" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]" />
+    <!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+    <Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]" />
+  </NoteDefinitions>
+</Root>

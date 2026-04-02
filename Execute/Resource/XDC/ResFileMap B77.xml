@@ -1,0 +1,1149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Comments are shown as below
+  ****************************************************************************************************
+	* All resources would be stored in folders according to its media type
+	* Logoes are stored in image, the ID defined for logoes are added with a pre-fix of "logo-"
+	* For example, logo with Id of "09" is configured as:
+	* logo-09 = "logo_small.jpeg"
+	
+	* Format:
+	* resource_id = file_name.extension | Fullscreen; Loop; Centeral; Resize(width, height); Orignal; Single
+	* Examples:
+	* 000 = 000.jpg | f                 => stretch to right/bottom from cursor's position
+	* 010 = 010.mpeg | l ; f            => play in infinite loops in full screen mode
+	* 100 = 100.jpeg | r(100, 125)      => resize
+	* 110 = 110.mpeg | r(200, 125); c   => 110.mpeg is displayed at the center of screen after resized to width/height of 200/125
+	* 111 = 111.jpeg | o                => use orignal size
+	* beep = beep.wav | l               => beep.wav is played repeatedly till the current screen is switched out
+	* A009 = DAUDIO09.WAV | s           => beep.wav is not played repeatly even all medias are set to be played repeatedly
+	
+	* A special resource "default" is used to set default configurations that is generally applicable for all resources.
+	* Example:
+	* default = default.jpg | f; l      => by default, all resources are fullscreen, and loop
+	
+	* remarks:
+	* * Centeral is not supported yet;
+
+	* =============================================================
+	* standard resources referenced from screen scripts
+	* =============================================================
+  *****************************************************************************************************
+-->
+<Root>
+  <MapSetting>
+    <!-- Comment:
+  	  	* =============================================================
+				* standard resources referenced from screen scripts
+				* =============================================================
+			-->
+    <Item key="default" value="default.ext | f" />
+    <!-- Comment:
+				* =============================================================
+				* Reserved/Software defined resources
+				* =============================================================
+			 -->
+    <Item key="G00" value="G00.BMP  | O" />
+    <Item key="G01" value="G01.BMP  | O" />
+    <Item key="G02" value="G02.BMP	| O" />
+    <Item key="G03" value="G03.BMP  | O" />
+    <Item key="G04" value="G04.BMP	| O" />
+    <Item key="G05" value="G05.BMP  | O" />
+    <Item key="G06" value="G06.BMP  | O" />
+    <Item key="G07" value="G07.BMP  | O" />
+    <Item key="G08" value="G08.BMP  | O" />
+    <Item key="G09" value="G09.BMP	| O" />
+    <Item key="G99" value="G99.BMP	| O" />
+    <Item key="L00" value="L00.PNG   | f" />
+    <Item key="L01" value="L01.JPG    | f" />
+    <Item key="L02" value="L02.SWF   | f" />
+    <Item key="L03" value="L03.JPG    | O" />
+    <Item key="L04" value="L04.JPG    |f" />
+    <Item key="L05" value="L05.BMP    | O" />
+    <Item key="L06" value="L06.BMP    | O" />
+    <Item key="L07" value="L07.BMP    | O" />
+    <Item key="L08" value="L08.BMP	| O" />
+    <Item key="L09" value="L09.BMP	| O" />
+    <Item key="L11" value="balance.PNG	| O" />
+    <Item key="L12" value="Bk1.PNG	| f" />
+    <Item key="L13" value="L13.PNG | f" />
+    <Item key="L14" value="Btn_correct_right_dw.BMP	| O" />
+    <Item key="L15" value="cancel.BMP	| O" />
+    <Item key="L16" value="clear.BMP	| O" />
+    <Item key="L17" value="correct.BMP	| O" />
+    <Item key="L18" value="display.BMP	| O" />
+    <Item key="L19" value="inquiry.BMP	| O" />
+    <Item key="L20" value="large_notes.BMP	| O" />
+    <Item key="L21" value="mixed_notes.BMP	| O" />
+    <Item key="L22" value="no.BMP	| O" />
+    <Item key="L23" value="receipt.BMP	| O" />
+    <Item key="L24" value="small_notes.BMP	| O" />
+    <Item key="L25" value="statement.BMP	| O" />
+    <Item key="L26" value="withdrawal.BMP	| O" />
+    <Item key="L27" value="yes.BMP	| O" />
+    <!-- Comment:
+				* =============================================================
+				* Reserved screen scripts
+				* =============================================================
+			 -->
+    <Item key="10001" value="10001.txt" />
+    <Item key="10002" value="10002.txt" />
+    <Item key="10003" value="10002.txt" />
+    <Item key="12000" value="C00.txt" />
+    <Item key="12001" value="C01.txt" />
+    <Item key="12002" value="C02.txt" />
+    <Item key="12003" value="C03.txt" />
+    <Item key="12006" value="C06.txt" />
+    <!-- Comment:
+				* =============================================================
+				* Predfined voices
+				* =============================================================
+			 -->
+    <!-- VoiceProcessing -->
+    <Item key="A001" value="DAUDIO01.WAV" />
+    <!-- InputAmount -->
+    <Item key="A002" value="DAUDIO02.WAV" />
+    <!-- EJCard -->
+    <Item key="A003" value="DAUDIO03.WAV" />
+    <!-- SelectTypeFDK4 -->
+    <Item key="A004" value="DAUDIO04.WAV" />
+    <!-- SelectTypeFDK8 -->
+    <Item key="A005" value="DAUDIO04.WAV" />
+    <!-- TakeCash -->
+    <Item key="A006" value="DAUDIO06.WAV" />
+    <!-- InputPassword -->
+    <Item key="A007" value="DAUDIO07.WAV" />
+    <!-- TransactionEnd -->
+    <Item key="A008" value="DAUDIO08.WAV" />
+    <!-- TakeRcpt -->
+    <Item key="A009" value="DAUDIO03.WAV" />
+    <!-- ? -->
+    <Item key="A010" value="DAUDIO10.WAV" />
+    <!-- Timeout Beep Voice -->
+    <Item key="A011" value="BEEP.WAV | l" />
+    <Item key="A012" value="BEEP2.WAV | l" />
+    <Item key="A01010" value=" Icon_ck_001.mp3|l;r(100, 200)" />
+    <!-- Comment:
+		* =============================================================
+		* Video/Voice/Flash file setting
+		* =============================================================
+		 -->
+    <Item key="100" value="pic398.mpg | f; l" />
+    <!-- Comment:
+		* =============================================================
+		* Picture file setting
+		* =============================================================
+		 -->
+    <Item key="000" value="pic000.jpg" />
+    <Item key="001" value="pic001.jpg" />
+    <Item key="002" value="pic002.jpg" />
+    <Item key="003" value="pic003.jpg" />
+    <Item key="004" value="pic004.jpg" />
+    <Item key="005" value="pic005.jpg" />
+    <Item key="006" value="pic006.jpg" />
+    <Item key="007" value="pic007.jpg" />
+    <Item key="008" value="pic008.jpg" />
+    <Item key="009" value="pic009.jpg" />
+    <Item key="010" value="pic010.jpg" />
+    <Item key="011" value="pic011.jpg" />
+    <Item key="012" value="pic012.jpg" />
+    <Item key="013" value="pic013.jpg" />
+    <Item key="014" value="pic014.jpg" />
+    <Item key="015" value="pic015.jpg" />
+    <Item key="016" value="pic016.jpg" />
+    <Item key="017" value="pic017.jpg" />
+    <Item key="018" value="pic018.jpg" />
+    <Item key="019" value="pic019.jpg" />
+    <Item key="020" value="pic020.jpg" />
+    <Item key="021" value="pic021.jpg" />
+    <Item key="022" value="pic022.jpg" />
+    <Item key="023" value="pic023.jpg" />
+    <Item key="024" value="pic024.jpg" />
+    <Item key="025" value="pic025.jpg" />
+    <Item key="026" value="pic026.jpg" />
+    <Item key="027" value="pic027.jpg" />
+    <Item key="028" value="pic028.jpg" />
+    <Item key="029" value="pic029.jpg" />
+    <Item key="030" value="pic030.jpg" />
+    <Item key="031" value="pic031.jpg" />
+    <Item key="032" value="pic032.jpg" />
+    <Item key="033" value="pic033.jpg" />
+    <Item key="034" value="pic034.jpg" />
+    <Item key="035" value="pic035.jpg" />
+    <Item key="036" value="pic036.jpg" />
+    <Item key="037" value="pic037.jpg" />
+    <Item key="038" value="pic038.jpg" />
+    <Item key="039" value="pic039.jpg" />
+    <Item key="040" value="pic040.jpg" />
+    <Item key="041" value="pic041.jpg" />
+    <Item key="042" value="pic042.jpg" />
+    <Item key="043" value="pic043.jpg" />
+    <Item key="044" value="pic044.jpg" />
+    <Item key="045" value="pic045.jpg" />
+    <Item key="046" value="pic046.jpg" />
+    <Item key="047" value="pic047.jpg" />
+    <Item key="048" value="pic048.jpg" />
+    <Item key="049" value="pic049.jpg" />
+    <Item key="050" value="pic050.jpg" />
+    <Item key="051" value="pic051.jpg" />
+    <Item key="052" value="pic052.jpg" />
+    <Item key="053" value="pic053.jpg" />
+    <Item key="054" value="pic054.jpg" />
+    <Item key="055" value="pic055.jpg" />
+    <Item key="056" value="pic056.jpg" />
+    <Item key="057" value="pic057.jpg" />
+    <Item key="058" value="pic058.jpg" />
+    <Item key="059" value="pic059.jpg" />
+    <Item key="060" value="pic060.jpg" />
+    <Item key="061" value="pic061.jpg" />
+    <Item key="062" value="pic062.jpg" />
+    <Item key="063" value="pic063.jpg" />
+    <Item key="064" value="pic064.jpg" />
+    <Item key="065" value="pic065.jpg" />
+    <Item key="066" value="pic066.jpg" />
+    <Item key="067" value="pic067.jpg" />
+    <Item key="068" value="pic068.jpg" />
+    <Item key="069" value="pic069.jpg" />
+    <Item key="070" value="pic070.jpg" />
+    <Item key="071" value="pic071.jpg" />
+    <Item key="072" value="pic072.jpg" />
+    <Item key="073" value="pic073.jpg" />
+    <Item key="074" value="pic074.jpg" />
+    <Item key="075" value="pic075.jpg" />
+    <Item key="076" value="pic076.jpg" />
+    <Item key="077" value="pic077.jpg" />
+    <Item key="078" value="pic078.jpg" />
+    <Item key="079" value="pic079.jpg" />
+    <Item key="080" value="pic080.jpg" />
+    <Item key="081" value="pic081.jpg" />
+    <Item key="082" value="pic082.jpg" />
+    <Item key="083" value="pic083.jpg" />
+    <Item key="084" value="pic084.jpg" />
+    <Item key="085" value="pic085.jpg" />
+    <Item key="086" value="pic086.jpg" />
+    <Item key="087" value="pic087.jpg" />
+    <Item key="088" value="pic088.jpg" />
+    <Item key="089" value="pic089.jpg" />
+    <Item key="090" value="pic090.jpg" />
+    <Item key="091" value="pic091.jpg" />
+    <Item key="092" value="pic092.jpg" />
+    <Item key="093" value="pic093.jpg" />
+    <Item key="094" value="pic094.jpg" />
+    <Item key="095" value="pic095.jpg" />
+    <Item key="096" value="pic096.jpg" />
+    <Item key="097" value="pic097.jpg" />
+    <Item key="098" value="pic098.jpg" />
+    <Item key="099" value="pic099.jpg" />
+    <Item key="100" value="pic100.jpg" />
+    <Item key="101" value="pic101.jpg" />
+    <Item key="102" value="pic102.jpg" />
+    <Item key="103" value="pic103.jpg" />
+    <Item key="104" value="pic104.jpg" />
+    <Item key="105" value="pic105.jpg" />
+    <Item key="106" value="pic106.jpg" />
+    <Item key="107" value="pic107.jpg" />
+    <Item key="108" value="pic108.jpg" />
+    <Item key="109" value="pic109.jpg" />
+    <Item key="110" value="pic110.jpg" />
+    <Item key="111" value="pic111.jpg" />
+    <Item key="112" value="pic112.jpg" />
+    <Item key="113" value="pic113.jpg" />
+    <Item key="114" value="pic114.jpg" />
+    <Item key="115" value="pic115.jpg" />
+    <Item key="116" value="pic116.jpg" />
+    <Item key="117" value="pic117.jpg" />
+    <Item key="118" value="pic118.jpg" />
+    <Item key="119" value="pic119.jpg" />
+    <Item key="120" value="pic120.jpg" />
+    <Item key="121" value="pic121.jpg" />
+    <Item key="122" value="pic122.jpg" />
+    <Item key="123" value="pic123.jpg" />
+    <Item key="124" value="pic124.jpg" />
+    <Item key="125" value="pic125.jpg" />
+    <Item key="126" value="pic126.jpg" />
+    <Item key="127" value="pic127.jpg" />
+    <Item key="128" value="pic128.jpg" />
+    <Item key="129" value="pic129.jpg" />
+    <Item key="130" value="pic130.jpg" />
+    <Item key="131" value="pic131.jpg" />
+    <Item key="132" value="pic132.jpg" />
+    <Item key="133" value="pic133.jpg" />
+    <Item key="134" value="pic134.jpg" />
+    <Item key="135" value="pic135.jpg" />
+    <Item key="136" value="pic136.jpg" />
+    <Item key="137" value="pic137.jpg" />
+    <Item key="138" value="pic138.jpg" />
+    <Item key="139" value="pic139.jpg" />
+    <Item key="140" value="pic140.jpg" />
+    <Item key="141" value="pic141.jpg" />
+    <Item key="142" value="pic142.jpg" />
+    <Item key="143" value="pic143.jpg" />
+    <Item key="144" value="pic144.jpg" />
+    <Item key="145" value="pic145.jpg" />
+    <Item key="146" value="pic146.jpg" />
+    <Item key="147" value="pic147.jpg" />
+    <Item key="148" value="pic148.jpg" />
+    <Item key="149" value="pic149.jpg" />
+    <Item key="150" value="pic150.jpg" />
+    <Item key="151" value="pic151.jpg" />
+    <Item key="152" value="pic152.jpg" />
+    <Item key="153" value="pic153.jpg" />
+    <Item key="154" value="pic154.jpg" />
+    <Item key="155" value="pic155.jpg" />
+    <Item key="156" value="pic156.jpg" />
+    <Item key="157" value="pic157.jpg" />
+    <Item key="158" value="pic158.jpg" />
+    <Item key="159" value="pic159.jpg" />
+    <Item key="160" value="pic160.jpg" />
+    <Item key="161" value="pic161.jpg" />
+    <Item key="162" value="pic162.jpg" />
+    <Item key="163" value="pic163.jpg" />
+    <Item key="164" value="pic164.jpg" />
+    <Item key="165" value="pic165.jpg" />
+    <Item key="166" value="pic166.jpg" />
+    <Item key="167" value="pic167.jpg" />
+    <Item key="168" value="pic168.jpg" />
+    <Item key="169" value="pic169.jpg" />
+    <Item key="170" value="pic170.jpg" />
+    <Item key="171" value="pic171.jpg" />
+    <Item key="172" value="pic172.jpg" />
+    <Item key="173" value="pic173.jpg" />
+    <Item key="174" value="pic174.jpg" />
+    <Item key="175" value="pic175.jpg" />
+    <Item key="176" value="pic176.jpg" />
+    <Item key="177" value="pic177.jpg" />
+    <Item key="178" value="pic178.jpg" />
+    <Item key="179" value="pic179.jpg" />
+    <Item key="180" value="pic180.jpg" />
+    <Item key="181" value="pic181.jpg" />
+    <Item key="182" value="pic182.jpg" />
+    <Item key="183" value="pic183.jpg" />
+    <Item key="184" value="pic184.jpg" />
+    <Item key="185" value="pic185.jpg" />
+    <Item key="186" value="pic186.jpg" />
+    <Item key="187" value="pic187.jpg" />
+    <Item key="188" value="pic188.jpg" />
+    <Item key="189" value="pic189.jpg" />
+    <Item key="190" value="pic190.jpg" />
+    <Item key="191" value="pic191.jpg" />
+    <Item key="192" value="pic192.jpg" />
+    <Item key="193" value="pic193.jpg" />
+    <Item key="194" value="pic194.jpg" />
+    <Item key="195" value="pic195.jpg" />
+    <Item key="196" value="pic196.jpg" />
+    <Item key="197" value="pic197.jpg" />
+    <Item key="198" value="pic198.jpg" />
+    <Item key="199" value="pic199.jpg" />
+    <Item key="200" value="pic200.jpg" />
+    <Item key="201" value="pic201.jpg" />
+    <Item key="202" value="pic202.jpg" />
+    <Item key="203" value="pic203.jpg" />
+    <Item key="204" value="pic204.jpg" />
+    <Item key="205" value="pic205.jpg" />
+    <Item key="206" value="pic206.jpg" />
+    <Item key="207" value="pic207.jpg" />
+    <Item key="208" value="pic208.jpg" />
+    <Item key="209" value="pic209.jpg" />
+    <Item key="210" value="pic210.jpg" />
+    <Item key="211" value="pic211.jpg" />
+    <Item key="212" value="pic212.jpg" />
+    <Item key="213" value="pic213.jpg" />
+    <Item key="214" value="pic214.jpg" />
+    <Item key="215" value="pic215.jpg" />
+    <Item key="216" value="pic216.jpg" />
+    <Item key="217" value="pic217.jpg" />
+    <Item key="218" value="pic218.jpg" />
+    <Item key="219" value="pic219.jpg" />
+    <Item key="220" value="pic220.jpg" />
+    <Item key="221" value="pic221.jpg" />
+    <Item key="222" value="pic222.jpg" />
+    <Item key="223" value="pic223.jpg" />
+    <Item key="224" value="pic224.jpg" />
+    <Item key="225" value="pic225.jpg" />
+    <Item key="226" value="pic226.jpg" />
+    <Item key="227" value="pic227.jpg" />
+    <Item key="228" value="pic228.jpg" />
+    <Item key="229" value="pic229.jpg" />
+    <Item key="230" value="pic230.jpg" />
+    <Item key="231" value="pic231.jpg" />
+    <Item key="232" value="pic232.jpg" />
+    <Item key="233" value="pic233.jpg" />
+    <Item key="234" value="pic234.jpg" />
+    <Item key="235" value="pic235.jpg" />
+    <Item key="236" value="pic236.jpg" />
+    <Item key="237" value="pic237.jpg" />
+    <Item key="238" value="pic238.jpg" />
+    <Item key="239" value="pic239.jpg" />
+    <Item key="240" value="pic240.jpg" />
+    <Item key="241" value="pic241.jpg" />
+    <Item key="242" value="pic242.jpg" />
+    <Item key="243" value="pic243.jpg" />
+    <Item key="244" value="pic244.jpg" />
+    <Item key="245" value="pic245.jpg" />
+    <Item key="246" value="pic246.jpg" />
+    <Item key="247" value="pic247.jpg" />
+    <Item key="248" value="pic248.jpg" />
+    <Item key="249" value="pic249.jpg" />
+    <Item key="250" value="pic250.jpg" />
+    <Item key="251" value="pic251.jpg" />
+    <Item key="252" value="pic252.jpg" />
+    <Item key="253" value="pic253.jpg" />
+    <Item key="254" value="pic254.jpg" />
+    <Item key="255" value="pic255.jpg" />
+    <Item key="256" value="pic256.jpg" />
+    <Item key="257" value="pic257.jpg" />
+    <Item key="258" value="pic258.jpg" />
+    <Item key="259" value="pic259.jpg" />
+    <Item key="260" value="pic260.jpg" />
+    <Item key="261" value="pic261.jpg" />
+    <Item key="262" value="pic262.jpg" />
+    <Item key="263" value="pic263.jpg" />
+    <Item key="264" value="pic264.jpg" />
+    <Item key="265" value="pic265.jpg" />
+    <Item key="266" value="pic266.jpg" />
+    <Item key="267" value="pic267.jpg" />
+    <Item key="268" value="pic268.jpg" />
+    <Item key="269" value="pic269.jpg" />
+    <Item key="270" value="pic270.jpg" />
+    <Item key="271" value="pic271.jpg" />
+    <Item key="272" value="pic272.jpg" />
+    <Item key="273" value="pic273.jpg" />
+    <Item key="274" value="pic274.jpg" />
+    <Item key="275" value="pic275.jpg" />
+    <Item key="276" value="pic276.jpg" />
+    <Item key="277" value="pic277.jpg" />
+    <Item key="278" value="pic278.jpg" />
+    <Item key="279" value="pic279.jpg" />
+    <Item key="280" value="pic280.jpg" />
+    <Item key="281" value="pic281.jpg" />
+    <Item key="282" value="pic282.jpg" />
+    <Item key="283" value="pic283.jpg" />
+    <Item key="284" value="pic284.jpg" />
+    <Item key="285" value="pic285.jpg" />
+    <Item key="286" value="pic286.jpg" />
+    <Item key="287" value="pic287.jpg" />
+    <Item key="288" value="pic288.jpg" />
+    <Item key="289" value="pic289.jpg" />
+    <Item key="290" value="pic290.jpg" />
+    <Item key="291" value="pic291.jpg" />
+    <Item key="292" value="pic292.jpg" />
+    <Item key="293" value="pic293.jpg" />
+    <Item key="294" value="pic294.jpg" />
+    <Item key="295" value="pic295.jpg" />
+    <Item key="296" value="pic296.jpg" />
+    <Item key="297" value="pic297.jpg" />
+    <Item key="298" value="pic298.jpg" />
+    <Item key="299" value="pic299.jpg" />
+    <Item key="300" value="pic300.jpg" />
+    <Item key="301" value="pic301.jpg" />
+    <Item key="302" value="pic302.jpg" />
+    <Item key="303" value="pic303.jpg" />
+    <Item key="304" value="pic304.jpg" />
+    <Item key="305" value="pic305.jpg" />
+    <Item key="306" value="pic306.jpg" />
+    <Item key="307" value="pic307.jpg" />
+    <Item key="308" value="pic308.jpg" />
+    <Item key="309" value="pic309.jpg" />
+    <Item key="310" value="pic310.jpg" />
+    <Item key="311" value="pic311.jpg" />
+    <Item key="312" value="pic312.jpg" />
+    <Item key="313" value="pic313.jpg" />
+    <Item key="314" value="pic314.jpg" />
+    <Item key="315" value="pic315.jpg" />
+    <Item key="316" value="pic316.jpg" />
+    <Item key="317" value="pic317.jpg" />
+    <Item key="318" value="pic318.jpg" />
+    <Item key="319" value="pic319.jpg" />
+    <Item key="320" value="pic320.jpg" />
+    <Item key="321" value="pic321.jpg" />
+    <Item key="322" value="pic322.jpg" />
+    <Item key="323" value="pic323.jpg" />
+    <Item key="324" value="pic324.jpg" />
+    <Item key="325" value="pic325.jpg" />
+    <Item key="326" value="pic326.jpg" />
+    <Item key="327" value="pic327.jpg" />
+    <Item key="328" value="pic328.jpg" />
+    <Item key="329" value="pic329.jpg" />
+    <Item key="330" value="pic330.jpg" />
+    <Item key="331" value="pic331.jpg" />
+    <Item key="332" value="pic332.jpg" />
+    <Item key="333" value="pic333.jpg" />
+    <Item key="334" value="pic334.jpg" />
+    <Item key="335" value="pic335.jpg" />
+    <Item key="336" value="pic336.jpg" />
+    <Item key="337" value="pic337.jpg" />
+    <Item key="338" value="pic338.jpg" />
+    <Item key="339" value="pic339.jpg" />
+    <Item key="340" value="pic340.jpg" />
+    <Item key="341" value="pic341.jpg" />
+    <Item key="342" value="pic342.jpg" />
+    <Item key="343" value="pic343.jpg" />
+    <Item key="344" value="pic344.jpg" />
+    <Item key="345" value="pic345.jpg" />
+    <Item key="346" value="pic346.jpg" />
+    <Item key="347" value="pic347.jpg" />
+    <Item key="348" value="pic348.jpg" />
+    <Item key="349" value="pic349.jpg" />
+    <Item key="350" value="pic350.jpg" />
+    <Item key="351" value="pic351.jpg" />
+    <Item key="352" value="pic352.jpg" />
+    <Item key="353" value="pic353.jpg" />
+    <Item key="354" value="pic354.jpg" />
+    <Item key="355" value="pic355.jpg" />
+    <Item key="356" value="pic356.jpg" />
+    <Item key="357" value="pic357.jpg" />
+    <Item key="358" value="pic358.jpg" />
+    <Item key="359" value="pic359.jpg" />
+    <Item key="360" value="pic360.jpg" />
+    <Item key="361" value="pic361.jpg" />
+    <Item key="362" value="pic362.jpg" />
+    <Item key="363" value="pic363.jpg" />
+    <Item key="364" value="pic364.jpg" />
+    <Item key="365" value="pic365.jpg" />
+    <Item key="366" value="pic366.jpg" />
+    <Item key="367" value="pic367.jpg" />
+    <Item key="368" value="pic368.jpg" />
+    <Item key="369" value="pic369.jpg" />
+    <Item key="370" value="pic370.jpg" />
+    <Item key="371" value="pic371.jpg" />
+    <Item key="372" value="pic372.jpg" />
+    <Item key="373" value="pic373.jpg" />
+    <Item key="374" value="pic374.jpg" />
+    <Item key="375" value="pic375.jpg" />
+    <Item key="376" value="pic376.jpg" />
+    <Item key="377" value="pic377.jpg" />
+    <Item key="378" value="pic378.jpg" />
+    <Item key="379" value="pic379.jpg" />
+    <Item key="380" value="pic380.jpg" />
+    <Item key="381" value="pic381.jpg" />
+    <Item key="382" value="pic382.jpg" />
+    <Item key="383" value="pic383.jpg" />
+    <Item key="384" value="pic384.jpg" />
+    <Item key="385" value="pic385.jpg" />
+    <Item key="386" value="pic386.jpg" />
+    <Item key="387" value="pic387.jpg" />
+    <Item key="388" value="pic388.jpg" />
+    <Item key="389" value="pic389.jpg" />
+    <Item key="390" value="pic390.jpg" />
+    <Item key="391" value="pic391.jpg" />
+    <Item key="392" value="pic392.jpg" />
+    <Item key="393" value="pic393.jpg" />
+    <Item key="394" value="pic394.jpg" />
+    <Item key="395" value="pic395.jpg" />
+    <Item key="396" value="pic396.jpg" />
+    <Item key="397" value="pic397.jpg" />
+    <Item key="398" value="pic398.mpg | l ; f" />
+    <Item key="399" value="pic399.mpg | l ; f" />
+    <Item key="400" value="pic400.mpg | l ; f" />
+    <Item key="401" value="pic401.swf | l ; f" />
+    <Item key="402" value="pic402.swf | l ; f" />
+    <Item key="403" value="pic403.swf | l ; f" />
+    <Item key="404" value="pic404.jpg" />
+    <Item key="405" value="pic405.jpg" />
+    <Item key="406" value="pic406.jpg" />
+    <Item key="407" value="pic407.jpg" />
+    <Item key="408" value="pic408.jpg" />
+    <Item key="409" value="pic409.jpg" />
+    <Item key="410" value="pic410.jpg" />
+    <Item key="411" value="pic411.jpg" />
+    <Item key="412" value="pic412.jpg" />
+    <Item key="413" value="pic413.jpg" />
+    <Item key="414" value="pic414.jpg" />
+    <Item key="415" value="pic415.jpg" />
+    <Item key="416" value="pic416.jpg" />
+    <Item key="417" value="pic417.jpg" />
+    <Item key="418" value="pic418.jpg" />
+    <Item key="419" value="pic419.jpg" />
+    <Item key="420" value="pic420.jpg" />
+    <Item key="421" value="pic421.jpg" />
+    <Item key="422" value="pic422.jpg" />
+    <Item key="423" value="pic423.jpg" />
+    <Item key="424" value="pic424.jpg" />
+    <Item key="425" value="pic425.jpg" />
+    <Item key="426" value="pic426.jpg" />
+    <Item key="427" value="pic427.jpg" />
+    <Item key="428" value="pic428.jpg" />
+    <Item key="429" value="pic429.jpg" />
+    <Item key="430" value="pic430.jpg" />
+    <Item key="431" value="pic431.jpg" />
+    <Item key="432" value="pic432.jpg" />
+    <Item key="433" value="pic433.jpg" />
+    <Item key="434" value="pic434.jpg" />
+    <Item key="435" value="pic435.jpg" />
+    <Item key="436" value="pic436.jpg" />
+    <Item key="437" value="pic437.jpg" />
+    <Item key="438" value="pic438.jpg" />
+    <Item key="439" value="pic439.jpg" />
+    <Item key="440" value="pic440.jpg" />
+    <Item key="441" value="pic441.jpg" />
+    <Item key="442" value="pic442.jpg" />
+    <Item key="443" value="pic443.jpg" />
+    <Item key="444" value="pic444.jpg" />
+    <Item key="445" value="pic445.jpg" />
+    <Item key="446" value="pic446.jpg" />
+    <Item key="447" value="pic447.jpg" />
+    <Item key="448" value="pic448.jpg" />
+    <Item key="449" value="pic449.jpg" />
+    <Item key="450" value="pic450.jpg" />
+    <Item key="451" value="pic451.jpg" />
+    <Item key="452" value="pic452.jpg" />
+    <Item key="453" value="pic453.jpg" />
+    <Item key="454" value="pic454.jpg" />
+    <Item key="455" value="pic455.jpg" />
+    <Item key="456" value="pic456.jpg" />
+    <Item key="457" value="pic457.jpg" />
+    <Item key="458" value="pic458.jpg" />
+    <Item key="459" value="pic459.jpg" />
+    <Item key="460" value="pic460.jpg" />
+    <Item key="461" value="pic461.jpg" />
+    <Item key="462" value="pic462.jpg" />
+    <Item key="463" value="pic463.jpg" />
+    <Item key="464" value="pic464.jpg" />
+    <Item key="465" value="pic465.jpg" />
+    <Item key="466" value="pic466.jpg" />
+    <Item key="467" value="pic467.jpg" />
+    <Item key="468" value="pic468.jpg" />
+    <Item key="469" value="pic469.jpg" />
+    <Item key="470" value="pic470.jpg" />
+    <Item key="471" value="pic471.jpg" />
+    <Item key="472" value="pic472.jpg" />
+    <Item key="473" value="pic473.jpg" />
+    <Item key="474" value="pic474.jpg" />
+    <Item key="475" value="pic475.jpg" />
+    <Item key="476" value="pic476.jpg" />
+    <Item key="477" value="pic477.jpg" />
+    <Item key="478" value="pic478.jpg" />
+    <Item key="479" value="pic479.jpg" />
+    <Item key="480" value="pic480.jpg" />
+    <Item key="481" value="pic481.jpg" />
+    <Item key="482" value="pic482.jpg" />
+    <Item key="483" value="pic483.jpg" />
+    <Item key="484" value="pic484.jpg" />
+    <Item key="485" value="pic485.jpg" />
+    <Item key="486" value="pic486.jpg" />
+    <Item key="487" value="pic487.jpg" />
+    <Item key="488" value="pic488.jpg" />
+    <Item key="489" value="pic489.jpg" />
+    <Item key="490" value="pic490.jpg" />
+    <Item key="491" value="pic491.jpg" />
+    <Item key="492" value="pic492.jpg" />
+    <Item key="493" value="pic493.jpg" />
+    <Item key="494" value="pic494.jpg" />
+    <Item key="495" value="pic495.jpg" />
+    <Item key="496" value="pic496.jpg" />
+    <Item key="497" value="pic497.jpg" />
+    <Item key="498" value="pic498.jpg" />
+    <Item key="499" value="pic499.jpg" />
+    <Item key="500" value="pic500.jpg" />
+    <Item key="501" value="pic501.jpg" />
+    <Item key="502" value="pic502.jpg" />
+    <Item key="503" value="pic503.jpg" />
+    <Item key="504" value="pic504.jpg" />
+    <Item key="505" value="pic505.jpg" />
+    <Item key="506" value="pic506.jpg" />
+    <Item key="507" value="pic507.jpg" />
+    <Item key="508" value="pic508.jpg" />
+    <Item key="509" value="pic509.jpg" />
+    <Item key="510" value="pic510.jpg" />
+    <Item key="511" value="pic511.jpg" />
+    <Item key="512" value="pic512.jpg" />
+    <Item key="513" value="pic513.jpg" />
+    <Item key="514" value="pic514.jpg" />
+    <Item key="515" value="pic515.jpg" />
+    <Item key="516" value="pic516.jpg" />
+    <Item key="517" value="pic517.jpg" />
+    <Item key="518" value="pic518.jpg" />
+    <Item key="519" value="pic519.jpg" />
+    <Item key="520" value="pic520.jpg" />
+    <Item key="521" value="pic521.jpg" />
+    <Item key="522" value="pic522.jpg" />
+    <Item key="523" value="pic523.jpg" />
+    <Item key="524" value="pic524.jpg" />
+    <Item key="525" value="pic525.jpg" />
+    <Item key="526" value="pic526.jpg" />
+    <Item key="527" value="pic527.jpg" />
+    <Item key="528" value="pic528.jpg" />
+    <Item key="529" value="pic529.jpg" />
+    <Item key="530" value="pic530.jpg" />
+    <Item key="531" value="pic531.jpg" />
+    <Item key="532" value="pic532.jpg" />
+    <Item key="533" value="pic533.jpg" />
+    <Item key="534" value="pic534.jpg" />
+    <Item key="535" value="pic535.jpg" />
+    <Item key="536" value="pic536.jpg" />
+    <Item key="537" value="pic537.jpg" />
+    <Item key="538" value="pic538.jpg" />
+    <Item key="539" value="pic539.jpg" />
+    <Item key="540" value="pic540.jpg" />
+    <Item key="541" value="pic541.jpg" />
+    <Item key="542" value="pic542.jpg" />
+    <Item key="543" value="pic543.jpg" />
+    <Item key="544" value="pic544.jpg" />
+    <Item key="545" value="pic545.jpg" />
+    <Item key="546" value="pic546.jpg" />
+    <Item key="547" value="pic547.jpg" />
+    <Item key="548" value="pic548.jpg" />
+    <Item key="549" value="pic549.jpg" />
+    <Item key="550" value="pic550.jpg" />
+    <Item key="551" value="pic551.jpg" />
+    <Item key="552" value="pic552.jpg" />
+    <Item key="553" value="pic553.jpg" />
+    <Item key="554" value="pic554.jpg" />
+    <Item key="555" value="pic555.jpg" />
+    <Item key="556" value="pic556.jpg" />
+    <Item key="557" value="pic557.jpg" />
+    <Item key="558" value="pic558.jpg" />
+    <Item key="559" value="pic559.jpg" />
+    <Item key="560" value="pic560.jpg" />
+    <Item key="561" value="pic561.jpg" />
+    <Item key="562" value="pic562.jpg" />
+    <Item key="563" value="pic563.jpg" />
+    <Item key="564" value="pic564.jpg" />
+    <Item key="565" value="pic565.jpg" />
+    <Item key="566" value="pic566.jpg" />
+    <Item key="567" value="pic567.jpg" />
+    <Item key="568" value="pic568.jpg" />
+    <Item key="569" value="pic569.jpg" />
+    <Item key="570" value="pic570.jpg" />
+    <Item key="571" value="pic571.jpg" />
+    <Item key="572" value="pic572.jpg" />
+    <Item key="573" value="pic573.jpg" />
+    <Item key="574" value="pic574.jpg" />
+    <Item key="575" value="pic575.jpg" />
+    <Item key="576" value="pic576.jpg" />
+    <Item key="577" value="pic577.jpg" />
+    <Item key="578" value="pic578.jpg" />
+    <Item key="579" value="pic579.jpg" />
+    <Item key="580" value="pic580.jpg" />
+    <Item key="581" value="pic581.jpg" />
+    <Item key="582" value="pic582.jpg" />
+    <Item key="583" value="pic583.jpg" />
+    <Item key="584" value="pic584.jpg" />
+    <Item key="585" value="pic585.jpg" />
+    <Item key="586" value="pic586.jpg" />
+    <Item key="587" value="pic587.jpg" />
+    <Item key="588" value="pic588.jpg" />
+    <Item key="589" value="pic589.jpg" />
+    <Item key="590" value="pic590.jpg" />
+    <Item key="591" value="pic591.jpg" />
+    <Item key="592" value="pic592.jpg" />
+    <Item key="593" value="pic593.jpg" />
+    <Item key="594" value="pic594.jpg" />
+    <Item key="595" value="pic595.jpg" />
+    <Item key="596" value="pic596.jpg" />
+    <Item key="597" value="pic597.jpg" />
+    <Item key="598" value="pic598.jpg" />
+    <Item key="599" value="pic599.jpg" />
+    <Item key="600" value="pic600.jpg" />
+    <Item key="601" value="pic601.jpg" />
+    <Item key="602" value="pic602.jpg" />
+    <Item key="603" value="pic603.jpg" />
+    <Item key="604" value="pic604.jpg" />
+    <Item key="605" value="pic605.jpg" />
+    <Item key="606" value="pic606.jpg" />
+    <Item key="607" value="pic607.jpg" />
+    <Item key="608" value="pic608.jpg" />
+    <Item key="609" value="pic609.jpg" />
+    <Item key="610" value="pic610.jpg" />
+    <Item key="611" value="pic611.jpg" />
+    <Item key="612" value="pic612.jpg" />
+    <Item key="613" value="pic613.jpg" />
+    <Item key="614" value="pic614.jpg" />
+    <Item key="615" value="pic615.jpg" />
+    <Item key="616" value="pic616.jpg" />
+    <Item key="617" value="pic617.jpg" />
+    <Item key="618" value="pic618.jpg" />
+    <Item key="619" value="pic619.jpg" />
+    <Item key="620" value="pic620.jpg" />
+    <Item key="621" value="pic621.jpg" />
+    <Item key="622" value="pic622.jpg" />
+    <Item key="623" value="pic623.jpg" />
+    <Item key="624" value="pic624.jpg" />
+    <Item key="625" value="pic625.jpg" />
+    <Item key="626" value="pic626.jpg" />
+    <Item key="627" value="pic627.jpg" />
+    <Item key="628" value="pic628.jpg" />
+    <Item key="629" value="pic629.jpg" />
+    <Item key="630" value="pic630.jpg" />
+    <Item key="631" value="pic631.jpg" />
+    <Item key="632" value="pic632.jpg" />
+    <Item key="633" value="pic633.jpg" />
+    <Item key="634" value="pic634.jpg" />
+    <Item key="635" value="pic635.jpg" />
+    <Item key="636" value="pic636.jpg" />
+    <Item key="637" value="pic637.jpg" />
+    <Item key="638" value="pic638.jpg" />
+    <Item key="639" value="pic639.jpg" />
+    <Item key="640" value="pic640.jpg" />
+    <Item key="641" value="pic641.jpg" />
+    <Item key="642" value="pic642.jpg" />
+    <Item key="643" value="pic643.jpg" />
+    <Item key="644" value="pic644.jpg" />
+    <Item key="645" value="pic645.jpg" />
+    <Item key="646" value="pic646.jpg" />
+    <Item key="647" value="pic647.jpg" />
+    <Item key="648" value="pic648.jpg" />
+    <Item key="649" value="pic649.jpg" />
+    <Item key="650" value="pic650.jpg" />
+    <Item key="651" value="pic651.jpg" />
+    <Item key="652" value="pic652.jpg" />
+    <Item key="653" value="pic653.jpg" />
+    <Item key="654" value="pic654.jpg" />
+    <Item key="655" value="pic655.jpg" />
+    <Item key="656" value="pic656.jpg" />
+    <Item key="657" value="pic657.jpg" />
+    <Item key="658" value="pic658.jpg" />
+    <Item key="659" value="pic659.jpg" />
+    <Item key="660" value="pic660.jpg" />
+    <Item key="661" value="pic661.jpg" />
+    <Item key="662" value="pic662.jpg" />
+    <Item key="663" value="pic663.jpg" />
+    <Item key="664" value="pic664.jpg" />
+    <Item key="665" value="pic665.jpg" />
+    <Item key="666" value="pic666.jpg" />
+    <Item key="667" value="pic667.jpg" />
+    <Item key="668" value="pic668.jpg" />
+    <Item key="669" value="pic669.jpg" />
+    <Item key="670" value="pic670.jpg" />
+    <Item key="671" value="pic671.jpg" />
+    <Item key="672" value="pic672.jpg" />
+    <Item key="673" value="pic673.jpg" />
+    <Item key="674" value="pic674.jpg" />
+    <Item key="675" value="pic675.jpg" />
+    <Item key="676" value="pic676.jpg" />
+    <Item key="677" value="pic677.jpg" />
+    <Item key="678" value="pic678.jpg" />
+    <Item key="679" value="pic679.jpg" />
+    <Item key="680" value="pic680.jpg" />
+    <Item key="681" value="pic681.jpg" />
+    <Item key="682" value="pic682.jpg" />
+    <Item key="683" value="pic683.jpg" />
+    <Item key="684" value="pic684.jpg" />
+    <Item key="685" value="pic685.jpg" />
+    <Item key="686" value="pic686.jpg" />
+    <Item key="687" value="pic687.jpg" />
+    <Item key="688" value="pic688.jpg" />
+    <Item key="689" value="pic689.jpg" />
+    <Item key="690" value="pic690.jpg" />
+    <Item key="691" value="pic691.jpg" />
+    <Item key="692" value="pic692.jpg" />
+    <Item key="693" value="pic693.jpg" />
+    <Item key="694" value="pic694.jpg" />
+    <Item key="695" value="pic695.jpg" />
+    <Item key="696" value="pic696.jpg" />
+    <Item key="697" value="pic697.jpg" />
+    <Item key="698" value="pic698.jpg" />
+    <Item key="699" value="pic699.jpg" />
+    <Item key="700" value="pic700.jpg" />
+    <Item key="701" value="pic701.jpg" />
+    <Item key="702" value="pic702.jpg" />
+    <Item key="703" value="pic703.jpg" />
+    <Item key="704" value="pic704.jpg" />
+    <Item key="705" value="pic705.jpg" />
+    <Item key="706" value="pic706.jpg" />
+    <Item key="707" value="pic707.jpg" />
+    <Item key="708" value="pic708.jpg" />
+    <Item key="709" value="pic709.jpg" />
+    <Item key="710" value="pic710.jpg" />
+    <Item key="711" value="pic711.jpg" />
+    <Item key="712" value="pic712.jpg" />
+    <Item key="713" value="pic713.jpg" />
+    <Item key="714" value="pic714.jpg" />
+    <Item key="715" value="pic715.jpg" />
+    <Item key="716" value="pic716.jpg" />
+    <Item key="717" value="pic717.jpg" />
+    <Item key="718" value="pic718.jpg" />
+    <Item key="719" value="pic719.jpg" />
+    <Item key="720" value="pic720.jpg" />
+    <Item key="721" value="pic721.jpg" />
+    <Item key="722" value="pic722.jpg" />
+    <Item key="723" value="pic723.jpg" />
+    <Item key="724" value="pic724.jpg" />
+    <Item key="725" value="pic725.jpg" />
+    <Item key="726" value="pic726.jpg" />
+    <Item key="727" value="pic727.jpg" />
+    <Item key="728" value="pic728.jpg" />
+    <Item key="729" value="pic729.jpg" />
+    <Item key="730" value="pic730.jpg" />
+    <Item key="731" value="pic731.jpg" />
+    <Item key="732" value="pic732.jpg" />
+    <Item key="733" value="pic733.jpg" />
+    <Item key="734" value="pic734.jpg" />
+    <Item key="735" value="pic735.jpg" />
+    <Item key="736" value="pic736.jpg" />
+    <Item key="737" value="pic737.jpg" />
+    <Item key="738" value="pic738.jpg" />
+    <Item key="739" value="pic739.jpg" />
+    <Item key="740" value="pic740.jpg" />
+    <Item key="741" value="pic741.jpg" />
+    <Item key="742" value="pic742.jpg" />
+    <Item key="743" value="pic743.jpg" />
+    <Item key="744" value="pic744.jpg" />
+    <Item key="745" value="pic745.jpg" />
+    <Item key="746" value="pic746.jpg" />
+    <Item key="747" value="pic747.jpg" />
+    <Item key="748" value="pic748.jpg" />
+    <Item key="749" value="pic749.jpg" />
+    <Item key="750" value="pic750.jpg" />
+    <Item key="751" value="pic751.jpg" />
+    <Item key="752" value="pic752.jpg" />
+    <Item key="753" value="pic753.jpg" />
+    <Item key="754" value="pic754.jpg" />
+    <Item key="755" value="pic755.jpg" />
+    <Item key="756" value="pic756.jpg" />
+    <Item key="757" value="pic757.jpg" />
+    <Item key="758" value="pic758.jpg" />
+    <Item key="759" value="pic759.jpg" />
+    <Item key="760" value="pic760.jpg" />
+    <Item key="761" value="pic761.jpg" />
+    <Item key="762" value="pic762.jpg" />
+    <Item key="763" value="pic763.jpg" />
+    <Item key="764" value="pic764.jpg" />
+    <Item key="765" value="pic765.jpg" />
+    <Item key="766" value="pic766.jpg" />
+    <Item key="767" value="pic767.jpg" />
+    <Item key="768" value="pic768.jpg" />
+    <Item key="769" value="pic769.jpg" />
+    <Item key="770" value="pic770.jpg" />
+    <Item key="771" value="pic771.jpg" />
+    <Item key="772" value="pic772.jpg" />
+    <Item key="773" value="pic773.jpg" />
+    <Item key="774" value="pic774.jpg" />
+    <Item key="775" value="pic775.jpg" />
+    <Item key="776" value="pic776.jpg" />
+    <Item key="777" value="pic777.jpg" />
+    <Item key="778" value="pic778.jpg" />
+    <Item key="779" value="pic779.jpg" />
+    <Item key="780" value="pic780.jpg" />
+    <Item key="781" value="pic781.jpg" />
+    <Item key="782" value="pic782.jpg" />
+    <Item key="783" value="pic783.jpg" />
+    <Item key="784" value="pic784.jpg" />
+    <Item key="785" value="pic785.jpg" />
+    <Item key="786" value="pic786.jpg" />
+    <Item key="787" value="pic787.jpg" />
+    <Item key="788" value="pic788.jpg" />
+    <Item key="789" value="pic789.jpg" />
+    <Item key="790" value="pic790.jpg" />
+    <Item key="791" value="pic791.jpg" />
+    <Item key="792" value="pic792.jpg" />
+    <Item key="793" value="pic793.jpg" />
+    <Item key="794" value="pic794.jpg" />
+    <Item key="795" value="pic795.jpg" />
+    <Item key="796" value="pic796.jpg" />
+    <Item key="797" value="pic797.jpg" />
+    <Item key="798" value="pic798.jpg" />
+    <Item key="799" value="pic799.jpg" />
+    <Item key="800" value="pic800.jpg" />
+    <Item key="801" value="pic801.jpg" />
+    <Item key="802" value="pic802.jpg" />
+    <Item key="803" value="pic803.jpg" />
+    <Item key="804" value="pic804.jpg" />
+    <Item key="805" value="pic805.jpg" />
+    <Item key="806" value="pic806.jpg" />
+    <Item key="807" value="pic807.jpg" />
+    <Item key="808" value="pic808.jpg" />
+    <Item key="809" value="pic809.jpg" />
+    <Item key="810" value="pic810.jpg" />
+    <Item key="811" value="pic811.jpg" />
+    <Item key="812" value="pic812.jpg" />
+    <Item key="813" value="pic813.jpg" />
+    <Item key="814" value="pic814.jpg" />
+    <Item key="815" value="pic815.jpg" />
+    <Item key="816" value="pic816.jpg" />
+    <Item key="817" value="pic817.jpg" />
+    <Item key="818" value="pic818.jpg" />
+    <Item key="819" value="pic819.jpg" />
+    <Item key="820" value="pic820.jpg" />
+    <Item key="821" value="pic821.jpg" />
+    <Item key="822" value="pic822.jpg" />
+    <Item key="823" value="pic823.jpg" />
+    <Item key="824" value="pic824.jpg" />
+    <Item key="825" value="pic825.jpg" />
+    <Item key="826" value="pic826.jpg" />
+    <Item key="827" value="pic827.jpg" />
+    <Item key="828" value="pic828.jpg" />
+    <Item key="829" value="pic829.jpg" />
+    <Item key="830" value="pic830.jpg" />
+    <Item key="831" value="pic831.jpg" />
+    <Item key="832" value="pic832.jpg" />
+    <Item key="833" value="pic833.jpg" />
+    <Item key="834" value="pic834.jpg" />
+    <Item key="835" value="pic835.jpg" />
+    <Item key="836" value="pic836.jpg" />
+    <Item key="837" value="pic837.jpg" />
+    <Item key="838" value="pic838.jpg" />
+    <Item key="839" value="pic839.jpg" />
+    <Item key="840" value="pic840.jpg" />
+    <Item key="841" value="pic841.jpg" />
+    <Item key="842" value="pic842.jpg" />
+    <Item key="843" value="pic843.jpg" />
+    <Item key="844" value="pic844.jpg" />
+    <Item key="845" value="pic845.jpg" />
+    <Item key="846" value="pic846.jpg" />
+    <Item key="847" value="pic847.jpg" />
+    <Item key="848" value="pic848.jpg" />
+    <Item key="849" value="pic849.jpg" />
+    <Item key="850" value="pic850.jpg" />
+    <Item key="851" value="pic851.jpg" />
+    <Item key="852" value="pic852.jpg" />
+    <Item key="853" value="pic853.jpg" />
+    <Item key="854" value="pic854.jpg" />
+    <Item key="855" value="pic855.jpg" />
+    <Item key="856" value="pic856.jpg" />
+    <Item key="857" value="pic857.jpg" />
+    <Item key="858" value="pic858.jpg" />
+    <Item key="859" value="pic859.jpg" />
+    <Item key="860" value="pic860.jpg" />
+    <Item key="861" value="pic861.jpg" />
+    <Item key="862" value="pic862.jpg" />
+    <Item key="863" value="pic863.jpg" />
+    <Item key="864" value="pic864.jpg" />
+    <Item key="865" value="pic865.jpg" />
+    <Item key="866" value="pic866.jpg" />
+    <Item key="867" value="pic867.jpg" />
+    <Item key="868" value="pic868.jpg" />
+    <Item key="869" value="pic869.jpg" />
+    <Item key="870" value="pic870.jpg" />
+    <Item key="871" value="pic871.jpg" />
+    <Item key="872" value="pic872.jpg" />
+    <Item key="873" value="pic873.jpg" />
+    <Item key="874" value="pic874.jpg" />
+    <Item key="875" value="pic875.jpg" />
+    <Item key="876" value="pic876.jpg" />
+    <Item key="877" value="pic877.jpg" />
+    <Item key="878" value="pic878.jpg" />
+    <Item key="879" value="pic879.jpg" />
+    <Item key="880" value="pic880.jpg" />
+    <Item key="881" value="pic881.jpg" />
+    <Item key="882" value="pic882.jpg" />
+    <Item key="883" value="pic883.jpg" />
+    <Item key="884" value="pic884.jpg" />
+    <Item key="885" value="pic885.jpg" />
+    <Item key="886" value="pic886.jpg" />
+    <Item key="887" value="pic887.jpg" />
+    <Item key="888" value="pic888.jpg" />
+    <Item key="889" value="pic889.jpg" />
+    <Item key="890" value="pic890.jpg" />
+    <Item key="891" value="pic891.jpg" />
+    <Item key="892" value="pic892.jpg" />
+    <Item key="893" value="pic893.jpg" />
+    <Item key="894" value="pic894.jpg" />
+    <Item key="895" value="pic895.jpg" />
+    <Item key="896" value="pic896.jpg" />
+    <Item key="897" value="pic897.jpg" />
+    <Item key="898" value="pic898.jpg" />
+    <Item key="899" value="pic899.jpg" />
+    <Item key="900" value="pic900.jpg" />
+    <Item key="901" value="pic901.jpg" />
+    <Item key="902" value="pic902.jpg" />
+    <Item key="903" value="pic903.jpg" />
+    <Item key="904" value="pic904.jpg" />
+    <Item key="905" value="pic905.jpg" />
+    <Item key="906" value="pic906.jpg" />
+    <Item key="907" value="pic907.jpg" />
+    <Item key="908" value="pic908.jpg" />
+    <Item key="909" value="pic909.jpg" />
+    <Item key="910" value="pic910.jpg" />
+    <Item key="911" value="pic911.jpg" />
+    <Item key="912" value="pic912.jpg" />
+    <Item key="913" value="pic913.jpg" />
+    <Item key="914" value="pic914.jpg" />
+    <Item key="915" value="pic915.jpg" />
+    <Item key="916" value="pic916.jpg" />
+    <Item key="917" value="pic917.jpg" />
+    <Item key="918" value="pic918.jpg" />
+    <Item key="919" value="pic919.jpg" />
+    <Item key="920" value="pic920.jpg" />
+    <Item key="921" value="pic921.jpg" />
+    <Item key="922" value="pic922.jpg" />
+    <Item key="923" value="pic923.jpg" />
+    <Item key="924" value="pic924.jpg" />
+    <Item key="925" value="pic925.jpg" />
+    <Item key="926" value="pic926.jpg" />
+    <Item key="927" value="pic927.jpg" />
+    <Item key="928" value="pic928.jpg" />
+    <Item key="929" value="pic929.jpg" />
+    <Item key="930" value="pic930.jpg" />
+    <Item key="931" value="pic931.jpg" />
+    <Item key="932" value="pic932.jpg" />
+    <Item key="933" value="pic933.jpg" />
+    <Item key="934" value="pic934.jpg" />
+    <Item key="935" value="pic935.jpg" />
+    <Item key="936" value="pic936.jpg" />
+    <Item key="937" value="pic937.jpg" />
+    <Item key="938" value="pic938.jpg" />
+    <Item key="939" value="pic939.jpg" />
+    <Item key="940" value="pic940.jpg" />
+    <Item key="941" value="pic941.jpg" />
+    <Item key="942" value="pic942.jpg" />
+    <Item key="943" value="pic943.jpg" />
+    <Item key="944" value="pic944.jpg" />
+    <Item key="945" value="pic945.jpg" />
+    <Item key="946" value="pic946.jpg" />
+    <Item key="947" value="pic947.jpg" />
+    <Item key="948" value="pic948.jpg" />
+    <Item key="949" value="pic949.jpg" />
+    <Item key="950" value="pic950.jpg" />
+    <Item key="951" value="pic951.jpg" />
+    <Item key="952" value="pic952.jpg" />
+    <Item key="953" value="pic953.jpg" />
+    <Item key="954" value="pic954.jpg" />
+    <Item key="955" value="pic955.jpg" />
+    <Item key="956" value="pic956.jpg" />
+    <Item key="957" value="pic957.jpg" />
+    <Item key="958" value="pic958.jpg" />
+    <Item key="959" value="pic959.jpg" />
+    <Item key="960" value="pic960.jpg" />
+    <Item key="961" value="pic961.jpg" />
+    <Item key="962" value="pic962.jpg" />
+    <Item key="963" value="pic963.jpg" />
+    <Item key="964" value="pic964.jpg" />
+    <Item key="965" value="pic965.jpg" />
+    <Item key="966" value="pic966.jpg" />
+    <Item key="967" value="pic967.jpg" />
+    <Item key="968" value="pic968.jpg" />
+    <Item key="969" value="pic969.jpg" />
+    <Item key="970" value="pic970.jpg" />
+    <Item key="971" value="pic971.jpg" />
+    <Item key="972" value="pic972.jpg" />
+    <Item key="973" value="pic973.jpg" />
+    <Item key="974" value="pic974.jpg" />
+    <Item key="975" value="pic975.jpg" />
+    <Item key="976" value="pic976.jpg" />
+    <Item key="977" value="pic977.jpg" />
+    <Item key="978" value="pic978.jpg" />
+    <Item key="979" value="pic979.jpg" />
+    <Item key="980" value="pic980.jpg" />
+    <Item key="981" value="pic981.jpg" />
+    <Item key="982" value="pic982.jpg" />
+    <Item key="983" value="pic983.jpg" />
+    <Item key="984" value="pic984.jpg" />
+    <Item key="985" value="pic985.jpg" />
+    <Item key="986" value="pic986.jpg" />
+    <Item key="987" value="pic987.jpg" />
+    <Item key="988" value="pic988.jpg" />
+    <Item key="989" value="pic989.jpg" />
+    <Item key="990" value="pic990.jpg" />
+    <Item key="991" value="pic991.jpg" />
+    <Item key="992" value="pic992.jpg" />
+    <Item key="993" value="pic993.jpg" />
+    <Item key="994" value="pic994.jpg" />
+    <Item key="995" value="pic995.jpg" />
+    <Item key="996" value="pic996.jpg" />
+    <Item key="997" value="pic997.jpg" />
+    <Item key="998" value="pic998.jpg" />
+    <Item key="999" value="pic999.jpg" />
+  </MapSetting>
+  <!-- 
+	* The definition of control character for eack keyword
+	* Will be putted in the logical calling by special string key index.	
+	-->
+  <ControlCharacter>
+    <Item key="f" value="FullScreen" />
+    <Item key="l" value="Loop" />
+    <Item key="c" value="Central" />
+    <Item key="r" value="Resize" SubCtrFormat="(Width, Height)" />
+    <Item key="o" value="Original" />
+    <Item key="s" value="Single" />
+  </ControlCharacter>
+</Root>

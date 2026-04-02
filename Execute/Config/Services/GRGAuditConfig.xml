@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+  <!--为保证取款的最大金额，张数及支持面额的安全限制
+		withdrawal：最大取款金额限制
+		transfer：最大转账金额限制
+		maxCashInItems：最大存款张数
+		maxCashInDeno：最大存款面额
+		other：其他交易最大限额
+		decimalCount：报文小数位数
+		otherAccFieldName：转账交易，报文转入账号字段名称
+		otherAccAllMatch：转入账号的匹配规则（1：完成匹配，其他：报文账号包含原始账号）
+		-->
+  <AmountLimit>
+    <CNY withdrawal="2500" transfer="50000" maxCashInItems="200" maxCashInDeno="100" other="1000" decimalCount="2" otherAccFieldName="F_ACCOUNTID2" otherAccAllMatch="1"/>
+  </AmountLimit>
+</Config>

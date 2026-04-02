@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- protocol: DDC -->
+<Root>
+	<ID>
+		<TransactionReply>
+			<AllLeft start="w" end="-1">
+				<Item size="1" key="4" value="Track3"/>
+				<Item size="1" key="L" value="Track2"/>
+				<Item size="1" key="K" value="Track1"/>
+				<Item size="1" key="M" value="VC"/>
+				<Item size="1" key="N" value="VC"/>
+				<Item size="1" key="O" value="VC"/>
+				<Item size="1" key="P" value="VC"/>
+				<Item size="1" key="Q" value="VC"/>
+				<Item size="1" key="R" value="VC"/>
+				<Item size="1" key="S" value="CashDispenseField"/>
+				<Item size="1" key="5" value="SmartCard"/>
+				<Item size="1" key="e" value="WincorEMVData"/>
+				<Item size="1" key="d" value="DepositLimit"/>
+				<Item size="1" key="a" value="ChequesDestinationBuffer"/>
+				<Item size="1" key="b" value="ProcessMultipleChequesBuffer"/>
+			</AllLeft>
+		</TransactionReply>
+	</ID>
+</Root>

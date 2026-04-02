@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=""></script>
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <style>
+        .g-main {
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .g-main h1 {
+            margin: 200px auto 40px;
+        }
+        .g-main p {
+            margin-bottom: 40px;
+        }
+		.customerService {
+            position: fixed;
+            right: 3%;
+            bottom: 40px;
+        }
+        .customerService .g-button {
+            padding: 10px;
+        }
+        .customerService img {
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <g-header :height='100'>
+            <img slot='left' class='logo' src="../../images/logo.png" alt="">
+        </g-header>
+        <g-main>
+            <h1 ids='ids_Common_welcome'>Welcome To GRG Digital Banking</h1>
+            <p ids='ids_Common_pleaseInsertCard'>Please Insert Your Card</p>
+            <p class='or-class'  ids='ids_Common_or'>Or</p>
+            <div>
+                <g-button round transparent type='button' id='OnStart' tag='OnStart' ids='ids_Common_clickHere'>Click Here To Start</g-button>
+            </div>			
+        </g-main>
+		<div class="customerService">
+            <g-button round transparent type='button' id='OnHelp' tag='OnHelp'>
+                <img src="../../images/customer_service.png" alt="">
+            </g-button>
+        </div>
+    </div>
+</body>
+</html>

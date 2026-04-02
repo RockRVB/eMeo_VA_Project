@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="RCMEjectCard">
+	<Head type="GRGWorkflow" author="CLY" timeStamp="2014/04/04 08:15:12" comment="The workflow design is for eject card"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_InputPANLast4Number"/> 
+		</Start>
+		<InputInfo ID="ID_InputPANLast4Number" UI="UI_RCMInputPANLast4Number" comment="Input PAN last 4 number" saveBuffer="{core_PANLast4Number}" minLen="4" maxLen="4" clearAll="0" timeout="30000">
+			<States>
+				<State name="LengthNotEnough" UI="UI_RCMInputPANLast4NumberLengthNotEnough"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_SetInputPinTimes"/>
+            <DefaultForward targetID="ID_CloseTransaction"/>
+		</InputInfo>
+		<SetData ID="ID_SetInputPinTimes" comment="Set input pin max times" saveBuffer="{proj_ReInputPinTimes}" value="2">
+			<Forward event="OnConfirm" targetID="ID_QueryCapturedCard"/>
+		</SetData>
+		<RCMQueryCapturedCard ID="ID_QueryCapturedCard" UI="UI_OperatingNoCounter" comment="Query captured card info">
+			<Forward event="OnConfirm" targetID="ID_EjectCardToIDC"/>
+			<Forward event="OnFoundInBin" targetID="ID_FoundCardInfoInBin"/>
+            <Forward event="OnNotFound" targetID="ID_NotFoundCardInfo"/>
+            <Forward event="OnFail" targetID="ID_CloseTransaction"/>
+            <DefaultForward targetID="ID_CloseTransaction"/>
+        </RCMQueryCapturedCard>
+		<RCMEjectCardToIDC ID="ID_EjectCardToIDC" comment="Eject card from cm to idc">
+			<Forward event="OnConfirm" targetID="ID_GetCardData"/>
+            <Forward event="OnFail" targetID="ID_ForceCaptureCardToSlotForOther"/>            
+            <DefaultForward targetID="ID_ForceCaptureCardToSlotForOther"/>
+        </RCMEjectCardToIDC> 
+        <InsertCard ID="ID_GetCardData" UI="UI_Operating" comment="read card data" timeout="15000" activeKeys="" terminateKeys="">
+			<Forward event="OnMagneticCard" targetID="ID_CompareCardNumber"/>
+			<Forward event="OnFallbackCard" targetID="ID_CompareCardNumber"/>
+			<Forward event="OnICCard" targetID="ID_ICBuildAppList"/>
+			<Forward event="OnInvalidCard" targetID="ID_ForceCaptureCardToBinForOther"/>
+    		<Forward event="OnTimeout" targetID="ID_ForceCaptureCardToSlotForTimeout"/>
+		    <Forward event="OnHardwareError" targetID="ID_ForceCaptureCardToSlotForHardwareError"/>		
+			<DefaultForward targetID="ID_ForceCaptureCardToSlotForOther"/>
+		</InsertCard>
+		<ICBuildAppList ID="ID_ICBuildAppList" UI="UI_OperatingNoCounter" comment="IC卡">
+			<Forward event="OnOneApplication" targetID="ID_ICAppLoadedForFirstTime"/>
+			<Forward event="OnMoreApplication" targetID="ID_ICMoreAppSelectForFirstTime"/>
+			<Forward event="OnFallback" targetID="ID_ICGetTrack"/>
+			<Forward event="OnCancel" targetID="ID_ForceCaptureCardToSlotForOther"/>
+		</ICBuildAppList>
+		<ICAppLoaded ID="ID_ICAppLoadedForFirstTime" UI="UI_OperatingNoCounter" comment="IC卡">
+			<Forward event="OnConfirm" targetID="ID_ICGetTrack"/>
+			<Forward event="OnFallback" targetID="ID_ICGetTrack"/>
+			<Forward event="OnTryAgain" targetID="ID_ICMoreAppSelectForFirstTime"/>
+			<Forward event="OnICAppLoadedFail" targetID="ID_ForceCaptureCardToSlotForOther"/>
+		</ICAppLoaded>
+		<ICMoreAppSelect ID="ID_ICMoreAppSelectForFirstTime" UI="UI_ICMoreAppSelect" comment="IC卡">
+			<Forward event="OnConfirm" targetID="ID_ICAppLoadedForFirstTime"/>
+			<Forward event="OnCancel" targetID="ID_ForceCaptureCardToSlotForOther"/>
+		</ICMoreAppSelect>
+		<ICGetTrack ID="ID_ICGetTrack" comment="Get IC tracks for IC卡">
+			<Forward event="OnConfirm" targetID="ID_CompareCardNumber"/>
+			<Forward event="OnCancel" targetID="ID_ForceCaptureCardToSlotForOther"/>
+		</ICGetTrack>
+		<CompareData ID="ID_CompareCardNumber" comment="要退的卡号与退出的卡号是否一致" compareBuffer="{core_FoundCardNumber},{core_PAN}">
+			<Forward event="OnEqual" targetID="ID_InputPin"/>
+			<DefaultForward targetID="ID_ForceCaptureCardToSlotForOther"/>
+		</CompareData>
+        <InputPin ID="ID_InputPin" UI="UI_RCMInputPinNoTakeCard" comment="Input password" minLen="6" maxLen="6" timeout="30000" >
+        	<States>
+				<State name="LengthNotEnough" UI="UI_RCMInputPinLengthNotEnoughNoTakeCard"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_RequestTrans_CheckPIN"/>
+			<DefaultForward targetID="ID_ForceCaptureCardToSlotForTimeout"/>
+		</InputPin>
+		<RequestTrans ID="ID_RequestTrans_CheckPIN" UI="UI_RequestTrans" transType="INQ" comment="Inquiry request">
+			<States>
+				<State name="PackFail" UI="UI_GeneralError"/>
+				<State name="ConnectFail" UI="UI_GeneralError"/>
+				<State name="SendFail" UI="UI_GeneralError"/>
+				<State name="ReceiveFail" UI="UI_GeneralError"/>
+				<State name="ReceiveTimeout" UI="UI_GeneralError"/>
+				<State name="NetworkFail" UI="UI_GeneralError"/>
+				<State name="UnpackFail" UI="UI_GeneralError"/>
+				<State name="HardwareError" UI="UI_GeneralError"/>
+				<State name="TransNotAccepted" UI="UI_ICTransNotAccepted"/>
+				<State name="TransDeclined" UI="UI_ICTransDeclined"/>
+				<State name="TransTerminated" UI="UI_ICTransTerminated"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_CloseTransaction"/>
+			<Forward event="OnPackFail" targetID="ID_ForceCaptureCardToSlotForOther"/>
+			<Forward event="OnConnectFail" targetID="ID_ForceCaptureCardToSlotForOther"/>
+			<Forward event="OnSendFail" targetID="ID_ForceCaptureCardToSlotForOther"/>
+			<Forward event="OnReceiveFail" targetID="ID_ForceCaptureCardToSlotForOther"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_ForceCaptureCardToSlotForOther"/>
+			<Forward event="OnNetworkFail" targetID="ID_ForceCaptureCardToSlotForOther"/>
+			<Forward event="OnUnpackFail" targetID="ID_ForceCaptureCardToSlotForOther"/>
+			<Forward event="OnHostRefuse" targetID="ID_ForceCaptureCardToSlotForOther"/>
+			<Forward event="OnReInputPin" targetID="ID_OperateInputPinTimes"/>
+			<Forward event="OnFallback" targetID="ID_RequestTrans_CheckPIN"/>
+			<Forward event="OnTryAgain" targetID="ID_ForceCaptureCardToSlotForOther"/>
+			<Forward event="OnICAppLoadedFail" targetID="ID_ForceCaptureCardToSlotForOther"/>                        
+		</RequestTrans>
+		<OperateData ID="ID_OperateInputPinTimes" comment="Input pin times subtract one" operateBuffer="{proj_ReInputPinTimes}" operateMethod="-1">
+			<Forward event="OnConfirm" targetID="ID_CompareInputPinTimes"/>
+		</OperateData>
+		<CompareData ID="ID_CompareInputPinTimes" comment="Whether lost password remaining times greater than zero" compareBuffer="{proj_ReInputPinTimes},0">
+			<Forward event="OnEqual" targetID="ID_ForceCaptureCardToBinForPINError"/>
+			<Forward event="OnGreater" targetID="ID_ReInputPin"/>
+			<Forward event="OnLess" targetID="ID_ForceCaptureCardToBinForPINError"/>
+			<Forward event="OnFail" targetID="ID_ForceCaptureCardToBinForPINError"/>
+		</CompareData>
+		<InputPin ID="ID_ReInputPin" UI="UI_RCMReInputPinNoTakeCard" comment="Reinput password" minLen="6" maxLen="6" timeout="30000">
+			<States>
+				<State name="LengthNotEnough" UI="UI_RCMInputPinLengthNotEnoughNoTakeCard"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_RequestTrans_CheckPIN"/>
+			<DefaultForward targetID="ID_ForceCaptureCardToSlotForTimeout"/>
+		</InputPin>
+		<Prompt ID="ID_FoundCardInfoInBin" UI="UI_RCMFoundCapturedCardInfoInBin" timeout="5000" comment="Show prompt">
+			<Forward event="OnTimeout" targetID="ID_CloseTransaction"/>
+			<Forward event="OnFail" targetID="ID_CloseTransaction"/>
+		</Prompt>
+   		<Prompt ID="ID_NotFoundCardInfo" UI="UI_RCMNotFoundCapturedCardInfo" timeout="5000" comment="Show prompt">
+			<Forward event="OnTimeout" targetID="ID_CloseTransaction"/>
+			<Forward event="OnFail" targetID="ID_CloseTransaction"/>
+		</Prompt>
+		<CloseTrans ID="ID_CloseTransaction" UI="Operating" comment="Close transaction" timeoutReInsertCard="1" supportSelfEjectCardModule="1" isInGetCapturedCardFlow="1">
+			<States>
+				<State name="TakeCard" UI="UI_TakeCard"/>
+				<State name="TransTimeOut" UI="UI_TransTimeOut"/>
+				<State name="KeyError" UI="UI_KeyError"/>
+				<State name="InvalidCard" UI="UI_InvalidCard"/>
+				<State name="HardwareError" UI="UI_HardwareError"/>
+				<State name="GeneralError" UI="UI_GeneralError"/>
+				<State name="CapturingCard" UI="UI_CapturingCard"/>
+				<State name="CaptureCardForTimeout" UI="UI_CaptureCardForTimeout"/>
+				<State name="CaptureCard" UI="UI_CaptureCard"/>
+				<State name="CaptureCardToSlotForTimeout" UI="UI_RCMCaptureCardToSlotForTimeout"/>
+				<State name="CaptureCardToSlotForPINError" UI="UI_RCMCaptureCardToSlotForPINError"/>
+				<State name="CaptureCardToSlot" UI="UI_RCMCaptureCardToSlot"/>
+				<State name="ThankYou" UI="UI_ThankYou"/>
+				<State name="InputWithdrawalAmountExceedRetryTimes" UI="UI_InputWithdrawalAmountExceedRetryTimes"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeMainWorkflow"/>			
+			<Forward event="OnCaptureCard" targetID="ID_GetDevStatus"/>
+			<Forward event="OnCaptureCardToSlot" targetID="ID_GetDevStatus"/>	
+			<Forward event="OnTimeoutReInsertCard" targetID="ID_ForceCaptureCardToBinForTimeout"/>
+		</CloseTrans>
+		<CloseTrans ID="ID_ForceCaptureCardToBinForTimeout" UI="Operating" comment="Close transaction and force capture card" forceCaptureCardAndReason="1" isInGetCapturedCardFlow="1">
+			<States>
+				<State name="TakeCard" UI="UI_TakeCard"/>
+				<State name="TransTimeOut" UI="UI_TransTimeOut"/>
+				<State name="KeyError" UI="UI_KeyError"/>
+				<State name="InvalidCard" UI="UI_InvalidCard"/>
+				<State name="HardwareError" UI="UI_HardwareError"/>
+				<State name="GeneralError" UI="UI_GeneralError"/>
+				<State name="CapturingCard" UI="UI_CapturingCard"/>
+				<State name="CaptureCardForTimeout" UI="UI_CaptureCardForTimeout"/>
+				<State name="CaptureCard" UI="UI_CaptureCard"/>
+				<State name="CaptureCardToSlotForTimeout" UI="UI_RCMCaptureCardToSlotForTimeout"/>
+				<State name="CaptureCardToSlotForPINError" UI="UI_RCMCaptureCardToSlotForPINError"/>
+				<State name="CaptureCardToSlot" UI="UI_RCMCaptureCardToSlot"/>
+				<State name="ThankYou" UI="UI_ThankYou"/>
+				<State name="InputWithdrawalAmountExceedRetryTimes" UI="UI_InputWithdrawalAmountExceedRetryTimes"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeMainWorkflow"/>
+			<Forward event="OnCaptureCard" targetID="ID_GetDevStatus"/>
+			<Forward event="OnCaptureCardToSlot" targetID="ID_GetDevStatus"/>	
+		</CloseTrans>
+		<CloseTrans ID="ID_ForceCaptureCardToBinForOther" UI="Operating" comment="Close transaction and force capture card" forceCaptureCardAndReason="4" isInGetCapturedCardFlow="1">
+			<States>
+				<State name="TakeCard" UI="UI_TakeCard"/>
+				<State name="TransTimeOut" UI="UI_TransTimeOut"/>
+				<State name="KeyError" UI="UI_KeyError"/>
+				<State name="InvalidCard" UI="UI_InvalidCard"/>
+				<State name="HardwareError" UI="UI_HardwareError"/>
+				<State name="GeneralError" UI="UI_GeneralError"/>
+				<State name="CapturingCard" UI="UI_CapturingCard"/>
+				<State name="CaptureCardForTimeout" UI="UI_CaptureCardForTimeout"/>
+				<State name="CaptureCard" UI="UI_CaptureCard"/>
+				<State name="CaptureCardToSlotForTimeout" UI="UI_RCMCaptureCardToSlotForTimeout"/>
+				<State name="CaptureCardToSlotForPINError" UI="UI_RCMCaptureCardToSlotForPINError"/>
+				<State name="CaptureCardToSlot" UI="UI_RCMCaptureCardToSlot"/>
+				<State name="ThankYou" UI="UI_ThankYou"/>
+				<State name="InputWithdrawalAmountExceedRetryTimes" UI="UI_InputWithdrawalAmountExceedRetryTimes"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeMainWorkflow"/>
+			<Forward event="OnCaptureCard" targetID="ID_GetDevStatus"/>
+			<Forward event="OnCaptureCardToSlot" targetID="ID_GetDevStatus"/>	
+		</CloseTrans>
+		<CloseTrans ID="ID_ForceCaptureCardToBinForPINError" UI="Operating" comment="Close transaction and force capture card" forceCaptureCardAndReason="5" isInGetCapturedCardFlow="1">
+			<States>
+				<State name="TakeCard" UI="UI_TakeCard"/>
+				<State name="TransTimeOut" UI="UI_TransTimeOut"/>
+				<State name="KeyError" UI="UI_KeyError"/>
+				<State name="InvalidCard" UI="UI_InvalidCard"/>
+				<State name="HardwareError" UI="UI_HardwareError"/>
+				<State name="GeneralError" UI="UI_GeneralError"/>
+				<State name="CapturingCard" UI="UI_CapturingCard"/>
+				<State name="CaptureCardForTimeout" UI="UI_CaptureCardForTimeout"/>
+				<State name="CaptureCard" UI="UI_CaptureCard"/>
+				<State name="CaptureCardToSlotForTimeout" UI="UI_RCMCaptureCardToSlotForTimeout"/>
+				<State name="CaptureCardToSlotForPINError" UI="UI_RCMCaptureCardToSlotForPINError"/>
+				<State name="CaptureCardToSlot" UI="UI_RCMCaptureCardToSlot"/>
+				<State name="ThankYou" UI="UI_ThankYou"/>
+				<State name="InputWithdrawalAmountExceedRetryTimes" UI="UI_InputWithdrawalAmountExceedRetryTimes"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeMainWorkflow"/>
+			<Forward event="OnCaptureCard" targetID="ID_GetDevStatus"/>
+			<Forward event="OnCaptureCardToSlot" targetID="ID_GetDevStatus"/>	
+		</CloseTrans>		
+		<CloseTrans ID="ID_ForceCaptureCardToSlotForTimeout" UI="Operating" comment="Close transaction and force capture card for timeout" forceCaptureCardAndReason="1" supportSelfEjectCardModule="1" isInGetCapturedCardFlow="1">
+			<States>
+				<State name="TakeCard" UI="UI_TakeCard"/>
+				<State name="TransTimeOut" UI="UI_TransTimeOut"/>
+				<State name="KeyError" UI="UI_KeyError"/>
+				<State name="InvalidCard" UI="UI_InvalidCard"/>
+				<State name="HardwareError" UI="UI_HardwareError"/>
+				<State name="GeneralError" UI="UI_GeneralError"/>
+				<State name="CapturingCard" UI="UI_CapturingCard"/>
+				<State name="CaptureCardForTimeout" UI="UI_CaptureCardForTimeout"/>
+				<State name="CaptureCard" UI="UI_CaptureCard"/>
+				<State name="CaptureCardToSlotForTimeout" UI="UI_RCMCaptureCardToSlotForTimeout"/>
+				<State name="CaptureCardToSlotForPINError" UI="UI_RCMCaptureCardToSlotForPINError"/>
+				<State name="CaptureCardToSlot" UI="UI_RCMCaptureCardToSlot"/>
+				<State name="ThankYou" UI="UI_ThankYou"/>
+				<State name="InputWithdrawalAmountExceedRetryTimes" UI="UI_InputWithdrawalAmountExceedRetryTimes"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeMainWorkflow"/>
+			<Forward event="OnCaptureCard" targetID="ID_GetDevStatus"/>
+			<Forward event="OnCaptureCardToSlot" targetID="ID_GetDevStatus"/>	
+		</CloseTrans>
+		<CloseTrans ID="ID_ForceCaptureCardToSlotForHardwareError" UI="Operating" comment="Close transaction and force capture card for hardware error" forceCaptureCardAndReason="2" supportSelfEjectCardModule="1" isInGetCapturedCardFlow="1">
+			<States>
+				<State name="TakeCard" UI="UI_TakeCard"/>
+				<State name="TransTimeOut" UI="UI_TransTimeOut"/>
+				<State name="KeyError" UI="UI_KeyError"/>
+				<State name="InvalidCard" UI="UI_InvalidCard"/>
+				<State name="HardwareError" UI="UI_HardwareError"/>
+				<State name="GeneralError" UI="UI_GeneralError"/>
+				<State name="CapturingCard" UI="UI_CapturingCard"/>
+				<State name="CaptureCardForTimeout" UI="UI_CaptureCardForTimeout"/>
+				<State name="CaptureCard" UI="UI_CaptureCard"/>
+				<State name="CaptureCardToSlotForTimeout" UI="UI_RCMCaptureCardToSlotForTimeout"/>
+				<State name="CaptureCardToSlotForPINError" UI="UI_RCMCaptureCardToSlotForPINError"/>
+				<State name="CaptureCardToSlot" UI="UI_RCMCaptureCardToSlot"/>
+				<State name="ThankYou" UI="UI_ThankYou"/>
+				<State name="InputWithdrawalAmountExceedRetryTimes" UI="UI_InputWithdrawalAmountExceedRetryTimes"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeMainWorkflow"/>			
+			<Forward event="OnCaptureCard" targetID="ID_GetDevStatus"/>
+			<Forward event="OnCaptureCardToSlot" targetID="ID_GetDevStatus"/>	
+		</CloseTrans>
+		<CloseTrans ID="ID_ForceCaptureCardToSlotForOther" UI="Operating" comment="Close transaction and force capture card for other reason" forceCaptureCardAndReason="4" supportSelfEjectCardModule="1" isInGetCapturedCardFlow="1">
+			<States>
+				<State name="TakeCard" UI="UI_TakeCard"/>
+				<State name="TransTimeOut" UI="UI_TransTimeOut"/>
+				<State name="KeyError" UI="UI_KeyError"/>
+				<State name="InvalidCard" UI="UI_InvalidCard"/>
+				<State name="HardwareError" UI="UI_HardwareError"/>
+				<State name="GeneralError" UI="UI_GeneralError"/>
+				<State name="CapturingCard" UI="UI_CapturingCard"/>
+				<State name="CaptureCardForTimeout" UI="UI_CaptureCardForTimeout"/>
+				<State name="CaptureCard" UI="UI_CaptureCard"/>
+				<State name="CaptureCardToSlotForTimeout" UI="UI_RCMCaptureCardToSlotForTimeout"/>
+				<State name="CaptureCardToSlotForPINError" UI="UI_RCMCaptureCardToSlotForPINError"/>
+				<State name="CaptureCardToSlot" UI="UI_RCMCaptureCardToSlot"/>
+				<State name="ThankYou" UI="UI_ThankYou"/>
+				<State name="InputWithdrawalAmountExceedRetryTimes" UI="UI_InputWithdrawalAmountExceedRetryTimes"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeMainWorkflow"/>			
+			<Forward event="OnCaptureCard" targetID="ID_GetDevStatus"/>
+			<Forward event="OnCaptureCardToSlot" targetID="ID_GetDevStatus"/>	
+		</CloseTrans>
+		<GetDevStatus ID="ID_GetDevStatus" comment="Get device status" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_PrintReceipt"/>
+			<Forward event="OnWarn" targetID="ID_PrintReceipt"/>
+			<Forward event="OnFail" targetID="ID_InvokeMainWorkflow"/>
+		</GetDevStatus>
+		<PrintReceipt ID="ID_PrintReceipt" UI="UI_PrintingReceipt" formName="" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeMainWorkflow"/>
+		</PrintReceipt>
+		<InvokeWorkflow ID="ID_InvokeMainWorkflow" name="Main" comment="Invoke main workflow" syn="0">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+		</End>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_ForceCaptureCardToSlotForOther"/>
+		<Forward event="OnTimeout" targetID="ID_ForceCaptureCardToSlotForOther"/>
+		<Forward event="OnKeyError" targetID="ID_ForceCaptureCardToSlotForOther"/>
+		<Forward event="OnHardwareError" targetID="ID_ForceCaptureCardToSlotForOther"/>
+	</DefaultForward>
+</Workflow>

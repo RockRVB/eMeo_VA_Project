@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+对帐单打印机
+ServiceName：			 设备的服务名
+Supply：   				 供纸器位置，默认"UPPER"
+DefaultFormName：  默认的Form名称，暂时没有使用到
+MediaName：				 如果以Form方式打印，指定Media的名字
+FormNameNoFormat： 如果以RawData方式打印，指定Form的名字
+MediaNameNoFormat：如果以RawData方式打印，指定Media的名字
+PrintModeNoFormat：打印方式，如果是1，表示以Form方式打印，否则以RawData方式打印，默认为0
+Newline：  				 换行符，默认"\n"
+ErrorCode：        错误码 用于记录最近一次的设备错误物理码 默认为"ErrorCode"，可以不用配置，系统会自己按顺序查找 
+-->
+<ReceiptPrinter ServiceName="LaserPrinter" Supply="UPPER" PrintModeNoFormat="0"  MediaName="ReceiptMedia" DefaultFormName="ReceiptFormCN" FormNameNoFormat="ReceiptFormNoFormat" MediaNameNoFormat="ReceiptMediaNoFormat"  Newline="&#x0A;"/>

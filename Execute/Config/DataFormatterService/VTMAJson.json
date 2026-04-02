@@ -1,0 +1,479 @@
+{
+	"hostList": [
+		{
+			"name": "core banking",
+			"desc": "corebanking",
+			"encoding": "utf-8",
+			"server": {
+				"host": "",
+				"port": "",
+				"protocol": "",
+				"isSendToSwitch": true,
+				"mode": "1"
+			},
+			"head": {},
+			"transactions": [
+				{
+					"name": "GetOnlineAgentInfo",
+					"response": "GetOnlineAgentInfoResponse",
+					"body": {
+						"id": "{VTMA.send.id}",
+						"sessionid": "{VTMA.send.sessionidForGetAgent}",
+						"businessid": "{VTMA.send.businessidForGetAgent}",
+						"terminal": "{VTMA.send.terminal}",
+						"token": "reserve",
+						"origin": "1",
+						"function": "GetOnlineAgentInfo",
+						"request": {
+							"isNeedChecker": "0",
+							"userModeType": "1",
+							"args": {}
+						}
+					}
+				}, {
+					"name": "GetOnlineAgentInfoResponse",
+					"SuccessCode": "0",
+					"body": {
+						"businessid": "{VTMA.recv.businessid}",
+						"function": "{VTMA.recv.function}",
+						"id": "{VTMA.recv.id}",
+						"origin": "{VTMA.recv.origin}",
+						"response": {
+							"result": "{VTMA.recv.response.result}",
+							"isNeedChecker": "{VTMA.recv.response.isNeedChecker}",
+							"args": {
+								"idleTellerSize": "{VTMA.recv.response.args.idleTellerSize}"
+							}
+						}
+					}
+				}, {
+					"name": "SendDeviceStatusInfo",
+					"response": "SendDeviceStatusInfoResponse",
+					"body": {
+						"id": "{VTMA.send.id}",
+						"sessionid": "{VTMA.send.sessionid}",
+						"businessid": "{VTMA.send.businessid}",
+						"terminal": "{VTMA.send.terminal}",
+						"token": "reserve",
+						"origin": "1",
+						"function": "SendDeviceStatusInfo",
+						"request": {
+							"isNeedChecker": "0",
+							"userModeType": "1",
+							"args": {
+								"CardReader": "{VTMA.send.SendDeviceStatus.IDC}",
+								"EPP": "{VTMA.send.SendDeviceStatus.PIN}",
+								"ReceiptPrinter": "{VTMA.send.SendDeviceStatus.RPTR}",
+								"DocumentScanner": "{VTMA.send.SendDeviceStatus.FeedChannel}",
+								"A4Printer": "{VTMA.send.SendDeviceStatus.DocPrinter}",
+								"CardDispenser": "{VTMA.send.SendDeviceStatus.CRD}",
+								"CardPrinter": "{VTMA.send.SendDeviceStatus.CRD}",
+								"TokenDispenser": "{VTMA.send.SendDeviceStatus.TokenDispenser}",
+								"IDCardReader": "{VTMA.send.SendDeviceStatus.IDCardReader}",
+								"PassportScanner": "{VTMA.send.SendDeviceStatus.PassportScanerWosa}",
+								"FingerprintReader": "{VTMA.send.SendDeviceStatus.FingerScanner}",
+								"FingerVeinReader": "{VTMA.send.SendDeviceStatus.FingerveinExScaner}",
+								"Camera": "{VTMA.send.SendDeviceStatus.USBCam}",
+								"CashUnit": "{VTMA.send.SendDeviceStatus.CashUnit}",
+								"BarcodeScanner": "{VTMA.send.SendDeviceStatus.BCR}",
+								"ChequeScanner": "{VTMA.send.SendDeviceStatus.CHK}"
+							}
+						}
+					}
+				}, {
+					"name": "SendDeviceStatusInfoResponse",
+					"SuccessCode": "0",
+					"body": {
+						"businessid": "{VTMA.recv.businessid}",
+						"function": "{VTMA.recv.function}",
+						"id": "{VTMA.recv.id}",
+						"origin": "{VTMA.recv.origin}",
+						"sessionid": "{VTMA.recv.sessionid}",
+						"token": "{VTMA.recv.token}",
+						"response": {
+							"result": "{VTMA.recv.response.result}",
+							"message": "{VTMA.recv.response.message}"
+						}
+					}
+				}, {
+					"name": "SendDeviceBusinessFlow",
+					"response": "SendDeviceBusinessFlowResponse",
+					"body": {
+						"id": "{VTMA.send.id}",
+						"sessionid": "{VTMA.send.sessionid}",
+						"businessid": "{VTMA.send.businessid}",
+						"terminal": "{VTMA.send.terminal}",
+						"token": "reserve",
+						"origin": "1",
+						"function": "SendDeviceBusinessFlow",
+						"request": {
+							"isNeedChecker": "0",
+							"userModeType": "1",
+							"args": {
+								"flowDetail": "{VTMA.send.SendDeviceBusinessFlow.args.flowDetail}",
+								"flowStatus": "{VTMA.send.SendDeviceBusinessFlow.args.flowStatus}",
+								"flowing": "{VTMA.send.SendDeviceBusinessFlow.args.flowing}",
+								"flowend":"{VTMA.send.SendDeviceBusinessFlow.args.flowend}"
+							}
+						}
+					}
+				}, {
+					"name": "SendDeviceBusinessFlowResponse",
+					"SuccessCode": "0",
+					"body": {
+						"businessid": "{VTMA.recv.businessid}",
+						"function": "{VTMA.recv.function}",
+						"id": "{VTMA.recv.id}",
+						"msgCode": "{VTMA.recv.msgCode}",
+						"origin": "{VTMA.recv.origin}",
+						"sessionid": "{VTMA.recv.sessionid}",
+						"terminal": "{VTMA.recv.terminal}",
+						"token": "reserve",
+						"response": {
+							"result": "{VTMA.recv.response.result}",
+							"isNeedChecker": "",
+							"args": {}
+						}
+					}
+				}, {
+					"name": "CallRemoteTeller",
+					"response": "CallRemoteTellerResponse",
+					"body": {
+						"id": "{VTMA.send.id}",
+						"sessionid": "{VTMA.send.sessionid}",
+						"businessid": "{VTMA.send.businessid}",
+						"terminal": "{VTMA.send.terminal}",
+						"token": "reserve",
+						"origin": "1",
+						"function": "CallRemoteTeller",
+						"request": {
+							"isNeedChecker": "0",
+							"userModeType": "{VTMA.send.CallRemoteTeller.userModeType}",
+							"args": {
+								"customerInfo": {
+									"customerName": "{VTMA.send.CallRemoteTeller.args.customerInfo.customerName}",
+									"id": "{VTMA.send.CallRemoteTeller.args.customerInfo.id}",
+									"gender": "{VTMA.send.CallRemoteTeller.args.customerInfo.gender}",
+									"verifyId": "{VTMA.send.CallRemoteTeller.args.customerInfo.verifyId}"
+								},
+								"businessInfo": {
+									"kycCondition": "{VTMA.send.CallRemoteTeller.args.businessInfo.kycCondition}",
+									"transaction": "{VTMA.send.CallRemoteTeller.args.businessInfo.transaction}",
+									"previousTeller": "",
+									"requestReason": ""
+								},
+								"deviceInfo": {
+									"deviceNo": "{core_TerminalID}",
+									"deviceType": "{Context.TerminalConfig.Terminal.ATMType}",
+									"site": "{core_BranchNumber}",
+									"deviceAddress": ""
+								},
+								"valetMode": false
+							}
+						}
+					}
+				}, {
+					"name": "CallRemoteTellerResponse",
+					"SuccessCode": "0",
+					"body": {
+						"businessid": "{VTMA.recv.businessid}",
+						"function": "{VTMA.recv.function}",
+						"id": "{VTMA.recv.id}",
+						"msgCode": "{VTMA.recv.msgCode}",
+						"origin": "{VTMA.recv.origin}",
+						"response": {
+							"result": "{VTMA.recv.response.result}",
+							"args": {
+								"tellerAccount": "{VTMA.recv.response.args.tellerAccount}",
+								"tellerName": "{VTMA.recv.response.args.tellerName}",
+								"tellerId": "{VTMA.recv.response.args.tellerId}",
+								"previousTeller": "{VTMA.recv.response.args.previousTeller}",
+								"selfServiceFlag": "{VTMA.recv.response.args.selfServiceFlag}"
+							},
+							"isNeedChecker": "{VTMA.recv.response.isNeedChecker}"
+						},
+						"sessionid": "{VTMA.recv.sessionid}",
+						"terminal": "{VTMA.recv.terminal}",
+						"token": "reserve"
+					}
+				}, {
+					"name": "CallVedioConnect",
+					"response": "CallVedioConnectResponse",
+					"body": {
+						"id": "{VTMA.send.id}",
+						"sessionid": "{VTMA.send.sessionid}",
+						"businessid": "{VTMA.send.businessid}",
+						"terminal": "{VTMA.send.terminal}",
+						"token": "reserve",
+						"origin": "1",
+						"function": "CallVedioConnect",
+						"request": {
+							"isNeedChecker": "0",
+							"userModeType": "{VTMA.send.CallRemoteTeller.userModeType}",
+							"vncType":"com",
+							"args": {
+								"transaction": "{VTMA.send.CallRemoteTeller.args.businessInfo.transaction}"
+							}
+						}
+					}
+				}, {
+					"name": "CallVedioConnectResponse",
+					"SuccessCode": "0",
+					"body": {
+						"businessid": "{VTMA.recv.businessid}",
+						"function": "{VTMA.recv.function}",
+						"id": "{VTMA.recv.id}",
+						"msgCode": "{VTMA.recv.msgCode}",
+						"origin": "{VTMA.recv.origin}",
+						"response": {
+							"result": "{VTMA.recv.response.result}",
+							"isNeedChecker": "{VTMA.recv.response.isNeedChecker}",
+							"connectVideo":"{VTMA.recv.response.connectVideo}",
+							"userModeType":"{VTMA.recv.response.userModeType}",
+							"videoExpirationDate":"{VTMA.recv.response.videoExpirationDate}"
+						},
+						"sessionid": "{VTMA.recv.sessionid}",
+						"terminal": "{VTMA.recv.terminal}",
+						"token": "reserve"
+					}
+				}, {
+					"name": "PassportInfo",
+					"response": "PassportInfoResponse",
+					"body": {
+						"id": "{VTMA.send.id}",
+						"sessionid": "{VTMA.send.sessionid}",
+						"businessid": "{VTMA.send.businessid}",
+						"terminal": "{VTMA.send.terminal}",
+						"token": "reserve",
+						"origin": "1",
+						"function": "CommonVerifyForm",
+						"request": {
+							"isNeedChecker": "0",
+							"userModeType": "1",
+							"args": {
+								"verifyDesc": "ScanPassport",
+								"verifyId": "{VTM_VTA_CommonVerifyID}",
+								"cusInfo": {
+									"name": "{VTMA.send.Name}",
+									"gender": "{VTMA.send.Gender}",
+									"birthDate": "{VTMA.send.Birthdate}",
+									"nation": "{VTMA.send.Nationality}",
+									"idNo": "{VTMA.send.DocumentID}",
+									"expire": "{VTMA.send.Expire}",
+									"certType": "{VTMA.send.certType}"
+								}
+							}
+						}
+					}
+				}, {
+					"name": "PassportInfoResponse",
+					"SuccessCode": "0",
+					"body": {
+						"businessid": "{VTMA.recv.businessid}",
+						"function": "{VTMA.recv.function}",
+						"id": "{VTMA.recv.id}",
+						"msgCode": "{VTMA.recv.msgCode}",
+						"origin": "{VTMA.recv.origin}",
+						"response": {
+							"result": "{VTMA.recv.response.result}",
+							"isNeedChecker": "{VTMA.recv.response.isNeedChecker}"
+						},
+						"sessionid": "{VTMA.recv.sessionid}",
+						"terminal": "{VTMA.recv.terminal}",
+						"token": "reserve"
+					}
+				}, {
+					"name": "PassportFormData",
+					"response": "PassportFormDataResponse",
+					"body": {
+						"id": "{VTMA.send.id}",
+						"sessionid": "{VTMA.send.sessionid}",
+						"businessid": "{VTMA.send.businessid}",
+						"terminal": "{VTMA.send.terminal}",
+						"token": "reserve",
+						"origin": "1",
+						"function": "CommonVerifyForm",
+						"request": {
+							"isNeedChecker": "0",
+							"userModeType": "1",
+							"args": {
+								"verifyDesc": "CustomerInfo",
+								"verifyId": "",
+								"cusInfo": {
+									"name": "{VTMA.send.Name}",
+									"gender": "{VTMA.send.Gender}",
+									"birthDate": "{VTMA.send.Birthdate}",
+									"nation": "{VTMA.send.Nationality}",
+									"idNo": "{VTMA.send.DocumentID}",
+									"expire": "{VTMA.send.Expire}",
+									"phoneNum": "{VTMA.send.PhoneNumber}",
+									"email": "{VTMA.send.Email}",
+									"address": "{VTMA.send.Address}",
+									"certType": "{VTMA.send.certType}"
+								}
+							}
+						}
+					}
+				}, {
+					"name": "PassportFormDataResponse",
+					"SuccessCode": "0",
+					"body": {
+						"businessid": "{VTMA.recv.businessid}",
+						"function": "{VTMA.recv.function}",
+						"id": "{VTMA.recv.id}",
+						"msgCode": "{VTMA.recv.msgCode}",
+						"origin": "{VTMA.recv.origin}",
+						"response": {
+							"result": "{VTMA.recv.response.result}",
+							"isNeedChecker": "{VTMA.recv.response.isNeedChecker}"
+						},
+						"sessionid": "{VTMA.recv.sessionid}",
+						"terminal": "{VTMA.recv.terminal}",
+						"token": "reserve"
+					}
+				}, {
+					"name": "SignatureCheck",
+					"response": "SignatureCheckResponse",
+					"body": {
+						"id": "{VTMA.send.id}",
+						"sessionid": "{VTMA.send.sessionid}",
+						"businessid": "{VTMA.send.businessid}",
+						"terminal": "{VTMA.send.terminal}",
+						"token": "reserve",
+						"origin": "1",
+						"function": "CommonVerifyForm",
+						"request": {
+							"isNeedChecker": "0",
+							"userModeType": "1",
+							"args": {
+								"verifyDesc": "ScanSign",
+								"verifyId": "{VTM_VTA_CommonVerifyID}",
+								"verifyType": "1"
+							}
+						}
+					}
+				}, {
+					"name": "SignatureCheckResponse",
+					"SuccessCode": "0",
+					"body": {
+						"businessid": "{VTMA.recv.businessid}",
+						"function": "{VTMA.recv.function}",
+						"id": "{VTMA.recv.id}",
+						"msgCode": "{VTMA.recv.msgCode}",
+						"origin": "{VTMA.recv.origin}",
+						"response": {
+							"result": "{VTMA.recv.response.result}",
+							"isNeedChecker": "{VTMA.recv.response.isNeedChecker}"
+						},
+						"sessionid": "{VTMA.recv.sessionid}",
+						"terminal": "{VTMA.recv.terminal}",
+						"token": "reserve"
+					}
+					},
+					{
+					"name": "CheckForm",
+					"response": "CheckFormResponse",
+					"body": {
+						"id": "{VTMA.send.id}",
+						"sessionid": "{VTMA.send.sessionid}",
+						"businessid": "{VTMA.send.businessid}",
+						"terminal": "{VTMA.send.terminal}",
+						"token": "reserve",
+						"origin": "1",
+						"function": "CommonVerifyForm",
+						"request": {
+							"isNeedChecker": "{VTMA.send.response.isNeedChecker}",
+							"userModeType": "1",
+							"args": {
+								"verifyDesc": "ScanSign",
+								"verifyId": "{VTM_VTA_CommonVerifyID}",
+								"verifyType": "2"
+							}
+						}
+					}
+				}, {
+					"name": "CheckFormResponse",
+					"SuccessCode": "0",
+					"body": {
+						"businessid": "{VTMA.recv.businessid}",
+						"function": "{VTMA.recv.function}",
+						"id": "{VTMA.recv.id}",
+						"msgCode": "{VTMA.recv.msgCode}",
+						"origin": "{VTMA.recv.origin}",
+						"response": {
+							"result": "{VTMA.recv.response.result}",
+							"isNeedChecker": "{VTMA.recv.response.isNeedChecker}"
+						},
+						"sessionid": "{VTMA.recv.sessionid}",
+						"terminal": "{VTMA.recv.terminal}",
+						"token": "reserve"
+					}
+				},
+				{
+					"name": "ClientReset",
+					"response": "ClientResetResponse",
+					"body": {
+						"id": "{VTMA.send.id}",
+						"sessionid": "{VTMA.send.sessionid}",
+						"businessid": "{VTMA.send.businessid}",
+						"terminal": "{VTMA.send.terminal}",
+						"token": "reserve",
+						"origin": "1",
+						"function": "ClientReset",
+						"request": {
+							"userModeType": "2",
+							"args": {}
+						}
+					}
+				}, {
+					"name": "ClientResetResponse",
+					"SuccessCode": "0",
+					"body": {
+						"businessid": "{VTMA.recv.businessid}",
+						"sessionid": "{VTMA.recv.sessionid}",
+						"terminal": "{VTMA.recv.terminal}",
+						"token": "reserve",
+						"function": "{VTMA.recv.function}",
+						"id": "{VTMA.recv.id}",
+						"msgCode": "{VTMA.recv.msgCode}",
+						"origin": "{VTMA.recv.origin}",
+						"response": {
+							"result": "{VTMA.recv.response.result}",
+							"isNeedChecker": "{VTMA.recv.response.isNeedChecker}"
+						}				
+					}
+				},{
+					"name": "ChangeBusiness",
+					"response": "ChangeBusinessResponse",
+					"body": {
+						"id": "{VTMA.send.id}",
+						"sessionid": "{VTMA.send.sessionid}",
+						"businessid": "{VTMA.send.businessid}",
+						"terminal": "{VTMA.send.terminal}",
+						"token": "reserve",
+						"origin": "1",
+						"function": "ChangeBusiness",
+						"request": {
+							"userModeType": "{VTMA.send.CallRemoteTeller.userModeType}"
+						}
+					}
+				}, {
+					"name": "ChangeBusinessResponse",
+					"SuccessCode": "0",
+					"body": {
+						"businessid": "{VTMA.recv.businessid}",
+						"function": "{VTMA.recv.function}",
+						"id": "{VTMA.recv.id}",
+						"response": {
+							"result": "{VTMA.recv.response.result}",
+							"message": "{VTMA.recv.response.message}"
+						},
+						"sessionid": "{VTMA.recv.sessionid}",
+						"terminal": "{VTMA.recv.terminal}",
+						"token": "reserve"
+					}
+				}
+			]
+		}
+	]
+}

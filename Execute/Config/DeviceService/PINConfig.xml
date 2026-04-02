@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--ServiceName：设备的服务名-->
+<EPPKeyPad ServiceName="PIN30">
+  <!--首先，ATMC ECAT是使用水平布局，即：
+	F1 F2
+	F3 F4
+	F5 F6
+	F7 F8
+	如果硬件SP也是同样的水平布局，则<F1 value="F1"/><F2 value="F2"/>如此类推的配置。
+	如果硬件SP是垂直布局，如NCR，即SP布局为：
+	F1 F5
+	F2 F6
+	F3 F7
+	F4 F8
+	则<F1 value="F1"/><F2 value="F5"/><F3 value="F2"/><F4 value="F6"/>如此类推的配置。
+	-->
+  <FunctionKeyMap>
+    <F1 value="F1" />
+    <F2 value="F2" />
+    <F3 value="F3" />
+    <F4 value="F4" />
+    <F5 value="F5" />
+    <F6 value="F6" />
+    <F7 value="F7" />
+    <F8 value="F8" />
+  </FunctionKeyMap>
+  <!--支持多套密钥，在连接不同的ATMP时，支持不同的ATMP使用不同的密钥管理机制。	
+	PinKeyName：PINKEY的名字
+	PinKeyEncKeyName：PINKEY的加密密钥的名字
+	PinKeyUse：PINKEY的用法
+	PinBlockXORData：计算Pinblock的XOR数据
+	PinBlockPadding：计算Pinblock的填充数据
+	PinBlockFormat：计算Pinblock的算法
+	PinBlockDelLastCheckBit：
+	Reserve：    保留key，现在用不到
+	MacKeyName：MACKEY的名字
+	MacKeyEncKeyName：MACKEY的加密密钥的名字
+	MacKeyUse：MACKEY的用法
+	MacKeyCryptMode：MACKEY加密、解密
+	MacKeyAlgorithm：MACKEY的计算算法
+	MasterKeyName：主密钥的名字
+	MasterKeyEncKeyName：主密钥的加密密钥的名字
+	MasterKeyUse：主密钥的用法
+	CopyMasterKey：是否复制主密钥
+	CopyMasterKeyNewName：如果复制主密钥，新的复制主密钥的名字
+	-->
+  <EncryptKey1>
+    <PinKey PinKeyName="PINKey" PinKeyEncKeyName="MasterKey" PinKeyUse="FUNCTION" PinBlockXORData="0" PinBlockPadding="15" PinBlockFormat="ANSI" PinBlockDelLastCheckBit="0" />
+    <MacKey MacKeyName="MACKey" MacKeyEncKeyName="MasterKey" MacKeyUse="CRYPT,MACING" MacKeyCryptMode="E" MacKeyAlgorithm="3DESMAC" />
+    <MasterKey MasterKeyName="MasterKey" MasterKeyEncKeyName="" MasterKeyUse="CRYPT,KEYENCKEY" CopyMasterKey="0" CopyMasterKeyNewName="" />
+	<TR31Key TR31KeyName="TR31Key" TR31KeyEncKeyName="" TR31KeyUse="ANSTR31MASTER" />
+  </EncryptKey1>
+  <!--国密算法的配置-->
+  <EncryptKey2>
+    <PinKey PinKeyName="PinKey" PinKeyEncKeyName="MasterKey" PinKeyUse="FUNCTION,SMALGORITHM" PinBlockXORData="0" PinBlockPadding="15" PinBlockFormat="ANSI" PinBlockDelLastCheckBit="0" />
+    <MacKey MacKeyName="MacKey" MacKeyEncKeyName="MasterKey" MacKeyUse="CRYPT,MACING,SMALGORITHM" MacKeyCryptMode="E" MacKeyAlgorithm="SMMAC" />
+    <MasterKey MasterKeyName="MasterKey" MasterKeyEncKeyName="" MasterKeyUse="KEYENCKEY,SMALGORITHM" CopyMasterKey="0" CopyMasterKeyNewName="" />
+  </EncryptKey2>
+  <EncryptKey3>
+    <PinKey PinKeyName="PinKey" PinKeyEncKeyName="MasterKey" PinKeyUse="FUNCTION" PinBlockXORData="0" PinBlockPadding="15" PinBlockFormat="ANSI" PinBlockDelLastCheckBit="0" />
+    <MacKey MacKeyName="MacKey" MacKeyEncKeyName="MasterKey" MacKeyUse="CRYPT,MACING" MacKeyCryptMode="E" MacKeyAlgorithm="3DESMAC" />
+    <MasterKey MasterKeyName="MasterKey" MasterKeyEncKeyName="" MasterKeyUse="KEYENCKEY" CopyMasterKey="0" CopyMasterKeyNewName="" />
+  </EncryptKey3>
+  <EncryptKey4>
+    <PinKey PinKeyName="PINKey" PinKeyEncKeyName="MasterKey" PinKeyUse="FUNCTION" PinBlockXORData="0" PinBlockPadding="15" PinBlockFormat="ANSI" PinBlockDelLastCheckBit="0" />
+    <MacKey MacKeyName="MACKey" MacKeyEncKeyName="MasterKey" MacKeyUse="CRYPT,MACING" MacKeyCryptMode="E" MacKeyAlgorithm="3DESMAC" />
+    <MasterKey MasterKeyName="COMKEY" MasterKeyEncKeyName="MasterKey" MasterKeyUse="KEYENCKEY" CopyMasterKey="0" CopyMasterKeyNewName="" />
+  </EncryptKey4>
+  <EncryptKey5>
+    <PinKey PinKeyName="PINKey" PinKeyEncKeyName="MasterKey" PinKeyUse="FUNCTION" PinBlockXORData="0" PinBlockPadding="15" PinBlockFormat="ANSI" PinBlockDelLastCheckBit="0" />
+    <MacKey MacKeyName="MACKey" MacKeyEncKeyName="MasterKey" MacKeyUse="CRYPT,MACING" MacKeyCryptMode="E" MacKeyAlgorithm="3DESMAC" />
+    <MasterKey MasterKeyName="BKEY" MasterKeyEncKeyName="MasterKey" MasterKeyUse="KEYENCKEY" CopyMasterKey="0" CopyMasterKeyNewName="" />
+  </EncryptKey5>
+  <!--支持国密SM4
+	    IsSm4Key：是否国密，1-国密，0-非国密
+
+		PinKeyCheckMode：pinkey密钥检查值的模式，可配置为NONE,ZERO
+		MacKeyCheckMode：mackey密钥检查值的模式，可配置为NONE,ZERO
+		MasterKeyACheckMode：masterKey第一二组密钥检查值的模式，可配置为NONE,ZERO
+		MasterKeyCheckMode：第一组和第二组异或后的密钥检查值的模式，可配置为NONE,ZERO
+		MasterKeyCheckValueLength：主密钥校验值的长度。默认8位，最长32位
+
+		NONE-校验不要求密钥检查值。
+		ZERO-密钥检查值通过对该密钥进行0加密后产生。
+		SELF-密钥检查值通过一个密钥自身加密产生。对于一个两倍长度的密钥，将把密钥前半部分视为加密源数据使用3DES加密产生KCV。
+
+		PinKeyAlgorithm： 以国密SM4 算法计算PINBLOCK。
+   -->
+  <EncryptKey6 IsSm4Key="1">
+    <PinKey PinKeyName="PinKey" PinKeyEncKeyName="MasterKey" PinKeyUse="FUNCTION" PinBlockXORData="0" PinBlockPadding="15" PinBlockFormat="ANSI" PinBlockDelLastCheckBit="0" PinKeyCheckMode="NONE" PinKeyAlgorithm="SM4" />
+    <MacKey MacKeyName="MacKey" MacKeyCheckMode="NONE" MacKeyEncKeyName="MasterKey" MacKeyUse="CRYPT,MACING" MacKeyCryptMode="E" MacKeyAlgorithm="SM4MAC" />
+    <MasterKey MasterKeyName="MasterKey" MasterKeyACheckMode="ZERO" MasterKeyCheckMode="NONE" MasterKeyEncKeyName="" MasterKeyUse="CRYPT,KEYENCKEY" CopyMasterKey="0" CopyMasterKeyNewName="" MasterKeyCheckValueLength="6" />
+  </EncryptKey6>
+</EPPKeyPad>

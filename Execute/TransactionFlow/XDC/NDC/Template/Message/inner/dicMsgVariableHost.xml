@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Device>
+    <CardReader>
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <!--   ‘0’ No new state ‘1’ No overfill condition (capture bin ‘4’ Overfill condition (capture bin) -->
+      <Item size="1" key="SuppliesStatus" value="1" />
+    </CardReader>
+    <CashHandler>
+		<FitnessData value="00000"/>
+      <Fitness>
+        <Item size="1" key="Handler" value="0" />
+        <Item size="1" key="CassetteType1" value="0" />
+        <Item size="1" key="CassetteType2" value="0" />
+        <Item size="1" key="CassetteType3" value="0" />
+        <Item size="1" key="CassetteType4" value="0" />
+      </Fitness>
+      <!--    |reject bin |cassette 1 |cassette 2 |cassette 3 |cassette 4| -->
+      <SuppliesStatus>
+        <!-- ‘0’ No new state ‘1’ No overfill condition.‘4’ Overfill condition. -->
+        <Item size="1" key="RejectBin" value="1" />
+        <!-- ‘0’ No new state ‘1’ Sufficient notes.‘2’ Notes low.‘3’ Out of notes. -->
+        <Item size="1" key="CassetteType1" value="1" />
+        <Item size="1" key="CassetteType2" value="1" />
+        <Item size="1" key="CassetteType3" value="1" />
+        <Item size="1" key="CassetteType4" value="1" />
+      </SuppliesStatus>
+    </CashHandler>
+    <ReceiptPrinter>
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="4" key="DiagnosticStatus" value="0000" />
+      <!-- |paper |ribbon |print-head |knife|-->
+      <Item size="4" key="SuppliesStatus" value="1111" />
+      <SuppliesStatus>
+        <!-- ‘0’ No New State.
+	‘1’ Good State. 
+	‘2’ Media Low
+	‘3’ Media Out.
+	‘4’ Overfill. -->
+        <Item size="1" key="Paper" value="1" />
+        <Item size="1" key="Ribbon" value="1" />
+        <Item size="1" key="PrintHead" value="1" />
+        <Item size="1" key="Knife" value="1" />
+      </SuppliesStatus>
+    </ReceiptPrinter>
+    <JournalPrinter>
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="4" key="DiagnosticStatus" value="0000" />
+      <!-- |paper |ribbon |print-head |knife|-->
+      <Item size="4" key="SuppliesStatus" value="111" />
+      <SuppliesStatus>
+        <Item size="1" key="Paper" value="0" />
+        <Item size="1" key="Ribbon" value="0" />
+        <Item size="1" key="PrintHead" value="0" />
+        <Item size="1" key="Knife" value="0" />
+      </SuppliesStatus>
+    </JournalPrinter>
+    <Encryptor>
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </Encryptor>
+    <BNA>
+	  <FitnessData value="0"/>
+      <Fitness>
+        <Item size="1" key="Overall" value="0" />
+      </Fitness>
+			<SuppliesStatus>
+				<Item size="1" key="Overall" value="0"/>
+			</SuppliesStatus>
+    </BNA>
+    <EnvelopeDispenser>
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </EnvelopeDispenser>
+    <EnvelopeDepository>
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="SuppliesStatus" value="1" />
+    </EnvelopeDepository>
+    <BarCodeReader>
+      <Item size="1" key="Fitness" value="0" />
+    </BarCodeReader>
+  </Device>
+</Root>

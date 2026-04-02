@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <EncryptorInitData>
+    <Item key="e" value="6" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!-- 	* When information identifier = '6':  (Key Entry Mode, a single character in the range '1' to '4' as follows:)
+        *        '1'  - Single length without XOR 
+		*        '2'  - Single length with XOR
+        *        '3'  - Double length with XOR 
+        *        '4'  - Double length, restricted.
+		-->
+    <Item key="f" value="[SolicitedStatus.EncryptorInitData.KeyEntryMode]" size="1" restriction="Optional" />
+  </EncryptorInitData>
+</Root>

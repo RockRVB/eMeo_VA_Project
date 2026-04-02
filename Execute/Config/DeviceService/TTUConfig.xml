@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ServiceName：			 		设备的服务名
+AutoAppendSpace：  		是否自动填充空格
+                      	0，表示不会自动填充 
+                      	1，表示会自动填充空格，填充至满行（原始文本数据+填充的空格+最后的换行符）
+AutoAppendLastString：是否使用换行符及如何使用
+												0，表示不使用换行符，使用填充空格至满行来实现换行
+												1，表示最后的换行符为\r\n
+												2，表示最后的换行符为\r 
+												3，表示最后的换行符为\n
+ArrowUp：           	向上箭头标志 
+ArrowDown：						向下箭头标志						
+IsCharSupported：   	TTU是否可以直接支持输入字母。为1时表示支持
+IsCashInfoShow：    	TTU 是否显示钞箱信息（在非维护模式下、清机加钞中不会显示钞箱信息，主要是针对一些小屏幕的TTU）。为1时表示支持。
+ErrorCode：         	错误码 用于记录最近一次的设备错误物理码 默认为"ErrorCode"，可以不用配置，系统会自己按顺序查找
+-->
+<TextTerminalUnit ServiceName="TTU30" AutoAppendSpace="0" AutoAppendLastString="1" ArrowUp="arrowup" ArrowDown="arrowdown" IsCharSupported="1" IsCashInfoShow="1"/>

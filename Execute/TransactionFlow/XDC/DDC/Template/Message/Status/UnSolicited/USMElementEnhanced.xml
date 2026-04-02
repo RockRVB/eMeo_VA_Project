@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<Data>
+		<Item key="Status Source" value="J" size="1" restriction="Mandatory"/>
+		<!-- Operation Sequence Numbe -->
+		<!-- <Item key="Status Source" value="000" size="1" restriction="Mandatory"/> -->
+		<Item key="[MDS_0]" value="000" size="1" restriction="Mandatory" /> 
+		<Item key="[MDS_1]" value="[Device.{0}.DeviceID]" size="1" restriction="Mandatory"/>
+		<Item key="[MDS_2]" value="[Device.{0}.MDS]" size="1" restriction="Mandatory"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="[Options.F2.MDSStatusToNetwork],[Options.F2.MaintenanceModeLogToNetwork]"/>
+		<Item key="[Log]" value="[Msg.Unsolicited.Log]" size="1" restriction="[Options.F2.MDSStatusToNetwork],[Options.F2.MaintenanceModeLogToNetwork]"/>
+		<!--Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<Item key="Buffers.Group" value="[Msg.Unsolicited.BufferGroup]" size="var" restriction="Optional"/ -->
+	</Data>
+	<SmartCard>
+		<Item key="buffer" value="9" size="1" restriction="Mandatory"/>
+		<Item key="buffer" value="077" size="3" restriction="Mandatory"/>
+		<Item key="buffer" value="[Buffer.M]" size="3" restriction="Mandatory"/>
+	</SmartCard>
+	<Wincor>
+		<!-- Device Identification Graphic. -->
+		<Item key="e1" value="r" size="1" restriction="Mandatory"/>
+		<!--   Transaction/Device Status 	-->
+		<Item key="e2" value="[{0}.DevStatus]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Error Severity. -->
+		<Item key="e3" value="[Device.{0}.MDS]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<Item key="g4" value="[Msg.Transaction.MCON]" size="1" restriction="Mandatory"/>
+		<!--  
+		
+		Field separator (FS) [:1C] 1
+		Identified L4 Note/Coin ID’s [-] VAR
+		Group separator (GS) [:1D] 1
+		Identified L3 Note ID’s [-] VAR
+		Group separator (GS) [:1D] 1
+		Identified L2 Note ID’s [-] VAR
+		Field separator (FS) [:1C] 1
+		Track1 Data [-] (max 79)
+		Group separator (GS) [:1D] 1
+		Track2 Data [-] (max 39)
+		Group separator (GS) [:1D] 1
+		Track3 Data [-] (max 106)		
+		-->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<Item key="h2" value="" size="4" restriction="Mandatory"/>
+		<Item key="[GS]" value="[GS]" size="1" restriction="Mandatory"/>
+		<Item key="h2" value="" size="4" restriction="Mandatory"/>
+		<Item key="[GS]" value="[GS]" size="1" restriction="Mandatory"/>
+		<Item key="h2" value="" size="4" restriction="Mandatory"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<Item key="h2" value="" size="4" restriction="Mandatory"/>
+		<Item key="[GS]" value="[GS]" size="1" restriction="Mandatory"/>
+		<Item key="h2" value="" size="4" restriction="Mandatory"/>
+		<Item key="[GS]" value="[GS]" size="1" restriction="Mandatory"/>
+		<Item key="h2" value="" size="4" restriction="Mandatory"/>
+	</Wincor>
+</Root>

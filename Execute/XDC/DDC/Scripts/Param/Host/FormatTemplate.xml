@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Data>
+  <!--The default format templates-->
+    <Item key="001" value="C04ZZZZ5ZZ9699" />
+    <Item key="002" value="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
+    <Item key="003" value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+    <Item key="004" value="XXXXXXXXXXXXXXXX" />
+    <Item key="005" value="AA" />
+    <Item key="006" value="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
+    <Item key="007" value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+    <Item key="008" value="C04ZZZ5ZZZ5ZZ96" />
+    <Item key="009" value="C04ZZZZZ9699" />
+    <Item key="010" value="C04ZZZZZZZZZ9699" />
+    <Item key="011" value="C04ZZZZZZZZ96999" />
+  </Data>
+</Root>

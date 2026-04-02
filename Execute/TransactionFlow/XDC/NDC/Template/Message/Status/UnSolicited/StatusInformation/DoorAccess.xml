@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!--  Door Access
+		*  This  is no supprted in Advance NDC. 
+	-->
+		
+	<DoorAccess>
+		<!-- Device Identification Graphic. -->
+		<Item key="e1" 																		value="M"  																				size="1" 				restriction="Mandatory"/>
+		
+		<!--   Transaction/Device Status. Always '0'
+		-->
+		<Item key="e2" 																		value="1"																				size="1" 				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																			size="1"				restriction="Mandatory"/>
+		
+		<!--  Error Severity. Standard code. -->
+		<Item key="e3" 																		value="2"  																				size="1" 				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																			size="1"				restriction="Mandatory"/>
+		
+		<!--  Diagnostic Status. 
+		* Note: The encryptor status is reported in the M-data field of the Diagnostic Status for compatibility with NDC+. 
+		-->
+		<Item key="g4" 																		value="[DoorAccessDiagnosticStatus]"  								size="var" 			restriction="Optional"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																			size="1"				restriction="[OptionCtrl.NoUse]"/>
+		
+		<!--  Suplies Status-->
+		<Item key="g5" 																		value="[CameraSuppliesStatus]"  											size="1" 				restriction="[OptionCtrl.NoUse]"/>
+		
+	</DoorAccess>	
+</Root>

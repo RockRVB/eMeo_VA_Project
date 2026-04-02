@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="ReplaceCard">
+  <Head type="GRGWorkflow" author="yslin3" timeStamp="2017/07/06 15:00:00" comment="The workflow design is for debit card replacement"/>
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start" callVisible="0" endflag="1">
+      <Forward event="OnConfirm" targetID="ID_SetTransTypeReplaceCard"/>
+    </Start>
+
+	<SetData ID="ID_SetTransTypeReplaceCard" saveBuffer="{VTM_TransTypeName,0}" value="VTM_Standard_ReplaceCard">
+      <Forward event="OnConfirm" targetID="ID_DispenseCardGetDevStatusEx"/>
+    </SetData>
+	
+	<!--设置打印凭条标识的值为True-->
+	<SetData ID="ID_SetPrintReceiptTrue" saveBuffer="{VTM_PrintReceiptFlag,0}" value="True">
+      <Forward event="OnConfirm" targetID="ID_GetDevStatusForRPTR" />
+    </SetData>
+	
+    <!--Check PrintReceipt-->
+    <GetDevStatus ID="ID_GetDevStatusForRPTR" comment="Get device status" devType="RPTR" homeVisible="0">
+      <Forward event="OnNormal" targetID="ID_CompareLoginSuccessfulFlag"/>
+      <Forward event="OnWarn" targetID="ID_CompareLoginSuccessfulFlag"/>
+      <Forward event="OnFail" targetID="ID_AskContinueOrNotWithoutRPTR"/>
+    </GetDevStatus>
+
+    <!-- Ask customer that continue or not -->
+    <VTMSelectFunction ID="ID_AskContinueOrNotWithoutRPTR" UI="UI_CheckRPTRStatusResult" timeout="30000" homeVisible="0">
+      <Forward event="OnConfirm" targetID="ID_SetPrintReceiptFalse" />
+      <Forward event="OnNo" targetID="ID_InvokeCloseTransWorkflow" />
+    </VTMSelectFunction>
+	
+	<!--设置打印凭条标识的值为False-->
+	<SetData ID="ID_SetPrintReceiptFalse" saveBuffer="{VTM_PrintReceiptFlag,0}" value="False">
+      <Forward event="OnConfirm" targetID="ID_CompareLoginSuccessfulFlag" />
+    </SetData>
+
+    <!--Check Authorization -->
+    <CompareData ID="ID_CompareLoginSuccessfulFlag" comment="" compareBuffer="{LoginSuccessfulFlag}">
+      <Forward event="OnEqualTrue" targetID="ID_CompareVideoStatus" />
+      <DefaultForward targetID="ID_SetBackFlagFalse" />
+    </CompareData>
+	
+	<!--设置返回按钮标志位的值为False-->
+	<SetData ID="ID_SetBackFlagFalse" saveBuffer="{VTM_BackFlag,0}" value="False">
+      <Forward event="OnConfirm" targetID="ID_InvokeAuthorizationWorkflow" />
+    </SetData>
+
+    <!-- Invoke the Authorization workflow-->
+    <InvokeWorkflow ID="ID_InvokeAuthorizationWorkflow" name="Authorization" comment="Invoke Authorization workflow" index="0">
+      <Forward event="OnConfirm" targetID="ID_CompareBackFlag"/>
+    </InvokeWorkflow>
+	
+	<!--比较返回按钮标志位的值-->
+	<CompareData ID="ID_CompareBackFlag" comment="" compareBuffer="{VTM_BackFlag}">
+      <Forward event="OnEqualTrue" targetID="9999" />
+      <DefaultForward targetID="ID_CompareLoginSuccessfulFlagAgain" />
+    </CompareData>
+
+    <!--Check Authorization again-->
+    <CompareData ID="ID_CompareLoginSuccessfulFlagAgain" comment="" compareBuffer="{LoginSuccessfulFlag}">
+      <Forward event="OnEqualTrue" targetID="ID_ApplyCardAgreement" />
+      <DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+    </CompareData>
+
+	<!--Check Agin Video Connection-->
+	<!-- 判断视频状态 -->
+    <!-- STATUS_END = 0,        未初始化前的状态，登陆前状态  -->
+    <!-- STATUS_INITIAL_REQ,    初始化请求状态, 登陆中状态  -->
+    <!-- STATUS_IDLE,           初始化成功后还未呼叫时的空闲状态  -->
+    <!-- STATUS_CALL_REQ,       呼叫发起请求状态  -->
+    <!-- STATUS_IN_TALKING,     通话中状态  -->
+    <!-- STATUS_RELEASE_REQ,    呼叫发起释放状态  -->
+    <!-- STATUS_ENDING_REQ,     发起结束初始化状态  -->
+    <!-- STATUS_ANSWER_REQ,     应答中，此时点击应答，等有TALKING事件上报后，将迁移到STATUS_IN_TALKING  -->
+    <!-- STATUS_IN_CALLING,     正在 来电中， 也就是收到振铃事件；对于AVAYA，主叫会收到振铃事件但被叫反而不会收到振铃事件  -->
+    <!-- STATUS_IN_REJECTING,   正在拒绝中  -->
+    <!-- STATUS_NETWORK_ERROR,  网络故障  -->
+    <CompareData ID="ID_CompareVideoStatus" comment="" compareBuffer="{VTM_VideoStatusWrapper}">
+      <Forward event="OnEqualSTATUS_IN_TALKING" targetID="ID_BeginTransaction" />
+      <Forward event="OnEqualSTATUS_IDLE" targetID="ID_InvokeAuthorizationReqAgentWorkflow" />
+      <DefaultForward targetID="ID_ConnectAgentFail" />
+    </CompareData>
+	
+	<!-- Invoke the agent requesting workflow -->
+    <InvokeWorkflow ID="ID_InvokeAuthorizationReqAgentWorkflow" name="AuthorizationReqAgent" comment="Invoke the agent requesting workflow">
+      <Forward event="OnConfirm" targetID="ID_CompareVideoStatusAgain"/>
+    </InvokeWorkflow>
+	
+	<!-- Judge whether the agent is connected or not -->
+	<CompareData ID="ID_CompareVideoStatusAgain" comment="" compareBuffer="{VTM_VideoStatusWrapper}"> 
+      <Forward event="OnEqualSTATUS_IN_TALKING" targetID="ID_ApplyCardAgreement" />
+      <DefaultForward targetID="ID_ConnectAgentFail" />
+    </CompareData>
+	
+    <BeginTransaction ID="ID_BeginTransaction" UI="UI_WaitingNoVoice" timeout="60000">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail"/>
+        <State name="TimeOutError" UI="UI_TransTimeOut"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_ApplyCardAgreement"/>
+      <Forward event="OnFail" targetID="ID_ConnectAgentFail"/>
+    </BeginTransaction>
+
+    <!-- Read agreement of applying card -->
+    <VTMSelectFunction ID="ID_ApplyCardAgreement" UI="UI_ReplaceCardProtol" timeout="120000" homeVisible="1" index="1">
+      <Forward event="OnConfirm" targetID="ID_RequestTransCardList"/>
+	  <Forward event="OnBack" targetID="9999"/>
+    </VTMSelectFunction>
+
+    <!--Check Agin Video Connection-->
+    <CompareData ID="ID_CompareReqAgentSuccessFlagAgain" comment="" compareBuffer="{VTM_VideoStatusWrapper}">
+      <Forward event="OnEqualSTATUS_IN_TALKING" targetID="ID_RequestTransCardList" />
+      <DefaultForward targetID="ID_ConnectAgentFail" />
+    </CompareData>
+
+    <!--Check All CARDLIST-->
+    <RequestTrans ID="ID_RequestTransCardList" UI="UI_Waiting" comment="Transfer request" transType="VTM_CARD_RPLC_CHK" homeVisible="0" timeout="60000">
+      <States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+        <State name="SendFail" UI="UI_GeneralError"/>
+        <State name="ReceiveFail" UI="UI_GeneralError"/>
+        <State name="ReceiveTimeout" UI="UI_GeneralError"/>
+        <State name="NetworkFail" UI="UI_ConnectFail"/>
+        <State name="UnpackFail" UI="UI_GeneralError"/>
+        <State name="HardwareError" UI="UI_DevError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_ShowCardList"/>
+      <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnHostRefuse" targetID="ID_RequestFailed"/>
+      <Forward event="OnFallback" targetID="ID_RequestTransCardList"/>
+      <Forward event="OnTryAgain" targetID="ID_RequestTransCardList"/>
+      <Forward event="OnICAppLoadedFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </RequestTrans>
+
+    <!--Show Card Info-->
+    <ShowAllCards ID="ID_ShowCardList" UI="UI_AllBankCardInfo" timeout="60000" DisplayCount="5" homeVisible="1" index="2">
+      <States>
+        <State name="NoCard" UI="UI_NoCardToReplace" />
+      </States>
+      <Forward event="OnConfirm" targetID="ID_SelectCardType" />
+      <Forward event="OnNoCard" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="OnBack" targetID="ID_ApplyCardAgreement"/>
+    </ShowAllCards>
+
+    <!--Select Card Type-->
+    <SelectCardType ID="ID_SelectCardType" UI="UI_ChooseCard" timeout="60000" homeVisible="1" index="3">
+      <Forward event="OnFail" targetID="ID_ConnectAgentFail"/>
+      <Forward event="OnTimeout" targetID="ID_TransTimeOut"/>
+      <Forward event="OnCancel" targetID="ID_OtherTrans"/>
+      <Forward event="OnHelp" targetID="ID_InvokeRequestAgent_WF"/>
+      <DefaultForward targetID="ID_CompareAuthTypeFlag" />
+	  <Forward event="OnBack" targetID="ID_ShowCardList"/>
+    </SelectCardType>
+
+    <CompareData ID="ID_CompareAuthTypeFlag" comment="" compareBuffer="{VTM_AuthentificationWay}">
+      <Forward event="OnEqual1" targetID="ID_FillFormPassport" />
+      <DefaultForward targetID="ID_FillForm" />
+    </CompareData>
+
+    <!--Fill in the Form-->
+    <InputInfoMess ID="ID_FillForm" UI="UI_InputUserInfoForChangeCard" timeout="120000" homeVisible="1" index="4" authorType="IDCard">
+      <Forward event="OnConfirm" targetID="ID_SetFormData"/>
+	  <Forward event="OnBack" targetID="ID_SelectCardType"/>
+    </InputInfoMess>
+
+    <!--Fill in the Passport Form-->
+    <InputPassportInfoMess ID="ID_FillFormPassport" UI="UI_InputUserInfoPassportForChangeCard"  timeout="120000" homeVisible="1" index="4" authorType="PassPort">
+      <Forward event="OnConfirm" targetID="ID_SetFormData"/>
+	  <Forward event="OnBack" targetID="ID_SelectCardType"/>
+    </InputPassportInfoMess>
+
+    <!-- Set form data -->
+    <SetFormData ID="ID_SetFormData"  timeout="60000" homeVisible="0" type="ReplaceCard">
+      <Forward event="OnContinue" targetID="ID_VTARequestFillFormCheck"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </SetFormData>
+
+    <!--填单信息审核请求-->
+    <VTARequest ID="ID_VTARequestFillFormCheck"  UI="UI_CommonWaiting"  timeout="60000" ids="IDS_formCheckWait" messageType="2005" verify="2005" checkVideo="1">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail"/>
+        <State name="TimeOutError" UI="UI_TransTimeOut"/>
+        <State name="ServiceCloseTrans" UI="UI_ServiceCloseTrans"/>
+		<State name="CameraError" UI="UI_DevError"/>
+		<State name="VideoDisconnected" UI="UI_VideoDisconnected"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_RequestVtaToVerifyInfo" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </VTARequest>
+
+    <VTARequest ID="ID_RequestVtaToVerifyInfo" UI="UI_CommonWaiting" ids="IDS_VTMIDCheckPleaseWait" messageType="2006" timeout="60000" verify="3002" checkVideo="1">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail"/>
+        <State name="TimeOutError" UI="UI_TransTimeOut"/>
+        <State name="ServiceCloseTrans" UI="UI_ServiceCloseTrans"/>
+		<State name="CameraError" UI="UI_DevError"/>
+		<State name="VideoDisconnected" UI="UI_VideoDisconnected"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_CheckDealFillInput"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </VTARequest>
+
+    <!--填单审核处理-->
+    <CheckDeal ID="ID_CheckDealFillInput">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail"/>
+      </States>
+      <Forward event="OnYes" targetID="ID_Signature" />
+      <Forward event="OnNo" targetID="ID_AuditingFailCard" />
+      <Forward event="OnTryAgain" targetID="ID_CompareAuthTypeFlag" />
+      <Forward event="OnFail" targetID="ID_ConnectAgentFail" />
+    </CheckDeal>
+
+    <!--  电子签名-->
+    <ConfirmSignInfo4Html ID="ID_Signature" UI="UI_SignForm"  timeout="60000" homeVisible="1" endflag="1" index="5">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail" />
+        <State name="TimeOutError" UI="UI_TransTimeOut" />
+        <State name="ServiceCloseTrans" UI="UI_ServiceCloseTrans" />
+      </States>
+      <Forward event="OnContinue" targetID="ID_UpFileSignPhoto" />
+      <Forward event="OnReInput" targetID="ID_Signature" />
+      <Forward event="OnExitEx" targetID="ID_InvokeCloseTransWorkflow" />
+    </ConfirmSignInfo4Html>
+
+    <!--签名图片上传-->
+    <UpFile ID="ID_UpFileSignPhoto"   timeout="60000" fileType="8"  UI="UI_WaitingNoVoice" homeVisible="0">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_VTARequestSignCheck" />
+      <Forward event="OnFail" targetID="ID_ConnectAgentFail" />
+    </UpFile>
+
+    <!--用户签名审核-->
+    <VTARequest ID="ID_VTARequestSignCheck"  UI="UI_CommonWaiting"   timeout="60000" homeVisible="0" ids="IDS_formCheckWait" messageType="2006"  verify="3004" checkVideo="1">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail"/>
+        <State name="TimeOutError" UI="UI_TransTimeOut"/>
+        <State name="ServiceCloseTrans" UI="UI_ServiceCloseTrans"/>
+		<State name="CameraError" UI="UI_DevError"/>
+		<State name="VideoDisconnected" UI="UI_VideoDisconnected"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_CheckDealSignAgain" />
+      <Forward event="OnFail" targetID="ID_ConnectAgentFail" />
+    </VTARequest>
+
+    <!--审核处理-->
+    <CheckDeal ID="ID_CheckDealSignAgain">
+      <States>
+        <State name="NetWorkError" UI="UI_ConnectFail"/>
+      </States>
+      <Forward event="OnYes" targetID="ID_DispenseCard" />
+      <Forward event="OnNo" targetID="ID_AuditingFailCard" />
+      <Forward event="OnTryAgain" targetID="ID_Signature" />
+      <Forward event="OnFail" targetID="ID_ConnectAgentFail" />
+    </CheckDeal>
+
+    <!--Check 发卡机 -->
+    <GetDevStatusEx ID="ID_DispenseCardGetDevStatusEx" UI="UI_WaitingNoVoice" comment="Get device status" devType="CRD" callVisible="0" homeVisible="0">
+      <States>
+        <State name="GetDevStatusExError" UI="UI_DevError"></State>
+      </States>
+      <Forward event="OnNormal" targetID="ID_IDCReadGetDevStatusEx"/>
+      <Forward event="OnWarn" targetID="ID_IDCReadGetDevStatusEx"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </GetDevStatusEx>
+
+    <!--Check 读卡器 -->
+    <GetDevStatusEx ID="ID_IDCReadGetDevStatusEx" UI="UI_WaitingNoVoice" comment="Get device status" devType="IDC" callVisible="0" eject="1">
+      <States>
+        <State name="GetDevStatusExError" UI="UI_DevError"></State>
+      </States>
+      <Forward event="OnNormal" targetID="ID_SetPrintReceiptTrue"/>
+      <Forward event="OnWarn" targetID="ID_SetPrintReceiptTrue"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </GetDevStatusEx>
+
+    <!--开始发卡-->
+    <DispenseCard ID="ID_DispenseCard" UI="UI_Waiting" homeVisible="0">
+      <States>
+        <State name="DispenseCardError" UI="UI_DevError"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_ReadRawData"/>
+      <Forward event="OnHardwareError" targetID="ID_ReturnCard"/>
+    </DispenseCard>
+
+    <!--读卡-->
+    <ReadRawData ID="ID_ReadRawData" homeEnable="0" homeVisible="0">
+      <States>
+        <State name="ReadCardError" UI="UI_DevError"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_VTMRequestCard"/>
+      <Forward event="OnICType" targetID="ID_ICBuildAppList"/>
+      <Forward event="OnFail" targetID="ID_ReturnCard"/>
+      <Forward event="OnHardwareError" targetID="ID_ReturnCard"/>
+    </ReadRawData>
+
+    <ICBuildAppList ID="ID_ICBuildAppList" UI="UI_Waiting" comment="" homeVisible="0">
+      <Forward event="OnOneApplication" targetID="ID_ICAppLoadedForFirstTime"/>
+      <Forward event="OnMoreApplication" targetID="ID_ICMoreAppSelectForFirstTime"/>
+      <Forward event="OnFallback" targetID="ID_ICGetTrack"/>
+      <Forward event="OnCancel" targetID="ID_ICTransCancel"/>
+    </ICBuildAppList>
+
+    <ICAppLoaded ID="ID_ICAppLoadedForFirstTime" UI="UI_Waiting" comment="" homeVisible="0">
+      <Forward event="OnConfirm" targetID="ID_ICGetTrack"/>
+      <Forward event="OnFallback" targetID="ID_ICGetTrack"/>
+      <Forward event="OnTryAgain" targetID="ID_ICMoreAppSelectForFirstTime"/>
+      <Forward event="OnICAppLoadedFail" targetID="ID_ICTransCancel"/>
+    </ICAppLoaded>
+
+    <ICMoreAppSelect ID="ID_ICMoreAppSelectForFirstTime" UI="UI_ICMoreAppSelect" comment="" homeVisible="0">
+      <Forward event="OnConfirm" targetID="ID_ICAppLoadedForFirstTime"/>
+    </ICMoreAppSelect>
+
+    <Prompt ID="ID_ICTransCancel" UI="UI_ICTransCancel" timeout="5000" comment="" homeVisible="0">
+      <Forward event="OnTimeout" targetID="ID_ReturnCard"/>
+      <Forward event="OnFail" targetID="ID_ReturnCard"/>
+    </Prompt>
+
+    <ICGetTrack ID="ID_ICGetTrack" comment="Get IC tracks" homeVisible="0">
+      <Forward event="OnConfirm" targetID="ID_VTMRequestCard"/>
+    </ICGetTrack>
+
+    <RequestTrans ID="ID_VTMRequestCard" UI="UI_WaitingNoVoice" transType="VTM_CARD_RPLC" timeout="60000" homeVisible="0">
+      <States>
+        <State name="PackFail" UI="UI_VTMGeneralError"/>
+        <State name="ConnectFail" UI="UI_VTMGeneralError"/>
+        <State name="SendFail" UI="UI_VTMGeneralError"/>
+        <State name="ReceiveFail" UI="UI_VTMGeneralError"/>
+        <State name="ReceiveTimeout" UI="UI_NoSureTransResult"/>
+        <State name="NetworkFail" UI="UI_ConnectFail"/>
+        <State name="UnpackFail" UI="UI_VTMGeneralError"/>
+        <State name="HardwareError" UI="UI_DevError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_DispenseCardSuccess"/>
+      <Forward event="OnPackFail" targetID="ID_ReturnCard"/>
+      <Forward event="OnConnectFail" targetID="ID_ReturnCard"/>
+      <Forward event="OnSendFail" targetID="ID_ReturnCard"/>
+      <Forward event="OnReceiveFail" targetID="ID_ReturnCardReset"/>
+      <Forward event="OnReceiveTimeout" targetID="ID_ReturnCardReset"/>
+      <Forward event="OnNetworkFail" targetID="ID_ReturnCard"/>
+      <Forward event="OnUnpackFail" targetID="ID_ReturnCardReset"/>
+      <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+      <Forward event="OnHardwareError" targetID="ID_ReturnCard"/>
+      <Forward event="OnICAppLoadedFail" targetID="ID_ReturnCard"/>
+      <Forward event="OnFallback" targetID="ID_VTMRequestCard"/>
+      <Forward event="OnTryAgain" targetID="ID_VTMRequestCard"/>
+    </RequestTrans>
+
+    <!--开卡成功等待客户取卡-->
+    <DispenseCardSuccess ID="ID_DispenseCardSuccess" UI="UI_DispenseCard" homeVisible="0" IsNeverTimedOut="false" timeout="30000" index="6">
+      <States>
+        <State name="EjectWait" UI="UI_WaitingNoVoice"/>
+        <State name="TakeCard" UI="UI_TakeCard"/>
+        <State name="EjectCardError" UI="UI_DevError"/>
+        <!-- <State name="TransTimeOut" UI="UI_TransTimeOut"/> -->
+      </States>
+      <Forward event="OnContinue" targetID="ID_ComparePrintingReceiptFlag"/>
+      <Forward event="OnHardwareError" targetID="ID_ReturnCardForNotTake"/>
+      <Forward event="OnTimeout" targetID="ID_ReturnCardForNotTake"/>
+    </DispenseCardSuccess>
+	
+	<!--不拿卡吞卡-->
+	<ReturnCard ID="ID_ReturnCardForNotTake" UI="UI_WaitingNoVoice" homeVisible="0">
+      <States>
+        <State name="ReturnCardError" UI="UI_DevError"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_TakeCardTimeout"/>
+      <Forward event="OnHardwareError" targetID="ID_TakeCardTimeout"/>
+	  <Forward event="OnTakeCardSuccess" targetID="ID_ComparePrintingReceiptFlag"/>
+    </ReturnCard>
+
+    <!-- 吞卡打印凭条 -->
+    <ReturnCard ID="ID_ReturnCardReset" UI="UI_WaitingNoVoice" homeVisible="0">
+      <States>
+        <State name="ReturnCardError" UI="UI_DevError"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_CheckPrintingReceiptFlag"/>
+      <Forward event="OnHardwareError" targetID="ID_CheckPrintingReceiptFlag"/>
+    </ReturnCard>
+
+    <!-- 吞卡结束交易 -->
+    <ReturnCard ID="ID_ReturnCard" UI="UI_WaitingNoVoice" homeVisible="0">
+      <States>
+        <State name="ReturnCardError" UI="UI_DevError"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+    </ReturnCard>
+	
+	<!--Check PrintingReceiptFlag -->
+    <CompareData ID="ID_ComparePrintingReceiptFlag" comment="" compareBuffer="{VTM_PrintReceiptFlag}">
+      <Forward event="OnEqualTrue" targetID="ID_SetTransTypeData" />
+      <DefaultForward targetID="ID_OtherTrans" />
+    </CompareData>
+
+    <SetData ID="ID_SetTransTypeData" saveBuffer="{core_TransType}" value="REPLACECARD">
+      <Forward event="OnConfirm" targetID="ID_PrintReceipt"/>
+    </SetData>
+
+    <!-- 开始打印凭条 -->
+    <PrintReceipt ID="ID_PrintReceipt" UI="UI_PrintingReceipt" formName="" showTime="3000">
+      <States>
+        <State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+        <State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_OtherTrans"/>
+    </PrintReceipt>
+	
+	<SetData ID="ID_SetCaptureCardFlag" saveBufferBool="{core_HostAskCaptureCardTemp}" value="True">
+      <Forward event="OnConfirm" targetID="ID_PrintReceiptForCloseTrans"/>
+    </SetData>
+	
+	<!--Check PrintingReceiptFlag -->
+    <CompareData ID="ID_CheckPrintingReceiptFlag" comment="" compareBuffer="{VTM_PrintReceiptFlag}">
+      <Forward event="OnEqualTrue" targetID="ID_SetTransTypeDataForPrint" />
+      <DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+    </CompareData>
+	
+	<SetData ID="ID_SetTransTypeDataForPrint" saveBuffer="{core_TransType}" value="REPLACECARD">
+      <Forward event="OnConfirm" targetID="ID_SetCaptureCardFlag"/>
+    </SetData>
+	
+	<!-- 打印凭条后结束交易 -->
+    <PrintReceipt ID="ID_PrintReceiptForCloseTrans" UI="UI_PrintingReceipt" formName="" showTime="3000">
+      <States>
+        <State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+        <State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+    </PrintReceipt>
+
+    <!--客服正忙-->
+    <WaitSleep ID="ID_CusBusyFail" UI="UI_CusBusy" timeout="5000" callVisible="0">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+    </WaitSleep>
+	<!--审核不通过-->
+	<WaitSleep ID="ID_AuditingFailCard" UI="UI_AuditingFailCard" timeout="3000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+    </WaitSleep>
+
+    <WaitSleep ID="ID_TransTimeOut" UI="UI_TransTimeOut" timeout="5000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+    </WaitSleep>
+
+    <WaitSleep ID="ID_ConnectAgentFail" UI="UI_ConnectFail" timeout="5000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+    </WaitSleep>
+	
+	<WaitSleep ID="ID_HostRefuse" UI="UI_HostResponseFailed" timeout="5000">
+      <Forward event="OnContinue" targetID="ID_ReturnCardReset" />
+    </WaitSleep>
+	
+	<WaitSleep ID="ID_RequestFailed" UI="UI_HostResponseFailed" timeout="5000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+    </WaitSleep>
+	
+	<WaitSleep ID="ID_TakeCardTimeout" UI="UI_CaptureCard" timeout="5000">
+      <Forward event="OnContinue" targetID="ID_CheckPrintingReceiptFlag" />
+    </WaitSleep>
+
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+
+    <VTMSelectFunction ID="ID_OtherTrans" UI="UI_NeedOtherBusiness" timeout="30000" homeVisible="0">
+      <Forward event="OnYes" targetID="9999" />
+      <Forward event="OnNo" targetID="ID_InvokeCloseTransWorkflow" />
+    </VTMSelectFunction>
+
+    <InvokeWorkflow ID="ID_InvokeRequestAgent_WF" name="RequestAgent_WF" comment="Invoke help workflow" fallBackAfterEnd="1">
+      <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+    </InvokeWorkflow>
+	
+
+    <End ID="9999" comment="End">
+    </End>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnCusBusy" targetID="ID_CusBusyFail"/>
+    <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnCancel" targetID="ID_OtherTrans"/>
+    <Forward event="OnKeyError" targetID="ID_EventError"/>
+    <Forward event="OnRollbackForError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHelp" targetID="ID_InvokeRequestAgent_WF"/>
+  </DefaultForward>
+</Workflow>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/swiper4.min.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/swiper4.min.css">
+    <link rel="stylesheet" href="../../css/animate.grg.css">
+</head>
+<style>
+    .bg {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        font-family: "Alibaba Sans";
+    }
+
+    .mask {
+        position: absolute;
+        z-index: 0;
+        background: url("../../images/img_2.4/bg-business.png") no-repeat center center/100% 100%;
+        width: 100%;
+        height: 100%;
+    }
+
+    .title {
+        z-index: 5;
+        height: 77px;
+        font-size: 50px;
+        font-weight: bold;
+        color: #333333;
+        line-height: 77px;
+    }
+
+    .bg-left {
+        display: flex;
+        flex-direction: column;
+        background: #F7FAFF;
+        width: 60%;
+        height: inherit;
+    }
+
+    .left-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: inherit;
+		z-index: 3;
+    }
+
+    .logo {
+        z-index: 1;
+        margin: 64px 0 49px 70px;
+        width: 208px;
+        height: 78px;
+    }
+
+    .point-img {
+        z-index: 1;
+        margin-top: 203px;
+        margin-bottom: 190px;
+        width: 237px;
+        height: 253px;
+    }
+
+    .tip-text {
+        z-index: 1;
+        height: 56px;
+        font-size: 36px;
+        font-weight: 500;
+        color: #296CFF;
+        line-height: 56px;
+        font-family: "AlibabaSans-Medium";
+    }
+
+    .bg-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        width: 40%;
+        background: #F7FAFF;
+        height: inherit;
+    }
+
+    .right-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .gradient {
+        position: absolute;
+        z-index: 0;
+        bottom: 0;
+        height: 625px;
+        width: 40%;
+        background: linear-gradient(180deg, #F5F9FF 0%, #ABCDFF 100%);
+        border-radius: 0px 0px 0px 24px;
+    }
+
+    .card-img {
+        z-index: 1;
+        margin-bottom: 21px;
+        margin-top: 221px;
+        width: 310px;
+        height: 671px;
+    }
+
+    .insert-text {
+        z-index: 1;
+        height: 56px;
+        line-height: 56px;
+        font-size: 36px;
+        font-weight: 500;
+        color: #296CFF;
+        font-family: "AlibabaSans-Medium";
+    }
+
+    .switch-btn {
+        z-index: 1;
+        margin: 75px 70px 89px 0;
+        width: 161px;
+        height: 57px;
+        background: #D2E0FF;
+        border-radius: 29px;
+    }
+
+    .switch-btn-active {
+        z-index: 1;
+        width: 90px;
+        height: 57px;
+        background: #296CFF;
+        box-shadow: inset 0px 0px 6px 1px rgba(255, 255, 255, 0.5);
+        border-radius: 29px;
+        font-size: 32px;
+        font-weight: 500;
+        color: #FFFFFF;
+        line-height: 57px;
+        text-align: center;
+    }
+	
+	.customerService {
+	   position: fixed;
+	   right: 30px;
+	   bottom: 30px;
+    }
+        
+	.customerService .g-button {
+       padding: 10px;
+    }
+	
+    .customerService img {
+       width: 40px;
+       height: 40px;
+    }
+	
+	.customerService .g-button.is-round {
+	   border-radius: 10px;
+	}
+
+    @media only screen and (width: 1280px) {
+        .title {
+            position: absolute;
+            top: 196px;
+            z-index: 2;
+            width: 100%;
+            height: 62px;
+            font-size: 40px;
+            font-weight: bold;
+            color: #333333;
+            line-height: 62px;
+            text-align: center;
+        }
+
+        .logo {
+            margin: 76px 0 0px 50px;
+        }
+
+        .point-img {
+            margin-top: 90px;
+            margin-bottom: 0;
+        }
+
+        .tip-text {
+            margin-top: 203px;
+        }
+
+        .card-img {
+            margin: 0;
+            width: auto;
+            height: 526px;
+        }
+
+        .insert-text {
+            margin-top: 357px;
+            margin-bottom: 28px;
+        }
+
+    }
+
+    @keyframes leftToRight {
+        0% {
+            transform: translate(0px);
+        }
+        100% {
+            transform: translate(69px);
+        }
+    }
+
+    @keyframes rightToLeft {
+        0% {
+            transform: translate(69px);
+        }
+        100% {
+            transform: translate(0px);
+        }
+    }
+</style>
+<body>
+<div id="app">
+    <div class="bg animate_grg_fadeInRight_other">
+        <div class="bg-left" v-if="!showSmallScreen">
+            <img class="logo" src="../../images/img_2.4/logo_blue.png">
+            <div class="left-content" type='button' id='OnStart' tag='OnStart'>
+                <div class="title">Welcome To GRGBanking</div>
+                <img class="point-img" src="../../images/img_2.4/point.png">
+                <div class="tip-text">No Card Transactions</div>
+            </div>
+        </div>
+        <div class="bg-left" v-else>
+            <img class="logo" src="../../images/img_2.4/logo_blue.png">
+            <div class="title">Welcome To GRGBanking</div>
+            <div class="left-content" type='button' id='OnStart' tag='OnStart'>
+                <div class="tip-text">No Card Transactions</div>
+                <img class="point-img" src="../../images/img_2.4/point.png">
+            </div>
+        </div>
+        <div class="bg-right">
+            <!--            <div class="switch-btn" onclick="changeLanguage()">-->
+            <!--                <div class="switch-btn-active" id="language">ENG</div>-->
+            <!--            </div>-->
+            <div class="right-content" v-if="!showSmallScreen">
+                <div class="gradient"></div>
+                <img class="card-img" src="../../images/img_2.4/insert_card.png">
+                <div class="insert-text">Please Insert Your Card</div>
+            </div>
+            <div class="right-content" v-else>
+                <div class="gradient"></div>
+                <div class="insert-text">Please Insert Your Card</div>
+                <img class="card-img" src="../../images/img_2.4/home_insertcard.png">
+            </div>
+        </div>
+        <div class="mask"></div>
+		<div class="customerService">
+            <g-button round transparent type='button' id='OnHelp' tag='OnHelp'>
+                <img src="../../images/customer_service.png" alt="">
+            </g-button>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+<script>
+    var app = new Base({
+        data: {
+            showSmallScreen: false,
+        },
+        methods: {
+            // 切换语言按钮暂时隐藏
+            changeLanguage: function () {
+                let el = document.getElementById('language');
+                if (el.innerText === 'ENG') {
+                    el.style = 'animation:leftToRight 150ms linear forwards 100ms;'
+                    el.innerText = '中'
+                } else {
+                    el.style = 'transform:translate(69px); animation:rightToLeft 150ms linear forwards 100ms;'
+                    el.innerText = 'ENG'
+                }
+            }
+        },
+        mounted: function () {
+            this.$nextTick(() => {
+                const width = window.screen.width;
+                this.showSmallScreen = width == 1280 ? true : false;
+            })
+        }
+    }).$mount('#app')
+
+</script>

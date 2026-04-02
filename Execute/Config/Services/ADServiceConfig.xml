@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- ***********************************************************************************************
+	 本文件配置了界面信息，包括界面的位置，初始界面，母板地址，是否全屏，最上，以及屏幕映射表等信息。
+	 界面服务支持两种类型的脚本文件:html网页和WPF脚本文件xaml。界面服务被根据脚本文件的后缀名，自动判断
+	 是何种脚本，然后采用合适的展示技术渲染界面。
+     <Window>节点配置了界面窗口的信息，包括以下属性:
+		 name: 窗口的名称                                    （可选）
+         motherboard: 指定母板地址                           （必须）
+         initPage: 界面服务打开后，初始显示的屏幕名称        （可选）
+             注意: 必须是屏幕映射表中已经配置的屏幕名称
+         location: 指定界面窗口在桌面上的位置.此属性值是      (可选)全屏设置为1时，可以忽略
+				   以空格分隔的4个数字组成的字符串。4个数字从
+				   左到右依次表示界面窗口的左，上，宽度，高度 
+                   单位是像素。例如"0 0 800 600" 表示位置是
+                   左(0)上(0)宽度(800)高度(600)                                             
+             注意: 此属性在fullscreen指定为0的时候才有效
+         topmost: 设置界面窗口处于TOPMOST状态，值为0则不设置,
+				  值为非0则设置，不指定该值，则默认为0        (可选)
+         showcursor: 设置是否显示光标.值为0则不显示，值为非0
+					 则显示。不指定该值，则默认为0            (可选)
+		 fullscreen: 设置是否全屏显示。值为0则不显示，值为非0
+                     则显示。不指定该值，则默认为0            (可选)
+		<Window> 节点包含了
+		<Screens> 节点配置了屏幕映射集合信息，描述了屏幕的共  
+				  有配置信息，包含以下属性:
+			site: 描述屏幕存在的位置                          (必须)
+            xamlPath: 描述xaml脚本文件的base路径              (必须)
+            htmlPath: 描述html脚本文件的base路径              (必须)
+            urlPrefix: 描述url传输协议前缀，默认是file:///    (可选)        
+                       支持3种协议: 
+                       file:/// 本地文件协议
+                       http:// 基于http的传输协议
+                       ftp:// 基于ftp的传输协议
+			host: 指定主机的网络路径名。该值可以设置域名和
+                  点分格式的路径名。值"localhost"特定值本地
+                  主机。该值默认为"localhost"                 (可选)
+            <Screen> 设置了一个屏幕映射的配置信息，有以下属性:
+               name: 屏幕映射的关键名称，代码调用界面服务的
+					 ShowScreen函数时需要传递该值。           (必须)
+               uri: 指定屏幕脚本文件相对于基础路径的相对路径  (必须)
+              <Screen>节点下有2个子节点:
+                <Triggers>描述了配置于该屏幕的触发器集合,有以下
+                          子节点:
+                  <EventTrigger> 描述了事件触发器，可以指定在
+                                 何种事件发生后触发。有以下属性:
+                        注意: 屏幕切换的时候，界面服务会自动发送
+                              以下2个事件:
+                         preshow: 当指定显示屏幕已经解析完成，
+								  但还没不可见的时候发送此事件
+                         show: 当指定显示屏幕已经可见后，立即发送
+                               此事件.
+                      condition: 描述了触发的条件。           (必须)
+                   <EventTrigger>的子节点定义了触发器触发后，
+                                 需要执行的动作，这些动作将按照
+                                 从上到下的顺序依次执行。
+								 有以下子节点:
+                     <BeginStoryboard>节点描述了启动storyboard动作
+                <Storyboards>节点描述了storyboard的集合。storyboard
+                             的子节点描述了多段动画和声音的播放时间线
+                             有以下子节点：
+                    <MediaTimeline> 描述了多媒体播放的时间线
+                    <SlideshowTimeline>描述了幻灯片播放的时间线
+                    <SlideshowTimelineFrame>描述了幻灯片按照帧播放的时间线   
+     *********************************************************************************************** -->
+<Window name="eCAT" location="1280 0 1920 1080" initPage="UI_Idle" supportVideoService="1" webView2JsonCfg="Config\Services\ADWebView2Settings.json">
+	<Screens site="Pages" htmlPath="Resource\Common\HTML\Page\">
+		<Screen name="UI_Idle" uri="AD\Idle.html">
+			<Triggers>
+				<EventTrigger condition="show">
+				  <BeginStoryboard name="adShow" />
+				</EventTrigger>
+			</Triggers>
+			<Storyboards>
+				<Storyboard name="adShow">
+					<SlideshowTimeline begin="0" baseUri="Resource\Common\AD\" target="adImage" interval="5000" duration="25000" />
+					<!--MediaTimeline begin="40050" target="adVideo" source="Resource\Common\AD\VTM2014.mp4" duration="239000" /-->
+				</Storyboard>
+			</Storyboards>
+		</Screen>
+		<Screen name="UI_AdTrans" uri="AD\Idle1.html">
+			<Triggers>
+				<EventTrigger condition="show">
+				  <BeginStoryboard name="adShow" />
+				</EventTrigger>
+			</Triggers>
+			<Storyboards>
+				<Storyboard name="adShow">
+					<SlideshowTimeline begin="0" baseUri="Resource\Common\AD\" target="adImage" interval="5000" duration="40000" repeatBehavior="forever"/>
+				</Storyboard>
+			</Storyboards>
+		</Screen>		
+		<Screen name="UI_DoTransaction" uri="AD\DoTransaction.html">
+		<Triggers>
+				<EventTrigger condition="show">
+				  <BeginStoryboard name="adShow" />
+				</EventTrigger>
+			</Triggers>
+			<Storyboards>
+				<Storyboard name="adShow">
+					<SlideshowTimeline begin="0" baseUri="Resource\Common\AD\" target="adLeft" interval="2000" repeatBehavior="forever">
+					</SlideshowTimeline>
+					<SlideshowTimeline begin="0" baseUri="Resource\Common\AD\" target="adRight" interval="2000" order="2" repeatBehavior="forever">
+					</SlideshowTimeline>
+				</Storyboard>
+			</Storyboards>
+		</Screen>
+
+		<Screen name="UI_TimeTakePhoto" uri="AD\PhotoBackground.html">
+		<Triggers>
+				<EventTrigger condition="show">
+				  <BeginStoryboard name="adShow" />
+				</EventTrigger>
+			</Triggers>
+			<Storyboards>
+				<Storyboard name="adShow">
+					<SlideshowTimeline begin="0" baseUri="Resource\Common\AD\" target="adLeft" interval="2000" repeatBehavior="forever">
+					</SlideshowTimeline>
+					<SlideshowTimeline begin="0" baseUri="Resource\Common\AD\" target="adRight" interval="2000" order="2" repeatBehavior="forever">
+					</SlideshowTimeline>
+				</Storyboard>
+			</Storyboards>
+		</Screen>
+        <Screen name="UI_Video" uri="AD\VideoBack.html">
+		<Triggers>
+				<EventTrigger condition="show">
+				  <BeginStoryboard name="adShow" />
+				</EventTrigger>
+			</Triggers>
+			<Storyboards>
+				<Storyboard name="adShow">
+					<SlideshowTimeline begin="0" baseUri="Resource\Common\AD\" target="adLeft" interval="2000" repeatBehavior="forever">
+					</SlideshowTimeline>
+					<SlideshowTimeline begin="0" baseUri="Resource\Common\AD\" target="adRight" interval="2000" order="2" repeatBehavior="forever">
+					</SlideshowTimeline>
+				</Storyboard>
+			</Storyboards>
+		</Screen>
+		<Screen name="UI_VideoWeb" uri="VideoWeb\acd-agent.html" defineuri="http://localhost:80">
+		<Triggers>
+				<EventTrigger condition="show">
+				  <BeginStoryboard name="adShow" />
+				</EventTrigger>
+			</Triggers>
+			<Storyboards>
+				<Storyboard name="adShow">
+					<SlideshowTimeline begin="0" baseUri="Resource\Common\AD\" target="adLeft" interval="2000" repeatBehavior="forever">
+					</SlideshowTimeline>
+					<SlideshowTimeline begin="0" baseUri="Resource\Common\AD\" target="adRight" interval="2000" order="2" repeatBehavior="forever">
+					</SlideshowTimeline>
+				</Storyboard>
+			</Storyboards>
+		</Screen>
+	</Screens>
+</Window>

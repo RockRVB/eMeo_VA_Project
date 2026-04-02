@@ -1,0 +1,192 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>清机管理主页面</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/maintenance/cn.css" />
+<script src="../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../js/jquery-ui.min.js"></script>
+<script src="../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../js/maintenance/common/global.js"></script>
+<script src="../../../js/maintenance/component/components.js"></script>
+<script src="../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../js/maintenance/ui/maintenance/totalmanage/totallist.js"></script>
+<script src="../../../js/maintenance/ui/maintenance/totalmanage/totallistex.js"></script>
+</head>
+
+<body>
+<!--界面容器-->
+<div class="wrapper totallist"> 
+	<!--顶部表格控件-->
+	<div class="type-table totallist-top" id="Table_1" type="TABLE" > 
+		<!--翻页按钮-->
+		<div class="type-table-paging totallist-top-paging">
+			<div class="middle-outer">
+				<div class="middle-inner">
+					<button class="button-page" mark="prev" dataToSend="78" id="prev"><span class="tip"></span> <span class="button-text">▲</span></button>
+					<button class="button-page" mark="next"><span class="tip"></span> <span class="button-text">▼</span></button>
+				</div>
+			</div>
+		</div>
+		<div class="type-table-container">
+			<table>
+				<thead>
+					<tr>
+						<th scope="col"><span id="STATIC_HOPID" ids="IDS_NoClearAddCash">序号</span></th>
+						<th scope="col"><span id="STATIC_BOXID" ids="IDS_IdClearAddCash">钞箱ID</span></th>
+						<th scope="col"><span id="STATIC_MONEYTYPE" ids="IDS_Currency">币种</span></th>
+						<th scope="col"><span id="STATIC_BOXTYPE" ids="IDS_TypeClearAddCash">类型</span></th>
+						<th scope="col"><span id="STATIC_DENOM" ids="IDS_DenoClearAddCash">面额</span></th>
+						<th scope="col"><span id="STATIC_RETRACT" ids="IDS_RejectNum">回收</span></th>
+						<th scope="col"><span id="STATIC_WITHDRAW" ids="IDS_OutNum">出钞</span></th>
+						<th scope="col"><span id="STATIC_DEPOSIT" ids="IDS_FillinNum">入钞</span></th>
+						<th scope="col"><span id="STATIC_LOADED" ids="IDS_AddNum">装钞</span></th>
+						<th scope="col"><span id="STATIC_REMAINNUM" ids="IDS_RemainNum">剩余</span></th>
+						<th scope="col"><span id="STATIC_REMAINDENOM" ids="IDS_TotalMoney">总金额</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="nullClass">
+						<td><span id="STATIC_HOPID1" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXID1" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_MONEYTYPE1" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXTYPE1" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DENOM1" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_RETRACT1" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_WITHDRAW1" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DEPOSIT1" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_LOADED1" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINNUM1" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINDENOM1" type="STATIC_TXT"></span></td>
+					</tr>
+					<tr class="nullClass">
+						<td><span id="STATIC_HOPID2" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXID2" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_MONEYTYPE2" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXTYPE2" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DENOM2" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_RETRACT2" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_WITHDRAW2" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DEPOSIT2" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_LOADED2" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINNUM2" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINDENOM2" type="STATIC_TXT"></span></td>
+					</tr>
+					<tr class="nullClass">
+						<td><span id="STATIC_HOPID3" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXID3" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_MONEYTYPE3" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXTYPE3" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DENOM3" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_RETRACT3" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_WITHDRAW3" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DEPOSIT3" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_LOADED3" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINNUM3" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINDENOM3" type="STATIC_TXT"></span></td>
+					</tr>
+					<tr class="nullClass">
+						<td><span id="STATIC_HOPID4" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXID4" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_MONEYTYPE4" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXTYPE4" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DENOM4" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_RETRACT4" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_WITHDRAW4" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DEPOSIT4" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_LOADED4" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINNUM4" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINDENOM4" type="STATIC_TXT"></span></td>
+					</tr>
+					<tr class="nullClass">
+						<td><span id="STATIC_HOPID5" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXID5" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_MONEYTYPE5" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXTYPE5" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DENOM5" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_RETRACT5" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_WITHDRAW5" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DEPOSIT5" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_LOADED5" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINNUM5" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINDENOM5" type="STATIC_TXT"></span></td>
+					</tr>
+					<tr class="nullClass">
+						<td><span id="STATIC_HOPID6" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXID6" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_MONEYTYPE6" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXTYPE6" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DENOM6" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_RETRACT6" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_WITHDRAW6" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DEPOSIT6" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_LOADED6" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINNUM6" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINDENOM6" type="STATIC_TXT"></span></td>
+					</tr>
+					<tr class="nullClass">
+						<td><span id="STATIC_HOPID7" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXID7" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_MONEYTYPE7" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXTYPE7" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DENOM7" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_RETRACT7" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_WITHDRAW7" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DEPOSIT7" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_LOADED7" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINNUM7" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINDENOM7" type="STATIC_TXT"></span></td>
+					</tr> 
+					<tr class="nullClass">
+						<td><span id="STATIC_HOPID8" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXID8" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_MONEYTYPE8" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXTYPE8" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DENOM8" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_RETRACT8" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_WITHDRAW8" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DEPOSIT8" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_LOADED8" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINNUM8" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINDENOM8" type="STATIC_TXT"></span></td>
+					</tr>
+					<tr class="nullClass">
+						<td><span id="STATIC_HOPID9" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXID9" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_MONEYTYPE9" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXTYPE9" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DENOM9" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_RETRACT9" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_WITHDRAW9" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DEPOSIT9" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_LOADED9" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINNUM9" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINDENOM9" type="STATIC_TXT"></span></td>
+					</tr>
+					<tr class="nullClass">
+						<td><span id="STATIC_HOPID10" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXID10" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_MONEYTYPE10" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_BOXTYPE10" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DENOM10" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_RETRACT10" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_WITHDRAW10" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_DEPOSIT10" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_LOADED10" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINNUM10" type="STATIC_TXT"></span></td>
+						<td><span id="STATIC_REMAINDENOM10" type="STATIC_TXT"></span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</body>
+</body>
+</html>

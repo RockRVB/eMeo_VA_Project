@@ -1,0 +1,60 @@
+﻿<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>确认信息</title>
+    <link rel="stylesheet" type="text/css" href="../../css/CN.css" replace="1" />
+    <script src="../../js/require.js" type="text/javascript" charset="utf-8" data-main="../../js/main"
+        async="true"></script>
+</head>
+<body class="all_bg">
+    <header class="index_top clear">
+			<div class="logo"></div>
+			<div class="index_top_title">
+				<div class="count_down_time"  style="display:none" id="Counter" type="countdown" content="{Binding Count}" visible="{Binding CouterVisible}">10</div>
+			</div>
+		</header>
+    <div class="ibank_container">
+        <div class="business_container">
+            <div class="transaction_result">
+                <div class="business_title" ids="IDS_ShowTransferInformation">
+                    请核对您的转账信息</div>
+                <div class="count_res_group">
+                    <div class="count_res_contain">
+                        <div class="count_res_label" ids="IDS_TransferAccount">
+                            转入账号：</div>
+                        <span id="TransferAccount" type="text" size="23" content="{Binding core_OtherAccount}"
+                            format="#### ">2234 7678 7899 2201 345</span></div>
+                    <div class="count_res_contain">
+                        <div class="count_res_label" ids="IDS_TransferName">
+                            户名：</div>
+                        <div id="TransferAccountName" type="text" size="23" content="{Binding core_AccountName}"
+                            format="^[*]" style="letter-spacing: 1.1rem; display: inline-block;">
+                            *晓东</div>
+                    </div>
+                    <div class="count_res_contain">
+                        <div class="count_res_label" ids="IDS_TransferAmount">
+                            金额：</div>
+                        <span id="TransferAmount" type="text" size="23" content="{Binding core_ScreenAmount}">
+                            2000</span><div ids="IDS_Currency" style="display: inline-block;">
+                                元</div>
+                    </div>
+                    <div class="count_res_contain">
+                        <div class="count_res_label" ids="IDS_TransferCommission">
+                            手续费：</div>
+                        <span>0.00</span><div ids="IDS_Currency" style="display: inline-block;">
+                            元</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button_container" style="bottom: 15% !important;">
+            <div class="cancel_button" ids="IDS_Cancel" id="btnCancel" type="Button" tag="OnCancel">
+                取消</div>
+            <div class="enter_button" ids="IDS_TransferConfirmAmount" id="btnConfirm" type="Button"
+                tag="OnConfirm">
+                确认</div>
+        </div>
+    </div>
+</body>
+</html>

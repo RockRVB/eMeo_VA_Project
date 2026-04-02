@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../js/vue.min.js"></script>
+  <script src="../../js/grg-ui.min.js"></script>
+  <script src="../../js/vue-i18n.js"></script>
+  <script src="../../js/jquery-3.7.0.js"></script>	<script src="../../js/class/layer/layer.js"></script>	<script src="../../js/index.js"></script>
+  <script src="../../js/coreScript.js"></script>
+  <script src="../../js/ibank.js"></script>
+  <link rel="stylesheet" href="../../css/grg-ui.min.css">
+  <link rel="stylesheet" href="../../css/animate.grg.css">
+  <link rel="stylesheet" href="../../css/ibank.css">
+  <style>
+    .grg-main {
+      display: flex;
+      justify-content: space-between;
+      visibility: hidden;
+    }
+
+    .main-content-box {
+      width: 100%;
+      text-align: center;
+    }
+
+    .sorry-img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="grg-header" class="grg-header">
+    </div>
+    <div id="grg-main" class="grg-main animate_grg_fadeInRight">
+      <div class="main-content-box">
+        <div class="title"ids="ids_Common_OutOfService">Sorry, out of service ...</div>
+        <img class="sorry-img" src="" alt="">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+  var app = new Base({
+    i18n: i18n,
+    data: {},
+    methods: {},
+    computed: {},
+    mounted: function () {
+      let _this = this;
+      let img = document.querySelector('.sorry-img');
+      clearTimeout(_this.timer);
+      _this.timer = setTimeout(() => {
+        img.setAttribute('src', '../../images/img_2.4/sorry.png');
+      }, 500)
+    }
+  }).$mount('#app')
+</script>

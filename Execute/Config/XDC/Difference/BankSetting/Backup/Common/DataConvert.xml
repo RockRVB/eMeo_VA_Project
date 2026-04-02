@@ -1,0 +1,7 @@
+<Root>
+	<RunBat>BankSetting\Backup\DeleteOffline.bat</RunBat>
+	<RunBat>BankSetting\Backup\CopyEPPPic.bat</RunBat>
+	<!--以下脚本表示任意版本之间的数据库升级-->
+	<!--<SQL databaseFile="Data\TransDetail.db3" sqlFile="BankSetting\Backup\Common\DataBaseUpdate.SQL" sql=""></SQL>-->
+	<!--<SQL databaseFile="Data\HistoryTransDetail.db3" sqlFile="BankSetting\Backup\Common\DataBaseUpdate.SQL" sql=""></SQL>-->
+</Root>

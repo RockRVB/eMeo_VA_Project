@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataMappingConfig>
+
+<!--
+ Workflow    = 0,
+        Transaction = 1,
+        CardHolder,
+        Terminal,
+        Database
+-->
+	<DataMappings>	
+	<!--
+		<DataMapping>
+			<XDC key="XDC_CountOfCashIn" datacacheType="1" dataType="string"></XDC>
+			<NONXDC key="" datacacheType="2" dataType="string"></NONXDC>
+		</DataMapping>
+		
+		<DataMapping>
+			<XDC key="XDC_NET_PARAM_TRANSACTION" datacacheType="1" dataType="string"></XDC>
+			<NONXDC key="" datacacheType="2" dataType="string"></NONXDC>
+		</DataMapping>
+		-->
+		<DataMapping>
+			<XDC key="XDC_CARD_INFO_PAN" datacacheType="2" dataType="string"></XDC>
+			<NONXDC key="s_corePAN" datacacheType="2" dataType="string"></NONXDC>
+		</DataMapping>
+		
+		<!-- public const string XDC_BUFFER_OPERATION_CODE = "079";
+        public const string XDC_BUFFER_SMARTCARD = "077";
+		<DataMapping>
+			<XDC key="079" datacacheType="2" dataType="string"></XDC>
+			<NONXDC key="" datacacheType="2" dataType="string"></NONXDC>
+		</DataMapping>
+		<DataMapping>
+			<XDC key="077" datacacheType="2" dataType="string"></XDC>
+			<NONXDC key="" datacacheType="2" dataType="string"></NONXDC>
+		</DataMapping>
+		-->
+		
+		<!-- public const string XDC_BUFFER_AMOUNT = "065";
+        public const string XDC_BUFFER_B = "066";
+        public const string XDC_BUFFER_C = "067";
+		 public const string XDC_BUFFER_e = "101";-->
+		<DataMapping>
+			<XDC key="065" datacacheType="2" dataType="string"></XDC>
+			<NONXDC key="" datacacheType="2" dataType="string"></NONXDC>
+		</DataMapping>
+		<DataMapping>
+			<XDC key="066" datacacheType="2" dataType="string"></XDC>
+			<NONXDC key="" datacacheType="2" dataType="string"></NONXDC>
+		</DataMapping>
+		<DataMapping>
+			<XDC key="067" datacacheType="2" dataType="string"></XDC>
+			<NONXDC key="" datacacheType="2" dataType="string"></NONXDC>
+		</DataMapping>
+		<DataMapping>
+			<XDC key="101" datacacheType="2" dataType="string"></XDC>
+			<NONXDC key="" datacacheType="2" dataType="string"></NONXDC>
+		</DataMapping>
+		
+		<!-- public const string XDC_BUFFER_TRACK1_DATA = "088";
+        public const string XDC_BUFFER_TRACK2_DATA = "089";
+        public const string XDC_BUFFER_TRACK3_DATA = "090";-->
+		<DataMapping>
+			<XDC key="088" datacacheType="2" dataType="string"></XDC>
+			<NONXDC key="core_Track1" datacacheType="2" dataType="string"></NONXDC>
+		</DataMapping>
+		<DataMapping>
+			<XDC key="089" datacacheType="2" dataType="string"></XDC>
+			<NONXDC key="core_Track2" datacacheType="2" dataType="string"></NONXDC>
+		</DataMapping>
+		<DataMapping>
+			<XDC key="090" datacacheType="2" dataType="string"></XDC>
+			<NONXDC key="core_Track3" datacacheType="2" dataType="string"></NONXDC>
+		</DataMapping>
+		
+		<DataMapping>
+			<XDC key="XDC_CARD_INFO_PINBLOCK" datacacheType="2" dataType="string"></XDC>
+			<NONXDC key="core_Pin" datacacheType="2" dataType="string"></NONXDC>
+		</DataMapping>
+		<!---->
+		<DataMapping>
+			<XDC key="XDC_HAS_INPUT_AMOUNT" datacacheType="2" dataType="bool"></XDC>
+			<NONXDC key="core_IsAlreadyInputtedWithdrawalAmount" datacacheType="1" dataType="bool"></NONXDC>
+		</DataMapping>
+		
+		<!---->
+		<DataMapping>
+			<XDC key="SRC_INPUT_AMOUNT" datacacheType="2" dataType="string"></XDC>
+			<NONXDC key="core_OriginalWithdrawalAmount" datacacheType="1" dataType="string"></NONXDC>
+		</DataMapping>
+		<DataMapping converter=""><!---->
+			<XDC key="XDC_SRC_INPUT_AMOUNT_SCREEN_SHOW" datacacheType="2" dataType="string"></XDC>
+			<NONXDC key="core_ScreenAmount" datacacheType="1" dataType="string"></NONXDC>
+		</DataMapping>
+		<DataMapping>
+			<XDC key="SRC_INPUT_AMOUNT_BUFFER" datacacheType="2" dataType="string"></XDC>
+			<NONXDC key="" datacacheType="1" dataType="string"></NONXDC>
+		</DataMapping>
+		<!--
+		<DataMapping>
+			<XDC key="SRC_INPUT_AMOUNT_BUFFER" datacacheType="2" dataType="string"></XDC>
+			<NONXDC key="core_TransAmountMultiply100" datacacheType="1" dataType="string"></NONXDC>
+		</DataMapping>	
+		-->
+	</DataMappings>
+	<ConvertorLibrary>
+		<Library value="Convertor,version=1.0.0.0,publicKeyToken=7066f3d5e996c61a,culture=neutral"></Library>
+	</ConvertorLibrary>
+</DataMappingConfig>

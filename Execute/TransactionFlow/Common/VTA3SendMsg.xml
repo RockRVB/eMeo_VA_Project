@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="VTA3SendMsg">
+	<Head type="GRGWorkflow" author="" timeStamp="" comment="The workflow design is for the Demo"/>
+	<DataPool>
+  </DataPool>
+	<Activities>
+		<Start ID="0" comment="Start" callVisible="0" endflag="1">
+			<Forward event="OnConfirm" targetID="ID_VTMARequestTransViaRestful"/>
+		</Start>
+		<VTMARequestTransViaRestful ID="ID_VTMARequestTransViaRestful" UI="UI_waiting" transType="TerminalDataCache={VTMA.send.tranType}" transFormat="json">
+			<States>
+				<State name="PackFail" UI="UI_general_error"/>
+				<State name="ConnectFail" UI="UI_general_error"/>
+				<State name="SendFail" UI="UI_general_error"/>
+				<State name="ReceiveFail" UI="UI_general_error"/>
+				<State name="ReceiveTimeout" UI="UI_general_error"/>
+				<State name="NetworkFail" UI="UI_general_error"/>
+				<State name="UnpackFail" UI="UI_general_error"/>
+				<State name="HardwareError" UI="UI_general_error"/>
+			</States>
+			<Forward event="OnConfirm" targetID="9999"/>
+			<Forward event="OnPackFail" targetID="9999"/>
+			<Forward event="OnConnectFail" targetID="9999"/>
+			<Forward event="OnSendFail" targetID="9999"/>
+			<Forward event="OnReceiveFail" targetID="9999"/>
+			<Forward event="OnReceiveTimeout" targetID="9999"/>
+			<Forward event="OnNetworkFail" targetID="9999"/>
+			<Forward event="OnUnpackFail" targetID="9999"/>
+			<Forward event="OnHostRefuse" targetID="9999"/>
+		</VTMARequestTransViaRestful>
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" UI="" comment="Invoke close trans workflow" name="CloseTrans">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+    </End>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnCusBusy" targetID="ID_CusBusyFail"/>
+		<Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnCancel" targetID="ID_OtherTrans"/>
+		<Forward event="OnKeyError" targetID="ID_EventError"/>
+		<Forward event="OnRollbackForError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHelp" targetID="ID_InvokeRequestAgent_WF"/>
+	</DefaultForward>
+</Workflow>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <GeneralSetting>
+    <!--  
+	EJ log auto change line
+	1: EJ will have multiple index and date if the record info including line change script.
+	0: EJ will have a single index and date if the record info including line change script.
+    -->
+    <Item key="EJAutoChangeLine" value="1" valueType="int"/>
+    <Item key="EJShowIndex" value="0" valueType="int"/>
+  </GeneralSetting>
+  <!--  
+	* The property of  log setting. The keywork will be descripted as different type with log info written.  
+	* The log will print into journal printer  for flow checking and issue troubleshooting
+	-->
+  <PJ>
+    <Item key="ATMMode" value="1" valueType="int" enable="1" />
+    <Item key="DeviceError" value="1" valueType="int" enable="1" />
+    <Item key="DeviceWarning" value="1" valueType="int" enable="1" />
+    <Item key="Maintenance" value="1" valueType="int" enable="1" />
+    <Item key="ATMBootup" value="1" valueType="int" enable="1" />
+    <Item key="HostJournal" value="1" valueType="int" enable="1" />
+    <Item key="CardCapture" value="1" valueType="int" enable="1" />
+    <Item key="CardInsert" value="1" valueType="int" enable="1" />
+    <Item key="DispenseResult" value="1" valueType="int" enable="1" />
+    <Item key="DispenseDetail" value="1" valueType="int" enable="1" />
+    <Item key="HostDispenseData" value="1" valueType="int" enable="1" />
+    <Item key="FuncCmd" value="1" valueType="int" enable="1" />
+    <Item key="Others" value="1" valueType="int" enable="1" />
+  </PJ>
+  <!--
+	* The setting of log mask
+	-->
+  <LogMask>
+    <Item key="CardPanMask" value="1" startLen="2" endLen="3" maskFlag="*" />
+  </LogMask>
+</Root>

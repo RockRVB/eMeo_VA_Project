@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!-- The setting of key mapping-->
+  <GetPin>
+    <Item key="ActiveKey" value="1,2,3,4,5,6,7,8,9,0,ENTER,CANCEL,CLEAR" />
+    <Item key="TeminateKey" value="ENTER,CANCEL" />
+    <Item key="EnterKeyMap" value="" />
+    <Item key="CancelKeyMap" value="" />
+    <Item key="ClearKeyMap" value="" />
+    <Item key="ShowChar" value="*" />
+  </GetPin>
+  <GetPinBlock>
+    <!-- Pan without check digit or not -->
+    <Item key="PanWithoutChkDigit" value="0" ServiceName="0" />
+  </GetPinBlock>
+  <!--DDC的@D 对应配置-->
+  <!--DDC's @D configuration setting-->
+  <GetPinEx>
+    <Item key="ActiveKey" value="1,2,3,4,5,6,7,8,9,0,CANCEL,CLEAR,ENTER" />
+    <Item key="TeminateKey" value="CANCEL,CLEAR,ENTER" />
+    <Item key="EnterKeyMap" value="" />
+    <Item key="CancelKeyMap" value="" />
+    <Item key="ClearKeyMap" value="" />
+    <Item key="ShowChar" value="*" />
+    <Item key="ENTER" value="F2" />
+    <!--when value=0 , the minimum length is 4 , the maximum length same as the template-->
+    <!--value=0时，最小位数为4，最大长度与模板一致-->
+    <Item key="MaxLength" value="4" />
+    <Item key="MinLength" value="4" />
+  </GetPinEx>
+  <InputAToZ>
+    <Item key="limitTime" value="9000" />
+    <Item key="1" value="1,Q,Z" />
+    <Item key="2" value="2,A,B,C" />
+    <Item key="3" value="3,D,E,F" />
+    <Item key="4" value="4,G,H,I" />
+    <Item key="5" value="5,J,K,L" />
+    <Item key="6" value="6,M,N,O" />
+    <Item key="7" value="7,P,R,S" />
+    <Item key="8" value="8,T,U,V" />
+    <Item key="9" value="9,W,X,Y" />
+  </InputAToZ>
+  <NeedMoreTime>
+    <Item key="ActiveKey" value="CANCEL,A,B" />
+    <Item key="ActiveDeviceKey" value="CANCEL,F2,F4" />
+    <Item key="Yes_FDK" value="A" />
+    <Item key="No_FDK" value="B" />
+  </NeedMoreTime>
+</Root>

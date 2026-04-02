@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Define the rules for all setting(Including 
+ * the folder path information, defaul value, etc.)
+ -->
+<Root>
+  <Voice>
+    <!-- Define the voice setting-->
+    <Item key="ADA" value="ADA" />
+    <Item key="Common" value="Common" />
+    <Item key="Default" value="Common" />
+  </Voice>
+</Root>

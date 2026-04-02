@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<Root>
+	<Msg>
+		<Solicited>
+			<Cassette>
+				<Status>
+					<Item key="Hope1" varlist="Hope1,Hope2,Hope3,Hope4">
+						<Result value="[dicvariable]">
+							<dicvariable value ="/Root/Cassette/[@Item='[xmlvariable]']/@StatusNormal" xmldoc="XDC\DDC\Config\VarTbl.xml">
+								<xmlvariable value="/Root/Device/Initiation/DenominationID/@Hope1" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+							</dicvariable>
+							<Condition value="[xmlvariable]" operand="OK|FULL" operator="match">
+								<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@Status" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+							</Condition>
+						</Result>
+						<Result value="[dicvariable]">
+							<dicvariable param1="key" param2="[xmlvariable]" param3="StatusLow" path="/Root/Cassette/Item" xmldoc="XDC\DDC\Config\VarTbl.xml">
+								<xmlvariable value="/Root/Device/Initiation/DenominationID/@Hope1" xmldoc="\XDC\DDC\Data\DataCashDispenser.xml"/>
+							</dicvariable>
+						</Result>
+					</Item>
+				</Status>
+			</Cassette>
+		</Solicited>
+	</Msg>
+</Root>

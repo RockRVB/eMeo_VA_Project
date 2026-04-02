@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--DDC状态参数-配置-->
+<!--DDC Status parameter - Configuration-->
+<Root>
+  <DDCCloseState>
+    <Item key="DefaultState" value="999"/>
+  </DDCCloseState>
+
+  <DDCInformationEntryExtensionState>
+    <Item key="FunKeyMap_E" value="CANCEL"/>
+    <Item key="FunKeyMap_J" value="ENTER"/>
+    <Item key="FunKeyMap_K" value="CLEAR"/>
+    <Item key="FunKeyMap_L" value="00"/>
+    <Item key="FunKeyMap_M" value="BACKSPACE"/>
+  </DDCInformationEntryExtensionState>
+
+  <DDCTimeDelayState>
+    <Item key="TimeDelayTimeout" value="30"/>
+  </DDCTimeDelayState>
+
+  <DDCTransactionRequestStateEx>
+    <Item key="NetWorkResponseTime" value="3"/><!--单位：秒--><!--Unit: second -->
+  </DDCTransactionRequestStateEx>
+
+</Root>

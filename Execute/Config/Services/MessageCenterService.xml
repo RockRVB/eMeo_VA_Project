@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MessageCenterServiceConfig>
+  <!--Create by hxbo1 -->
+
+  <!--
+  sendMode="0"发接，sendMode="1"只发不接
+  -->
+
+  <!--默认SessionName-->
+  <SessionName>VTMP1</SessionName>
+
+   <!--默认SessionName-->
+  <PhotoFolder>D:\Image</PhotoFolder>
+  
+  <!--报文模板-->
+  <MsgModel>
+
+    <!--发往VTMP非中转的报文模板-->
+    <PCModel packType="XML">
+      <vtm>
+        <head></head>
+        <body></body>
+      </vtm>
+    </PCModel>
+
+    <!--发往VTMP中转的报文模板-->
+    <PCZZModel packType="XML">
+      <root>
+        <head></head>
+        <body></body>
+      </root>
+    </PCZZModel>
+
+    <!--发往VTMP中转发往CTS的报文模板-->
+    <HCModel packType="FGMsg">
+      <SocketFlag></SocketFlag>
+      <TradeCode></TradeCode>
+      <xmlFlag></xmlFlag>
+    </HCModel>
+  </MsgModel>
+
+  <!--报文配置-->
+  <MsgConfig>
+    <!--VTMP管理类交易 Begin-->
+    <PinApply sendMode="0" remark="终端密钥申请">
+      <Send packModel="PCModel">
+        <TradeCode modelTag="vtm/head">8001</TradeCode>
+        <ReqTime modelTag="vtm/head" bindvar="jnbank_ReqTime"></ReqTime>
+        <ReqDate modelTag="vtm/head" bindvar="jnbank_ReqDate"></ReqDate>
+        <CTermId modelTag="vtm/head" bindvar="core_TerminalID"></CTermId>
+        <FlowId modelTag="vtm/head" bindvar="jnbank_flowId"></FlowId>
+        <DevType modelTag="vtm/body">0</DevType>
+        <EncryValue modelTag="vtm/body">vtm.27620013.zpk</EncryValue>
+      </Send>
+      <Recv packModel="PCModel">
+        <RespCode modelTag="vtm/head"></RespCode>
+        <RespMsg modelTag="vtm/head" bindvar="core_HostRefuseMessage"></RespMsg>
+        <PinKey modelTag="vtm/body" bindvar="jnb_Pinkey"></PinKey>
+      </Recv>
+    </PinApply>
+
+    <PinConvert remark="终端密钥转PIN">
+      <Send packModel="PCModel">
+        <TradeCode modelTag="vtm/head">8002</TradeCode>
+        <ReqTime modelTag="vtm/head" bindvar="jnbank_ReqTime"></ReqTime>
+        <ReqDate modelTag="vtm/head" bindvar="jnbank_ReqDate"></ReqDate>
+        <CTermId modelTag="vtm/head" bindvar="core_TerminalID"></CTermId>
+		<QueueNo modelTag="vtm/head"></QueueNo>
+        <FlowId modelTag="vtm/head" bindvar="jnbank_flowId"></FlowId>
+        <zpk1 modelTag="vtm/body">vtm.27620013.zpk</zpk1>
+        <zpk2 modelTag="vtm/body">host.0001.zpk</zpk2>
+        <Bankcard modelTag="vtm/body" bindvar="core_PAN"></Bankcard>
+        <pinBlock1 modelTag="vtm/body" bindvar="core_NewPin"></pinBlock1>
+		<DevType modelTag="vtm/body">0</DevType>
+      </Send>
+      <Recv packModel="PCModel">
+        <RespCode modelTag="vtm/head"></RespCode>
+        <RespMsg modelTag="vtm/head" bindvar="core_HostRefuseMessage"></RespMsg>
+        <pinBlock2 modelTag="vtm/body" bindvar="core_Pin"></pinBlock2>
+      </Recv>
+    </PinConvert>
+
+	<SignPinConvert remark="签约密钥转PIN">
+      <Send packModel="PCModel">
+        <TradeCode modelTag="vtm/head">8002</TradeCode>
+        <ReqTime modelTag="vtm/head" bindvar="jnbank_ReqTime"></ReqTime>
+        <ReqDate modelTag="vtm/head" bindvar="jnbank_ReqDate"></ReqDate>
+        <CTermId modelTag="vtm/head" bindvar="core_TerminalID"></CTermId>
+		<QueueNo modelTag="vtm/head"></QueueNo>
+        <FlowId modelTag="vtm/head" bindvar="jnbank_flowId"></FlowId>
+        <zpk1 modelTag="vtm/body">vtm.27620013.zpk</zpk1>
+        <zpk2 modelTag="vtm/body">qz.ib.zpk</zpk2>
+        <Bankcard modelTag="vtm/body" bindvar="core_PAN"></Bankcard>
+        <pinBlock1 modelTag="vtm/body" bindvar="core_NewPin"></pinBlock1>
+		<DevType modelTag="vtm/body">0</DevType>
+      </Send>
+      <Recv packModel="PCModel">
+        <RespCode modelTag="vtm/head"></RespCode>
+        <RespMsg modelTag="vtm/head" bindvar="core_HostRefuseMessage"></RespMsg>
+        <pinBlock2 modelTag="vtm/body" bindvar="core_Pin"></pinBlock2>
+      </Recv>
+    </SignPinConvert>
+	
+    <Pin remark="校验PIN">
+      <Send packModel="PCZZModel">
+        <brchno modelTag="root/head" bindvar="core_BankNumber"></brchno>
+        <servtp modelTag="root/head">VTM</servtp>
+        <prcscd modelTag="root/head">MBT002</prcscd>
+        <userid modelTag="root/head" bindvar="core_BranchNumber"></userid>
+        <TranNbr modelTag="root/body" bindvar="jnbank_flowId"></TranNbr>
+        <TranDate modelTag="root/body" bindvar="jnbank_ReqDate"></TranDate>
+        <TranTime modelTag="root/body" bindvar="jnbank_ReqTime"></TranTime>
+        <BrnNbr modelTag="root/body" bindvar="core_BankNumber"></BrnNbr>
+        <TlrNbr modelTag="root/body" bindvar="core_BranchNumber"></TlrNbr>
+        <DevType modelTag="root/body"></DevType>
+        <DevNbr modelTag="root/body"></DevNbr>
+        <ProdCode modelTag="root/body">MBFE</ProdCode>
+        <WorkCode modelTag="root/body">MBT002</WorkCode>
+        <AcctNbr modelTag="root/body" bindvar="core_PAN"></AcctNbr>
+        <PayMode modelTag="root/body">A</PayMode>
+        <CcyNbr modelTag="root/body">01</CcyNbr>
+        <IdenType modelTag="root/body"></IdenType>
+        <IdenNbr modelTag="root/body"></IdenNbr>
+        <PassWord modelTag="root/body" bindvar="core_Pin"></PassWord>
+        <spbrtg modelTag="root/body">0</spbrtg>
+        <limifl modelTag="root/body">Y</limifl>
+      </Send>
+      <Recv packModel="PCZZModel">
+        <MsgCode modelTag="root/head"></MsgCode>
+        <msgText modelTag="root/head"></msgText>
+        <pckgsq modelTag="root/head"></pckgsq>
+        <erortx modelTag="root/head" bindvar="core_HostRefuseMessage"></erortx>
+        <TranNbr modelTag="root/body"></TranNbr>
+        <TranDate modelTag="root/body"></TranDate>
+        <TranTime modelTag="root/body"></TranTime>
+        <BrnNbr modelTag="root/body"></BrnNbr>
+        <ProdCode modelTag="root/body"></ProdCode>
+        <WorkCode modelTag="root/body"></WorkCode>
+        <AcctNbr modelTag="root/body"></AcctNbr>
+        <AcctName modelTag="root/body"></AcctName>
+        <OpenBrn modelTag="root/body"></OpenBrn>
+        <DtitTp modelTag="root/body"></DtitTp>
+        <MsgCode modelTag="root/body"></MsgCode>
+        <MsgText modelTag="root/body"></MsgText>
+        <drawfs modelTag="root/body"></drawfs>
+        <affist modelTag="root/body"></affist>
+        <dcmttp modelTag="root/body"></dcmttp>
+        <dcmtst modelTag="root/body"></dcmtst>
+        <spectp modelTag="root/body"></spectp>
+        <custtp modelTag="root/body"></custtp>
+        <acctst modelTag="root/body"></acctst>
+        <accst2 modelTag="root/body"></accst2>
+        <onlnbl modelTag="root/body"></onlnbl>
+        <crcycd modelTag="root/body"></crcycd>
+        <csextg modelTag="root/body"></csextg>
+        <dtitcd modelTag="root/body"></dtitcd>
+        <sleptg modelTag="root/body"></sleptg>
+        <accutp modelTag="root/body"></accutp>
+        <PbocElement modelTag="root/body"></PbocElement>
+      </Recv>
+    </Pin>
+   <!--  <AddCard remark="加卡">
+      <Send packModel="PCModel">
+        <TradeCode modelTag="vtm/head">9104</TradeCode>
+        <ReqTime modelTag="vtm/head" bindvar="s_coreTransTimeHHmmss"></ReqTime>
+        <ReqDate modelTag="vtm/head" bindvar="core_TransTimeMMdd"></ReqDate>
+        <CTermId modelTag="vtm/head" bindvar="core_TerminalID"></CTermId>
+        <FlowId modelTag="vtm/head" bindvar="core_SerialNumber"></FlowId>
+        <StartCard modelTag="vtm/body"></StartCard>
+        <EndCard modelTag="vtm/body"></EndCard>
+        <Count modelTag="vtm/body"></Count>
+        <eAdmin modelTag="vtm/body"></eAdmin>
+      </Send>
+      <Recv packModel="PCModel">
+        <RespCode modelTag="vtm/head"></RespCode>
+        <RespMsg modelTag="vtm/head" bindvar="core_HostRefuseMessage"></RespMsg>
+      </Recv>
+    </AddCard>
+
+    <AddUKey remark="加ukey">
+      <Send packModel="PCModel">
+        <TradeCode modelTag="vtm/head">9108</TradeCode>
+        <ReqTime modelTag="vtm/head" bindvar="s_coreTransTimeHHmmss"></ReqTime>
+        <ReqDate modelTag="vtm/head" bindvar="core_TransTimeMMdd"></ReqDate>
+        <CTermId modelTag="vtm/head" bindvar="core_TerminalID"></CTermId>
+        <FlowId modelTag="vtm/head" bindvar="core_SerialNumber"></FlowId>
+        <UKStartNo modelTag="vtm/body"></UKStartNo>
+        <UKEndNo modelTag="vtm/body"></UKEndNo>
+        <UKType modelTag="vtm/body"></UKType>
+        <Devls modelTag="vtm/body"></Devls>
+        <Operator modelTag="vtm/body"></Operator>
+      </Send>
+      <Recv packModel="PCModel">
+        <RespCode modelTag="vtm/head"></RespCode>
+        <RespMsg modelTag="vtm/head" bindvar="core_HostRefuseMessage"></RespMsg>
+      </Recv>
+    </AddUKey> -->
+    <!--VTMP管理类交易 End -->
+
+    <!--CIF交易 Begin-->
+
+    <QUPRSN sendMode="0" remark="查询个人客户信息">
+      <Send packModel="PCZZModel">
+        <brchno modelTag="root/head" bindvar="core_BankNumber"></brchno>
+        <servtp modelTag="root/head">VTM</servtp>
+        <prcscd modelTag="root/head">quprsn</prcscd>
+        <userid modelTag="root/head" bindvar="core_BranchNumber"></userid>
+        <logino modelTag="root/body" bindvar="core_BranchNumber"></logino>
+        <newcus modelTag="root/body">0</newcus>
+        <outsfg modelTag="root/body">13</outsfg>
+        <mainfg modelTag="root/body">1</mainfg>
+		<custcn modelTag="root/body" bindvar="jnb_IDName"></custcn>
+		<certno modelTag="root/body" bindvar="jnb_IDNo"></certno>
+        <certtp modelTag="root/body">A</certtp>
+      </Send>
+      <Recv packModel="PCZZModel">
+        <rtcode modelTag="root/body"></rtcode>
+        <erormg modelTag="root/body" bindvar="core_HostRefuseMessage"></erormg>
+        <exflag modelTag="root/body" bindvar="jnb_isExitsCus"></exflag>
+        <custno modelTag="root/body" bindvar="jnb_custno"></custno>
+        <custcn modelTag="root/body"></custcn>
+		<mobitl modelTag="root/body" bindvar="jnb_cusphone"></mobitl>
+		<hometl modelTag="root/body" bindvar="jnb_cusTelphone"></hometl>
+      </Recv>
+    </QUPRSN>
+
+    <INPRSN remark="新增个人客户信息">
+      <Send packModel="PCZZModel">
+        <prcscd modelTag="root/head">inprsn</prcscd>
+		<brchno modelTag="root/head" bindvar="core_BankNumber"></brchno>
+		<userid modelTag="root/head" bindvar="core_BranchNumber"></userid>
+		<servtp modelTag="root/head">VTM</servtp>
+		<outsfg modelTag="root/body">13</outsfg>
+        <logino modelTag="root/body" bindvar="core_BranchNumber"></logino>
+        <lawbno modelTag="root/body">jnyh</lawbno>
+        <custcn modelTag="root/body" bindvar="jnb_IDName"></custcn>
+		<certno modelTag="root/body" bindvar="jnb_IDNo"></certno>
+		<custtp modelTag="root/body">1</custtp>
+		<certtp modelTag="root/body">1</certtp>
+        <mainfg modelTag="root/body">1</mainfg>
+		<validt modelTag="root/body">20250104</validt>
+		<contna modelTag="root/body">20250104</contna>
+		<mailad modelTag="root/body" bindvar="jnb_IDAddress"></mailad>
+		<opendt modelTag="root/body" bindvar="jnbank_ReqDate"></opendt>
+		<openbr modelTag="root/body" bindvar="core_BankNumber"></openbr>
+		<gender modelTag="root/body" bindvar="jnb_IDSexCode"></gender>
+		<brthdt modelTag="root/body" bindvar="jnb_IDBrithDay"></brthdt>
+		<certtp modelTag="root/body">A</certtp>
+		<mobitl modelTag="root/body" bindvar="jnb_cussignphone"></mobitl>
+		<offitl modelTag="root/body" bindvar="jnb_cussignphone"></offitl>
+		<hometl modelTag="root/body" bindvar="jnb_cussignTelphone"></hometl>
+      </Send>
+      <Recv packModel="PCZZModel">
+        <rtcode modelTag="root/body"></rtcode>
+        <erormg modelTag="root/body" bindvar="core_HostRefuseMessage"></erormg>
+        <exflag modelTag="root/body"></exflag>
+        <custno modelTag="root/body" bindvar="jnb_custno"></custno>
+		<MsgCode modelTag="root/head"></MsgCode>
+		<msgText modelTag="root/head"></msgText>
+		<pckgsq modelTag="root/head"></pckgsq>
+		<erortx modelTag="root/head"></erortx>
+      </Recv>
+    </INPRSN>
+    <!--CIF交易 End -->
+
+    <!--旗舰店与核心交易接口 Begin-->
+    <OpenCard remark="自助开卡">
+      <Send packModel="PCZZModel">
+		<userid modelTag="root/head" bindvar="core_BranchNumber"></userid>
+        <brchno modelTag="root/head" bindvar="core_BankNumber"></brchno>
+        <servtp modelTag="root/head">VTM</servtp>
+        <prcscd modelTag="root/head">up3201</prcscd>
+		<custno modelTag="root/body" bindvar="jnb_custno"></custno>
+		<acctno modelTag="root/body" bindvar="core_PAN"></acctno>
+		<dcmttp modelTag="root/body" bindvar="jnb_creditDcmttp"></dcmttp>
+		<dcmtno modelTag="root/body" bindvar="jnb_dcmtno"></dcmtno>
+		<crcycd modelTag="root/body">01</crcycd>
+		<csextg modelTag="root/body">x</csextg>
+		<idtftp modelTag="root/body">A</idtftp>
+		<idtfno modelTag="root/body" bindvar="jnb_IDNo"></idtfno>
+		<debttp modelTag="root/body">S01</debttp>
+		<spectp modelTag="root/body">1</spectp>
+		<drawfs modelTag="root/body">A</drawfs>
+		<tranpw modelTag="root/body" bindvar="core_Pin"></tranpw>
+		<mgntcd modelTag="root/body" bindvar="core_PAN"></mgntcd>
+		<eplytg modelTag="root/body">0</eplytg>
+		<atchus modelTag="root/body"></atchus>
+		<trantp modelTag="root/body">CO</trantp>
+		<daabtg modelTag="root/body">1</daabtg>
+		<feofye modelTag="root/body">1</feofye>
+		<opentp modelTag="root/body" bindvar="jnb_creditDcmttp">></opentp>
+		<slckpt modelTag="root/body">0</slckpt>
+		<dtitcd modelTag="root/body">20050505</dtitcd>
+		<csbxno modelTag="root/body" bindvar="core_BranchNumber"></csbxno>	
+      </Send>
+      <Recv packModel="PCZZModel">
+		<MsgCode modelTag="root/head"></MsgCode>
+		<msgText modelTag="root/head"></msgText>
+		<pckgsq modelTag="root/head"></pckgsq>
+		<erortx modelTag="root/head"></erortx>
+        <ot_transq modelTag="root/body"></ot_transq>
+        <ot_trandt modelTag="root/body"></ot_trandt>
+      </Recv>
+    </OpenCard>
+
+   <!--  <QueryCertificateInfo remark="卡号查询凭证信息">
+      <Send packModel="PCZZModel">
+        <userid modelTag="vtm/head"></userid>
+        <brchno modelTag="vtm/head"></brchno>
+        <servtp modelTag="vtm/head">VTM</servtp>
+        <prcscd modelTag="vtm/head">up3203</prcscd>
+        <acctno modelTag="vtm/body"></acctno>
+      </Send>
+      <Recv packModel="PCZZModel">
+        <MsgCode modelTag="vtm/head"></MsgCode>
+        <MsgText modelTag="vtm/head"></MsgText>
+        <pckgsq modelTag="vtm/head"></pckgsq>
+        <erortx modelTag="vtm/head"></erortx>
+        <dcmttp modelTag="vtm/body"></dcmttp>
+        <dcmtno modelTag="vtm/body"></dcmtno>
+        <usedtg modelTag="vtm/body"></usedtg>
+      </Recv>
+    </QueryCertificateInfo> 
+	 <CertificateUsed remark="凭证使用">
+      <Send packModel="PCZZModel">
+        <userid modelTag="vtm/head"></userid>
+        <brchno modelTag="vtm/head"></brchno>
+        <servtp modelTag="vtm/head">VTM</servtp>
+        <prcscd modelTag="vtm/head">up3205</prcscd>
+        <acctno modelTag="vtm/body"></acctno>
+        <ckbkus modelTag="vtm/body"></ckbkus>
+        <idtftp modelTag="vtm/body"></idtftp>
+        <idtfno modelTag="vtm/body" bindvar="jnb_IDNo"></idtfno>
+        <ortrpw modelTag="vtm/body" bindvar="core_Pin"></ortrpw>
+      </Send>
+      <Recv packModel="PCZZModel">
+        <MsgCode modelTag="vtm/head"></MsgCode>
+        <MsgText modelTag="vtm/head"></MsgText>
+        <pckgsq modelTag="vtm/head"></pckgsq>
+        <erortx modelTag="vtm/head"></erortx>
+        <transq modelTag="vtm/body"></transq>
+        <tranti modelTag="vtm/body"></tranti>
+      </Recv>
+    </CertificateUsed>
+	
+	-->
+
+    <GetMinCardNumber remark="获取最小凭证号">
+      <Send packModel="PCZZModel">
+        <userid modelTag="root/head" bindvar="core_BranchNumber"></userid>
+        <brchno modelTag="root/head" bindvar="core_BankNumber"></brchno>
+        <servtp modelTag="root/head">VTM</servtp>
+        <prcscd modelTag="root/head">up3204</prcscd>
+        <csbxno modelTag="root/body" bindvar="core_BranchNumber"></csbxno>
+        <dcmttp modelTag="root/body" bindvar="jnb_creditDcmttp">></dcmttp>
+      </Send>
+      <Recv packModel="PCZZModel">
+        <MsgCode modelTag="root/head"></MsgCode>
+        <MsgText modelTag="root/head"></MsgText>
+        <pckgsq modelTag="root/head"></pckgsq>
+        <erortx modelTag="root/head"></erortx>
+        <dcmtno modelTag="root/body" bindvar="jnb_dcmtno"></dcmtno>
+      </Recv>
+    </GetMinCardNumber>
+
+    <GetMinCardNumberTwinScreen remark="获取最小凭证号">
+      <Send packModel="PCZZModel">
+        <userid modelTag="root/head" bindvar="core_BranchNumber"></userid>
+        <brchno modelTag="root/head" bindvar="core_BankNumber"></brchno>
+        <servtp modelTag="root/head">VTM</servtp>
+        <prcscd modelTag="root/head">up3204</prcscd>
+        <csbxno modelTag="root/body" bindvar="core_BranchNumber"></csbxno>
+        <dcmttp modelTag="root/body" bindvar="jnb_dcmttp">></dcmttp>
+      </Send>
+      <Recv packModel="PCZZModel">
+        <MsgCode modelTag="root/head"></MsgCode>
+        <MsgText modelTag="root/head"></MsgText>
+        <pckgsq modelTag="root/head"></pckgsq>
+        <erortx modelTag="root/head"></erortx>
+        <dcmtno modelTag="root/body" bindvar="jnb_dcmtno"></dcmtno>
+      </Recv>
+    </GetMinCardNumberTwinScreen>
+
+    <CertificateExpend remark="凭证消耗">
+      <Send packModel="PCZZModel">
+        <userid modelTag="root/head" bindvar="core_BranchNumber"></userid>
+        <brchno modelTag="root/head" bindvar="core_BankNumber"></brchno>
+        <servtp modelTag="root/head">VTM</servtp>
+        <prcscd modelTag="root/head">up3205</prcscd>
+        <ckbkus modelTag="root/body" bindvar="core_TerminalID"></ckbkus>
+        <dcmttp modelTag="root/body" bindvar="jnb_creditDcmttp"></dcmttp>
+        <initno modelTag="root/body" bindvar="jnb_dcmtno"></initno>
+        <finlno modelTag="root/body" bindvar="jnb_dcmtno"></finlno>
+        <dcmtnm modelTag="root/body">1</dcmtnm>
+      </Send>
+      <Recv packModel="PCZZModel">
+        <MsgCode modelTag="root/head"></MsgCode>
+        <MsgText modelTag="root/head" bindvar="core_HostRefuseMessage"></MsgText>
+        <pckgsq modelTag="root/head"></pckgsq>
+        <erortx modelTag="root/head" bindvar="core_HostRefuseMessage"></erortx>
+        <transq modelTag="root/body"></transq>
+        <tranti modelTag="root/body"></tranti>
+      </Recv>
+    </CertificateExpend>
+
+    <VerifyIdentityInfo remark="身份信息核查">
+      <Send packModel="PCZZModel">
+        <brchno modelTag="root/head" bindvar="core_BankNumber"></brchno>
+        <servtp modelTag="root/head">VTM</servtp>
+        <prcscd modelTag="root/head">60010</prcscd>
+        <userid modelTag="root/head" bindvar="core_BranchNumber"></userid>
+        <workdate modelTag="root/body" bindvar="jnbank_ReqDate"></workdate>
+        <transbno modelTag="root/body" bindvar="core_BankNumber"></transbno>
+        <tranusid modelTag="root/body" bindvar="core_BranchNumber"></tranusid>
+        <businesscode modelTag="root/body">00</businesscode>
+        <id modelTag="root/body" bindvar="jnb_IDNo"></id>
+        <name modelTag="root/body" bindvar="jnb_IDName"></name>
+      </Send>
+      <Recv packModel="PCZZModel">
+        <MsgCode modelTag="root/head"></MsgCode>
+        <MsgText modelTag="root/head"></MsgText>
+        <pckgsq modelTag="root/head"></pckgsq>
+        <erortx modelTag="root/head" bindvar="core_HostRefuseMessage"></erortx>
+        <midflow modelTag="root/body"></midflow>
+        <tranti modelTag="root/body"></tranti>
+        <checkresult modelTag="root/body" bindvar="jnb_verifycheckresult"></checkresult>
+        <id modelTag="root/body"></id>
+        <name modelTag="root/body"></name>
+        <issueoffice modelTag="root/body"></issueoffice>
+        <photo modelTag="root/body" photovar="jnb_VerifyIdentityPhoto"></photo>
+      </Recv>
+    </VerifyIdentityInfo>
+
+     <UserRegisterQuery remark="个人网银开户查询">
+      <Send packModel="PCZZModel">
+        <TranCode modelTag="root/head">200001</TranCode>
+        <OperNo modelTag="root/head" bindvar="core_BranchNumber"></OperNo>
+        <ChannelType  modelTag="root/head">04</ChannelType>
+        <Channel  modelTag="root/head">1</Channel>
+        <BranchNo  modelTag="root/head" bindvar="core_BankNumber"></BranchNo>
+        <PrdType  modelTag="root/head">0</PrdType>
+        <TransDate  modelTag="root/head" bindvar="jnbank_ReqDate"></TransDate>
+        <NetBankSeqNo  modelTag="root/head" bindvar="jnbank_flowId"></NetBankSeqNo>
+        <AcNo modelTag="root/body"></AcNo>
+        <BankAcType modelTag="root/body"></BankAcType>
+        <IdType modelTag="root/body">00</IdType>
+        <IdNo modelTag="root/body" bindvar="jnb_IDNo"></IdNo>
+      </Send>
+      <Recv packModel="PCZZModel">
+        <RespCode modelTag="root/head"></RespCode>
+        <RespMsg modelTag="root/head" bindvar="core_HostRefuseMessage"></RespMsg>
+        <RetCode modelTag="root/head"></RetCode>
+        <RetMessage modelTag="root/head" bindvar="core_HostRefuseMessage"></RetMessage>
+        <HostSeqNo modelTag="root/head"></HostSeqNo>
+        <HostDate modelTag="root/head"></HostDate>
+        <result modelTag="root/body" bindvar="jnb_eSignFlag"></result>
+        <certFlag modelTag="root/body" bindvar="jnb_certFlag"></certFlag>
+        <smsFlag modelTag="root/body" bindvar="jnb_smsFlag"></smsFlag>
+      </Recv>
+    </UserRegisterQuery>
+
+    <UserRegister remark="个人网银开户">
+      <Send packModel="PCZZModel">
+        <TranCode modelTag="root/head">200000</TranCode>
+        <OperNo modelTag="root/head" bindvar="core_BranchNumber"></OperNo>
+        <ChannelType  modelTag="root/head">04</ChannelType>
+        <ChannelSeq  modelTag="root/head" bindvar="jnbank_flowId"></ChannelSeq>
+        <BranchId  modelTag="root/head" bindvar="core_BankNumber"></BranchId>
+        <PrdType  modelTag="root/head">0</PrdType>
+        <ChannelDate  modelTag="root/head" bindvar="jnbank_ReqDate"></ChannelDate>
+        <NetBankSeqNo  modelTag="root/head" bindvar="jnbank_flowId"></NetBankSeqNo>
+        <AcNo modelTag="root/body" bindvar="core_PAN"></AcNo>
+        <BankAcType modelTag="root/body">03</BankAcType>
+        <IdType modelTag="root/body">00</IdType>
+        <IdNo modelTag="root/body" bindvar="jnb_IDNo"></IdNo>
+        <AcName modelTag="root/body" bindvar="jnb_IDName"></AcName>
+        <Phone modelTag="root/body" bindvar="jnb_cussignphone"></Phone>
+        <Email modelTag="root/body" bindvar="jnb_signMail"></Email>
+        <TrsPassword modelTag="root/body" bindvar="core_Pin"></TrsPassword>
+        <UserId modelTag="root/body" bindvar="jnb_signAcName"></UserId>
+        <Password modelTag="root/body" asciivar="jnb_signPin"></Password>
+        <CManager modelTag="root/body"></CManager>
+        <MachineNum modelTag="root/body" bindvar="core_TerminalID"></MachineNum>
+      </Send>
+      <Recv packModel="PCZZModel">
+        <RespCode modelTag="root/head"></RespCode>
+        <RespMsg modelTag="root/head" bindvar="core_HostRefuseMessage"></RespMsg>
+        <RetCode modelTag="root/head"></RetCode>
+        <RetMessage modelTag="root/head" bindvar="core_HostRefuseMessage"></RetMessage>
+        <HostSeqNo modelTag="root/head"></HostSeqNo>
+        <HostDate modelTag="root/head"></HostDate>
+      </Recv>
+    </UserRegister>
+	
+	<PUserClose remark="网银销户">
+      <Send packModel="PCZZModel">
+        <TranCode modelTag="root/head">200006</TranCode>
+        <OperNo modelTag="root/head" bindvar="core_BranchNumber"></OperNo>
+        <ChannelType  modelTag="root/head">04</ChannelType>
+        <Channel  modelTag="root/head">1</Channel>
+        <BranchNo  modelTag="root/head" bindvar="core_BankNumber"></BranchNo>
+        <PrdType  modelTag="root/head">0</PrdType>
+        <TransDate  modelTag="root/head" bindvar="jnbank_ReqDate"></TransDate>
+        <NetBankSeqNo  modelTag="root/head" bindvar="jnbank_flowId"></NetBankSeqNo>
+        <IdType modelTag="root/body">00</IdType>
+        <IdNo modelTag="root/body" bindvar="jnb_IDNo"></IdNo>
+        <TrsPassword modelTag="root/body" bindvar="core_Pin"></TrsPassword>
+		 <AcNo modelTag="root/body" bindvar="core_PAN"></AcNo>
+      </Send>
+      <Recv packModel="PCZZModel">
+        <RespCode modelTag="root/head"></RespCode>
+        <RespMsg modelTag="root/head" bindvar="core_HostRefuseMessage"></RespMsg>
+        <RetCode modelTag="root/head"></RetCode>
+        <RetMessage modelTag="root/head" bindvar="core_HostRefuseMessage"></RetMessage>
+        <HostSeqNo modelTag="root/head"></HostSeqNo>
+        <HostDate modelTag="root/head"></HostDate>
+      </Recv>
+    </PUserClose>
+	
+    <VerifyNetBankName remark="网银用户名校验">
+      <Send packModel="PCZZModel">
+        <TranCode modelTag="root/head">200008</TranCode>
+        <OperNo modelTag="root/head" bindvar="core_BranchNumber"></OperNo>
+        <ChannelType  modelTag="root/head">04</ChannelType>
+        <Channel  modelTag="root/head">1</Channel>
+        <BranchNo  modelTag="root/head" bindvar="core_BankNumber"></BranchNo>
+        <PrdType  modelTag="root/head">0</PrdType>
+        <TransDate  modelTag="root/head" bindvar="jnbank_ReqDate"></TransDate>
+        <NetBankSeqNo  modelTag="root/head" bindvar="jnbank_flowId"></NetBankSeqNo>
+        <UserId modelTag="root/body" bindvar="jnb_signAcName"></UserId>
+      </Send>
+      <Recv packModel="PCZZModel">
+        <RespCode modelTag="root/head"></RespCode>
+        <RespMsg modelTag="root/head" bindvar="core_HostRefuseMessage"></RespMsg>
+        <RetCode modelTag="root/head"></RetCode>
+        <RetMessage modelTag="root/head" bindvar="core_HostRefuseMessage"></RetMessage>
+        <HostSeqNo modelTag="root/head"></HostSeqNo>
+        <HostDate modelTag="root/head"></HostDate>
+      </Recv>
+    </VerifyNetBankName>
+    <!--旗舰店与核心交易接口 End-->
+  </MsgConfig>
+</MessageCenterServiceConfig>

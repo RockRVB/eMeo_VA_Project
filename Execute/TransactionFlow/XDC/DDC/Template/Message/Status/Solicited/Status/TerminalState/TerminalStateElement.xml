@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+		<!--  The status information will vary according to which of the following terminal commands has been received by the terminal.
+			*  Will be sent in response to Terminal Commands requesting tallies, logs, supply counters, terminal configruation information,hallmark key(not supported) or the date and time.
+		-->
+	<TerminalState>			
+		<Item key="f" 						value="F"  						size="1" 							restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 				value="[FS]"					size="1"							restriction="Mandatory"/>
+	</TerminalState>
+	
+</Root>

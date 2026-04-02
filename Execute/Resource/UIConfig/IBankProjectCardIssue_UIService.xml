@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+  <Screen name="UI_input_form_passport" uri="Openaccount-new\input_form.html" cache="0">
+  </Screen>
+  <Screen name="UI_insert_passport" uri="Openaccount-new\insert_passport.html" cache="0">
+  </Screen>
+  <Screen name="UI_printing_card" uri="Openaccount-new\printing_card.html" cache="0">
+  </Screen>
+  <Screen name="UI_printing_form" uri="Openaccount-new\printing_form.html" cache="0">
+  </Screen>
+  <Screen name="UI_reading_passport" uri="Openaccount-new\reading_passport.html" cache="0">
+  </Screen>
+  <Screen name="UI_reading_IDCard" uri="Openaccount-new\reading_IDCard.html" cache="0">
+  </Screen>
+  <Screen name="UI_scan_form" uri="Openaccount-new\scan_form.html" cache="0">
+  </Screen>
+  <Screen name="UI_sign_atPad" uri="Openaccount-new\sign_atPad.html" cache="0">
+  </Screen>
+  <Screen name="UI_sign_atPad4Pen" uri="Openaccount-new\sign_atPad4Pen.html" cache="0">
+  </Screen>
+  <Screen name="UI_sign_atPad4Pen2" uri="Openaccount-new\sign_atPad4Pen2.html" cache="0">
+  </Screen>
+  <Screen name="UI_card_issue_take_card" uri="Openaccount-new\take_card.html" cache="0">
+  </Screen>
+  <Screen name="UI_take_form" uri="Openaccount-new\take_form.html" cache="0">
+  </Screen>
+  <Screen name="UI_take_passport" uri="Openaccount-new\take_passport.html" cache="0">
+  </Screen> 
+  <Screen name="UI_dispense_card" uri="Openaccount-new\dispense_card.html" cache="0">
+  </Screen> 
+  <Screen name="UI_card_protocol" uri="Openaccount-new\card_protocol.html" cache="0">
+  </Screen> 
+  <Screen name="UI_scan_passport_failure" uri="Openaccount-new\scan_passport_failure.html" cache="0">
+  </Screen>  
+  <Screen name="UI_ScanIDCard" uri="Openaccount-new\insert_idcard.html" cache="0">
+  </Screen>
+  <Screen name="UI_ScanIDCard_failure" uri="Openaccount-new\scan_IDCard_failure.html" cache="0">
+  </Screen>
+  <Screen name="UI_ScanPassport" uri="Openaccount-new\Scan_passport.html" cache="0">
+  </Screen> 
+  
+  <Screen name="UI_input_form_passport4IssueCard" uri="IssueCard-new\input_form.html" cache="0">
+  </Screen>
+  <Screen name="UI_insert_passport4IssueCard" uri="IssueCard-new\insert_passport.html" cache="0">
+  </Screen>
+  <Screen name="UI_insert_passport4IssueCard4NewAccount" uri="IssueCard-new\insert_IDCard.html" cache="0">
+  </Screen>
+  <Screen name="UI_ScanPassport4IssueCard" uri="IssueCard-new\Scan_passport.html" cache="0">
+  </Screen>
+  <Screen name="UI_take_passport4IssueCard" uri="IssueCard-new\take_passport.html" cache="0">
+  </Screen>
+  <Screen name="UI_printing_form4IssueCard" uri="IssueCard-new\printing_form.html" cache="0">
+  </Screen>
+  <Screen name="UI_scan_form4IssueCard" uri="IssueCard-new\scan_form.html" cache="0">
+  </Screen>
+  <Screen name="UI_sign_atPad4IssueCard" uri="IssueCard-new\sign_atPad.html" cache="0">
+  </Screen>
+  <Screen name="UI_sign_atPad4Pen4IssueCard" uri="IssueCard-new\sign_atPad4Pen.html" cache="0">
+  </Screen>
+  <Screen name="UI_sign_atPad4Pen24IssueCard" uri="IssueCard-new\sign_atPad4Pen2.html" cache="0">
+  </Screen>
+  <Screen name="UI_PrintReceiptSuccess4IssueCard" uri="IssueCard-new\take_receipt.html" cache="0">
+  </Screen>
+</Screens>
+

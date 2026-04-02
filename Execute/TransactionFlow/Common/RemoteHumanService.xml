@@ -1,0 +1,685 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="HumanService">
+	<Head type="GRGWorkflow" author="" timeStamp="" comment="The workflow design is for Card printing Demo"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start" callVisible="0" endflag="1">
+			<Forward event="OnConfirm" targetID="ID_SetUserModeType"/>
+		</Start>
+
+		<SetData ID="ID_SetUserModeType" saveBuffer="{VTMA.send.CallRemoteTeller.userModeType,0}" value="2">
+			<Forward event="OnConfirm" targetID="ID_CompareVideoStatus"/>
+		</SetData>
+
+		<!--Check Agin Video Connection-->
+		<!-- 判断视频状态 -->
+		<!-- STATUS_END = 0,        未初始化前的状态，登陆前状态  -->
+		<!-- STATUS_INITIAL_REQ,    初始化请求状态, 登陆中状态  -->
+		<!-- STATUS_IDLE,           初始化成功后还未呼叫时的空闲状态  -->
+		<!-- STATUS_CALL_REQ,       呼叫发起请求状态  -->
+		<!-- STATUS_IN_TALKING,     通话中状态  -->
+		<!-- STATUS_RELEASE_REQ,    呼叫发起释放状态  -->
+		<!-- STATUS_ENDING_REQ,     发起结束初始化状态  -->
+		<!-- STATUS_ANSWER_REQ,     应答中，此时点击应答，等有TALKING事件上报后，将迁移到STATUS_IN_TALKING  -->
+		<!-- STATUS_IN_CALLING,     正在 来电中， 也就是收到振铃事件；对于AVAYA，主叫会收到振铃事件但被叫反而不会收到振铃事件  -->
+		<!-- STATUS_IN_REJECTING,   正在拒绝中  -->
+		<!-- STATUS_NETWORK_ERROR,  网络故障  -->
+		<CompareData ID="ID_CompareVideoStatus" comment="" compareBuffer="{VTM_VideoStatusWrapper}">
+			<Forward event="OnEqualSTATUS_IN_TALKING" targetID="ID_ChangeBusiness" />
+			<Forward event="OnEqualSTATUS_IDLE" targetID="ID_InvokeCallAgentWorkflow" />
+			<DefaultForward targetID="ID_ConnectAgentFail" />
+		</CompareData>
+
+		<VTMARequestTransViaRestful ID="ID_ChangeBusiness" UI="UI_waiting" digitalVoiceKey="" transType="ChangeBusiness" transFormat="json" msgTimeout="2000">
+			<Forward event="OnContinue" targetID="ID_CounterService"/>
+			<DefaultForward targetID="ID_CounterService" />
+		</VTMARequestTransViaRestful>
+
+		<!-- Invoke the Authorization workflow-->
+		<InvokeWorkflow ID="ID_InvokeCallAgentWorkflow" name="VTMA3CallAgent" comment="Invoke CallAgent workflow" index="0">
+			<Forward event="OnConfirm" targetID="ID_CompareVideoStatusAgain"/>
+		</InvokeWorkflow>
+
+		<!-- Judge whether the agent is connected or not -->
+		<CompareData ID="ID_CompareVideoStatusAgain" comment="" compareBuffer="{VTM_VideoStatusWrapper}">
+			<Forward event="OnEqualSTATUS_IN_TALKING" targetID="ID_ChangeBusiness" />
+			<DefaultForward targetID="ID_ConnectAgentFail" />
+		</CompareData>
+
+		<CounterService ID="ID_CounterService" UI="UI_remote_serving" digitalVoiceKey="||action_033">
+			<States>
+				<State name="NetWorkError" UI="UI_network_error"/>
+				<State name="TimeOutError" UI="UI_timeout"/>
+			</States>
+			<Forward event="OnVideoDisconnect" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnScanPassport" targetID="ID_ComparePassportScanType"/>
+			<Forward event="OnSendFile" targetID="ID_DownloadFile4SendFile"/>
+			<Forward event="OnPrintPaper" targetID="ID_DownloadFile4PrintPaper"/>
+			<Forward event="OnScanRecycle" targetID="ID_ScanRecycle"/>
+			<Forward event="OnInitiateVerification" targetID="ID_FaceCaptureImage"/>
+			<Forward event="OnPrintCredential" targetID="ID_DownloadFile4PrintCredential"/>
+			<Forward event="OnEndBusiness" targetID="ID_EndBusiness"/>
+			<Forward event="OnSendCard" targetID="ID_SendCard"/>
+
+			<Forward event="OnInsertCard" targetID="ID_GetIDCStatus"/>
+			<Forward event="OnTakeCard" targetID="ID_CheckCardInserted4TakeCard"/>
+			<Forward event="OnReadContactLessCard" targetID="ID_GetContactLessIDCStatus"/>
+			<Forward event="OnInputPin" targetID="ID_SetVerifyType4InputPin"/>
+			<Forward event="OnChangePin" targetID="ID_SetVerifyType4ChangePin"/>
+			<Forward event="OnScanBarcode" targetID="ID_GetDevStatusForBCR"/>
+			<Forward event="OnCassetteTracking" targetID="ID_GetCassetteInfo"/>
+			<Forward event="OnWithdrawalOperation" targetID="ID_IsReady4Withdrawal"/>
+			<Forward event="OnDeposit" targetID="ID_IsReady4Deposit"/>
+			<Forward event="OnTakePicture" targetID="ID_TakePicByCamera"/>
+			<Forward event="OnFingerRegister" targetID="ID_FingerRegister"/>
+			<Forward event="OnFingerMatch" targetID="ID_FingerMatch"/>
+
+			<Forward event="OnCancel" targetID="ID_CancelBusiness"/>
+			<DefaultForward targetID="ID_CounterService" />
+		</CounterService>
+
+		<!-- 1:Passport 0:ID Card-->
+		<CompareData ID="ID_ComparePassportScanType" comment="" compareBuffer="{CounterService.request.certType}">
+			<Forward event="OnEqual1" targetID="ID_ScanPassport" />
+			<Forward event="OnEqual0" targetID="ID_ScanIDCard" />
+			<DefaultForward targetID="ID_VideoConnectFail" />
+		</CompareData>
+
+		<PassportScan ID="ID_ScanPassport" UI="UI_insertpassport_new" digitalVoiceKey="|||||action_047" CallingMethodType="0" manualScan="0" homeVisible="0" timeout="300000">
+			<States>
+				<State name="TakePassport" UI="UI_takepassport_new" />
+				<State name="ScanningPassport" UI="UI_reading_passport" />
+				<State name="ScanError" UI="UI_scan_passport_failure" />
+				<State name="HardwareError" UI="UI_hardware_error" />
+				<State name="Cancel" UI="UI_remote_serving" />
+			</States>
+			<Forward event="OnContinue" targetID="ID_UploadCustomerInfo4CounterService" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</PassportScan>
+		
+		<ScanIDCard ID="ID_ScanIDCard" UI="UI_insert_passport4IssueCard"  digitalVoiceKey="|||||action_013" CallingMethodType="0" homeVisible="0" generateImg="0">
+			<States>
+				<State name="IDCardError" UI="UI_ReadingIDCardError"/>
+				<State name="OutDateError" UI="UI_IDCardOutDate"/>
+				<State name="TakeIDCard" UI="UI_TakeIdCard"/>
+				<State name="ReadingCard" UI="UI_IDReadingCard"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_UploadIDCardCustomerInfo4CounterService"/>
+			<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		</ScanIDCard>
+
+		<UploadInfo4CounterService ID="ID_UploadCustomerInfo4CounterService" UI="UI_waiting" VerifyType="PassportInfo" timeout="120000">
+			<Forward event="OnContinue" targetID="ID_CommandExecuteSuccess" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</UploadInfo4CounterService>
+		<UploadInfo4CounterService ID="ID_UploadIDCardCustomerInfo4CounterService" UI="UI_waiting" VerifyType="IDCardInfo" timeout="120000">
+			<Forward event="OnContinue" targetID="ID_CommandExecuteSuccess" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</UploadInfo4CounterService>
+
+		<!--推送文件-->
+		<DownloadFile ID="ID_DownloadFile4SendFile" UI="UI_waiting" digitalVoiceKey="" function="SendFile" saveDir="Temp\" timeout="5000">
+			<Forward event="OnContinue" targetID="ID_SendFile" />
+			<Forward event="OnFail" targetID="ID_CommandExecuteError" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</DownloadFile>
+		<SendFile ID="ID_SendFile" UI="" timeout="180000" digitalVoiceKey="||||action_018">
+			<States>
+				<State name="ImageFile" UI="UI_SendFile_ShowFile" />
+				<State name="ConfirmFile" UI="UI_SendFile_ShowFile" />
+				<State name="SignatureFile" UI="UI_SendFile_ShowSignFile" />
+				<State name="Signature" UI="UI_SendFile_SignFile" />
+			</States>
+			<Forward event="OnImage" targetID="ID_CommandExecuteSuccess" />
+			<Forward event="OnConfirmFile" targetID="ID_CommandExecuteSuccess" />
+			<Forward event="OnSignatureFile" targetID="ID_UploadSignatureFileInfo" />
+			<Forward event="OnCancel" targetID="ID_CommandExecuteCancel" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</SendFile>
+		<UploadInfo4CounterService ID="ID_UploadSignatureFileInfo" UI="UI_waiting" digitalVoiceKey="" VerifyType="ReadAndSignatureFile" timeout="120000">
+			<Forward event="OnContinue" targetID="ID_CommandExecuteSuccess" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</UploadInfo4CounterService>
+
+		<!--A4打印-->
+		<DownloadFile ID="ID_DownloadFile4PrintPaper" UI="UI_waiting" digitalVoiceKey="" function="PrintPaper" saveDir="Temp\" timeout="5000">
+			<Forward event="OnContinue" targetID="ID_GetPrinterStatusEx" />
+			<Forward event="OnFail" targetID="ID_CommandExecuteError" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</DownloadFile>
+		<GetDevStatus ID="ID_GetPrinterStatusEx" UI="" comment="Get device status" devType="DocPrinter" callVisible="0">
+			<States>
+				<State name="GetDevStatusExError" UI="UI_hardware_error" />
+			</States>
+			<Forward event="OnNormal" targetID="ID_PrintFormData" />
+			<Forward event="OnWarn" targetID="ID_PrintFormData" />
+			<Forward event="OnFail" targetID="ID_CommandExecuteError" />
+		</GetDevStatus>
+		<PrintFormData ID="ID_PrintFormData" UI="UI_printform_new" digitalVoiceKey="|action_019" isValetMode="1" ids="IDS_AcPrint" fileWithStamp="0" timeout="120000">
+			<States>
+				<State name="PrintFormDataError" UI="UI_hardware_error" />
+			</States>
+			<Forward event="OnContinue" targetID="ID_CommandExecuteSuccess" />
+			<Forward event="OnFail" targetID="ID_CommandExecuteError" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</PrintFormData>
+
+		<!--扫描回收-->
+		<StartFeed ID="ID_ScanRecycle" UI="UI_scanform_new" digitalVoiceKey="||||action_020" comment="" feedimg="1" chkbar="0" timeout="120000" homeVisible="0">
+			<States>
+				<State name="ScanFormSuccess" UI="UI_ScanFormSuccess"></State>
+				<State name="StartFeedFailure" UI="UI_hardware_error"></State>
+				<State name="ReStartFeed" UI="UI_RetractFormAgain"></State>
+				<State name="TakePaper" UI="UI_TakeBackForm"></State>
+			</States>
+			<Forward event="OnContinue" targetID="ID_UploadFormCheckInfo"/>
+			<Forward event="OnCancel" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnTimeout" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnRePrint" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnHardwareError" targetID="ID_CommandExecuteError"/>
+		</StartFeed>
+
+		<UploadInfo4CounterService ID="ID_UploadFormCheckInfo" UI="UI_waiting" digitalVoiceKey=""  VerifyType="CheckForm" timeout="120000">
+			<Forward event="OnContinue" targetID="ID_CommandExecuteSuccess" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</UploadInfo4CounterService>
+
+		<!-- 人证合一-->
+		<FaceCaptureImage ID="ID_FaceCaptureImage" UI="UI_LookCameraTakePic" digitalVoiceKey="action_035" comment="" timeout="30000">
+			<Forward event="OnConfirm" targetID="ID_UploadFaceImage" />
+			<Forward event="OnTimeout" targetID="ID_CommandExecuteError" />
+			<Forward event="OnCancel" targetID="ID_CommandExecuteCancel" />
+			<Forward event="OnFail" targetID="ID_CommandExecuteError" />
+		</FaceCaptureImage>
+
+		<UploadInfo4CounterService ID="ID_UploadFaceImage" UI="UI_waiting" digitalVoiceKey=""  VerifyType="FaceImage" timeout="120000">
+			<Forward event="OnContinue" targetID="ID_GetPublicKey" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</UploadInfo4CounterService>
+
+		<RequestTransViaRestful ID="ID_GetPublicKey" UI="UI_CommonProcessing" digitalVoiceKey="||||||||" transType="GetPublicKey" transFormat="json">
+			<States>
+				<State name="PackFail" UI="UI_general_error"/>
+				<State name="ConnectFail" UI="UI_general_error"/>
+				<State name="SendFail" UI="UI_general_error"/>
+				<State name="ReceiveFail" UI="UI_general_error"/>
+				<State name="ReceiveTimeout" UI="UI_general_error"/>
+				<State name="NetworkFail" UI="UI_general_error"/>
+				<State name="UnpackFail" UI="UI_general_error"/>
+				<State name="HardwareError" UI="UI_general_error"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_UserLoginFB"/>
+			<Forward event="OnPackFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnConnectFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnSendFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnReceiveFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnNetworkFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnUnpackFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnHostRefuse" targetID="ID_CommandExecuteResult1"/>
+		</RequestTransViaRestful>
+		<UserLoginFB ID="ID_UserLoginFB" UI="" comment="" timeout="60000">
+			<Forward event="OnConfirm" targetID="ID_FBLOGINRequest" />
+			<Forward event="OnFail" targetID="ID_CommandExecuteResult1" />
+		</UserLoginFB>
+		<RequestTransViaRestful ID="ID_FBLOGINRequest" UI="UI_CommonProcessing" digitalVoiceKey="||||||||" transType="FB20LOGIN" transFormat="json">
+			<States>
+				<State name="PackFail" UI="UI_general_error"/>
+				<State name="ConnectFail" UI="UI_general_error"/>
+				<State name="SendFail" UI="UI_general_error"/>
+				<State name="ReceiveFail" UI="UI_general_error"/>
+				<State name="ReceiveTimeout" UI="UI_general_error"/>
+				<State name="NetworkFail" UI="UI_general_error"/>
+				<State name="UnpackFail" UI="UI_general_error"/>
+				<State name="HardwareError" UI="UI_general_error"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_FBLoginResult"/>
+			<Forward event="OnPackFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnConnectFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnSendFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnReceiveFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnNetworkFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnUnpackFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnHostRefuse" targetID="ID_CommandExecuteResult1"/>
+		</RequestTransViaRestful>
+		<FBLoginResult ID="ID_FBLoginResult" UI="" comment="" timeout="60000">
+			<Forward event="OnConfirm" targetID="ID_FB20FaceCompare2Img" />
+			<Forward event="OnFail" targetID="ID_CommandExecuteResult1" />
+		</FBLoginResult>
+
+		<RequestTransViaRestful ID="ID_FB20FaceCompare2Img" UI="UI_CommonProcessing" digitalVoiceKey="||||||||" transType="FB20FaceCompare2Img" transFormat="json">
+			<States>
+				<State name="PackFail" UI="UI_general_error"/>
+				<State name="ConnectFail" UI="UI_general_error"/>
+				<State name="SendFail" UI="UI_general_error"/>
+				<State name="ReceiveFail" UI="UI_general_error"/>
+				<State name="ReceiveTimeout" UI="UI_general_error"/>
+				<State name="NetworkFail" UI="UI_general_error"/>
+				<State name="UnpackFail" UI="UI_general_error"/>
+				<State name="HardwareError" UI="UI_general_error"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_FaceIdentifyResultFB"/>
+			<Forward event="OnPackFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnConnectFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnSendFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnReceiveFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnNetworkFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnUnpackFail" targetID="ID_CommandExecuteResult1"/>
+			<Forward event="OnHostRefuse" targetID="ID_CommandExecuteResult1"/>
+		</RequestTransViaRestful>
+
+		<FaceCheckResultFB20 ID="ID_FaceIdentifyResultFB" UI="UI_CommonProcessing" digitalVoiceKey="||" comment="" timeout="60000">
+			<States>
+				<State name="FaceMatchSuccess" UI="UI_FaceMatchIsSuccess"/>
+				<State name="FaceNotMatch" UI="UI_FaceIsNotMatch"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_CommandExecuteSuccess" />
+			<Forward event="NotMatch" targetID="ID_CommandExecuteResult1" />
+			<Forward event="OnFail" targetID="ID_CommandExecuteResult1" />
+		</FaceCheckResultFB20>
+
+		<!--凭条打印-->
+		<DownloadFile ID="ID_DownloadFile4PrintCredential" UI="UI_waiting" digitalVoiceKey=""  function="PrintCredential" isPrintCredentialType="1" isPrintPaper="0" saveDir="Temp\" timeout="5000">
+			<Forward event="OnContinue" targetID="ID_GetRPTRStatus" />
+			<Forward event="OnFail" targetID="ID_CommandExecuteError" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</DownloadFile>
+		<GetDevStatus ID="ID_GetRPTRStatus" UI="" comment="Get device status" devType="RPTR" callVisible="0">
+			<Forward event="OnNormal" targetID="ID_PrintCredential" />
+			<Forward event="OnWarn" targetID="ID_PrintCredential" />
+			<Forward event="OnFail" targetID="ID_CommandExecuteError" />
+		</GetDevStatus>
+		<PrintReceipt ID="ID_PrintCredential" UI="UI_PrintingReceipt" digitalVoiceKey="||action_026" formName="ReceiptFormCounterService" isEnableFail="1" showTime="3000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess_CommonPage"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_CommandExecuteSuccess"/>
+			<Forward event="OnFail" targetID="ID_CommandExecuteError"/>
+		</PrintReceipt>
+
+		<!--结束业务-->
+		<EndBusiness ID="ID_EndBusiness" UI="UI_remote_serving" digitalVoiceKey="action_033">
+			<DefaultForward targetID="ID_CommandExecuteSuccess" />
+		</EndBusiness>
+
+		<InvokeWorkflow ID="ID_SendCard" name="SendCard4CounterService" comment="Invoke SendCard4CounterService workflow">
+			<DefaultForward targetID="ID_CompareSendCardResult" />
+		</InvokeWorkflow>
+
+		<CompareData ID="ID_CompareSendCardResult" comment="" compareBuffer="{CounterService_SendCardResult}">
+			<Forward event="OnEqual0" targetID="ID_CommandExecuteSuccess" />
+			<Forward event="OnEqual-1" targetID="ID_CommandExecuteError" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</CompareData>
+
+		<VTMARequestTransViaRestful ID="ID_CancelBusiness" UI="UI_waiting" digitalVoiceKey=""  transType="ClientReset" transFormat="json" msgTimeout="1000">
+			<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnHostRefuse" targetID="ID_InvokeCloseTransWorkflow"/>
+		</VTMARequestTransViaRestful>
+
+
+
+		<!-- 读卡 -->
+		<GetDevStatusEx ID="ID_GetIDCStatus" UI="UI_Operating" digitalVoiceKey="|" comment="Get device status" devType="IDC" eject="1" callVisible="0">
+			<States>
+				<State name="GetDevStatusExError" UI="UI_HardwareError"></State>
+			</States>
+			<Forward event="OnNormal" targetID="ID_InsertCard"/>
+			<Forward event="OnWarn" targetID="ID_InsertCard"/>
+			<Forward event="OnFail" targetID="ID_CommandExecuteError"/>
+		</GetDevStatusEx>
+		<InsertCard ID="ID_InsertCard" UI="UI_InsertCardBalance" digitalVoiceKey="|action_068" comment="insert card" timeout="30000" supportBothContactAndContactLess="1" activeKeys="CANCEL" terminateKeys="CANCEL">
+			<States>
+				<State name="ReadingCard" UI="UI_Operating"/>
+			</States>
+			<Forward event="OnMagneticCard" targetID="ID_CommandExecuteSuccess"/>
+			<Forward event="OnFallbackCard" targetID="ID_CommandExecuteSuccess"/>
+			<Forward event="OnICCard" targetID="ID_ICGetTrack"/>
+			<Forward event="OnCancel" targetID="ID_CommandExecuteCancel"/>
+			<Forward event="OnInvalidCard" targetID="ID_CommandExecuteError"/>
+		</InsertCard>
+
+		<ICGetTrack ID="ID_ICGetTrack" comment="Get IC tracks">
+			<Forward event="OnConfirm" targetID="ID_CommandExecuteSuccess"/>
+		</ICGetTrack>
+
+		<!-- 退卡 -->
+		<CompareData ID="ID_CheckCardInserted4TakeCard" comment="" compareBuffer="{core_CardInserted}">
+			<Forward event="OnEqualTrue" targetID="ID_TakeCard" />
+			<Forward event="OnEqualFalse" targetID="ID_CommandExecuteError" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</CompareData>
+		<TakeCard ID="ID_TakeCard" UI="UI_TakeCard" comment="take card">
+			<States>
+				<State name="TakeCard" UI="UI_TakeCard"/>
+				<State name="TransTimeOut" UI="UI_TransTimeOut"/>
+				<State name="KeyError" UI="UI_KeyError"/>
+				<State name="InvalidCard" UI="UI_InvalidCard"/>
+				<State name="HardwareError" UI="UI_HardwareError"/>
+				<State name="GeneralError" UI="UI_GeneralError"/>
+				<State name="CapturingCard" UI="UI_CapturingCard"/>
+				<State name="CaptureCardForTimeout" UI="UI_CaptureCardForTimeout"/>
+				<State name="CaptureCard" UI="UI_CaptureCard"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_CommandExecuteSuccess"/>
+			<Forward event="OnCaptureCard" targetID="ID_CommandExecuteError"/>
+		</TakeCard>
+
+		<!-- 非接读卡 -->
+		<GetDevStatusEx ID="ID_GetContactLessIDCStatus" UI="UI_Operating" digitalVoiceKey="|" comment="Get device status" devType="IDC" eject="1" callVisible="0">
+			<States>
+				<State name="GetDevStatusExError" UI="UI_HardwareError"></State>
+			</States>
+			<Forward event="OnNormal" targetID="ID_InsertContactLessCard"/>
+			<Forward event="OnWarn" targetID="ID_InsertContactLessCard"/>
+			<Forward event="OnFail" targetID="ID_CommandExecuteError"/>
+		</GetDevStatusEx>
+		<InsertCard ID="ID_InsertContactLessCard" UI="UI_InsertCardBalance" digitalVoiceKey="|action_068" comment="insert card" timeout="30000" supportBothContactAndContactLess="1" activeKeys="CANCEL" terminateKeys="CANCEL">
+			<States>
+				<State name="ReadingCard" UI="UI_Operating"/>
+			</States>
+			<Forward event="OnMagneticCard" targetID="ID_HasContactLessCardData"/>
+			<Forward event="OnFallbackCard" targetID="ID_HasContactLessCardData"/>
+			<Forward event="OnICCard" targetID="ID_ICGetTrack"/>
+			<Forward event="OnCancel" targetID="ID_CommandExecuteCancel"/>
+			<Forward event="OnInvalidCard" targetID="ID_CommandExecuteError"/>
+		</InsertCard>
+		<SetData ID="ID_HasContactLessCardData" saveBuffer="{CounterService_HasContactLessCardData,0}" value="1">
+			<Forward event="OnConfirm" targetID="ID_CommandExecuteSuccess"/>
+		</SetData>
+
+		<!-- 验密 -->
+		<SetData ID="ID_SetVerifyType4InputPin" saveBuffer="{CounterService_InputPinVerifyType,0}" value="8583">			<!--Test-->
+			<Forward event="OnConfirm" targetID="ID_InputPin"/>
+		</SetData>
+		<InputPin ID="ID_InputPin" UI="UI_InputPIN_Enter" digitalVoiceKey="|action_030" comment="Input password">
+			<States>
+				<State name="ReadingCard" UI="UI_OperatingDoubleLanguage"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_SelectVerifyType4InputPin"/>
+			<DefaultForward targetID="ID_CommandExecuteError"/>
+		</InputPin>
+		<CompareData ID="ID_SelectVerifyType4InputPin" comment="" compareBuffer="{CounterService_InputPinVerifyType}">
+			<Forward event="OnEqual8583" targetID="ID_RequestTrans4InputPin" />
+			<Forward event="OnEqualXDC" targetID="ID_RequestTransForXDC_Login" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</CompareData>
+		<RequestTrans ID="ID_RequestTrans4InputPin" UI="UI_CommonProcessing" digitalVoiceKey="|||||||||||" comment="input password request">
+			<States>
+				<State name="PackFail" UI="UI_GeneralError"/>
+				<State name="ConnectFail" UI="UI_GeneralError"/>
+				<State name="SendFail" UI="UI_GeneralError"/>
+				<State name="ReceiveFail" UI="UI_GeneralError"/>
+				<State name="ReceiveTimeout" UI="UI_GeneralError"/>
+				<State name="NetworkFail" UI="UI_GeneralError"/>
+				<State name="UnpackFail" UI="UI_GeneralError"/>
+				<State name="HardwareError" UI="UI_GeneralError"/>
+				<State name="TransNotAccepted" UI="UI_ICTransNotAccepted"/>
+				<State name="TransDeclined" UI="UI_ICTransDeclined"/>
+				<State name="TransTerminated" UI="UI_ICTransTerminated"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_PINSuccess"/>
+			<Forward event="OnPackFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnConnectFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnSendFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnReceiveFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnNetworkFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnUnpackFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnHostRefuse" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnReInputPin" targetID="ID_InputPin"/>
+			<Forward event="OnFallback" targetID="ID_RequestTrans4InputPin"/>
+			<Forward event="OnTryAgain" targetID="ID_InputPin"/>
+			<Forward event="OnICAppLoadedFail" targetID="ID_CommandExecuteError"/>
+		</RequestTrans>
+		<RequestTransForXDC ID="ID_RequestTransForXDC_Login" UI="UI_CommonProcessing" digitalVoiceKey="||||||||" transType="AUT" msgID="TransactionRequestAUT" inputPinTimes="3" operationCode="HHD_B___" comment="xdc Login request">
+			<States>
+				<State name="PackFail" UI="UI_GeneralError"/>
+				<State name="ConnectFail" UI="UI_GeneralError"/>
+				<State name="SendFail" UI="UI_GeneralError"/>
+				<State name="ReceiveFail" UI="UI_GeneralError"/>
+				<State name="ReceiveTimeout" UI="UI_GeneralError"/>
+				<State name="NetworkFail" UI="UI_GeneralError"/>
+				<State name="UnpackFail" UI="UI_GeneralError"/>
+				<State name="HardwareError" UI="UI_GeneralError"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_PINSuccess"/>
+			<Forward event="OnFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnPackFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnConnectFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnSendFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnReceiveFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnNetworkFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnUnpackFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnHostRefuse" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnReInputPin" targetID="ID_InputPin"/>
+			<Forward event="OnFallback" targetID="ID_RequestTransForXDC_Login"/>
+			<Forward event="OnICAppLoadedFail" targetID="ID_CommandExecuteError"/>
+			<DefaultForward targetID="ID_CommandExecuteError"/>
+		</RequestTransForXDC>
+
+		<Prompt ID="ID_PINSuccess" UI="UI_InputPINcorrect" digitalVoiceKey="action_006" comment="Change pin result" timeout="4000">
+			<Forward event="OnTimeout" targetID="ID_CommandExecuteSuccess"/>
+			<Forward event="OnFail" targetID="ID_CommandExecuteSuccess"/>
+		</Prompt>
+
+		<!-- 改密 -->
+		<SetData ID="ID_SetVerifyType4ChangePin" saveBuffer="{CounterService_ChangePinVerifyType,0}" value="8583">			<!--Test-->
+			<Forward event="OnConfirm" targetID="ID_ChangePin"/>
+		</SetData>
+		<InputPin ID="ID_ChangePin" comment="Change password" digitalVoiceKey="action_030|action_007|action_008|action_008">
+			<States>
+				<State name="InputOldPin" UI="UI_InputPIN_Enter" />
+				<State name="InputNewPin" UI="UI_InputPIN_new" />
+				<State name="InputNewPinAgain" UI="UI_InputPINAgain_new" />
+				<State name="InputNewPinUnmatch" UI="UI_InputPINIncorrect_new" />
+			</States>
+			<Forward event="OnConfirm" targetID="ID_SelectVerifyType4ChangePin"/>
+			<DefaultForward targetID="ID_CommandExecuteError"/>
+		</InputPin>
+		<CompareData ID="ID_SelectVerifyType4ChangePin" comment="" compareBuffer="{CounterService_ChangePinVerifyType}">
+			<Forward event="OnEqual8583" targetID="ID_RequestTrans4ChangePin" />
+			<Forward event="OnEqualXDC" targetID="ID_RequestTransForXDC_ChangePin" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</CompareData>
+		<RequestTrans ID="ID_RequestTrans4ChangePin" UI="UI_CommonProcessing" digitalVoiceKey="|||||||||||" comment="Change password request">
+			<States>
+				<State name="PackFail" UI="UI_GeneralError"/>
+				<State name="ConnectFail" UI="UI_GeneralError"/>
+				<State name="SendFail" UI="UI_GeneralError"/>
+				<State name="ReceiveFail" UI="UI_GeneralError"/>
+				<State name="ReceiveTimeout" UI="UI_GeneralError"/>
+				<State name="NetworkFail" UI="UI_GeneralError"/>
+				<State name="UnpackFail" UI="UI_GeneralError"/>
+				<State name="HardwareError" UI="UI_GeneralError"/>
+				<State name="TransNotAccepted" UI="UI_ICTransNotAccepted"/>
+				<State name="TransDeclined" UI="UI_ICTransDeclined"/>
+				<State name="TransTerminated" UI="UI_ICTransTerminated"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_ChangePinResult"/>
+			<Forward event="OnPackFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnConnectFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnSendFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnReceiveFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnNetworkFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnUnpackFail" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnHostRefuse" targetID="ID_CommandExecuteError"/>
+			<Forward event="OnReInputPin" targetID="ID_ChangePin"/>
+			<Forward event="OnFallback" targetID="ID_RequestTrans4ChangePin"/>
+			<Forward event="OnTryAgain" targetID="ID_ChangePin"/>
+			<Forward event="OnICAppLoadedFail" targetID="ID_CommandExecuteError"/>
+		</RequestTrans>
+		<RequestTransForXDC ID="ID_RequestTransForXDC_ChangePin" UI="UI_CommonProcessing" digitalVoiceKey="||||||||" msgID="TransactionRequestChangePin" operationCode="CCC_____" comment="xdc Login request">
+			<States>
+				<State name="PackFail" UI="UI_GeneralError"/>
+				<State name="ConnectFail" UI="UI_GeneralError"/>
+				<State name="SendFail" UI="UI_GeneralError"/>
+				<State name="ReceiveFail" UI="UI_GeneralError"/>
+				<State name="ReceiveTimeout" UI="UI_GeneralError"/>
+				<State name="NetworkFail" UI="UI_GeneralError"/>
+				<State name="UnpackFail" UI="UI_GeneralError"/>
+				<State name="HardwareError" UI="UI_GeneralError"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_ChangePinResult"/>
+			<Forward event="OnICAppLoadedFail" targetID="ID_CommandExecuteError"/>
+			<DefaultForward targetID="ID_CommandExecuteError"/>
+		</RequestTransForXDC>
+
+		<Prompt ID="ID_ChangePinResult" UI="UI_ChangePINcorrect" digitalVoiceKey="action_009" comment="Change pin result" timeout="4000">
+			<Forward event="OnTimeout" targetID="ID_CommandExecuteSuccess"/>
+			<Forward event="OnFail" targetID="ID_CommandExecuteSuccess"/>
+		</Prompt>
+
+		<!-- 扫描二维码 -->
+		<GetDevStatus ID="ID_GetDevStatusForBCR" comment="Get device status" devType="BCR">
+			<States>
+				<State name="GetDevStatusError" UI="UI_hardware_error"></State>
+			</States>
+			<Forward event="OnNormal" targetID="ID_ScanQRCode"/>
+			<Forward event="OnWarn" targetID="ID_ScanQRCode"/>
+			<Forward event="OnFail" targetID="ID_CommandExecuteError"/>
+		</GetDevStatus>
+		<ScanBarcodeAction ID="ID_ScanQRCode" UI="UI_ScanBarCode" digitalVoiceKey="|||action_028" timeout="60000">
+			<States>
+				<State name="GetDevStatusError" UI="UI_hardware_error"></State>
+				<State name="TimeOutError" UI="UI_timeout"></State>
+				<State name="ReadError" UI="UI_hardware_error"></State>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_CommandExecuteSuccess" />
+			<Forward event="OnTimeout" targetID="ID_CommandExecuteError" />
+			<Forward event="OnHardwareError" targetID="ID_CommandExecuteError" />
+			<Forward event="OnReadError" targetID="ID_CommandExecuteError" />
+			<Forward event="OnCancel" targetID="ID_CommandExecuteCancel" />
+		</ScanBarcodeAction>
+
+		<!--获取钱箱状态-->
+		<GetCassetteInfo ID="ID_GetCassetteInfo" UI="UI_remote_serving" digitalVoiceKey="action_033">
+			<Forward event="OnConfirm" targetID="ID_CommandExecuteSuccess" />
+			<Forward event="OnHardwareError" targetID="ID_CommandExecuteError" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</GetCassetteInfo>
+
+		<!-- 取款 -->
+		<SetData ID="ID_IsReady4Withdrawal" saveBuffer="{CounterService_IsReady4Withdrawal,0}" value="1">			<!--Test-->
+			<Forward event="OnConfirm" targetID="ID_CheckIsReady4Withdrawal"/>
+		</SetData>
+		<CompareData ID="ID_CheckIsReady4Withdrawal" comment="" compareBuffer="{CounterService_IsReady4Withdrawal}">
+			<Forward event="OnEqual1" targetID="ID_InvokeWithdrawal4CounterServiceWorkflow" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</CompareData>
+		<InvokeWorkflow ID="ID_InvokeWithdrawal4CounterServiceWorkflow" name="Withdrawal4CounterService" comment="Invoke withdrawal workflow">
+			<Forward event="OnConfirm" targetID="ID_CompareWithdrawalResult"/>
+		</InvokeWorkflow>
+		<CompareData ID="ID_CompareWithdrawalResult" comment="" compareBuffer="{CounterService_WithdrawalResult}">
+			<Forward event="OnEqual0" targetID="ID_CommandExecuteSuccess" />
+			<Forward event="OnEqual-1" targetID="ID_CommandExecuteError" />
+			<Forward event="OnEqual-2" targetID="ID_CommandExecuteCancel" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</CompareData>
+
+		<!-- 存款 -->
+		<SetData ID="ID_IsReady4Deposit" saveBuffer="{CounterService_IsReady4Deposit,0}" value="1">			<!--Test-->
+			<Forward event="OnConfirm" targetID="ID_CheckIsReady4Deposit"/>
+		</SetData>
+		<CompareData ID="ID_CheckIsReady4Deposit" comment="" compareBuffer="{CounterService_IsReady4Deposit}">
+			<Forward event="OnEqual1" targetID="ID_InvokeDeposit4CounterServiceWorkflow" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</CompareData>
+		<InvokeWorkflow ID="ID_InvokeDeposit4CounterServiceWorkflow" name="Deposit4CounterService" comment="Invoke deposit workflow">
+			<Forward event="OnConfirm" targetID="ID_CompareDepositResult"/>
+		</InvokeWorkflow>
+		<CompareData ID="ID_CompareDepositResult" comment="" compareBuffer="{CounterService_DepositResult}">
+			<Forward event="OnEqual0" targetID="ID_CommandExecuteSuccess" />
+			<Forward event="OnEqual-1" targetID="ID_CommandExecuteError" />
+			<Forward event="OnEqual-2" targetID="ID_CommandExecuteCancel" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</CompareData>
+
+		<!-- 拍照 -->
+		<FaceCaptureImage ID="ID_TakePicByCamera" UI="UI_LookCameraTakePic" digitalVoiceKey="action_035" comment="" timeout="30000">
+			<Forward event="OnConfirm" targetID="ID_UploadCameraImage" />
+			<Forward event="OnTimeout" targetID="ID_CommandExecuteError" />
+			<Forward event="OnCancel" targetID="ID_CommandExecuteCancel" />
+			<Forward event="OnFail" targetID="ID_CommandExecuteError" />
+		</FaceCaptureImage>
+		<UploadInfo4CounterService ID="ID_UploadCameraImage" UI="UI_waiting" digitalVoiceKey="" VerifyType="FaceImage" timeout="120000">
+			<Forward event="OnContinue" targetID="ID_CommandExecuteSuccess" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</UploadInfo4CounterService>
+
+		<!-- 指纹注册 -->
+		<InvokeWorkflow ID="ID_FingerRegister" name="FingerPrintRegister4CounterService" comment="FingerPrintRegister workflow">
+			<Forward event="OnConfirm" targetID="ID_ComparePrintRegisterResult"/>
+		</InvokeWorkflow>
+		<CompareData ID="ID_ComparePrintRegisterResult" comment="" compareBuffer="{CounterService_PrintRegisterResult}">
+			<Forward event="OnEqual0" targetID="ID_CommandExecuteSuccess" />
+			<Forward event="OnEqual-1" targetID="ID_CommandExecuteError" />
+			<Forward event="OnEqual-2" targetID="ID_CommandExecuteCancel" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</CompareData>
+
+		<!-- 指纹验证 -->
+		<InvokeWorkflow ID="ID_FingerMatch" name="FingerPrintMatch4CounterService" comment="FingerPrintRegister workflow">
+			<Forward event="OnConfirm" targetID="ID_ComparePrintMatchResult"/>
+		</InvokeWorkflow>
+		<CompareData ID="ID_ComparePrintMatchResult" comment="" compareBuffer="{CounterService_FingerMatchResult}">
+			<Forward event="OnEqual0" targetID="ID_CommandExecuteSuccess" />
+			<Forward event="OnEqual-1" targetID="ID_CommandExecuteError" />
+			<Forward event="OnEqual-2" targetID="ID_CommandExecuteCancel" />
+			<DefaultForward targetID="ID_CommandExecuteError" />
+		</CompareData>
+
+		<SetData ID="ID_CommandExecuteSuccess" saveBuffer="{CounterService.response.result,0}" value="0">
+			<DefaultForward targetID="ID_CounterService" />
+		</SetData>
+
+		<SetData ID="ID_CommandExecuteError" saveBuffer="{CounterService.response.result,0}" value="-1">
+			<DefaultForward targetID="ID_CounterService" />
+		</SetData>
+
+		<SetData ID="ID_CommandExecuteCancel" saveBuffer="{CounterService.response.result,0}" value="-2">
+			<DefaultForward targetID="ID_CounterService" />
+		</SetData>
+
+		<SetData ID="ID_CommandExecuteBusy" saveBuffer="{CounterService.response.result,0}" value="-3">
+			<DefaultForward targetID="ID_CounterService" />
+		</SetData>
+
+		<SetData ID="ID_CommandExecuteResult1" saveBuffer="{CounterService.response.result,0}" value="1">
+			<DefaultForward targetID="ID_CounterService" />
+		</SetData>
+
+		<WaitSleep ID="ID_ConnectAgentFail" UI="UI_network_error" timeout="3000">
+			<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+		</WaitSleep>
+
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<DefaultForward targetID="9999" />
+		</InvokeWorkflow>
+
+		<End ID="9999" comment="End">
+		</End>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

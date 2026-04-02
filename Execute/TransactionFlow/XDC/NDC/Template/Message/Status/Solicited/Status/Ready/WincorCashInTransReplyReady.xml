@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<WincorCashInTransReplyReady>
+		<Item key="f" value="B" size="1" restriction="Mandatory"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!-- Device Identifier Graphic (DIG) -->
+		<Item key="g" value="r" size="1" restriction="Mandatory"/>
+		<Item key="h" value="[Wincor.CashAcceptor.DepositedNotesInCassettes]" size="20" restriction="Mandatory"/>
+		<Item key="[GS]" value="[GS]" size="1" restriction="Mandatory"/>
+		<Item key="i" value="[Wincor.CashAcceptor.DispenseType]" size="1" restriction="Mandatory"/>
+		<Item key="[GS]" value="[GS]" size="1" restriction="Mandatory"/>
+		<Item key="j" value="[Wincor.CashAcceptor.DispenseSupplyStatus]" size="1" restriction="Mandatory"/>
+		<Item key="[GS]" value="[GS]" size="1" restriction="Mandatory"/>
+		<Item key="k" value="[Wincor.CashAcceptor.Reactivationflag]" size="1" restriction="Mandatory"/>
+	</WincorCashInTransReplyReady>
+</Root>

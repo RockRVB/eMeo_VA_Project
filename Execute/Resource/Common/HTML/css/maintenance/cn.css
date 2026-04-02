@@ -1,0 +1,8050 @@
+﻿@charset "utf-8";
+@import url("media.css");
+html, body
+{
+	font-family: '微软雅黑';
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+	overflow: hidden;
+	height: 100%;
+	background-color: #e5e5e5;
+}
+ul
+{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+li
+{
+	position: relative;
+	float: left;
+}
+:root button{filter:none;}
+:root button:active{filter:none;}
+:root button:disabled{filter:none;}
+/*界面配置*/
+#grg-config
+{
+	display: none;
+}
+/*界面容器*/
+.wrapper
+{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin:0 auto;
+	/*box-sizing : border-box;*/
+}
+/*清除浮动*/
+.clear
+{
+	clear: both;
+}
+/*清除浮动*/
+.clearfix:after { 
+    content:"\200B"; 
+    display:block; 
+    height:0; 
+    clear:both; 
+} 
+/*清除浮动*/
+.clearfix 
+{
+	*zoom:1;/*IE/7/6*/
+}
+/*隐藏起来*/
+.none
+{
+	display: none !important;
+}
+/*隐藏*/
+.hideme
+{
+	visibility:hidden;
+}
+/*显示*/
+.show
+{
+	visibility:visible;
+}
+/*文本单行显示-用于滚动不换行*/
+.single-line
+{
+	word-break: keep-all;
+	word-wrap: normal;
+	white-space: nowrap;
+	/*white-space: pre\9;*/
+	overflow: hidden;
+}
+/*垂直居中外容器*/
+.middle-outer
+{
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+/*垂直居中内容器*/
+.middle-inner
+{
+	display: table-cell;
+	vertical-align: middle;
+}
+/*水平居中*/
+.center
+{
+	text-align: center;
+}
+/*左浮动*/
+.float-left
+{
+	float: left;
+}
+/*右浮动*/
+.float-right
+{
+	float: right;
+}
+/*绝对定位-左*/
+.absolute-left
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+/*绝对定位-右*/
+.absolute-right
+{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+/*与顶部距离40*/
+.space-top-40
+{
+	margin-top:40px !important;
+}
+/*与左边距离5*/
+.space-left-5
+{
+	margin-left:5px !important;
+}
+/*左右内边距20*/
+.plr20
+{
+	padding:0 20px;
+}
+/*与右边距离5*/
+.mr5
+{
+	margin-right:3px !important;
+}
+/*与右边距离-大*/
+.g-space-right-large
+{
+	margin-right:36px !important;
+}
+/*与下边距离-中等*/
+.g-space-bottom-medium
+{
+	margin-bottom:10px !important;
+}
+/*与左边距离10*/
+.space-left-10
+{
+	margin-left:10px !important;
+}
+/*与右边距离10*/
+.space-right-10
+{
+	margin-right:10px !important;
+}
+
+/*********************全局类*********************/
+/*容器*/
+.g-margin-wrapper
+{
+	position:relative;
+	margin:20px;
+	font-size:2.5rem;
+}
+/*提示文字*/
+.g-prompt-text
+{
+	color:#e01e1e;
+	font-size:1.8rem;
+	height:20px;
+	line-height:20px;
+	margin-top:10px;
+}
+
+.g-button-zone-width{
+ width: 550px;
+}
+
+/*按钮区域*/
+.g-button-zone
+{    
+ 
+	margin-top:10px;
+}
+/*行*/
+.g-row
+{
+	margin-top:12px;
+	padding-left:80px;
+}
+/*首行*/
+.g-row-first
+{
+	margin-top:60px;
+}
+
+
+/*左边容器*/
+.g-left-wrapper
+{
+	position:relative;
+	margin-right:280px;
+	font-size:19px;		
+}
+/*左边*/
+.g-left
+{
+	position:relative;
+	background-color: #FFF;
+	border: 1px solid #B2B2B2;
+	border-radius: 8px;
+	
+	padding:25px 0px 16px 25px;
+	overflow:hidden;
+}  
+/*右边*/
+.g-right
+{
+	position:absolute;
+	right:0px;
+	top:0px;
+	width:268px;
+}
+/*********************日期时间*********************/
+/*开始日期*/
+.g-start-date
+{
+	margin-top:20px;
+}
+/*开始时间*/
+.g-start-time
+{
+	margin-top:18px;
+}
+
+.change-g-start-time
+{
+	margin-top:58px;
+}
+
+/*结束时间文字*/
+.g-end-text
+{
+	margin-top:30px;
+}
+/*结束日期*/
+.g-end-date
+{
+	margin-top:20px;
+}
+/*结束时间*/
+.g-end-time
+{
+	margin-top:18px;
+}
+/*日期时间文字*/
+.g-datetime-span
+{
+	display:inline-block;
+	width:55px;
+}
+/*时间提示*/
+.g-datetime-tip
+{
+	/*position:absolute;
+	left:25px;
+	bottom:16px;*/
+	margin-top:20px;
+}
+/*出错提示*/
+.g-prompt
+{
+	/*position:absolute;
+	left:25px;
+	bottom:-43px;*/
+	margin-top:20px;
+	padding-left:25px;
+	color:#FF0000;
+}
+/*提示颜色*/
+.g-prompt-color
+{
+	color:#FF0000;
+}
+.g_prompt-center{
+	text-align: center;
+    margin: 0 auto;
+}
+
+/*********************输入文本框*********************/
+/*输入文本框*/
+input.input-text
+{
+	background-color: #FFF;
+	border:1px solid #000;
+	outline: none;
+	width:82px;
+	height:40px;
+	font-size:19px;		
+	line-height:1;
+	/*text-align:center;*/
+}
+/*输入文本框-选中状态*/
+input.selected
+{
+	background-color: #FFF; /*F2F251*/
+}
+/*输入文本框-禁用状态*/
+input.disabled
+{
+	color: #B9B9B9;            /*B9B9B9*/
+	border-color:#B9B9B9;      /*B9B9B9*/
+	background-color: #FFF;
+}
+/*********************提示框*********************/
+/*提示框*/
+#prompt-box
+{
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+        vertical-align: middle;
+}
+/*遮罩*/
+.prompt-box-mask
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: 0.5;
+}
+/*外包装容器*/
+.prompt-box-wrapper
+{
+	position: relative;
+	min-width: 400px;
+	width: 400px;
+	margin: 0 auto;
+	background-color: #EBEBEB;
+	border-radius: 10px;
+	box-shadow: 2px 2px 16px rgba(0,0,0,0.2);
+}
+/*外包装容器-高度减少*/
+.Progress-prompt
+{
+	min-height: 200px !important ;
+	height: 200px !important ;
+}
+/*外包装容器-背景透明*/
+.transparent
+{
+	background-color:transparent;
+	border-radius: 0px;
+	box-shadow:none;
+}
+/*图标和内容*/
+.icon-and-content
+{
+	_height: 160px;
+	min-height: 160px;
+	height: 160px;
+	width: 400px;
+	padding: 20px;
+	display: table-cell;
+ *display:inline-block;
+	vertical-align: middle;
+	text-align: center;/*background:#999;*/
+}
+.icon-and-content
+{
+*display:inline;
+	text-align: center;
+	margin: 0 auto;
+}
+/*图标和内容-没有底部按钮*/
+.prompt-content-no-footer
+{
+	_height: 216px;
+	min-height: 216px;
+	height: 216px;
+}
+/*loading图标*/
+.animation-loading
+{
+	margin-top: -5px;
+	display: inline-block;
+	width: 36px;
+	height: 24px;
+	background: url(../../../Image/CN/maintenance/icon/loading.gif) no-repeat;
+	background-size: 24px 24px;
+	vertical-align: middle;
+}
+/*内容*/
+#prompt-box-content
+{
+	font-size: 2.3rem;
+	color: #474747;
+}
+/*头部*/
+#prompt-box-header
+{
+	position: relative;
+	width: 100%;
+	height: 56px;
+	text-align: left;
+}
+/*底部*/
+#prompt-box-footer
+{
+	position: relative;
+	width: 100%;
+	height: 56px;
+	text-align: center;/*background-color:#333;*/
+}
+/*提示框按钮水平距离*/
+button.prompt-button-hspace
+{
+	margin-left: 36px;
+}
+/*********************面板容器*********************/
+/*面板容器*/
+.grg-panel
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	border-radius: 8px;
+	border: 1px solid #cecece;
+}
+/*面板容器-头部*/
+.grg-panel-title
+{
+	position: relative;
+	border-radius: 8px 8px 0 0;
+	border-bottom: 1px solid #cecece;
+	height: 40px;
+	background: rgb(241,241,241);
+	background: -moz-linear-gradient(top,  rgb(241,241,241) 0%, rgb(229,229,229) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(241,241,241)), color-stop(100%,rgb(229,229,229)));
+	background: -webkit-linear-gradient(top,  rgb(241,241,241) 0%,rgb(229,229,229) 100%);
+	background: -o-linear-gradient(top,  rgb(241,241,241) 0%,rgb(229,229,229) 100%);
+	background: -ms-linear-gradient(top,  rgb(241,241,241) 0%,rgb(229,229,229) 100%);
+	background: linear-gradient(to bottom,  rgb(241,241,241) 0%,rgb(229,229,229) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1f1f1', endColorstr='#e5e5e5',GradientType=0 );
+}
+/*面板容器-内容*/
+.grg-panel-content
+{
+	position: relative;
+	border-radius: 0 0 8px 8px;
+	background-color: #f2f2f2;
+	height: 120px;
+}
+/*********************滚动文本框*********************/
+/*滚动文本区域*/
+.textbox-panel
+{
+	position: relative;
+	/*margin:0 10px;*/
+	/*width:600px;*/
+	margin: 0 auto;
+}
+/*按钮区域*/
+.textbox-button-zone
+{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 74px;
+	height: 100%;
+	height: 441px;
+	text-align: center;/*z-index:2;
+	background:#999;*/
+	
+}
+/*按钮*/
+.textbox-button-zone button
+{
+	display: block;
+}
+/*滚动按钮垂直间距*/
+button.textbox-button-vspace
+{
+	margin-top: 10px;
+}
+/*翻页按钮不显示时自动调整表格容器的宽度*/
+.textbox-panel .grg-panel
+{
+	border: none;
+	margin-right: 84px;
+	width: auto;
+}
+/*头部*/
+.textbox-title
+{
+	margin: 0;
+	padding: 0;
+	height: 36px;
+	border: 1px solid #a6a6a6;
+	border-bottom: 1px solid #d2d2d2;
+}
+/*滚动文本内容*/
+.textbox-content-wrapper
+{
+	position:relative;
+	_height: 290px;
+	min-height: 290px;
+	height: 380px;  /* 405*/
+	margin: 0;
+	padding: 0;
+	line-height: normal;
+	background-color: #f7f7f7;
+	border-bottom: 1px solid #c2c2c2;
+	border-left: 1px solid #c2c2c2;
+	border-right: 1px solid #c2c2c2;
+	padding-bottom: 5px;
+}
+/*滚动文本内容*/
+.textbox-content
+{
+	font-family:宋体,Georgia, "Times New Roman", Times, serif;
+	width: 99%;
+	height: 100%;
+	margin: 0;
+	padding: 0 5px;
+	border: none;
+	outline: none;
+	color:#3B3B3B;
+	background-color: #f7f7f7;
+	border-radius: 0 0 8px 8px;
+	font-size: 2.7rem;
+	line-height: 25px;
+	word-break: keep-all;
+	word-wrap: normal;
+	white-space: nowrap;
+	white-space: pre\9;
+	overflow-x: hidden;
+	
+	-webkit-touch-callout: none;  
+	-webkit-user-select: none;  
+	-khtml-user-select: none;  
+	-moz-user-select: none;  
+	-ms-user-select: none;  
+	user-select: none; 
+	resize: none; /* 禁止拖动改变大小 add by adam 20151023*/
+}
+/*滚动文本内容-禁用状态*/
+.textbox-content.disabled
+{
+	color:#B9B9B9;
+}
+/*手型按钮区域-外层*/
+.grg-panel-hand-outer
+{
+	position: absolute;
+	left:1px;
+	top:0px;
+	width: 100%;
+}
+/*手型按钮区域*/
+.grg-panel-hand-zone
+{
+	position: relative;
+	margin-right: 21px;
+}
+/*********************按钮*********************/
+
+/*********************手型按钮*********************/
+/*手型按钮-正常状态*/
+.button-hand
+{
+	position: absolute;
+	left:0px;
+	right:30px;
+	top:0;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #6897C5;
+	/*border-radius: 8px;*/
+	outline: none;
+	/*width: auto;*/
+	/*margin-right: 30px;
+	box-sizing:border-box;*/
+	width: 100%;
+	height: 23px;
+	vertical-align: middle;
+	text-align:right;
+	background: rgba(179,214,247,0.3);
+	display: none;
+}
+/*手型按钮-按下状态*/
+.button-hand:active
+{
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.3), 0px 0px 2px rgba(0,0,0,0.3) inset;
+}
+/*手型按钮-禁用状态*/
+.button-hand.disabled
+{
+	cursor: default;
+	box-shadow:none;
+}
+/*手型按钮-正常状态-提示文字*/
+.button-hand .tip
+{
+	color: #4F4F4F;
+	margin-right:30px;
+}
+/*手型按钮-按下状态-提示文字*/
+.button-hand:active .tip
+{
+	
+}
+/*手型按钮-禁用状态-提示文字*/
+.button-hand.disabled .tip
+{
+	color:#B9B9B9;
+}
+@keyframes hand
+{
+0% {
+opacity: 1;
+}
+ 100% {
+opacity: 0.1;
+}
+}
+ @-moz-keyframes hand
+{
+0% {
+opacity: 1;
+}
+ 100% {
+opacity: 0.1;
+}
+}
+ @-webkit-keyframes hand
+{
+0% {
+opacity: 1;
+}
+ 100% {
+opacity: 0.1;
+}
+}
+ @-o-keyframes hand
+{
+0% {
+opacity: 1;
+}
+ 100% {
+opacity: 0.1;
+}
+}
+/*手型按钮-正常状态-按钮文字*/
+.button-hand .button-text
+{
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: inline-block;
+	width: 25px;
+	height: 23px;
+	background: url(../../../Image/CN/maintenance/icon/hand.png) left center no-repeat;
+	-moz-animation: hand 0.4s linear 0s infinite alternate;
+	-webkit-animation: hand 0.4s linear 0s infinite alternate;
+	-o-animation: hand 0.4s linear 0s infinite alternate;
+	animation: hand 0.4s linear 0s infinite alternate;
+}
+/*手型按钮-按下状态-按钮文字*/
+.button-hand:active .button-text
+{
+}
+/*手型按钮-禁用状态-按钮文字*/
+.button-hand.disabled .button-text
+{
+	color: #a0a0a0;
+	line-height: 0px;
+}
+/*********************操作按钮*********************/
+/*操作按钮-正常状态*/
+.button-operate
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	box-shadow: none;
+	border: 2px solid #006699;
+	outline: none;
+	border-radius: 8px;
+	width: 110px;
+	height: 74px;
+	background-color: #0F5D99;
+	vertical-align: middle;
+}
+/*操作按钮-按下状态*/
+.button-operate:active
+{
+	border: 2px solid #376B93;
+	background-color: #1377C1;
+}
+/*操作按钮-禁用状态*/
+.button-operate.disabled
+{
+	border: 2px solid #999999;
+	background-color: #CCCCCC;
+	cursor: default;
+}
+/*操作按钮-正常状态-提示文字*/
+.button-operate .tip
+{
+}
+/*操作按钮-按下状态-提示文字*/
+.button-operate:active .tip
+{
+}
+/*操作按钮-禁用状态-提示文字*/
+.button-operate.disabled .tip
+{
+}
+/*操作按钮-正常状态-按钮文字*/
+.button-operate .button-text
+{
+	/*float: right;*/
+	margin-right: 10px;
+	font-size: 2.2rem;
+	width: 40px;
+	color: #FFF;
+	-webkit-touch-callout: none;  
+	-webkit-user-select: none;  
+	-khtml-user-select: none;  
+	-moz-user-select: none;  
+	-ms-user-select: none;  
+	user-select: none; 
+}
+/*操作按钮-按下状态-按钮文字*/
+.button-operate:active .button-text
+{
+	-webkit-touch-callout: none;  
+	-webkit-user-select: none;  
+	-khtml-user-select: none;  
+	-moz-user-select: none;  
+	-ms-user-select: none;  
+	user-select: none; 
+}
+/*操作按钮-禁用状态-按钮文字*/
+.button-operate.disabled .button-text
+{
+	color: #959595;
+}
+/*图标-注销用户*/
+.icon-logout
+{
+	background-image: url(../../../Image/CN/maintenance/button/icon-logout.png);
+    background-position: 22px center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 64px;
+    height: 34px;
+}
+/*图标-退出维护*/
+.icon-quit
+{
+	background-image: url(../../../Image/CN/maintenance/button/icon-quit.png);
+	background-position: 22px center;
+	background-repeat: no-repeat;
+}
+/*图标-定制菜单*/
+.icon-define-menu
+{
+	background-image: url(../../../Image/CN/maintenance/button/icon-define-menu.png);
+	background-position: 22px center;
+	background-repeat: no-repeat;
+}
+/*图标-快捷维护*/
+.icon-tabmode
+{
+	background-image: url(../../../Image/CN/maintenance/button/icon-tabmode.png);
+	background-position: 22px center;
+	background-repeat: no-repeat;
+}
+/*操作按钮-左边距*/
+.operate-button-space-left
+{
+	margin-left: 6px;
+}
+/*操作按钮-右边距*/
+.operate-button-space-right
+{
+	margin-right: 6px;
+}
+/*********************切换按钮*********************/
+/*切换按钮-正常状态*/
+.button-toggle
+{
+	position: relative;
+	margin: 0 0 0 40px;
+	padding: 0;
+	border: 1px solid #7b7b7b;
+	border-radius: 4px;
+	outline: none;
+	width: 280px;
+	height: 52px;
+	vertical-align: middle;
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+	background: #f0f0f0;
+	background: -moz-linear-gradient(top,  rgb(255,255,255) 0%, rgb(240,240,240) 97%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(255,255,255)), color-stop(97%,rgb(240,240,240)));
+	background: -webkit-linear-gradient(top,  rgb(255,255,255) 0%,rgb(240,240,240) 97%);
+	background: -o-linear-gradient(top,  rgb(255,255,255) 0%,rgb(240,240,240) 97%);
+	background: -ms-linear-gradient(top,  rgb(255,255,255) 0%,rgb(240,240,240) 97%);
+	background: linear-gradient(to bottom,  rgb(255,255,255) 0%,rgb(240,240,240) 97%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f0f0f0',GradientType=0 );
+}
+/*切换按钮-按下状态*/
+.button-toggle:active
+{
+	/*box-shadow: 0px 1px 3px rgba(0,0,0,0.2),0px 0px 3px rgba(0,0,0,0.5) inset;*/
+	border: 2px solid #c81212;
+}
+/*切换按钮-当前状态*/
+.button-toggle.selected
+{
+	border: 2px solid #c81212;
+}
+/*切换按钮-禁用状态*/
+.button-toggle.disabled
+{
+	cursor: default;
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+}
+/*切换按钮-禁用状态-按下状态*/
+.button-toggle.disabled:active
+{
+	border: 1px solid #7b7b7b;
+}
+/*切换按钮-正常状态-提示文字*/
+.button-toggle .tip
+{
+	position:absolute;
+	left:5px;
+	top:0px;
+	font-size: 2rem;
+	color: #000000;
+}
+/*切换按钮-按下状态-提示文字*/
+.button-toggle:active .tip
+{
+}
+/*切换按钮-禁用状态-提示文字*/
+.button-toggle.disabled .tip
+{
+	color: #888888;
+}
+/*切换按钮-正常状态-按钮文字*/
+.button-toggle .button-text
+{
+	font-size: 2rem;
+	color: #000000;
+}
+/*切换按钮-按下状态-按钮文字*/
+.button-toggle:active .button-text
+{
+}
+/*切换按钮-禁用状态-按钮文字*/
+.button-toggle.disabled .button-text
+{
+	color: #888888;
+}
+/*********************红色按钮*********************/
+/*红色按钮-正常状态*/
+.button-red
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: none;
+	border-radius: 12px;
+	outline: none;
+	width: 136px;
+	height: 66px;
+	vertical-align: middle;
+	background: rgb(231,18,18);
+	background: -moz-linear-gradient(top,  rgb(231,18,18) 0%, rgb(200,18,18) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(231,18,18)), color-stop(100%,rgb(200,18,18)));
+	background: -webkit-linear-gradient(top,  rgb(231,18,18) 0%,rgb(200,18,18) 100%);
+	background: -o-linear-gradient(top,  rgb(231,18,18) 0%,rgb(200,18,18) 100%);
+	background: -ms-linear-gradient(top,  rgb(231,18,18) 0%,rgb(200,18,18) 100%);
+	background: linear-gradient(to bottom,  rgb(231,18,18) 0%,rgb(200,18,18) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e71212', endColorstr='#c81212',GradientType=0 );
+}
+/*红色按钮-按下状态*/
+.button-red:active
+{
+	background: rgb(200,18,18);
+	background: -moz-linear-gradient(top,  rgb(200,18,18) 0%, rgb(231,18,18) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(200,18,18)), color-stop(100%,rgb(231,18,18)));
+	background: -webkit-linear-gradient(top,  rgb(200,18,18) 0%,rgb(231,18,18) 100%);
+	background: -o-linear-gradient(top,  rgb(200,18,18) 0%,rgb(231,18,18) 100%);
+	background: -ms-linear-gradient(top,  rgb(200,18,18) 0%,rgb(231,18,18) 100%);
+	background: linear-gradient(to bottom,  rgb(200,18,18) 0%,rgb(231,18,18) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c81212', endColorstr='#e71212',GradientType=0 );
+}
+/*红色按钮-禁用状态*/
+.button-red.disabled
+{
+	cursor: default;
+}
+/*红色按钮-正常状态-提示文字*/
+.button-red .tip
+{
+}
+/*红色按钮-按下状态-提示文字*/
+.button-red:active .tip
+{
+}
+/*红色按钮-禁用状态-提示文字*/
+.button-red.disabled .tip
+{
+}
+/*红色按钮-正常状态-按钮文字*/
+.button-red .button-text
+{
+	font-size: 1.9rem;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+/*红色按钮-按下状态-按钮文字*/
+.button-red:active .button-text
+{
+}
+/*红色按钮-禁用状态-按钮文字*/
+.button-red.disabled .button-text
+{
+	color: #888888;
+}
+/*********************红色长按钮*********************/
+/*红色长按钮-正常状态*/
+.button-red-long
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: none;
+	border-radius: 8px;
+	outline: none;
+	width: 126px;
+	height: 46px;
+	vertical-align: middle;
+	background: rgb(231,18,18);
+	background: -moz-linear-gradient(top,  rgb(231,18,18) 0%, rgb(200,18,18) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(231,18,18)), color-stop(100%,rgb(200,18,18)));
+	background: -webkit-linear-gradient(top,  rgb(231,18,18) 0%,rgb(200,18,18) 100%);
+	background: -o-linear-gradient(top,  rgb(231,18,18) 0%,rgb(200,18,18) 100%);
+	background: -ms-linear-gradient(top,  rgb(231,18,18) 0%,rgb(200,18,18) 100%);
+	background: linear-gradient(to bottom,  rgb(231,18,18) 0%,rgb(200,18,18) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e71212', endColorstr='#c81212',GradientType=0 );
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+/*红色长按钮-按下状态*/
+.button-red-long:active
+{
+	background: rgb(200,18,18);
+	background: -moz-linear-gradient(top,  rgb(200,18,18) 0%, rgb(231,18,18) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(200,18,18)), color-stop(100%,rgb(231,18,18)));
+	background: -webkit-linear-gradient(top,  rgb(200,18,18) 0%,rgb(231,18,18) 100%);
+	background: -o-linear-gradient(top,  rgb(200,18,18) 0%,rgb(231,18,18) 100%);
+	background: -ms-linear-gradient(top,  rgb(200,18,18) 0%,rgb(231,18,18) 100%);
+	background: linear-gradient(to bottom,  rgb(200,18,18) 0%,rgb(231,18,18) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c81212', endColorstr='#e71212',GradientType=0 );
+}
+/*红色长按钮-禁用状态*/
+.button-red-long.disabled
+{
+	cursor: default;
+	background: rgb(212,212,212);
+	background: -moz-linear-gradient(top,  rgb(212,212,212) 0%, rgb(191,191,191) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(212,212,212)), color-stop(100%,rgb(191,191,191)));
+	background: -webkit-linear-gradient(top,  rgb(212,212,212) 0%,rgb(191,191,191) 100%);
+	background: -o-linear-gradient(top,  rgb(212,212,212) 0%,rgb(191,191,191) 100%);
+	background: -ms-linear-gradient(top,  rgb(212,212,212) 0%,rgb(191,191,191) 100%);
+	background: linear-gradient(to bottom,  rgb(212,212,212) 0%,rgb(191,191,191) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d4d4d4', endColorstr='#bfbfbf',GradientType=0 );
+	box-shadow: none;
+}
+/*红色长按钮-正常状态-提示文字*/
+.button-red-long .tip
+{
+}
+/*红色长按钮-按下状态-提示文字*/
+.button-red-long:active .tip
+{
+}
+/*红色长按钮-禁用状态-提示文字*/
+.button-red-long.disabled .tip
+{
+}
+/*红色长按钮-正常状态-按钮文字*/
+.button-red-long .button-text
+{
+	font-size: 1.6rem;
+	color: #FFFFFF;
+}
+/*红色长按钮-按下状态-按钮文字*/
+.button-red-long:active .button-text
+{
+}
+/*红色长按钮-禁用状态-按钮文字*/
+.button-red-long.disabled .button-text
+{
+}
+/*********************键盘按钮*********************/
+/*键盘按钮区域*/
+.keyboard ul,.keyboard-number ul
+{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+/*单个菜单*/
+.keyboard li
+{
+	position: relative;
+	float: left;
+	display: block;
+	width: 70px;
+	height: 60px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+/*单个菜单*/
+.keyboard-number li
+{
+	position: relative;
+	float: left;
+	display: block;
+	width: 86px;
+	height: 66px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+/*没有右边距*/
+.no-right-margin
+{
+	margin-right: 0px !important;
+}
+/*键盘按钮-正常状态*/
+.button-keyboard
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #7b7b7b;
+	border-radius: 8px;
+	outline: none;
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+	background: rgb(255,255,255);
+	background: -moz-linear-gradient(top,  rgb(255,255,255) 0%, rgb(240,240,240) 97%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(255,255,255)), color-stop(97%,rgb(240,240,240)));
+	background: -webkit-linear-gradient(top,  rgb(255,255,255) 0%,rgb(240,240,240) 97%);
+	background: -o-linear-gradient(top,  rgb(255,255,255) 0%,rgb(240,240,240) 97%);
+	background: -ms-linear-gradient(top,  rgb(255,255,255) 0%,rgb(240,240,240) 97%);
+	background: linear-gradient(to bottom,  rgb(255,255,255) 0%,rgb(240,240,240) 97%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f0f0f0',GradientType=0 );
+}
+/*键盘按钮-按下状态*/
+.button-keyboard:active
+{
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.2), 0px 0px 3px rgba(0,0,0,0.5) inset;/*border: 2px solid #376B93;
+	background-color: #1377C1;*/
+}
+/*键盘按钮-禁用状态*/
+.button-keyboard.disabled
+{
+	cursor: default;
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+}
+/*键盘按钮-正常状态-提示文字*/
+.button-keyboard .tip
+{
+	position:absolute;
+	left:5px;
+	top:0px;
+	font-size: 1.8rem;
+	color: #3F3F3F;
+	display: none !important;   /*暂时不显示*/
+}
+/*键盘按钮-按下状态-提示文字*/
+.button-keyboard:active .tip
+{
+}
+/*键盘按钮-禁用状态-提示文字*/
+.button-keyboard.disabled .tip
+{
+	color: #DDDDDD;
+}
+/*键盘按钮-正常状态-按钮文字*/
+.button-keyboard .button-text
+{
+	font-size: 2.5rem;
+	color: #3F3F3F;
+	word-break:normal; 
+	width:auto; 
+	display:block; 
+	white-space:pre-wrap;
+	word-wrap : break-word ;
+	overflow: hidden ;
+	font-weight: bold;
+}
+/*键盘按钮-按下状态-按钮文字*/
+.button-keyboard:active .button-text
+{
+}
+/*键盘按钮-禁用状态-按钮文字*/
+.button-keyboard.disabled .button-text
+{
+	color: #DDDDDD;
+}
+/*键盘提示文字*/
+.keyboard-tip
+{
+	font-size: 1.5rem;
+	color: #FF0000;
+	padding-top: 16px;
+}
+/*********************快捷按钮*********************/
+/*快捷按钮-正常状态*/
+.button-shortcut
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #a7a7a7;
+	border-radius: 8px;
+	outline: none;
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+	box-shadow: 0px 2px 3px rgba(0,0,0,0.1);
+	background: rgb(214,214,214);
+	background: -moz-linear-gradient(top,  rgb(214,214,214) 0%, rgb(228,228,228) 50%, rgb(214,214,214) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(214,214,214)), color-stop(50%,rgb(228,228,228)), color-stop(100%,rgb(214,214,214)));
+	background: -webkit-linear-gradient(top,  rgb(214,214,214) 0%,rgb(228,228,228) 50%,rgb(214,214,214) 100%);
+	background: -o-linear-gradient(top,  rgb(214,214,214) 0%,rgb(228,228,228) 50%,rgb(214,214,214) 100%);
+	background: -ms-linear-gradient(top,  rgb(214,214,214) 0%,rgb(228,228,228) 50%,rgb(214,214,214) 100%);
+	background: linear-gradient(to bottom,  rgb(214,214,214) 0%,rgb(228,228,228) 50%,rgb(214,214,214) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6d6d6', endColorstr='#d6d6d6',GradientType=0 );
+}
+/*快捷按钮-按下状态*/
+.button-shortcut:active
+{
+	box-shadow: 0px 2px 3px rgba(0,0,0,0.1), 0px 1px 2px rgba(255,255,255,0.5) inset;
+	border: 1px solid #cd1505;
+	background: rgb(234,74,12);
+	background: -moz-linear-gradient(top,  rgb(234,74,12) 0%, rgb(225,42,0) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(234,74,12)), color-stop(100%,rgb(225,42,0)));
+	background: -webkit-linear-gradient(top,  rgb(234,74,12) 0%,rgb(225,42,0) 100%);
+	background: -o-linear-gradient(top,  rgb(234,74,12) 0%,rgb(225,42,0) 100%);
+	background: -ms-linear-gradient(top,  rgb(234,74,12) 0%,rgb(225,42,0) 100%);
+	background: linear-gradient(to bottom,  rgb(234,74,12) 0%,rgb(225,42,0) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea4a0c', endColorstr='#e12a00',GradientType=0 );
+}
+/*快捷按钮-禁用状态*/
+.button-shortcut.disabled
+{
+	cursor: default;
+	box-shadow: 0px 2px 3px rgba(0,0,0,0.1);
+}
+/*快捷按钮-禁用状态-按下状态*/
+.button-shortcut.disabled:active
+{
+	border: 1px solid #a7a7a7;
+	background: rgb(214,214,214);
+	background: -moz-linear-gradient(top,  rgb(214,214,214) 0%, rgb(228,228,228) 50%, rgb(214,214,214) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(214,214,214)), color-stop(50%,rgb(228,228,228)), color-stop(100%,rgb(214,214,214)));
+	background: -webkit-linear-gradient(top,  rgb(214,214,214) 0%,rgb(228,228,228) 50%,rgb(214,214,214) 100%);
+	background: -o-linear-gradient(top,  rgb(214,214,214) 0%,rgb(228,228,228) 50%,rgb(214,214,214) 100%);
+	background: -ms-linear-gradient(top,  rgb(214,214,214) 0%,rgb(228,228,228) 50%,rgb(214,214,214) 100%);
+	background: linear-gradient(to bottom,  rgb(214,214,214) 0%,rgb(228,228,228) 50%,rgb(214,214,214) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6d6d6', endColorstr='#d6d6d6',GradientType=0 );
+}
+/*快捷按钮-正常状态-提示文字*/
+.button-shortcut .tip
+{
+	position:absolute;
+	left:5px;
+	top:0px;
+	font-size: 2rem;
+	color: #363636;
+}
+/*快捷按钮-按下状态-提示文字*/
+.button-shortcut:active .tip
+{
+	color: #FFF;
+}
+/*快捷按钮-禁用状态-提示文字*/
+.button-shortcut.disabled .tip
+{
+	color: #b4b4b4;
+}
+/*快捷按钮-正常状态-按钮文字*/
+.button-shortcut .button-text
+{
+	font-size: 2.3rem;
+	color: #363636;
+}
+/*快捷按钮-按下状态-按钮文字*/
+.button-shortcut:active .button-text
+{
+	color: #FFF;
+}
+/*快捷按钮-禁用状态-按钮文字*/
+.button-shortcut.disabled .button-text
+{
+	color: #b4b4b4;
+}
+/*********************快捷翻页按钮*********************/
+/*快捷翻页按钮-正常状态*/
+.button-page-shortcut
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+	width: 54px;
+	height: 108px;
+	vertical-align: middle;
+	background-color: transparent;
+	background-color: #333;
+}
+/*快捷翻页按钮-按下状态*/
+.button-page-shortcut:active
+{
+}
+/*快捷翻页按钮-禁用状态*/
+.button-page-shortcut.disabled
+{
+	cursor: default;
+}
+/*快捷翻页按钮-禁用状态-按下状态*/
+.button-page-shortcut.disabled:active
+{
+}
+/*快捷翻页按钮-正常状态-提示文字*/
+.button-page-shortcut .tip
+{
+	color: #3B3B3B;
+}
+/*快捷翻页按钮-按下状态-提示文字*/
+.button-page-shortcut:active .tip
+{
+}
+/*快捷翻页按钮-禁用状态-提示文字*/
+.button-page-shortcut.disabled .tip
+{
+	color: #B9B9B9;
+}
+/*快捷翻页按钮-正常状态-按钮文字*/
+.button-page-shortcut .button-text
+{
+	font-size: 3.2rem;
+	color: #999999;
+}
+/*快捷翻页按钮-按下状态-按钮文字*/
+.button-page-shortcut:active .button-text
+{
+	color: #333333;
+}
+/*快捷翻页按钮-禁用状态-按钮文字*/
+.button-page-shortcut.disabled .button-text
+{
+	color: #E0E0E0;
+}
+/*********************翻页按钮*********************/
+/*翻页按钮-正常状态*/
+.button-page
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: none;
+	border: 1px solid #ababab;
+	border-radius: 8px;
+	outline: none;
+	width: 74px;
+	height: 64px;
+	vertical-align: middle;
+	background: rgb(244,244,244);
+	background: -moz-linear-gradient(top,  rgb(244,244,244) 0%, rgb(225,225,225) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(244,244,244)), color-stop(100%,rgb(225,225,225)));
+	background: -webkit-linear-gradient(top,  rgb(244,244,244) 0%,rgb(225,225,225) 100%);
+	background: -o-linear-gradient(top,  rgb(244,244,244) 0%,rgb(225,225,225) 100%);
+	background: -ms-linear-gradient(top,  rgb(244,244,244) 0%,rgb(225,225,225) 100%);
+	background: linear-gradient(to bottom,  rgb(244,244,244) 0%,rgb(225,225,225) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#e1e1e1',GradientType=0 );
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.3), 0px 2px 3px rgba(255,255,255,0.75) inset;
+}
+/*翻页按钮-按下状态*/
+.button-page:active
+{
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.3), 0px 0px 2px rgba(0,0,0,0.3) inset;
+}
+/*翻页按钮-禁用状态*/
+.button-page.disabled
+{
+	cursor: default;
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+}
+/*翻页按钮-正常状态-提示文字*/
+.button-page .tip
+{
+	position:absolute;
+	left:5px;
+	top:0px;
+	font-size: 1.9rem;
+	color: #3B3B3B;
+}
+/*翻页按钮-按下状态-提示文字*/
+.button-page:active .tip
+{
+}
+/*翻页按钮-禁用状态-提示文字*/
+.button-page.disabled .tip
+{
+	color: #B9B9B9;
+}
+/*翻页按钮-正常状态-按钮文字*/
+.button-page .button-text
+{
+	font-size: 1.9rem;
+	color: #575757;
+}
+/*翻页按钮-按下状态-按钮文字*/
+.button-page:active .button-text
+{
+}
+/*翻页按钮-禁用状态-按钮文字*/
+.button-page.disabled .button-text
+{
+	color: #a0a0a0;
+	line-height: 0px;
+}
+/******翻页按钮图标-向上******/
+/*翻页按钮-正常状态-向上*/
+.button-page .button-scroll-up
+{
+	display: inline-block;
+	border-color: transparent transparent #575757 transparent;
+	border-style: solid solid solid solid;
+	border-width: 14px;
+	margin-top: -28px;
+}
+/*翻页按钮-按下状态-向上*/
+.button-page:active .button-scroll-up
+{
+}
+/*翻页按钮-禁用状态-向上*/
+.button-page.disabled .button-scroll-up
+{
+	border-color: transparent transparent #a0a0a0 transparent;
+}
+/******翻页按钮图标-向下******/
+/*翻页按钮-正常状态-向下*/
+.button-page .button-scroll-down
+{
+	display: inline-block;
+	border-color: #575757 transparent transparent transparent;
+	border-style: solid dashed dashed dashed;
+	border-width: 14px;
+	margin-top: 24px;
+}
+/*翻页按钮-按下状态-向下*/
+.button-page:active .button-scroll-down
+{
+}
+/*翻页按钮-禁用状态-向下*/
+.button-page.disabled .button-scroll-down
+{
+	border-color: #a0a0a0 transparent transparent transparent;
+}
+/******翻页按钮图标-向上******/
+/*翻页按钮-正常状态-向顶*/
+.button-page .button-scroll-top span
+{
+	display: block;
+	margin: 0 auto;
+	width: 14px;
+}
+/*翻页按钮-正常状态-向顶-线条*/
+.button-page .button-scroll-top span.button-scroll-border
+{
+	width: 28px;
+	border-bottom: 3px solid #575757;
+}
+/*翻页按钮-正常状态-向顶-箭头*/
+.button-page .button-scroll-top span.button-scroll-arrow
+{
+	border-color: transparent transparent #575757 transparent;
+	border-style: solid solid solid solid;
+	border-width: 14px;
+	margin-top: -14px;
+}
+/*翻页按钮-按下状态-向顶*/
+.button-page:active .button-scroll-top span
+{
+}
+/*翻页按钮-禁用状态-向顶-线条*/
+.button-page.disabled .button-scroll-top span.button-scroll-border
+{
+	border-color: #a0a0a0;
+}
+/*翻页按钮-禁用状态-向顶-箭头*/
+.button-page.disabled .button-scroll-top span.button-scroll-arrow
+{
+	border-color: transparent transparent #a0a0a0 transparent;
+}
+/******翻页按钮图标-向底******/
+/*翻页按钮-正常状态-向底*/
+.button-page .button-scroll-bottom span
+{
+	display: block;
+	margin: 0 auto;
+	width: 14px;
+}
+/*翻页按钮-正常状态-向底-箭头*/
+.button-page .button-scroll-bottom span.button-scroll-arrow
+{
+	border-color: #575757 transparent transparent transparent;
+	border-style: solid dashed dashed dashed;
+	border-width: 14px;
+}
+/*翻页按钮-正常状态-向底-线条*/
+.button-page .button-scroll-bottom span.button-scroll-border
+{
+	width: 28px;
+	border-top: 3px solid #575757;
+	margin-top: -14px;
+}
+/*翻页按钮-按下状态-向底*/
+.button-page:active .button-scroll-bottom
+{
+}
+/*翻页按钮-禁用状态-向底-箭头*/
+.button-page.disabled .button-scroll-bottom span.button-scroll-arrow
+{
+	border-color: #a0a0a0 transparent transparent transparent;
+}
+/*翻页按钮-禁用状态-向底-线条*/
+.button-page.disabled .button-scroll-bottom span.button-scroll-border
+{
+	border-color: #a0a0a0;
+}
+/*********************定制菜单按钮*********************/
+/*定制菜单按钮-正常状态*/
+.button-define
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #a7a7a7;
+	border-radius: 8px;
+	outline: none;
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+	box-shadow: 0px 2px 3px rgba(0,0,0,0.1), 0px 2px 2px rgba(255,255,255,0.5) inset;
+	background: rgb(234,234,234);
+	background: -moz-linear-gradient(top,  rgb(234,234,234) 0%, rgb(238,238,238) 50%, rgb(234,234,234) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(234,234,234)), color-stop(50%,rgb(238,238,238)), color-stop(100%,rgb(234,234,234)));
+	background: -webkit-linear-gradient(top,  rgb(234,234,234) 0%,rgb(238,238,238) 50%,rgb(234,234,234) 100%);
+	background: -o-linear-gradient(top,  rgb(234,234,234) 0%,rgb(238,238,238) 50%,rgb(234,234,234) 100%);
+	background: -ms-linear-gradient(top,  rgb(234,234,234) 0%,rgb(238,238,238) 50%,rgb(234,234,234) 100%);
+	background: linear-gradient(to bottom,  rgb(234,234,234) 0%,rgb(238,238,238) 50%,rgb(234,234,234) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#eaeaea',GradientType=0 );
+	min-height: 70px;
+	max-height: 70px;
+	/*min-width: 148px;
+	max-width: 148px;*/
+}
+/*定制菜单按钮-按下状态*/
+.button-define:active
+{
+	background: #e6e6e6;
+}
+/*定制菜单按钮-禁用状态*/
+.button-define.disabled
+{
+	cursor: default;
+	background: rgb(234,234,234);
+	background: -moz-linear-gradient(top,  rgb(234,234,234) 0%, rgb(238,238,238) 50%, rgb(234,234,234) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(234,234,234)), color-stop(50%,rgb(238,238,238)), color-stop(100%,rgb(234,234,234)));
+	background: -webkit-linear-gradient(top,  rgb(234,234,234) 0%,rgb(238,238,238) 50%,rgb(234,234,234) 100%);
+	background: -o-linear-gradient(top,  rgb(234,234,234) 0%,rgb(238,238,238) 50%,rgb(234,234,234) 100%);
+	background: -ms-linear-gradient(top,  rgb(234,234,234) 0%,rgb(238,238,238) 50%,rgb(234,234,234) 100%);
+	background: linear-gradient(to bottom,  rgb(234,234,234) 0%,rgb(238,238,238) 50%,rgb(234,234,234) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#eaeaea',GradientType=0 );
+}
+/*定制菜单按钮-正常状态-提示文字*/
+.button-define .tip
+{
+}
+/*定制菜单按钮-按下状态-提示文字*/
+.button-define:active .tip
+{
+}
+/*定制菜单按钮-禁用状态-提示文字*/
+.button-define.disabled .tip
+{
+}
+/*定制菜单按钮-正常状态-按钮文字*/
+.button-define .button-text
+{
+	font-size: 1.7rem;
+	color: #363636;
+}
+/*定制菜单按钮-按下状态-按钮文字*/
+.button-define:active .button-text
+{
+}
+/*定制菜单按钮-禁用状态-按钮文字*/
+.button-define.disabled .button-text
+{
+	color: #b9b9b9;
+}
+/*********************提示框按钮*********************/
+/*提示框按钮-正常状态*/
+.button-prompt
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #b6bbc1;
+	border-radius: 6px;
+	outline: none;
+	width: 146px;
+	height: 46px;
+	vertical-align: middle;
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+	background: rgb(236,238,242);
+	background: -moz-linear-gradient(top,  rgb(236,238,242) 0%, rgb(220,224,229) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(236,238,242)), color-stop(100%,rgb(220,224,229)));
+	background: -webkit-linear-gradient(top,  rgb(236,238,242) 0%,rgb(220,224,229) 100%);
+	background: -o-linear-gradient(top,  rgb(236,238,242) 0%,rgb(220,224,229) 100%);
+	background: -ms-linear-gradient(top,  rgb(236,238,242) 0%,rgb(220,224,229) 100%);
+	background: linear-gradient(to bottom,  rgb(236,238,242) 0%,rgb(220,224,229) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eceef2', endColorstr='#dce0e5',GradientType=0 );
+}
+/*提示框按钮-按下状态*/
+.button-prompt:active
+{
+	background: rgb(220,224,229);
+	background: -moz-linear-gradient(top,  rgb(220,224,229) 0%, rgb(236,238,242) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(220,224,229)), color-stop(100%,rgb(236,238,242)));
+	background: -webkit-linear-gradient(top,  rgb(220,224,229) 0%,rgb(236,238,242) 100%);
+	background: -o-linear-gradient(top,  rgb(220,224,229) 0%,rgb(236,238,242) 100%);
+	background: -ms-linear-gradient(top,  rgb(220,224,229) 0%,rgb(236,238,242) 100%);
+	background: linear-gradient(to bottom,  rgb(220,224,229) 0%,rgb(236,238,242) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dce0e5', endColorstr='#eceef2',GradientType=0 );
+}
+/*提示框按钮-禁用状态*/
+.button-prompt.disabled
+{
+	cursor: default;
+	background: rgb(236,238,242);
+	background: -moz-linear-gradient(top,  rgb(236,238,242) 0%, rgb(220,224,229) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(236,238,242)), color-stop(100%,rgb(220,224,229)));
+	background: -webkit-linear-gradient(top,  rgb(236,238,242) 0%,rgb(220,224,229) 100%);
+	background: -o-linear-gradient(top,  rgb(236,238,242) 0%,rgb(220,224,229) 100%);
+	background: -ms-linear-gradient(top,  rgb(236,238,242) 0%,rgb(220,224,229) 100%);
+	background: linear-gradient(to bottom,  rgb(236,238,242) 0%,rgb(220,224,229) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eceef2', endColorstr='#dce0e5',GradientType=0 );
+}
+/*提示框按钮-正常状态-提示文字*/
+.button-prompt .tip
+{
+	position:absolute;
+	left:5px;
+	top:0px;
+	/*font-size: 20px;
+	color: #000000;*/
+}
+/*提示框按钮-按下状态-提示文字*/
+.button-prompt:active .tip
+{
+}
+/*提示框按钮-禁用状态-提示文字*/
+.button-prompt.disabled .tip
+{
+}
+/*提示框按钮-正常状态-按钮文字*/
+.button-prompt .button-text
+{
+	font-size: 1.9rem;
+	color: #4F4F4F;
+}
+/*提示框按钮-按下状态-按钮文字*/
+.button-prompt:active .button-text
+{
+}
+/*提示框按钮-禁用状态-按钮文字*/
+.button-prompt.disabled .button-text
+{
+	color: #b9b9b9;
+}
+/*********************常用按钮*********************/
+/*常用按钮-正常状态*/
+.button-common
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #959595;
+	border-radius: 8px;
+	outline: none;
+	width: 114px;
+	height: 56px;
+	vertical-align: middle;
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.2), 0px 3px 3px rgba(255,255,255,0.75) inset;
+	background-color: #FFF;
+	onselectstart:return false;
+}
+/*常用按钮-按下状态*/
+.button-common:active
+{
+	background-color: #f2f2f2;
+}
+/*常用按钮-禁用状态*/
+.button-common.disabled
+{
+	cursor: default;
+	background-color: #FFF;
+}
+/*常用按钮-正常状态-提示文字*/
+.button-common .tip
+{
+	position:absolute;
+	left:5px;
+	top:0px;
+	font-size: 1.4rem;
+	color: #3b3b3b;
+}
+/*常用按钮-按下状态-提示文字*/
+.button-common:active .tip
+{
+}
+/*常用按钮-禁用状态-提示文字*/
+.button-common.disabled .tip
+{
+	color: #b9b9b9;
+}
+/*常用按钮-正常状态-按钮文字*/
+.button-common .button-text
+{
+	font-size: 2.2rem;
+	color: #3b3b3b;
+}
+/*常用按钮-按下状态-按钮文字*/
+.button-common:active .button-text
+{
+}
+/*常用按钮-禁用状态-按钮文字*/
+.button-common.disabled .button-text
+{
+	color: #b9b9b9;
+}
+/*********************常用小按钮*********************/
+/*常用小按钮-正常状态*/
+.button-common-small
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #a7a7a7;
+	border-radius: 8px;
+	outline: none;
+	width: 108px;
+	height: 48px;
+	vertical-align: middle;
+	background: rgb(255,255,255);
+	background: -moz-linear-gradient(top,  rgb(255,255,255) 0%, rgb(227,227,227) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(255,255,255)), color-stop(100%,rgb(227,227,227)));
+	background: -webkit-linear-gradient(top,  rgb(255,255,255) 0%,rgb(227,227,227) 100%);
+	background: -o-linear-gradient(top,  rgb(255,255,255) 0%,rgb(227,227,227) 100%);
+	background: -ms-linear-gradient(top,  rgb(255,255,255) 0%,rgb(227,227,227) 100%);
+	background: linear-gradient(to bottom,  rgb(255,255,255) 0%,rgb(227,227,227) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e3e3e3',GradientType=0 );
+}
+/*常用小按钮-按下状态*/
+.button-common-small:active
+{
+	background: rgb(227,227,227);
+	background: -moz-linear-gradient(top,  rgb(227,227,227) 0%, rgb(255,255,255) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(227,227,227)), color-stop(100%,rgb(255,255,255)));
+	background: -webkit-linear-gradient(top,  rgb(227,227,227) 0%,rgb(255,255,255) 100%);
+	background: -o-linear-gradient(top,  rgb(227,227,227) 0%,rgb(255,255,255) 100%);
+	background: -ms-linear-gradient(top,  rgb(227,227,227) 0%,rgb(255,255,255) 100%);
+	background: linear-gradient(to bottom,  rgb(227,227,227) 0%,rgb(255,255,255) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e3e3e3', endColorstr='#ffffff',GradientType=0 );
+}
+/*常用小按钮-禁用状态*/
+.button-common-small.disabled
+{
+	cursor: default;
+	background: rgb(255,255,255);
+	background: -moz-linear-gradient(top,  rgb(255,255,255) 0%, rgb(227,227,227) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(255,255,255)), color-stop(100%,rgb(227,227,227)));
+	background: -webkit-linear-gradient(top,  rgb(255,255,255) 0%,rgb(227,227,227) 100%);
+	background: -o-linear-gradient(top,  rgb(255,255,255) 0%,rgb(227,227,227) 100%);
+	background: -ms-linear-gradient(top,  rgb(255,255,255) 0%,rgb(227,227,227) 100%);
+	background: linear-gradient(to bottom,  rgb(255,255,255) 0%,rgb(227,227,227) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e3e3e3',GradientType=0 );
+}
+/*常用小按钮-正常状态-提示文字*/
+.button-common-small .tip
+{
+}
+/*常用小按钮-按下状态-提示文字*/
+.button-common-small:active .tip
+{
+}
+/*常用小按钮-禁用状态-提示文字*/
+.button-common-small.disabled .tip
+{
+}
+/*常用小按钮-正常状态-按钮文字*/
+.button-common-small .button-text
+{
+	font-size: 1.7rem;
+	color: #000000;
+}
+/*常用小按钮-按下状态-按钮文字*/
+.button-common-small:active .button-text
+{
+}
+/*常用小按钮-禁用状态-按钮文字*/
+.button-common-small.disabled .button-text
+{
+	color: #b9b9b9;
+}
+
+
+/**
+ * 参数查询界面按钮换行间距
+ */
+.button-query-margin-top{
+	margin-top: 30px;
+}
+/*********************向左翻页按钮*********************/
+/*向左翻页按钮-正常状态*/
+.button-prev
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border:none;
+	outline: none;
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+	background:none;
+}
+/*向左翻页按钮-按下状态*/
+.button-prev:active
+{
+	
+}
+/*向左翻页按钮-禁用状态*/
+.button-prev.disabled
+{
+	cursor: default;
+}
+/*向左翻页按钮-正常状态-提示文字*/
+.button-prev .tip
+{
+	position:absolute;
+	right:100%;
+	top:50%;
+	margin-top:-9px;
+	line-height:1em;
+	font-size: 1.8rem;
+	color: #3B3B3B;
+}
+/*向左翻页按钮-按下状态-提示文字*/
+.button-prev:active .tip
+{
+}
+/*向左翻页按钮-禁用状态-提示文字*/
+.button-prev.disabled .tip
+{
+	color: #B9B9B9;
+}
+/*向左翻页按钮-正常状态-按钮文字*/
+.button-prev .button-text
+{
+	display:block;
+	width:26px;
+	height:26px;
+	border-style:solid;
+	border-color:#666666;
+	border-width:0 0 5px 5px;
+	transform:rotate(45deg);
+	-ms-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	-webkit-transform:rotate(45deg);
+	-o-transform:rotate(45deg);
+	margin:0 auto;
+}
+/*向左翻页按钮-按下状态-按钮文字*/
+.button-prev:active .button-text
+{
+	border-color:#262626;
+}
+/*向左翻页按钮-禁用状态-按钮文字*/
+.button-prev.disabled .button-text
+{
+	border-color:#cccccc;
+}
+/*********************向右翻页按钮*********************/
+/*向右翻页按钮-正常状态*/
+.button-next
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border:none;
+	outline: none;
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+	background:none;
+}
+/*向右翻页按钮-按下状态*/
+.button-next:active
+{
+	
+}
+/*向右翻页按钮-禁用状态*/
+.button-next.disabled
+{
+	cursor: default;
+}
+/*向右翻页按钮-正常状态-提示文字*/
+.button-next .tip
+{
+	display:block;
+	position:absolute;
+	left:100%;
+	top:50%;
+	margin-top:-9px;
+	line-height:1em;
+	font-size: 1.8rem;
+	color: #3B3B3B;
+}
+/*向右翻页按钮-按下状态-提示文字*/
+.button-next:active .tip
+{
+}
+/*向右翻页按钮-禁用状态-提示文字*/
+.button-next.disabled .tip
+{
+	color: #B9B9B9;
+}
+/*向右翻页按钮-正常状态-按钮文字*/
+.button-next .button-text
+{
+	display:block;
+	width:26px;
+	height:26px;
+	border-style:solid;
+	border-color:#666666;
+	border-width:5px 5px 0 0;
+	transform:rotate(45deg);
+	-ms-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	-webkit-transform:rotate(45deg);
+	-o-transform:rotate(45deg);
+	margin:0 auto;
+}
+/*向右翻页按钮-按下状态-按钮文字*/
+.button-next:active .button-text
+{
+	border-color:#262626;
+}
+/*向右翻页按钮-禁用状态-按钮文字*/
+.button-next.disabled .button-text
+{
+	border-color:#cccccc;
+}
+/*********************向左箭头按钮*********************/
+/*向左箭头按钮-正常状态*/
+.button-arrow-prev
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border:none;
+	outline: none;
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+	background:none;
+}
+/*向左箭头按钮-按下状态*/
+.button-arrow-prev:active
+{
+	
+}
+/*向左箭头按钮-禁用状态*/
+.button-arrow-prev.disabled
+{
+	cursor: default;
+}
+/*向左箭头按钮-正常状态-提示文字*/
+.button-arrow-prev .tip
+{
+	position:absolute;
+	right:5%;
+	top:0%;
+	line-height:1em;
+	font-size: 1.5rem;
+	color: #FFFFFF;
+}
+/*向左箭头按钮-按下状态-提示文字*/
+.button-arrow-prev:active .tip
+{
+}
+/*向左箭头按钮-禁用状态-提示文字*/
+.button-arrow-prev.disabled .tip
+{
+	color: #404040;
+}
+/*向左箭头按钮-正常状态-按钮文字*/
+.button-arrow-prev .button-text
+{
+	display:block;
+	width:20px;
+	height:20px;
+	border-style:solid;
+	border-color:#7b7b7b;
+	border-width:0 0 3px 3px;
+	transform:rotate(45deg);
+	-ms-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	-webkit-transform:rotate(45deg);
+	-o-transform:rotate(45deg);
+	margin-left:15px;
+}
+/*向左箭头按钮-按下状态-按钮文字*/
+.button-arrow-prev:active .button-text
+{
+	border-color:#555555;
+}
+/*向左箭头按钮-禁用状态-按钮文字*/
+.button-arrow-prev.disabled .button-text
+{
+	border-color:#404040;
+}
+/*********************向右箭头按钮*********************/
+/*向右箭头按钮-正常状态*/
+.button-arrow-next
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border:none;
+	outline: none;
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+	background:none;
+}
+/*向右箭头按钮-按下状态*/
+.button-arrow-next:active
+{
+	
+}
+/*向右箭头按钮-禁用状态*/
+.button-arrow-next.disabled
+{
+	cursor: default;
+}
+/*向右箭头按钮-正常状态-提示文字*/
+.button-arrow-next .tip
+{
+	position:absolute;
+	left:5%;
+	top:0%;
+	line-height:1em;
+	font-size: 1.5rem;
+	color: #FFFFFF;
+}
+/*向右箭头按钮-按下状态-提示文字*/
+.button-arrow-next:active .tip
+{
+}
+/*向右箭头按钮-禁用状态-提示文字*/
+.button-arrow-next.disabled .tip
+{
+	color: #404040;
+}
+/*向右箭头按钮-正常状态-按钮文字*/
+.button-arrow-next .button-text
+{
+	display:block;
+	width:20px;
+	height:20px;
+	border-style:solid;
+	border-color:#7b7b7b;
+	border-width:3px 3px 0 0;
+	transform:rotate(45deg);
+	-ms-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	-webkit-transform:rotate(45deg);
+	-o-transform:rotate(45deg);
+	margin-left:6px;
+}
+/*向右箭头按钮-按下状态-按钮文字*/
+.button-arrow-next:active .button-text
+{
+	border-color:#555555;
+}
+/*向右箭头按钮-禁用状态-按钮文字*/
+.button-arrow-next.disabled .button-text
+{
+	border-color:#404040;
+}
+/*********************复选框*********************/
+input[type=checkbox]{
+	width:18px;
+	height:18px;
+}
+/*********************表格控件*********************/
+/*表格控件*/
+.type-table
+{
+	position: relative;
+	margin: 0 auto;
+	font-size:2.2rem;
+}
+/*表格控件-表格容器*/
+.type-table-container
+{
+	margin-right: 50px;
+}
+/*表格控件-表格*/
+.type-table table
+{
+	width: 100%;
+}
+/*表格控件-翻页按钮*/
+.type-table-paging
+{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 50px;
+	height: 100%;
+	text-align: center;
+}
+
+/*
+  设置存款面额table宽度
+ */
+.setcimcurrency-table-width{
+    width: 80%;
+}
+/**
+ * 设置存款面额提示文字距左
+ */
+.setcimcurrency-promt-text-margin-left{
+	margin-left: 75px;
+}
+/**
+ * 设置存款面额按钮距右
+ */
+.setcimcurrency-button-margin-right{
+	margin-right: 75px;
+}
+
+/*
+  查询钱箱余额table宽度
+ */
+.getcash-table-width{
+    width: 80%;
+}
+
+.table_margin_top{
+	margin-top: 40px
+}
+/*翻页按钮不显示时自动调整表格容器的宽度*/
+.type-table-paging.none+div.type-table-container
+{
+	margin-right: 0;
+	margin-left: auto;
+    margin-right: auto;
+}
+/*顶部-表格-翻页按钮大小*/
+.type-table-paging button
+{
+	width: 40px;
+	height: 35px;
+	border-radius: 4px;
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.3), 0px 1px 2px rgba(255,255,255,0.75) inset;
+	/*margin-bottom: 10px;*/
+}
+/*顶部-表格-翻页按钮-2个以上*/
+.type-table-paging button:last-child
+{
+	margin-top: 10px;
+}
+/*********************表格配置*********************/
+/*表格*/
+.type-table table
+{
+	border-collapse: separate;
+	border-spacing: 0;
+	border: solid #A6A6A6 1px;
+	border-radius: 7px;
+}
+/*表头和单元格*/
+.type-table th, .type-table td
+{
+	text-align: center;
+}
+.type-table thead th:first-child
+{
+	border-radius: 7px 0 0 0;
+}
+.type-table thead th:last-child
+{
+	border-radius: 0 7px 0 0;
+}
+.type-table thead th:only-child
+{
+	border-radius: 7px 7px 0 0;
+}
+
+/*
+ 查询钱箱余额表格距顶部高度 
+ */
+.table-cash-margin_top{
+	margin-top: 40px;
+}
+
+/*最后一行*/
+/*.type-table tbody tr:not([class=none]):last-child td:first-child
+{
+	border-radius: 0 0 0 7px;
+}
+.type-table tbody tr:not([class=none]):last-child td:last-child
+{
+	border-radius: 0 0 7px 0;
+}
+.type-table tbody tr:not([class=none]):last-child td:only-child
+{
+	border-radius: 0 0 7px 7px;
+}*/
+.type-table tbody tr:last-child td:first-child
+{
+	border-radius: 0 0 0 7px;
+}
+.type-table tbody tr:last-child td:last-child
+{
+	border-radius: 0 0 7px 0;
+}
+.type-table tbody tr:last-child td:only-child
+{
+	border-radius: 0 0 7px 7px;
+}
+/*用js添加的最后一行*/
+.last-visible-row td:first-child
+{
+	border-radius: 0 0 0 7px;
+}
+.last-visible-row td:last-child
+{
+	border-radius: 0 0 7px 0;
+}
+.last-visible-row td:only-child
+{
+	border-radius: 0 0 7px 7px;
+}
+
+
+
+/*表脚-最后一行*/
+.type-table tfoot tr:last-child th:first-child
+{
+	border-radius: 0 0 0 7px;
+}
+.type-table tfoot tr:last-child th:last-child
+{
+	border-radius: 0 0 7px 0;
+}
+.type-table tfoot tr:last-child th:only-child
+{
+	border-radius: 0 0 7px 7px;
+}
+/*有表脚-表内容-最后一行*/
+.type-table tfoot+tbody tr:last-child td:first-child
+{
+	border-radius:0;
+}
+.type-table tfoot+tbody tr:last-child td:last-child
+{
+	border-radius:0;
+}
+.type-table tfoot+tbody tr:last-child td:only-child
+{
+	border-radius:0;
+}
+
+.type-table tfoot+tbody .last-visible-row td:first-child
+{
+	border-radius:0;
+}
+.type-table tfoot+tbody .last-visible-row td:last-child
+{
+	border-radius:0;
+}
+.type-table tfoot+tbody .last-visible-row td:only-child
+{
+	border-radius:0;
+}
+
+/*表格控件-表格-表头*/
+.type-table thead th
+{
+	background: rgb(241,241,241);
+	background: -moz-linear-gradient(top,  rgb(241,241,241) 0%, rgb(229,229,229) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(241,241,241)), color-stop(100%,rgb(229,229,229)));
+	background: -webkit-linear-gradient(top,  rgb(241,241,241) 0%,rgb(229,229,229) 100%);
+	background: -o-linear-gradient(top,  rgb(241,241,241) 0%,rgb(229,229,229) 100%);
+	background: -ms-linear-gradient(top,  rgb(241,241,241) 0%,rgb(229,229,229) 100%);
+	background: linear-gradient(to bottom,  rgb(241,241,241) 0%,rgb(229,229,229) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1f1f1', endColorstr='#e5e5e5',GradientType=0 );
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #D7D7D7;
+}
+/*表格控件-表格-表脚*/
+.type-table tfoot th
+{
+	border-top: 1px solid #c8c8c8;
+}
+/*表格控件-表格-表头-垂直分隔线-最后一个*/
+.type-table thead th:last-child
+{
+	border-right: none;
+}
+/*表格控件-表格-左边表头*/
+.type-table tbody th
+{
+	border-right: 1px solid #D7D7D7;
+}
+/*表格控件-表格-单元格-垂直分隔线*/
+.type-table td
+{
+	border-right: 1px solid #D7D7D7;
+}
+/*表格控件-表格-单元格-垂直分隔线-最后一个*/
+.type-table td:last-child
+{
+	border-right: none;
+}
+/*表格控件-表格-单元格-奇数行*/
+.type-table tbody tr:nth-child(odd)
+{
+	background: #F2F2F2;
+}
+.type-table tbody tr.odd
+{
+	background: #F2F2F2 !important;
+}
+/*表格控件-表格-单元格-偶数行*/
+.type-table tbody tr:nth-child(even)
+{
+	background: #FFFFFF;
+}
+.type-table tbody tr.even
+{
+	background: #FFFFFF !important;
+}
+/*反转颜色-表格-单元格-奇数行*/
+.reversal-color tbody tr:nth-child(odd)
+{
+	background: #FFFFFF;
+}
+.reversal-color tbody tr.odd
+{
+	background: #FFFFFF !important;
+}
+/*反转颜色-表格-单元格-偶数行*/
+.reversal-color tbody tr:nth-child(even)
+{
+	background: #F2F2F2;
+}
+.reversal-color tbody tr.even
+{
+	background: #F2F2F2 !important;
+}
+
+
+
+/*表格控件-表格-表脚*/
+.type-table tfoot th
+{
+	background: #d5d5d5;
+}
+/*********************表格高度*********************/
+/*表格控件-表格-表头*/
+.type-table thead th
+{
+	height: 36px;
+}
+/*表格控件-表格-左边表头*/
+.type-table tbody th
+{
+	height: 40px;
+}
+/*表格控件-表格-内容-单元格*/
+.type-table tbody td
+{
+	height: 40px;
+}
+/*表格控件-表格-表脚*/
+.type-table tfoot th
+{
+	height: 40px;
+}
+
+
+.tr_height{
+	height: 55px;
+}
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:双屏入口界面
+	作者:蔡俊雄
+	版本:V1.0
+	时间:2015-01-20
+********************/
+
+/*头部*/
+.index-header
+{
+	width: 100%;
+	height: 78px;
+	background-color: #F3F3F3;
+	position: relative;
+	color: #5A5A5A;
+	font-size: 2.4rem;
+}
+/*顶层界面容器-用于加载子界面*/
+.top-container
+{
+	width: 100%;
+	position: absolute;
+	left: 0px;
+	top: 78px;
+	bottom:0px;
+}
+/*左上角图片*/
+.top-left-image
+{
+	position: absolute;
+	width: 334px;
+	height: 67px;
+	background: url(../../../Image/CN/maintenance/twinscreen/top-1.png) no-repeat;
+}
+/*下部边框*/
+.bottom-border
+{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 6px;
+	background: rgb(186,6,0);
+	background: -moz-linear-gradient(left,  rgb(186,6,0) 0%, rgb(232,100,1) 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgb(186,6,0)), color-stop(100%,rgb(232,100,1)));
+	background: -webkit-linear-gradient(left,  rgb(186,6,0) 0%,rgb(232,100,1) 100%);
+	background: -o-linear-gradient(left,  rgb(186,6,0) 0%,rgb(232,100,1) 100%);
+	background: -ms-linear-gradient(left,  rgb(186,6,0) 0%,rgb(232,100,1) 100%);
+	background: linear-gradient(to right,  rgb(186,6,0) 0%,rgb(232,100,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ba0600', endColorstr='#e86401',GradientType=1 );
+}
+/*********************状态图标*********************/
+/*状态图标*/
+.state-image
+{
+	position: absolute;
+	left: 24px;
+	top: 8px;
+	width: 48px;
+	height: 48px;
+}
+/*状态图标-登陆*/
+.state-login
+{
+	background: url(../../../Image/CN/maintenance/state/state-login.png) no-repeat;
+}
+/*状态图标-维护状态*/
+.state-maintenance
+{
+	background: url(../../../Image/CN/maintenance/state/state-maintenance.png) no-repeat;
+}
+/*状态图标-对外服务*/
+.state-normal
+{
+	background: url(../../../Image/CN/maintenance/state/state-normal.png) no-repeat;
+}
+/*状态图标-离线状态*/
+.state-offline
+{
+	background: url(../../../Image/CN/maintenance/state/state-offline.png) no-repeat;
+}
+/*状态图标-暂停服务*/
+.state-outofservice
+{
+	background: url(../../../Image/CN/maintenance/state/state-outofservice.png) no-repeat;
+}
+/*状态图标-系统启动*/
+.state-init
+{
+	background: url(../../../Image/CN/maintenance/state/state-init.png) no-repeat;
+}
+/*网络状态图标*/
+.net-state-image
+{
+	float: right;
+	margin-right: 15px;
+	margin-top: 15px;
+	width: 24px;
+	height: 24px;
+}
+/*网络状态图标-在线*/
+.net-state-online
+{
+	background: url(../../../Image/CN/maintenance/state/online.gif) no-repeat;
+}
+/*网络状态图标-离线*/
+.net-state-offline
+{
+	background: url(../../../Image/CN/maintenance/state/offline.gif) no-repeat;
+}
+/*********************文字显示-状态描述*********************/
+/*当前状态描述*/
+.state-description
+{
+	/*position: absolute;
+	left: 24px;
+	top: 8px;
+	width: 48px;*/
+	margin-left: 70px;
+	width: 160px;
+	height: 48px;
+	line-height: 48px;
+	color: #FFF;
+	font-size: 2.2rem;
+	vertical-align: middle;
+}
+/*状态描述文字*/
+.state-description span
+{
+	display: none;
+}
+/*状态图标-登陆-描述文字*/
+.state-login span[mark=state-login]
+{
+	display: block;
+}
+/*状态图标-维护状态-描述文字*/
+.state-maintenance span[mark=state-maintenance]
+{
+	display: block;
+}
+/*状态图标对外服务-描述文字*/
+.state-normal span[mark=state-normal]
+{
+	display: block;
+}
+/*状态图标-离线状态-描述文字*/
+.state-offline span[mark=state-offline]
+{
+	display: block;
+}
+/*状态图标-暂停服务-描述文字*/
+.state-outofservice span[mark=state-outofservice]
+{
+	display: block;
+}
+/*状态图标-系统启动-描述文字*/
+.state-init span[mark=state-init]
+{
+	display: block;
+	line-height: 2.6rem;	
+	width: 67%;
+}
+/*********************文字显示-状态描述*********************/
+/*ATM号和分行号*/
+.atm-banknumber-container
+{
+	position: absolute;
+	width: 100%;
+	padding-top: 13px;
+}
+/*ATM号和分行号*/
+.atm-banknumber-container div
+{
+	float: left;
+}
+/*ATM号*/
+.index-atm
+{
+	width: 356px;
+	margin-left: 25px;
+	text-align: right;
+}
+/*ATM号-值*/
+.index-atm-value
+{
+	margin-left: 5px;
+	width: 110px;
+}
+/*分行号*/
+.index-banknumber
+{
+	margin-left: 15px;
+}
+/*分行号-值*/
+.index-banknumber-value
+{
+	margin-left: 5px;
+}
+/*网络*/
+div.index-net
+{
+	position: absolute;
+	right: 46px;
+	float: none;
+}
+/*当前用户和时间*/
+.currentuser-time-container
+{
+	position: absolute;
+	width: 100%;
+	padding-top: 42px;
+}
+/*ATM号和分行号*/
+.currentuser-time-container div
+{
+	float: left;
+}
+/*当前用户*/
+.index-userid
+{
+	width: 356px;
+	margin-left: 25px;
+	text-align: right;
+}
+/*分行号-值*/
+.index-userid-value
+{
+	margin-left: 5px;
+}
+/*时间*/
+div.index-time
+{
+	float: right;
+	margin-right: 20px;
+}
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统正在启动页面
+	作者:蔡俊雄
+	url:maintenance/maintenance/loading.html
+	版本:V1.0
+	时间:2015-02-02
+********************/
+
+
+/*启动中背景和提示*/
+.loading-bg
+{
+	position: relative;
+	margin: 0 auto;
+	width: 370px;
+	height: 100px;
+	background: url(../../../Image/CN/maintenance/maintenance/loading.gif) left bottom no-repeat;
+}
+/*启动提示*/
+.loading-init
+{
+	font-size: 2.8rem;
+	color: #000;
+}
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:初始化页面
+	作者:蔡俊雄
+	url:maintenance/maintenance/initialization.html
+	版本:V1.0
+	时间:2015-02-02
+********************/
+
+
+/*容器*/
+.initialization
+{
+	padding-top: 50px;
+}
+/*启动中背景和提示*/
+.initialization-information
+{
+	position: relative;
+	margin: 0 auto;
+	width: 410px;
+	margin-top: 30px;
+	line-height: 24px;
+	font-size: 2.8rem;
+	color: #000;/*background:#333;*/
+}
+/*单个部件信息*/
+.initialization-content
+{
+	width: 340px;/*background:#999;*/
+}
+/*图标区域*/
+.initialization-icon
+{
+	width: 30px;
+	height: 24px;
+	margin: 0 10px;
+}
+/*图标-警告*/
+.init-warn
+{
+	background: url(../../../Image/CN/maintenance/icon/init-warn.png) no-repeat;
+}
+/*图标-正常*/
+.init-normal
+{
+	background: url(../../../Image/CN/maintenance/icon/init-normal.png) no-repeat;
+}
+/*图标-错误*/
+.init-error
+{
+	background: url(../../../Image/CN/maintenance/icon/init-error.png) no-repeat;
+}
+/*错误码*/
+.initialization-error-code
+{
+	width: 120px;
+	color: #FF0000;
+}
+/*警告*/
+.initialization-warn
+{
+	width: 120px;
+	color: #D5C506;
+}
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:角色登陆界面
+	作者:蔡俊雄
+	url:maintenance/maintenance/loginrole.html
+	版本:V1.0
+	时间:2015-01-27
+********************/
+
+
+/*容器*/
+.loginrole
+{
+	position: relative;
+	width: 748px;
+	margin: 53px auto 0px auto;
+	font-size: 1.6rem;
+}
+/*底部-左边*/
+.loginrole-left
+{
+	position: relative;
+	width: 436px;
+	height: 444px;
+	background-color: #FFF;
+	border: 1px solid #B2B2B2;
+	border-radius: 8px;
+}
+/*左边标签区域*/
+.loginrole-left-zone
+{
+	position: relative;
+	margin-top: 35px;
+	padding-left: 28px;
+}
+/*用户*/
+.loginrole-user-label
+{
+	font-size: 2rem;
+	font-weight: normal;
+	color: #000;
+	padding-left: 35px;
+	width: 86px;
+	background: url(../../../Image/CN/maintenance/icon/login-name.png) left center no-repeat;
+}
+/*标签隐藏区域*/
+.loginrole-label-hidden
+{
+	width: 86px;
+}
+/*密码*/
+.loginrole-password-label
+{
+	font-size: 2rem;
+	font-weight: normal;
+	color: #000;
+	padding-left: 35px;
+	width: 86px;
+	background: url(../../../Image/CN/maintenance/icon/login-key.png) left center no-repeat;
+}
+/*密码输入框*/
+input.loginrole-password
+{
+	width: 280px;
+	height: 52px;
+	display: inline-block;
+	text-align: center;
+	font-size: 3rem;
+	line-height: 30px;
+	border-radius:4px;
+	border-color:#bebebe; /* bebebe*/
+	margin: 0px 0 0 40px;
+}
+/*角色描述*/
+.loginrole-description
+{
+	font-size: 2rem;
+	color: #5c616a;
+	padding-left: 30px;
+}
+/*结果提示信息*/
+.loginrole-prompt
+{
+	font-size: 2rem;
+	color: #FF0000;
+	padding-left: 30px;
+}
+/*右边按钮区域*/
+.loginrole-right-zone
+{
+	margin-top: 35px;
+	width: 110px;
+}
+/*底部-右边*/
+.loginrole-right
+{
+	position: absolute;
+	left: 446px;
+	top: 0;
+	width: 300px;
+	height: 444px;
+	background-color: #FFF;
+	border: 1px solid #B2B2B2;
+	border-radius: 8px;
+	padding-top: 54px;
+	padding-left: 15px;
+	
+	/*width: 400px;*/
+}
+/*********************间距*********************/
+/*按钮垂直距离*/
+.loginrole-vertical-space1
+{
+	margin-top: 16px;
+}
+/*按钮输入框垂直距离*/
+.loginrole-vertical-space2
+{
+	margin-top: 30px;
+}
+/*登陆按钮和输入框垂直距离*/
+.loginrole-vertical-space3
+{
+	margin-top: 30px;
+}
+/*登陆按钮和提示信息垂直距离*/
+.loginrole-vertical-space4
+{
+	margin-top: 20px;
+}
+/*提示信息之间的垂直距离*/
+.loginrole-vertical-space5
+{
+	margin-top: 10px;
+}
+/*按钮水平距离1*/
+.loginrole-horizontal-space1
+{
+	margin-left: 64px;
+}
+/*按钮水平距离2*/
+.loginrole-horizontal-space2
+{
+	margin-left: 60px;
+}
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:快捷模式页面
+	作者:蔡俊雄
+	url:maintenance/maintenance/shortcut.html
+	版本:V1.0
+	时间:2015-01-30
+********************/
+
+
+/*容器*/
+.shortcut
+{
+	position: relative;
+	margin: 10px 7px 0px 7px;
+	font-size: 3.3rem;
+	color: #565656;
+}
+/*顶部*/
+.shortcut-top
+{
+}
+/*中部*/
+.shortcut-middle
+{
+	margin-top: 14px;
+}
+/*底部*/
+.shortcut-bottom
+{
+	margin-top: 15px;
+}
+/*左边按钮区域*/
+.shortcut .nav-left
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 40px;
+	height: 100%;
+}
+/*右边按钮区域*/
+.shortcut .nav-right
+{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 40px;
+	height: 100%;
+}
+/*分页按钮区域*/
+.shortcut .page-zone
+{
+	max-width:1344px; 
+	height:100%; 
+	position:relative; 
+	margin:0 auto; 
+}
+
+/*********************顶部*********************/
+/*面板容器-头部高度*/
+.shortcut-abnormal-height
+{
+	height: 36px;
+}
+/*面板容器-头部*/
+.shortcut-abnormal-title
+{
+	padding: 0 28px 0 38px;
+	background: url(../../../Image/CN/maintenance/icon/shortcut-title-icon.png) left 12px center no-repeat;
+}
+/*面板容器-头部高度*/
+.shortcut-atm-normal
+{
+	font-size: 3.2rem;
+}
+/*面板容器-内容高度*/
+.shortcut-abnormal-content-height
+{
+	height: 248px;
+}
+/*中间按钮区域*/
+.shortcut-abnormal-button-zone
+{
+	position:relative;
+	margin: 0 auto;
+	max-width: 1236px;
+}
+/*中间按钮区域-容器*/
+.shortcut-abnormal-button-zone ul
+{
+	margin: 0 40px;
+}
+/*中间按钮区域-单个按钮*/
+.shortcut-abnormal-button-zone ul li
+{
+	width: 32%;
+	height: 108px;
+	margin-right: 2%;
+}
+/*单3个按钮没右边距*/
+.shortcut-abnormal-button-zone ul li:nth-child(3n+3)
+{
+	margin-right: 0;
+}
+/*********************中部*********************/
+/*面板容器-头部高度*/
+.shortcut-function-height
+{
+	height: 45px;
+}
+/*面板容器-头部*/
+.shortcut-function-title
+{
+	padding: 0 28px 0 38px;
+	background: url(../../../Image/CN/maintenance/icon/shortcut-title-icon.png) left 12px center no-repeat;
+}
+/*面板容器-内容高度*/
+.shortcut-function-content-height
+{
+	height: 450px;
+}
+/*中间按钮区域*/
+.shortcut-function-button-zone
+{
+	position:relative;
+	margin: 0 auto;
+	max-width: 1236px;
+}
+/*中间按钮区域-容器*/
+.shortcut-function-button-zone ul
+{
+	margin: 0 40px;
+}
+/*中间按钮区域-单个按钮*/
+.shortcut-function-button-zone ul li
+{
+	width: 32%;
+	height: 108px;
+	margin-right: 2%;
+	margin-bottom: 20px;
+}
+/*第3个按钮没右边距*/
+.shortcut-function-button-zone ul li:nth-child(3n+3)
+{
+	margin-right: 0;
+}
+/*最后3个按钮没下边距(adam 20150820 修改注释掉下方三个样式，以修改其引起的按钮样式变样)*/
+.shortcut-function-button-zone ul li:nth-last-child(1)
+{
+	/*margin-bottom: 0;*/
+}
+.shortcut-function-button-zone ul li:nth-last-child(2)
+{
+	/*margin-bottom: 0;*/
+}
+.shortcut-function-button-zone ul li:nth-last-child(3)
+{
+	/*margin-bottom: 0;*/
+}
+/*********************底部*********************/
+
+
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:维护主界面
+	作者:蔡俊雄
+	url:maintenance/maintenance/maintenance.html
+	版本:V1.0
+	时间:2015-01-20
+********************/
+
+/*********************菜单*********************/
+/*菜单区域-用于遮罩绝对定位*/
+.navigation
+{
+	position: relative;
+	overflow: hidden;
+}
+/*菜单区域-用于遮罩绝对定位*/
+#navigation-mask
+{
+	position: absolute;
+	/*display: none;*/
+	left: 0;
+	top: 0;
+	z-index: 3;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: 0.5;
+}
+/*菜单统一配置*/
+.navigation ul
+{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	height: 100%;
+}
+/*单个菜单*/
+.navigation li
+{
+	position: relative;
+	float: left;
+	display: block;
+	width: 16.6666667%;
+	height: 100%;/*line-height:49px;*/
+}
+/*单个菜单链接*/
+.navigation ul li a
+{
+	position: relative;
+	display: block;
+	height: 100%;
+	text-decoration: none;
+	color: #ffffff;
+}
+/*单个菜单水平和垂直居中显示-外层*/
+.navigation li a div.middle-outer
+{
+	width: 100%;
+	height: 100%;
+	display: table;
+}
+/*单个菜单水平和垂直居中显示-内层*/
+.navigation li a div.middle-inner
+{
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 1.6rem;
+}
+/*单个菜单的背景或图标*/
+.navigation div.bg
+{
+	position: absolute;
+	display: none;
+}
+/*1级菜单的选中状态-显示背景*/
+.navigation li.selected div.bg, .navigation li.parent div.bg
+{
+	display: block;
+}
+/*********************1级菜单*********************/
+/*1级菜单*/
+.level-1
+{
+	position: relative;
+	height: 49px;
+	background-color: #595959;
+}
+/*1级菜单的边*/
+.level-1 li a
+{
+	background: url(../../../Image/CN/maintenance/maintenance/line-1.png) 0 11px no-repeat;
+}
+/*1级菜单的选中状态*/
+.level-1 li div.bg
+{
+	top: 6px;
+	background-color: #7B7B7B;
+	border-radius: 5px 5px 0 0;
+	width: 100%;
+	height: 43px;
+}
+/*********************2级菜单*********************/
+/*2级菜单*/
+.level-2
+{
+	position: relative;
+	height: 49px;
+	background-color: #7B7B7B;
+}
+/*2级菜单的边*/
+.level-2 li a
+{
+	background: url(../../../Image/CN/maintenance/maintenance/line-2.png) 0 11px no-repeat;
+}
+/*2级菜单-当前被选中的菜单*/
+.level-2 li.selected
+{
+	background: url(../../../Image/CN/maintenance/maintenance/nav-selected.png) center bottom -1px no-repeat;
+	background-color: #E52222;
+}
+/*2级菜单-当前菜单-有子级*/
+.level-2 li.parent div.bg
+{
+	position: absolute;
+	z-index: 1;
+	left: 50%;
+	bottom: -4px;
+	width: 13px;
+	height: 14px;
+	background: url(../../../Image/CN/maintenance/maintenance/level-2-parent.png) center bottom no-repeat;
+}
+/*********************3级菜单*********************/
+/*3级菜单*/
+.level-3
+{
+	position: relative;
+	height: 49px;
+	background-color: #AEAEAE;
+	border: 2px solid #E52222;
+}
+/*3级菜单的边*/
+.level-3 li a
+{
+	background: url(../../../Image/CN/maintenance/maintenance/line-3.png) 0 11px no-repeat;
+}
+/*3级菜单-当前被选中的菜单-有子级*/
+.level-3 li.selected, .level-3 li.parent
+{
+	background-color: #E52222;
+}
+/*3级菜单-当前菜单-图标*/
+.level-3 div.bg
+{
+	position: absolute;
+	z-index: 1;
+	left: 50%;
+	bottom: -4px;
+	width: 13px;
+	height: 14px;
+	background: url(../../../Image/CN/maintenance/maintenance/nav-selected.png) center bottom no-repeat;
+}
+/*********************菜单的选中状态*********************/
+/*1级菜单第1个菜单没有边*/
+.navigation li:first-child a
+{
+	background-image: none;
+}
+/*菜单的选中状态-左右不显示分隔线*/
+.navigation li.selected a
+{
+	background-image: none;
+}
+/*菜单的选中状态-左右不显示分隔线*/
+.navigation li.selected+li a
+{
+	background-image: none;
+}
+/*3级菜单当前被选中的菜单-有子级-左右不显示分隔线*/
+.level-3 li.parent a
+{
+	background-image: none;
+}
+/*3级菜单当前被选中的菜单-有子级-左右不显示分隔线*/
+.level-3 li.parent+li a
+{
+	background-image: none;
+}
+/*********************分页按钮*********************/
+/*左边按钮区域*/
+.navigation .nav-left
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 40px;
+	height: 100%;
+	background-color: #353535;
+	z-index: 2;
+}
+/*右边按钮区域*/
+.navigation .nav-right
+{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 40px;
+	height: 100%;
+	background-color: #353535;
+	z-index: 2;
+}
+/*菜单区域*/
+.navigation .nav-zone
+{
+	position:relative;
+	height: 100%;
+	margin:0 40px;
+}
+/*左边按钮区域*/
+.navigation .nav-left.none~.nav-zone
+{
+	margin-left: 0px;
+}
+/*右边按钮区域*/
+.navigation .nav-right.none~.nav-zone
+{
+	margin-right: 0px;
+}
+/*********************导航路径*********************/
+/*导航路径容器*/
+#nav-path
+{
+	position: relative;
+	/*width:100%;
+	overflow:hidden;*/
+	height: 44px;
+}
+/*导航路径*/
+#nav-path ul
+{
+	margin: 0;
+	padding: 0;
+	padding-left: 10px;
+	list-style: none;
+	height: 100%;
+}
+/*单个路径*/
+#nav-path li
+{
+	position: relative;
+	float: left;
+	display: block;
+	height: 100%;
+	font-size: 2.2rem;
+	line-height: 44px;
+	color: #5A5A5A;
+}
+/*单个路径-父级路径*/
+#nav-path li.parent
+{
+	color: #D10909;
+}
+/*********************流程容器*********************/
+/*流程容器*/
+#handleguide-container
+{
+	z-index: 2;
+	position: relative;
+	width: 100%;
+	height: 70px;/*background-color:#333;*/
+}
+/*进度条-背景*/
+.progress-bg
+{
+	position: absolute;
+	left: 0;
+	top: 11px;
+	width: 100%;
+	height: 7px;
+	background-color: #FFF;
+}
+/*进度条-前景*/
+.progress-fg
+{
+	height: 100%;
+	background-color: #E01E1E;
+	width: 0%;/*实时变化*/
+}
+/*进度容器*/
+.progress-container
+{
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+/*单个进度说明*/
+.progress-container li
+{
+	position: relative;
+	float: left;
+	display: block;
+	text-align: center;
+	width: 20%;/*实时变化*/
+}
+/*进度-圆形数字*/
+.progress-step-number
+{
+	width: 28px;
+	height: 28px;
+	border-radius: 14px;
+	line-height: 28px;
+	margin: 0 auto;
+	background-color: #FFF;
+	text-align: center;
+	font-size: 2.2rem;
+	color: #4F4F4F;
+}
+/*进度-圆形数字-过去状态和当前状态*/
+.step-passed .progress-step-number, .step-current .progress-step-number
+{
+	background-color: #E01E1E;
+	color: #FFF;
+}
+/*进度-描述文字*/
+.progress-step-description
+{
+	width: 100%;
+	text-align: center;
+	font-size: 2.2rem;
+	color: #4F4F4F;
+	margin-top: 10px;
+}
+/*进度-描述文字-当前状态*/
+.step-current .progress-step-description
+{
+	color: #E01E1E;
+}
+/*********************流程按钮区域*********************/
+/*流程按钮区域*/
+.flow-button-zone
+{
+	position: absolute;
+	right: 20px;
+	top: 547px;
+}
+/*流程按钮水平间距*/
+.flow-button-hspace
+{
+	margin-right: 3px;
+}
+/*********************子界面容器*********************/
+/*子界面容器-外层*/
+.maintenance-container-wrapper
+{
+	/*background-color:#333;*/
+	position: relative;
+	height: 100%;
+	/*height: 100%;*/
+	/*width: 100%;
+	position: absolute;
+	left: 0px;
+	top: 0px;*/
+}
+/*子界面容器*/
+.maintenance-container
+{
+	/*background-color:#333;*/
+	/*position: relative;
+	width: 100%;
+	height: 100%;*/
+	width: 100%;
+	height: 100%;
+	/*position: absolute;
+	left: 0px;
+	top: 0px;
+	bottom:0px;*/
+	/*background:#999;*/
+}
+/*********************底部*********************/
+
+/*底部*/
+.bottom
+{
+	position: absolute;
+	position: fixed;
+	z-index: 3;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 102px;
+	background-color: #D7D7D7;
+}
+/*按钮区域*/
+.bottom-button-zone
+{
+	margin-top: 14px;
+	padding: 0 10px;
+}
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机管理主页面
+	作者:蔡俊雄
+	url:maintenance/totalmanage/totallist.html
+	版本:V1.0
+	时间:2015-01-26
+********************/
+
+/*********************表格初始配置*********************/
+/*表格*/
+.totallist table
+{
+	border-collapse: separate;
+	border-spacing: 0;
+	border: solid #A6A6A6 1px;
+	border-radius: 7px;
+	font-size:2.1rem;
+}
+/*表头和单元格*/
+.totallist th, .totallist td
+{
+	text-align: center;
+}
+.totallist thead th:first-child
+{
+	border-radius: 7px 0 0 0;
+}
+.totallist thead th:last-child
+{
+	border-radius: 0 7px 0 0;
+}
+.totallist thead th:only-child
+{
+	border-radius: 7px 7px 0 0;
+}
+/*最后一行*/
+.totallist tr:last-child td:first-child
+{
+	border-radius: 0 0 0 7px;
+}
+.totallist tr:last-child td:last-child
+{
+	border-radius: 0 0 7px 0;
+}
+.totallist tr:last-child td:only-child
+{
+	border-radius: 0 0 7px 7px;
+}
+.totallist tbody tr:last-child th:first-child
+{
+	border-radius: 0 0 0 7px;
+}
+/*顶部-表格-表头*/
+.totallist thead th
+{
+	height: 36px;
+	background: rgb(241,241,241);
+	background: -moz-linear-gradient(top,  rgb(241,241,241) 0%, rgb(229,229,229) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(241,241,241)), color-stop(100%,rgb(229,229,229)));
+	background: -webkit-linear-gradient(top,  rgb(241,241,241) 0%,rgb(229,229,229) 100%);
+	background: -o-linear-gradient(top,  rgb(241,241,241) 0%,rgb(229,229,229) 100%);
+	background: -ms-linear-gradient(top,  rgb(241,241,241) 0%,rgb(229,229,229) 100%);
+	background: linear-gradient(to bottom,  rgb(241,241,241) 0%,rgb(229,229,229) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1f1f1', endColorstr='#e5e5e5',GradientType=0 );
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #D7D7D7;
+}
+/*顶部-表格-表头-垂直分隔线-最后一个*/
+.totallist thead th:last-child
+{
+	border-right: none;
+}
+/*顶部-表格-左边表头*/
+.totallist tbody th
+{
+	height: 40px;
+	border-right: 1px solid #D7D7D7;
+}
+/*顶部-表格-单元格-垂直分隔线*/
+.totallist td
+{
+	height: 40px;
+	border-right: 1px solid #D7D7D7;
+}
+/*顶部-表格-单元格-垂直分隔线-最后一个*/
+.totallist td:last-child
+{
+	border-right: none;
+}
+/*顶部-表格-单元格-奇数行*/
+.totallist tbody tr:nth-child(odd)
+{
+	background: #F2F2F2;
+}
+/*顶部-表格-单元格-偶数行*/
+.totallist tbody tr:nth-child(even)
+{
+	background: #FFFFFF;
+}
+/*********************顶部*********************/
+/*顶部*/
+.totallist-top
+{
+	position: relative;
+	margin: 0 10px;
+}
+/*顶部-表格-翻页按钮*/
+.totallist-top-paging
+{
+	width: 40px;
+}
+/*********************中部*********************/
+/*中部*/
+.totallist-middle
+{
+	position: relative;
+	margin: 10px;
+	margin-bottom: 0;
+}
+/*中部-左边*/
+.totallist-middle-left
+{
+	margin-right: 210px;/*width:500px;
+	min-width:400px;*/
+}
+/*中部-右边*/
+.totallist-middle-right
+{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 200px;
+	min-width: 150px;
+}
+/*中部-右边表格标题*/
+.totallist-title
+{
+	font-weight: bold;
+	background: rgb(241,241,241);
+	background: -moz-linear-gradient(top,  rgb(241,241,241) 0%, rgb(229,229,229) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(241,241,241)), color-stop(100%,rgb(229,229,229)));
+	background: -webkit-linear-gradient(top,  rgb(241,241,241) 0%,rgb(229,229,229) 100%);
+	background: -o-linear-gradient(top,  rgb(241,241,241) 0%,rgb(229,229,229) 100%);
+	background: -ms-linear-gradient(top,  rgb(241,241,241) 0%,rgb(229,229,229) 100%);
+	background: linear-gradient(to bottom,  rgb(241,241,241) 0%,rgb(229,229,229) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1f1f1', endColorstr='#e5e5e5',GradientType=0 );
+	border-top: 1px solid #D7D7D7;
+	border-bottom: 1px solid #D7D7D7;
+}
+/*中部-右边-内容*/
+.totallist-content
+{
+	color: #d10909;
+}
+/*********************底部*********************/
+/*底部*/
+.totallist-bottom
+{
+	margin: 20px 10px 0px 10px;
+	font-size: 1.6rem;
+}
+/*底部-数字显示*/
+.totallist-bottom-number
+{
+	color: #4485b7;
+}
+/*底部-左边*/
+.totallist-bottom-left
+{
+	float: left;
+}
+/*底部-左边-内部容器*/
+.totallist-bottom-left div
+{
+	height: 40px;
+}
+/*底部-右边*/
+.totallist-bottom-right
+{
+	float: left;
+	margin-left: 80px;
+}
+/*底部-右边-内部容器*/
+.totallist-bottom-right div
+{
+	height: 40px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机管理-打印结账
+	作者:蔡俊雄
+	url:maintenance/totalmanage/accounts.html
+	版本:V1.0
+	时间:2015-02-10
+********************/
+
+
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机管理-打印吞卡记录
+	作者:蔡俊雄
+	url:maintenance/totalmanage/exception/getcapturecards.html
+	版本:V1.0
+	时间:2015-03-04
+********************/
+
+
+/*容器*/
+.get-capture-cards
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机管理-本周期异常交易
+	作者:蔡俊雄
+	url:maintenance/totalmanage/exception/currentperiodexception.html
+	版本:V1.0
+	时间:2015-03-05
+********************/
+
+
+/*容器*/
+.current-period-exception
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机管理-上周期异常交易
+	作者:蔡俊雄
+	url:maintenance/totalmanage/exception/previousperiodexception.html
+	版本:V1.0
+	时间:2015-03-05
+********************/
+
+
+/*容器*/
+.previous-period-exception
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统诊断-系统自动诊断
+	作者:蔡俊雄
+	url:maintenance/systemdiagnose/systemdiagnose.html
+	版本:V1.0
+	时间:2015-03-11
+********************/
+
+
+/*容器*/
+.system-diagnose
+{
+	padding:10px;
+}
+/*容器-背景*/
+.system-diagnose .bg-wrapper
+{
+	position: relative;
+	width:100%;
+	height: 100%;
+	background-color: #FFF;
+	border: 1px solid #B2B2B2;
+	border-radius: 8px;
+	overflow:hidden;
+}
+/*ATM机型容器*/
+.atm-container
+{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+}
+/*错误提示信息*/
+.error-information
+{
+	position:absolute;
+	left:10px;
+	top:5px;
+	color:#F00;
+	font-size:3rem;
+	width:100%;
+}
+
+/*ATM部件盒子*/
+.atm-device-box
+{
+	position:absolute;
+	left:0px;
+	top:0px;
+}
+/*ATM部件容器*/
+.atm-device-container
+{
+	position:absolute;
+	right:0px;
+	top:0px;
+	width:260px;
+	background:#fff;
+}
+/*ATM部件信息,ATM部件模板*/
+#atm-device-information,#atm-device-template
+{
+	position:absolute;
+	left:0px;
+	top:80px;
+}
+/*ATM部件单行显示*/
+.atm-device-row
+{
+	font-size:1.8rem;line-height:1;margin-bottom:15px;
+}
+/*********************ATM部件状态颜色描述*********************/
+/*部件状态颜色描述-正常*/
+.atm-device-color-normal
+{
+	color:#2BA22B;
+}
+/*部件状态颜色描述-警告*/
+.atm-device-color-warn
+{
+	color:#E7A307;
+}
+/*部件状态颜色描述-警告*/
+.atm-device-color-warning
+{
+	color:#E7A307;
+}
+/*部件状态颜色描述-错误*/
+.atm-device-color-error
+{
+	color:#FF0000;
+}
+/*部件状态颜色描述-无设备*/
+.atm-device-color-none
+{
+	color:#2BA22B;
+}
+
+
+/*********************ATM部件状态*********************/
+/*ATM部件状态*/
+.atm-device-state
+{
+	width:35px;
+	height:35px;
+}
+/*ATM部件状态-正确*/
+.atm-device-state-normal
+{
+	background-image: url(../../../Image/CN/maintenance/atm/normal.png);
+	background-repeat: no-repeat;
+}
+/*ATM部件状态-错误*/
+.atm-device-state-error
+{
+	background-image: url(../../../Image/CN/maintenance/atm/error.png);
+	background-repeat: no-repeat;
+}
+/*ATM部件状态-警告*/
+.atm-device-state-warning
+{
+	background-image: url(../../../Image/CN/maintenance/atm/warning.png);
+	background-repeat: no-repeat;
+}
+/*部件名称-字体*/
+.system-diagnose .atm-device-name
+{
+	font-size:1.8rem;
+}
+/*********************I58*********************/
+/*ATM机器图片*/
+.atm-i58 .atm-image
+{
+	position:absolute;
+	left:68px;
+	top:60px;
+	width:431px;
+	height:580px;
+	background-image: url(../../../Image/CN/maintenance/atm/i58/i58.png);
+	background-repeat: no-repeat;
+}
+
+.atm-i58 .atm-swf
+{
+	position:absolute;
+	left:68px;
+	top:60px;
+	width:431px;
+	height:580px;
+	background-image: url(../../../Image/CN/maintenance/atm/i58/i58.swf); 
+	background-repeat: no-repeat;
+}
+
+/******凭条打印机******/
+/*凭条打印机-部件名称*/
+.atm-i58 .single-device-printer .atm-device-name
+{
+	position:absolute;
+	left:0px;
+	top:405px;
+	width:150px;
+	text-align:right;
+}
+/*凭条打印机-线条图片*/
+.atm-i58 .single-device-printer .atm-device-line
+{
+	position:absolute;
+	left:150px;
+	top:245px;
+	width:139px;
+	height:176px;
+	background-image: url(../../../Image/CN/maintenance/atm/i58/line-printer.png);
+	background-repeat: no-repeat;
+}
+/*凭条打印机-部件状态*/
+.atm-i58 .single-device-printer .atm-device-state
+{
+	position:absolute;
+	left:250px;
+	top:210px;
+}
+
+/******流水打印机******/
+/*流水打印机-部件名称*/
+.atm-i58 .single-device-jprinter .atm-device-name
+{
+	position:absolute;
+	left:0px;
+	top:152px;
+	width:155px;
+	text-align:right;
+}
+/*流水打印机-线条图片*/
+.atm-i58 .single-device-jprinter .atm-device-line
+{
+	position:absolute;
+	left:155px;
+	top:162px;
+	width:144px;
+	height:1px;
+	background-image: url(../../../Image/CN/maintenance/atm/i58/line-jprinter.png);
+	background-repeat: no-repeat;
+}
+/*流水打印机-部件状态*/
+.atm-i58 .single-device-jprinter .atm-device-state
+{
+	position:absolute;
+	left:293px;
+	top:146px;
+}
+
+/******读卡器******/
+/*读卡器-部件名称*/
+.atm-i58 .single-device-cardreader .atm-device-name
+{
+	position:absolute;
+	left:0px;
+	top:350px;
+	width:150px;
+	text-align:right;
+}
+/*读卡器-线条图片*/
+.atm-i58 .single-device-cardreader .atm-device-line
+{
+	position:absolute;
+	left:147px;
+	top:285px;
+	width:102px;
+	height:84px;
+	background-image: url(../../../Image/CN/maintenance/atm/i58/line-cardreader.png);
+	background-repeat: no-repeat;
+}
+/*读卡器-部件状态*/
+.atm-i58 .single-device-cardreader .atm-device-state
+{
+	position:absolute;
+	left:225px;
+	top:250px;
+}
+
+/******键盘******/
+/*键盘-部件名称*/
+.atm-i58 .single-device-keypad .atm-device-name
+{
+	position:absolute;
+	left:0px;
+	top:125px;
+	width:206px;
+	text-align:center;
+}
+/*键盘-线条图片*/
+.atm-i58 .single-device-keypad .atm-device-line
+{
+	position:absolute;
+	left:103px;
+	top:150px;
+	width:1px;
+	height:101px;
+	background-image: url(../../../Image/CN/maintenance/atm/i58/line-keypad.png);
+	background-repeat: no-repeat;
+}
+/*键盘-部件状态*/
+.atm-i58 .single-device-keypad .atm-device-state
+{
+	position:absolute;
+	left:88px;
+	top:240px;
+}
+
+
+/******机芯******/
+/*机芯-部件名称*/
+.atm-i58 .single-device-dispenser .atm-device-name
+{
+	position:absolute;
+	left:0px;
+	top:477px;
+	width:150px;
+	text-align:right;
+}
+/*机芯-线条图片*/
+.atm-i58 .single-device-dispenser .atm-device-line
+{
+	position:absolute;
+	left:150px;
+	top:486px;
+	width:53px;
+	height:1px;
+	background-image: url(../../../Image/CN/maintenance/atm/i58/line-dispenser.png);
+	background-repeat: no-repeat;
+}
+/*机芯-部件状态*/
+.atm-i58 .single-device-dispenser .atm-device-state
+{
+	position:absolute;
+	left:190px;  /*205*/
+	top:468px;
+}
+
+/******信封存款******/
+/*信封存款-部件名称*/
+.atm-i58 .single-device-envelope .atm-device-name
+{
+	position:absolute;
+	left:0px;
+	top:192px;
+	width:155px;
+	text-align:right;
+}
+/*信封存款-线条图片*/
+.atm-i58 .single-device-envelope .atm-device-line
+{
+	position:absolute;
+	left:155px;
+	top:202px;
+	width:144px;
+	height:1px;
+	background-image: url(../../../Image/CN/maintenance/atm/i58/line-envelope.png);
+	background-repeat: no-repeat;
+}
+/*信封存款-部件状态*/
+.atm-i58 .single-device-envelope .atm-device-state
+{
+	position:absolute;
+	left:303px;
+	top:186px;
+}
+/****************************************************************************************************/ 
+
+/*********************H22N*********************/
+/*ATM机器图片*/
+.atm-H22N .atm-image
+{
+	position:absolute;
+	left:68px;
+	top:35px;
+	width:431px;
+	height:580px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22N/H22N.png);
+	background-repeat: no-repeat;
+}
+
+.atm-H22N .atm-swf
+{
+	position:absolute;
+	left:68px;
+	top:35px;
+	width:431px;
+	height:580px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22N/H22N.swf); 
+	background-repeat: no-repeat;
+}
+
+/******凭条打印机******/
+/*凭条打印机-部件名称*/
+.atm-H22N .single-device-printer .atm-device-name
+{
+	position:absolute;
+	left:275px;
+	top:165px;
+	width:150px;
+	text-align:right;
+}
+/*凭条打印机-线条图片*/
+.atm-H22N .single-device-printer .atm-device-line
+{
+	position:absolute;
+	left:270px;
+	top:180px;
+	width:160px;
+	height:100px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22N/line-printer.png);
+	background-repeat: no-repeat;
+}
+/*凭条打印机-部件状态*/
+.atm-H22N .single-device-printer .atm-device-state
+{
+	position:absolute;
+	left:325px;
+	top:280px;
+}
+
+/******流水打印机******/
+/*流水打印机-部件名称*/
+.atm-H22N .single-device-jprinter .atm-device-name
+{
+	position:absolute;
+	left:340px;
+	top:315px;
+	width:155px;
+	text-align:right;
+}
+/*流水打印机-线条图片*/
+.atm-H22N .single-device-jprinter .atm-device-line
+{
+	position:absolute;
+	left:300px;
+	top:310px;
+	width:135px;
+	height:200px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22N/line-jprinter.png);
+	background-repeat: no-repeat;
+}
+/*流水打印机-部件状态*/
+.atm-H22N .single-device-jprinter .atm-device-state
+{
+	position:absolute;
+	left:265px;
+	top:320px;
+}
+
+/******读卡器******/
+/*读卡器-部件名称*/
+.atm-H22N .single-device-cardreader .atm-device-name
+{
+	position:absolute;
+	left:270px;
+	top:415px;
+	width:150px;
+	text-align:right;
+}
+/*读卡器-线条图片*/
+.atm-H22N .single-device-cardreader .atm-device-line
+{
+	position:absolute;
+	left:210px;
+	top:335px;
+	width:200px;
+	height:85px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22N/line-cardreader.png);
+	background-repeat: no-repeat;
+}
+/*读卡器-部件状态*/
+.atm-H22N .single-device-cardreader .atm-device-state
+{
+	position:absolute;
+	left:200px;
+	top:280px;
+}
+
+/******键盘******/
+/*键盘-部件名称*/
+.atm-H22N .single-device-keypad .atm-device-name
+{
+	position:absolute;
+	left:280px;
+	top:465px;
+	width:206px;
+	text-align:center;
+}
+/*键盘-线条图片*/
+.atm-H22N .single-device-keypad .atm-device-line
+{
+	position:absolute;
+	left:110px;
+	top:300px;
+	width:250px;
+	height:190px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22N/line-keypad.png);
+	background-repeat: no-repeat;
+}
+/*键盘-部件状态*/
+.atm-H22N .single-device-keypad .atm-device-state
+{
+	position:absolute;
+	left:125px;
+	top:295px;
+}
+
+
+/******机芯******/
+/*机芯-部件名称*/
+.atm-H22N .single-device-dispenser .atm-device-name
+{
+	position:absolute;
+	left:260px;
+	top:510px;
+	width:150px;
+	text-align:right;
+}
+/*机芯-线条图片*/
+.atm-H22N .single-device-dispenser .atm-device-line
+{
+	position:absolute;
+	left:250px;
+	top:486px;
+	width:195px;
+	height:30px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22N/line-dispenser.png);
+	background-repeat: no-repeat;
+}
+/*机芯-部件状态*/
+.atm-H22N .single-device-dispenser .atm-device-state
+{
+	position:absolute;
+	left:230px;
+	top:468px;
+}
+/***************** H22N END *******************/
+
+/*********************H22NL*********************/
+/*ATM机器图片*/
+.atm-H22NL .atm-image
+{
+	position:absolute;
+	left:68px;
+	top:60px;
+	width:431px;
+	height:580px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22NL/H22NL.png);
+	background-repeat: no-repeat;
+}
+
+.atm-H22NL .atm-swf
+{
+	position:absolute;
+	left:68px;
+	top:60px;
+	width:431px;
+	height:580px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22NL/H22NL.swf); 
+	background-repeat: no-repeat;
+}
+
+/******凭条打印机******/
+/*凭条打印机-部件名称*/
+.atm-H22NL .single-device-printer .atm-device-name
+{
+	position:absolute;
+	left:50px;
+	top:195px;
+	width:150px;
+	text-align:right;
+}
+/*凭条打印机-线条图片*/
+.atm-H22NL .single-device-printer .atm-device-line
+{
+	position:absolute;
+	left:210px;
+	top:210px;
+	width:179px;
+	height:165px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22NL/line-printer.png);
+	background-repeat: no-repeat;
+}
+/*凭条打印机-部件状态*/
+.atm-H22NL .single-device-printer .atm-device-state
+{
+	position:absolute;
+	left:345px;
+	top:300px;
+}
+
+/******流水打印机******/
+/*流水打印机-部件名称*/
+.atm-H22NL .single-device-jprinter .atm-device-name
+{
+	position:absolute;
+	left:270px;
+	top:185px;
+	width:155px;
+	text-align:right;
+}
+/*流水打印机-线条图片*/
+.atm-H22NL .single-device-jprinter .atm-device-line
+{
+	position:absolute;
+	left:375px;
+	top:200px;
+	width:144px;
+	height:200px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22NL/line-jprinter.png);
+	background-repeat: no-repeat;
+}
+/*流水打印机-部件状态*/
+.atm-H22NL .single-device-jprinter .atm-device-state
+{
+	position:absolute;
+	left:390px;
+	top:340px;
+}
+
+/******读卡器******/
+/*读卡器-部件名称*/
+.atm-H22NL .single-device-cardreader .atm-device-name
+{
+	position:absolute;
+	left:0px;
+	top:325px;
+	width:150px;
+	text-align:right;
+}
+/*读卡器-线条图片*/
+.atm-H22NL .single-device-cardreader .atm-device-line
+{
+	position:absolute;
+	left:155px;
+	top:345px;
+	width:160px;
+	height:84px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22NL/line-cardreader.png);
+	background-repeat: no-repeat;
+}
+/*读卡器-部件状态*/
+.atm-H22NL .single-device-cardreader .atm-device-state
+{
+	position:absolute;
+	left:290px;
+	top:365px;
+}
+
+/******键盘******/
+/*键盘-部件名称*/
+.atm-H22NL .single-device-keypad .atm-device-name
+{
+	position:absolute;
+	left:0px;
+	top:440px;
+	width:206px;
+	text-align:center;
+}
+/*键盘-线条图片*/
+.atm-H22NL .single-device-keypad .atm-device-line
+{
+	position:absolute;
+	left:120px;
+	top:420px;
+	width:100px;
+	height:30px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22NL/line-keypad.png);
+	/* background-repeat: no-repeat; */
+}
+/*键盘-部件状态*/
+.atm-H22NL .single-device-keypad .atm-device-state
+{
+	position:absolute;
+	left:225px;
+	top:390px;
+}
+
+
+/******机芯******/
+/*机芯-部件名称*/
+.atm-H22NL .single-device-dispenser .atm-device-name
+{
+	position:absolute;
+	left:0px;
+	top:500px;
+	width:150px;
+	text-align:right;
+}
+/*机芯-线条图片*/
+.atm-H22NL .single-device-dispenser .atm-device-line
+{
+	position:absolute;
+	left:150px;
+	top:486px;
+	width:195px;
+	height:30px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22NL/line-dispenser.png);
+	/* background-repeat: no-repeat; */
+}
+/*机芯-部件状态*/
+.atm-H22NL .single-device-dispenser .atm-device-state
+{
+	position:absolute;
+	left:360px;
+	top:468px;
+}
+/***************** H22NL END *******************/
+
+/*********************P5500L*********************/
+/*ATM机器图片*/
+.atm-P5500L .atm-image
+{
+	position:absolute;
+	left:68px;
+	top:0px;
+	width:580px;
+	height:600px;
+	background-image: url();
+	background-repeat: no-repeat;
+} 
+.atm-P5500L .atm-swf
+{
+	position:absolute;
+	left:68px;
+	top:0px;
+	width:431px;
+	height:580px;
+	background-image: url(../../../Image/CN/maintenance/atm/P5500L/P5500L.swf);
+	background-repeat: no-repeat;
+}
+/******凭条打印机******/
+/*凭条打印机-部件名称*/
+.atm-P5500L .single-device-printer .atm-device-name
+{
+	position:absolute;
+	left:20px;
+	top:265px;
+	width:150px;
+	text-align:right;
+}
+/*凭条打印机-线条图片*/
+.atm-P5500L .single-device-printer .atm-device-line
+{
+	position:absolute;
+	left:180px;
+	top:275px;
+	width:139px;
+	height:176px;
+	background-image: url(../../../Image/CN/maintenance/atm/P5500L/line-printer.png);
+	background-repeat: no-repeat;
+}
+/*凭条打印机-部件状态*/
+.atm-P5500L .single-device-printer .atm-device-state
+{
+	position:absolute;
+	left:300px;
+	top:100px;
+}
+/******流水打印机******/
+/*流水打印机-部件名称*/
+.atm-P5500L .single-device-jprinter .atm-device-name
+{
+	position:absolute;
+	left:85px;
+	top:150px;
+	width:155px;
+	text-align:right;
+}
+/*流水打印机-线条图片*/
+.atm-P5500L .single-device-jprinter .atm-device-line
+{
+	position:absolute;
+	left:225px;
+	top:175px;
+	width:160px;
+	height:200px;
+	background-image: url(../../../Image/CN/maintenance/atm/P5500L/line-jprinter.png);
+	background-repeat: no-repeat;
+}
+/*流水打印机-部件状态*/
+.atm-P5500L .single-device-jprinter .atm-device-state
+{
+	position:absolute;
+	left:230px;
+	top:120px;
+}
+/******读卡器******/
+/*读卡器-部件名称*/
+.atm-P5500L .single-device-cardreader .atm-device-name
+{
+	position:absolute;
+	left:50px;
+	top:385px;
+	width:150px;
+	text-align:right;
+}
+/*读卡器-线条图片*/
+.atm-P5500L .single-device-cardreader .atm-device-line
+{
+	position:absolute;
+	left:205px;
+	top:315px;
+	width:292px;
+	height:84px;
+	background-image: url(../../../Image/CN/maintenance/atm/P5500L/line-cardreader.png);
+	background-repeat: no-repeat;
+}
+/*读卡器-部件状态*/
+.atm-P5500L .single-device-cardreader .atm-device-state
+{
+	position:absolute;
+	left:350px;
+	top:146px;
+}
+/******键盘******/
+/*键盘-部件名称*/
+.atm-P5500L .single-device-keypad .atm-device-name
+{
+	position:absolute;
+	left:55px;
+	top:320px;
+	width:206px;
+	text-align:center;
+}
+/*键盘-线条图片*/
+.atm-P5500L .single-device-keypad .atm-device-line
+{
+	position:absolute;
+	left:185px;
+	top:285px;
+	width:200px;
+	height:50px;
+	background-image: url(../../../Image/CN/maintenance/atm/P5500L/line-keypad.png);
+	background-repeat: no-repeat;
+}
+/*键盘-部件状态*/
+.atm-P5500L .single-device-keypad .atm-device-state
+{
+	position:absolute;
+	left:380px;
+	top:280px;
+}
+/******机芯******/
+/*机芯-部件名称*/
+.atm-P5500L .single-device-dispenser .atm-device-name
+{
+	position:absolute;
+	left:30px;
+	top:465px;
+	width:150px;
+	text-align:right;
+}
+/*机芯-线条图片*/
+.atm-P5500L .single-device-dispenser .atm-device-line
+{
+	position:absolute;
+	left:190px;
+	top:456px;
+	width:153px;
+	height:30px;
+	background-image: url(../../../Image/CN/maintenance/atm/P5500L/line-dispenser.png);
+	background-repeat: no-repeat;
+}
+/*机芯-部件状态*/
+.atm-P5500L .single-device-dispenser .atm-device-state
+{
+	position:absolute;
+	left:380px;  /*205*/
+	top:450px;
+}
+/***************************************************/
+/*********************I21*********************/
+/*ATM机器图片*/
+.atm-I21 .atm-image
+{
+	position:absolute;
+	left:68px;
+	top:0px;
+	width:431px;
+	height:580px;
+	background-image: url();
+	background-repeat: no-repeat;
+} 
+.atm-I21 .atm-swf
+{
+	position:absolute;
+	left:68px;
+	top:0px;
+	width:431px;
+	height:580px;
+	background-image: url(../../../Image/CN/maintenance/atm/I21/I21.swf);
+	background-repeat: no-repeat;
+}
+/******凭条打印机******/
+/*凭条打印机-部件名称*/
+.atm-I21 .single-device-printer .atm-device-name
+{
+	position:absolute;
+	left:20px;
+	top:265px;
+	width:150px;
+	text-align:right;
+}
+/*凭条打印机-线条图片*/
+.atm-I21 .single-device-printer .atm-device-line
+{
+	position:absolute;
+	left:180px;
+	top:275px;
+	width:139px;
+	height:176px;
+	background-image: url(../../../Image/CN/maintenance/atm/I21/line-printer.png);
+	background-repeat: no-repeat;
+}
+/*凭条打印机-部件状态*/
+.atm-I21 .single-device-printer .atm-device-state
+{
+	position:absolute;
+	left:150px;
+	top:160px;
+}
+/******流水打印机******/
+/*流水打印机-部件名称*/
+.atm-I21 .single-device-jprinter .atm-device-name
+{
+	position:absolute;
+	left:85px;
+	top:150px;
+	width:155px;
+	text-align:right;
+}
+/*流水打印机-线条图片*/
+.atm-I21 .single-device-jprinter .atm-device-line
+{
+	position:absolute;
+	left:225px;
+	top:175px;
+	width:160px;
+	height:200px;
+	background-image: url(../../../Image/CN/maintenance/atm/I21/line-jprinter.png);
+	background-repeat: no-repeat;
+}
+/*流水打印机-部件状态*/
+.atm-I21 .single-device-jprinter .atm-device-state
+{
+	position:absolute;
+	left:375px;
+	top:245px;
+}
+/******读卡器******/
+/*读卡器-部件名称*/
+.atm-I21 .single-device-cardreader .atm-device-name
+{
+	position:absolute;
+	left:50px;
+	top:385px;
+	width:150px;
+	text-align:right;
+}
+/*读卡器-线条图片*/
+.atm-I21 .single-device-cardreader .atm-device-line
+{
+	position:absolute;
+	left:205px;
+	top:315px;
+	width:292px;
+	height:84px;
+	background-image: url(../../../Image/CN/maintenance/atm/I21/line-cardreader.png);
+	background-repeat: no-repeat;
+}
+/*读卡器-部件状态*/
+.atm-I21 .single-device-cardreader .atm-device-state
+{
+	position:absolute;
+	left:310px;
+	top:145px;
+}
+/******键盘******/
+/*键盘-部件名称*/
+.atm-I21 .single-device-keypad .atm-device-name
+{
+	position:absolute;
+	left:55px;
+	top:320px;
+	width:206px;
+	text-align:center;
+}
+/*键盘-线条图片*/
+.atm-I21 .single-device-keypad .atm-device-line
+{
+	position:absolute;
+	left:185px;
+	top:285px;
+	width:200px;
+	height:50px;
+	background-image: url(../../../Image/CN/maintenance/atm/I21/line-keypad.png);
+	background-repeat: no-repeat;
+}
+/*键盘-部件状态*/
+.atm-I21 .single-device-keypad .atm-device-state
+{
+	position:absolute;
+	left:220px;
+	top:180px;
+}
+/******机芯******/
+/*机芯-部件名称*/
+.atm-I21 .single-device-dispenser .atm-device-name
+{
+	position:absolute;
+	left:30px;
+	top:465px;
+	width:150px;
+	text-align:right;
+}
+/*机芯-线条图片*/
+.atm-I21 .single-device-dispenser .atm-device-line
+{
+	position:absolute;
+	left:190px;
+	top:456px;
+	width:153px;
+	height:30px;
+	background-image: url(../../../Image/CN/maintenance/atm/I21/line-dispenser.png);
+	background-repeat: no-repeat;
+}
+/*机芯-部件状态*/
+.atm-I21 .single-device-dispenser .atm-device-state
+{
+	position:absolute;
+	left:200px;  /*205*/
+	top:400px;
+}
+/***************************************************/
+/*********************H22V*********************/
+/*ATM机器图片*/
+.atm-H22V .atm-image
+{
+	position:absolute;
+	left:68px;
+	top:0px;
+	width:431px;
+	height:580px;
+	background-image: url();
+	background-repeat: no-repeat;
+} 
+.atm-H22V .atm-swf
+{
+	position:absolute;
+	left:68px;
+	top:0px;
+	width:431px;
+	height:580px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22V/H22V.swf);
+	background-repeat: no-repeat;
+}
+/******凭条打印机******/
+/*凭条打印机-部件名称*/
+.atm-H22V .single-device-printer .atm-device-name
+{
+	position:absolute;
+	left:20px;
+	top:265px;
+	width:150px;
+	text-align:right;
+}
+/*凭条打印机-线条图片*/
+.atm-H22V .single-device-printer .atm-device-line
+{
+	position:absolute;
+	left:180px;
+	top:275px;
+	width:139px;
+	height:176px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22V/line-printer.png);
+	background-repeat: no-repeat;
+}
+/*凭条打印机-部件状态*/
+.atm-H22V .single-device-printer .atm-device-state
+{
+	position:absolute;
+	left:138px;
+	top:238px;
+}
+/******流水打印机******/
+/*流水打印机-部件名称*/
+.atm-H22V .single-device-jprinter .atm-device-name
+{
+	position:absolute;
+	left:85px;
+	top:150px;
+	width:155px;
+	text-align:right;
+}
+/*流水打印机-线条图片*/
+.atm-H22V .single-device-jprinter .atm-device-line
+{
+	position:absolute;
+	left:225px;
+	top:175px;
+	width:160px;
+	height:200px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22V/line-jprinter.png);
+	background-repeat: no-repeat;
+}
+/*流水打印机-部件状态*/
+.atm-H22V .single-device-jprinter .atm-device-state
+{
+	position:absolute;
+	left:375px;
+	top:245px;
+}
+/******读卡器******/
+/*读卡器-部件名称*/
+.atm-H22V .single-device-cardreader .atm-device-name
+{
+	position:absolute;
+	left:50px;
+	top:385px;
+	width:150px;
+	text-align:right;
+}
+/*读卡器-线条图片*/
+.atm-H22V .single-device-cardreader .atm-device-line
+{
+	position:absolute;
+	left:205px;
+	top:315px;
+	width:292px;
+	height:84px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22V/line-cardreader.png);
+	background-repeat: no-repeat;
+}
+/*读卡器-部件状态*/
+.atm-H22V .single-device-cardreader .atm-device-state
+{
+	position:absolute;
+	left:365px;
+	top:230px;
+}
+/******键盘******/
+/*键盘-部件名称*/
+.atm-H22V .single-device-keypad .atm-device-name
+{
+	position:absolute;
+	left:55px;
+	top:320px;
+	width:206px;
+	text-align:center;
+}
+/*键盘-线条图片*/
+.atm-H22V .single-device-keypad .atm-device-line
+{
+	position:absolute;
+	left:185px;
+	top:285px;
+	width:200px;
+	height:50px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22V/line-keypad.png);
+	background-repeat: no-repeat;
+}
+/*键盘-部件状态*/
+.atm-H22V .single-device-keypad .atm-device-state
+{
+	position:absolute;
+	left:280px;
+	top:238px;
+}
+/******机芯******/
+/*机芯-部件名称*/
+.atm-H22V .single-device-dispenser .atm-device-name
+{
+	position:absolute;
+	left:30px;
+	top:465px;
+	width:150px;
+	text-align:right;
+}
+/*机芯-线条图片*/
+.atm-H22V .single-device-dispenser .atm-device-line
+{
+	position:absolute;
+	left:190px;
+	top:456px;
+	width:153px;
+	height:30px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22V/line-dispenser.png);
+	background-repeat: no-repeat;
+}
+/*机芯-部件状态*/
+.atm-H22V .single-device-dispenser .atm-device-state
+{
+	position:absolute;
+	left:280px;  /*205*/
+	top:450px;
+}
+/***************************************************/
+/*********************H22VL*********************/
+/*ATM机器图片*/
+.atm-H22VL .atm-image
+{
+	position:absolute;
+	left:68px;
+	top:0px;
+	width:431px;
+	height:580px;
+	background-image: url();
+	background-repeat: no-repeat;
+} 
+.atm-H22VL .atm-swf
+{
+	position:absolute;
+	left:68px;
+	top:0px;
+	width:431px;
+	height:580px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22VL/H22VL.swf);
+	background-repeat: no-repeat;
+}
+/******凭条打印机******/
+/*凭条打印机-部件名称*/
+.atm-H22VL .single-device-printer .atm-device-name
+{
+	position:absolute;
+	left:20px;
+	top:265px;
+	width:150px;
+	text-align:right;
+}
+/*凭条打印机-线条图片*/
+.atm-H22VL .single-device-printer .atm-device-line
+{
+	position:absolute;
+	left:180px;
+	top:275px;
+	width:139px;
+	height:176px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22VL/line-printer.png);
+	background-repeat: no-repeat;
+}
+/*凭条打印机-部件状态*/
+.atm-H22VL .single-device-printer .atm-device-state
+{
+	position:absolute;
+	left:175px;
+	top:238px;
+}
+/******流水打印机******/
+/*流水打印机-部件名称*/
+.atm-H22VL .single-device-jprinter .atm-device-name
+{
+	position:absolute;
+	left:85px;
+	top:150px;
+	width:155px;
+	text-align:right;
+}
+/*流水打印机-线条图片*/
+.atm-H22VL .single-device-jprinter .atm-device-line
+{
+	position:absolute;
+	left:225px;
+	top:175px;
+	width:160px;
+	height:200px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22VL/line-jprinter.png);
+	background-repeat: no-repeat;
+}
+/*流水打印机-部件状态*/
+.atm-H22VL .single-device-jprinter .atm-device-state
+{
+	position:absolute;
+	left:375px;
+	top:245px;
+}
+/******读卡器******/
+/*读卡器-部件名称*/
+.atm-H22VL .single-device-cardreader .atm-device-name
+{
+	position:absolute;
+	left:50px;
+	top:385px;
+	width:150px;
+	text-align:right;
+}
+/*读卡器-线条图片*/
+.atm-H22VL .single-device-cardreader .atm-device-line
+{
+	position:absolute;
+	left:205px;
+	top:315px;
+	width:292px;
+	height:84px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22VL/line-cardreader.png);
+	background-repeat: no-repeat;
+}
+/*读卡器-部件状态*/
+.atm-H22VL .single-device-cardreader .atm-device-state
+{
+	position:absolute;
+	left:278px;
+	top:230px;
+}
+/******键盘******/
+/*键盘-部件名称*/
+.atm-H22VL .single-device-keypad .atm-device-name
+{
+	position:absolute;
+	left:55px;
+	top:320px;
+	width:206px;
+	text-align:center;
+}
+/*键盘-线条图片*/
+.atm-H22VL .single-device-keypad .atm-device-line
+{
+	position:absolute;
+	left:185px;
+	top:285px;
+	width:200px;
+	height:50px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22VL/line-keypad.png);
+	background-repeat: no-repeat;
+}
+/*键盘-部件状态*/
+.atm-H22VL .single-device-keypad .atm-device-state
+{
+	position:absolute;
+	left:240px;
+	top:260px;
+}
+/******机芯******/
+/*机芯-部件名称*/
+.atm-H22VL .single-device-dispenser .atm-device-name
+{
+	position:absolute;
+	left:30px;
+	top:465px;
+	width:150px;
+	text-align:right;
+}
+/*机芯-线条图片*/
+.atm-H22VL .single-device-dispenser .atm-device-line
+{
+	position:absolute;
+	left:190px;
+	top:456px;
+	width:153px;
+	height:30px;
+	background-image: url(../../../Image/CN/maintenance/atm/H22VL/line-dispenser.png);
+	background-repeat: no-repeat;
+}
+/*机芯-部件状态*/
+.atm-H22VL .single-device-dispenser .atm-device-state
+{
+	position:absolute;
+	left:250px;  /*205*/
+	top:450px;
+}
+/***************************************************/
+/*********************H68V*********************/
+/*ATM机器图片*/
+.atm-H68V .atm-image
+{
+	position:absolute;
+	left:68px;
+	top:0px;
+	width:431px;
+	height:580px;
+	background-image: url();
+	background-repeat: no-repeat;
+} 
+.atm-H68V .atm-swf
+{
+	position:absolute;
+	left:68px;
+	top:0px;
+	width:431px;
+	height:580px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68V/H68V.swf);
+	background-repeat: no-repeat;
+}
+/******凭条打印机******/
+/*凭条打印机-部件名称*/
+.atm-H68V .single-device-printer .atm-device-name
+{
+	position:absolute;
+	left:20px;
+	top:265px;
+	width:150px;
+	text-align:right;
+}
+/*凭条打印机-线条图片*/
+.atm-H68V .single-device-printer .atm-device-line
+{
+	position:absolute;
+	left:180px;
+	top:275px;
+	width:139px;
+	height:176px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68V/line-printer.png);
+	background-repeat: no-repeat;
+}
+/*凭条打印机-部件状态*/
+.atm-H68V .single-device-printer .atm-device-state
+{
+	position:absolute;
+	left:350px;
+	top:160px;
+}
+/******流水打印机******/
+/*流水打印机-部件名称*/
+.atm-H68V .single-device-jprinter .atm-device-name
+{
+	position:absolute;
+	left:85px;
+	top:150px;
+	width:155px;
+	text-align:right;
+}
+/*流水打印机-线条图片*/
+.atm-H68V .single-device-jprinter .atm-device-line
+{
+	position:absolute;
+	left:225px;
+	top:175px;
+	width:160px;
+	height:200px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68V/line-jprinter.png);
+	background-repeat: no-repeat;
+}
+/*流水打印机-部件状态*/
+.atm-H68V .single-device-jprinter .atm-device-state
+{
+	position:absolute;
+	left:375px;
+	top:245px;
+}
+/******读卡器******/
+/*读卡器-部件名称*/
+.atm-H68V .single-device-cardreader .atm-device-name
+{
+	position:absolute;
+	left:50px;
+	top:385px;
+	width:150px;
+	text-align:right;
+}
+/*读卡器-线条图片*/
+.atm-H68V .single-device-cardreader .atm-device-line
+{
+	position:absolute;
+	left:205px;
+	top:315px;
+	width:292px;
+	height:84px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68V/line-cardreader.png);
+	background-repeat: no-repeat;
+}
+/*读卡器-部件状态*/
+.atm-H68V .single-device-cardreader .atm-device-state
+{
+	position:absolute;
+	left:350px;
+	top:210px;
+}
+/******键盘******/
+/*键盘-部件名称*/
+.atm-H68V .single-device-keypad .atm-device-name
+{
+	position:absolute;
+	left:55px;
+	top:320px;
+	width:206px;
+	text-align:center;
+}
+/*键盘-线条图片*/
+.atm-H68V .single-device-keypad .atm-device-line
+{
+	position:absolute;
+	left:185px;
+	top:285px;
+	width:200px;
+	height:50px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68V/line-keypad.png);
+	background-repeat: no-repeat;
+}
+/*键盘-部件状态*/
+.atm-H68V .single-device-keypad .atm-device-state
+{
+	position:absolute;
+	left:200px;
+	top:230px;
+}
+/******机芯******/
+/*机芯-部件名称*/
+.atm-H68V .single-device-dispenser .atm-device-name
+{
+	position:absolute;
+	left:30px;
+	top:465px;
+	width:150px;
+	text-align:right;
+}
+/*机芯-线条图片*/
+.atm-H68V .single-device-dispenser .atm-device-line
+{
+	position:absolute;
+	left:190px;
+	top:456px;
+	width:153px;
+	height:30px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68V/line-dispenser.png);
+	background-repeat: no-repeat;
+}
+/*机芯-部件状态*/
+.atm-H68V .single-device-dispenser .atm-device-state
+{
+	position:absolute;
+	left:200px;  /*205*/
+	top:400px;
+}
+/***************************************************/
+/*********************H68N*********************/
+/*ATM机器图片*/
+.atm-H68N .atm-image
+{
+	position:absolute;
+	left:68px;
+	top:0px;
+	width:431px;
+	height:580px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68N/H68N.png);
+	background-repeat: no-repeat;
+} 
+.atm-H68N .atm-swf
+{
+	position:absolute;
+	left:68px;
+	top:0px;
+	width:431px;
+	height:580px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68N/H68N.swf);
+	background-repeat: no-repeat;
+}
+/******凭条打印机******/
+/*凭条打印机-部件名称*/
+.atm-H68N .single-device-printer .atm-device-name
+{
+	position:absolute;
+	left:20px;
+	top:265px;
+	width:150px;
+	text-align:right;
+}
+/*凭条打印机-线条图片*/
+.atm-H68N .single-device-printer .atm-device-line
+{
+	position:absolute;
+	left:180px;
+	top:275px;
+	width:139px;
+	height:176px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68N/line-printer.png);
+	background-repeat: no-repeat;
+}
+/*凭条打印机-部件状态*/
+.atm-H68N .single-device-printer .atm-device-state
+{
+	position:absolute;
+	left:315px;
+	top:260px;
+}
+
+/******流水打印机******/
+/*流水打印机-部件名称*/
+.atm-H68N .single-device-jprinter .atm-device-name
+{
+	position:absolute;
+	left:85px;
+	top:150px;
+	width:155px;
+	text-align:right;
+}
+/*流水打印机-线条图片*/
+.atm-H68N .single-device-jprinter .atm-device-line
+{
+	position:absolute;
+	left:225px;
+	top:175px;
+	width:160px;
+	height:200px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68N/line-jprinter.png);
+	background-repeat: no-repeat;
+}
+/*流水打印机-部件状态*/
+.atm-H68N .single-device-jprinter .atm-device-state
+{
+	position:absolute;
+	left:375px;
+	top:245px;
+}
+
+/******读卡器******/
+/*读卡器-部件名称*/
+.atm-H68N .single-device-cardreader .atm-device-name
+{
+	position:absolute;
+	left:50px;
+	top:385px;
+	width:150px;
+	text-align:right;
+}
+/*读卡器-线条图片*/
+.atm-H68N .single-device-cardreader .atm-device-line
+{
+	position:absolute;
+	left:205px;
+	top:315px;
+	width:292px;
+	height:84px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68N/line-cardreader.png);
+	background-repeat: no-repeat;
+}
+/*读卡器-部件状态*/
+.atm-H68N .single-device-cardreader .atm-device-state
+{
+	position:absolute;
+	left:395px;
+	top:290px;
+}
+
+/******键盘******/
+/*键盘-部件名称*/
+.atm-H68N .single-device-keypad .atm-device-name
+{
+	position:absolute;
+	left:55px;
+	top:320px;
+	width:206px;
+	text-align:center;
+}
+/*键盘-线条图片*/
+.atm-H68N .single-device-keypad .atm-device-line
+{
+	position:absolute;
+	left:185px;
+	top:285px;
+	width:200px;
+	height:50px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68N/line-keypad.png);
+	background-repeat: no-repeat;
+}
+/*键盘-部件状态*/
+.atm-H68N .single-device-keypad .atm-device-state
+{
+	position:absolute;
+	left:258px;
+	top:305px;
+}
+
+
+/******机芯******/
+/*机芯-部件名称*/
+.atm-H68N .single-device-dispenser .atm-device-name
+{
+	position:absolute;
+	left:30px;
+	top:465px;
+	width:150px;
+	text-align:right;
+}
+/*机芯-线条图片*/
+.atm-H68N .single-device-dispenser .atm-device-line
+{
+	position:absolute;
+	left:190px;
+	top:456px;
+	width:153px;
+	height:30px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68N/line-dispenser.png);
+	background-repeat: no-repeat;
+}
+/*机芯-部件状态*/
+.atm-H68N .single-device-dispenser .atm-device-state
+{
+	position:absolute;
+	left:340px;  /*205*/
+	top:438px;
+}
+/***************************************************/ 
+
+/*********************P5800L*********************/
+/*ATM机器图片*/
+.atm-P5800L .atm-image
+{
+	position:absolute;
+	left:200px;
+	top:0px;
+	width:300px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68N/H68N.png);
+	background-repeat: no-repeat;
+} 
+/******凭条打印机******/
+/*凭条打印机-部件名称*/
+.atm-P5800L .single-device-printer .atm-device-name
+{
+	position:absolute;
+	left:20px;
+	top:265px;
+	width:150px;
+	text-align:right;
+}
+/*凭条打印机-线条图片*/
+.atm-P5800L .single-device-printer .atm-device-line
+{
+	position:absolute;
+	left:180px;
+	top:275px;
+	width:139px;
+	height:176px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68N/line-printer.png);
+	background-repeat: no-repeat;
+}
+/*凭条打印机-部件状态*/
+.atm-P5800L .single-device-printer .atm-device-state
+{
+	position:absolute;
+	left:285px;
+	top:200px;
+}
+/******流水打印机******/
+/*流水打印机-部件名称*/
+.atm-P5800L .single-device-jprinter .atm-device-name
+{
+	position:absolute;
+	left:85px;
+	top:150px;
+	width:155px;
+	text-align:right;
+}
+/*流水打印机-线条图片*/
+.atm-P5800L .single-device-jprinter .atm-device-line
+{
+	position:absolute;
+	left:225px;
+	top:175px;
+	width:160px;
+	height:200px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68N/line-jprinter.png);
+	background-repeat: no-repeat;
+}
+/*流水打印机-部件状态*/
+.atm-P5800L .single-device-jprinter .atm-device-state
+{
+	position:absolute;
+	left:375px;
+	top:245px;
+}
+/******读卡器******/
+/*读卡器-部件名称*/
+.atm-P5800L .single-device-cardreader .atm-device-name
+{
+	position:absolute;
+	left:50px;
+	top:385px;
+	width:150px;
+	text-align:right;
+}
+/*读卡器-线条图片*/
+.atm-P5800L .single-device-cardreader .atm-device-line
+{
+	position:absolute;
+	left:205px;
+	top:315px;
+	width:292px;
+	height:84px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68N/line-cardreader.png);
+	background-repeat: no-repeat;
+}
+/*读卡器-部件状态*/
+.atm-P5800L .single-device-cardreader .atm-device-state
+{
+	position:absolute;
+	left:370px;
+	top:220px;
+}
+/******键盘******/
+/*键盘-部件名称*/
+.atm-P5800L .single-device-keypad .atm-device-name
+{
+	position:absolute;
+	left:55px;
+	top:320px;
+	width:206px;
+	text-align:center;
+}
+/*键盘-线条图片*/
+.atm-P5800L .single-device-keypad .atm-device-line
+{
+	position:absolute;
+	left:185px;
+	top:285px;
+	width:200px;
+	height:50px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68N/line-keypad.png);
+	background-repeat: no-repeat;
+}
+/*键盘-部件状态*/
+.atm-P5800L .single-device-keypad .atm-device-state
+{
+	position:absolute;
+	left:358px;
+	top:290px;
+}
+/******机芯******/
+/*机芯-部件名称*/
+.atm-P5800L .single-device-dispenser .atm-device-name
+{
+	position:absolute;
+	left:30px;
+	top:465px;
+	width:150px;
+	text-align:right;
+}
+/*机芯-线条图片*/
+.atm-P5800L .single-device-dispenser .atm-device-line
+{
+	position:absolute;
+	left:190px;
+	top:456px;
+	width:153px;
+	height:30px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68N/line-dispenser.png);
+	background-repeat: no-repeat;
+}
+/*机芯-部件状态*/
+.atm-P5800L .single-device-dispenser .atm-device-state
+{
+	position:absolute;
+	left:300px;
+	top:438px;
+}
+/*******************P5800L END********************************/ 
+/*********************H68NL*********************/
+/*ATM机器图片*/
+.atm-H68NL .atm-image
+{
+	position:absolute;
+	left:68px;
+	top:0px;
+	width:431px;
+	height:580px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68NL/H68NL.png);
+	background-repeat: no-repeat;
+} 
+.atm-H68NL .atm-swf
+{
+	position:absolute;
+	left:68px;
+	top:0px;
+	width:431px;
+	height:580px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68NL/H68NL.swf);
+	background-repeat: no-repeat;
+}
+/******凭条打印机******/
+/*凭条打印机-部件名称*/
+.atm-H68NL .single-device-printer .atm-device-name
+{
+	position:absolute;
+	left:20px;
+	top:265px;
+	width:150px;
+	text-align:right;
+}
+/*凭条打印机-线条图片*/
+.atm-H68NL .single-device-printer .atm-device-line
+{
+	position:absolute;
+	left:180px;
+	top:275px;
+	width:139px;
+	height:176px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68NL/line-printer.png);
+	background-repeat: no-repeat;
+}
+/*凭条打印机-部件状态*/
+.atm-H68NL .single-device-printer .atm-device-state
+{
+	position:absolute;
+	left:315px;
+	top:260px;
+}
+
+/******流水打印机******/
+/*流水打印机-部件名称*/
+.atm-H68NL .single-device-jprinter .atm-device-name
+{
+	position:absolute;
+	left:85px;
+	top:150px;
+	width:155px;
+	text-align:right;
+}
+/*流水打印机-线条图片*/
+.atm-H68NL .single-device-jprinter .atm-device-line
+{
+	position:absolute;
+	left:225px;
+	top:175px;
+	width:160px;
+	height:200px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68NL/line-jprinter.png);
+	background-repeat: no-repeat;
+}
+/*流水打印机-部件状态*/
+.atm-H68NL .single-device-jprinter .atm-device-state
+{
+	position:absolute;
+	left:375px;
+	top:245px;
+}
+
+/******读卡器******/
+/*读卡器-部件名称*/
+.atm-H68NL .single-device-cardreader .atm-device-name
+{
+	position:absolute;
+	left:50px;
+	top:385px;
+	width:150px;
+	text-align:right;
+}
+/*读卡器-线条图片*/
+.atm-H68NL .single-device-cardreader .atm-device-line
+{
+	position:absolute;
+	left:205px;
+	top:315px;
+	width:292px;
+	height:84px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68NL/line-cardreader.png);
+	background-repeat: no-repeat;
+}
+/*读卡器-部件状态*/
+.atm-H68NL .single-device-cardreader .atm-device-state
+{
+	position:absolute;
+	left:395px;
+	top:290px;
+}
+
+/******键盘******/
+/*键盘-部件名称*/
+.atm-H68NL .single-device-keypad .atm-device-name
+{
+	position:absolute;
+	left:55px;
+	top:320px;
+	width:206px;
+	text-align:center;
+}
+/*键盘-线条图片*/
+.atm-H68NL .single-device-keypad .atm-device-line
+{
+	position:absolute;
+	left:185px;
+	top:285px;
+	width:200px;
+	height:50px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68NL/line-keypad.png);
+	background-repeat: no-repeat;
+}
+/*键盘-部件状态*/
+.atm-H68NL .single-device-keypad .atm-device-state
+{
+	position:absolute;
+	left:258px;
+	top:305px;
+}
+
+
+/******机芯******/
+/*机芯-部件名称*/
+.atm-H68NL .single-device-dispenser .atm-device-name
+{
+	position:absolute;
+	left:30px;
+	top:445px;
+	width:150px;
+	text-align:right;
+}
+/*机芯-线条图片*/
+.atm-H68NL .single-device-dispenser .atm-device-line
+{
+	position:absolute;
+	left:190px;
+	top:456px;
+	width:153px;
+	height:30px;
+	background-image: url(../../../Image/CN/maintenance/atm/H68NL/line-dispenser.png);
+	background-repeat: no-repeat;
+}
+/*机芯-部件状态*/
+.atm-H68NL .single-device-dispenser .atm-device-state
+{
+	position:absolute;
+	left:340px;  /*205*/
+	top:438px;
+}
+/***************************************************/ 
+/******************** 
+	作用:系统诊断-系统环境诊断
+	作者:蔡俊雄
+	url:maintenance/systemdiagnose/enviorenmentdiagnose.html
+	版本:V1.0
+	时间:2015-03-04
+********************/
+
+
+/*容器*/
+.enviorenment-diagnose
+{
+	
+}
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统诊断-网络测试
+	作者:蔡俊雄
+	url:maintenance/systemdiagnose/networktest.html
+	版本:V1.0
+	时间:2015-03-04
+********************/
+
+
+/*容器*/
+.network-test
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统诊断-设备单体测试-读卡器
+	作者:蔡俊雄
+	url:maintenance/systemdiagnose/device/cardreadertest.html
+	版本:V1.0
+	时间:2015-03-04
+********************/
+
+
+/*容器*/
+.cardreader-test
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统诊断-设备单体测试-凭条打印机
+	作者:蔡俊雄
+	url:maintenance/systemdiagnose/device/receiptprintertest.html
+	版本:V1.0
+	时间:2015-03-04
+********************/
+
+
+/*容器*/
+.receipt-printer-test
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统诊断-设备单体测试-流水打印机
+	作者:蔡俊雄
+	url:maintenance/systemdiagnose/device/journalprintertest.html
+	版本:V1.0
+	时间:2015-03-04
+********************/
+
+
+/*容器*/
+.journal-printer-test
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统诊断-设备单体测试-门测试
+	作者:蔡俊雄
+	url:maintenance/systemdiagnose/device/doortest.html
+	版本:V1.0
+	时间:2015-03-20
+********************/
+
+
+/*容器*/
+.door-test
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统诊断-设备单体测试-机芯测试
+	作者:蔡俊雄
+	url:maintenance/systemdiagnose/device/cashdevicetest.html
+	版本:V1.0
+	时间:2015-03-04
+********************/
+
+
+/*容器*/
+.cash-device-test
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统诊断-设备单体测试-按键测试
+	作者:蔡俊雄
+	url:maintenance/systemdiagnose/device/keytest.html
+	版本:V1.0
+	时间:2015-03-20
+********************/
+
+
+/*容器*/
+.key-test
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统诊断-设备单体测试-指示灯测试
+	作者:蔡俊雄
+	url:maintenance/systemdiagnose/device/indicatortest.html
+	版本:V1.0
+	时间:2015-03-20
+********************/
+
+
+/*容器*/
+.indicator-test
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统诊断-设备单体测试-灯控测试
+	作者:蔡俊雄
+	url:maintenance/systemdiagnose/device/lighttest.html
+	版本:V1.0
+	时间:2015-03-20
+********************/
+
+
+/*容器*/
+.light-test
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统诊断-设备单体测试-其它测试
+	作者:蔡俊雄
+	url:maintenance/systemdiagnose/device/othertest.html
+	版本:V1.0
+	时间:2015-03-20
+********************/
+
+
+/*容器*/
+.other-test
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统诊断-复位所有设备
+	作者:蔡俊雄
+	url:maintenance/systemdiagnose/resetalldevice.html
+	版本:V1.0
+	时间:2015-03-20
+********************/
+
+
+/*容器*/
+.reset-all-device
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统诊断-其他设备测试-状态指示灯
+	作者:蔡俊雄
+	url:maintenance/systemdiagnose/otherdevicetest/statusindicator.html
+	版本:V1.0
+	时间:2015-03-20
+********************/
+
+
+/*容器*/
+.status-indicator
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机加钞流程-清理钱箱
+	作者:蔡俊雄
+	url:maintenance/totalmanage/cashunitsmanage/clearcashunits.html
+	版本:V1.0
+	时间:2015-03-05
+********************/
+
+
+/*容器*/
+.clear-cash-units
+{
+	text-align:center;
+}
+
+/*图片,文字和按钮*/
+.clear-cash-units .outer-container
+{
+	position:relative;
+	width:701px;
+	height:451px;
+	margin:0 auto;
+	margin-top: 20px;
+}
+
+/*图片容器*/
+.clear-cash-units .image-container
+{
+	margin:0 auto;
+	position:relative;
+}
+
+/*文字和按钮区域*/
+.clear-cash-units .zone-100
+{
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	text-align:left;
+}
+/*文字和按钮区域*/
+.clear-cash-units .clear-button
+{
+	position:absolute;
+	left:22px;
+	top:335px;
+}
+/*右边区域*/
+.clear-cash-units-right
+{
+	position:absolute;
+	left:168px;
+	top:37px;
+	width:502px;
+	height:354px;
+	/*background:#C9C;
+	opacity:0.6;*/
+}
+/*********************盒子*********************/
+/*盒子*/
+.clear-cash-units-box
+{
+	position:relative;
+	float:left;
+	margin:0;
+	width:50%;
+	height:50%;
+	/*background:#C9C;
+	opacity:0.6;*/
+}
+/*盒子-边框*/
+.clear-cash-units-box-border
+{
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	border:3px solid #FF0000;
+	/*display:block !important;*/
+}
+
+/*盒子-标题*/
+.clear-cash-units-box .box-title
+{
+	position:absolute;
+	left:17px;
+	top:10px;
+	font-size:2.4rem;
+	color:#595959;
+}
+/*盒子-左1*/
+.clear-cash-units-box .box-left-1
+{
+	position:absolute;
+	left:17px;
+	top:52px;
+	font-size:1.6rem;
+	color:#595959;
+}
+/*盒子-左2*/
+.clear-cash-units-box .box-left-2
+{
+	position:absolute;
+	left:17px;
+	top:72px;
+	font-size:1.6rem;
+	color:#595959;
+}
+/*盒子-左3*/
+.clear-cash-units-box .box-left-3
+{
+	position:absolute;
+	left:17px;
+	top:92px;
+	font-size:1.6rem;
+	color:#595959;
+}
+/*盒子-右1*/
+.clear-cash-units-box .box-right-1
+{
+	position:absolute;
+	top:52px;
+	right:15px;
+	font-size:1.6rem;
+	color:#595959;
+}
+/*盒子-右2*/
+.clear-cash-units-box .box-right-2
+{
+	position:absolute;
+	top:72px;
+	right:15px;
+	font-size:1.6rem;
+	color:#595959;
+}
+/*盒子-按钮*/
+.clear-cash-units-box button
+{
+	position:absolute;
+	left:17px;
+	bottom:8px;
+}
+/*盒子-图标*/
+.clear-cash-units-box img
+{
+	position:absolute;
+	right:10px;
+	bottom:6px;
+}
+/*提示文字*/
+.clear-cash-units-prompt
+{
+	position:absolute;
+	left:0;
+	bottom:0;
+	margin:0;
+	width:100%;
+	height:47px;
+	line-height:47px;
+	font-size:1.8rem;
+	color:#e01e1e;
+	text-align:center;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机加钞流程-清理回收箱
+	作者:蔡俊雄
+	url:maintenance/totalmanage/cashunitsmanage/clearrecycleunits.html
+	版本:V1.0
+	时间:2015-03-05
+********************/
+
+
+/*容器*/
+.clear-recycle-units
+{
+	text-align:center;
+}
+/*图片,文字和按钮*/
+.clear-recycle-units .outer-container
+{
+	margin:0 auto;
+}
+/*提示文字*/
+.clear-recycle-units-prompt
+{
+	font-size:1.8rem;
+	color:#FF0000;
+	margin-top:5px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机加钞流程-查询钱箱余额
+	作者:蔡俊雄
+	url:maintenance/totalmanage/cashunitsmanage/getcashunits.html
+	版本:V1.0
+	时间:2015-03-06
+********************/
+
+
+/*容器*/
+.get-cash-units
+{
+	
+}
+/*提示文字和按钮*/
+.get-cash-units-zone
+{
+	/*position:absolute;
+	left:0;
+	top:482px;*/
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机加钞流程-加钞
+	作者:蔡俊雄
+	url:maintenance/totalmanage/cashunitsmanage/addcash.html
+	版本:V1.0
+	时间:2015-03-10
+********************/
+
+
+/*容器*/
+.add-cash
+{
+	
+} 
+/*容器*/
+.add-cash-wrapper
+{
+	position:relative;
+	margin:0 2px 0 6px;
+} 
+/*左边*/
+.add-cash-left
+{
+	margin-right:280px;
+}  
+/*右边*/
+.add-cash-right
+{
+	position:absolute;
+	right:0px;
+	top:0px;
+	width:273px;
+}
+/*输入文本框-张数*/
+.add-cash .input-sheet
+{
+	width:60px;
+}
+
+/*累计加钞张数*/
+.add-cash .column-total-count
+{
+	color:#ff0000;
+}
+/*总金额*/
+.add-cash .column-total
+{
+	text-align:right;
+	padding-right:10px;
+} 
+/*提示文字*/
+.add-cash .operation-tip
+{
+	margin-top:22px;
+	font-size:2.6rem;
+} 
+
+/*********************表格高度*********************/
+/*表格控件-表格-表头*/
+.add-cash .type-table thead th
+{
+	height: 46px;
+}
+/*表格控件-表格-左边表头*/
+.add-cash .type-table tbody th
+{
+	height: 46px;
+}
+/*表格控件-表格-内容-单元格*/
+.add-cash .type-table tbody td
+{
+	height: 46px;
+}
+/*表格控件-表格-表脚*/
+.add-cash .type-table tfoot th
+{
+	height: 46px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统配置-首页
+	作者:蔡俊雄
+	url:maintenance/systemconfig/index.html
+	版本:V1.0
+	时间:2015-03-23
+********************/
+
+
+/*容器*/
+.system-config
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统配置-ATM参数-设ATM号
+	作者:蔡俊雄
+	url:maintenance/systemconfig/atm/setatmno.html
+	版本:V1.0
+	时间:2015-03-23
+********************/
+
+
+/*容器*/
+.set-atm-no
+{
+	
+}
+/*容器*/
+.set-atm-no .g-margin-wrapper
+{
+	margin:10px;
+}
+/*左边容器*/
+.set-atm-no .g-left-wrapper
+{
+	margin-right:378px;
+}
+/*左边*/
+.set-atm-no .g-left
+{
+	height:385px;
+	padding-left:16px;
+}  
+/*右边*/
+.set-atm-no .g-right
+{
+	width:370px;
+}
+/*操作提示*/
+.set-atm-no .g-prompt
+{
+   	padding:0;
+	position:absolute;
+	bottom: 16px;
+}
+/*行*/
+.set-atm-no .set-atm-no-row
+{
+	margin-bottom:40px;
+}
+/*首行*/
+.set-atm-no .set-atm-no-row:first-child
+{
+	margin-top:40px;
+}
+/*左边标签*/
+.set-atm-no .left-label
+{
+	display:inline-block;
+	text-align:right;
+	width:140px;
+}
+/*输入框*/
+.set-atm-no .input-text
+{
+	width:160px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统配置-ATM参数-设置主密钥
+	作者:蔡俊雄
+	url:maintenance/systemconfig/atm/setmasterkey.html
+	版本:V1.0
+	时间:2015-03-12
+********************/
+
+
+/*容器*/
+.set-master-key
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统配置-ATM参数-改系统时间
+	作者:蔡俊雄
+	url:maintenance/systemconfig/atm/changesystemtime.html
+	版本:V1.0
+	时间:2015-03-23
+********************/
+
+
+/*容器*/
+.change-system-time
+{
+	
+}
+/*容器*/
+.change-system-time .g-margin-wrapper
+{
+	/*margin:10px;*/
+}
+/*左边容器*/
+.change-system-time .g-left-wrapper
+{
+	
+}
+/*左边*/
+.change-system-time .g-left
+{
+	height:279px;
+}  
+/*右边*/
+.change-system-time .g-right
+{
+	padding:0;
+}
+/*操作提示*/
+.change-system-time .g-prompt
+{
+    padding:0;
+	position:absolute;
+	bottom:16px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统配置-ATM参数-设置流水号
+	作者:蔡俊雄
+	url:maintenance/systemconfig/atm/setjouno.html
+	版本:V1.0
+	时间:2015-03-23
+********************/
+
+
+/*容器*/
+.set-jou-no
+{
+	
+}
+/*容器*/
+.set-jou-no .g-margin-wrapper
+{
+	/*margin:10px;*/
+}
+/*左边容器*/
+.set-jou-no .g-left-wrapper
+{
+	
+}
+/*左边*/
+.set-jou-no .g-left
+{
+	height:279px;
+}  
+/*右边*/
+.set-jou-no .g-right
+{
+	padding:0;
+}
+/*操作提示*/
+.set-jou-no .g-prompt
+{
+	padding:0;
+	position:absolute;
+	bottom:16px;
+}
+
+/*设置流水号输入框距左边距*/
+.set-jou-margin-left{
+	margin-left: 150px;
+}
+/*行*/
+.set-jou-no .set-jou-no-row
+{
+	margin-bottom:15px;
+}
+/*第三行*/
+.set-jou-no .set-jou-no-row:nth-child(3)
+{
+	margin-bottom:30px;
+}
+/*左边标签*/
+.set-jou-no .left-label
+{
+	display:inline-block;
+	width:160px;
+}
+/*输入框*/
+.set-jou-no .input-text
+{
+	width:160px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统配置-ATM参数-设置IP-设置P端IP
+	作者:蔡俊雄
+	url:maintenance/systemconfig/atm/setatmip/setatmpip.html
+	版本:V1.0
+	时间:2015-03-24
+********************/
+
+
+/*容器*/
+.set-atm-pip
+{
+	
+}
+/*容器*/
+.set-atm-pip .g-margin-wrapper
+{
+	margin:10px;
+}
+/*左边容器*/
+.set-atm-pip .g-left-wrapper
+{
+	margin-right:378px;
+}
+/*左边*/
+.set-atm-pip .g-left
+{
+	height:385px;
+	padding-left:16px;
+}  
+/*右边*/
+.set-atm-pip .g-right
+{
+	width:370px;
+}
+/*操作提示*/
+.set-atm-pip .g-prompt
+{
+	padding:0;
+	position:absolute;
+	bottom:16px;
+}
+/*行*/
+.set-atm-pip .set-atm-pip-row
+{
+	margin-bottom:20px;
+	vertical-align:middle;
+}
+/*有按钮的行*/
+.set-atm-pip .set-atm-pip-row:nth-child(n+3)
+{
+	margin-bottom:10px;
+}
+/*左边标签*/
+.set-atm-pip .left-label
+{
+	display:inline-block;
+	text-align:right;
+	width:140px;
+}
+/*输入框*/
+.set-atm-pip .input-text
+{
+	width:160px;
+}
+/*按钮*/
+.set-atm-pip-row button
+{
+	width:160px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统配置-ATM参数-设置IP-设置V端IP
+	作者:蔡俊雄
+	url:maintenance/systemconfig/atm/setatmip/setatmvip.html
+	版本:V1.0
+	时间:2015-03-24
+********************/
+
+
+/*容器*/
+.set-atm-vip
+{
+	
+}
+/*容器*/
+.set-atm-vip .g-margin-wrapper
+{
+	margin:10px;
+}
+/*左边容器*/
+.set-atm-vip .g-left-wrapper
+{
+	margin-right:378px;
+}
+/*左边*/
+.set-atm-vip .g-left
+{
+	height:385px;
+	padding-left:16px;
+}  
+/*右边*/
+.set-atm-vip .g-right
+{
+	width:370px;
+}
+/*操作提示*/
+.set-atm-vip .g-prompt
+{
+	padding:0;
+	position:absolute;
+	bottom:16px;
+}
+/*行*/
+.set-atm-vip .set-atm-vip-row
+{
+	margin-bottom:20px;
+	vertical-align:middle;
+}
+/*有按钮的行*/
+.set-atm-vip .set-atm-vip-row:nth-child(n+3)
+{
+	margin-bottom:10px;
+}
+/*左边标签*/
+.set-atm-vip .left-label
+{
+	display:inline-block;
+	text-align:right;
+	width:140px;
+}
+/*输入框*/
+.set-atm-vip .input-text
+{
+	width:160px;
+}
+/*按钮*/
+.set-atm-vip-row button
+{
+	width:160px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统配置-ATM参数-设最大限额
+	作者:蔡俊雄
+	url:maintenance/systemconfig/atm/setmaxamount.html
+	版本:V1.0
+	时间:2015-03-24
+********************/
+
+
+/*容器*/
+.set-max-amount
+{
+	
+}
+/*容器*/
+.set-max-amount .g-margin-wrapper
+{
+	margin:10px;
+}
+/*左边容器*/
+.set-max-amount .g-left-wrapper
+{
+	margin-right:378px;
+}
+/*左边*/
+.set-max-amount .g-left
+{
+	height:385px;
+	padding-left:16px;
+}  
+/*右边*/
+.set-max-amount .g-right
+{
+	width:370px;
+}
+/*操作提示*/
+.set-max-amount .g-prompt
+{
+	padding:0;
+	position:absolute;
+	bottom:16px;
+}
+/*行*/
+.set-max-amount .set-max-amount-row
+{
+	margin-bottom:8px;
+}
+/*有按钮的行*/
+.set-max-amount .set-max-amount-row:nth-child(3)
+{
+	margin-bottom:40px;
+}
+/*左边标签*/
+.set-max-amount .left-label
+{
+	display:inline-block;
+	text-align:right;
+	width:140px;
+}
+/*输入框*/
+.set-max-amount .input-text
+{
+	width:160px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统配置-ATM参数-厂商模式
+	作者:蔡俊雄
+	url:maintenance/systemconfig/vendordependentmode.html
+	版本:V1.0
+	时间:2015-03-23
+********************/
+
+
+/*容器*/
+.vendor-dependent-mode
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统配置-设置存款面额
+	作者:蔡俊雄
+	url:maintenance/systemconfig/setcimcurrency.html
+	版本:V1.0
+	时间:2015-03-25
+********************/
+
+
+/*容器*/
+.set-cim-currency
+{
+	
+}
+/*提示文字和按钮*/
+.set-cim-currency-zone
+{
+	text-align: center;
+   margin: 0 auto;
+	margin-top:20px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:系统配置-升级-9250固件升级
+	作者:蔡俊雄
+	url:maintenance/systemconfig/upgrade/upgrade9250.html
+	版本:V1.0
+	时间:2015-03-25
+********************/
+
+
+/*容器*/
+.upgrade-9250
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日常维护-关闭机器
+	作者:蔡俊雄
+	url:maintenance/maintenance/shutdown.html
+	版本:V1.0
+	时间:2015-03-12
+********************/
+
+
+/*容器*/
+.shutdown
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日常维护-退出维护模式
+	作者:蔡俊雄
+	url:maintenance/maintenance/loginout.html
+	版本:V1.0
+	时间:2015-03-12
+********************/
+
+
+/*容器*/
+.loginout
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日常维护-重启机器
+	作者:蔡俊雄
+	url:maintenance/dailymaintenance/rebootatm.html
+	版本:V1.0
+	时间:2015-03-25
+********************/
+
+
+/*容器*/
+.reboot-atm
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日常维护-关闭机器
+	作者:蔡俊雄
+	url:maintenance/dailymaintenance/shutdownatm.html
+	版本:V1.0
+	时间:2015-03-25
+********************/
+
+
+/*容器*/
+.shutdown-atm
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日常维护-参数查询
+	作者:蔡俊雄
+	url:maintenance/dailymaintenance/queryparameter.html
+	版本:V1.0
+	时间:2015-03-25
+********************/
+
+
+/*容器*/
+.query-parameter
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日常维护-错误查询
+	作者:蔡俊雄
+	url:maintenance/dailymaintenance/errorinquiry.html
+	版本:V1.0
+	时间:2015-03-26
+********************/
+
+
+/*容器*/
+.error-inquiry
+{
+	
+}
+/*容器*/
+.error-inquiry .g-margin-wrapper
+{
+	margin:10px;
+}
+/*左边容器*/
+.error-inquiry .g-left-wrapper
+{
+	margin-right:378px;
+}
+/*左边*/
+.error-inquiry .g-left
+{
+	height:385px;
+	padding-left:16px;
+}  
+/*右边*/
+.error-inquiry .g-right
+{
+	width:370px;
+}
+/*行*/
+.error-inquiry .error-inquiry-row
+{
+	margin-bottom:10px;
+}
+/*首行*/
+.error-inquiry .error-inquiry-row:first-child
+{
+	
+}
+/*错误码对应的描述*/
+.error-inquiry .error-inquiry-result
+{
+	height:72px;
+}
+/*左边标签*/
+.error-inquiry .left-label
+{
+	display:inline-block;
+	width:235px;
+}
+/*输入框*/
+.error-inquiry .input-text
+{
+	width:100px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日常维护-修改用户密码
+	作者:蔡俊雄
+	url:maintenance/dailymaintenance/modifypassword.html
+	版本:V1.0
+	时间:2015-03-26
+********************/
+
+
+/*容器*/
+.modify-password
+{
+	
+}
+/*容器*/
+.modify-password .g-margin-wrapper
+{
+	/*margin:10px;*/
+}
+/*左边容器*/
+.modify-password .g-left-wrapper
+{
+	
+}
+/*左边*/
+.modify-password .g-left
+{
+	height:279px;
+}  
+/*右边*/
+.modify-password .g-right
+{
+	padding:0;
+}
+/*操作提示*/
+.modify-password .g-prompt
+{
+    padding:0;
+	position:absolute;
+	bottom:16px;
+}
+/*行*/
+.modify-password .modify-password-row
+{
+	margin-bottom:30px;
+}
+/*第三行*/
+.modify-password .modify-password-row:first-child
+{
+	margin-top:20px;
+}
+/*左边标签*/
+.modify-password .left-label
+{
+	display:inline-block;
+	text-align:right;
+	width:140px;
+}
+/*输入框*/
+.modify-password .input-text
+{
+	width:160px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日常维护-日光灯设置
+	作者:蔡俊雄
+	url:maintenance/dailymaintenance/lightcontrol.html
+	版本:V1.0
+	时间:2015-03-27
+********************/
+
+
+/*容器*/
+.light-control
+{
+	
+}
+/*容器*/
+.light-control .g-margin-wrapper
+{
+	/*margin:10px;*/
+}
+/*左边容器*/
+.light-control .g-left-wrapper
+{
+	
+}
+/*左边*/
+.light-control .g-left
+{
+	height:279px;
+}  
+/*右边*/
+.light-control .g-right
+{
+	padding:0;
+}
+/*开始日期*/
+.light-control .g-start-date
+{
+	margin-top:10px;
+}
+/*结束日期*/
+.light-control .g-end-date
+{
+	margin-top:10px;
+}
+/*操作提示*/
+.light-control .g-prompt
+{
+	padding:0;
+	position:absolute;
+	bottom:16px;
+}
+
+
+
+
+/****************************************一期计划以外的界面************************************************************/ 
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机管理-打印异常交易-指定周期异常交易
+	作者:蔡俊雄
+	url:maintenance/totalmanage/exception/specifiedperiodexception.html
+	版本:V1.0
+	时间:2015-03-16
+********************/
+
+
+/*容器*/
+.specified-period-exception
+{
+	
+}
+/*左边*/
+.specified-period-exception .g-left
+{
+	
+	/*height:360px;*/
+}  
+/*右边*/
+.specified-period-exception .g-right
+{
+	
+}
+/*右边-键盘*/
+.specified-period-exception .g-right .keyboard-number
+{
+	padding-top:85px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机管理-打印异常交易-清机周期异常交易
+	作者:蔡俊雄
+	url:maintenance/totalmanage/exception/clearmachineperiodexception.html
+	版本:V1.0
+	时间:2015-03-16
+********************/
+
+
+/*容器*/
+.clear-machine-period-exception
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机管理-钞票信息查询-按钞票序列号查询
+	作者:蔡俊雄
+	url:maintenance/inquiry/inquirybyserialno.html
+	版本:V1.0
+	时间:2015-03-17
+********************/
+
+
+/*容器*/
+.inquiry-by-serial-no
+{
+	
+}
+/*容器*/
+.inquiry-by-serial-no .g-margin-wrapper
+{
+	margin:10px;
+}
+/*左边容器*/
+.inquiry-by-serial-no .g-left-wrapper
+{
+	margin-right:378px;
+}
+/*左边*/
+.inquiry-by-serial-no .g-left
+{
+	height:385px;
+	padding-left:16px;
+}  
+/*右边*/
+.inquiry-by-serial-no .g-right
+{
+	width:370px;
+}
+/*操作提示*/
+.inquiry-by-serial-no .g-prompt
+{
+	padding:0;
+	position:absolute;
+	bottom:16px;
+}
+/*输入框*/
+.inquiry-by-serial-no .note-serial-no
+{
+	width:160px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机管理-钞票信息查询-按流水号查询
+	作者:蔡俊雄
+	url:maintenance/inquiry/inquirybyjournalno.html
+	版本:V1.0
+	时间:2015-03-17
+********************/
+
+
+/*容器*/
+.inquiry-by-journal-no
+{
+	
+}
+/*容器*/
+.inquiry-by-journal-no .g-margin-wrapper
+{
+	/*margin:10px;*/
+}
+/*左边容器*/
+.inquiry-by-journal-no .g-left-wrapper
+{
+	
+}
+/*左边*/
+.inquiry-by-journal-no .g-left
+{
+	height:279px;
+}  
+/*右边*/
+.inquiry-by-journal-no .g-right
+{
+	padding:0;
+}
+/*操作提示*/
+.inquiry-by-journal-no .g-prompt
+{
+	padding:0;
+	position:absolute;
+	bottom:16px;
+}
+/*输入框*/
+.inquiry-by-journal-no .journal-serial-no
+{
+	width:160px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机管理-钞票信息查询-按卡号查询
+	作者:蔡俊雄
+	url:maintenance/inquiry/inquirybycardno.html
+	版本:V1.0
+	时间:2015-03-17
+********************/
+
+
+/*容器*/
+.inquiry-by-card-no
+{
+	
+}
+/*容器*/
+.inquiry-by-card-no .g-margin-wrapper
+{
+	/*margin:10px;*/
+}
+/*左边容器*/
+.inquiry-by-card-no .g-left-wrapper
+{
+	
+}
+/*左边*/
+.inquiry-by-card-no .g-left
+{
+	height:290px;
+}
+/*右边*/
+.inquiry-by-card-no .g-right
+{
+	padding:0;
+}
+/*开始日期*/
+.inquiry-by-card-no .g-start-date
+{
+	margin-top:15px;
+}
+/*结束日期*/
+.inquiry-by-card-no .g-end-date
+{
+	margin-top:15px;
+}
+/*卡号容器*/
+.inquiry-by-card-no .card-no-wrapper
+{
+	position:absolute;
+	bottom:16px;
+}
+/*卡号输入框*/
+.inquiry-by-card-no .input-card-no
+{
+	width:120px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机管理-查询交易信息-查本周期异常交易-按流水号查异常
+	作者:蔡俊雄
+	url:maintenance/transactioninquiry/inquireabnormaltransaction/expbyjouno.html
+	版本:V1.0
+	时间:2015-03-18
+********************/
+
+
+/*容器*/
+.exp-by-jouno
+{
+	
+}
+/*容器*/
+.exp-by-jouno .g-margin-wrapper
+{
+	/*margin:10px;*/
+}
+/*左边容器*/
+.exp-by-jouno .g-left-wrapper
+{
+	
+}
+/*左边*/
+.exp-by-jouno .g-left
+{
+	height:279px;
+}  
+/*右边*/
+.exp-by-jouno .g-right
+{
+	padding:0;
+}
+/*操作提示*/
+.exp-by-jouno .g-prompt
+{
+	padding:0;
+	position:absolute;
+	bottom:16px;
+}
+/*流水号输入框容器*/
+.exp-by-jouno .serial-no-wrapper
+{
+	margin-top:20px;
+}
+/*输入框*/
+.exp-by-jouno .serial-no
+{
+	width:120px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机管理-查询交易信息-查本周期异常交易-按账号查异常
+	作者:蔡俊雄
+	url:maintenance/transactioninquiry/inquireabnormaltransaction/expbyaccountno.html
+	版本:V1.0
+	时间:2015-03-18
+********************/
+
+
+/*容器*/
+.exp-by-account-no
+{
+	
+}
+/*容器*/
+.exp-by-account-no .g-margin-wrapper
+{
+	/*margin:10px;*/
+}
+/*左边容器*/
+.exp-by-account-no .g-left-wrapper
+{
+	
+}
+/*左边*/
+.exp-by-account-no .g-left
+{
+	height:279px;
+}  
+/*右边*/
+.exp-by-account-no .g-right
+{
+	padding:0;
+}
+/*操作提示*/
+.exp-by-account-no .g-prompt
+{
+	padding:0;
+	position:absolute;
+	bottom:16px;
+}
+/*流水号输入框容器*/
+.exp-by-account-no .account-no-wrapper
+{
+	margin-top:20px;
+}
+/*输入框*/
+.exp-by-account-no .account-no
+{
+	width:230px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机管理-查询交易信息-查本周期异常交易-按交易查异常
+	作者:蔡俊雄
+	url:maintenance/transactioninquiry/inquireabnormaltransaction/expbytransaction.html
+	版本:V1.0
+	时间:2015-03-20
+********************/
+
+
+/*容器*/
+.exp-by-transaction
+{
+	
+}
+/*容器*/
+.exp-by-transaction .g-margin-wrapper
+{
+	/*margin:10px;*/
+	text-align:center;
+	font-size:1.8rem;
+	padding-top:30px;
+}
+/*按钮区域*/
+.exp-by-transaction .g-button-zone
+{
+	margin-top:30px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机管理-查询交易信息-查本周期异常交易-按日期查异常
+	作者:蔡俊雄
+	url:maintenance/transactioninquiry/inquireabnormaltransaction/expbydate.html
+	版本:V1.0
+	时间:2015-03-18
+********************/
+
+
+/*容器*/
+.exp-by-date
+{
+	
+}
+/*容器*/
+.exp-by-date .g-margin-wrapper
+{
+	/*margin:10px;*/
+}
+/*左边容器*/
+.exp-by-date .g-left-wrapper
+{
+	
+}
+/*左边*/
+.exp-by-date .g-left
+{
+	height:279px;
+}  
+/*右边*/
+.exp-by-date .g-right
+{
+	padding:0;
+}
+/*开始日期*/
+.exp-by-date .g-start-date
+{
+	margin-top:15px;
+}
+/*结束日期*/
+.exp-by-date .g-end-date
+{
+	margin-top:15px;
+}
+/*时间提示*/
+.exp-by-date .g-datetime-tip
+{
+	padding:0;
+	position:absolute;
+	bottom:16px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机管理-查询交易信息-查本周期异常交易-按时间查异常
+	作者:蔡俊雄
+	url:maintenance/transactioninquiry/inquireabnormaltransaction/expbydatatime.html
+	版本:V1.0
+	时间:2015-03-18
+********************/
+
+
+/*容器*/
+.exp-by-data-time
+{
+	
+}
+/*左边*/
+.exp-by-data-time .g-left
+{
+	
+	/*height:360px;*/
+}  
+/*右边*/
+.exp-by-data-time .g-right
+{
+	
+}
+/*右边-键盘*/
+.exp-by-data-time .g-right .keyboard-number
+{
+	padding-top:85px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:清机管理-查询交易信息-查本周期异常交易
+	作者:蔡俊雄
+	url:maintenance/transactioninquiry/inquireabnormaltransaction/inquireabnormaltransaction.html
+	版本:V1.0
+	时间:2015-03-18
+********************/
+
+
+/*容器*/
+.inquire-abnormal-transaction
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日常维护-首页
+	作者:蔡俊雄
+	url:maintenance/dailymaintenance/index.html
+	版本:V1.0
+	时间:2015-03-23
+********************/
+
+
+/*容器*/
+.daily-maintenance
+{
+	
+}
+
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日志操作-首页
+	作者:蔡俊雄
+	url:maintenance/loghandle/index.html
+	版本:V1.0
+	时间:2015-03-23
+********************/
+
+
+/*容器*/
+.log-handle
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日志操作-按时间补打流水
+	作者:蔡俊雄
+	url:maintenance/loghandle/reprintjournal/reprintbydate.html
+	版本:V1.0
+	时间:2015-03-27
+********************/
+
+
+/*容器*/
+.reprint-by-date
+{
+	
+}
+/*左边*/
+.reprint-by-date .g-left
+{
+	
+	/*height:360px;*/
+}  
+/*右边*/
+.reprint-by-date .g-right
+{
+	
+}
+/*右边-键盘*/
+.reprint-by-date .g-right .keyboard-number
+{
+	padding-top:85px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日志操作-按卡号补打流水
+	作者:蔡俊雄
+	url:maintenance/loghandle/reprintjournal/reprintbycardnumber.html
+	版本:V1.0
+	时间:2015-03-27
+********************/
+
+
+/*容器*/
+.reprint-by-card-number
+{
+	
+}
+/*容器*/
+.reprint-by-card-number .g-margin-wrapper
+{
+	/*margin:10px;*/
+}
+/*左边容器*/
+.reprint-by-card-number .g-left-wrapper
+{
+	
+}
+/*左边*/
+.reprint-by-card-number .g-left
+{
+	height:279px;
+}
+/*右边*/
+.reprint-by-card-number .g-right
+{
+	padding:0;
+}
+/*开始日期*/
+.reprint-by-card-number .g-start-date
+{
+	margin-top:15px;
+}
+/*结束日期*/
+.reprint-by-card-number .g-end-date
+{
+	margin-top:15px;
+}
+/*卡号容器*/
+.reprint-by-card-number .card-no-wrapper
+{
+	position:absolute;
+	bottom:16px;
+}
+/*卡号输入框*/
+.reprint-by-card-number .input-card-no
+{
+	width:120px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日志操作-按流水号补打流水
+	作者:蔡俊雄
+	url:maintenance/loghandle/reprintjournal/reprintbyjournalnumber.html
+	版本:V1.0
+	时间:2015-03-30
+********************/
+
+
+/*容器*/
+.reprint-by-journal-number
+{
+	
+}
+/*容器*/
+.reprint-by-journal-number .g-margin-wrapper
+{
+	/*margin:10px;*/
+}
+/*左边容器*/
+.reprint-by-journal-number .g-left-wrapper
+{
+	
+}
+/*左边*/
+.reprint-by-journal-number .g-left
+{
+	height:309px;
+}
+/*右边*/
+.reprint-by-journal-number .g-right
+{
+	padding:0;
+}
+
+/*结束日期*/
+.reprint-by-journal-number .g-end-date
+{
+	margin-top:15px;
+}
+/*行*/
+.reprint-by-journal-number .journal-row
+{
+	margin-top:0px;
+}
+/*第二行*/
+.reprint-by-journal-number .journal-row:nth-child(2)
+{
+	margin-top:20px;
+}
+/*时间提示*/
+.reprint-by-journal-number .g-datetime-tip
+{
+	padding:0;
+	position:absolute;
+	bottom:16px;
+}
+/*左边标签*/
+.journal-row .left-label
+{
+	display:inline-block;
+	/* text-align:right; */
+	width:150px;
+}
+/*输入框*/
+.journal-row .input-text
+{
+	width:160px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日志操作-拷贝流水
+	作者:蔡俊雄
+	url:maintenance/loghandle/copyjournal.html
+	版本:V1.0
+	时间:2015-03-27
+********************/
+
+
+/*容器*/
+.copy-journal
+{
+	
+}
+/*容器*/
+.copy-journal .g-margin-wrapper
+{
+	/*margin:10px;*/
+}
+/*左边容器*/
+.copy-journal .g-left-wrapper
+{
+	
+}
+/*左边*/
+.copy-journal .g-left
+{
+	height:279px;
+}  
+/*右边*/
+.copy-journal .g-right
+{
+	padding:0;
+}
+/*开始日期*/
+.copy-journal .g-start-date
+{
+	margin-top:15px;
+}
+/*结束日期*/
+.copy-journal .g-end-date
+{
+	margin-top:15px;
+}
+/*时间提示*/
+.copy-journal .g-datetime-tip
+{
+	padding:0;
+	position:absolute;
+	bottom:16px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日志操作-结账流水说明
+	作者:蔡俊雄
+	url:maintenance/loghandle/totalprint.html
+	版本:V1.0
+	时间:2015-03-27
+********************/
+
+
+/*容器*/
+.total-print
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日志操作-交易流水说明
+	作者:蔡俊雄
+	url:maintenance/loghandle/journalformatprint.html
+	版本:V1.0
+	时间:2015-03-27
+********************/
+
+
+/*容器*/
+.journal-format-print
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日志操作-返回码流水说明
+	作者:蔡俊雄
+	url:maintenance/loghandle/rescodeprint.html
+	版本:V1.0
+	时间:2015-03-27
+********************/
+
+
+/*容器*/
+.res-code-print
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日志操作-版本跟踪
+	作者:蔡俊雄
+	url:maintenance/loghandle/versiontracing.html
+	版本:V1.0
+	时间:2015-03-27
+********************/
+
+
+/*容器*/
+.version-tracing
+{
+	
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:使用帮助-首页
+	作者:蔡俊雄
+	url:maintenance/helpguid/index.html
+	版本:V1.0
+	时间:2015-03-30
+********************/
+
+
+/*容器*/
+.help-guid
+{
+	
+}
+/*左边标签*/
+.help-guid .left-label
+{
+	display:inline-block;
+	padding-left:20px;
+	width:210px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:使用帮助-帮助页面
+	作者:蔡俊雄
+	url:maintenance/helpguid/help.html
+	版本:V1.0
+	时间:2015-03-30
+********************/
+
+
+/*容器*/
+.help
+{
+	
+}
+/*帮助图片*/
+.help .help-image
+{
+	text-align:center;
+	margin:0 auto;
+}
+/*帮助文字*/
+.help .help-text
+{
+	text-align:center;
+	margin-top:10px;
+	height:40px;
+}
+/*按钮区域*/
+.help .g-button-zone
+{
+	text-align:center;
+	margin:0 auto;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:使用帮助-帮助页面
+	作者:蔡俊雄
+	url:maintenance/helpguid/help.html
+	版本:V1.0
+	时间:2015-03-30
+********************/
+ 
+
+/*容器*/
+.help
+{
+	
+}
+/*帮助图片*/
+.help .help-image
+{
+	text-align:center;
+	margin:0 auto;
+}
+/*帮助文字*/
+.help .help-text
+{
+	text-align:center;
+	margin-top:10px;
+	height:40px;
+}
+/*按钮区域*/
+.help .g-button-zone
+{
+	text-align:center;
+	margin:0 auto;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:日常维护-错误解决向导
+	作者:蔡俊雄
+	url:maintenance/dailymaintenance/resolveerror.html
+	版本:V1.0
+	时间:2015-03-31
+********************/
+ 
+
+/*容器*/
+.resolve-error
+{
+	
+}
+/*错误信息*/
+.resolve-error .error-msg
+{
+	color:#FF0000;
+}
+/*行*/
+.resolve-error .resolve-error-row
+{
+	margin-top:0px;
+}
+
+/*帮助图片*/
+.resolve-error .help-image
+{
+	text-align:center;
+	margin:0 auto;
+}
+/*帮助文字*/
+.resolve-error .help-text
+{
+	text-align:center;
+	margin-top:10px;
+	height:60px;
+}
+/*按钮区域*/
+.resolve-error .g-button-zone
+{
+	/*text-align:center;
+	margin:0 auto;*/
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:定制菜单
+	作者:蔡俊雄
+	url:maintenance/maintenance/definemenu.html
+	版本:V1.0
+	时间:2015-04-03
+********************/
+ 
+
+/*容器*/
+.define-menu
+{
+	
+}
+/*********************已选择区域*********************/
+/*已选择区域*/
+.define-menu .seleted-box
+{
+	position:relative;
+	margin-top:14px;
+	display:block;
+	text-align:center;
+}
+/*左边按钮区域*/
+.seleted-box .nav-left
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 40px;
+	height: 100%;
+}
+/*右边按钮区域*/
+.seleted-box .nav-right
+{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 40px;
+	height: 100%;
+}
+/*菜单区域*/
+.seleted-box .nav-zone
+{
+	margin:0 40px;
+}
+/*按钮容器*/
+.seleted-box ul
+{
+	width: 100%;
+	margin: 0 auto;
+	max-width: 1200px;
+}
+/*单个按钮*/
+.seleted-box li
+{
+	width: 23.5%;
+	height: 100%;
+	margin-right: 2%;
+}
+/*单个按钮-最后一个按钮*/
+.seleted-box li:last-child
+{
+	margin-right: 0;
+}
+/*虚线*/
+.define-menu .dash-line
+{
+	margin-top:10px;
+	margin-bottom:20px;
+	border-bottom:1px dashed #000;
+}
+/*********************已选择区域*********************/
+/*已选择区域*/
+.define-menu .choice-box
+{
+	position:relative;
+	margin-top:30px;
+	margin-bottom:80px;
+	display:block;
+	text-align:center;
+}
+/*左边按钮区域*/
+.choice-box .nav-left
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 40px;
+	height: 100%;
+	background-color: #2b2b2b;
+}
+/*右边按钮区域*/
+.choice-box .nav-right
+{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 40px;
+	height: 100%;
+	background-color: #2b2b2b;
+}
+/*菜单区域*/
+.choice-box .nav-zone
+{
+	margin:0 40px;
+}
+/*按钮容器*/
+.choice-box ul
+{
+	width: 100%;
+	margin: 0 auto;
+	max-width: 1200px;
+}
+/*单个按钮*/
+.choice-box li
+{
+	width: 23.5%;
+	height: 100%;
+	margin-right: 2%;
+	margin-bottom:26px;
+}
+/*单个按钮-每一行的第4个按钮*/
+.choice-box li:nth-child(4n+4)
+{
+	margin-right: 0;
+}
+/*******最后一行的按钮(adam 20150818 修改，注释了下面4个按钮的样式)*******/
+/*单个按钮*/
+.choice-box li:nth-last-child(1)
+{
+	/*margin-bottom: 0;*/
+}
+/*单个按钮*/
+.choice-box li:nth-last-child(2)
+{
+	
+	/*margin-bottom: 0;*/
+}
+/*单个按钮*/
+.choice-box li:nth-last-child(3)
+{
+	/*margin-bottom: 0;*/
+	
+}
+/*单个按钮*/
+.choice-box li:nth-last-child(4)
+{
+	/*margin-bottom: 0;*/
+	
+}
+
+
+/*按钮区域*/
+.define-menu .g-button-zone
+{
+	/*margin-top:80px;*/
+	text-align:center;
+	margin:0 auto;
+}
+
+
+
+
+
+/*菜单区域*/
+.navigation .nav-zone
+{
+	position:relative;
+	height: 100%;
+	margin:0 40px;
+}
+/*左边按钮区域*/
+.navigation .nav-left.none~.nav-zone
+{
+	margin-left: 0px;
+}
+/*右边按钮区域*/
+.navigation .nav-right.none~.nav-zone
+{
+	margin-right: 0px;
+}
+
+/****************************************************************************************************/ 
+
+/******************** 
+	作用:显示错误信息
+	作者:蔡俊雄
+	url:maintenance/show-information.html
+	版本:V1.0
+	时间:2015-05-14
+********************/
+
+
+/*容器*/
+.show-information
+{
+	
+}
+
+/******************** 
+	作用:显示调试信息
+	作者:adam
+	版本:V1.0
+	时间:2015-06-25
+********************/
+
+.Debugbox
+{ 
+ position:absolute;
+ z-index:9999999; 
+ top:0px; 
+ left:100px; 
+ width:400px; 
+ overflow-y:scroll;
+ height:70px; 
+ background:#8a9bca; 
+ cursor:move;
+ display: none;
+ } 
+/*用于显示第四级菜单*/
+.flow-button-level4
+{
+    float: left;
+    margin-left: 200px;
+    margin-top: 100px;
+}
+
+.level4-menu-button-zone
+{
+	z-index: 3;
+	height: 1000px;
+	position: relative;
+}

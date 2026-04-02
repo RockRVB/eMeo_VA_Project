@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!-- 
+ * The definition of State Type
+ * [1] Normal state with size = 1 from state type(A,B,C,D,etc.)
+*  [2] Special State defined for Exit states and Time-Out state with variable size   
+-->
+	<Mode>
+		<Item key="InService" value="XDCInService" />
+		<Item key="OffLine" value="XDCOffLine" />
+		<Item key="OutOfService" value="XDCOutOfService" />
+		<Item key="Maintenance" value="XDCMaintenance" />
+		<Item key="Suspend" value="XDCSuspend" />
+		<Item key="PowerUp" value="XDCPowerUp" />
+	</Mode>
+	<StateType>
+		<Item key="A" value="XDCInService" description="Card Read State"/>
+		<Item key="B" value="NDCPinEntry" description="PIN Entry State"/>
+		<Item key="CHK01" value="NDCCHKMediaInStart" description="NDCCHKMediaInStart"/>
+		<Item key="CHK02" value="NDCCHKWaitForInsert" description="NDCCHKWaitForInsert"/>
+		<Item key="CHK03" value="NDCCHKMediaIn" description="NDCCHKMediaIn"/>
+		<Item key="CHK04" value="NDCCHKMediaInShowResult" description="NDCCHKMediaInShowResult"/>
+		<Item key="CHK05" value="NDCCHKCancelMediaIn" description="NDCCHKCancelMediaIn"/>
+		<Item key="CHK06" value="NDCCHKMediaInRetract" description="NDCCHKMediaInRetract"/>
+		<Item key="CHK07" value="NDCCHKMediaInRollback" description="NDCCHKMediaInRollback"/>
+		<Item key="CHK08" value="NDCCHKWaitForMediaTaken" description="NDCCHKWaitForMediaTaken"/>
+		<Item key="C" value="NDCEnvelopeDispenserState" description="Envelope Dispenser State"/>
+		<Item key="D" value="NDCSetOperationCode" description="Pre-Set Operation Code Buffer State"/>
+		<Item key="E" value="NDCFourFdkSelect" description="Four FDK selection Function State"/>
+		<Item key="F" value="NDCAmountEntry" description="Amount Entry State"/>
+		<Item key="G" value="NDCAmountCheck" description="Amount Check State"/>
+		<Item key="H" value="NDCInformationEntry" description="Information Entry State"/>
+		<Item key="I" value="NDCTransactionRequest" description="Transaction Request State"/>
+		<Item key="J" value="NDCCloseState" description="Closet State"/>
+		<Item key="K" value="NDCFitSwitchState" description="FIT Switcht State"/>
+		<Item key="_" value="NDCFitSwitchState" description="Expanded FIT Switch State"/>
+		
+		<!--It must has this parameter, if it can not found in
+		Log.XdcTrace.LogError("Cannot find m_sData=" + m_sData + " in m_dStateType");
+		return False-->
+		
+		<!--必须要有，否则
+		在Log.XdcTrace.LogError("Cannot find m_sData=" + m_sData + " in m_dStateType");
+		找不到，返回False-->
+		<Item key="L" value="NDCCardWriteState" description="Card Writet State"/>
+		<Item key="M" value="NDCPinEntry" description="Enhance Pin Entry State"/>
+		<!--It must has this parameter, if it can not found in 
+		Log.XdcTrace.LogError("Cannot find m_sData=" + m_sData + " in m_dStateType");
+		return False-->
+		
+		<!--必须要有，否则
+		在Log.XdcTrace.LogError("Cannot find m_sData=" + m_sData + " in m_dStateType");
+		找不到，返回False-->
+		<Item key="N" value="NDCCameraControl" description="Camera Control State"/>
+		<Item key="R" value="NDCEnhancedAmountEntry" description="Enhance Amount Entry State"/>
+		<Item key="S" value="NDCLanguageCodeSwitchState" description="Language Code Switch State"/>
+		<!--It must has this parameter, if it can not found in
+		Log.XdcTrace.LogError("Cannot find m_sData=" + m_sData + " in m_dStateType");
+		return False-->
+		
+		<!--必须要有，否则
+		在Log.XdcTrace.LogError("Cannot find m_sData=" + m_sData + " in m_dStateType");
+		找不到，返回False-->
+		<Item key="T" value="NDCCardReadState" description="Card Read - Pin Entry Initiation State"/>
+		<Item key="U" value="NDCDeviceFitnessFlowSelectState" description=""/>
+		<Item key="V" value="NDCLanguageSelectFromCard" description="Language Select From Card State"/>
+		<Item key="W" value="NDCFDKSwitchState" description="Card Read - Pin Entry Initiation State"/>
+		<Item key="X" value="NDCFDKInformationEntryState" description="Language Select From Card State"/>
+		<Item key="Y" value="NDCEightFDKSelect" description="Eight FDK Selection Function State"/>
+		<Item key="b" value="NDCCustomerSelectablePIN" description="Customer-Selectable PIN State"/>
+		<Item key="g" value="NDCFitSwitchExitState_g" description="NDCFitSwitchExitState_g"/>
+		<!--It must has this parameter, if it can not found in
+		Log.XdcTrace.LogError("Cannot find m_sData=" + m_sData + " in m_dStateType");
+		return False-->
+		<!--必须要有，否则
+		在Log.XdcTrace.LogError("Cannot find m_sData=" + m_sData + " in m_dStateType");
+		找不到，返回False-->
+		<Item key="d-g" value="ExitStates" description="Exit State"/>
+		<Item key="m" value="NDCPinLanguageSelectState" description="Pin and Language Select State"/>
+		<Item key="z013" value="NDCDataCopyAndCompareState" description="NDCDataCopyAndCompareState"/>
+		<!--It must has this parameter, if it can not found in
+		Log.XdcTrace.LogError("Cannot find m_sData=" + m_sData + " in m_dStateType");
+		return False-->
+		<!--必须要有，否则
+		在Log.XdcTrace.LogError("Cannot find m_sData=" + m_sData + " in m_dStateType");
+		找不到，返回False-->
+		<Item key="w" value="NDCChequeAcceptState" description="Cheque Acceptt State"/>
+		
+		<Item key="z001" value="NDCBunchChequeAcceptState_z001" description="z001 – Bunch Cheque Accept State"/>
+		<Item key="z002" value="NDCBunchChequeHandlingState_z002" description="z002 – Bunch Cheque Handling State"/>
+		<Item key="z003" value="NDCChequeDetailDisplayState_z003" description="z003 – Cheque Detail Display State"/>
+		<Item key="z004" value="NDCDisplayChequeSummary_z004" description="z004 – Display Cheque Summary State"/>
+		<Item key="z005" value="NDCFingerSelectionState" description="NDCFingerSelectionState"/>
+		<Item key="z006" value="NDCFingerprintCaptureState" description="NDCFingerprintCaptureState"/>
+		<Item key="z025" value="NDCFingerprintRemoteAuthenticationState" description="NDCFingerprintRemoteAuthenticationState"/>
+		<!--It must has this parameter, if it can not found in
+		Log.XdcTrace.LogError("Cannot find m_sData=" + m_sData + " in m_dStateType");
+		return False-->
+		<!--必须要有，否则
+		在Log.XdcTrace.LogError("Cannot find m_sData=" + m_sData + " in m_dStateType");
+		找不到，返回False-->
+		<Item key="Z" value="NDCCloseState" description="Z"/>
+		<Item key="&amp;" value="NDCBarCodeState" description="Barcode"/>
+		<Item key="TimeOut" value="TimeOut" description="Time-Out State"/>
+		<!--for ndc emv by ccyao-->
+		<Item key="-" value="NDCEmvAutoLangSel" description="Automatic Language Selection"/>
+		<Item key="." value="NDCEmvBeginIccAppSelectInit" description="Begin ICC application Selection and Initialization"/>
+		<Item key="+" value="NDCEmvBeginIccInit" description="Begin ICC Initialization"/>
+		<Item key="/" value="NDCEmvCompleteIccAppSelectInit" description="Complete ICC application Selection and Initialization"/>
+		<Item key="," value="NDCEmvCompleteIccInit" description="Complete ICC Initialization"/>
+		<Item key="d" value="NDCEmvExitState_d" description="Chip Data Read State "/>
+		<Item key="e" value="NDCEmvExitState_e" description="EMV Core transaction state "/>
+		<Item key="f" value="NDCEmvExitState_f" description="EMV Non-core transaction state"/>
+		<Item key=";" value="NDCEmvReIccInit" description="ICC Re-initializes"/>
+		<Item key="?" value="NDCEmvSetIccTransactionData" description="Set ICC Transaction Data"/>
+		<Item key="k" value="NDCEmvSmartFITCheck" description="Smart FIT Check State"/>
+		<Item key="r" value="WincorNDCCashAcceptorState" description="Wincor NDC Deposit"/>
+		<Item key="c" value="NDCCashDepositState" description="NDCCashDepositState"/>
+		<Item key="z007" value="NDCEMVSmartDIPTakeCard" description="NDCEMVSmartDIPTakeCard"/>
+		<Item key="z012" value="NDCEMVApplicationSwitch" description="NDCEMVApplicationSwitch"/>
+		<Item key="z008" value="NDCInsertCardState" description="NDCInsertCardState"/>
+		<Item key="z026" value="NDCCardEjectState" description="NDCCardEjectState"/>			
+		<Item key="z024" value="NDCPrepareDispenseState" description="NDC Prepare Dispense State"/>	
+		<Item key="z020" value="NDCFITSearchState" description="NDC FIT Search State"/>
+		<Item key="z021" value="NDCCRMFlowpointState" description="NDC CRM Flowpoint State"/>
+		<Item key="z017" value="NDCNoteMixSelectionState" description="NDC Note Mix Selection State"/>
+		<!--for ndc emv by ccyao-->
+	</StateType>
+	<StateFormat>
+		<!-- 
+ * The state format definition of card read state type
+-   -->
+		<CardRead>
+			<Item key="0" value="Type" size="1" description="StateType"/>
+			<Item key="1" value="ScrNum" size="3" description="Screen Number (Range 000 - 999)"/>
+			<Item key="2" value="GoodNext" size="3" description="[1]Good read. [2]FIT matched"/>
+			<Item key="3" value="ErrScrNum" size="3" description="Read card error"/>
+			<Item key="4" value="ReadCondition1" size="3" description="Read condition 1"/>
+			<Item key="5" value="ReadCondition2" size="3" description="Read condition 2"/>
+			<Item key="6" value="ReadCondition3" size="3" description="Read condition 3"/>
+			<Item key="7" value="CardReturnFlag" size="3" description="[0] - Eject the card immediately [2]001-Retirm tje card as specified."/>
+			<Item key="8" value="MisMatchNext" size="3" description="Fit doesn't match with card data. [000] - Fits not used."/>
+		</CardRead>
+		<!-- 
+        * The state format definition of PIN Entry state type
+-    -->
+		<PinEntry>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="ScrNum" size="3" description="Screen number"/>
+			<Item key="2" value="TimeOutNext" size="3" description="Time-Out next state"/>
+			<Item key="3" value="CancelNext" size="3" description="Cance nextl state"/>
+			<Item key="4" value="LocalPinGoodNext" size="3" description="Local Pin good check next state"/>
+			<Item key="5" value="LocalPinBadNext" size="3" description="Local Pin bad check next state"/>
+			<Item key="6" value="LocalPinErrScrNum" size="3" description="Local Pin error check screen number"/>
+			<Item key="7" value="RemotePinChkNext" size="3" description="Local Pin not performed(Remote)"/>
+			<Item key="8" value="LocalMaxRetry" size="3" description="Maximum number of incorrect Pin entries for local PIN check"/>
+		</PinEntry>
+		<!-- 
+       * The state format definition of envelope dispenser state type
+-    -->
+		<EnvelopeDispenser>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="NextState" size="3" description="Next state"/>
+			<Item key="2" value="Reservered" size="3" description="Reservered"/>
+			<Item key="3" value="Reservered" size="3" description="Reservered"/>
+			<Item key="4" value="Reservered" size="3" description="Reservered"/>
+			<Item key="5" value="Reservered" size="3" description="Reservered"/>
+			<Item key="6" value="Reservered" size="3" description="Reservered"/>
+			<Item key="7" value="Reservered" size="3" description="Reservered"/>
+			<Item key="8" value="Reservered" size="3" description="Reservered"/>
+		</EnvelopeDispenser>
+		<!-- 
+       * The state format definition of Pre-Set Operation Code Buffer state type
+-    -->
+		<PreSetOpCodeBuf>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="NextState" size="3" description="Next state"/>
+			<Item key="2" value="ClearMask" size="3" description="Set the specifies bytes of buffer to 'space' according to each bit."/>
+			<Item key="3" value="PreSetA" size="3" description="Set the specifies bytes of buffer to 'A' according to each bit."/>
+			<Item key="4" value="PreSetB" size="3" description="Set the specifies bytes of buffer to 'B' according to each bit."/>
+			<Item key="5" value="PreSetC" size="3" description="Set the specifies bytes of buffer to 'C' according to each bit."/>
+			<Item key="6" value="PreSetD" size="3" description="Set the specifies bytes of buffer to 'D' according to each bit."/>
+			<Item key="7" value="Reservered" size="3" description="Reservered"/>
+			<Item key="8" value="ExState" exState="PreSetOpCodeBufEx" size="3" description="Extension state number."/>
+		</PreSetOpCodeBuf>
+		<!-- 
+       * The state format definition of Extension Pre-Set Operation Code Buffer state type
+-    -->
+		<PreSetOpCodeBufEx>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="PreSetF" size="3" description="Set the specifies bytes of buffer to 'F' according to each bit"/>
+			<Item key="2" value="PreSetG" size="3" description="Set the specifies bytes of buffer to 'G' according to each bit"/>
+			<Item key="3" value="PreSetH" size="3" description="Set the specifies bytes of buffer to 'H' according to each bit."/>
+			<Item key="4" value="PreSetI" size="3" description="Set the specifies bytes of buffer to 'I' according to each bit"/>
+			<Item key="5" value="Reservered" size="3" description="Reservered."/>
+			<Item key="6" value="Reservered" size="3" description="Reservered."/>
+			<Item key="7" value="Reservered" size="3" description="Reservered"/>
+			<Item key="8" value="Reservered" size="3" description="Reservered"/>
+		</PreSetOpCodeBufEx>
+		<!-- 
+       * The state format definition of Four FDK Seletion Function state type
+-    -->
+		<FourFdkSelFunc>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="ScrNum" size="3" description="Screen number"/>
+			<Item key="2" value="TimeOutNext" size="3" description="Time-Out next state number"/>
+			<Item key="3" value="CancelNext" size="3" description="Cancel next state number"/>
+			<Item key="4" value="FDKAI" size="3" description="Press FDK A or I "/>
+			<Item key="5" value="FDKBH" size="3" description="Press FDK B or H"/>
+			<Item key="6" value="FDKCG" size="3" description="Press FDK C or G."/>
+			<Item key="7" value="FDKDF" size="3" description="Press FDK D or F"/>
+			<Item key="8" value="BufferLocation" size="3" description="Define the operation code buffer byte in which keycode for the selection FDK is stored."/>
+		</FourFdkSelFunc>
+		<!-- 
+       * The state format definition of Amount Entry State type
+-    -->
+		<AmountEntry>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="ScrNum" size="3" description="Screen number"/>
+			<Item key="2" value="TimeOutNext" size="3" description="Time-Out next state number"/>
+			<Item key="3" value="CancelNext" size="3" description="Cancel next state number"/>
+			<Item key="4" value="FDKAI" size="3" description="Press FDK A or I "/>
+			<Item key="5" value="FDKBH" size="3" description="Press FDK B or H"/>
+			<Item key="6" value="FDKCG" size="3" description="Press FDK C or G."/>
+			<Item key="7" value="FDKDF" size="3" description="Press FDK D or F"/>
+			<Item key="8" value="AmtDisplayScr" size="3" description="Amount Display Screen"/>
+		</AmountEntry>
+		<!-- 
+       * The state format definition of Amount Check State type
+-    -->
+		<AmountCheck>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="TrueNext" size="3" description="Amount check condition true to go to next state"/>
+			<Item key="2" value="FalseNext" size="3" description="Amount check condition false to go to next state"/>
+			<Item key="3" value="BufToBeChecked" size="3" description="Specify which buffer to be checked."/>
+			<Item key="4" value="IntegerMultiValue" size="3" description="Integer multiple value used in checking specified buffer(002)."/>
+			<Item key="5" value="NumOfDecimalPlaces" size="3" description="Number of decimal places used in specified buffer(not 000)."/>
+			<Item key="6" value="CurrencyType" size="3" description="Currency type of amount in specified buffer.(003)"/>
+			<Item key="7" value="AmtChkCondtion" size="3" description="Amount check condition required."/>
+			<Item key="8" value="Reservered" size="3" description="Reservered"/>
+		</AmountCheck>
+		<!-- 
+       * The state format definition of Information Entry State type
+-    -->
+		<InformationEntry>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="ScrNum" size="3" description="Screen number"/>
+			<Item key="2" value="TimeOutNext" size="3" description="Time-Out next state number"/>
+			<Item key="3" value="CancelNext" size="3" description="Cancel next state number"/>
+			<Item key="4" value="FDKAI" size="3" description="Press FDK A or I "/>
+			<Item key="5" value="FDKBH" size="3" description="Press FDK B or H"/>
+			<Item key="6" value="FDKCG" size="3" description="Press FDK C or G."/>
+			<Item key="7" value="FDKDF" size="3" description="Press FDK D or F"/>
+			<Item key="8" value="BufDisplayPara" size="3" description="Buffer and display parameters(Range 000-003)"/>
+		</InformationEntry>
+		<!-- 
+       * The state format definition of Transaction Request State type
+-    -->
+		<TransactionRequest>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="ScrNum" size="3" description="Screen number"/>
+			<Item key="2" value="TimeOutNext" size="3" description="Central ResponseTime-Out next state number"/>
+			<Item key="3" value="Track2Condition" size="3" description="Send Track 2 Data Condition"/>
+			<Item key="4" value="Track1And3Condition" size="3" description="Send Track 1 and/or Track 3 Data Condition"/>
+			<Item key="5" value="SndOpCode" size="3" description="Send Operation Code Data"/>
+			<Item key="6" value="SndAmtData" size="3" description="Send Amount Data"/>
+			<Item key="7" value="PINBufFormat" size="3" description="Send PIN buffer(buffer A) data/select extended format"/>
+			<Item key="8" value="BufBCOrExStateNum" size="3" description="Send General Purpose buffer B and/or C or extension state number(Range 000-003, or [valid state number]"/>
+		</TransactionRequest>
+		<!-- 
+       * The state format definition of Transaction Request State type
+-    -->
+		<TransactionRequestEx>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="BufBC" size="3" description="Send Buffers B and/or C"/>
+			<Item key="2" value="SndOpFieldAH" size="3" description="Send Optional Data Fields('A' - 'H')"/>
+			<Item key="3" value="SndOpFieldIL" size="3" description="Send Optional Data Fields('I' - 'L')"/>
+			<Item key="4" value="SndOpFieldQa" size="3" description="Send Optional Data Fields('Q - 'a')"/>
+			<Item key="5" value="SndOpOthers" size="3" description="Send Operation Code Data Fields (Range 000-001)"/>
+			<Item key="6" value="Reserved" size="3" description="Reseved Data"/>
+			<Item key="7" value="EMVCamProcessFlag" size="3" description="Indicates if EMV CAM procssing is to be performed."/>
+			<Item key="8" value="Reserved" size="3" description="Reserved"/>
+		</TransactionRequestEx>
+		<!-- 
+       * The state format definition of Close State type
+-    -->
+		<Close>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="RcptDeliverScrNum" size="3" description="Display screen only if a receipt is delivered"/>
+			<Item key="2" value="Next" size="3" description="Next State Number"/>
+			<Item key="3" value="NoRcptDeliverScrNum" size="3" description="Display screen only if no receipt is delivered and no card captured in close state"/>
+			<Item key="4" value="CardRetainedScrNum" size="3" description="Display screen only if card captured in close state"/>
+			<Item key="5" value="StatementDeliverScrNum" size="3" description="Display screen only if statement is cut and delivered in close state"/>
+			<Item key="6" value="Reserved" size="3" description="Reseved Data"/>
+			<Item key="7" value="BNANoteReturnScrNum" size="3" description="Display screen to inform the cardholder that the BNA notes are being returned."/>
+			<Item key="8" value="ExStateNum" size="3" description="State number of the optional extension state."/>
+		</Close>
+		<!-- 
+       * The state format definition of Extension Close State type
+-    -->
+		<CloseEx>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="CPMTakeDocScrNum" size="3" description="Display screen only if CPM is present in error recovery action."/>
+			<Item key="2" value="CPMDocRetFlag" size="3" description="The flag controls the error recovery actions which may take place in the state if the CPM is present"/>
+			<Item key="3" value="Reserved" size="3" description="Reserved"/>
+			<Item key="4" value="Reserved" size="3" description="Reserved"/>
+			<Item key="5" value="Reserved" size="3" description="Reserved"/>
+			<Item key="6" value="Reserved" size="3" description="Reserved"/>
+			<Item key="7" value="CPMDocRetLeaveFlag" size="3" description="Leave Flag: The flag controls the error recovery actions which may take place in the state if the CPM is present"/>
+			<Item key="8" value="Reserved" size="3" description="Reserved"/>
+		</CloseEx>
+		<!-- 
+       * The state format definition of FIT Switch State type
+-    -->
+		<FitSwitch>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="0" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="2" value="1" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="3" value="2" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="4" value="3" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="5" value="4" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="6" value="5" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="7" value="6" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="8" value="7" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+		</FitSwitch>
+		<!-- 
+       * The state format definition of Expanded FIT Switch State type
+-    -->
+		<ExFitSwitch>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="0" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="2" value="1" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="3" value="2" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="4" value="3" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="5" value="4" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="6" value="5" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="7" value="6" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="8" value="ExState" size="3" description="Extension State Number."/>
+		</ExFitSwitch>
+		<!-- 
+       * The state format definition of Extension Expanded FIT Switch State type
+-    -->
+		<ExFitSwitchEx>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="7" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="2" value="8" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="3" value="9" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="4" value="10" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="5" value="11" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="6" value="12" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="7" value="13" size="3" description="Next state. And index will be found in table entry 5  in FIT table."/>
+			<Item key="8" value="14" size="3" description="Extension State Number."/>
+		</ExFitSwitchEx>
+		<!-- 
+       * The state format definition of Card Write State type
+-    -->
+		<CardWrite>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="ScrNum" size="3" description="Screen displayed during a Card Write operation.."/>
+			<Item key="2" value="GoodWriteNext" size="3" description="Good write and go to next state."/>
+			<Item key="3" value="BadWriteNext" size="3" description="Bad write and go to next state."/>
+			<Item key="4" value="NoWriteNext" size="3" description="No write and go to next state."/>
+			<Item key="5" value="Reserved" size="3" description="Reserved"/>
+			<Item key="6" value="Reserved" size="3" description="Reserved."/>
+			<Item key="7" value="Reserved" size="3" description="Reserved"/>
+			<Item key="8" value="Reserved" size="3" description="Reserved"/>
+		</CardWrite>
+		<!-- 
+       * The state format definition of Enhance PIN Entry State type
+-    -->
+		<EnPinEntry>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="ScrNum" size="3" description="Screen displayed to prompt the cardholder to enter PIN(X is displayed for key pressed).(Including the start position in the screen srcipt."/>
+			<Item key="2" value="TimeOutNext" size="3" description="Time out and go to next state."/>
+			<Item key="3" value="CancelNext" size="3" description="Cancel and go to next state."/>
+			<Item key="4" value="LocalPinGoodNext" size="3" description="Local PIN check good pin and go to next state."/>
+			<Item key="5" value="LocalPinMaxBadNext" size="3" description="Local PIN check maximum bad pin and go to next state"/>
+			<Item key="6" value="LocalPinErrScrNumt" size="3" description="Local PIN check error screen number."/>
+			<Item key="7" value="RemotePinNext" size="3" description="Remote PIN check and go to next state."/>
+			<Item key="8" value="LocalPinMaxPinRetry" size="3" description="Local PIN check maximum PIN check retries."/>
+		</EnPinEntry>
+		<!-- 
+       * The state format definition of Enahnce Amount Entryl State type
+-    -->
+		<EnAmountEntry>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="ScrNum" size="3" description="Screen number"/>
+			<Item key="2" value="TimeOutNext" size="3" description="Time-Out next state number"/>
+			<Item key="3" value="CancelNext" size="3" description="Cancel next state number"/>
+			<Item key="4" value="FDKAI" size="3" description="Press FDK A or I "/>
+			<Item key="5" value="FDKBH" size="3" description="Press FDK B or H"/>
+			<Item key="6" value="FDKCG" size="3" description="Press FDK C or G."/>
+			<Item key="7" value="FDKDF" size="3" description="Press FDK D or F"/>
+			<Item key="8" value="ExState" size="3" description="Extension State Number"/>
+		</EnAmountEntry>
+		<!-- 
+       * The state format definition of Extension Enahnce Amount Entryl State type
+-    -->
+		<EnAmountEntryEx>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="AmtBuf" size="3" description="Document Amount Buffer"/>
+			<Item key="2" value="AmtDisplayScrNum" size="3" description="Amount Display Screen Number"/>
+			<Item key="3" value="Reserved" size="3" description="Reserved. Start CAV command(Not used by advance NDC)."/>
+			<Item key="4" value="LangDependScrFlag" size="3" description="Language Dependent Screen Flag. "/>
+			<Item key="5" value="Reserved" size="3" description="Reserved"/>
+			<Item key="6" value="Reserved" size="3" description="Reserved."/>
+			<Item key="7" value="Reserved" size="3" description="Reserved"/>
+			<Item key="8" value="Reserved" size="3" description="Reserved"/>
+		</EnAmountEntryEx>
+		<!-- 
+       * The state format definition of Language CodeSwitch State type
+-    -->
+		<LangCodeSwitch>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="none" size="3" description="No language code and go to next state"/>
+			<Item key="2" value="0" size="3" description="Language code=0 and go to next state"/>
+			<Item key="3" value="1" size="3" description="Language code=1 and go to next state."/>
+			<Item key="4" value="2" size="3" description="Language code=2 and go to next state. "/>
+			<Item key="5" value="3" size="3" description="Language code=3 and go to next state."/>
+			<Item key="6" value="4" size="3" description="Language code=4 and go to next state."/>
+			<Item key="7" value="5" size="3" description="Language code=5 and go to next state."/>
+			<Item key="8" value="ExState" size="3" description="Extension State Number"/>
+		</LangCodeSwitch>
+		<!-- 
+       * The state format definition of Extension Language CodeSwitch State type
+-    -->
+		<LangCodeSwitchEx>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="6" size="3" description="Language code=6 and go to next state."/>
+			<Item key="2" value="7" size="3" description="Language code=7 and go to next state."/>
+			<Item key="3" value="8" size="3" description="Language code=8 and go to next state."/>
+			<Item key="4" value="9" size="3" description="Language code=9 and go to next state. "/>
+			<Item key="5" value="Reserved" size="3" description="Reserved"/>
+			<Item key="6" value="Reserved" size="3" description="Reserved."/>
+			<Item key="7" value="Reserved" size="3" description="Reserved"/>
+			<Item key="8" value="Reserved" size="3" description="Reserved"/>
+		</LangCodeSwitchEx>
+		<!-- 
+       * The state format definition of Card Read - PIN Entry Initiation State type
+-    -->
+		<CardRead2PinEntryInit>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="InsertCardScrNum" size="3" description="Display screen that prompts the cardholder to enter a card."/>
+			<Item key="2" value="GoodReadNext" size="3" description="Good Read and go to next state."/>
+			<Item key="3" value="CardReadErrScrNum" size="3" description="Error(Misread) Screen Number."/>
+			<Item key="4" value="ReadCondition1" size="3" description="Read Condition 1. "/>
+			<Item key="5" value="ReadCondition2" size="3" description="Read Condition 2."/>
+			<Item key="6" value="ReadCondition3" size="3" description="Read Condition 3."/>
+			<Item key="7" value="Reserved" size="3" description="Reserved"/>
+			<Item key="8" value="ExState" size="3" description="Extension State Number."/>
+		</CardRead2PinEntryInit>
+		<!-- 
+       * The state format definition of Entesion Card Read - PIN Entry Initiation State type
+-    -->
+		<CardRead2PinEntryInitEx>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="PinInputScrNum" size="3" description="Display screen that prompts the cardholder to enter the PIN."/>
+			<Item key="2" value="NoFitMatchNext" size="3" description="No FIT Match Next State."/>
+			<Item key="3" value="ClearKeyMask" size="3" description="Clear Key Mask."/>
+			<Item key="4" value="AcceptKeyMask" size="3" description="Accept Key Mask. "/>
+			<Item key="5" value="RemoveScrNum" size="3" description="Display screen that prompts the cardholder to remove card and wait.(Timer 72 expories)."/>
+			<Item key="6" value="Reserved" size="3" description="Reserved"/>
+			<Item key="7" value="Reserved" size="3" description="Reserved"/>
+			<Item key="8" value="Reserved" size="3" description="Reserved"/>
+		</CardRead2PinEntryInitEx>
+		<!-- 
+    * The state format definition of FDK Switch State type
+-    -->
+		<FDKSwitch>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="NextFDKA" size="3" description="FDK 'A' Next State Number."/>
+			<Item key="2" value="NextFDKB" size="3" description="FDK 'B' Next State Number."/>
+			<Item key="3" value="NextFDKC" size="3" description="FDK 'C' Next State Number."/>
+			<Item key="4" value="NextFDKD" size="3" description="FDK 'D' Next State Number."/>
+			<Item key="5" value="NextFDKF" size="3" description="FDK 'F' Next State Number."/>
+			<Item key="6" value="NextFDKG" size="3" description="FDK 'G' Next State Number."/>
+			<Item key="7" value="NextFDKH" size="3" description="FDK 'H' Next State Number."/>
+			<Item key="8" value="NextFDKI" size="3" description="FDK 'I' Next State Number."/>
+		</FDKSwitch>
+		<!-- 
+    * The state format definition of FDK Information Entry State type
+-    -->
+		<FDKInfoEntry>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="ScrNum" size="3" description="Screen number"/>
+			<Item key="2" value="TimeOutNext" size="3" description="Time-Out next state number"/>
+			<Item key="3" value="CancelNext" size="3" description="Cancel next state number"/>
+			<Item key="4" value="FDKNext" size="3" description="FDK Next State Number if an FDK or touch key is pressed."/>
+			<Item key="5" value="ExState" size="3" description="Extension State Number."/>
+			<Item key="6" value="BufferId" size="3" description="Buffer ID(Range 010-039)."/>
+			<Item key="7" value="FDKActiveMask" size="3" description="FDKSs Active Mask."/>
+			<Item key="8" value="Reserved" size="3" description="Reserved."/>
+		</FDKInfoEntry>
+		<!-- 
+    * The state format definition of Extension FDK Switch State type
+-    -->
+		<FDKInfoEntryEx>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="NextFDKA" size="3" description="FDK 'A' Next State Number."/>
+			<Item key="2" value="NextFDKB" size="3" description="FDK 'B' Next State Number."/>
+			<Item key="3" value="NextFDKC" size="3" description="FDK 'C' Next State Number."/>
+			<Item key="4" value="NextFDKD" size="3" description="FDK 'D' Next State Number."/>
+			<Item key="5" value="NextFDKF" size="3" description="FDK 'F' Next State Number."/>
+			<Item key="6" value="NextFDKG" size="3" description="FDK 'G' Next State Number."/>
+			<Item key="7" value="NextFDKH" size="3" description="FDK 'H' Next State Number."/>
+			<Item key="8" value="NextFDKI" size="3" description="FDK 'I' Next State Number."/>
+		</FDKInfoEntryEx>
+		<!-- 
+    * The state format definition of Eight FDK Selection Function State type
+-    -->
+		<EightFDKSelFunc>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="ScrNum" size="3" description="Screen number"/>
+			<Item key="2" value="TimeOutNext" size="3" description="Time-Out next state number"/>
+			<Item key="3" value="CancelNext" size="3" description="Cancel next state number"/>
+			<Item key="4" value="FDKNext" size="3" description="FDK Next State Number if an FDK or touch key is pressed."/>
+			<Item key="5" value="ExFDKSelectFunc" size="3" description="Extension State Number(FDK pressed)."/>
+			<Item key="6" value="BufferPos" size="3" description="Buffer ID(Range 000-777)."/>
+			<Item key="7" value="FDKActiveMask" size="3" description="FDKSs Active Mask."/>
+			<Item key="8" value="ExMultiLangScrSelState" size="3" description="Multi-Language Screens Selection Extension State."/>
+		</EightFDKSelFunc>
+		<!-- 
+    * The state format definition of Extension State Number(FDK pressed) for Eight FDK Selection Function State type
+-    -->
+		<ExFDKSelectFunc>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="NextFDKA" size="3" description="FDK 'A' Next State Number."/>
+			<Item key="2" value="NextFDKB" size="3" description="FDK 'B' Next State Number."/>
+			<Item key="3" value="NextFDKC" size="3" description="FDK 'C' Next State Number."/>
+			<Item key="4" value="NextFDKD" size="3" description="FDK 'D' Next State Number."/>
+			<Item key="5" value="NextFDKF" size="3" description="FDK 'F' Next State Number."/>
+			<Item key="6" value="NextFDKG" size="3" description="FDK 'G' Next State Number."/>
+			<Item key="7" value="NextFDKH" size="3" description="FDK 'H' Next State Number."/>
+			<Item key="8" value="NextFDKI" size="3" description="FDK 'I' Next State Number."/>
+		</ExFDKSelectFunc>
+		<!-- 
+    * The state format definition of Multi-Language Screens Selection Extension State for Eight FDK Selection Function State type
+-    -->
+		<ExMultiLangScrSelState>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="SBFDKA" size="3" description="Screen Base if FDK 'A' Pressed."/>
+			<Item key="2" value="SBFDKB" size="3" description="Screen Base if FDK 'B' Pressed."/>
+			<Item key="3" value="SBFDKC" size="3" description="Screen Base if FDK 'C' Pressed."/>
+			<Item key="4" value="SBFDKD" size="3" description="Screen Base if FDK 'D' Pressed."/>
+			<Item key="5" value="SBFDKF" size="3" description="Screen Base if FDK 'F' Pressed."/>
+			<Item key="6" value="SBtFDKG" size="3" description="Screen Base if FDK 'G' Pressed."/>
+			<Item key="7" value="SBFDKH" size="3" description="Screen Base if FDK 'H' Pressed."/>
+			<Item key="8" value="SBFDKI" size="3" description="Screen Base if FDK 'I' Pressed."/>
+		</ExMultiLangScrSelState>
+		<!-- 
+    * The state format definition of Customer-Selectable PIN State type
+-    -->
+		<CustomerSelPin>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="FirstEntryScrNum" size="3" description="First Entry Screen Number."/>
+			<Item key="2" value="TimeOutNext" size="3" description="Time-Out next state number"/>
+			<Item key="3" value="CancelNext" size="3" description="Cancel next state number"/>
+			<Item key="4" value="GoodNext" size="3" description="Good Next State Number."/>
+			<Item key="5" value="CSPFailNext" size="3" description="CSP Fail Next State Number."/>
+			<Item key="6" value="SecondEntryScrNum" size="3" description="Second Entry Screen Number."/>
+			<Item key="7" value="MisMatchFirstEntryScrNum" size="3" description="Mis-Match First Entry Screen Number(Range 000-999)."/>
+			<Item key="8" value="ExState" size="3" description="Extension State Number."/>
+		</CustomerSelPin>
+		<!-- 
+    * The state format definition of Extension Customer-Selectable PIN State type
+-    -->
+		<CustomerSelPinEx>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="AttemptNum" size="3" description="Number of attempts allowed to enter a matching CSP pair (Range 000-010)."/>
+			<Item key="2" value="LocalVerifyForNewPair" size="3" description="Use local verification of new PIN pair attempts(Range 000-001)"/>
+			<Item key="3" value="Reserved" size="3" description="Reservedr"/>
+			<Item key="4" value="Reserved" size="3" description="Reserved."/>
+			<Item key="5" value="Reserved" size="3" description="Reserved."/>
+			<Item key="6" value="Reserved" size="3" description="Second Entry Screen Number."/>
+			<Item key="7" value="Reserved" size="3" description="Reserved."/>
+			<Item key="8" value="Reserved" size="3" description="Reserved."/>
+		</CustomerSelPinEx>
+		<!-- 
+    * The state format definition of Smart FIT Check State type
+-    -->
+		<SmartFITCheck>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="Reserved" size="3" description="Reserved"/>
+			<Item key="2" value="GoodReadNext" size="3" description="Good Read Next"/>
+			<Item key="3" value="Reserved" size="3" description="Reservedr"/>
+			<Item key="4" value="Reserved" size="3" description="Reserved."/>
+			<Item key="5" value="Reserved" size="3" description="Reserved."/>
+			<Item key="6" value="Reserved" size="3" description="Reserved."/>
+			<Item key="7" value="CardReturnFlag" size="3" description="Card Return Flag."/>
+			<Item key="8" value="NoFitMatchNext" size="3" description="No FIT Match Next State Number."/>
+		</SmartFITCheck>
+		<!-- 
+    * The state format definition of PIN & Language Select State type
+-    -->
+		<Pin2LangSel>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="ScrNum" size="3" description="Screen number"/>
+			<Item key="2" value="TimeOutNext" size="3" description="Time-Out next state number"/>
+			<Item key="3" value="CancelNext" size="3" description="Cancel next state number"/>
+			<Item key="4" value="ExPin2LangSelOptionsNext" size="3" description="Next State Options Extension State Number."/>
+			<Item key="5" value="ExPin2LangSelOperationCodesNext" size="3" description="Operation Codes Extension State Number."/>
+			<Item key="6" value="BufferPos" size="3" description="Buffer ID(Range 000-777)."/>
+			<Item key="7" value="FDKActiveMask" size="3" description="FDKSs Active Mask."/>
+			<Item key="8" value="ExPin2LangSelMultiLangScrSelState" size="3" description="Multi-Language Screens Selection Extension State."/>
+		</Pin2LangSel>
+		<!-- 
+    * The state format definition of Extension PIN & Language Select State type
+-    -->
+		<ExPin2LangSelOptionsNext>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="NoPINEnterNext" size="3" description="No PIN Entered Next State Number."/>
+			<Item key="2" value="LocalPinChkGoodNext" size="3" description="Local PIN Check Good PIN Next State Number."/>
+			<Item key="3" value="LocalPINChkMaxBadNext" size="3" description="Local PIN Check Maximum Bad PINs Next State Number."/>
+			<Item key="4" value="LocalPINChkErrNext" size="3" description="Local PIN Check Error Next State Number."/>
+			<Item key="5" value="RemotePinChkNext" size="3" description="Remote PIN Check Next State Number."/>
+			<Item key="6" value="LocalPinMaxRetry" size="3" description="Local PIN Check Maximum PIN retries."/>
+			<Item key="7" value="StateBorMOp" size="3" description="State 'B' or 'M' Option (Range 000-001)."/>
+			<Item key="8" value="DefaultFDKMask" size="3" description="FDK Enter Key Default Mask (Range 000-128)."/>
+		</ExPin2LangSelOptionsNext>
+		<!-- 
+    * The state format definition of Extension PIN & Language Select State type
+-    -->
+		<ExPin2LangSelOperationCodesNext>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="OpCodeFDKA" size="3" description="Operation Code stored if FDK 'A' Pressed."/>
+			<Item key="2" value="OpCodeFDKB" size="3" description="Operation Code stored if FDK 'B' Pressed."/>
+			<Item key="3" value="OpCodeFDKC" size="3" description="Operation Code stored if FDK 'C' Pressed."/>
+			<Item key="4" value="OpCodeFDKD" size="3" description="Operation Code stored if FDK 'D' Pressed."/>
+			<Item key="5" value="OpCodeFDKF" size="3" description="Operation Code stored if FDK 'F' Pressed."/>
+			<Item key="6" value="OpCodeFDKG" size="3" description="Operation Code stored if FDK 'G' Pressed."/>
+			<Item key="7" value="OpCodeFDKH" size="3" description="Operation Code stored if FDK 'H' Pressed."/>
+			<Item key="8" value="OpCodeFDKI" size="3" description="Operation Code stored if FDK 'I' Pressed."/>
+		</ExPin2LangSelOperationCodesNext>
+		<!-- 
+    * The state format definition of Multi-Language Screens Selection Extension State for PIN & Language Select State type
+-    -->
+		<ExPin2LangSelMultiLangScrSelState>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="SBFDKA" size="3" description="Screen Base if FDK 'A' Pressed."/>
+			<Item key="2" value="SBFDKB" size="3" description="Screen Base if FDK 'B' Pressed."/>
+			<Item key="3" value="SBFDKC" size="3" description="Screen Base if FDK 'C' Pressed."/>
+			<Item key="4" value="SBFDKD" size="3" description="Screen Base if FDK 'D' Pressed."/>
+			<Item key="5" value="SBFDKF" size="3" description="Screen Base if FDK 'F' Pressed."/>
+			<Item key="6" value="SBtFDKG" size="3" description="Screen Base if FDK 'G' Pressed."/>
+			<Item key="7" value="SBFDKH" size="3" description="Screen Base if FDK 'H' Pressed."/>
+			<Item key="8" value="SBFDKI" size="3" description="Screen Base if FDK 'I' Pressed."/>
+		</ExPin2LangSelMultiLangScrSelState>
+		<!-- 
+		*The state format definition of Cash Accept State type
+-    -->
+		<CashAcceptState>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="CancelKeyMask" size="3" description="Cancel Key Mask."/>
+			<Item key="2" value="DepositKeyMask" size="3" description="Desposit Key Mask."/>
+			<Item key="3" value="AddMoreKeyMask" size="3" description="Add More Key Mask."/>
+			<Item key="4" value="RefundKeyMask" size="3" description="Refund Key Mask."/>
+			<Item key="5" value="ExCashAcceptState1" size="3" description="Extension State 1."/>
+			<Item key="6" value="ExCashAcceptState2" size="3" description="Extension State 2."/>
+			<Item key="7" value="ExCashAcceptState3" size="3" description="Extension State 3.."/>
+			<Item key="8" value="Reserved" size="3" description="Reserved"/>
+		</CashAcceptState>
+		<!-- 
+		*The state format definition of Extension 1  Cash Accept State type
+-    -->
+		<ExCashAcceptState1>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="EnterNoteScrNum" size="3" description="Please Enter Notes Screen."/>
+			<Item key="2" value="RemoveScrNum" size="3" description="Please Remove Notes Screen."/>
+			<Item key="3" value="ConfirmScrNum" size="3" description="Confirmation Screen."/>
+			<Item key="4" value="HardwareErrScrNum" size="3" description="Hardware Error Screen."/>
+			<Item key="5" value="EscrowFullScrNum" size="3" description="Escrow Full Screen."/>
+			<Item key="6" value="ProcessNotesScrNum" size="3" description="Processing Notes Screen."/>
+			<Item key="7" value="RemoveMoreNotesScrNum" size="3" description="Please Remove More than 90 Notes Screen.."/>
+			<Item key="8" value="Reserved" size="3" description="Reserved"/>
+		</ExCashAcceptState1>
+		<!-- 
+		*The state format definition of Extension 2  Cash Accept State type
+-    -->
+		<ExCashAcceptState2>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="GoodNext" size="3" description="Good Next State Number."/>
+			<Item key="2" value="CancelNext" size="3" description="Cancel Next State Number."/>
+			<Item key="3" value="DeviceErrNext" size="3" description="Device Error Next State"/>
+			<Item key="4" value="TimeoutNext" size="3" description="Timeout Next State"/>
+			<Item key="5" value="NotesAtRefundSlotNext" size="3" description="Notes at Refund Slot Next State Number."/>
+			<Item key="6" value="Reserved" size="3" description="Reserved"/>
+			<Item key="7" value="Reserved" size="3" description="Reserved"/>
+			<Item key="8" value="Reserved" size="3" description="Reserved"/>
+		</ExCashAcceptState2>
+		<!-- 
+		*The state format definition of Extension 3 Cash Accept State type
+-    -->
+		<ExCashAcceptState3>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="SetDeno1To12" size="3" description="Set Denominations 1-12."/>
+			<Item key="2" value="SetDeno13To24" size="3" description="Set Denominations 13-24"/>
+			<Item key="3" value="SetDeno25To36" size="3" description="Set Denominations 25-36"/>
+			<Item key="4" value="SetDeno37To48" size="3" description="Set Denominations 37-48"/>
+			<Item key="5" value="SetDeno49To50" size="3" description="Set Denominations 49-50"/>
+			<Item key="6" value="Reserved" size="3" description="Reserved"/>
+			<Item key="7" value="Reserved" size="3" description="Reserved"/>
+			<Item key="8" value="Reserved" size="3" description="Reserved"/>
+		</ExCashAcceptState3>
+		<!-- 
+		*The state format definition of Cheque Accept State type
+-    -->
+		<ChequeAccept>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="Reserved" size="3" description="Reserved."/>
+			<Item key="2" value="LeaveOrCapOp" size="3" description="Leave/Capture Option"/>
+			<Item key="3" value="ChequeEntryRetry" size="3" description="Cheque Entry Retries"/>
+			<Item key="4" value="ImgLift" size="3" description="Image Lift"/>
+			<Item key="5" value="ChequeAccepEx1" size="3" description="Extension State 1"/>
+			<Item key="6" value="ChequeAccepEx2" size="3" description="Extension State 2"/>
+			<Item key="7" value="CancelKeyMask" size="3" description="Cancel Key Mask."/>
+			<Item key="8" value="DepositKeyMask" size="3" description="Deposit Key Mask."/>
+		</ChequeAccept>
+		<!-- 
+		*The state format definition of Extension 1 Cheque Accept State type
+-    -->
+		<ChequeAccepEx1>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="InsertChequeScrNum" size="3" description="Please Insert Cheque Screen"/>
+			<Item key="2" value="ProcessCheque" size="3" description="Processing Cheque Screen"/>
+			<Item key="3" value="UnAcceptChequeScrNum" size="3" description="Unacceptable Cheque Screen"/>
+			<Item key="4" value="IncorrectOrient" size="3" description="Incorrect Orienttation."/>
+			<Item key="5" value="FurtherProcessScrNum" size="3" description="Further Processing Screen Number."/>
+			<Item key="6" value="ChequeCapture" size="3" description="Cheque Captured."/>
+			<Item key="7" value="DeviceErrScrNum" size="3" description="Device Error Screen"/>
+			<Item key="8" value="RemoveChequeScrNum" size="3" description="Please Remove Cheque Screen."/>
+		</ChequeAccepEx1>
+		<!-- 
+		*The state format definition of Time-Out State type
+-    -->
+		<Timeout>
+			<Item key="0" value="Type" size="1" description="State type"/>
+			<Item key="1" value="ScrNum" size="3" description="Screen Number to be displayed for timeout state.."/>
+			<Item key="2" value="[FDKAINext]" size="3" description="FDK A or I pressed and return to previous state.."/>
+			<Item key="3" value="FDKBHOrTimeout" size="3" description="FDK B or H pressed. Timeout Next state."/>
+			<Item key="4" value="CacelNext" size="3" description="Cancel key pressed. Cancel Next state."/>
+			<Item key="5" value="Reserved" size="3" description="Reserved"/>
+			<Item key="6" value="Reserved" size="3" description="Reserved."/>
+			<Item key="6" value="Reserved" size="3" description="Reserved"/>
+			<Item key="7" value="Reserved" size="3" description="Reserved"/>
+			<Item key="8" value="Reserved" size="3" description="Reserved"/>
+		</Timeout>
+	</StateFormat>
+</Root>

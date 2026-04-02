@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ServiceName：设备的服务名
+PrintType: 打印机使用网口还是USB口，NETWORK 表示使用网口, USB 表示使用USB 接口
+-->
+<DocPrinter ServiceName="A4Printer" PrintType="NETWORK"/>

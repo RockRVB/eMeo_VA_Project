@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- protocolType:http,https
+-->
+<!-- 文件服务器当使用VTMA3.0版本时候port为21564，当使用VTMA2.2版本时候port为8443，现在默认使用VTMA3.0
+-->
+<MediaPlatformService ip="sg2.grgtech.top" port="18196" protocolType="https" yongHu="admin" kouLing="111" width="220" height="165" VTMAVersion="3.0" isEncrypt4FEELConfig="1">
+</MediaPlatformService>

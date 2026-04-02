@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="MediaForXDC">
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for Deposit"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_SelectCurrency"/>
+		</Start>
+		<VTMCheckCardState ID="ID_CheckCardState" comment="判断是不是有卡">
+			<Forward event="OnYes" targetID="ID_LoginInputPin"/>
+			<Forward event="OnNo" targetID="ID_Login"/>
+		</VTMCheckCardState>
+		
+		<InvokeWorkflow ID="ID_LoginInputPin" name="Login" comment="input pin" actionID="ID_InputPin">
+			<Forward event="OnConfirm" targetID="ID_SelectCurrency"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_Login" name="Login" comment="insert card and input pin">
+			<Forward event="OnConfirm" targetID="ID_SelectCurrency"/>
+		</InvokeWorkflow>
+		<GetDevStatus ID="ID_GetDevStatus_NotAskandNotContinue" comment="Get device status" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_PrintReceipt_NotContinue"/>
+			<Forward event="OnWarn" targetID="ID_PrintReceipt_NotContinue"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</GetDevStatus>
+		<GetDevStatus ID="ID_GetDevStatus_AskandNotContinue" comment="Get device status" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_IsPrintReceipt_NotContinue"/>
+			<Forward event="OnWarn" targetID="ID_IsPrintReceipt_NotContinue"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</GetDevStatus>
+		<SelectFunction ID="ID_IsPrintReceipt_NotContinue" UI="UI_MediaIsPrintReceipt" terminateKeys="" activeKeys="ENTER">
+			<Forward event="OnYes" targetID="ID_PrintReceipt_NotContinue"/>
+			<Forward event="OnNo" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		</SelectFunction>
+		<PrintReceipt ID="ID_PrintReceipt_NotContinue" UI="UI_PrintingReceipt" formName="ReceiptFormChque" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</PrintReceipt>
+		<!--先选择币种，再输入金额，放支票-->
+		<MainMenu ID="ID_SelectCurrency" UI="UI_SelectCurrency4Cheque" comment="Menu for SELECT TRANS" commandMap="[F7,Currency_CNY],[F8,Currency_USD]" >
+			<Forward event="OnConfirm" targetID="ID_InputMediaAmount"/>
+		</MainMenu>
+		<!--输入发票金额-->
+		<InputOtherAmount ID="ID_InputMediaAmount" UI="UI_MediaInputAmount" comment="Input DEP Amount" supportTouchScreenInput="1" maxOtherAmount="1000000">
+			  <Forward event="OnConfirm" targetID="ID_MediaInStart" />
+			  <Forward event="OnContinue" targetID="9999" />
+			  <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+		</InputOtherAmount>
+		<!--存支票前设备自检-->
+		<MediaInStart ID="ID_MediaInStart" UI="UI_MediaInStart">
+			<Forward event="OnConfirm" targetID="ID_MediaIn"/>
+			<Forward event="OnRetract" targetID="ID_MediaInRetract"/>
+			<Forward event="OnHardwareError" targetID="ID_MediaInRetractForError"/>
+		</MediaInStart>
+		<!-- 显示操作正在进行中界面 -->
+		<ShowScreen ID="ID_ShowScreen" UI="UI_OperatingNoCounter">
+			<Forward event="OnContinue" targetID="ID_MediaInEnd"/>
+		</ShowScreen>
+		
+		<!-- 无支票取消处理 -->
+		<CancelMediaIn ID="ID_InputMediaEmpty" UI="UI_InputMediaEmpty">
+			<Forward event="OnConfirm" targetID="ID_GetDevStatusForAbnormal"/>
+		</CancelMediaIn>
+		<!-- 无支票开关门失败处理 -->
+		<CancelMediaIn ID="ID_InputMediaEmptyForError" UI="UI_InputMediaEmptyForError">
+			<Forward event="OnConfirm" targetID="ID_GetDevStatus_NotAskandNotContinue"/>
+		</CancelMediaIn>
+		<!-- 有支票取消(未点支票)处理 -->
+		<CancelMediaIn ID="ID_InputMediaEmptyForMediaInEnd" UI="UI_InputMediaEmptyForMediaInEnd">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</CancelMediaIn>
+		<!-- 无支票超时处理 -->
+		<CancelMediaIn ID="ID_InputMediaEmptyForTimeout" UI="UI_InputMediaEmpty">
+			<Forward event="OnConfirm" targetID="ID_GetDevStatusForAbnormal"/>
+		</CancelMediaIn>
+		<!-- 拒绝太多处理 -->
+		<CancelMediaIn ID="ID_InputMediaEmptyForRefusedNoteToomuch" UI="UI_InputMediaEmptyForRefusedNoteToomuch">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</CancelMediaIn>
+		<!-- 等待支票取走 -->
+		<MediaInWaitForChequeTaken ID="ID_MediaInWaitForChequeTaken" UI="UI_MediaInWaitForNoteTaken">
+			<Forward event="OnContinue" targetID="ID_GetDevStatus_AskandNotContinue"/>
+			<Forward event="OnTimeout" targetID="ID_MediaInRetract"/>
+			<Forward event="OnRetract" targetID="ID_MediaInRetractForError"/>
+			<Forward event="OnMediaInEndForError" targetID="ID_InputMediaEmptyForError"/>
+		</MediaInWaitForChequeTaken>
+		<!-- 等待不可识别支票取走 -->
+		<MediaInWaitForNoteTaken ID="ID_MediaInWaitForNoteTakenRefused" UI="UI_OperatingNoCounter" journalKeyName="IDS_TakeRejectMedia">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_MediaInWaitForNoteTakenRefused"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_MediaInShowResult"/>
+			<Forward event="OnTimeout" targetID="ID_MediaInRetract"/>
+			<Forward event="OnRollback" targetID="ID_MediaInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_MediaInRetractForError"/>
+			<Forward event="OnMediaInEndForError" targetID="ID_InputMediaEmptyForError"/>
+		</MediaInWaitForNoteTaken>
+		<!-- 客户取消，等待支票取走 -->
+		<MediaInWaitForNoteTaken ID="ID_MediaInWaitForNoteTakenRollback" UI="UI_OperatingNoCounter">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_MediaInWaitForNoteTaken"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_GetDevStatusForAbnormal"/>
+			<Forward event="OnTimeout" targetID="ID_MediaInRetract"/>
+			<Forward event="OnRollback" targetID="ID_MediaInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_MediaInRetractForError"/>
+			<Forward event="OnMediaInEndForError" targetID="ID_InputMediaEmptyForError"/>
+		</MediaInWaitForNoteTaken>
+		<!-- 设备故障，等待支票取走 -->
+		<MediaInWaitForNoteTaken ID="ID_MediaInWaitForNoteTakenRollbackForError" UI="UI_OperatingNoCounter">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_MediaInWaitForNoteTakenForError"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_GetDevStatus_AskandNotContinue"/>
+			<Forward event="OnTimeout" targetID="ID_MediaInRetract"/>
+			<Forward event="OnRollback" targetID="ID_MediaInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_MediaInRetractForError"/>
+			<Forward event="OnMediaInEndForError" targetID="ID_InputMediaEmptyForError"/>
+		</MediaInWaitForNoteTaken>
+		<!-- 网络故障，等待支票取走 -->
+		<MediaInWaitForNoteTaken ID="ID_MediaInWaitForNoteTakenNetworkFailed" UI="UI_OperatingNoCounter">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_MediaInWaitForNoteTakenForCommError"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_GetDevStatus_AskandNotContinue"/>
+			<Forward event="OnTimeout" targetID="ID_MediaInRetract"/>
+			<Forward event="OnRollback" targetID="ID_MediaInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_MediaInRetractForError"/>
+			<Forward event="OnMediaInEndForError" targetID="ID_InputMediaEmptyForError"/>
+		</MediaInWaitForNoteTaken>
+		<!-- 支票放入太多，等待支票取走 -->
+		<MediaInWaitForNoteTaken ID="ID_MediaInWaitForNoteTakenToomuch" UI="UI_OperatingNoCounter" journalKeyName="IDS_TakeRejectMedia">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_MediaInWaitForNoteTakenToomuch"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_MediaInShowResult"/>
+			<Forward event="OnTimeout" targetID="ID_MediaInRetract"/>
+			<Forward event="OnRollback" targetID="ID_MediaInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_MediaInRetractForError"/>
+			<Forward event="OnMediaInEndForError" targetID="ID_InputMediaEmptyForError"/>
+		</MediaInWaitForNoteTaken>
+		<!-- 支票位置不正确且放支票次数超限，等待支票取走 -->
+		<MediaInWaitForNoteTaken ID="ID_WaitForNoteTakenForInputTimesOverlimt" UI="UI_OperatingNoCounter">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_MediaInWaitForNoteTakenForOverLimit"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_MediaInShowResult"/>
+			<Forward event="OnTimeout" targetID="ID_MediaInRetract"/>
+			<Forward event="OnRollback" targetID="ID_MediaInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_MediaInRetractForError"/>
+			<Forward event="OnMediaInEndForError" targetID="ID_InputMediaEmptyForError"/>
+		</MediaInWaitForNoteTaken>
+		<!-- 连续拒支票超限后，等待支票取走 -->
+		<MediaInWaitForNoteTaken ID="ID_MediaInWaitForNoteTakenRefusedNoteToomuch" UI="UI_OperatingNoCounter" journalKeyName="IDS_TakeRejectMedia">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_MediaInWaitForNoteTakenRefused"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_InputMediaEmptyForRefusedNoteToomuch"/>
+			<Forward event="OnTimeout" targetID="ID_MediaInRetract"/>
+			<Forward event="OnRollback" targetID="ID_MediaInRollbackForError"/>
+			<Forward event="OnRetract" targetID="ID_MediaInRetractForError"/>
+			<Forward event="OnMediaInEndForError" targetID="ID_InputMediaEmptyForError"/>
+		</MediaInWaitForNoteTaken>
+		<!-- 回收 -->
+		<MediaInRetract ID="ID_MediaInRetract" UI="UI_MediaInRetract">
+			<Forward event="OnContinue" targetID="ID_GetDevStatusForAbnormal"/>
+		</MediaInRetract>
+		<!-- 故障回收 -->
+		<MediaInRetract ID="ID_MediaInRetractForError" UI="UI_MediaInRetractForError">
+			<Forward event="OnContinue" targetID="ID_GetDevStatusForAbnormal"/>
+		</MediaInRetract>
+		<!-- 点支票 -->
+		<MediaIn ID="ID_MediaIn" UI="UI_MediaInserted4AutoShutter">
+			<States>
+				<State name="OperationIsProcessing" UI="UI_OperatingChequesNoCounter"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_MediaInShowResult"/>
+			<Forward event="OnRollback" targetID="ID_MediaInRollback"/>
+			<Forward event="OnTimeout" targetID="ID_InputMediaEmpty"/>
+			<Forward event="OnNoteRefused" targetID="ID_MediaInWaitForNoteTakenRefused"/>
+			<Forward event="OnFail" targetID="ID_MediaInRollbackForError"/>
+			<Forward event="OnNoMediaInCsTs" targetID="ID_MediaInShowResult"/>
+			<Forward event="OnMediaToomuch" targetID="ID_ExpelMedia"/>
+			<Forward event="OnRefusedNotetoomuch" targetID="ID_MediaInWaitForNoteTakenRefusedNoteToomuch"/>
+			<Forward event="OnHardwareError" targetID="ID_InputMediaEmptyForError"/>
+			<Forward event="OnF7" targetID="ID_GetDevStatus_AskandNotContinue"/>
+		</MediaIn>
+		<!-- 显示点支票结果 -->
+		<MediaInShowResult ID="ID_MediaInShowResult" UI="UI_MediaInShowResult" >
+			<Forward event="OnMediaInEndForCancel" targetID="ID_RequestTransForXDC_ChequeDep"/>
+			<Forward event="OnCancel" targetID="ID_MediaInRollback"/>
+			<Forward event="OnTimeout" targetID="ID_MediaInRollback"/>
+			<Forward event="OnConfirm" targetID="ID_MediaInEnd"/>
+			<Forward event="OnF6" targetID="ID_MediaReadImage"/>
+			<Forward event="OnKeyError" targetID="ID_InputMediaEmptyForError"/>
+			<Forward event="OnMediaInEnd" targetID="ID_InputMediaEmptyForTimeout"/>
+			<Forward event="OnHardwareError" targetID="ID_InputMediaEmptyForError"/>
+		</MediaInShowResult>
+		<RequestTransForXDC ID="ID_RequestTransForXDC_ChequeDep" UI="UI_RequestTrans" transType="DEP" msgID="TransactionRequestChequeDep" operationCode="AA_BBBC_" comment="xdc ChequeDeposit request" homeVisible="0">
+			 <States>
+				<State name="PackFail" UI="UI_GeneralError"/>
+				<State name="ConnectFail" UI="UI_GeneralError"/>
+				<State name="SendFail" UI="UI_GeneralError"/>
+				<State name="ReceiveFail" UI="UI_GeneralError"/>
+				<State name="ReceiveTimeout" UI="UI_GeneralError"/>
+				<State name="NetworkFail" UI="UI_GeneralError"/>
+				<State name="UnpackFail" UI="UI_GeneralError"/>
+				<State name="HardwareError" UI="UI_GeneralError"/>
+			  </States>
+			    <Forward event="OnDepositPassiveSuccess" targetID="ID_CashInEndForPassiveSuccess"/>
+				<Forward event="OnDepositPassiveFail" targetID="ID_HostRefuseAndMediaInEnd"/>
+				<Forward event="OnConfirm" targetID="ID_MediaInEnd"/>
+				<Forward event="OnPackFail" targetID="UI_MediaInRollbackForNetworkFailed"/>
+				<Forward event="OnConnectFail" targetID="UI_MediaInRollbackForNetworkFailed"/>
+				<Forward event="OnSendFail" targetID="UI_MediaInRollbackForNetworkFailed"/>
+				<Forward event="OnReceiveFail" targetID="ID_HostRefuseAndMediaInEnd"/>
+				<Forward event="OnReceiveTimeout" targetID="ID_HostRefuseAndMediaInEnd"/>
+				<Forward event="OnNetworkFail" targetID="ID_HandleHostRefuse"/>
+				<Forward event="OnUnpackFail" targetID="ID_HandleHostRefuse"/>
+				<Forward event="OnHostRefuse" targetID="ID_HandleHostRefuse"/>
+				<Forward event="OnReInputPin" targetID="ID_HandleHostRefuse"/>
+				<Forward event="OnHardwareError" targetID="ID_MediaInRollbackForError"/>
+				<Forward event="OnFallback" targetID="ID_RequestTransForXDC_ChequeDep"/>
+				<Forward event="OnTryAgain" targetID="ID_TryAgain"/>
+				<Forward event="OnCancel" targetID="ID_HandleHostRefuse"/>
+				<Forward event="OnICAppLoadedFail" targetID="ID_GetDevStatusForAbnormal"/>
+		</RequestTransForXDC>
+		<GetDevStatus ID="ID_GetDevStatusForAbnormal" comment="Get device status" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_IsPrintReceipt_NotContinue"/>
+			<Forward event="OnWarn" targetID="ID_IsPrintReceipt_NotContinue"/>
+			<Forward event="OnFail" targetID="ID_CompareDepositResult"/>
+		</GetDevStatus>
+		<!--显示支票图片-->
+		<SelectFunction ID="ID_MediaReadImage" UI="UI_ShowMediaImage">
+			<Forward event="OnMediaInEndForCancel" targetID="ID_MediaInEnd"/>
+			<Forward event="OnCancel" targetID="ID_MediaInRollback"/>
+			<Forward event="OnTimeout" targetID="ID_MediaInRollback"/>
+			<Forward event="OnConfirm" targetID="ID_MediaInEnd"/>
+			<Forward event="OnF8" targetID="ID_MediaInShowResult"/>
+			<Forward event="OnKeyError" targetID="ID_InputMediaEmptyForError"/>
+			<Forward event="OnHardwareError" targetID="ID_InputMediaEmptyForError"/>
+		</SelectFunction>
+		<!-- 主机拒绝处理 -->
+		<HandleHostRefuse ID="ID_HandleHostRefuse"  UI="UI_HostRefuse" timeout="5000" comment="show host refuse">
+			<Forward event="OnHostRefuseAndMediaInEnd" targetID="ID_HostRefuseAndMediaInEnd"/>
+			<Forward event="OnHostRefuseAndEjectMedia" targetID="ID_HostRefuseAndMediaInRollback"/>
+		</HandleHostRefuse>
+		<!-- 回滚，退回支票 -->
+		<MediaInRollback ID="ID_MediaInRollback" UI="UI_MediaInRollback">
+			<States>
+				<State name="WaitForNoteTaken" UI="UI_MediaInWaitForNoteTaken"/>
+				<State name="RollbackForHardwareError" UI="UI_RollbackForHardwareError"/>
+				<State name="RollbackForTSNoMedia" UI="UI_OperatingNoCounter"/>
+				<State name="RollbackForExceedICAvailableRechargeAmount" UI="UI_RollbackForExceedICAvailableRechargeAmount"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnWaitForNoteTaken" targetID="ID_MediaInWaitForNoteTakenRollback"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnRetract" targetID="ID_MediaInRetract"/>
+		</MediaInRollback>
+		<!--退回支票 -->
+		<ExpelMeida ID="ID_ExpelMedia"  UI="UI_MediaInRollback" comment="">
+			<Forward event="OnContinue" targetID="ID_WaitForMediaTakenTooMuch"/>
+			<Forward event="OnRetract" targetID="ID_MediaInRetract"/>
+		</ExpelMeida>
+		<Prompt ID="ID_WaitForMediaTakenTooMuch" UI="UI_WaitForMediaTakenTooMuch"  timeout="3000">
+			<Forward event="OnContinue" targetID="ID_ContinueChequeDeposit"/>
+			<Forward event="OnTimeout" targetID="ID_ContinueChequeDeposit"/>
+			<Forward event="OnFail" targetID="ID_ContinueChequeDeposit"/>
+		</Prompt>
+		<SelectFunction ID="ID_ContinueChequeDeposit" UI="UI_MediaInShowResultTooMuch" >
+			<Forward event="OnF7" targetID="ID_InputMediaAmountAfterExpel"/>
+			<Forward event="OnF8" targetID="ID_MediaInRollback"/>
+			<Forward event="OnTimeout" targetID="ID_MediaInRollback"/>
+			<Forward event="OnCancel" targetID="ID_MediaInRollback"/>
+		</SelectFunction>
+		<!-- 回滚，退回支票后，继续输入金额 -->
+		<InputOtherAmount ID="ID_InputMediaAmountAfterExpel" comment="input cheque amount" UI="UI_MediaReInputAmount" param="InputChequeAmount" maxOtherAmount="99999999.99">
+			<States>
+				<State name="ValidateFail" UI="UI_ReInputAmount"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_MediaInShowResult"/>
+			<Forward event="OnCancel" targetID="ID_MediaInRollback"/>
+			<Forward event="OnTimeout" targetID="ID_MediaInRollback"/>
+		</InputOtherAmount>
+		<!-- 设备故障，退回支票 -->
+		<MediaInRollback ID="ID_MediaInRollbackForError" UI="UI_RollbackForHardwareError">
+			<States>
+				<State name="RollbackForHardwareError" UI="UI_RollbackForHardwareError"/>
+				<State name="RollbackForTSNoMedia" UI="UI_RollbackForHardwareError"/>
+				<State name="WaitForNoteTaken" UI="UI_MediaInWaitForNoteTaken"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_GetDevStatus_AskandNotContinue"/>
+			<Forward event="OnWaitForNoteTaken" targetID="ID_MediaInWaitForNoteTakenRollbackForError"/>
+			<Forward event="OnFail" targetID="ID_GetDevStatusForAbnormal"/>
+			<Forward event="OnRetract" targetID="ID_MediaInRetractForError"/>
+		</MediaInRollback>
+		<!-- 主机拒绝退支票，用Deposit同樣的UI就可以 -->
+		<MediaInRollback ID="ID_HostRefuseAndMediaInRollback" UI="UI_DepositRefuseMassge">
+			<States>
+				<State name="RollbackForHardwareError" UI="UI_RollbackForHardwareError"/>
+				<State name="RollbackForTSNoMedia" UI="UI_OperatingNoCounter"/>
+				<State name="WaitForNoteTaken" UI="UI_MediaInWaitForNoteTaken"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_GetDevStatus_AskandNotContinue"/>
+			<Forward event="OnWaitForNoteTaken" targetID="ID_MediaInWaitForNoteTakenNetworkFailed"/>
+			<Forward event="OnFail" targetID="ID_GetDevStatusForCloseTrans"/>
+			<Forward event="OnRetract" targetID="ID_MediaInRetractForError"/>
+		</MediaInRollback>
+		<!-- 存支票 -->
+		<MediaInEnd ID="ID_MediaInEnd" UI="UI_MediaInEnd" timeout="5000">
+			<States>
+				<State name="MediaInEndSuccess" UI="UI_MediaInEndSuccess"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_GetDevStatusForCloseTrans"/>
+		</MediaInEnd>
+		<!-- 非主动确认存支票（超时） -->
+		<MediaInEnd ID="ID_MediaInEndForPassive" UI="UI_MediaInEnd" timeout="5000">
+			<States>
+				<State name="MediaInEndSuccess" UI="UI_MediaInEndSuccess"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_GetDevStatusForCloseTrans"/>
+		</MediaInEnd>
+		<!-- 主机拒绝吞支票 -->
+		<MediaInEnd ID="ID_HostRefuseAndMediaInEnd" UI="UI_DepositRefuseMassge" timeout="5000">
+			<States>
+				<State name="MediaInEndSuccess" UI="UI_MediaInEndSuccess"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_GetDevStatusForCloseTrans"/>
+		</MediaInEnd>
+		<RequestTransForXDC ID="ID_ReadyBChequeDep" msgID="ReadyB" comment="xdc readyb request" timeOut="-1" >
+		  <States>
+			<State name="PackFail" UI="UI_GeneralError"/>
+			<State name="ConnectFail" UI="UI_GeneralError"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_GetDevStatus"/>
+		</RequestTransForXDC>
+		<!-- 检查凭条状态 -->
+		<GetDevStatus ID="ID_GetDevStatus" comment="Get device status" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_SelectReceiptType"/>
+			<Forward event="OnWarn" targetID="ID_SelectReceiptType"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</GetDevStatus>
+		<!-- 选择打印凭证类型 -->
+		<SelectFunction ID="ID_SelectReceiptType" UI="UI_SelectReceiptType4Cheque" comment="Select receipt type" defaultEvent="OnContinue">
+			<Forward event="OnF5" targetID="ID_PrintReceiptWithImage"/>
+			<Forward event="OnF7" targetID="ID_PrintReceiptWithoutImage"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnContinue" targetID="ID_CompareTransType"/>
+		</SelectFunction>
+		<CompareData ID="ID_CompareTransType" comment="" compareBuffer="{proj_NoCardFlag},1">
+			<Forward event="OnEqual" targetID="ID_InvokeCloseTransWorkflow"/>
+			<DefaultForward targetID="9999"/>
+		</CompareData>
+		<!-- 开始打印凭条 -->
+		<PrintReceipt ID="ID_PrintReceiptWithImage" UI="UI_PrintingReceipt" formName="ReceiptFormCNWithImage" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_CompareTransType"/>
+		</PrintReceipt>
+		<!-- 开始打印凭条 -->
+		<PrintReceipt ID="ID_PrintReceiptWithoutImage" UI="UI_PrintingReceipt" formName="" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_CompareTransType"/>
+		</PrintReceipt>
+		<!-- 设备故障或非主动存支票时检查凭条状态 -->
+		<GetDevStatus ID="ID_GetDevStatusForCloseTrans" comment="Get device status for close transaction" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnWarn" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</GetDevStatus>
+
+		<!-- 是否超时回收 -->
+		<CompareData ID="ID_IsTimeOutForRetract" compareBuffer="{TimeoutFlag}" comment="是否超时回收，如果是，直接打凭条退出交易">
+			<Forward event="OnEqualTrue" targetID="ID_PrintReceiptForCloseTrans"/>
+            <Forward event="OnEqualFalse" targetID="ID_CompareIsSuportCIMOCR"/>
+			<Forward event="OnEqualNull" targetID="ID_CompareIsSuportCIMOCR"/>
+		</CompareData>
+
+		<!-- 设备故障或非主动存支票时开始打印凭条 -->
+		<PrintReceipt ID="ID_PrintReceiptForCloseTrans" UI="UI_PrintingReceipt" formName="" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</PrintReceipt>
+		<!--提示客户取消交易,  单一语言， 或者中文 或者英文-->
+		<Prompt ID="ID_CardHolderCancelSingleLang" UI="UI_CardHolderCancel"  timeout="5000">
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</Prompt>
+		<Prompt ID="ID_OperationTimeOut" UI="UI_OperationTimeOut"  timeout="5000">
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</Prompt>
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+		</End>
+		<InvokeWorkflow ID="ID_TryAgain" name="Main" comment="IC returns TryAgain" actionID="ID_ICMoreAppSelectForMainMenu" syn="0">
+		</InvokeWorkflow>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_CardHolderCancelSingleLang"/>
+		<Forward event="OnTimeout" targetID="ID_OperationTimeOut"/>
+		<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

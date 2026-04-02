@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>选择功能</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/vue-i18n.js"></script>
+    <script src="../../js/jquery-3.7.0.js"></script>
+    <script src="../../js/class/layer/layer.js"></script>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/coreScript.js"></script>
+    <script src="../../js/swiper4.min.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/animate.grg.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <link rel="stylesheet" href="../../css/swiper4.min.css">
+
+</head>
+<style>
+    html {
+        background-image: url('../../images/');
+    }
+
+    .swiper-container {
+        padding-bottom: 75px;
+    }
+
+    .swiper-slide {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        font-size: 18px;
+        width: 100%;
+    }
+
+    .swiper-slide-margin1 {
+        margin-top: 161px;
+    }
+
+    .swiper-slide-margin2 {
+        margin-top: 39px;
+    }
+
+    .swiper-slide-top {
+        margin-top: 20px;
+        margin-bottom: 27px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .swiper-slide-bottom {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+        border: 1px solid #FFFFFF;
+        background: transparent;
+        opacity: 1;
+    }
+
+    .swiper-pagination-bullet-active {
+        width: 30px;
+        height: 10px;
+        border-radius: 5px;
+        background: #F8FAFF;
+    }
+
+    .bg {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        font-family: "Alibaba Sans";
+        background: url(../../images/img_2.4/bg.png) no-repeat center center / 100% 102%;
+    }
+
+    .header-bottom {
+        position: absolute;
+        width: 100%;
+        height: 44px;
+        left: 0;
+        bottom: -2px;
+        background: url(../../images/img_2.4/bg.png) no-repeat center center / 100% 0%;
+        border-radius: 30px 30px 0 0;
+        box-shadow: -2px -2px 20px rgba(242, 246, 255, 0.2);
+    }
+
+    .header-box {
+        padding: 50px 50px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .logo {
+        width: 182px;
+        height: 72px;
+    }
+
+    .title {
+        margin-top: 130px;
+        height: 77px;
+        line-height: 77px;
+        font-size: 50px;
+        font-weight: bold;
+        color: #2e2d2d;
+        text-align: center;
+    }
+
+    .custom-btn {
+        text-transform: uppercase
+    }
+
+    .custom-btn :active {
+        background: #F0F6FF;
+    }
+
+    .custom-btn2 {
+        width: 430px;
+        height: 280px;
+        /* background: #ffffff; */
+        background-image: url("../../images/img_2.4/menbg.png");
+        border-radius: 24px;
+        box-shadow: 0px 0px 20px 0px #002472;
+        /* animation: leftToRight1 300ms linear backwards 200ms; */
+    }
+
+    .custom-btn3 {
+        /* width: 430px;
+        height: 346px;
+        background: #ffffff;
+        border-radius: 24px;
+        box-shadow: 0px 0px 20px 0px #002472;
+        animation: leftToRight1 300ms linear backwards 250ms; */
+        background-color: rgba(57, 98, 222, 0.1);
+        border-radius: 20px;
+        position: relative;
+        width: 560px;
+        height: 240px;
+        margin: 0 30px 30px 0;
+    }
+
+    .custom-btn3-margin {
+        margin: 0 25px;
+    }
+
+    .card-img {
+        margin-top: 70px;
+        margin-bottom: 12px;
+        height: 150px;
+    }
+
+    .card-img1 {
+        margin-top: 40px;
+        margin-bottom: 12px;
+        height: 150px;
+    }
+
+    .card-text {
+        height: 32px;
+        line-height: 32px;
+        font-size: 32px;
+        font-weight: 400;
+        color: #333333;
+    }
+
+    .card-text1 {
+        height: 32px;
+        font-size: 32px;
+        font-weight: 400;
+        color: #333333;
+        line-height: 32px;
+    }
+
+    .exit-bg {
+        display: flex;
+        justify-content: center;
+        padding-top: 6px;
+        position: absolute;
+        z-index: 1;
+        right: 70px;
+        bottom: 185px;
+        width: 100px;
+        height: 206px;
+        background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%);
+        border-radius: 50px;
+    }
+
+    .exit-switch {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 89px;
+        height: 89px;
+        background: #C4D6FF;
+        border-radius: 46px;
+        font-size: 24px;
+        font-weight: 500;
+        color: #296CFF;
+        line-height: 24px;
+        font-family: AlibabaSans-Medium;
+    }
+
+    .img-arrow {
+        margin-top: 12px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .arrow-move {
+        animation: arrowMove 150ms linear backwards 0ms;
+    }
+
+    .arrow-move-complete {
+        animation: arrowMoveComplete 100ms linear forwards 0ms;
+    }
+
+    .modal-box {
+        display: flex;
+        justify-content: center;
+    }
+
+    .modal-mask {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #212A3D;
+        backdrop-filter: blur(10px);
+        opacity: 0.9;
+    }
+
+    .modal-bg {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        z-index: 11;
+        top: 337px;
+        width: 600px;
+        height: 360px;
+        background: #FFFFFF;
+        border-radius: 8px;
+    }
+
+    .icon-exit {
+        margin-top: -56px;
+        margin-bottom: 37px;
+        width: 140px;
+        height: 140px;
+    }
+
+    .exit-text {
+        margin-bottom: 80px;
+        height: 40px;
+        font-size: 40px;
+        font-weight: 400;
+        color: #231815;
+        line-height: 40px;
+        font-family: "Alibaba Sans";
+    }
+
+    .btn-box {
+        display: flex;
+    }
+
+    @media only screen and (width: 1280px) {
+        .swiper-slide-margin1 {
+            margin-top: 123px;
+        }
+
+        .swiper-slide-margin2 {
+            margin-top: 54px;
+        }
+
+        .swiper-slide-top {
+            margin-bottom: 23px;
+        }
+
+        .custom-btn2 {
+            width: 360px;
+            height: 234px;
+        }
+
+        .custom-btn3 {
+            width: 276px;
+            height: 307px;
+        }
+
+        .custom-btn3-margin {
+            margin: 0 20px;
+        }
+
+        .card-img {
+            margin-top: 60px;
+            height: 125px;
+        }
+
+        .card-img1 {
+            margin-top: 30px;
+            height: 125px;
+        }
+
+        .card-text {
+            font-size: 26px;
+        }
+
+        .card-text1 {
+            font-size: 26px;
+            letter-spacing: -1px;
+        }
+
+        .exit-bg {
+            right: 40px;
+            bottom: 100px;
+        }
+    }
+
+    @keyframes leftToRight {
+        0% {
+            transform: translate(-30px);
+            width: 0;
+            opacity: 0;
+        }
+
+        50% {
+            transform: translate(-15px);
+            width: 185px;
+            opacity: .5;
+        }
+
+        100% {
+            transform: translate(0);
+            width: 390px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes leftToRight1 {
+        0% {
+            transform: translate(-30px);
+            opacity: 0;
+        }
+
+        50% {
+            transform: translate(-15px);
+            opacity: .5;
+        }
+
+        100% {
+            transform: translate(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes arrowMove {
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(25px);
+        }
+
+        100% {
+            transform: translateY(50px);
+        }
+    }
+
+    @keyframes arrowMoveComplete {
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(50px);
+        }
+
+        100% {
+            transform: translateY(105px);
+        }
+    }
+
+    .a {
+        display: flex;
+    }
+
+    .a .custom-btn2.b {
+        height: 491px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .a .c .swiper-slide-top {
+        margin-top: 0;
+    }
+
+    .aaa {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 118px;
+        background-color: rgb(251, 251, 248);
+        border-radius: 35px 35px 0 0;
+        animation: slideUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+
+
+
+    .left-btn-box {
+        width: 320px;
+        height: 485px;
+        background: rgba(57, 98, 222, 0.1);
+        border-radius: 20px;
+        margin-right: 18px;
+
+    }
+
+    .left-btn-box .custom-btn {
+        position: relative;
+        width: 320px;
+        height: 485px;
+        background: rgba(57, 98, 222, 0.1);
+        border-radius: 20px;
+        padding: 28px 20px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+
+    .left-btn-box .custom-btn .title-box {
+        font-size: 30px;
+        color: #000000;
+        font-weight: bold;
+    }
+
+    .left-btn-box .custom-btn .text-box {
+        font-size: 24px;
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+    .left-btn-box .custom-btn img {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+
+    .right-btn-box {
+        display: flex;
+        flex-wrap: wrap;
+        width: 660px;
+        gap: 20px;
+    }
+
+    .right-btn-box .custom-btn {
+        position: relative;
+        width: 320px;
+        height: 232px;
+        background: rgba(57, 98, 222, 0.1);
+        border-radius: 20px;
+        padding: 28px 20px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .right-btn-box .custom-btn .title-box {
+        font-size: 21px;
+        color: #000000;
+        font-weight: bold;
+    }
+
+    .right-btn-box .custom-btn .text-box {
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+    .right-btn-box .custom-btn img {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    .swiper2 {
+        margin-top: 73px;
+    }
+
+    .swiper1 {
+        margin-top: 73px;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <div id="grg-header" class="grg-header">
+        </div>
+        <div class="bg">
+            <div class="aaa">
+
+
+
+                <div class="title" id="text1" type="text" ids="ids_Common_selectproject">Please select the item</div>
+                <div class="main">
+                    <div class="swiper1" v-show="showSwiperOne">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="left-btn-box">
+                                        <div class="custom-btn" type='button' tag='OnIssueCard'>
+                                            <div class="title-box" type="text" ids="ids_Common_newcard">Issue New
+                                                Card
+                                            </div>
+                                            <div class="text-box">New Card Issuance Services</div>
+                                            <img src="../../images/img_2.4/menu/Issue New Card.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right-btn-box">
+                                        <div class="custom-btn" type='button' tag='OnNewAccoutApply'>
+                                            <div class="title-box" id="text5" type="text" ids="ids_Common_Account">
+                                                Apply
+                                                New
+                                                Account</div>
+                                            <div class="text-box">New Bank Account Opening Process</div>
+                                            <img src="../../images/img_2.4/menu/Apply New Account.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnBiometrics'>
+                                            <div class="title-box">Biometrics</div>
+                                            <div class="text-box">Biometric Feature Verification</div>
+                                            <img src="../../images/img_2.4/menu/Biometrics.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnExchange'>
+                                            <div class="title-box">Cash Exchange</div>
+                                            <div class="text-box">Diversified Utility Payment Services</div>
+                                            <img src="../../images/img_2.4/menu/Cash exchange.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnHumanService'>
+                                            <div class="title-box">Human Service</div>
+                                            <div class="text-box">Diversified Utility Human Service</div>
+                                            <img src="../../images/img_2.4/menu/Human service.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="right-btn-box">
+                                        <div class="custom-btn" type='button' tag='OnPayment'>
+                                            <div class="title-box" id="text5" type="text"
+                                                ids="ids_Common_livingpayment">
+                                                Living Payment</div>
+                                            <div class="text-box"> Living Payment Opening Process</div>
+                                            <img src="../../images/img_2.4/menu/Living payment.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnAppointmentWithdrawal'>
+                                            <div class="title-box" type="text" ids="ids_Common_appWithdrawal">App
+                                                Withdrawal</div>
+                                            <div class="text-box">Biometric Feature Verification</div>
+                                            <img src="../../images/img_2.4/menu/App withdrawal.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnQRCodeWithdrawal'>
+                                            <div class="title-box" type="text" ids="ids_Common_QRCodeWithdrawal">QRCode
+                                                Withdrawal</div>
+                                            <div class="text-box">QRCode Withdrawal Services</div>
+                                            <img src="../../images/img_2.4/menu/QR code withdrawal.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnOtherTrans'>
+                                            <div class="title-box" type="text" ids="ids_Common_otherTrans">Other
+                                                Transaction</div>
+                                            <div class="text-box">Other Transaction Opening Process</div>
+                                            <img src="../../images/img_2.4/menu/Other.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="right-btn-box">
+                                        <div class="custom-btn" type='button' tag='OnCoinDeposit'>
+                                            <div class="title-box" id="text5" type="text" ids="ids_Common_coindesposit">
+                                                Deposit Coin</div>
+                                            <div class="text-box"> Deposit CoinProcess Process</div>
+                                            <img src="../../images/img_2.4/menu/Deposit coin.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnMedia'>
+                                            <div class="title-box">Deposit Cheque</div>
+                                            <div class="text-box">Biometric Feature Verification</div>
+                                            <img src="../../images/img_2.4/menu/Deposit cheque.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnWithdraw'>
+                                            <div class="title-box">Withdraw</div>
+                                            <div class="text-box">Withdraw Services</div>
+                                            <img src="../../images/img_2.4/menu/withdrawal.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnDeposit'>
+                                            <div class="title-box">Deposit</div>
+                                            <div class="text-box">Deposit Process</div>
+                                            <img src="../../images/img_2.4/menu/Deposit.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+
+                    <div class="swiper2" v-show="showSwiperTwo">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="left-btn-box">
+                                        <div class="custom-btn" type='button' tag='OnIssueCard'>
+                                            <div class="title-box" type="text" ids="ids_Common_newcard">Issue New
+                                                Card
+                                            </div>
+                                            <div class="text-box">New Card Issuance Services</div>
+                                            <img src="../../images/img_2.4/menu/Issue New Card.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right-btn-box">
+                                        <div class="custom-btn" type='button' tag='OnNewAccoutApply'>
+                                            <div class="title-box" id="text5" type="text" ids="ids_Common_Account">
+                                                Apply
+                                                New
+                                                Account</div>
+                                            <div class="text-box">New Bank Account Opening Process</div>
+                                            <img src="../../images/img_2.4/menu/Apply New Account.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnBiometrics'>
+                                            <div class="title-box">Biometrics</div>
+                                            <div class="text-box">Biometric Feature Verification</div>
+                                            <img src="../../images/img_2.4/menu/Biometrics.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnExchange'>
+                                            <div class="title-box">Cash Exchange</div>
+                                            <div class="text-box">Diversified Utility Payment Services</div>
+                                            <img src="../../images/img_2.4/menu/Cash exchange.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnHumanService'>
+                                            <div class="title-box">Human Service</div>
+                                            <div class="text-box">Diversified Utility Human Service</div>
+                                            <img src="../../images/img_2.4/menu/Human service.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="right-btn-box">
+                                        <div class="custom-btn" type='button' tag='OnPayment'>
+                                            <div class="title-box" id="text5" type="text"
+                                                ids="ids_Common_livingpayment">
+                                                Living Payment</div>
+                                            <div class="text-box"> Living Payment Opening Process</div>
+                                            <img src="../../images/img_2.4/menu/Living payment.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnAppointmentWithdrawal'>
+                                            <div class="title-box" type="text" ids="ids_Common_appWithdrawal">App
+                                                Withdrawal</div>
+                                            <div class="text-box">Biometric Feature Verification</div>
+                                            <img src="../../images/img_2.4/menu/App withdrawal.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnQRCodeWithdrawal'>
+                                            <div class="title-box" type="text" ids="ids_Common_QRCodeWithdrawal">QRCode
+                                                Withdrawal</div>
+                                            <div class="text-box">QRCode Withdrawal Services</div>
+                                            <img src="../../images/img_2.4/menu/QR code withdrawal.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnOtherTrans'>
+                                            <div class="title-box" type="text" ids="ids_Common_otherTrans">Other
+                                                Transaction</div>
+                                            <div class="text-box">Other Transaction Process</div>
+                                            <img src="../../images/img_2.4/menu/Other.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="right-btn-box">
+                                        <div class="custom-btn" type='button' tag='OnCoinDeposit'>
+                                            <div class="title-box" id="text5" type="text" ids="ids_Common_coindesposit">
+                                                Deposit Coin</div>
+                                            <div class="text-box"> Deposit CoinProcess Process</div>
+                                            <img src="../../images/img_2.4/menu/Deposit coin.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnMedia'>
+                                            <div class="title-box">Deposit Cheque</div>
+                                            <div class="text-box">Biometric Feature Verification</div>
+                                            <img src="../../images/img_2.4/menu/Deposit cheque.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnWithdraw'>
+                                            <div class="title-box">Withdraw</div>
+                                            <div class="text-box">Withdraw Services</div>
+                                            <img src="../../images/img_2.4/menu/withdrawal.png" alt="">
+                                        </div>
+                                        <div class="custom-btn" type='button' tag='OnDeposit'>
+                                            <div class="title-box">Deposit</div>
+                                            <div class="text-box">Deposit Process</div>
+                                            <img src="../../images/img_2.4/menu/Deposit.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+
+                    <div class="exit-bg">
+                        <div class="exit-switch"
+                            :class="moveComplete&&!moveIncomplete?'arrow-move-complete':!moveComplete&&moveIncomplete ? 'arrow-move' : ''"
+                            id="exit" @click="showModal=true">
+                            <div>EXIT</div>
+                            <img class="img-arrow" src="../../images/img_2.4/arrow.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <template v-if="showModal">
+            <div class="modal-box" id="modal">
+                <div class="modal-mask"></div>
+                <div class="modal-bg">
+                    <img class="icon-exit" src="../../images/img_2.4/icon_exit.png">
+                    <div class="exit-text" id="text11" type="text" ids="ids_Common_exit">Do you want to exit?</div>
+                    <div class="btn-box">
+                        <button type="button" class="btn-retry" style="margin-right: 30px" @click="getCancelBtn">
+                            <img class="btn-img-retry" src="../../images/img_2.4/icon_cancel@2x.png">Cancel
+                        </button>
+                        <button class="btn-ok" @click="getConfirmBtn">
+                            <img class="btn-img-ok" src="../../images/img_2.4/icon_ok_white@2x.png">Confirm
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <div type="text" hidden id='remotevaletmode' content='{Binding EnableRemoteValetMode}'></div>
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>
+<script>
+    var _this;
+    var app = new Base({
+        data: {
+            remotevaletmode: false,
+            showModal: false,
+            moveComplete: false,
+            moveIncomplete: false,
+            showSwiperOne: false,
+            showSwiperTwo: false
+        },
+        methods: {
+            getCancelBtn: function () {
+                _this.moveComplete = false;
+                _this.moveIncomplete = false;
+                _this.showModal = false;
+            },
+            getConfirmBtn: function () {
+                _this.moveComplete = false;
+                _this.moveIncomplete = false;
+                _this.showModal = false;
+                goto('OnCancel')
+            },
+            getTouchEvent: function () {
+                var exitBtnEl = document.getElementById("exit");
+                //开始位置
+                var startPoint = null;
+                exitBtnEl.addEventListener("touchstart", function (e) {//滑动开始
+                    startPoint = e.touches[0];//起点
+                    _this.moveComplete = false;
+                    _this.moveIncomplete = false;
+                })
+                exitBtnEl.addEventListener("touchend", function (e) {//滑动结束
+                    var endPoint = e.changedTouches[0];//事件的触摸点的列表 终点
+                    //计算终点与起点的差值
+                    var x = endPoint.clientX - startPoint.clientX;
+                    var y = endPoint.clientY - startPoint.clientY;
+                    //设置滑动距离的参考值
+                    var endClientY = endPoint.clientY;
+                    if (window.screen.width == 1280) {
+                        if (endClientY > 845) {
+                            _this.moveComplete = true;
+                            _this.moveIncomplete = false;
+                            setTimeout(function () {
+                                _this.showModal = true;
+                            }, 300)
+                        } else if (endClientY > 720 && endClientY < 845) {
+                            _this.moveComplete = false;
+                            _this.moveIncomplete = true;
+                        }
+                    } else {
+                        if (endClientY > 825) {
+                            _this.moveComplete = true;
+                            _this.moveIncomplete = false;
+                            setTimeout(function () {
+                                _this.showModal = true;
+                            }, 300)
+                        } else if (endClientY > 720 && endClientY < 825) {
+                            _this.moveComplete = false;
+                            _this.moveIncomplete = true;
+                        }
+                    }
+                })
+            },
+            getSwiperInit: function (className) {
+                this.$nextTick(() => {
+                    const swiper = new Swiper(className, {
+                        pagination: {
+                            el: '.swiper-pagination',
+                        },
+                        loop: true
+                    })
+                    return swiper
+                })
+            },
+            getRenderMode: function () {
+                this.$nextTick(() => {
+                    var ele = document.getElementById('remotevaletmode')
+                    if (ele != null && ele.innerText.toLowerCase() === 'true') {
+                        _this.showSwiperOne = true
+                        _this.showSwiperTwo = false
+                        _this.getSwiperInit('.swiper1 .swiper-container')
+                    } else {
+                        _this.showSwiperOne = false
+                        _this.showSwiperTwo = true
+                        _this.getSwiperInit('.swiper2 .swiper-container')
+                    }
+                })
+            },
+        },
+        mounted: function () {
+            _this = this
+            window.onload = function () {
+                var headerBox = document.querySelector('#header-time');
+                if (headerBox) {
+                    headerDate('time', 'date', 'week');
+                }
+                _this.getRenderMode()
+                _this.getTouchEvent()
+            }
+        }
+    }).$mount('#app')
+
+</script>

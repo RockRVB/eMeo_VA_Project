@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--ServiceName：           设备的服务名
+    ReadTracks ：           读取的磁道标志
+    CheckServiceCode：      当ATR数据为空，且任意磁条有数据时，是否根据服务代码位来判断，服务代码2或6，认为是降级卡
+    SuppProtocol2Fallback： 不支持的协议,是当降级卡,还是当普通磁条卡。默认"FALSE"。现在暂用不到该项
+    ErrorCode ：            错误码 用于记录最近一次的设备错误物理码 默认为""，可以不用配置，系统会自己按顺序查找  
+-->
+<CardReader ServiceName="ICCardReader" ReadTracks="CHIP" CheckServiceCode="FALSE"/>

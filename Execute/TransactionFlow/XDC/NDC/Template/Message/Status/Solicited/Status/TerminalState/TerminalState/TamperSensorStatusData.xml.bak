@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!-- Tamper and Sensor Status Data.
+		* 	This solicited status message is sent to central in response to a Send Configuration Information Terminal Command message..
+		*  (a command code of '7' with a command modifier of '4')
+		-->
+  <TamperSensorStatusData>
+    <Item key="g1" value="K" size="1" restriction="Mandatory" />
+    <!--  Sensor Status Identifier 'A'-->
+    <Item key="g2" value="A" size="1" restriction="Mandatory" />
+    <!--  Sensor Status. This five-character field contains one byte per sensor and is identical to the infomration reported in bytes 2-6 of the sensors status message. -->
+    <Item key="g2-1" value="[Device.Sensors.typeofchange]" size="1" restriction="Mandatory" />
+    <Item key="g2-2" value="[Device.Sensors.Supervisor]" size="1" restriction="Mandatory" />
+    <Item key="g2-3" value="[Device.Sensors.Vibration]" size="1" restriction="Mandatory" />
+    <Item key="g2-4" value="[Device.Sensors.DoorContact]" size="1" restriction="Mandatory" />
+    <Item key="g2-5" value="[Device.Sensors.SilentSignal]" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--  Tampers Indicator Identifier 'B'. .-->
+    <Item key="g3" value="B" size="1" restriction="Mandatory" />
+    <!-- Tamper Status .-->
+    <Item key="g3-6" value="0011111000000" size="13" restriction="Mandatory" />
+    <!-- 原来的状态少了一部分内容，应该为13位
+		<Item key="g3-6" 					value="[Device.Sensors.ElectronicsEnclosure]"			size="1"						restriction="Mandatory"/>
+		<Item key="g3-7" 					value="[Device.Sensors.DepositBin]"						size="1"						restriction="Mandatory"/>
+		<Item key="g3-8" 					value="[Device.Sensors.CardBin]"						size="1"						restriction="Mandatory"/>	
+		<Item key="g3-9" 					value="[Device.Sensors.CurrencyRejectBin]"				size="1"						restriction="Mandatory"/>
+		<Item key="g3-10" 					value="[Device.Sensors.CurrencyCassetteInPosition1]"	size="1"						restriction="Mandatory"/>				
+		<Item key="g3-11" 					value="[Device.Sensors.CurrencyCassetteInPosition2]"	size="1"						restriction="Mandatory"/>
+		<Item key="g3-12" 					value="[Device.Sensors.CurrencyCassetteInPosition3]"	size="1"						restriction="Mandatory"/>
+		<Item key="g3-13" 					value="[Device.Sensors.CurrencyCassetteInPosition4]"	size="1"						restriction="Mandatory"/>	
+-->
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.NoUse]" />
+    <!--  Data Identifier .-->
+    <Item key="g4" value="[TamperSensorID]" size="1" restriction="[OptionCtrl.NoUse]" />
+    <!--  Data.-->
+    <Item key="g4-1" value="[TamperSensorData]" size="var" restriction="[OptionCtrl.NoUse]" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]" />
+    <!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+    <Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]" />
+  </TamperSensorStatusData>
+</Root>

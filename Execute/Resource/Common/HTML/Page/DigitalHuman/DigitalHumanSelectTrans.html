@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../js/vue.min.js"></script>
+  <script src="../../js/grg-ui.min.js"></script>
+  <script src="../../js/vue-i18n.js"></script>
+  <script src="../../js/jquery-3.7.0.js"></script>	<script src="../../js/class/layer/layer.js"></script>	<script src="../../js/index.js"></script>
+  <script src="../../js/coreScript.js"></script>
+  <script src="../../js/ibank.js"></script>
+  <link rel="stylesheet" href="../../css/grg-ui.min.css">
+  <link rel="stylesheet" href="../../css/animate.grg.css">
+  <link rel="stylesheet" href="../../css/ibank.css">
+  <style>
+    html {
+      width: 100vw;
+      height: 100vh;
+      background: url(../../images/digital_human/bg.png) no-repeat center/cover;
+    }
+    .grg-header {
+      background: unset;
+      height: 100px;
+    }
+
+    .grg-header .logo img {
+      display: inline-block;
+      margin-top: 45px;
+    }
+
+    .grg-header .count-down {
+      top: 38px;
+    }
+
+    .grg-header .count-down .count-down-2 {
+      background-color: #e1eefd;
+    }
+
+    .main-box {
+      position: relative;
+      height: 846px;
+      margin-top: 100px;
+      padding: 30px 50px 0;
+      box-sizing: border-box;
+    }
+
+    .main-box .title {
+      width: 1110px;
+      font-family: "AlibabaSans-Medium";
+      font-weight: bold;
+      font-size: 36px;
+      color: #333333;
+      text-align: center;
+    }
+
+    .main-box .exit-btn {
+      position: absolute;
+      width: 65px;
+      height: 65px;
+      line-height: 55px;
+      background: rgba(255,255,255,0.5);
+      box-shadow: 0px 2px 60px 0px rgba(41,108,255,0.31);
+      border-radius: 33px;
+      border: 2px solid #fff;
+      backdrop-filter: blur(6px);
+      right: 30px;
+      bottom: 0;
+      font-weight: 500;
+      font-size: 24px;
+      color: #296CFF;
+      text-align: center;
+      font-family: "AlibabaSans-Medium";
+    }
+
+    .main-box .btn-group-box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      width: 1110px;
+      height: 670px;
+      background: linear-gradient( 180deg, #FFFFFF 0%, rgba(255,255,255,0.48) 100%);
+      border-radius: 24px;
+      border-top: 2px solid #fff;
+      backdrop-filter: blur(20px);
+      margin-top: 20px;
+      font-family: "AlibabaSans-Medium";
+      font-weight: 500;
+      font-size: 28px;
+      color: #333333;
+    }
+
+    .main-box .btn-group-box .btn-item {
+      width: 275px;
+      height: 240px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .main-box .btn-group-box .btn-item img {
+      display: inline-block;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="grg-header">
+      <div class="logo">
+        <img src="../../images/digital_human/logo.png" alt="">
+      </div>
+      <div v-if="showCountDown" class="count-down">
+        <div class="count-down-2">60</div>
+    </div>
+    </div>
+    <div class="main-box">
+      <div v-html="title" class="title"></div>
+      <div class="btn-group-box">
+        <div v-for="(item, index) in btnData" :tag="item.tag" type='button' :id="item.tag" class="btn-item" :key="index">
+          <img :src="item.imgUrl" alt="">
+          <div>{{ item.text }}</div>
+        </div>
+      </div>
+      <div v-if="showExitBtn" class="exit-btn" type="button" tag="OnCancel" ids='ids_Exit'>Exit</div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+    var app = new Base({
+    i18n: i18n,
+    data: {
+      showCountDown: true,
+      btnData: [],
+      title: '',
+      allBtnData: 0,
+      showExitBtn: true,
+    },
+    methods: {},
+    computed: {},
+    mounted: function () {
+      let _this = this;
+      // let text = 'BALANCE INQUIRY, CARD OPENING';
+      let text = window.chrome.webview.hostObjects.sync.eCAT.GetData('DigitalHumanService_Menu');
+      if (text) {
+        let data = text.split(',');
+        this.allBtnData = data.length;
+        data.forEach((item, index) =>{
+          _this.btnData[index] = {
+            imgUrl: `../../images/digital_human/${item.trim()}.png`,
+            text: item,
+            tag: 'On' + item.replace(/\s*/g,''),
+          }
+        });
+      }
+      this.title = `Found <span style="color: #296CFF;font-size: 44px;">${this.allBtnData}</span> relevant services for you.<br/> Please select the service you would like to proceed with.`;
+    }
+  }).$mount('#app')
+</script>

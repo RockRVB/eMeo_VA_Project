@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../css/CN.css"  replace="1" /></head>
+<body>
+	<img id="banner" src="../../../AD/0.png" style="margin-left: 0px; margin-top: 0px; position: absolute;width:100%;height:100%"/>
+    <!--embed src="C:\SCB\Src\StandardVTM\DistributedService\Execute\Resource\Common\AD\2.wmv" pluginspage="http://www.microsoft.com/isapi/redir.dll?prd=windows&sbp=mediaplayer&ar=media&sba=plugin&" type="application/x-mplayer2" width="1920" height="1080" showcontrols="0" showaudiocontrols="0" showstatusbar="0" autostart="1" loop="1" enablecontextmenu="0"></embed-->
+</body>
+
+	<script>
+            var banners = ["../../../AD/0.png","../../../AD/1.png","../../../AD/2.png","../../../AD/3.png","../../../AD/4.png"]; // 图片地址
+            var counter = 0;
+            function run(){
+                setInterval(cycle,5000);  //重复运行cycle函数，周期100ms
+            }
+            function cycle(){
+                counter++;
+                if(counter == banners.length)    
+                    counter = 0;
+                document.getElementById("banner").src = banners[counter];
+            }
+			run();
+        </script>
+</html>

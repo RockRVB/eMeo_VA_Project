@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	<TriggerConfig>节点配置了触发器服务，包含以下属性：
+		actionFolder;指定TriggerAction动态库的目录，默认值为TriggerAction
+		<DataTrigger>节点配置了单一条件数据触发器，包含了一下属性:
+			name:指定数据触发器的名称
+			enable:指定数据触发器是否启用，“0”表示不启用，非"0"表示启用
+			<DataTrigger.Condition>节点指定了触发器使用的条件，当前支持两种条件，分别是:
+				<BusinessContextCondition> 监控数据总线上的属性值变化条件，它有以下属性：
+					value: 指定数据总线上的属性值
+					property:指定数据总线上的属性名称，当前支持监控以下值：
+						CurrentWorkflowName:当前运行的工作流名称
+						LastWorkflowName:上次运行的工作流名称
+						CurrentActionName:当前运行的action名称
+						LastActionName:上次运行的action名称
+						ActionID:当前运行的actionID值
+						LastNextCondition:上次action的下一次进入条件
+				例如：	<BusinessContextCondition property="CurrentActionName" value="ZeroState" /> 表示监控条件为当运行的action为零状态（ZeroState）时触发
+				<DataCacheCondition>节点指定监控数据池变量的值变化条件，它有以下属性：
+					value:指定数据池变量的数值
+					key:指定数据池变量的名称
+					datacacheType:指定数据池的类型，当前支持以下值：	
+						1 -> 表示TransactionDatacache数据池
+						2 -> 表示CardholderDatacache数据池
+						3 -> 表示TerminateDatacache数据池
+						4 -> 表示DatabaseDatacache数据池
+				例如：<DataCacheCondition datacacheType="3" key="core_AppMode" value="OutOfService" /> 表示监控TerminateDatacache数据池的core_AppMode变量值为OutOfService时触发  
+		<MultiDataTrigger>节点配置了多重条件数据触发器，这些多重条件可以指定是否全部满足才触发还是部分满足就可以触发了。这个节点的属性与<DataTrigger>相同
+			<MultiDataTrigger.Conditions>节点指定了多重条件，它有以下属性值：
+				relation:指定多重条件的关系，有两个值"and"表示所有条件都要满足，"or"表示满足其中一个条件就可以触发了。此属性值默认为"and"
+		<CustomEventTrigger>节点配置了自定义事件触发器，它的属性除了与<DataTrigger>属性值一样外，还有以下属性：
+			condition:指定事件名称，可以以"，"分隔多个事件
+
+		3种触发器都可以配置当触发器触发的时候需要执行的动作，当前系统支持以下的动作：
+			<SendPackage>配置了发送报文到服务器的动作，它有以下属性：
+				name:动作的名称
+				netSession:配置在NetworkConfig.xml中的Session名称
+				interval:配置间隔多长时间发送报文
+				repeatBehavior:动作重复类型，指定forever表示一直重复执行动作，指定数值表示重复发送几次，比如repeatBehavior=“10”表示发送10次
+					<Package>配置需要发送的报文信息
+						type:指定报文类型
+						plainContent:指定直接需要发送的内容，此值的优先级高于type指定的报文类型，也就是说当plainContent设置后将忽略type指定的报文
+						encoder:指定plainContent中内容的编码方式，只对plainContent有效，当plainContent没有设置时，此值被忽略，它支持以下值：
+							AscII    -> 指定采用ascII编码器
+							unicode  -> 指定采用unicode编码器
+							utf8     -> 指定采用utf8编码器
+							utf7     -> 指定采用utf7编码器
+			<ConnectRemoteEndpoint>配置周期性连接到服务器的动作，它的属性值与<SendPackage>相同，除了没有<Package>节点外。
+-->
+<TriggerConfig actionFolder="TriggerAction\">
+	<DataTrigger name="xxxxx" enable="1">
+		<DataTrigger.Condition>
+			<BusinessContextCondition property="CurrentActionName" value="ZeroState" />
+		</DataTrigger.Condition>	
+		<SendPackage name="xx" netSession="ATMP1" interval="20000" repeatBehavior="forever">
+			<Package type="INQ" plainContent="ssss" encoder="utf8" />
+		</SendPackage>
+	</DataTrigger>
+	<MultiDataTrigger name="fff" enable="0">
+		<MultiDataTrigger.Conditions relation="or">
+			<DataCacheCondition datacacheType="3" key="core_AppMode" value="OutOfService" />
+		</MultiDataTrigger.Conditions>
+		<ConnectRemoteEndpoint netSession="ATMP1" interval="20000" repeatBehavior="forever">
+		</ConnectRemoteEndpoint>
+	</MultiDataTrigger>
+	<CustomEventTrigger name="aaa" enable="0" condition="sh,xsf">
+		<SendPackage name="xx" netSession="ATMP1" interval="20000" repeatBehavior="forever">
+			<Package type="ICQ" plainContent="ssss" encoder="utf8" />
+		</SendPackage>
+	</CustomEventTrigger>
+</TriggerConfig>

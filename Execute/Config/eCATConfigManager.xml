@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <!-- 设置配置工具节点，根据运行程序传入的配置节点名称，获取对应的配置节点
+       例如：运行程序时，传入参数为 TwinScreen，则读取 TwinScreen 节点相关配置
+	   如果传入参数为 Setup，则读取 Setup 节点相关配置
+  -->
+  <eCATToolConfig name="TwinScreen" cfg="eCATConfigManager\Config.xml">
+    <!---UI设置
+	topMost: 窗口是否置顶（0为否，1为置顶）
+			 如果为 xmlPath: 开头字符串，则说明为读取其他 XML 文件节点
+		     例如：xmlPath:Config/GeneralConfig.xml UI[@topmost]
+	location: 指定ATMC主界面窗口在桌面上的位置.此属性值是以空格分隔的4个数字组成的字符串
+		  4个数字从左到右依次表示界面窗口的左，上，宽度，高度
+		  单位是像素。例如"0 0 800 600" 表示位置是左(0)上(0)宽度(800)高度(600)
+		  如果为 xmlPath: 开头字符串，则说明为读取其他 XML 文件节点
+		  例如：xmlPath:Config/GeneralConfig.xml TwinScreen[@location]
+	-->
+    <UI topmost="xmlFile:Config/GeneralConfig.xml|xpaht:Config/UI|attrName:topmost" location="xmlFile:Config/GeneralConfig.xml|xpath:Config/TwinScreen|attrName:location" />
+	<!--
+	<UI topmost="1" location="0 0 800 600" />
+	-->
+	<!-- 运行选项
+	RunOnlyOnce: 程序是否只能运行一次（0可以运行多次，1只能运行一次），默认可以运行多次。当程序用于安装时，设置参数时，只能运行一次。
+	FormBorderVisible：程序主窗口边框是否可见（0不可见，1可见），默认为没有边框。在TwinScreen时，不能有边框，避免用户最小化程序。
+	-->
+	<RunOption RunOnlyOnce="0" FormBorderVisible="0" />
+  </eCATToolConfig>
+  
+  <eCATToolConfig name="Setup" cfg="eCATConfigManager\Config.xml">
+    <!---UI设置
+	topMost: 窗口是否置顶（0为否，1为置顶）
+			 如果为 xmlPath: 开头字符串，则说明为读取其他 XML 文件节点
+		     例如：xmlPath:Config/GeneralConfig.xml UI[@topmost]
+	location: 指定ATMC主界面窗口在桌面上的位置.此属性值是以空格分隔的4个数字组成的字符串
+		  4个数字从左到右依次表示界面窗口的左，上，宽度，高度
+		  单位是像素。例如"0 0 800 600" 表示位置是左(0)上(0)宽度(800)高度(600)
+		  如果为 xmlPath: 开头字符串，则说明为读取其他 XML 文件节点
+		  例如：xmlPath:Config/GeneralConfig.xml TwinScreen[@location]
+	-->
+    <UI topmost="1" location="0 0 800 600" />
+	<!-- 运行选项
+	RunOnlyOnce: 程序是否只能运行一次（0可以运行多次，1只能运行一次），默认可以运行多次。当程序用于安装时，设置参数时，只能运行一次。
+	FormBorderVisible：程序主窗口边框是否可见（0不可见，1可见），默认为没有边框。在TwinScreen时，不能有边框，避免用户最小化程序。
+	-->
+	<RunOption RunOnlyOnce="0" FormBorderVisible="0" />
+  </eCATToolConfig>
+</configuration>

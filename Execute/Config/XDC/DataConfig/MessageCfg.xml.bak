@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!-- Message sending flow with reject/ready B/KVV or some other special setting, etc. -->
+  <MessageCfg>
+    <Item key="AutoInService" value="1" valueType="string" />
+    <Item key="SendRetractMsg" value="0" valueType="string" />
+    <Item key="DDCSendMStatus" value="1" valueType="string" />
+    <Item key="SendCashInMsg" value="0" valueType="string" />
+    <!-- The hardware configruation data will be sent to host
+  	* The value is in default setting
+  	* Will be changed according to the exact hardware setting.
+  	-->
+    <Item key="HardwareConfig" value="02011200000000&lt;?&lt;=300&lt;000000954800000400200000" valueType="string" />
+    <!-- The Terminal configruation data will be sent to host
+  	* The value is in default setting
+  	* Will be changed according to the exact Terminal setting.
+  	-->
+    <Item key="TermConfig" value="0000000000" valueType="string" />
+    <!-- When enter supervisory mode, msg sent is '340' or '320'
+  	* The value is 4, message is "340"
+  	* The value is 2, message is "320"
+  	-->
+    <Item key="EnterSuperMode" value="4" valueType="int" />
+    <!-- 0: Send KVV, 1: Send Ready -->
+    <Item key="SendReadyToEEKC" value="1" valueType="int" />
+    <!-- 
+     * 0: Send transaction closed message(22...B)
+     * 1: Send error message with E3 (error with dispensed counter info
+     -->
+    <Item key="SendMsgOnOpenShutterFail" value="1" valueType="int" />
+    <!-- 
+     * 0: Send Configuration ID with power failure message
+     * 1: Send Power failure message without configuration ID sending
+     -->
+    <Item key="PowerFailureType" value="1" valueType="int" />
+    <!-- 
+     * 0: Send power failure commnad to host in most of cases(offline->OutOfService, startup,etc) 
+     * 1: Only send power failure command to host from startup.
+     -->
+    <Item key="StartupOnce" value="0" valueType="int" />
+    <!-- Determine whether download all data included 
+      * [1] Screen scripts.
+      * [2] State scripts
+      * [3] FIT table ... and so on.
+      *  Description:  0 - partial download,     
+      *                            1 - full download (recommend to perform download action at the first time)
+      -->
+    <Item key="DownloadMode" value="1" valueType="int" />
+    <!-- 
+     * 0: No MACing added at the end of message
+     * 1: Full MACing 
+     * 2: Selective MACing, the fields will be cutomized 
+     *    by the configuration items
+     -->
+    <Item key="MACing" value="0" valueType="int" />
+    <!-- ReadyB with cassette info after Withdraw/Deposit
+		 0: send all cassettes's info that have configurated.
+		 1：send cassettes's info which cassettes‘ status have changed
+		-->
+    <Item key="ReadyWithCasChanged" value="0" valueType="int" />
+  </MessageCfg>
+</Root>

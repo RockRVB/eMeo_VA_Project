@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!--  Envelope Disepnser
+		*  The envelope dispenser reports unsolicited status message in Native mode depending on the value 
+		*  of the enhanced configuration option 23. 
+		*  Status messages are sent when the envelope dispenser is detected as being low/out or an envelpe failed to be presented or retracted.
+		-->
+	<Data>
+		<!-- Device Identification Graphic. -->
+		<Item key="e1" value="\" size="1" restriction="Mandatory"/>
+		<!--   Transaction/Device Status. (T-code plus T-data). Gives details of a dispense operation in respense to a Transaction Reply Command message.
+		* Character 1 (T-code) can be:
+		*    '0'  - Envelope presented satisfactorily.
+		*    '1'  - Failure - envelope not presented or retracted. 
+ 		-->
+		<Item key="e2" value="0" size="[Device.EnvelopeDispenser.DevStatus]" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Error Severity.  Standard code.-->
+		<Item key="e3" value="[Device.EnvelopeDispenser.Fitness]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Diagnostic Status. (M-status plus M-data). The M-status describes the main error found. -->
+		<Item key="e4" value="[Device.EnvelopeDispenser.DiagnosticStatus]" size="var" restriction="Optional"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Suplies Status Indicates the state of the DepositBin.
+		*  This field is not sent with the message when a deposit time-out occurs. States reported are:
+		 * '1' - Sufficient deposited.
+		 * '2' - Envelopes low.
+		 * '3' - Envelopes exhausted..
+		-->
+		<Item key="e5" value="[Device.EnvelopeDispenser.SuppliesStatus]" size="1" restriction="Mandatory"/>
+	</Data>
+</Root>

@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../css/CN.css"  replace="1" />
+<link rel="stylesheet" type="text/css" href="../../css/Button.css" />
+<script defer type="text/javascript" src="../../js/ShowResource.js"></script>
+</head>
+<body>
+<div class="backgroundDiv">
+  <div class="CounterDiv" style="display:none" id="Counter" type="countdown" content="{Binding Count}" visible="{Binding CouterVisible}"> </div>
+  <div class="mainDivOneLine" ids="IDS_InputTransferAccount"> </div>
+  <div class="inputDiv">
+    <input class="inputTextCenterAlign" id="InputTransferAccount" type="text" size="23" content="{Binding saveBuffer}" format="#### " />
+  </div>
+  <div class="f4Div" id="F4" tag="OnClear" type="Button"> <img src="../../../Image/CN/Btn_Bg3_right_up.png" id="bgimg" up="(btnbg3rightup)" down="(btnbg3rightdw)" /> <span class="buttonRight" ids="IDS_Clear"></span> </div>
+  <div class="f6Div" id="F6" tag="OnConfirm" type="Button"> <img src="../../../Image/CN/Btn_Bg1_right_up.png" id="bgimg" up="(btnbg1rightup)" down="(btnbg1rightdw)" /> <span class="buttonRight" ids="IDS_Confirm"></span> </div>
+  <div class="f7Div" id="F7" tag="OnCancel" type="Button"> <img src="../../../Image/CN/Btn_Bg2_left_up.png" id="bgimg" up="(btnbg2leftup)" down="(btnbg2leftdw)" /> <span class="buttonLeft" ids="IDS_TakeCard"></span> </div>
+  <div class="f8Div" id="F8" tag="OnContinue" type="Button"> <img src="../../../Image/CN/Btn_Bg2_right_up.png" id="bgimg" up="(btnbg2rightup)" down="(btnbg2rightdw)" /> <span class="buttonRight" ids="IDS_Return"></span> </div>
+</div>
+</body>
+</html>

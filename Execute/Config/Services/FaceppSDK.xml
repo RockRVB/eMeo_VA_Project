@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--人相对比服务配置-->
+<FacePPSDK>
+	<api_key>gdyt78e61196</api_key>
+	<api_secret>8vcvnWbEOXcXwXSs</api_secret>
+	<createUrl>http://api.faceid.com/person/create</createUrl>
+	<deleteUrl>http://api.faceid.com/person/delete</deleteUrl>
+	<verifyUrl>http://api.faceid.com/person/verify</verifyUrl>
+	<compareUrl>http://api.faceid.com/person/compare</compareUrl>
+</FacePPSDK>
+
+

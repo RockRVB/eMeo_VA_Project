@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Config>	
+	<!-- The name of the first camera (normal it is color camera) -->
+	<CameraV value="GDZS-DC004-E-V" />
+	<!-- The name of the second camera (normal it is infrared camera) -->
+	<CameraIR value="GDZS-DC004-E-IR" />
+	<!-- Position of video window on X -->
+	<StartPointX value="1700" />
+	<StartPointY value="0" />
+	<!-- The width of video window -->
+	<Width value="1080" />
+	<!-- The heigh of video window -->
+	<Height value="1080" />
+	<!-- Living Checking score of V camera -->
+	<ScoreV value="0.75" />
+	<!-- Living Checking score of IR camera -->
+	<ScoreIR value="0.75" />
+
+	
+	<!--Width resolution or video-->
+	<WidthResolution value="800" />
+	<HeightResolution value="600" />
+		
+	<!--Pass flag of living checking-->
+	<Threshold value="50" />
+	<!--Set video window Top most or not-->
+	<TopMost value="false" />
+	<!--time interval of dual camera capture photo-->
+	<CaptureTime value="1000" />
+
+	<!--V camera bpp parameter-->
+	<BppV value="24" />
+	<!--IR camera bpp parameter-->
+	<BppIR value="24" />
+	<MinFaceSize value="40" />
+	<RollAngle value="60" />
+	
+	<!-- Get TopN  similar picture from face server -->
+	<TopN value="1" />
+	<!-- Auto check image quality or not when identify -->
+	<AutoCheckImageQuality value="false" />
+	
+	<Hint>
+		<Text value="           please look at the camera" />
+		<!-- The Location of above text -->
+		<Location x="140" y="900" />
+		<MaskImage value="box.png" />
+		<!-- The seconds of counting down befor capture photo -->
+		<Counter value="10" />
+		<FontName value="TPB Neo Sans" />
+		<FontSize value="35" />
+		<CounterLocation x="500" y="350" />
+		<ConterFontSize value="80" />
+		<SuccessText value="               Scan success!" />
+		<SuccessLocation x="140" y="900" />
+		<!-- The seconds of counting down after capture photo to close video window -->
+		<SuccessCounter value="1" />
+		<HintColor value="255,255,255"/>
+ 		<SuccessColor value="255,255,255"/>
+ 		<CounterColor value="255,0,0"/>
+	</Hint>
+	
+	
+    <!-- Face API -->
+	<FaceAPI>
+		<!-- Add user- face register -->
+        <AddUser value="/users/v1/add" />
+		<!-- delete user info -->
+        <DeleteUser value="/users/v1/delete" />
+		
+		<AddUserToGroup value="/users/v1/add-group" />
+		<RemoveUserFromGroup value="/users/v1/remove-group" />
+		<RemoveUserImage value="/users/v1/remove-image" />
+		
+		<Identify value="/face/v1/compare-1vn" />
+		<CompareTwoImage value="/face/v1/compare-two-image" />
+		
+		<CheckImageQuality value="/face/v1/check-quality" />
+		<QueryUser value="/users/v1/info" />
+		
+		<GetGroupsListUser value="/groups/v1/list-user" />
+		<RemoveGroup value="/groups/v1/remove" />
+		
+    </FaceAPI>
+	
+</Config>

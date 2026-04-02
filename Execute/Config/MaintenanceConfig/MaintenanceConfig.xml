@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--后台维护模式配置-->
+<Root>
+	<!--刻录CD光盘时是否自动封盘（1为封，0为否）-->	
+	<BurnCD ForceMediaToBeClosed="0">
+	</BurnCD>
+	<!-- 打印流水模式，1 表示只打印电子流水，其他表示电子流水、纸质流水都打印，默认为 0 -->
+	<JournalTarget value="0" />
+	<!-- Flash 后台维护界面，提示信息弹框是否支持自定义模式，1 表示支持，其他表示不支持，默认为 0 -->
+	<PromptOKCancelDefine value="0" />
+</Root>

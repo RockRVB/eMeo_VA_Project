@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<Msg>
+		<Item key="f" value="B" size="1" restriction="Mandatory"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="[Options.IncludeTransactionStatusData]"/>
+		<Item key="g1" value="[OptionCtrl.I_State.TransactionSerialNumber]" size="4" restriction="[Options.IncludeTransactionStatusData]"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="[Options.IncludeTransactionStatusData]"/>
+		<Item key="g2" value="[OptionCtrl.ReadyB.DataIdentifier]" size="1" restriction="[Options.IncludeTransactionStatusData]"/>
+		<Item key="g3" value="[OptionCtrl.ReadyB.TransactionData]" size="var" restriction="[Options.IncludeTransactionStatusData]"/>
+	</Msg>
+	<SmartCard>
+		<Item key="f" value="B" size="1" restriction="Mandatory"/>
+		<Item key="[GS]" value="[GS]" size="1" restriction="Mandatory"/>
+		<Item key="f1" value="CAM" size="3" restriction="Mandatory"/>
+		<Item key="[GS]" value="[GS]" size="1" restriction="Mandatory"/>
+		<Item key="f2" value="[Buffer.M]" size="3" restriction="Mandatory"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="[Options.IncludeTransactionStatusData]"/>
+		<Item key="g1" value="[OptionCtrl.I_State.TransactionSerialNumber]" size="4" restriction="[Options.IncludeTransactionStatusData]"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="[Options.IncludeTransactionStatusData]"/>
+		<Item key="g2" value="[OptionCtrl.ReadyB.DataIdentifier]" size="1" restriction="[Options.IncludeTransactionStatusData]"/>
+		<Item key="g3" value="[OptionCtrl.ReadyB.TransactionData]" size="var" restriction="[Options.IncludeTransactionStatusData]"/>
+	</SmartCard>
+</Root>

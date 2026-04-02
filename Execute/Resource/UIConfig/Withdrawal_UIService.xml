@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+	<Screen name="UI_DispenseAmountError" uri="Withdraw\DispenseAmountError.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_ServiceUnavailable)"/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+	<Screen name="UI_RejectingCash" uri="Withdraw\RejectingCash.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_TransactionIsBeing)"/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+	<Screen name="UI_RejectCashForHardwareError" uri="Withdraw\RejectCashForHardwareError.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_ServiceUnavailable)"/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+	<Screen name="UI_RejectCashFail" uri="Withdraw\RejectCashFail.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_ServiceUnavailable)"/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+
+	<Screen name="UI_TakeMoneyTip" uri="Withdraw\TakeMoneyTip.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_TakeCash)"/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+
+	<!--打印凭条出错时显示取款信息-->
+	<Screen name="UI_WithdrawedResult" uri="Withdraw\WithdrawedResult.xaml"  cache="0"/>
+	<Screen name="UI_WithdrawFailBySTMA" uri="Withdraw\WithdrawFailBySTMA.html"  cache="0"/>
+	<Screen name="UI_WithdrawSuccessBySTMA" uri="Withdraw\WithdrawSuccessBySTMA.html"  cache="0"/>
+</Screens>
+

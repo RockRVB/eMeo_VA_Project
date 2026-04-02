@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VTMDropdownList>
+	<Salary>
+		<Item value="1" text="IDS_Salary1"/>
+		<Item value="2" text="IDS_Salary2"/>
+		<Item value="3" text="IDS_Salary3"/>
+		<Item value="4" text="IDS_Salary4"/>
+		<Item value="5" text="IDS_Salary5"/>
+		<Item value="6" text="IDS_Salary6"/>
+	</Salary>
+	<Profession>
+		<Item value="01" text="IDS_Profession1"/>
+		<Item value="02" text="IDS_Profession2"/>
+		<Item value="03" text="IDS_Profession3"/>
+		<Item value="04" text="IDS_Profession4"/>
+		<Item value="05" text="IDS_Profession5"/>
+		<Item value="06" text="IDS_Profession6"/>
+		<Item value="07" text="IDS_Profession7"/>
+		<Item value="08" text="IDS_Profession8"/>
+		<Item value="09" text="IDS_Profession9"/>
+		<Item value="99" text="IDS_Profession10"/>
+	</Profession>
+	<EduDegree>
+		<Item value="07" text="IDS_EduDegree1"/>
+		<Item value="08" text="IDS_EduDegree2"/>
+		<Item value="09" text="IDS_EduDegree3"/>
+		<Item value="10" text="IDS_EduDegree4"/>
+		<Item value="04" text="IDS_EduDegree5"/>
+	</EduDegree>
+  <EduDegree_CreditCard>
+    <Item value="1" text="IDS_EduDegree1"/>
+    <Item value="2" text="IDS_EduDegree2"/>
+    <Item value="4" text="IDS_EduDegree3"/>
+    <Item value="5" text="IDS_EduDegree4"/>
+    <Item value="3" text="IDS_EduDegree5"/>
+  </EduDegree_CreditCard>
+  <Marriage>
+    <Item value="3" text="IDS_Marriage1"/>
+    <Item value="2" text="IDS_Marriage2"/>
+    <Item value="9" text="IDS_Marriage3"/>
+  </Marriage>
+  <Marriage_CreditCard>
+    <Item value="0" text="IDS_Marriage1"/>
+    <Item value="1" text="IDS_Marriage2"/>
+    <Item value="2" text="IDS_Marriage3"/>
+  </Marriage_CreditCard>
+  <Currency>
+    <Item value="156" text="IDS_Currency_RMB"/>
+    <!--<Item value="334" text="IDS_Currency_HK"/>-->
+  </Currency>
+  <RelativeRelation>
+    <Item value="1" text="IDS_RelativeRelation_1"/>
+    <Item value="2" text="IDS_RelativeRelation_2"/>
+    <Item value="3" text="IDS_RelativeRelation_3"/>
+  </RelativeRelation>
+  <UrgencyRelation>
+    <Item value="4" text="IDS_UrgencyRelation_1"/>
+    <Item value="5" text="IDS_UrgencyRelation_2"/>
+    <Item value="6" text="IDS_UrgencyRelation_3"/>
+  </UrgencyRelation>
+  <HouseType>
+    <Item value="1" text="IDS_HouseType1"/>
+    <Item value="2" text="IDS_HouseType2"/>
+    <Item value="3" text="IDS_HouseType3"/>
+    <Item value="4" text="IDS_HouseType4"/>
+    <Item value="5" text="IDS_HouseType5"/>
+    <Item value="7" text="IDS_HouseType7"/>
+  </HouseType>
+  <CompanyType>
+    <item value="01" text="IDS_CompanyType1" />
+    <item value="04" text="IDS_CompanyType2" />
+    <item value="06" text="IDS_CompanyType3" />
+    <item value="03" text="IDS_CompanyType4" />
+    <item value="05" text="IDS_CompanyType5" />
+    <item value="07" text="IDS_CompanyType6" />
+  </CompanyType>
+  <IndustryType>
+    <item value="21" text="IDS_IndustryType1" />
+    <item value="22" text="IDS_IndustryType2" />
+    <item value="23" text="IDS_IndustryType3" />
+    <item value="24" text="IDS_IndustryType4" />
+    <item value="25" text="IDS_IndustryType5" />
+    <item value="26" text="IDS_IndustryType6" />
+    <item value="27" text="IDS_IndustryType7" />
+    <item value="28" text="IDS_IndustryType8" />
+    <item value="29" text="IDS_IndustryType9" />    
+    <item value="30" text="IDS_IndustryType10" />
+    <item value="31" text="IDS_IndustryType11" />
+    <item value="32" text="IDS_IndustryType12" />
+    <item value="33" text="IDS_IndustryType13" />
+    <item value="34" text="IDS_IndustryType14" />
+    <item value="35" text="IDS_IndustryType15" />
+    <item value="36" text="IDS_IndustryType16" />
+    <item value="37" text="IDS_IndustryType17" />
+    <item value="38" text="IDS_IndustryType99" />  
+  </IndustryType>
+  <StaffNum>
+    <item value="1" text="IDS_StaffNum1" />
+    <item value="2" text="IDS_StaffNum2" />
+    <item value="3" text="IDS_StaffNum3" />
+    <item value="4" text="IDS_StaffNum4" />
+    <item value="5" text="IDS_StaffNum5" />
+  </StaffNum>
+  <JobLevel>
+    <item value="02" text="IDS_JobTitle1" />
+    <item value="03" text="IDS_JobTitle2" />
+    <item value="04" text="IDS_JobTitle3" />
+    <item value="05" text="IDS_JobTitle4" />
+    <item value="06" text="IDS_JobTitle5" />
+    <item value="01" text="IDS_JobTitle6" />
+    <item value="11" text="IDS_JobTitle7" />
+    <item value="71" text="IDS_JobTitle8" />
+    <item value="07" text="IDS_JobTitle9" />
+    <item value="31" text="IDS_JobTitle10" />
+    <item value="08" text="IDS_JobTitle11" />
+  </JobLevel>
+  <BillType>
+    <item value="1" text="IDS_BillType1" />
+    <item value="2" text="IDS_BillType2" />
+    <item value="3" text="IDS_BillType3" />
+  </BillType>
+    <Materials>
+    <Item value="1" text="IDS_Materials1"/>
+    <Item value="2" text="IDS_Materials2"/>
+  </Materials>
+  <ResidentType>
+    <Item value="0" text="IDS_CustomerType0"/>
+    <Item value="1" text="IDS_CustomerType1"/>
+  </ResidentType>
+
+</VTMDropdownList>

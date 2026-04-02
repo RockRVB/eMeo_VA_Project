@@ -1,0 +1,756 @@
+{
+	"hostList": [{
+		"name": "counter service",
+		"desc": "corebanking",
+		"encoding": "utf-8",
+		"server": {
+			"host": "",
+			"port": "",
+			"protocol": "",
+			"isSendToSwitch": true,
+			"mode": "1"
+		},
+		"head": {},
+		"transactions": [{
+				"name": "ScanPassport",
+				"response": "ScanPassportResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "ScanPassport",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"args": {
+							"type": "{CounterService.request.certType}"
+						}
+					}
+				}
+			},
+			{
+				"name": "ScanPassportResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "ScanPassport",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}",
+						"args": {
+							"verifyDesc": "ScanPassport",
+							"verifyId": "{VTM_VTA_CommonVerifyID}",
+							"cusInfo": {
+								"name": "{CounterService.response.Name}",
+								"gender": "{CounterService.response.Gender}",
+								"birthDate": "{CounterService.response.Birthdate}",
+								"nation": "{CounterService.response.Nationality}",
+								"idNo": "{CounterService.response.DocumentID}",
+								"expire": "{CounterService.response.Expire}",
+								"certType": "{CounterService.response.certType}"
+							}
+						}
+					}
+				}
+			},
+			{
+				"name": "SendFile",
+				"response": "SendFileResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "SendFile",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"args": {
+							"verifyId": "{VTM_VTA_CommonVerifyID}",
+							"verifyType": "{CounterService.request.verifyType}",
+							"signPage": "{CounterService.request.signPage}",
+							"signatureX": "{CounterService.request.signatureX}",
+							"signatureY": "{CounterService.request.signatureY}",
+							"signatureW": "{CounterService.request.signatureW}",
+							"signatureH": "{CounterService.request.signatureH}"
+						}
+					}
+				}
+			},
+			{
+				"name": "SendFileResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "SendFile",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}",
+						"args": {
+							"verifyId": "{VTM_VTA_CommonVerifyID}",
+							"verifyType": "{CounterService.request.verifyType}"
+						}
+					}
+				}
+			},
+			{
+				"name": "PrintPaper",
+				"response": "PrintPaperResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "PrintPaper",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"args": {
+							"verifyId": "{VTM_VTA_CommonVerifyID}"
+						}
+					}
+				}
+			},
+			{
+				"name": "PrintPaperResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "PrintPaper",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}"
+					}
+				}
+			},
+			{
+				"name": "ScanRecycle",
+				"response": "ScanRecycleResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "ScanRecycle",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"args": {
+							"verifyId": "{VTM_VTA_CommonVerifyID}"
+						}
+					}
+				}
+			},
+			{
+				"name": "ScanRecycleResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "ScanRecycle",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}",
+						"args": {
+							"verifyId": "{VTM_VTA_CommonVerifyID}"
+						}
+					}
+				}
+			},
+			{
+				"name": "InitiateVerification",
+				"response": "InitiateVerificationResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "InitiateVerification",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"args": {
+						}
+					}
+				}
+			},
+			{
+				"name": "InitiateVerificationResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "InitiateVerification",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}",
+						"args": {
+							"verifyId": "{VTM_VTA_CommonVerifyID}",
+							"cusInfo": {
+								"name": "{CounterService.response.Name}",
+								"gender": "{CounterService.response.Gender}",
+								"birthDate": "{CounterService.response.Birthdate}",
+								"nation": "{CounterService.response.Nationality}",
+								"idNo": "{CounterService.response.DocumentID}",
+								"expire": "{CounterService.response.Expire}",
+								"certType": "{CounterService.response.certType}"
+							},
+							"i18n": ""
+						}
+					}
+				}
+			},
+			{
+				"name": "PrintCredential",
+				"response": "PrintCredentialResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "PrintCredential",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"args": {
+							"verifyId": "{VTM_VTA_CommonVerifyID}"
+						}
+					}
+				}
+			},
+			{
+				"name": "PrintCredentialResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "PrintCredential",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}"
+					}
+				}
+			},
+			{
+				"name": "EndBusiness",
+				"response": "EndBusinessResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "EndBusiness",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}"
+					}
+				}
+			},
+			{
+				"name": "EndBusinessResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "EndBusiness",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}",
+						"args": {
+							"businessid": "{CounterService.response.newBusinessid}"
+						}
+					}
+				}
+			},
+			{
+				"name": "SendCard",
+				"response": "SendCardResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "SendCard",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}"
+					}
+				}
+			},
+			{
+				"name": "SendCardResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "SendCard",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}",
+						"args": {
+							"cardNumber": "{core_PAN}"
+						}
+					}
+				}
+			},
+			
+
+
+			{
+				"name": "InsertCard",
+				"response": "InsertCardResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "InsertCard",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}"
+					}
+				}
+			},
+			{
+				"name": "InsertCardResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "InsertCard",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}",
+						"args": {
+							"cardNumber": "{core_PAN}"
+						}
+					}
+				}
+			},
+			{
+				"name": "TakeCard",
+				"response": "TakeCardResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "TakeCard",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}"
+					}
+				}
+			},
+			{
+				"name": "TakeCardResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "TakeCard",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}",
+						"args": {
+							"cardNumber": "{core_PAN}"
+						}
+					}
+				}
+			},
+			{
+				"name": "TakeCard",
+				"response": "TakeCardResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "TakeCard",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}"
+					}
+				}
+			},
+			{
+				"name": "TakeCardResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "TakeCard",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}"
+					}
+				}
+			},
+			{
+				"name": "ReadContactLessCard",
+				"response": "ReadContactLessCardResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "ReadContactLessCard",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}"
+					}
+				}
+			},
+			{
+				"name": "ReadContactLessCardResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "ReadContactLessCard",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}",
+						"args": {
+							"cardNumber": "{core_PAN}"
+						}
+					}
+				}
+			},
+			{
+				"name": "InputPin",
+				"response": "InputPinResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "InputPin",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}"
+					}
+				}
+			},
+			{
+				"name": "InputPinResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "InputPin",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}"
+					}
+				}
+			},
+			{
+				"name": "ChangePin",
+				"response": "ChangePinResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "ChangePin",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}"
+					}
+				}
+			},
+			{
+				"name": "ChangePinResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "ChangePin",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}"
+					}
+				}
+			},
+			{
+				"name": "ScanBarcode",
+				"response": "ReadContactLessCardResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "ScanBarcode",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}"
+					}
+				}
+			},
+			{
+				"name": "ScanBarcodeResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "ScanBarcode",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}",
+						"args": {
+							"barcodeData": "{core_BarCodeDataValue}"
+						}
+					}
+				}
+			},
+			{
+				"name": "TakePicture",
+				"response": "TakePictureResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "TakePicture",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}"
+					}
+				}
+			},
+			{
+				"name": "TakePictureResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "TakePicture",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}",
+						"args": {
+							"verifyId": "{VTM_VTA_CommonVerifyID}"
+						}
+					}
+				}
+			},
+			{
+				"name": "FingerRegister",
+				"response": "FingerRegisterResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "FingerRegister",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}"
+					}
+				}
+			},
+			{
+				"name": "FingerRegisterResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "FingerRegister",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}",
+						"args": {
+						}
+					}
+				}
+			},
+			{
+				"name": "FingerMatch",
+				"response": "FingerMatchResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "FingerMatch",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}"
+					}
+				}
+			},
+			{
+				"name": "FingerMatchResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "FingerMatch",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}",
+						"args": {
+						}
+					}
+				}
+			},
+			{
+				"name": "CassetteTracking",
+				"response": "CassetteTrackingResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "CassetteTracking",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"args": {
+						}
+					}
+				}
+			},
+			{
+				"name": "CassetteTrackingResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "CassetteTracking",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}",
+						"args": {
+							"cassettesInfo": "{CounterService.response.cassettesInfo}"
+						}
+					}
+				}
+			},
+			{
+				"name": "WithdrawalOperation",
+				"response": "WithdrawalOperationResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "WithdrawalOperation",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"args": {
+							"amount": "{CounterService.request.withdrawalAmount}",
+							"currency": "{CounterService.request.currency}"
+						}
+					}
+				}
+			},
+			{
+				"name": "WithdrawalOperationResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "WithdrawalOperation",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}",
+						"args": {
+							"currency": "{CounterService.response.currency}",
+							"cassettesInfo":"{CounterService.response.dispenseInfo}"				
+						}
+					}
+				}
+			},
+			{
+				"name": "Deposit",
+				"response": "DepositResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "Deposit",
+					"request": {
+						"userModeType": "{CounterService.request.userModeType}"
+					}
+				}
+			},
+			{
+				"name": "DepositResponse",
+				"body": {
+					"id": "{CounterService.request.id}",
+					"sessionid": "{CounterService.request.sessionid}",
+					"businessid": "{CounterService.request.businessid}",
+					"terminal": "{CounterService.request.terminal}",
+					"token": "reserve",
+					"function": "Deposit",
+					"response": {
+						"userModeType": "{CounterService.request.userModeType}",
+						"result": "{CounterService.response.result}",
+						"args": {
+							"isAlreadyProcessedCashIn": "{core_IsAlreadyProcessedCashIn}",
+							"isCashInError": "{CashInErrorFlag}",
+							"depositCashCount": "{DepositCashCount}",
+							"originalDepositAmount": "{core_OriginalDepositAmount}",
+							"depositCountDetails": "{core_DepositCountDetails}",
+							"depositResult": "{core_CashDepositResult}",
+							"isRepeatNumReject": "{core_RepeatNumReject}",
+							"isAlreadyConfirmedDespoitAmount": "{core_IsAlreadyConfirmedDespoitAmount}",
+							"isUserTimeoutInShowCashinResult": "{core_IsUserTimeoutInShowCashinResult}",
+							"isKeyErrorInShowCashinResult": "{core_IsKeyErrorInShowCashinResult}",
+							"cashInEndDetailResult": "{core_CashInEndDetailResult}"
+						}
+					}
+				}
+			}
+		]
+	}]
+}

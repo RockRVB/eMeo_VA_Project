@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<Device>
+		<Enable SensorAndLight="1"/>
+		<Information>
+			<SensorAndLight DeviceState="ONLINE" MediaState="unknown" LastErrorCode="" IsSuccess="True" IsFailure="False" Cancelled="False" UserState="52"/>
+			<Door SAFE="CLOSED" OPERATORSWITCH="RUN" CABINET="CLOSED"/>
+            <Sensor TAMPER="NOTAVAILABLE" INTTAMPER="NOTAVAILABLE" SEISMIC="NOTAVAILABLE" HEAT="NOTAVAILABLE" PROXIMITY="NOTAVAILABLE" AMBLIGHT="NOTAVAILABLE" ENHANCEDAUDIO="NOTAVAILABLE" />
+		</Information>
+		<Event>
+			<SensorAndLight EventName="CARDUNIT" EventValue="OFF" Event="ChangeAffair" UnhandleSynCommandEvent="False" Source="SensorsDevice.SensorsDevice" CommandCompleted="False" QueryInforamtionCompleted="False"/>
+		</Event>
+		<Manual>
+    </Manual>
+		<Capability>
+			<SensorAndLight SupportedPort="OPERATORSWITCH,CABINET,SAFE,FASCIALIGHT,AUDIO,VOLUME,CARDUNIT,NOTESDISPENSER,RECEIPTPRINTER,BILLACCEPTOR" IsSuccess="True" IsFailure="False" Cancelled="False" UserState="31"/>
+		</Capability>
+	</Device>
+	<Calculate>
+		<Status fitness="0"/>
+		<Door SAFE="0" OPERATORSWITCH="0" CABINET="0"/>
+        <Sensor TAMPER="0" INTTAMPER="0" SEISMIC="0" HEAT="0" PROXIMITY="0" AMBLIGHT="0" ENHANCEDAUDIO="0" />
+ 		<MDS HardwareError=":3A:39:39" VibrationAlarm=":3C:00:01" Heatdetection=":3C:00:02" BurgaryAttack=":3C:00:03" AntiAmbush=":3A:00:01" />
+	</Calculate>
+	<Configuration>
+			<Item source="/Root/Device/Information/SensorAndLight" ID="/Root/Calculate/Status/@fitness" default="0">
+			<Result value="4">
+				<Condition value="[xmlvariable]" operand="1" operator="==">
+					<xmlvariable value="/Root/Device/Information/Manual/@RecoverFail"/>
+				</Condition>
+				<Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+					<xmlvariable value="/Root/Device/Information/SensorAndLight/@DeviceState"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/Sensor" ID="/Root/Calculate/Sensor/@TAMPER" default="0">
+			<Result value="1">
+			    <!-- operand="value when sensor change" -->
+				<Condition value="[xmlvariable]" operand="ON" operator="==">
+					<xmlvariable value="/Root/Device/Information/Sensor/@TAMPER"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/Sensor" ID="/Root/Calculate/Sensor/@SEISMIC" default="0">
+			<Result value="1">
+						    <!-- operand="value when sensor change" -->
+				<Condition value="[xmlvariable]" operand="ON" operator="==">
+					<xmlvariable value="/Root/Device/Information/Sensor/@SEISMIC"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/Sensor" ID="/Root/Calculate/Sensor/@HEAT" default="0">
+			<Result value="1">
+						    <!-- operand="value when sensor change" -->
+				<Condition value="[xmlvariable]" operand="ON" operator="==">
+					<xmlvariable value="/Root/Device/Information/Sensor/@HEAT"/>
+				</Condition>
+			</Result>
+		</Item>
+	</Configuration>
+	<Signal>
+		<Item value="/Root/Calculate/Status/@fitness" DataEventID="210"/>
+		<Item value="/Root/Calculate/Sensor/@TAMPER" DataEventID="211"/>
+		<Item value="/Root/Calculate/Sensor/@SEISMIC" DataEventID="212"/>
+		<Item value="/Root/Calculate/Sensor/@HEAT" DataEventID="213"/>
+	</Signal>
+	<DataEvent>
+		<Item ID="106" enable="0"/>
+	</DataEvent>
+</Root>

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<script defer type="text/javascript" src="../../js/ShowResource.js"></script>
+</head>
+<body>
+
+<div id="layer1" style="position: absolute; width:380px; height: 980px; z-index: 1; left: 20px; top: 30px;">	
+	<form method="post">
+		<fieldset name="Group1">
+		<legend>Device Parameter</legend>
+		<table style="width: 100%;font-size:12px">				
+			<tr>
+				<td>
+					<Label style="width: 10px">CDM</Label>
+				</td>
+				<td>
+					<Label style="width: 150px">Retract Area</Label>
+				</td>
+				<td>
+					<input id="textBox101" type="text" style="width: 80px" size="5" content="{Binding RetractArea file=Config\DeviceService\CDMConfig.xml xpath=/CashDispenser mode=2}"/>
+				</td>	
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<Label style="width: 150px">Mix Number</Label>
+				</td>
+				<td>
+					<input id="textBox102" type="text" style="width: 80px" size="5" content="{Binding MixNumber file=Config\DeviceService\CDMConfig.xml xpath=/CashDispenser mode=2}"/>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<Label style="width: 150px">Print Remain Count After Present</Label>
+				</td>
+				<td>
+					<input id="textBox103" type="text" style="width: 80px" size="5" content="{Binding PrintRemainCountAfterPresent file=Config\DeviceService\CDMConfig.xml xpath=/CashDispenser mode=2}"/>
+				</td>					
+			</tr>
+			<tr></tr>
+			<tr></tr>
+				<td>
+					<Label style="width: 10px">CIM</Label>
+				</td>
+				<td>
+					<Label style="width: 150px">Retract Area</Label>
+				</td>
+				<td>
+					<input id="textBox104" type="text" style="width: 80px" size="5" content="{Binding RetractArea file=Config\DeviceService\CIMConfig.xml xpath=/CashAcceptor mode=2}"/>
+				</td>	
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<Label style="width: 150px">Mix Number</Label>
+				</td>
+				<td>
+					<input id="textBox105" type="text" style="width: 80px" size="5" content="{Binding MixNumber file=Config\DeviceService\CIMConfig.xml xpath=/CashAcceptor mode=2}"/>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<Label style="width: 150px">Open Out Shutter Position</Label>
+				</td>
+				<td>
+					<input id="textBox106" type="text" style="width: 80px" size="5" content="{Binding Open_OutShutterPosition file=Config\DeviceService\CIMConfig.xml xpath=/CashAcceptor mode=2}"/>
+				</td>		
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<Label style="width: 150px">Open In Shutter Position</Label>
+				</td>
+				<td>
+					<input id="textBox107" type="text" style="width: 80px" size="5" content="{Binding Open_InShutterPosition file=Config\DeviceService\CIMConfig.xml xpath=/CashAcceptor mode=2}"/>
+				</td>				
+			</tr>
+			<tr></tr>
+			<tr></tr>
+		</table>
+	 </fieldset><BR>
+	<input id="Submit1" type="submit" value="Cancel" tag="OnCancel" ><input id="Submit2" type="submit" value="Submit" tag="OnConfirm" ></form>
+</div>
+</body> 
+</html>

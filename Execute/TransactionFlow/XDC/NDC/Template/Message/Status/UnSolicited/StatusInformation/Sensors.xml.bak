@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--  Sensors
+		*  This  is no supprted in Advance NDC. 
+	-->
+  <Sensors>
+    <!-- Device Identification Graphic. -->
+    <Item key="e1" value="P" size="1" restriction="Mandatory" />
+  </Sensors>
+</Root>

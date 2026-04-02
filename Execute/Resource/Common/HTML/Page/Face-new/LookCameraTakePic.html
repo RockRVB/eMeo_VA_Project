@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Tip</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/vue-i18n.js"></script>
+    <script src="../../js/jquery-3.7.0.js"></script>	<script src="../../js/class/layer/layer.js"></script>	<script src="../../js/index.js"></script>
+    <script src="../../js/coreScript.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <link rel="stylesheet" href="../../css/animate.grg.css">
+    <style>
+    </style>
+</head>
+
+<style>
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 51px;
+    }
+
+    .content-img {
+        margin-bottom: 88px;
+        height: 514px;
+    }
+
+    .img-tip {
+        position: absolute;
+        z-index: 2;
+        bottom: 300px;
+        right: 603px;
+        height: 80px;
+        font-size: 20px;
+        font-family: 'Alibaba Sans';
+        font-weight: 400;
+        color: #ffffff;
+        line-height: 40px;
+        animation: showTip 300ms linear backwards 700ms;
+    }
+
+    @media only screen and (width: 1280px) {
+        .content-img {
+            height: 450px;
+        }
+
+        .img-tip {
+            bottom: 290px;
+            right: 400px;
+            height: 80px;
+            font-size: 16px;
+            font-weight: 400;
+            color: #ffffff;
+            line-height: 30px;
+        }
+    }
+
+    @keyframes showTip {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+</style>
+
+<body>
+<div id="app">
+    <div id="grg-header" class="grg-header"></div>
+    <div id="grg-main" class="grg-main animate_grg_fadeInRight">
+        <!-- <div class="count-down">
+            <div class="count-down-2">60</div>
+        </div> -->
+        <div class="main-title" ids="ids_face_lookCamera">Please look at the camera to take your picture</div>
+        <div class="main-content">
+            <div class="img-tip">
+                <div ids="ids_face_faceapearsbox">· Make sure your face appears in the box</div>
+                <div ids="ids_face_Maintainadequate">· Maintain adequate and even lighting</div>
+            </div>
+            <!-- <img class="content-img" v-if="!showSmallScreen" src="../../images/img_2.4/look_camera.png">
+            <img class="content-img" v-else src="../../images/img_2.4/look_camera_small.png"> -->
+            <img class="content-img" src="../../images/img_2.4/look_camera.png">           
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var app = new Base({
+        data: {
+            // showSmallScreen: false,
+        },
+        mounted: function () {
+            // this.$nextTick(() => {
+            //     const width = window.screen.width;
+            //     console.log(width);
+            //     this.showSmallScreen = (width == 1280) ? true : false;
+            //     console.log('showSmallScreen',this.showSmallScreen);
+            // })
+
+            let clientWidth = document.body.clientWidth;
+            let deviceImg = document.querySelector('.content-img');
+            if (clientWidth == 1920) {
+                deviceImg.setAttribute('src', '../../images/img_2.4/look_camera.png');
+            } else if (clientWidth == 1280) {
+                deviceImg.setAttribute('src', '../../images/img_2.4/look_camera_small.png');
+            } else {
+                deviceImg.setAttribute('src', '../../images/img_2.4/look_camera.png');
+            }
+        }
+    }).$mount('#app')
+</script>

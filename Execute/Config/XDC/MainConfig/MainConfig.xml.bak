@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <MainConfig>
+    <!-- 
+		********************************************
+		* 0-GRG ATM
+		* 1-NCR ATM
+		********************************************
+		-->
+    <Item key="ATMType" value="0" valueType="int" />
+  </MainConfig>
+  <Protocol>
+    <!-- 
+		********************************************
+		* 0-ISO8583 protocol
+		* 1-NDC+ protocol
+		********************************************
+		* Specify which mode of TCS with parameters
+		********************************************
+		*  2-912 Mode(International Mode) 
+		*  3-911 Mode(Native Mode)
+		-->
+    <Item key="ProtocolType" value="1" valueType="int" />
+  </Protocol>
+  <!-- Is retain card in CardReader or no if retain card fail add by wzsi-->
+  <CardRetain>
+    <Item key="IsRetainInCardReader" value="0" valueType="int" />
+  </CardRetain>
+  <Application>
+    <Item key="NdcDenoTypeEx" value="0" valueType="string" />
+    <Item key="EnableADAFunction" value="0" valueType="string" />
+    <Item key="DipCardReadTrack" value="0" valueType="string" />
+    <Item key="EmvDecode" value="shift_jis" valueType="string" />
+    <Item key="EmvEncode" value="ibm737" valueType="string" />
+    <Item key="IsSupportAutoDeposit" value="1" valueType="string" />
+    <Item key="IsMutiLanguageUpdateScreen" value="0" valueType="string" />
+    <Item key="IsSupportEmv" value="1" valueType="string" />
+    <!--Save LUNO to disk
+  	1: save download LUNO to disk
+  	0: not save, ignore it-->
+    <Item key="IsSaveLuno" value="1" valueType="string" />
+    <!-- 
+  	0: track1
+  	1: "%"+track1+"?"
+  	-->
+    <Item key="IsSendTrack1StartAndEndFlag" value="1" valueType="string" />
+    <!-- 
+  	0: track2
+  	1: ";"+track2+"?"
+  	-->
+    <Item key="IsSendTrack2StartAndEndFlag" value="1" valueType="string" />
+    <!-- 
+  	0: track3
+  	1: "%"+track3+"?"
+  	-->
+    <Item key="IsSendTrack3StartAndEndFlag" value="1" valueType="string" />
+    <Item key="ChkRptrForNoRptrScreen" value="0" valueType="string" />
+    <!-- Last dispense result  for last transaction -->
+    <Item key="LastDispense" value="00000000000000000000" valueType="string" />
+    <!-- Last transaction serial number -->
+    <Item key="LastTransactionSN" value="0000" valueType="string" />
+    <!-- Send reay messag or not for last transaction -->
+    <Item key="LastSendReady" value="0" valueType="string" />
+    <!-- Send Supervisory messag(enter/exit) or not for first start up -->
+    <Item key="SendSupervisoryMsgWhenPowerFailure" value="0" valueType="string" />
+    <!-- Send  reversal/cassette status message after dispense action -->
+    <Item key="StatusChangeAfterDispense" value="0" valueType="int" />
+    <!-- EMV protocol to be executed
+		**********************************************
+		* 0-None(Doesn't support EMV)
+		* 1-Aptra NCR NDC+(Aptra NDC+) EMV
+		* 2-Wincor NDC+ EMV
+        * 3-Wincor DDC 912/911 EMV
+		* 4-Diebold DDC 912/911 EMV
+		-->
+    <Item key="EmvProtocolType" value="0" valueType="string" />
+    <!-- Send the message of cassette status change after dispense action -->
+    <Item key="StatusChangeAfterDispense" value="0" valueType="int" />
+    <!-- Encryption: The format of the Pinblock
+		* 0 - ANSI X9.8
+		* 1 - Diebold
+		* 2 - IBM3624
+		-->
+    <Item key="PinblockFormat" value="0" valueType="int" />
+    <!-- Journal Resume feature enable or not -->
+    <Item key="EnableJournalResume" value="0" valueType="int" />
+    <!--  Enable Camera feature enable or not -->
+    <Item key="EnableCameraDevice" value="0" valueType="int" />
+    <!--  Enable Camera feature enable or not -->
+    <Item key="MsgEncode" value="UTF8" valueType="string" />
+    <!--  Enable Auto Retract Receipt Paper enable or not -->
+    <Item key="AutoRetractPaper" value="1" valueType="string" />
+    <Item key="RPTDataAutoChangeLine" value="1" valueType="string" />
+    <item key="RPTLengthPerLine" value="40" valueType="string" />
+    <Item key="NeedSignatureForEJ" value="0" valueType="string" />
+    <Item key="AutoMapCassetteID" value="0" valueType="string" />
+    <Item key="enableDispenseWithTotalAmout" value="1" valueType="string" />
+    <Item key="sendmsgclearlastdispense" value="0" valueType="string" />
+    <Item key="aftertakemoneysendmsg" value="0" valueType="string" />
+  </Application>
+  <!-- The definition of the protocol, and the key will be mapped to the value in protocol section -->
+  <ProtocolInformation>
+    <Item key="0" value="ISO8583" valueType="string" />
+    <Item key="1" value="NDC" valueType="string" />
+    <Item key="2" value="DDC" valueType="string" />
+    <Item key="3" value="DDC" valueType="string" />
+  </ProtocolInformation>
+  <!-- The definition of the EMV type according different protocol, such as Aptra NCR NDC+/Wincor NDC+/Diebold DDC 912(911)/Wincor DDC 912(911) -->
+  <EmvProtocolType>
+    <Item key="0" value="None" valueType="string" />
+    <Item key="1" value="AptraNdcEmv" valueType="string" />
+    <Item key="2" value="WincorNdcEmv" valueType="string" />
+    <Item key="3" value="WincorDdcEmv" valueType="string" />
+    <Item key="4" value="DieboldDdcEmv" valueType="string" />
+  </EmvProtocolType>
+  <!-- Definition/Setting of suspend moe -->
+  <SuspendMode>
+    <!-- Enable the feature to support suspend mode -->
+    <Item key="EnableSuspendMode" value="1" valueType="Boolean" />
+    <!-- Error code to go to suspend mode -->
+    <Item key="ErrCode" value="1207" valueType="string" />
+    <!-- Unit: Second and go to suspend mode -->
+    <Item key="Interval" value="10" valueType="string" />
+    <!-- After Recover Device, 1: run Inservice 0: run outofservice -->
+    <Item key="EnableInserviceAfterRecover" value="1" valueType="string" />
+  </SuspendMode>
+  <DataTest>
+    <Item key="NetWorkAfterLoad" value="1" valueType="int" />
+    <Item key="CheckMsgQueueAfterReceiveMsg" value="1" valueType="int" />
+  </DataTest>
+  <OperationCode>
+    <!-- 1:Clear user for interactive transaction,   0:no Clear,use for normal-->
+    <Item key="ClearOperationCodeAfterTransDDC" value="0" valueType="int" />
+    <Item key="EnableAmount" value="1" valueType="int" />
+    <Item key="EnableOperationCode" value="1" valueType="int" />
+    <Item key="EnableTrack1" value="1" valueType="int" />
+    <Item key="EnableTrack2" value="1" valueType="int" />
+    <Item key="EnableTrack3" value="1" valueType="int" />
+    <Item key="FieldID_A" value="1" valueType="int" />
+    <Item key="FieldID_B" value="0" valueType="int" />
+    <Item key="FieldID_C" value="1" valueType="int" />
+  </OperationCode>
+  <PrintReceiveMsg>
+    <!-- 1:Support Print Receive Msg Function,   0:no Support-->
+    <Item key="IsSupportFunction" value="0" valueType="Boolean" />
+    <!-- 1:Print whole Rec Msg,   0:no Print-->
+    <Item key="PrintAllRecMsg" value="0" valueType="Boolean" />
+    <!-- PreFix Message, this active when PrintAllRecMsg is 1, for example :start with 40 or start with 10-->
+    <Item key="PreFixMsg" value="" valueType="string" />
+    <!-- 1:Print Receipt Data,   0:no Print-->
+    <Item key="PrintReceiptData" value="1" valueType="Boolean" />
+    <!-- 1:Print Journal Data,   0:no Print-->
+    <Item key="PrintJournalData" value="1" valueType="Boolean" />
+    <!-- 1:Blank Line,   0:no-->
+    <Item key="BlankLine" value="0" valueType="Boolean" />
+    <!-- 1:Print DateTime,   0:no-->
+    <Item key="PrintDateTime" value="1" valueType="Boolean" />
+    <!-- PreText, for example    Receive:4023233-->
+    <Item key="PreText" value="" valueType="string" />
+    <!-- SrcLogName, for example    Journal is meam:Journal.log-->
+    <Item key="SrcLogName" value="Journal" valueType="string" />
+    <!-- PreFileName, for example   value="daily_ej" is meam  C:\eCatXDC\eCAT3.0R2_20140110\Execute\log\daily_ej-->
+    <Item key="EJBackUpFolder" value="daily_ej" valueType="string" />
+    <!-- PreFileName, for example    8379_ej140509.log-->
+    <Item key="PreFileName" value="8379_ej" valueType="string" />
+  </PrintReceiveMsg>
+  <PrintTotalAmountToEJ>
+    <!-- 1:Activate This Function,   0:no-->
+    <Item key="ActivateThisFunction" value="0" valueType="Boolean" />
+    <Item key="CurrencyID" value="RP" valueType="string" />
+    <!-- 1:Print New File-project Log,   0:Print To EJ File-->
+    <Item key="IsPrintNewFile" value="1" valueType="Boolean" />
+    <!-- The time of print totalAmount every, for example 23:59:59-->
+    <Item key="PrintTotalAmountEJTime" value="00:00:01" valueType="string" />
+  </PrintTotalAmountToEJ>
+  <AmountSecurityCheck>
+    <!-- 1- support WithDrawSecurityCheck, 0-no support -->
+    <Item key="WithDrawSecurityCheck" value="0" valueType="Boolean" />
+    <!-- 1- support WithDrawSecurityCheckBeforeDispense, 0-no support ,and first :WithDrawSecurityCheck==1-->
+    <Item key="WithDrawSecurityCheckBeforeDispense" value="1" valueType="Boolean" />
+    <!-- 1- support WithDraw One Time Each Msg11-I State, 0-no support -->
+    <Item key="WithDrawOneTimeEachMsg11" value="1" valueType="Boolean" />
+    <!-- 1- Has Dollar Decimal    2 or 3    to cut the XDC_SRC_INPUT_AMOUNT, 0-no      active when WithDrawSecurityCheckBeforeDispense==1-->
+    <Item key="HasDollarDecimal" value="0" valueType="Boolean" />
+    <!-- 1- support CheckIDCBeforeSendMessage, 0-no support -->
+    <Item key="CheckIDCBeforeSendMessage" value="0" valueType="Boolean" />
+    <!-- 1- support CheckIDCBeforeSendMessage, 0-no support -->
+    <Item key="DepositSecurityCheck" value="0" valueType="Boolean" />
+    <Item key="DefaultCurrency" value="CNY" valueType="string" />
+    <Item key="TransactionTimesLimitCheck" value="1" valueType="int" />
+    <Item key="TransactionTimesLimit" value="100" valueType="int" />
+    <Item key="MaxWithDrawalAmount" value="1000" valueType="Int" />
+    <Item key="MaxWithDrawalCount" value="10" valueType="Int" />
+    <Item key="MaxDepositAmount" value="1000" valueType="Int" />
+    <Item key="MaxDepositCount" value="10" valueType="Int" />
+    <!-- Time of Send Request Msg To Present Notes, unit is second,default is 180 -->
+    <Item key="SecondsOfSendMsgToPresentNotes" value="180" valueType="Boolean" />
+  </AmountSecurityCheck>
+  <CloseState>
+    <Item key="DefaultCloseStateNumber" value="999" />
+    <Item key="ReceiptCut" value="1" />
+  </CloseState>
+  <DDCState>
+    <DDCDollarEntryState>
+      <!-- A or B or C or D -->
+      <Item key="EnterMapFunkey" value="B" valueType="string" />
+    </DDCDollarEntryState>
+    <DDCEmv_72BeginAppSelAndInit>
+      <!-- select Application timeout length unit is second -->
+      <Item key="Timeout" value="24" valueType="int" />
+    </DDCEmv_72BeginAppSelAndInit>
+  </DDCState>
+  <EMVData>
+    <RequestMsgTagValue>
+      <Item key="8C" value="" />
+      <Item key="9F02" value="" />
+      <Item key="9F03" value="" />
+      <Item key="82" value="" />
+      <Item key="5A" value="" />
+      <Item key="5F34" value="" />
+      <Item key="9F36" value="" />
+      <Item key="9F26" value="" />
+      <Item key="9F34" value="" />
+      <Item key="9F27" value="" />
+      <Item key="9F1E" value="" />
+      <Item key="9F10" value="" />
+      <Item key="9F09" value="" />
+      <Item key="9F33" value="" />
+      <Item key="9F1A" value="" />
+      <Item key="9F35" value="" />
+      <Item key="95" value="" />
+      <Item key="57" value="" />
+      <Item key="5F2A" value="" />
+      <Item key="9A" value="" />
+      <Item key="9F41" value="" />
+      <Item key="9B" value="" />
+      <Item key="9C" value="00" />
+      <Item key="9F37" value="" />
+      <Item key="9F53" value="" />
+      <Item key="9F45" value="" />
+    </RequestMsgTagValue>
+    <SolicitedMsgTagValue>
+      <Item key="9F02" value="" />
+      <Item key="9F03" value="" />
+      <Item key="82" value="" />
+      <Item key="9F36" value="" />
+      <Item key="8A" value="" />
+      <Item key="9F27" value="" />
+      <Item key="9F10" value="" />
+      <Item key="5A" value="" />
+      <Item key="5F34" value="" />
+      <Item key="9F1A" value="" />
+      <Item key="95" value="" />
+      <Item key="9F26" value="" />
+      <Item key="5F2A" value="" />
+      <Item key="9A" value="" />
+      <item key="9B" value="" />
+      <Item key="9C" value="" />
+      <Item key="9F37" value="" />
+    </SolicitedMsgTagValue>
+    <OperationIdentifier>
+      <Item key="Identifier" value="SV077" />
+      <Item key="TransReqFromIni" value="Data_TransReq" />
+      <Item key="ReadBReqFromIni" value="DataObjForCompData" />
+      <!--the type of searching tag, default is 1 -->
+      <Item key="SearchTagTyep" value="1" />
+    </OperationIdentifier>
+    <!--Add and set Tag to EMV kernel -->
+    <AddSetTag>
+      <Item key="TagName" value="9F03,9F02,9F34,9C,57,5A,5F2A,5F34,82,8C,95,9A,9F06,9F10,9F1A,9F26,9F27,9F33,9F36,9F37" />
+      <!--match with TagValue,separate with ','  for example "9F37,9F53" -->
+      <Item key="TagValue" value="000000000000,,,,,,,,,,,,,,,,,,," />
+      <!--match with TagName,separate with ','  for example "0000,0000" -->
+    </AddSetTag>
+    <NormalParam>
+      <!--Amount Decimal Count 0,1 or 2-->
+      <Item key="AmountDecimalCount" value="2" valueType="int" />
+      <!--PartialUpdateAID 0 : Full Update, delete all perivous resgistered AID     1: Partial Update, add new AID and modified ones-->
+      <Item key="PartialUpdateAID" value="1" valueType="string" />
+    </NormalParam>
+    <NDCEMVConfig>
+      <!--Default AID-->
+      <Item key="DefaultAID" value="A000000541" />
+    </NDCEMVConfig>
+  </EMVData>
+  <VoicePlay>
+    <!--Tell the user input password -->
+    <Item key="InputPassWord_0" value="Resource\XDC\Voice\Default\DAUDIO07.WAV" valueType="string" />
+    <!--Tell the user get the card -->
+    <Item key="TakeCard_0" value="Resource\XDC\Voice\Default\DAUDIO03.WAV" valueType="string" />
+    <!--Tell the user take the notes when cwd -->
+    <Item key="TakeNotes_0" value="Resource\XDC\Voice\Default\DAUDIO06.WAV" valueType="string" />
+    <!--Tell the user select the funtion  -->
+    <!--<Item key="SelectFuntion_0" value="Resource\XDC\Voice\Default\DAUDIO04.WAV" valueType="string" />-->
+    <!--Tell the user the funtion   in progress -->
+    <Item key="Request_0" value="Resource\XDC\Voice\Default\DAUDIO01.WAV" valueType="string" />
+    <!--GoodBye -->
+    <Item key="GoodBye_0" value="Resource\XDC\Voice\Default\DAUDIO08.WAV" valueType="string" />
+    <!--Tell the user input password -->
+    <Item key="InputPassWord_1" value="Resource\XDC\Voice\Default\DAUDIO03.WAV" valueType="string" />
+    <!--Tell the user get the card -->
+    <Item key="TakeCard_1" value="Resource\XDC\Voice\Default\DAUDIO02.WAV" valueType="string" />
+    <!--Tell the user take the notes when cwd -->
+    <Item key="TakeNotes_1" value="Resource\XDC\Voice\Default\DAUDIO02.WAV" valueType="string" />
+    <!--Tell the user select the funtion  -->
+    <!--<Item key="SelectFuntion_1" value="Resource\XDC\Voice\Default\DAUDIO02.WAV" valueType="string" />-->
+    <!--Tell the user the funtion   in progress -->
+    <Item key="Request_1" value="Resource\XDC\Voice\Default\DAUDIO02.WAV" valueType="string" />
+    <!--GoodBye -->
+    <Item key="GoodBye_1" value="Resource\XDC\Voice\Default\DAUDIO08.WAV" valueType="string" />
+    <!--Tell the user input password -->
+    <Item key="InputPassWord_2" value="Resource\XDC\Voice\Default\DAUDIO03.WAV" valueType="string" />
+    <!--Tell the user get the card -->
+    <Item key="TakeCard_2" value="Resource\XDC\Voice\Default\DAUDIO02.WAV" valueType="string" />
+    <!--Tell the user take the notes when cwd -->
+    <Item key="TakeNotes_2" value="Resource\XDC\Voice\Default\DAUDIO02.WAV" valueType="string" />
+    <!--Tell the user select the funtion  -->
+    <!--<Item key="SelectFuntion_2" value="Resource\XDC\Voice\Default\DAUDIO02.WAV" valueType="string" />-->
+    <!--Tell the user the funtion   in progress -->
+    <Item key="Request_2" value="Resource\XDC\Voice\Default\DAUDIO02.WAV" valueType="string" />
+    <!--GoodBye -->
+    <Item key="GoodBye_2" value="Resource\XDC\Voice\Default\DAUDIO08.WAV" valueType="string" />
+    <!--Tell the user input password -->
+    <Item key="InputPassWord_3" value="Resource\XDC\Voice\Default\DAUDIO03.WAV" valueType="string" />
+    <!--Tell the user get the card -->
+    <Item key="TakeCard_3" value="Resource\XDC\Voice\Default\DAUDIO02.WAV" valueType="string" />
+    <!--Tell the user take the notes when cwd -->
+    <Item key="TakeNotes_3" value="Resource\XDC\Voice\Default\DAUDIO02.WAV" valueType="string" />
+    <!--Tell the user select the funtion  -->
+    <!--<Item key="SelectFuntion_3" value="Resource\XDC\Voice\Default\DAUDIO02.WAV" valueType="string" />-->
+    <!--Tell the user the funtion   in progress -->
+    <Item key="Request_3" value="Resource\XDC\Voice\Default\DAUDIO02.WAV" valueType="string" />
+    <!--GoodBye -->
+    <Item key="GoodBye_3" value="Resource\XDC\Voice\Default\DAUDIO08.WAV" valueType="string" />
+  </VoicePlay>
+</Root>

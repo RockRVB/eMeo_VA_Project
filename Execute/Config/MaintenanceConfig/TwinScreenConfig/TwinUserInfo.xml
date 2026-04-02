@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--双屏用户表
+	UserID: 用户ID
+	UserPwd: 用户密码
+	RoleID: 所属角色
+	Default: 是否系统默认用户-->
+<TwinUserInfo>
+	<RecordItem>
+		<UserID>111</UserID>
+		<UserPwd>1UahcvHzhDo=</UserPwd>
+		<RoleID>1</RoleID>
+		<Default>1</Default>
+	</RecordItem>
+	<RecordItem>
+		<UserID>222</UserID>
+		<UserPwd>1UahcvHzhDo=</UserPwd>
+		<RoleID>2</RoleID>
+		<Default>1</Default>
+	</RecordItem>
+</TwinUserInfo>

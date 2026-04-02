@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--ThisSolicitedstatusmessageissenttoCentralinreponsetoasendconfigurationinformationterminalcommandmessage(acommandcodeof'7'withnocommandmodifier).
+		-->
+  <SendConfigInfo>
+    <!--MessageIdentifier.-->
+    <Item key="g1" value="1" size="1" restriction="Mandatory" />
+    <!--ConfigurationID.Containsthelastfour-digitconfigurationIDnumberssenttotheterminalfromCentral.(0000-9999)-->
+    <Item key="g2" value="[ConfigurationID]" size="4" restriction="Mandatory" />
+    <!--FieldSeparator-->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--HardwareFitness.Containsonebyteperdeviceormajordeviceresource.-->
+    <Item key="g3" value="" size="22-38" restriction="Mandatory" />
+    <Item key="g3_0" value="[Device.TimeOfDayClock.Fitness]" size="1" restriction="Mandatory" />
+    <Item key="g3_1" value="[Device.HighOrderCommunications.Fitness]" size="1" restriction="Mandatory" />
+    <Item key="g3_2" value="[Device.SystemDisk.Fitness]" size="1" restriction="Mandatory" />
+    <Item key="g3_3" value="[Device.CardReader.Fitness]" size="1" restriction="Mandatory" />
+    <Item key="g3_4" value="[Device.CashHandler.Fitness.Handler]" size="1" restriction="Mandatory" />
+    <Item key="g3_5" value="[Device.EnvelopeDepository.Fitness]" size="1" restriction="Mandatory" />
+    <Item key="g3_6" value="[Device.ReceiptPrinter.Fitness]" size="1" restriction="Mandatory" />
+    <Item key="g3_7" value="[Device.JournalPrinter.Fitness]" size="1" restriction="Mandatory" />
+    <Item key="g3_8" value="0" size="1" restriction="Mandatory" />
+    <Item key="g3_9" value="[Device.StatementPrinter.Fitness]" size="1" restriction="Mandatory" />
+    <Item key="g3_10" value="[Device.NIghtSafeDepository.Fitness]" size="1" restriction="Mandatory" />
+    <Item key="g3_11" value="[Device.Encryptor.Fitness]" size="1" restriction="Mandatory" />
+    <Item key="g3_12" value="[Device.Camera.Fitness]" size="1" restriction="Mandatory" />
+    <Item key="g3_13" value="[Device.DoorAccessSystem.Fitness]" size="1" restriction="Mandatory" />
+    <Item key="g3_14" value="[Device.FlexDisk.Fitness]" size="1" restriction="Mandatory" />
+    <Item key="g3_15" value="[Device.CashHandler.Fitness.CassetteType1]" size="1" restriction="Mandatory" />
+    <Item key="g3_16" value="[Device.CashHandler.Fitness.CassetteType2]" size="1" restriction="Mandatory" />
+    <Item key="g3_17" value="[Device.CashHandler.Fitness.CassetteType3]" size="1" restriction="Mandatory" />
+    <Item key="g3_18" value="[Device.CashHandler.Fitness.CassetteType4]" size="1" restriction="Mandatory" />
+    <Item key="g3_19" value="0" size="1" restriction="Mandatory" />
+    <!-- Reserved for new devices -->
+    <Item key="g3_20" value="0" size="1" restriction="Mandatory" />
+    <!-- Reserved for new devices -->
+    <Item key="g3_21" value="[Device.StatementPrinter.Fitness]" size="1" restriction="Mandatory" />
+    <!-- Statement Printer -->
+    <Item key="g3_22" value="0" size="1" restriction="[OptionCtrl.Enhanced_Config]" />
+    <!-- Signage Display -->
+    <Item key="g3_23" value="0" size="1" restriction="[OptionCtrl.Enhanced_Config]" />
+    <!-- Reserved for new devices -->
+    <Item key="g3_24" value="0" size="1" restriction="[OptionCtrl.Enhanced_Config]" />
+    <!-- Reserved for new devices -->
+    <Item key="g3_25" value="[Device.SystemDisplay.Fitness]" size="1" restriction="[OptionCtrl.Enhanced_Config]" />
+    <!-- System Display -->
+    <Item key="g3_26" value="[Device.MediaEntryIndicators.Fitness]" size="1" restriction="[OptionCtrl.Enhanced_Config]" />
+    <!-- Media Entry Indicators -->
+    <Item key="g3_27" value="[Device.EnvelopeDispenser.Fitness]" size="1" restriction="[OptionCtrl.Enhanced_Config]" />
+    <!-- Envelope Dispenser -->
+    <Item key="g3_28-35" value="00000000" size="8" restriction="[OptionCtrl.Enhanced_Config]" />
+    <Item key="g3_36" value="[Device.FingerService.Fitness]" size="1" restriction="[OptionCtrl.Enhanced_Config]" />
+    <!-- Finger Scanner -->
+    <Item key="g3_37" value="0" size="1" restriction="[OptionCtrl.Enhanced_Config]" />
+    <!-- Reserved for new devices -->
+    <!--FieldSeparator-->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--HardwareConfiguration.Containsinformationperdeviceindicatingwhetherornotitisconfigured.Ifconfiguredandgivesdetailsofwhichoption.(sizeis44or76,byusingsepartor"|")-->
+    <Item key="g4" value="" size="44|76" restriction="Mandatory" />
+    <Item key="g4_0" value="[SolicitedStatus.TerminalState.ProductClass]" size="2" restriction="Mandatory" />
+    <Item key="g4_1" value="7F" size="2" restriction="Mandatory" />
+    <Item key="g4_2" value="[Device.SystemDisk.Configuration]" size="2" restriction="Mandatory" />
+    <Item key="g4_3" value="[Device.CardReader.Configuration]" size="2" restriction="Mandatory" />
+    <Item key="g4_4" value="[Device.CashHandler.Configuration]" size="2" restriction="Mandatory" />
+    <Item key="g4_5" value="[Device.EnvelopeDepository.Configuration]" size="2" restriction="Mandatory" />
+    <Item key="g4_6" value="[Device.ReceiptPrinter.Configuration]" size="2" restriction="Mandatory" />
+    <Item key="g4_7" value="[Device.JournalPrinter.Configuration]" size="2" restriction="Mandatory" />
+    <Item key="g4_8" value="00" size="2" restriction="Mandatory" />
+    <Item key="g4_9" value="00" size="2" restriction="Mandatory" />
+    <Item key="g4_10" value="[Device.NIghtSafeDepository.Configuration]" size="2" restriction="Mandatory" />
+    <Item key="g4_11" value="[Device.Encryptor.Configuration]" size="2" restriction="Mandatory" />
+    <Item key="g4_12" value="[Device.Camera.Configuration]" size="2" restriction="Mandatory" />
+    <Item key="g4_13" value="[Device.DoorAccessSystem.Configuration]" size="2" restriction="Mandatory" />
+    <Item key="g4_14" value="[Device.FlexDisk.Configuration]" size="2" restriction="Mandatory" />
+    <Item key="g4_15" value="[Device.TIBins.Configuration]" size="2" restriction="Mandatory" />
+    <Item key="g4_16" value="[Device.CardholderKeyboard.Configuration]" size="2" restriction="Mandatory" />
+    <Item key="g4_17" value="[Device.OperatorKeyboard.Configuration]" size="2" restriction="Mandatory" />
+    <Item key="g4_18" value="[Device.CardholderDisplay.Configuration]" size="2" restriction="Mandatory" />
+    <Item key="g4_19-20" value="7F7F" size="4" restriction="Mandatory" />
+    <Item key="g4_21" value="[Device.StatementPrinter.Configuration]" size="2" restriction="Mandatory" />
+    <Item key="g4_22" value="00" size="2" restriction="[OptionCtrl.Enhanced_Config]" />
+    <Item key="g4_23" value="00" size="2" restriction="[OptionCtrl.Enhanced_Config]" />
+    <Item key="g4_24" value="[Device.CoinDispenser.Configuration]" size="2" restriction="{0}" />
+    <Item key="g4_25" value="[Device.SystemDisplay.Configuration]" size="2" restriction="[OptionCtrl.Enhanced_Config]" />
+    <Item key="g4_26" value="[Device.MediaEntryIndicators.Configuration]" size="2" restriction="{0}" />
+    <Item key="g4_27" value="[Device.EnvelopeDispenser.Configuration]" size="2" restriction="[OptionCtrl.Enhanced_Config]" />
+    <Item key="g4_28-33" value="000000000000" size="12" restriction="[OptionCtrl.Enhanced_Config]" />
+    <Item key="g4_34" value="[Device.BNA.Configuration]" size="2" restriction="[OptionCtrl.Enhanced_Config]" />
+    <Item key="g4_35" value="[Device.CPM.Configuration]" size="2" restriction="[OptionCtrl.Enhanced_Config]" />
+    <Item key="g4_36" value="[Device.FingerService.Configuration]" size="2" restriction="[OptionCtrl.Enhanced_Config]" />
+    <!--Reserved -->
+    <Item key="g4_37" value="00" size="2" restriction="[OptionCtrl.Enhanced_Config]" />
+    <!--FieldSeparator-->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--SuppliesStatus.(sizeis23or26,byusingsepartor"|")-->
+    <Item key="g5" value="" size="23|26" restriction="Mandatory" />
+    <Item key="g5_0" value="0" size="1" restriction="Mandatory" />
+    <Item key="g5_1" value="0" size="1" restriction="Mandatory" />
+    <Item key="g5_2" value="0" size="1" restriction="Mandatory" />
+    <Item key="g5_3" value="[Device.CardReader.SuppliesStatus]" size="1" restriction="Mandatory" />
+    <Item key="g5_4" value="[Device.CashHandler.SuppliesStatus.RejectBin]" size="1" restriction="Mandatory" />
+    <Item key="g5_5" value="[Device.EnvelopeDepository.SuppliesStatus]" size="1" restriction="Mandatory" />
+    <Item key="g5_6" value="[Device.ReceiptPrinter.SuppliesStatus.Paper]" size="1" restriction="Mandatory" />
+    <Item key="g5_7" value="[Device.JournalPrinter.SuppliesStatus.Paper]" size="1" restriction="Mandatory" />
+    <Item key="g5_8" value="0" size="1" restriction="Mandatory" />
+    <Item key="g5_9" value="0" size="1" restriction="Mandatory" />
+    <Item key="g5_10" value="[Device.NIghtSafeDepository.SuppliesStatus]" size="1" restriction="Mandatory" />
+    <Item key="g5_11-14" value="0000" size="4" restriction="Mandatory" />
+    <Item key="g5_15" value="[Device.CashHandler.SuppliesStatus.CassetteType1]" size="1" restriction="Mandatory" />
+    <Item key="g5_16" value="[Device.CashHandler.SuppliesStatus.CassetteType2]" size="1" restriction="Mandatory" />
+    <Item key="g5_17" value="[Device.CashHandler.SuppliesStatus.CassetteType3]" size="1" restriction="Mandatory" />
+    <Item key="g5_18" value="[Device.CashHandler.SuppliesStatus.CassetteType4]" size="1" restriction="Mandatory" />
+    <Item key="g5_19-20" value="00" size="2" restriction="Mandatory" />
+    <Item key="g5_21" value="[Device.StatementPrinter.SuppliesStatus.Paper]" size="1" restriction="Mandatory" />
+    <Item key="g5_22" value="[Device.StatementPrinter.SuppliesStatus.Ribbon]" size="1" restriction="Mandatory" />
+    <Item key="g5_23" value="0" size="1" restriction="[OptionCtrl.Enhanced_Config]" />
+    <Item key="g5_24" value="0" size="1" restriction="[OptionCtrl.Enhanced_Config]" />
+    <Item key="g5_25" value="[Device.EnvelopeDispenser.SuppliesStatus]" size="1" restriction="[OptionCtrl.Enhanced_Config]" />
+    <Item key="g5_26" value="0" size="1" restriction="[OptionCtrl.Configuration.GrgBundleCashAcceptor]" />
+    <Item key="g5_27" value="0" size="1" restriction="[OptionCtrl.Configuration.GrgBundleCashAcceptor]" />
+    <Item key="g5_28" value="[Device.GrgCashAcceptor.SuppliesStatus.Mix]" size="1" restriction="[OptionCtrl.Configuration.GrgBundleCashAcceptor]" />
+    <Item key="g5_29" value="[Device.GrgCashAcceptor.SuppliesStatus.CassetteType1]" size="1" restriction="[OptionCtrl.Configuration.GrgBundleCashAcceptor]" />
+    <Item key="g5_30" value="[Device.GrgCashAcceptor.SuppliesStatus.CassetteType2]" size="1" restriction="[OptionCtrl.Configuration.GrgBundleCashAcceptor]" />
+    <Item key="g5_31" value="[Device.GrgCashAcceptor.SuppliesStatus.CassetteType3]" size="1" restriction="[OptionCtrl.Configuration.GrgBundleCashAcceptor]" />
+    <Item key="g5_32" value="[Device.GrgCashAcceptor.SuppliesStatus.CassetteType4]" size="1" restriction="[OptionCtrl.Configuration.GrgBundleCashAcceptor]" />
+    <!--FieldSeparator-->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--SensorStatus.(sizeis5or12,byusingsepartor"|")-->
+    <Item key="g6" value="" size="5|12" restriction="Mandatory" />
+    <Item key="g6_0" value="[Device.Sensors.Supervisor]" size="1" restriction="Mandatory" />
+    <Item key="g6_1" value="[Device.Sensors.Vibration]" size="1" restriction="Mandatory" />
+    <Item key="g6_2" value="[Device.Sensors.DoorContact]" size="1" restriction="Mandatory" />
+    <Item key="g6_3" value="[Device.Sensors.SilentSignal]" size="1" restriction="Mandatory" />
+    <Item key="g6_4" value="[Device.Sensors.ElectronicsEnclosure]" size="1" restriction="Mandatory" />
+    <Item key="g6_5" value="[Device.Sensors.DepositBin]" size="1" restriction="Mandatory" />
+    <Item key="g6_6" value="[Device.Sensors.CardBin]" size="1" restriction="Mandatory" />
+    <Item key="g6_7" value="[Device.Sensors.CurrencyRejectBin]" size="1" restriction="Mandatory" />
+    <Item key="g6_8" value="[Device.Sensors.CurrencyCassetteInPosition1]" size="1" restriction="Mandatory" />
+    <Item key="g6_9" value="[Device.Sensors.CurrencyCassetteInPosition2]" size="1" restriction="Mandatory" />
+    <Item key="g6_10" value="[Device.Sensors.CurrencyCassetteInPosition3]" size="1" restriction="Mandatory" />
+    <Item key="g6_11" value="[Device.Sensors.CurrencyCassetteInPosition4]" size="1" restriction="Mandatory" />
+    <!--FieldSeparator-->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--AdvanceNDCReleaseNumber.Containsasix-digitdecimalnumber.Thefirstpairofdigitsrepresentsthereleasenumber.Thissecondpairofdigitsrepresentsthepointreleasenumber.
+		*Thethirdpairofdigitsrepresentsthepatchreleasenumber.
+		-->
+    <Item key="g7" value="[SolicitedStatus.TerminalState.NDCReleaseNum]" size="6" restriction="Optional" />
+    <!--FieldSeparator-->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Optional" />
+    <!--AdvanceNDCSoftwareID.ContainstheAdvanceNDCSoftwareID.Thefieldtakesthefollowingvalues.G531-0283-->
+    <Item key="g8" value="[SolicitedStatus.TerminalState.NDCSoftwareID]" size="9" restriction="Optional" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]" />
+    <!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+    <Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]" />
+  </SendConfigInfo>
+</Root>

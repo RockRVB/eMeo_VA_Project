@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!-- Software and Release Number Data.
+		* 	This solicited status message is sent to central in response to a Send Configuration Information Terminal Command message..
+		*  (a command code of '7' with a command modifier of '5')
+		-->
+  <SoftwareIDReleaseNumberData>
+    <Item key="g1" value="L" size="1" restriction="Mandatory" />
+    <!--  Release Number Identifier 'A'-->
+    <Item key="g2" value="A" size="1" restriction="Mandatory" />
+    <!--  NDC Release Number. Contains a six-digit decimal number. The first pair of digits represent the release number.
+		* The second pair of digits represent the point release number. The third pair of digits represent the patch release number.
+		* The patch release number. 
+		*  For example, 020600 is release 2.06.
+		-->
+    <Item key="g2-1" value="[SolicitedStatus.TerminalState.NDCReleaseNum]" size="6" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--  Software ID Identifier 'B'. .-->
+    <Item key="g3" value="B" size="1" restriction="Mandatory" />
+    <!-- Tamper Status .-->
+    <Item key="g3-1" value="[SolicitedStatus.TerminalState.NDCSoftwareID]" size="var" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.NoUse]" />
+    <!--  Data Identifier .-->
+    <Item key="g4" value="[SoftwareID]" size="1" restriction="[OptionCtrl.NoUse]" />
+    <!--  Data.-->
+    <Item key="g4-1" value="[SoftwareData]" size="var" restriction="[OptionCtrl.NoUse]" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]" />
+    <!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+    <Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]" />
+  </SoftwareIDReleaseNumberData>
+</Root>

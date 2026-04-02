@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Fingerprint</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/vue-i18n.js"></script>
+    <script src="../../js/jquery-3.7.0.js"></script>	<script src="../../js/class/layer/layer.js"></script>	<script src="../../js/index.js"></script>
+    <script src="../../js/coreScript.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <link rel="stylesheet" href="../../css/animate.grg.css">
+    <style>
+    </style>
+</head>
+
+<style>
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 51px;
+    }
+
+    .content-img {
+        margin-bottom: 88px;
+        width: 917px;
+        height: 514px;
+        background: url("../../images/img_2.4/fingerprint.png") no-repeat center/contain;
+    }
+
+    @media only screen and (width: 1280px) {
+        .content-img {
+            width: 803px;
+            height: 450px;
+            background: url("../../images/img_2.4/fingerprint_small.png") no-repeat center/contain;
+        }
+    }
+
+
+</style>
+
+<body>
+<div id="grg-header" class="grg-header">
+</div>
+<div id="grg-main" class="grg-main animate_grg_fadeInRight">
+    <!-- <div class="count-down">
+        <div class="count-down-2">60</div>
+    </div> -->
+    <div class="main-title" ids="ids_finger_scanOneTimes2">Scan fingerprint one time. Only use one finger</div>
+    <div class="main-content">
+        <div class="content-img"></div>      
+    </div>
+</div>
+</body>
+</html>

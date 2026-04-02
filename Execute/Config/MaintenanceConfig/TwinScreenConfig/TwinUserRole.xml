@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--双屏角色表
+	RoleID: 角色ID
+	RoleName: 角色名称资源ID, 由Resource\Common\Text\CN\TwinConfig.xml中定义
+	LimitMenuID: 限制的菜单ID
+	LimitFunID: 限制的按钮ID
+	bGoShortCutMaintenance: 登录成功后是否跳到快捷维护界面
+	Comment: 注释
+	-->
+<TwinUserRole>
+  <RecordItem>
+    <RoleID>1</RoleID>
+    <RoleName>IDS_Role_BankOperator</RoleName>
+    <LimitMenuID>56,318,316,57,193,1813,277,46,46</LimitMenuID>
+    <LimitFunID>256_FUN_3</LimitFunID>
+    <InVisibleFunID>161_FUN_0</InVisibleFunID>
+    <bGoShortCutMaintenance>1</bGoShortCutMaintenance>
+    <Comment>IDS_Comment_BankOperator</Comment>
+    <AdditionalConditionLimitMenu file="Config\DevConfig.xml" xpath="Config/DeviceManager/CIM" attrName="enable" value="0" MaskMenuItem="34">
+    </AdditionalConditionLimitMenu>
+    <AdditionalConditionLimitMenu file="Config\GeneralConfig.xml" xpath="Config/EjectCardModule" attrName="enable" value="0" MaskMenuItem="35,47">
+    </AdditionalConditionLimitMenu>
+  </RecordItem>
+  <RecordItem>
+    <RoleID>2</RoleID>
+    <RoleName>IDS_Role_Adminstrator</RoleName>
+    <LimitMenuID>1,312,382,351,56,318,316,317,39,57,193,1813,277,46,46</LimitMenuID>
+    <LimitFunID>23_FUN_3,259_FUN_1,259_FUN_3,259_FUN_4,259_FUN_6,256_FUN_2,257_FUN_7,257_FUN_8,256_FUN_3</LimitFunID>
+    <InVisibleFunID>161_FUN_0</InVisibleFunID>
+    <bGoShortCutMaintenance>0</bGoShortCutMaintenance>
+    <Comment>IDS_Comment_Administrtor</Comment>
+    <AdditionalConditionLimitMenu file="Config\DevConfig.xml" xpath="Config/DeviceManager/CIM" attrName="enable" value="0" MaskMenuItem="34">
+    </AdditionalConditionLimitMenu>
+    <AdditionalConditionLimitMenu file="Config\GeneralConfig.xml" xpath="Config/EjectCardModule" attrName="enable" value="0" MaskMenuItem="35,47">
+    </AdditionalConditionLimitMenu>
+  </RecordItem>
+</TwinUserRole>

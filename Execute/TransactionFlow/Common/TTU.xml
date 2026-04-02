@@ -1,0 +1,792 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="TTU">
+  <Head type="GRGWorkflow" author="LSZHOU" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for TTU Maintenance" />
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="start">
+      <Forward event="OnConfirm" targetID="ID_LoginRole" />
+    </Start>
+    <!--进入登录界面-->
+    <!--角色登陆开始-->
+    <ShowContentPage ID="ID_LoginRole" page="LoginMenu">
+      <Forward event="OnKey1" targetID="ID_BankOperator" />
+      <Forward event="OnKey2" targetID="ID_SystemOperator" />
+      <Forward event="OnCancel" targetID="ID_QuitTTUMode" />
+    </ShowContentPage>
+    <LoginTTU ID="ID_BankOperator" param="1" passwordLength="6">
+      <Forward event="OnCancel" targetID="ID_LoginRole" />
+      <Forward event="OnContinue" targetID="ID_MaintenanceMenu" />
+    </LoginTTU>
+    <LoginTTU ID="ID_SystemOperator" param="2" passwordLength="6">
+      <Forward event="OnCancel" targetID="ID_LoginRole" />
+      <Forward event="OnContinue" targetID="ID_MaintenanceMenu" />
+    </LoginTTU>
+    <!--角色登陆结束-->
+    <!--ID登陆-->
+    <LoginTTU ID="ID_LoginTTU" passwordLength="6">
+      <Forward event="OnCancel" targetID="ID_QuitTTUMode" />
+      <Forward event="OnContinue" targetID="ID_MaintenanceMenu" />
+    </LoginTTU>
+    <!--进入主界面-->
+    <ShowContentPage ID="ID_MaintenanceMenu" page="MainMenu" comment="">
+      <Forward event="OnKey1" targetID="ID_CleanMenu" />
+      <Forward event="OnKey2" targetID="ID_SystemDiagnose" />
+      <Forward event="OnKey3" targetID="ID_SystemConfig" />
+      <Forward event="OnKey4" targetID="ID_NormalMaintanence" />
+      <Forward event="OnKey5" targetID="ID_LogOperate" />
+      <Forward event="OnKey6" targetID="0" />
+      <Forward event="OnCancel" targetID="ID_QuitTTUMode" />
+    </ShowContentPage>
+    <!--4.日常维护-->
+    <ShowContentPage ID="ID_NormalMaintanence" page="NormalMaintenanceMenu" comment="">
+      <Forward event="OnKey1" targetID="ID_RebootPC" />
+      <Forward event="OnKey2" targetID="ID_ShutdownPC" />
+      <Forward event="OnKey3" targetID="ID_QueryPositiveError" />
+      <Forward event="OnKey4" targetID="ID_QueryNegativeError" />
+      <Forward event="OnKey5" targetID="ID_ModifyPassword" />
+      <Forward event="OnKey6" targetID="ID_LightControlSetHour" />
+      <Forward event="OnKey7" targetID="ID_QueryHostError" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowContentPage>
+    <ModifyPasswordTTU ID="ID_ModifyPassword" passwordLength="6">
+      <Forward event="OnCancel" targetID="ID_NormalMaintanence" />
+    </ModifyPasswordTTU>
+    <!--查询正错误码-->
+    <QueryErrorCodeTTU ID="ID_QueryPositiveError" param="0">
+      <Forward event="OnCancel" targetID="ID_NormalMaintanence" />
+    </QueryErrorCodeTTU>
+    <!--查询负错误码-->
+    <QueryErrorCodeTTU ID="ID_QueryNegativeError" param="1">
+      <Forward event="OnCancel" targetID="ID_NormalMaintanence" />
+    </QueryErrorCodeTTU>
+    <!--查询主机返回码-->
+    <QueryHostErrorTTU ID="ID_QueryHostError">
+      <Forward event="OnCancel" targetID="ID_NormalMaintanence" />
+    </QueryHostErrorTTU>
+    <!--3. 系统配置-->
+    <ShowContentPage ID="ID_SystemConfig" page="SystemConfig" comment="">
+      <Forward event="OnKey1" targetID="ID_AtmParameters" />
+      <Forward event="OnKey2" targetID="ID_VDM" />
+      <Forward event="OnKey3" targetID="ID_SetCIMCurrencyTTU" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowContentPage>
+    <!--ATM参数-->
+    <ShowContentPage ID="ID_AtmParameters" page="AtmParameters" comment="">
+      <Forward event="OnKey1" targetID="ID_AtmSetting" />
+      <Forward event="OnKey2" targetID="ID_AtmpIp" />
+      <Forward event="OnKey3" targetID="ID_AtmvIp" />
+      <Forward event="OnKey4" targetID="ID_CheckPinMode" />
+      <Forward event="OnKey5" targetID="ID_MaxAmount" />
+      <Forward event="OnKey6" targetID="ID_SetJouNo" />
+      <Forward event="OnKey7" targetID="ID_CheckPINModeForCOMKEY" />
+      <Forward event="OnKey8" targetID="ID_CheckPINModeForBKEY" />
+      <Forward event="OnKey9" targetID="ID_ShowMasterKeyKVVTTU" />
+      <Forward event="OnCancel" targetID="ID_SystemConfig" />
+    </ShowContentPage>
+    <ResetJouNo ID="ID_SetJouNo">
+      <Forward event="OnCancel" targetID="ID_AtmParameters" />
+    </ResetJouNo>
+    <!--ATM号-->
+    <ShowContentPage ID="ID_AtmSetting" page="AtmSetting" comment="">
+      <Forward event="OnKey1" targetID="ID_SetATMNo" />
+      <Forward event="OnKey2" targetID="ID_SetBankNo" />
+      <Forward event="OnKey3" targetID="ID_SetBranchNo" />
+      <Forward event="OnKey4" targetID="ID_SetSecondATMID" />
+      <Forward event="OnCancel" targetID="ID_AtmParameters" />
+    </ShowContentPage>
+    <SetAtmpTTU ID="ID_AtmpIp" comment="">
+      <Forward event="OnCancel" targetID="ID_AtmParameters" />
+    </SetAtmpTTU>
+    <SetAtmvTTU ID="ID_AtmvIp" comment="">
+      <Forward event="OnCancel" targetID="ID_AtmParameters" />
+    </SetAtmvTTU>
+    <!--最大限额-->
+    <ShowContentPage ID="ID_MaxAmount" page="MaxAmount" comment="">
+      <Forward event="OnKey1" targetID="ID_SetMaxWithdrawAmount" />
+      <Forward event="OnKey2" targetID="ID_SetMaxTransferAmount" />
+      <Forward event="OnCancel" targetID="ID_AtmParameters" />
+    </ShowContentPage>
+    <!--设置取款最大限额-->
+    <SetMaxAmountTTU ID="ID_SetMaxWithdrawAmount" param="withdraw">
+      <Forward event="OnCancel" targetID="ID_AtmParameters" />
+    </SetMaxAmountTTU>
+    <!--转账最大限额-->
+    <SetMaxAmountTTU ID="ID_SetMaxTransferAmount" param="transfer">
+      <Forward event="OnCancel" targetID="ID_AtmParameters" />
+    </SetMaxAmountTTU>
+    <!--显示主密钥KVV-->
+    <ShowMasterKeyKVVTTU ID="ID_ShowMasterKeyKVVTTU" param="transfer">
+      <Forward event="OnCancel" targetID="ID_AtmParameters" />
+    </ShowMasterKeyKVVTTU>
+    <!--设置ATM号-->
+    <SetATMParameter ID="ID_SetATMNo" param="atmno" length="8">
+      <Forward event="OnCancel" targetID="ID_AtmParameters" />
+    </SetATMParameter>
+    <!--设置第二ATM号-->
+    <SetATMParameter ID="ID_SetSecondATMID" param="secondatmno" length="8">
+      <Forward event="OnCancel" targetID="ID_AtmParameters" />
+    </SetATMParameter>
+    <!--设置银行号-->
+    <SetATMParameter ID="ID_SetBankNo" param="bankno" length="8">
+      <Forward event="OnCancel" targetID="ID_AtmParameters" />
+    </SetATMParameter>
+    <!--设置网点号-->
+    <SetATMParameter ID="ID_SetBranchNo" param="branchno" length="8">
+      <Forward event="OnCancel" targetID="ID_AtmParameters" />
+    </SetATMParameter>
+    <!--<SetMasterKeyTTU ID="ID_SetMasterKey" maxKeyPart="2" length="32" encryptType="3DESCBC" encryptData="0000000000000000">
+			<Forward event="OnCancel" targetID="ID_AtmParameters"/>
+		</SetMasterKeyTTU>-->
+    <!--进入厂商模式-->
+    <EnterVDM ID="ID_VDM" comment="">
+      <Forward event="OnCancel" targetID="ID_SystemConfig" />
+    </EnterVDM>
+    <!--设置存款面额和币种-->
+    <SetCIMCurrencyTTU ID="ID_SetCIMCurrencyTTU" comment="">
+      <Forward event="OnCancel" targetID="ID_SystemConfig" />
+    </SetCIMCurrencyTTU>
+    <!--2.系统诊断-->
+    <ShowContentPage ID="ID_SystemDiagnose" page="SystemDiagnose" comment="">
+      <Forward event="OnKey1" targetID="ID_ResetManager" />
+      <Forward event="OnKey2" targetID="ID_TestManager" />
+      <Forward event="OnKey3" targetID="ID_SystemEnvironmentTest" />
+      <Forward event="OnKey4" targetID="ID_NetworkTest" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowContentPage>
+    <SystemEnvironmentDiagnoseTTU ID="ID_SystemEnvironmentTest">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_SystemDiagnose" />
+    </SystemEnvironmentDiagnoseTTU>
+    <NetworkTestTTU ID="ID_NetworkTest">
+      <Forward event="OnCancel" targetID="ID_SystemDiagnose" />
+    </NetworkTestTTU>
+    <!--设备测试-->
+    <ShowContentPage ID="ID_TestManager" page="TestMenu" comment="">
+      <Forward event="OnKey1" targetID="ID_TestIDC" />
+      <Forward event="OnKey2" targetID="ID_TestGuidLight" />
+      <Forward event="OnKey3" targetID="ID_TestRPRT" />
+      <Forward event="OnKey4" targetID="ID_TestJPRT" />
+      <Forward event="OnKey5" targetID="ID_PinInitialization" />
+      <Forward event="OnCancel" targetID="ID_SystemDiagnose" />
+    </ShowContentPage>
+    <PinInitialization ID="ID_PinInitialization">
+      <Forward event="OnCancel" targetID="ID_TestManager" />
+    </PinInitialization>
+    <!--读卡器测试-->
+    <ShowContentPage ID="ID_TestIDC" page="CardReaderTest" comment="">
+      <Forward event="OnKey1" targetID="ID_InsertAndEjectCard" />
+      <Forward event="OnKey2" targetID="ID_InsertAndCaptureCard" />
+      <Forward event="OnCancel" targetID="ID_TestManager" />
+    </ShowContentPage>
+    <!--进卡并退卡测试-->
+    <TestIDC ID="ID_InsertAndEjectCard" param="InsertAndEjectCard">
+      <Forward event="OnCancel" targetID="ID_TestIDC" />
+    </TestIDC>
+    <!--进卡并吞卡测试-->
+    <TestIDC ID="ID_InsertAndCaptureCard" param="InsertAndCaptureCard">
+      <Forward event="OnCancel" targetID="ID_TestIDC" />
+    </TestIDC>
+    <!--凭条打印测试-->
+    <TestRPRT ID="ID_TestRPRT">
+      <Forward event="OnCancel" targetID="ID_TestManager" />
+    </TestRPRT>
+    <!--流水打印测试-->
+    <TestJPRT ID="ID_TestJPRT">
+      <Forward event="OnCancel" targetID="ID_TestManager" />
+    </TestJPRT>
+    <!--指示灯测试-->
+    <ShowContentPage ID="ID_TestGuidLight" page="SIUGuidLightTest" comment="">
+      <Forward event="OnKey1" targetID="ID_PinPad" />
+      <Forward event="OnKey2" targetID="ID_CardUnit" />
+      <Forward event="OnKey3" targetID="ID_NotesDispenser" />
+      <Forward event="OnKey4" targetID="ID_Scanner" />
+      <Forward event="OnKey5" targetID="ID_PassbookPrinter" />
+      <Forward event="OnKey6" targetID="ID_CashAccepter" />
+      <Forward event="OnKey7" targetID="ID_DocumentPrinter" />
+      <Forward event="OnKey8" targetID="ID_ReceiptPrinter" />
+      <Forward event="OnCancel" targetID="ID_TestManager" />
+    </ShowContentPage>
+    <!--键盘指示灯-->
+    <TestLight ID="ID_PinPad" param="PINPAD">
+      <Forward event="OnCancel" targetID="ID_TestGuidLight" />
+    </TestLight>
+    <!--读卡器指示灯-->
+    <TestLight ID="ID_CardUnit" param="CARDUNIT">
+      <Forward event="OnCancel" targetID="ID_TestGuidLight" />
+    </TestLight>
+    <!--出钞口指示灯-->
+    <TestLight ID="ID_NotesDispenser" param="NOTESDISPENSER">
+      <Forward event="OnCancel" targetID="ID_TestGuidLight" />
+    </TestLight>
+    <!--扫描仪指示灯-->
+    <TestLight ID="ID_Scanner" param="SCANNER">
+      <Forward event="OnCancel" targetID="ID_TestGuidLight" />
+    </TestLight>
+    <!--存折打印机指示灯-->
+    <TestLight ID="ID_PassbookPrinter" param="PASSBOOKPRINTER">
+      <Forward event="OnCancel" targetID="ID_TestGuidLight" />
+    </TestLight>
+    <!--钞票存入口指示灯-->
+    <TestLight ID="ID_CashAccepter" param="BILLACCEPTOR">
+      <Forward event="OnCancel" targetID="ID_TestGuidLight" />
+    </TestLight>
+    <!--帐单打印机指示灯-->
+    <TestLight ID="ID_DocumentPrinter" param="DOCUMENTPRINTER">
+      <Forward event="OnCancel" targetID="ID_TestGuidLight" />
+    </TestLight>
+    <!--凭条打印机指示灯-->
+    <TestLight ID="ID_ReceiptPrinter" param="RECEIPTPRINTER">
+      <Forward event="OnCancel" targetID="ID_TestGuidLight" />
+    </TestLight>
+    <!--5.日志操作-->
+    <ShowContentPage ID="ID_LogOperate" page="LogOperate" comment="">
+      <Forward event="OnKey1" targetID="ID_ReprintJou" />
+      <Forward event="OnKey2" targetID="ID_CopyJournal" />
+      <Forward event="OnKey3" targetID="ID_TroubleShooting" />
+      <Forward event="OnKey4" targetID="ID_CopyJournalToCD" />
+      <Forward event="OnKey5" targetID="ID_VersionTracing" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowContentPage>
+    <ShowContentPage ID="ID_ReprintJou" page="ReprintJou" comment="">
+      <Forward event="OnKey1" targetID="ID_PrintJouByDate" />
+      <Forward event="OnKey2" targetID="ID_PrintJouByCardNo" />
+      <Forward event="OnKey3" targetID="ID_PrintJouByJouNo" />
+      <!--Forward event="OnKey4" targetID="ID_QueryDeviceStatus"/-->
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowContentPage>
+    <!--查询设备状态-->
+    <!--QueryDeviceStatus ID="ID_QueryDeviceStatus">
+			<Forward event="OnCancel" targetID="ID_OtherManager"/>
+		</QueryDeviceStatus-->
+    <!--关闭机器-->
+    <ShutdownPC ID="ID_ShutdownPC">
+      <Forward event="OnCancel" targetID="ID_NormalMaintanence" />
+    </ShutdownPC>
+    <!--重启机器-->
+    <RebootPC ID="ID_RebootPC">
+      <Forward event="OnCancel" targetID="ID_NormalMaintanence" />
+    </RebootPC>
+    <!--开关灯设置-->
+    <ShowContentPage ID="ID_LightControlTTU" page="LightControlTTU" comment="">
+      <Forward event="OnKey1" targetID="ID_LightControlSetHour" />
+      <Forward event="OnCancel" targetID="ID_NormalMaintanence" />
+    </ShowContentPage>
+    <!--日光灯设置输入时间（小时:00-24）-->
+    <LightControlTTU ID="ID_LightControlSetHour" param="beginhour" length="4">
+      <Forward event="OnCancel" targetID="ID_NormalMaintanence" />
+    </LightControlTTU>
+    <!--按流水号补打流水-->
+    <PrintJouByJouNo ID="ID_PrintJouByJouNo">
+      <Forward event="OnCancel" targetID="ID_ReprintJou" />
+    </PrintJouByJouNo>
+    <!--按日期补打流水-->
+    <PrintJouByDate ID="ID_PrintJouByDate">
+      <Forward event="OnCancel" targetID="ID_ReprintJou" />
+    </PrintJouByDate>
+    <!--按卡号补打流水-->
+    <PrintJouByCardNo ID="ID_PrintJouByCardNo">
+      <Forward event="OnCancel" targetID="ID_ReprintJou" />
+    </PrintJouByCardNo>
+    <PrintLocalTotalMode ID="ID_PrintLocalTotalMode" comment="">
+      <Forward event="OnContinue" targetID="ID_PrintLocalTotal" />
+      <Forward event="OnPrintTotalMenuExceptReceiptPrint" targetID="ID_PrintTotalMenuExceptReceiptPrint" />
+      <Forward event="OnPrintTotalMenuExceptJouranlPrint" targetID="ID_PrintTotalMenuExceptJouranlPrint" />
+      <Forward event="OnPrintTotalMenuExceptPrintInTwoWay" targetID="ID_CleanMenu" />
+      <Forward event="OnCancel" targetID="ID_CleanMenu" />
+    </PrintLocalTotalMode>
+    <ShowContentPage ID="ID_PrintLocalTotal" page="PrintTotalMenu" comment="">
+      <Forward event="OnKey1" targetID="ID_ReceiptPrintTotal" />
+      <Forward event="OnKey2" targetID="ID_JournalPrintTotal" />
+      <Forward event="OnKey3" targetID="ID_BothPrintTotal" />
+      <Forward event="OnCancel" targetID="ID_CleanMenu" />
+    </ShowContentPage>
+    <ShowContentPage ID="ID_PrintTotalMenuExceptReceiptPrint" page="PrintTotalMenuExceptReceiptPrint" comment="">
+      <Forward event="OnKey1" targetID="ID_JournalPrintTotal" />
+      <Forward event="OnKey2" targetID="ID_BothPrintTotal" />
+      <Forward event="OnCancel" targetID="ID_CleanMenu" />
+    </ShowContentPage>
+    <ShowContentPage ID="ID_PrintTotalMenuExceptJouranlPrint" page="PrintTotalMenuExceptJouranlPrint" comment="">
+      <Forward event="OnKey1" targetID="ID_ReceiptPrintTotal" />
+      <Forward event="OnKey2" targetID="ID_BothPrintTotal" />
+      <Forward event="OnCancel" targetID="ID_CleanMenu" />
+    </ShowContentPage>
+    <ShowContentPage ID="ID_PrintTotalMenuExceptPrintInTwoWay" page="PrintTotalMenuExceptPrintInTwoWay" comment="">
+      <Forward event="OnCancel" targetID="ID_CleanMenu" />
+    </ShowContentPage>
+    <!--凭条打印结账-->
+    <PrintLocalTotal ID="ID_ReceiptPrintTotal" type="ReceiptPrintTotal">
+      <Forward event="OnCancel" targetID="ID_CleanMenu" />
+    </PrintLocalTotal>
+    <!--流水打印结账-->
+    <PrintLocalTotal ID="ID_JournalPrintTotal" type="JournalPrintTotal">
+      <Forward event="OnCancel" targetID="ID_CleanMenu" />
+    </PrintLocalTotal>
+    <!--凭条、流水同时打印结账-->
+    <PrintLocalTotal ID="ID_BothPrintTotal" type="BothPrintTotal">
+      <Forward event="OnCancel" targetID="ID_CleanMenu" />
+    </PrintLocalTotal>
+    <!--拷贝流水-->
+    <!--
+		searchDirectory="Log|Log|Log|Data" 查找的文件夹路径，默认是以eCAT的运行路径，也支持绝对路径
+		fileNamePrefix="*eCAT*|JOU*|COM*|!"  文件名 是否包含以*为标志，JOU* 表示已JOU为前缀；!表示文件夹下的所有文件，包含文件夹结构
+		fileNameExtend="dxdb|txt|txt|*" dateTimeMatch="1|1|1|0" 文件后缀名
+		searchAllDirectory = "0|0|0|0" 是否搜索子目录 0不搜索；1搜索。
+		destFileNameFormat="eCATLog_[BeginDate:yyyyMMdd]-[EndDate:yyyyMMdd]_[ATMNO].zip" 生成的文件压缩包的文件名
+		-->
+    <TTUCopyJournal ID="ID_CopyJournal" searchDirectory="Log|Log|Log\XFSControl|Data|Log|Log|Log|." fileNamePrefix="*|SystemInformation|*|!|System|Application|Security|VersionTracing" fileNameExtend="*|*|*|*|cvs|cvs|cvs|txt" searchAllDirectory="0|0|0|0|0|0|0" dateTimeMatch="1|0|1|0|0|0|0" destFileNameFormat="eCATLog_[BeginDate:yyyyMMdd]-[EndDate:yyyyMMdd]_[ATMNO].zip" comment="">
+      <Forward event="OnCancel" targetID="ID_LogOperate" />
+    </TTUCopyJournal>
+    <TTUCopyJournal ID="ID_TroubleShooting" UI="" searchDirectory="Log" fileNamePrefix="JOU*" fileNameExtend="txt" dateTimeMatch="1" searchAllDirectory="0" destFileNameFormat="eCATLogEJ_[BeginDate:yyyyMMdd]-[EndDate:yyyyMMdd]_[ATMNO].zip" monthLimit="3" comment="">
+      <Forward event="OnCancel" targetID="ID_LogOperate" />
+    </TTUCopyJournal>
+    <TTUCopyJournalToCD ID="ID_CopyJournalToCD" searchDirectory="Log|Log|Log\XFSControl|Data|Log|Log|Log|." fileNamePrefix="*|SystemInformation|*|!|System|Application|Security|VersionTracing" fileNameExtend="*|*|*|*|cvs|cvs|cvs|txt" searchAllDirectory="0|0|0|0|0|0|0" dateTimeMatch="1|0|1|0|0|0|0" destFileNameFormat="eCATLog_[BeginDate:yyyyMMdd]-[EndDate:yyyyMMdd]_[ATMNO].zip" comment="">
+      <Forward event="OnCancel" targetID="ID_LogOperate" />
+    </TTUCopyJournalToCD>
+    <!--版本轨迹跟踪-->
+    <VersionTracingTTU ID="ID_VersionTracing" comment="">
+      <Forward event="OnContinue" targetID="ID_PrintMenu4ListFormat" />
+      <Forward event="OnCancel" targetID="ID_LogOperate" />
+    </VersionTracingTTU>
+    <ShowContentPage ID="ID_ResetManager" page="ResetMenu" comment="">
+      <Forward event="OnKey1" targetID="ID_ResetDevice" />
+      <Forward event="OnKey2" targetID="ID_ResetIDC" />
+      <Forward event="OnKey3" targetID="ID_ResetPIN" />
+      <Forward event="OnKey4" targetID="ID_ResetCDM" />
+      <Forward event="OnKey5" targetID="ID_ResetCIM" />
+      <Forward event="OnKey6" targetID="ID_ResetRPTR" />
+      <Forward event="OnKey7" targetID="ID_ResetJRPR" />
+      <Forward event="OnCancel" targetID="ID_SystemDiagnose" />
+    </ShowContentPage>
+    <!--复位所有设备-->
+    <ResetDevice ID="ID_ResetDevice" param="All" comment="">
+      <Forward event="OnConfirm" targetID="ID_MaintenanceMenu" />
+      <Forward event="OnCancel" targetID="ID_ResetManager" />
+    </ResetDevice>
+    <!--复位读卡器-->
+    <ResetDevice ID="ID_ResetIDC" param="IDC" comment="">
+      <Forward event="OnConfirm" targetID="ID_MaintenanceMenu" />
+      <Forward event="OnCancel" targetID="ID_ResetManager" />
+    </ResetDevice>
+    <!--复位键盘-->
+    <ResetDevice ID="ID_ResetPIN" param="PIN" comment="">
+      <Forward event="OnConfirm" targetID="ID_MaintenanceMenu" />
+      <Forward event="OnCancel" targetID="ID_ResetManager" />
+    </ResetDevice>
+    <!--复位取款设备-->
+    <ResetDevice ID="ID_ResetCDM" param="CDM" comment="">
+      <Forward event="OnConfirm" targetID="ID_MaintenanceMenu" />
+      <Forward event="OnCancel" targetID="ID_ResetManager" />
+    </ResetDevice>
+    <!--复位存款设备-->
+    <ResetDevice ID="ID_ResetCIM" param="CIM" comment="">
+      <Forward event="OnConfirm" targetID="ID_MaintenanceMenu" />
+      <Forward event="OnCancel" targetID="ID_ResetManager" />
+    </ResetDevice>
+    <!--复位凭条打印机-->
+    <ResetDevice ID="ID_ResetRPTR" param="RPTR" comment="">
+      <Forward event="OnConfirm" targetID="ID_MaintenanceMenu" />
+      <Forward event="OnCancel" targetID="ID_ResetManager" />
+    </ResetDevice>
+    <!--复位流水打印机-->
+    <ResetDevice ID="ID_ResetJRPR" param="JPTR" comment="">
+      <Forward event="OnConfirm" targetID="ID_MaintenanceMenu" />
+      <Forward event="OnCancel" targetID="ID_ResetManager" />
+    </ResetDevice>
+    <!--		<ResetDevice ID="ID_ResetManager"  Param="CardReader" comment="">
+			<Forward event="OnSucess" targetID="ID_EnterTTUMode"/>
+		</ResetDevice>
+	-->
+    <ShowContentPage ID="ID_CleanMenu" page="CleanMenu" comment="">
+      <Forward event="OnKey1" targetID="ID_PrintLocalTotalMode" />
+      <Forward event="OnKey2" targetID="ID_AddCash" />
+      <Forward event="OnKey3" targetID="ID_QueryException" />
+      <Forward event="OnKey4" targetID="ID_QueryCaptureCard" />
+      <Forward event="OnKey5" targetID="ID_QueryNoteInfo" />
+      <Forward event="OnKey6" targetID="ID_QueryExceptionInfo" />
+      <Forward event="OnKey7" targetID="ID_SetCurAndDeno" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowContentPage>
+    <!--设置币种以及面额-->
+    <InputCurrencyAndNoteTTU ID="ID_SetCurAndDeno" comment="">
+      <Forward event="OnCancel" targetID="ID_CleanMenu" />
+    </InputCurrencyAndNoteTTU>
+    <!--查询异常交易-->
+    <ShowContentPage ID="ID_QueryExceptionInfo" page="QueryAbnormalTransaction" comment="">
+      <Forward event="OnKey1" targetID="ID_QueryAbnormalByJou" />
+      <Forward event="OnKey2" targetID="ID_QueryAbnormalByAccount" />
+      <Forward event="OnKey3" targetID="ID_QueryAbnormalByTransType" />
+      <Forward event="OnKey4" targetID="ID_QueryAbnormalByDate" />
+      <Forward event="OnKey5" targetID="ID_QueryAbnormalByDateTime" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowContentPage>
+    <!--按流水查询异常交易-->
+    <QueryAbnormalTransDetailTTU ID="ID_QueryAbnormalByJou" param="JournalNumber">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </QueryAbnormalTransDetailTTU>
+    <!--按账号查询异常交易-->
+    <QueryAbnormalTransDetailTTU ID="ID_QueryAbnormalByAccount" param="AccountNumber">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </QueryAbnormalTransDetailTTU>
+    <!--按查交易类型询异常交易-->
+    <QueryAbnormalTransDetailTTU ID="ID_QueryAbnormalByTransType" param="TransType">
+      <Forward event="OnContinue" targetID="ID_SelectTransType" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </QueryAbnormalTransDetailTTU>
+    <ShowContentPage ID="ID_SelectTransType" page="QueryAbnormalTransactionByTransType">
+      <Forward event="OnKey1" targetID="ID_QueryAbnormalTransDetailByDep" />
+      <Forward event="OnKey2" targetID="ID_QueryAbnormalTransDetailByCWD" />
+      <Forward event="OnKey3" targetID="ID_QueryAbnormalTransDetailByADP" />
+      <Forward event="OnKey4" targetID="ID_QueryAbnormalTransDetailByTfr" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowContentPage>
+    <QueryAbnormalTransDetailByTransTypeTTU ID="ID_QueryAbnormalTransDetailByDep" param="DEP">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </QueryAbnormalTransDetailByTransTypeTTU>
+    <QueryAbnormalTransDetailByTransTypeTTU ID="ID_QueryAbnormalTransDetailByADP" param="ADP">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </QueryAbnormalTransDetailByTransTypeTTU>
+    <QueryAbnormalTransDetailByTransTypeTTU ID="ID_QueryAbnormalTransDetailByTfr" param="TFR">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </QueryAbnormalTransDetailByTransTypeTTU>
+    <QueryAbnormalTransDetailByTransTypeTTU ID="ID_QueryAbnormalTransDetailByCWD" param="CWD">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </QueryAbnormalTransDetailByTransTypeTTU>
+    <!--按日期查询异常交易-->
+    <QueryAbnormalTransDetailTTU ID="ID_QueryAbnormalByDate" param="Date">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </QueryAbnormalTransDetailTTU>
+    <!--按时间查询异常交易-->
+    <QueryAbnormalTransDetailTTU ID="ID_QueryAbnormalByDateTime" param="Datetime">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </QueryAbnormalTransDetailTTU>
+    <!--打印方式-->
+    <ShowContentPage ID="IDS_PrintMenu" page="PrintMenu" comment="">
+      <Forward event="OnKey1" targetID="ID_PrintByJou" />
+      <Forward event="OnKey2" targetID="ID_PrintByReceipt" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowContentPage>
+    <!--流水方式-->
+    <PrintJournalTTU ID="ID_PrintByJou" comment="">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+    </PrintJournalTTU>
+    <!--凭条方式-->
+    <PrintReceiptTTU ID="ID_PrintByReceipt" comment="">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+    </PrintReceiptTTU>
+    <!--打印方式,List打包格式-->
+    <ShowContentPage ID="ID_PrintMenu4ListFormat" page="PrintMenu4ListFormat" comment="">
+      <Forward event="OnKey1" targetID="ID_PrintByJou4ListFormat" />
+      <Forward event="OnKey2" targetID="ID_PrintByReceipt4ListFormat" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowContentPage>
+    <!--流水方式,List打包格式-->
+    <PrintJournal4ListFormatTTU ID="ID_PrintByJou4ListFormat" comment="">
+      <Forward event="OnContinue" targetID="ID_PrintMenu4ListFormat" />
+    </PrintJournal4ListFormatTTU>
+    <!--凭条方式,List打包格式-->
+    <PrintReceipt4ListFormatTTU ID="ID_PrintByReceipt4ListFormat" comment="">
+      <Forward event="OnContinue" targetID="ID_PrintMenu4ListFormat" />
+    </PrintReceipt4ListFormatTTU>
+    <!--打印吞卡记录-->
+    <QueryCaptureCardInfoTTU ID="ID_QueryCaptureCard" comment="">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_CleanMenu" />
+    </QueryCaptureCardInfoTTU>
+    <!--打印异常交易-->
+    <ShowContentPage ID="ID_QueryException" page="AbnormalTransaction" comment="">
+      <Forward event="OnKey1" targetID="ID_CurrentPeriodExp" />
+      <Forward event="OnKey2" targetID="ID_LastPeriodExp" />
+      <Forward event="OnKey3" targetID="ID_SpecificPeriodExp" />
+      <Forward event="OnKey4" targetID="ID_ClearMachinePeriodExp" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowContentPage>
+    <!--本周期异常-->
+    <CurrentPeriodExceptionTTU ID="ID_CurrentPeriodExp" comment="">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_QueryException" />
+    </CurrentPeriodExceptionTTU>
+    <!--上周期异常-->
+    <PreviousPeriodExceptionTTU ID="ID_LastPeriodExp" comment="">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_QueryException" />
+    </PreviousPeriodExceptionTTU>
+    <!--指定周期-->
+    <SpecifiedPeriodExceptionTTU ID="ID_SpecificPeriodExp" comment="">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_QueryException" />
+    </SpecifiedPeriodExceptionTTU>
+    <!--清机加钞周期异常-->
+    <AddCashPeriodExceptionTTU ID="ID_ClearMachinePeriodExp" comment="">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_QueryException" />
+    </AddCashPeriodExceptionTTU>
+    <!--钞票信息查询-->
+    <ShowContentPage ID="ID_QueryNoteInfo" page="BankNotesInfoInquiryMenu" comment="">
+      <Forward event="OnKey1" targetID="ID_InquiryByJouNo" />
+      <Forward event="OnKey2" targetID="ID_InquiryByCardNo" />
+      <Forward event="OnKey3" targetID="ID_InquiryBySerinalNo" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowContentPage>
+    <!--按流水号查找OCR-->
+    <QueryBankNotesByJournalNumber ID="ID_InquiryByJouNo">
+      <Forward event="OnContinue" targetID="ID_ShowBankNotesInfoByJouNo" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </QueryBankNotesByJournalNumber>
+    <ShowOCRInfoByJouNo ID="ID_ShowBankNotesInfoByJouNo">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowOCRInfoByJouNo>
+    <!--按卡号查找OCR-->
+    <QueryBankNotesByCardNumber ID="ID_InquiryByCardNo">
+      <Forward event="OnContinue" targetID="ID_ShowTransInfoByCardNumberTTU" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </QueryBankNotesByCardNumber>
+    <ShowTransInfoByCardNumberTTU ID="ID_ShowTransInfoByCardNumberTTU">
+      <Forward event="OnContinue" targetID="ID_ShowOcrInfoByCardNumberTTU" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowTransInfoByCardNumberTTU>
+    <ShowOcrInfoByCardNumberTTU ID="ID_ShowOcrInfoByCardNumberTTU">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowOcrInfoByCardNumberTTU>
+    <!--按序列号查找OCR-->
+    <QueryBankNotesBySerialNumber ID="ID_InquiryBySerinalNo">
+      <Forward event="OnContinue" targetID="ID_ShowTransInfoBySerialNumberTTU" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </QueryBankNotesBySerialNumber>
+    <ShowTransInfoBySerialNumberTTU ID="ID_ShowTransInfoBySerialNumberTTU">
+      <Forward event="OnContinue" targetID="ID_OCRInfoBySerialNumberTTU" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowTransInfoBySerialNumberTTU>
+    <ShowOcrInfoBySerialNumberTTU ID="ID_OCRInfoBySerialNumberTTU">
+      <Forward event="OnContinue" targetID="IDS_PrintMenu" />
+      <Forward event="OnCancel" targetID="ID_MaintenanceMenu" />
+    </ShowOcrInfoBySerialNumberTTU>
+    <!--清机加钞-->
+    <StartExchangeTTU ID="ID_AddCash" comment="">
+      <Forward event="OnContinue" targetID="ID_EndExchange" />
+      <Forward event="OnCancel" targetID="ID_CleanMenu" />
+    </StartExchangeTTU>
+    <!--End Exchange-->
+    <EndExchangeTTU ID="ID_EndExchange" comment="">
+      <Forward event="OnContinue" targetID="ID_InputNoteTTU" />
+      <Forward event="OnCancel" targetID="ID_CleanMenu" />
+    </EndExchangeTTU>
+    <InputNoteTTU ID="ID_InputNoteTTU">
+      <Forward event="OnContinue" targetID="ID_ShowAddCashCassetteInfo" />
+      <Forward event="OnCancel" targetID="ID_CleanMenu" />
+    </InputNoteTTU>
+    <!--查询钞箱信息-->
+    <ShowCassetteInfo ID="ID_ShowCassetteInfo" comment="">
+      <Forward event="OnCancel" targetID="IDS_PrintMenu" />
+    </ShowCassetteInfo>
+    <!-- 清机加钞后钞箱信息-->
+    <ShowCassetteInfo ID="ID_ShowAddCashCassetteInfo" comment="" isAddCashTitle="1">
+      <Forward event="OnCancel" targetID="IDS_PrintMenu" />
+    </ShowCassetteInfo>
+    <!--Select input pin mode-->
+    <CheckPINModeTTU ID="ID_CheckPinMode" EPPMode="1">
+      <Forward event="OnEnterEPP" targetID="ID_EPPCheckCapability" />
+      <Forward event="OnEnterEKP" targetID="ID_EKPSetMaster" />
+      <Forward event="OnHardwareError" targetID="ID_AtmParameters" />
+    </CheckPINModeTTU>
+    <EPPCheckCapability ID="ID_EPPCheckCapability" UI="UI_ImportKey" commet="">
+      <Forward event="OnContinue" targetID="ID_EPPGetPassword" />
+      <Forward event="OnCancel" targetID="ID_EPPCancelFlow" />
+      <!--增加国密出口-->
+      <Forward event="OnSm4Confirm" targetID="ID_EKPSetMaster" />
+    </EPPCheckCapability>
+    <EPPGetPassword ID="ID_EPPGetPassword" UI="UI_GetPassword" maxLen="6" autoEnd="1" activeKeys="NUMBERS,ENTER,CANCEL,CLEAR" terminalKeys="ENTER,CANCEL,F6" comment="">
+      <States>
+        <State name="StopService" UI="UI_StopService" />
+      </States>
+      <Forward event="OnConfirm" targetID="ID_EPPSecureKeyEntry" />
+      <Forward event="OnCancel" targetID="ID_AtmParameters" />
+      <Forward event="OnHardwareError" targetID="ID_EPPCancelFlow" />
+    </EPPGetPassword>
+    <EPPSecureKeyEntry ID="ID_EPPSecureKeyEntry" UI="UI_SecureKeyEntry" keyLengthDouble="1" autoEnd="1" activeKeys="0,1,2,3,4,5,6,7,8,9,RES1,RES2,RES3,RES4,RES5,RES6" comment="">
+      <States>
+        <State name="StopService" UI="UI_StopService" />
+      </States>
+      <Forward event="OnConfirm" targetID="ID_EPPVerifyCheckValue" />
+      <Forward event="OnCancel" targetID="ID_AtmParameters" />
+      <Forward event="OnHardwareError" targetID="ID_EPPCancelFlow" />
+    </EPPSecureKeyEntry>
+    <EPPVerifyCheckValue ID="ID_EPPVerifyCheckValue" UI="UI_VerifyCheckValue" comment="">
+      <States>
+        <State name="StopService" UI="UI_StopService" />
+      </States>
+      <Forward event="OnConfirm" targetID="ID_EPPImportKey" />
+      <Forward event="OnCancel" targetID="ID_AtmParameters" />
+    </EPPVerifyCheckValue>
+    <EPPVerifyCheckValue ID="ID_EPPImportComplete" UI="UI_VerifyCheckValue" comment="">
+      <States>
+        <State name="StopService" UI="UI_StopService" />
+      </States>
+      <Forward event="OnConfirm" targetID="ID_EPPCancelFlow" />
+      <Forward event="OnCancel" targetID="ID_AtmParameters" />
+    </EPPVerifyCheckValue>
+    <EPPImportKey ID="ID_EPPImportKey" UI="UI_ImportKey" keyName="MasterKey" keyUse="KEYENCKEY,SECURECONSTRUCT" comment="">
+      <Forward event="OnConfirm" targetID="ID_EPPImportComplete" />
+      <Forward event="OnContinue" targetID="ID_EPPGetPassword" />
+      <Forward event="OnCancel" targetID="ID_EPPCancelFlow" />
+    </EPPImportKey>
+    <EPPCancelFlow ID="ID_EPPCancelFlow" UI="UI_ExitFlow" comment="">
+      <States>
+        <State name="StopService" UI="UI_StopService" />
+      </States>
+      <Forward event="OnContinue" targetID="ID_AtmParameters" />
+    </EPPCancelFlow>
+    <EKPSetMaster ID="ID_EKPSetMaster" UI="UI_SecureKeyEntry" maxKeyPart="2" keyLengthDouble="1">
+      <States>
+        <State name="StopService" UI="UI_StopService" />
+      </States>
+      <Forward event="OnConfirm" targetID="ID_EKPKeyCheckValue" />
+      <Forward event="OnSm4Confirm" targetID="ID_EKPInputCheckValue" />
+      <Forward event="OnSm4NoneConfirm" targetID="ID_EKPKeySm4CheckValue" />
+      <Forward event="OnCancel" targetID="ID_EPPCancelFlow" />
+      <Forward event="OnExit" targetID="ID_AtmParameters" />
+    </EKPSetMaster>
+    <!--EKP国密用户输入校验值
+	-->
+    <EKPInputCheckValue ID="ID_EKPInputCheckValue" UI="UI_VerifySm4CheckValue" minLen="6" maxLen="6">
+      <States>
+        <State name="StopService" UI="UI_StopService" />
+      </States>
+      <Forward event="OnConfirm" targetID="ID_EKPKeySm4CheckValue" />
+    </EKPInputCheckValue>
+    <!--EKP国密校验值对密钥校验-->
+    <EKPKeySm4CheckValue ID="ID_EKPKeySm4CheckValue" UI="UI_ImportKey" encryptMode="SM4">
+      <States>
+        <State name="CheckValueError" UI="UI_Sm4Error" />
+        <State name="StopService" UI="UI_StopService" />
+      </States>
+      <Forward event="OnContinue" targetID="ID_EKPSetMaster" />
+      <Forward event="OnConfirm" targetID="ID_EKPImportKey" />
+      <Forward event="OnCancel" targetID="ID_EPPCancelFlow" />
+      <Forward event="OnExit" targetID="ID_HandleExitSetMasterForEKP" />
+    </EKPKeySm4CheckValue>
+    <EKPKeyCheckValue ID="ID_EKPKeyCheckValue" UI="UI_ImportKey" tempKeyName="TempKey" encryptData="0000000000000000" encryptMode="3DESCBC">
+      <States>
+        <State name="KeyCheckValue" UI="UI_VerifyCheckValue" />
+        <State name="StopService" UI="UI_StopService" />
+      </States>
+      <Forward event="OnConfirm" targetID="ID_EKPImportKey" />
+      <Forward event="OnContinue" targetID="ID_EKPSetMaster" />
+      <Forward event="OnCancel" targetID="ID_EPPCancelFlow" />
+      <Forward event="OnExit" targetID="ID_AtmParameters" />
+    </EKPKeyCheckValue>
+    <EKPImportKey ID="ID_EKPImportKey" UI="UI_ImportKey" keyName="MasterKey" keyUse="CRYPT,KEYENCKEY,FUNCTION">
+      <Forward event="OnContinue" targetID="ID_EPPCancelFlow" />
+    </EKPImportKey>
+    <!--EKP导入工作密钥，EPPMode只能为0，否则会导入失败-->
+    <CheckPINModeTTU ID="ID_CheckPINModeForBKEY" UI="" EPPMode="1" comment="检测输入密钥方式">
+      <Forward event="OnEnterEPP" targetID="ID_EPPCheckCapability" />
+      <Forward event="OnEnterEKP" targetID="ID_EKPSetBKey" />
+      <Forward event="OnHardwareError" targetID="ID_AtmParameters" />
+    </CheckPINModeTTU>
+    <!--EKP方式输入主密钥
+			maxKeyPart：输入几组密钥
+			keyLengthDouble： 1为双倍长密钥
+			keyMap：功能映射键
+			activeKeys：激活键
+			terminalKeys：终止键
+			-->
+    <EKPSetMaster ID="ID_EKPSetBKey" UI="UI_SecureKeyEntry" maxKeyPart="2" keyLengthDouble="1" keyMap="CANCEL=&gt;A;CLEAR=&gt;B;HELP=&gt;C;ENTER=&gt;D;00=&gt;E;.=&gt;F" activeKeys="0,1,2,3,4,5,6,7,8,9,CANCEL,CLEAR,HELP,ENTER,00,." terminalKeys="" encryptKey="EncryptKey5">
+      <States>
+        <State name="StopService" UI="UI_StopService" />
+      </States>
+      <Forward event="OnConfirm" targetID="ID_EKPKeyCheckValueForBKey" />
+      <Forward event="OnCancel" targetID="ID_EPPCancelFlow" />
+      <Forward event="OnExit" targetID="ID_AtmParameters" />
+    </EKPSetMaster>
+    <!--EKP校验KCV
+			导入临时密钥算KCV
+			encryptData：算KCV的加密数据
+			encryptMode：加密方式
+		-->
+    <EKPKeyCheckValue ID="ID_EKPKeyCheckValueForBKey" UI="UI_ImportKey" encryptData="0000000000000000" encryptMode="3DESCBC">
+      <States>
+        <State name="KeyCheckValue" UI="UI_VerifyCheckValue" />
+        <State name="StopService" UI="UI_StopService" />
+      </States>
+      <Forward event="OnConfirm" targetID="ID_EKPImportBKey" />
+      <Forward event="OnContinue" targetID="ID_EKPSetBKey" />
+      <Forward event="OnCancel" targetID="ID_EPPCancelFlow" />
+      <Forward event="OnExit" targetID="ID_AtmParameters" />
+    </EKPKeyCheckValue>
+    <!--EKP导入密钥
+			keyName：密钥名称
+			keyUse：密钥用途-->
+    <EKPImportKey ID="ID_EKPImportBKey" UI="UI_ImportKey" clearKeys="0">
+      <Forward event="OnContinue" targetID="ID_EPPCancelFlow" />
+    </EKPImportKey>
+    <!---->
+    <!--EKP导入工作密钥，EPPMode只能为0，否则会导入失败-->
+    <CheckPINModeTTU ID="ID_CheckPINModeForCOMKEY" UI="" EPPMode="1" comment="检测输入密钥方式">
+      <Forward event="OnEnterEPP" targetID="ID_EPPCheckCapability" />
+      <Forward event="OnEnterEKP" targetID="ID_EKPSetCOMKey" />
+      <Forward event="OnHardwareError" targetID="ID_AtmParameters" />
+    </CheckPINModeTTU>
+    <!--EKP方式输入主密钥
+			maxKeyPart：输入几组密钥
+			keyLengthDouble： 1为双倍长密钥
+			keyMap：功能映射键
+			activeKeys：激活键
+			terminalKeys：终止键
+			-->
+    <EKPSetMaster ID="ID_EKPSetCOMKey" UI="UI_SecureKeyEntry" maxKeyPart="2" keyLengthDouble="1" keyMap="CANCEL=&gt;A;CLEAR=&gt;B;HELP=&gt;C;ENTER=&gt;D;00=&gt;E;.=&gt;F" activeKeys="0,1,2,3,4,5,6,7,8,9,CANCEL,CLEAR,HELP,ENTER,00,." terminalKeys="" encryptKey="EncryptKey4">
+      <States>
+        <State name="StopService" UI="UI_StopService" />
+      </States>
+      <Forward event="OnConfirm" targetID="ID_EKPKeyCheckValueForCOMKey" />
+      <Forward event="OnCancel" targetID="ID_EPPCancelFlow" />
+      <Forward event="OnExit" targetID="ID_AtmParameters" />
+    </EKPSetMaster>
+    <!--EKP校验KCV
+			导入临时密钥算KCV
+			encryptData：算KCV的加密数据
+			encryptMode：加密方式
+		-->
+    <EKPKeyCheckValue ID="ID_EKPKeyCheckValueForCOMKey" UI="UI_ImportKey" encryptData="0000000000000000" encryptMode="3DESCBC">
+      <States>
+        <State name="KeyCheckValue" UI="UI_VerifyCheckValue" />
+        <State name="StopService" UI="UI_StopService" />
+      </States>
+      <Forward event="OnConfirm" targetID="ID_EKPImportCOMKey" />
+      <Forward event="OnContinue" targetID="ID_EKPSetCOMKey" />
+      <Forward event="OnCancel" targetID="ID_EPPCancelFlow" />
+      <Forward event="OnExit" targetID="ID_AtmParameters" />
+    </EKPKeyCheckValue>
+    <!--EKP导入密钥
+			keyName：密钥名称
+			keyUse：密钥用途-->
+    <EKPImportKey ID="ID_EKPImportCOMKey" UI="UI_ImportKey" clearKeys="0">
+      <Forward event="OnContinue" targetID="ID_EPPCancelFlow" />
+    </EKPImportKey>
+    <QuitTTUMode ID="ID_QuitTTUMode" comment="">
+      <Forward event="OnNotAllowToQuit" targetID="ID_MaintenanceMenu" />
+      <Forward event="OnConfirm" targetID="ID_InvokeOfflineWorkflow" />
+      <Forward event="OnXDCFlow" targetID="9999" />
+    </QuitTTUMode>
+    <InvokeWorkflow ID="ID_InvokeOfflineWorkflow" name="Offline" comment="Invoke offline workflow" syn="0">
+      <Forward event="OnConfirm" targetID="9999" />
+    </InvokeWorkflow>
+    <End ID="9999" comment="end">
+    </End>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnCancel" targetID="ID_CloseTransaction" />
+    <Forward event="OnTimeout" targetID="ID_CloseTransaction" />
+    <Forward event="OnFail" targetID="ID_InvokeExceptionWorkflow" />
+  </DefaultForward>
+</Workflow>

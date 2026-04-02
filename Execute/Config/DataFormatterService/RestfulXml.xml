@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<MessageConfig>
+    <Host Name="core banking" Desc="corebanking" Encoding="utf-8">
+        <Server Host="127.0.0.1" Port="4444" Protocol="http" IsSendToSwitch="false"></Server>
+        <Head Method="POST" ContentType="application/xml" RequestTimeout="8000" Headers="X-GB-Client-Id=bytest;key2=abc"></Head>
+        <Transactions>
+            <AddUser URL="/grgbanking/biometrics/faceverify/user/add" Response="AddUserResponse">
+                <BANKGW>
+                    <XREF>{s_core_serial}</XREF>
+                    <BRANCH_CODE>{s_core_branchcode}</BRANCH_CODE>
+                    <NAME>{context.user.name}</NAME>
+                    <ID_NUMBER ciftype="{context.user.CifType}">{context.Interface.FormName}</ID_NUMBER>
+                    <ISSUE_DATE>{context.user.issuedate}</ISSUE_DATE>
+                    <PLACE>{context.user.place}</PLACE>
+                    <VIP>
+                        <VIP_NAME>{context.vip.name}</VIP_NAME>
+                        <VIP_AGE>{context.vip.age}</VIP_AGE>
+                    </VIP>
+                    <COUNTRY>{context.user.country}</COUNTRY>
+                    <ROLE>{context.TestRole}</ROLE>
+                    <MOBILE_NUMBER>{context.user.mobileNumber}</MOBILE_NUMBER>
+                    <GENDER>{context.user.Gender}</GENDER>
+                    <DOB>{context.user.dayofbirth}</DOB>
+                    <EMAIL>{context.user.email}</EMAIL>
+                    <USERINFO>{context.user}</USERINFO>
+                    <USERLIST>{context.UserList}</USERLIST>
+                    <ADDRESS>HN</ADDRESS>
+                    <VTM_ID>VTM_ID</VTM_ID>
+                </BANKGW>
+            </AddUser>
+            <AddUserResponse SuccessCode="00">
+                <BANKGW>
+                    <XREF></XREF>
+                    <ECODE>{this.Responsecode}</ECODE>
+                    <EDESC>{this.ErrorDesc}</EDESC>
+                    <VIP>
+                        <VIP_NAME>{context.vip.name}</VIP_NAME>
+                        <VIP_AGE>{context.vip.age}</VIP_AGE>
+                    </VIP>
+                    <CIF_NO CIF_TYPE="{context.RoleResponse.RoleUser.Name}">{context.testInt}</CIF_NO>
+                    <AC_NO>{context.TestString}</AC_NO>
+                    <QR_CODE>{s_qrcode}</QR_CODE>
+                    <USERINFO>{context.TestEmptySeriUser}</USERINFO>
+                    <USERLIST>{context.TestEmptyUserList}</USERLIST>
+                </BANKGW>
+            </AddUserResponse>
+
+            <InitSession URL="/grgbanking/biometrics/faceverify/user/add" Response="InitSessionResponse">
+                <env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:m1="http://schemas.compassplus.com/two/3.6/fimi.xsd" xmlns:m0="http://schemas.compassplus.com/two/1.0/fimi_types.xsd">
+                    <env:Body>
+                        <m1:InitSessionRq>
+                            <m1:Request Ver="3.1" Product="FIMI" RetAddress="10.0.13.19" Clerk="UNET">
+                                <m0:NeedDicts>{binding =  context.vip.name}</m0:NeedDicts>
+                                <m0:AllVendors>0</m0:AllVendors>
+                                <m0:AvoidSession>0</m0:AvoidSession>
+                            </m1:Request>
+                        </m1:InitSessionRq>
+                    </env:Body>
+                </env:Envelope>
+            </InitSession>
+
+            <InitSessionResponse URL="/grgbanking/biometrics/faceverify/user/add" Response="AddUserResponse">
+                <env:Envelope xmlns:env= "http://www.w3.org/2003/05/soap-envelope" xmlns:m0="http://schemas.compassplus.com/two/1.0/fimi_types.xsd" xmlns:m1="http://schemas.compassplus.com/two/1.0/fimi.xsd">
+                    <env:Body>
+                        <m1:InitSessionRp>
+                            <m1:Response NextChallenge="{context.user.name}" Response="1" Ver="16.01" Product="FIMI">
+                                <m0:Id>{context.id}</m0:Id>
+                                <m0:NeedCAPAuth>0</m0:NeedCAPAuth>
+                            </m1:Response>
+                        </m1:InitSessionRp>
+                    </env:Body>
+                </env:Envelope>
+            </InitSessionResponse>
+
+        </Transactions>
+    </Host>
+
+    <Host Name="sun core" Desc="ticket system" Encoding="utf-8">
+        <Server Host="127.0.0.1" Port="2222" Protocol="http" IsSendToSwitch="false"/>
+        <Head Method="POST" ContentType="application/json" RequestTimeout="60"></Head>
+        <Transactions>
+            <GetProduct URL="/grgbanking/ticketsystem/GetProduct" Response="GetProductResponse">
+                <SUNGW>
+                    <XREF>{s_serial_number}</XREF>
+                    <TERMINALID>{s_terminalId}</TERMINALID>
+                    <EVENTCODE>2003</EVENTCODE>
+                </SUNGW>
+            </GetProduct>
+            <GetProductResponse SuccessCode="00">
+                <SUNGW>
+                    <TICKID idtype="{s_tick_id}">{binding=s_tick_id}</TICKID>
+                    <USAAGE>{context.TicketUsage}</USAAGE>
+                    <PRODUCTS Serialiazer="{context.products}">
+                        <PRODUCT>
+                            <CODE></CODE>
+                            <NAME></NAME>
+                            <TYPE></TYPE>
+                            <PRICE></PRICE>
+                        </PRODUCT>
+                    </PRODUCTS>
+                </SUNGW>
+                <Response>
+                    <ResponseCode>{this.Responsecode}</ResponseCode>
+                    <ErrorMessage></ErrorMessage>
+                </Response>
+            </GetProductResponse>
+        </Transactions>
+    </Host>
+
+</MessageConfig>

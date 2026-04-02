@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--ThisSolicitedstatusmessageissenttoCentralinreponsetoasendconfigurationinformationterminalcommandmessage(acommandcodeof'7'withnocommandmodifier).
+		-->
+  <GrgRecyclerConfig>
+    <!--MessageIdentifier.-->
+    <Item key="g" value="r" size="1" restriction="Mandatory" />
+    <!--FieldSeparator-->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!-- Number of Cassettes -->
+    <Item key="h" value="[GrgCashAcceptor.NumberOfCassette]" size="2" restriction="Mandatory" />
+    <!--Field Separator-->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!-- Type of Cassettes (A,B,I,R)
+		* Range of the value is:
+		*  'A' - The cassette is used to retract
+		*  'B' - The cassette is used to dispense only
+		*  'I' - The cassette is used to deposit only
+		*  'R' - The cassette is used to recycling
+		-->
+    <Item key="i" value="[GrgCashAcceptor.TypeOfCassette]" size="var" restriction="Mandatory" />
+    <!--Field Separator-->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!-- Type of Cassettes (A,B,I,R)
+		* Range of the value is:
+		*  'A' - The cassette is used to retract
+		*  'B' - The cassette is used to dispense only
+		*  'I' - The cassette is used to deposit only
+		*  'R' - The cassette is used to recycling
+		-->
+    <Item key="i" value="[GrgCashAcceptor.TypeOfCassette]" size="var" restriction="Mandatory" />
+  </GrgRecyclerConfig>
+</Root>

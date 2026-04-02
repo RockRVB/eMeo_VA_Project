@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+ 		
+	<EncryptorInitData>
+ 
+		<Item key="e" 																		value="B"  									size="1" 				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																size="1"				restriction="Mandatory"/>
+		
+		<!--  Encryptor Information, dependent on the information identifier as follows:
+ 
+		* When information identifier = 'B'
+        *        	characters 2 bytes:   -  Remote Key Protocol, two characters in the range '00' to '06' as follows: 
+		*                    '00'  - None
+        *                     '01' - Basic Signature
+		*                     '02' - Basic Certificate.
+        *                     '03' - Basic Signature and certificate
+		*                     '04' - Enhanced signature
+		*                     '06' - Enhanced signature and certificate
+		*        	characters 2 bytes: Certificate state
+		*                      '00' - Not ready or not supported.
+		*                      '01' - Certificate primary
+		*                      '02' - Certificate secondary
+		-->		
+		<Item key="f1" 																			value="[SolicitedStatus.EncryptorInitData.RemoteKeyProtocol]"  															size="2" 				restriction="Mandatory"/>
+		<Item key="f2" 																			value="[SolicitedStatus.EncryptorInitData.CertificateState]"  															size="2" 				restriction="Mandatory"/>
+		<Item key="f3" 																			value="1"  															size="1" 				restriction="Mandatory"/>
+	</EncryptorInitData>	</Root>

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Msg>
+    <!-- Message Identifier -->
+    <Item key="g1" value="7" size="1" restriction="Mandatory" />
+    <!-- Transaction group id-->
+    <Item key="g2" value="A" size="1" restriction="Mandatory" />
+    <Item key="g3" value="[LastTrans.LastTransSerialNum]" size="4" restriction="Mandatory" />
+    <!-- Accynykated Transaction Count. Defines the total number of detected transaction attemps since the terminal was installed or the non-volatile terminal memory was last corrupted.
+		 * The count is reset to 0 after 9, 999, 999 transacitons.
+		 *  A transaction attempt is detected when it is recognised that the TSN received from Central is different from the previously received TSN.
+		*  Up to host decision.
+		-->
+    <Item key="g4" value="[SupplyCounters.AccumulatedTransCount]" size="7" restriction="Mandatory" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="Table Note 62" />
+    <!-- Card Reader data group ID ‘B’-->
+    <Item key="g5 " value="B" size="1" restriction="Table Note 62" />
+    <Item key="g6 " value="[SupplyCounters.CardCaptured]" size="5" restriction="Mandatory" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="Table Note 62" />
+    <!-- Cash Handler 0 data group ID ‘C’-->
+    <Item key="g7 " value="C" size="1" restriction="Table Note 62" />
+    <Item key="g8 " value="001" size="3" restriction="Table Note 62 63" />
+    <Item key="g9 " value="[SupplyCounters.NotesInCassettes.Type1]" size="5" restriction="Table Note 62 63" />
+    <Item key="g10" value="[SupplyCounters.NotesRejected.Type1]" size="5" restriction="Table Note 62 63" />
+    <Item key="g11" value="[SupplyCounters.NotesDispensed.Type1]" size="5" restriction="Table Note 62 63" />
+    <Item key="g12" value="[SupplyCounters.LastTransactionNotesDispensed.Type1]" size="5" restriction="Table Note 62 63" />
+    <Item key="g13" value="[SupplyCounters.NotesDeposited.Type1]" size="5" restriction="Table Note 62 63" />
+    <Item key="g8.2 " value="002" size="3" restriction="Table Note 62 63" />
+    <Item key="g9.2 " value="[SupplyCounters.NotesInCassettes.Type2]" size="5" restriction="Table Note 62 63" />
+    <Item key="g10.2" value="[SupplyCounters.NotesRejected.Type2]" size="5" restriction="Table Note 62 63" />
+    <Item key="g11.2" value="[SupplyCounters.NotesDispensed.Type2]" size="5" restriction="Table Note 62 63" />
+    <Item key="g12.2" value="[SupplyCounters.LastTransactionNotesDispensed.Type2]" size="5" restriction="Table Note 62 63" />
+    <Item key="g13.2" value="[SupplyCounters.NotesDeposited.Type2]" size="5" restriction="Table Note 62 63" />
+    <Item key="g8.3 " value="003" size="3" restriction="Table Note 62 63" />
+    <Item key="g9.3 " value="[SupplyCounters.NotesInCassettes.Type3]" size="5" restriction="Table Note 62 63" />
+    <Item key="g10.3" value="[SupplyCounters.NotesRejected.Type3]" size="5" restriction="Table Note 62 63" />
+    <Item key="g11.3" value="[SupplyCounters.NotesDispensed.Type3]" size="5" restriction="Table Note 62 63" />
+    <Item key="g12.3" value="[SupplyCounters.LastTransactionNotesDispensed.Type3]" size="5" restriction="Table Note 62 63" />
+    <Item key="g13.3" value="[SupplyCounters.NotesDeposited.Type3]" size="5" restriction="Table Note 62 63" />
+    <Item key="g8.4 " value="004" size="3" restriction="Table Note 62 63" />
+    <Item key="g9.4 " value="[SupplyCounters.NotesInCassettes.Type4]" size="5" restriction="Table Note 62 63" />
+    <Item key="g10.4" value="[SupplyCounters.NotesRejected.Type4]" size="5" restriction="Table Note 62 63" />
+    <Item key="g11.4" value="[SupplyCounters.NotesDispensed.Type4]" size="5" restriction="Table Note 62 63" />
+    <Item key="g12.4" value="[SupplyCounters.LastTransactionNotesDispensed.Type4]" size="5" restriction="Table Note 62 63" />
+    <Item key="g13.4" value="[SupplyCounters.NotesDeposited.Type4]" size="5" restriction="Table Note 62 63" />
+    <Item key="g8.5 " value="005" size="3" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g9.5 " value="[SupplyCounters.NotesInCassettes.Type5]" size="5" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g10.5" value="[SupplyCounters.NotesRejected.Type5]" size="5" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g11.5" value="[SupplyCounters.NotesDispensed.Type5]" size="5" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g12.5" value="[SupplyCounters.LastTransactionNotesDispensed.Type5]" size="5" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g13.5" value="[SupplyCounters.NotesDeposited.Type5]" size="5" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g8.6 " value="006" size="3" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g9.6 " value="[SupplyCounters.NotesInCassettes.Type6]" size="5" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g10.6" value="[SupplyCounters.NotesRejected.Type6]" size="5" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g11.6" value="[SupplyCounters.NotesDispensed.Type6]" size="5" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g12.6" value="[SupplyCounters.LastTransactionNotesDispensed.Type6]" size="5" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g13.6" value="[SupplyCounters.NotesDeposited.Type6]" size="5" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g8.7 " value="007" size="3" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g9.7 " value="[SupplyCounters.NotesInCassettes.Type7]" size="5" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g10.7" value="[SupplyCounters.NotesRejected.Type7]" size="5" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g11.7" value="[SupplyCounters.NotesDispensed.Type7]" size="5" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g12.7" value="[SupplyCounters.LastTransactionNotesDispensed.Type7]" size="5" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="g13.7" value="[SupplyCounters.NotesDeposited.Type7]" size="5" restriction="[OptionCtrl.Configuration.NdcDenoTypeEx]" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="Table Note 62" />
+    <!-- Cash Handler 1 data group ID ‘D’-->
+    <Item key="g14" value="D" size="1" restriction="Table Note 62" />
+    <Item key="g15" value="" size="3" restriction="Table Note 62 63" />
+    <Item key="g16" value="" size="5" restriction="Table Note 62 63" />
+    <Item key="g17" value="" size="5" restriction="Table Note 62 63" />
+    <Item key="g18" value="" size="5" restriction="Table Note 62 63" />
+    <Item key="g19" value="" size="5" restriction="Table Note 62 63" />
+    <Item key="g20" value="" size="5" restriction="Table Note 62 63" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" />
+    <!-- Coin dispenser data group ID ‘E’-->
+    <Item key="g21" value="E" size="1" restriction="Mandatory" />
+    <Item key="g22" value="" size="2" restriction="Mandatory" />
+    <Item key="g23" value="" size="5" restriction="Mandatory" />
+    <Item key="g22" value="" size="5" restriction="Mandatory" />
+    <Item key="g24" value="" size="5" restriction="Mandatory" />
+    <Item key="g25" value="" size="5" restriction="Mandatory" />
+    <Item key="g26" value="" size="5" restriction="Mandatory" />
+    <Item key="g27" value="" size="1" restriction="Mandatory" />
+    <Item key="g28" value="" size="5" restriction="Mandatory" />
+    <Item key="g29" value="" size="5" restriction="Mandatory" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" />
+    <!-- Camera data group ID ‘G’.  -->
+    <Item key="g30" value="G" size="1" restriction="Mandatory" />
+    <Item key="g31" value="" size="5" restriction="Mandatory" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" />
+    <!--  PM data group ID ‘H’  -->
+    <Item key="g32" value="H" size="1" restriction="Mandatory" />
+    <Item key="g33" value="" size="2" restriction="Mandatory" />
+    <Item key="g34" value="" size="5" restriction="Mandatory" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" />
+    <!--  BNA Cassette Counts data group ID ‘I’.-->		 
+		<Item key="g35" value="I" size="1" restriction="Mandatory" /><Item key="g36" value="[SupplyCounters.BNACassetteData]" size="3" restriction="Mandatory" /><Item key="g37" value="" size="5" restriction="Mandatory" /><Item key="g38" value="" size="3" restriction="Mandatory" /><Item key="g39" value="" size="4" restriction="Mandatory" /><Item key="g40" value="" size="5" restriction="Mandatory" /><Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" /><!--  Cheque processor data group ID ‘J’ --><Item key="g41" value="J" size="1" restriction="Mandatory" /><Item key="g42" value="" size="1" restriction="Mandatory" /><Item key="g43" value="" size="5" restriction="Mandatory" /><Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" /><!-- BNA Emulation (and Extended Emulation) deposit data group ID 'K’  --><Item key="g44" value="K" size="1" restriction="Mandatory" /><Item key="g45" value="" size="5" restriction="Mandatory" /><Item key="g46" value="" size="5" restriction="Mandatory" /><Item key="g47" value="" size="5" restriction="Mandatory" /><Item key="g48" value="" size="1" restriction="Mandatory" /><Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" /><!-- Dual Dispenser combined data group ID ‘l’  --><Item key="g49" value="l" size="1" restriction="Mandatory" /><Item key="g50" value="" size="3" restriction="Mandatory" /><Item key="g51" value="" size="5" restriction="Mandatory" /><Item key="g52" value="" size="5" restriction="Mandatory" /><Item key="g53" value="" size="5" restriction="Mandatory" /><Item key="g54" value="" size="5" restriction="Mandatory" /><Item key="g55" value="" size="5" restriction="Mandatory" /><Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" /><!-- ECB 6 Category 2 Notes data group ID ‘N’--><Item key="g58" value="N" size="1" restriction="Mandatory" /><Item key="g59" value="" size="3" restriction="Mandatory" /><Item key="g60" value="" size="5" restriction="Mandatory" /><Item key="g61" value="" size="3" restriction="Mandatory" /><Item key="g62" value="" size="4" restriction="Mandatory" /><Item key="g63" value="" size="5" restriction="Mandatory" /><Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" /><!-- ECB 6 category 3 notes group data id ‘O’--><Item key="g64" value="O" size="1" restriction="Mandatory" /><Item key="g65" value="" size="3" restriction="Mandatory" /><Item key="g66" value="" size="5" restriction="Mandatory" /><Item key="g67" value="" size="3" restriction="Mandatory" /><Item key="g68" value="" size="4" restriction="Mandatory" /><Item key="g69" value="" size="5" restriction="Mandatory" /><Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" /><!-- Secondary Card Reader--><Item key="g78" value="T" size="1" restriction="Mandatory" /><Item key="g79" value="" size="5" restriction="Mandatory" /><!-- Field Separator  --><Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]" /><!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. --><Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]" /></Msg>
+</Root>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+		<title>页面超时，是否退出?</title>
+		<link rel="stylesheet" type="text/css" href="../../css/CN.css"/>
+		<script type="text/javascript">
+			var isEdge = false;
+			if(window.chrome)
+			{
+				isEdge = true;
+			}
+            var time = 30;
+            function settime() {
+                if (time != 0) {
+                    time--;
+                }
+                document.getElementById("time").innerText = time;
+            }
+            function onCancel() {
+				window.parent.postMessage("onCancel","*");
+				
+            }
+            function onConfirm() {				
+				window.parent.postMessage("onConfirm","*");
+            }
+            window.onload = function(){				
+				document.getElementById("time").innerText = time;
+				//document.getElementById("txtTitle").innerText=(window.external.GetResourceValue("IDS_TimeoutIsExit"));
+				//document.getElementById("btnCancel").innerText=window.external.GetResourceValue("ids_No");
+				//document.getElementById("btnConfirm").innerText=window.external.GetResourceValue("ids_Yes");
+			setInterval(function () {
+                settime();
+            }, 1000)};
+		</script>
+	</head>
+	<body class="all_bg">
+		<header class="index_top clear">
+			<div class="logo"></div>
+			<div class="index_top_title">
+				<div class="count_down_time" id="time">30</div>
+			</div>
+		</header>
+		<div class="ibank_container">
+			<div class="business_container">
+				<div class="error_result exitbusiness_result">
+					<div id="txtTitle" class="error_title exitbusiness_title" ids="IDS_TimeoutIsExit">Transaction Timeout,Do you want to exit?</div>
+				</div>
+			</div>
+			<div class="button_container">
+				<div id="btnCancel" class="cancel_button" onclick="onCancel();" ids="ids_No">No</div>
+				<div id="btnConfirm" class="enter_button" onclick="onConfirm();" ids="ids_Yes">Yes</div>
+			</div>
+		</div>
+	</body>
+</html>

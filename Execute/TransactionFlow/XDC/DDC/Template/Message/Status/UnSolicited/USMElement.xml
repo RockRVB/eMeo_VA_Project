@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Data>
+    <Item key="Status Source" value="[Msg.Unsolicited.{0}.SSF]" size="1" restriction="Mandatory" /> 
+    <Item key="Status" value="[Msg.Unsolicited.{0}.Status]" size="1" restriction="Mandatory" />  
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+	<Item key="[MDS_0]" value="000" size="1" restriction="Mandatory" /> 
+    <Item key="[MDS_1]" value="[Device.{0}.DeviceID]" size="1" restriction="Mandatory" />  
+    <Item key="[MDS_2]" value="[Device.{0}.MDS]" size="1" restriction="Mandatory" />  
+    <Item key="[FS]" value="[FS]" size="1" restriction="[Options.F2.MDSStatusToNetwork],[Options.F2.MaintenanceModeLogToNetwork]" />
+    <Item key="[Log]" value="[Msg.Unsolicited.Log]" size="1" restriction="[Options.F2.MDSStatusToNetwork],[Options.F2.MaintenanceModeLogToNetwork]" />   
+    <Item key="Buffers.Group" value="[Msg.Unsolicited.BufferGroup]" size="var" restriction="Optional"/>        
+  </Data>
+</Root>

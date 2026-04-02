@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- protocol: DDC -->
+<Root>
+	<Sequence>
+		<FunctionCommand4>
+			<Item size="1" key="LUNO" value="d"/>
+			<Item size="1" key="MSN" value="e"/>
+			<Item size="1" key="NextStateID" value="f"/>
+			<Item size="v" key="NumberDispense" value="g"/>
+			<Item size="1" key="TSN" value="h"/>
+			<Item size="v" key="FunctionCommandList" value="i"/>
+			<Item size="1" key="MCON" value="j"/>
+			<Item size="1" key="CardReturn" value="k"/>
+			<Item size="1" key="PrintSection" value="l"/>
+		</FunctionCommand4>
+	</Sequence>
+	<Group>
+		<FunctionCommand4>
+			<i>
+				<Item size="1" key="FunctionIdentifier"/>
+				<Item size="3" key="Screen Number "/>
+				<Item size="v" key="ScreenDisplayUpdateData"/>
+			</i>
+		</FunctionCommand4>
+	</Group>
+	<ID>
+		<FunctionCommand4 key="AllLeft" start="m" end="-1">
+			<Item size="1" key="0" value="Print"/>
+			<Item size="1" key="1" value="Print"/>
+			<Item size="1" key="2" value="Print"/>
+			<Item size="1" key="3" value="Print"/>
+			<Item size="1" key=";" value="Print"/>
+			<Item size="1" key="4" value="Track3"/>
+			<Item size="1" key="6" value="DepositorySettings"/>
+			<Item size="1" key="9" value="Track1"/>
+			<Item size="1" key=":" value="Track2"/>
+			<Item size="3" key="'1'" value="UpdateConfigurationID"/>
+			<Item size="3" key="'2'" value="UpdateSpecialKeys"/>
+			<Item size="3" key="'3'" value="UpdateConfiguredTimers"/>
+			<Item size="3" key="'4'" value="UpdateSpecialScreens"/>
+			<Item size="3" key="'5'" value="UpdateStates"/>
+			<Item size="3" key="'6'" value="UpdateScreen"/>
+			<Item size="3" key="'7'" value="UpdateFormatTemplates"/>
+			<Item size="3" key="'8'" value="UpdateFIT"/>
+			<Item size="3" key="'9'" value="UpdateBuffers"/>
+			<Item size="3" key="':'" value="PerformFunction"/>
+		</FunctionCommand4>
+		<FunctionCommand7 key="AllLeft" start="i" end="-1">
+			<Item size="3" key="'1'" value="UpdateConfigurationID"/>
+			<Item size="3" key="'2'" value="UpdateSpecialKeys"/>
+			<Item size="3" key="'3'" value="UpdateConfiguredTimers"/>
+			<Item size="3" key="'4'" value="UpdateSpecialScreens"/>
+			<Item size="3" key="'5'" value="UpdateStates"/>
+			<Item size="3" key="'6'" value="UpdateScreen"/>
+			<Item size="3" key="'7'" value="UpdateFormatTemplates"/>
+			<Item size="3" key="'8'" value="UpdateFIT"/>
+			<Item size="3" key="'9'" value="UpdateBuffers"/>
+			<Item size="3" key="':'" value="PerformFunction"/>
+		</FunctionCommand7>
+	</ID>
+</Root>

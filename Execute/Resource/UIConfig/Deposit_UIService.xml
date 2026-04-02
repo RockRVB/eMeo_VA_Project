@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+	<!--操作进行中-->
+	<Screen name="UI_OperatingNoCounter" uri="Foundation\OperatingNoCounter.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_TransactionIsBeing)"/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+	<Screen name="UI_CashInStart" uri="Foundation\OperatingNoCounter.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_TransactionIsBeing)"/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+	<!--等待放钞-->
+	<Screen name="UI_CashInWaitForNoteInsert" uri="Deposit\FirstWaitForInsertCash.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_FirstWaitForInsertCash)"/>
+			</EventTrigger>
+		</Triggers>  
+	</Screen>
+
+	<!--放钞为空继续放钞-->
+	<Screen name="UI_WaitForNoteInsertNoCash" uri="Deposit\FirstWaitForInsertCashEmpty.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_CountingButNoCash)"/>
+			</EventTrigger>
+			<EventTrigger condition="loadDenoFailure">
+				<Setter target="divPrompt1" property="visible" value="0"/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+
+	<!--整理钞票-->
+	<!-- <Screen name="UI_WaitForNoteInsert4ArrangeCash" uri="Deposit\ArrangeCash.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_CashErrorPosition)"/>
+			</EventTrigger>
+		</Triggers>
+	</Screen> -->
+	<Screen name="UI_CashIn4ArrangeCash" uri="Deposit\ArrangeCash.html" cache="0">
+	</Screen>
+	<!--放钞为空-->
+	<Screen name="UI_InputCashEmpty" uri="Deposit\InputCashEmpty.html" cache="0"/>
+
+	<!--放钞为空且设备错误-->
+	<Screen name="UI_InputCashEmptyForError" uri="Deposit\InputCashEmptyForError.html" cache="0"/>
+
+	<!--用户结束时未放钞-->
+	<Screen name="UI_InputCashEmptyForCashInEnd" uri="Foundation\Operating.html" cache="0">
+	</Screen>
+
+	<Screen name="UI_CashInWaitForNoteTakenForError" uri="Deposit\WaitCustomerToTakeCashForError.html" cache="0"/>
+	<!--取拒钞-->
+	<Screen name="UI_CashInWaitForNoteTakenRefused" uri="Deposit\WaitCustomerToTakeCashRefused.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_WaitCustomerToTakeCashRefused)"/>
+			</EventTrigger>
+		</Triggers> 
+	</Screen>
+
+	<!--取钞-->
+	<Screen name="UI_CashInWaitForNoteTaken" uri="Deposit\WaitCustomerToTakeCash.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_CancelDepositPleaseTakeCash)"/>
+			</EventTrigger>
+		</Triggers>  
+	</Screen>
+	<!-- 客户取消，先拿走CS的钞，再退TS的钞 -->
+	<Screen name="UI_CancelWaitForNoteTaken" uri="Deposit\WaitCustomerToTakeCashForCancel.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_CancelDepositPleaseTakeCash)"/>
+			</EventTrigger>
+		</Triggers>  
+	</Screen>
+
+	<!-- 网络故障取钞 -->
+	<Screen name="UI_CashInWaitForNoteTakenForCommError" uri="Deposit\WaitCustomerToTakeCashForCommError.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_DepositFailWaitCustomerToTakeCash)"/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+	<!--单次放钞太多后取钞-->
+	<Screen name="UI_CashInWaitForNoteTakenToomuch" uri="Deposit\WaitCustomerToTakeCashToomuch.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_WaitCustomerToTakeCashToomuch)"/>
+			</EventTrigger>
+		</Triggers>  
+	</Screen>
+
+	<!-- 钞票位置不正确且放钞次数超限，等待钞票取走 -->
+	<Screen name="UI_CashInWaitForNoteTakenForOverLimit" uri="Deposit\WaitCustomerToTakeCashForInputTimesOverlimit.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_PleaseTakeCash)"/>
+			</EventTrigger>
+		</Triggers>  
+	</Screen>
+
+	<!-- 交易取消，等待钞票取走 -->
+	<Screen name="UI_CashInWaitForNoteTakenForTransactionCancel" uri="Deposit\WaitCustomerToTakeCashForTransactionCancel.html" cache="0"> 
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_CancelDepositPleaseTakeCash)"/>
+			</EventTrigger> 
+		</Triggers>
+	</Screen>
+
+	<!-- 超时,交易取消，等待钞票取走 -->
+	<Screen name="UI_CashInWaitForNoteTakenForTimeOut" uri="Deposit\WaitCustomerToTakeCashForTimeOut.html" cache="0"> 
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_CancelDepositPleaseTakeCash)"/>
+			</EventTrigger>
+		</Triggers> 
+	</Screen>  
+
+
+	<!--取钞超时回收-->
+	<Screen name="UI_CashInRetract" uri="Deposit\TimeoutRetractCash.html" cache="0"> 
+	</Screen>
+
+
+
+	<!--取钞超时回收-->
+	<Screen name="UI_CashInRetractTimeOut" uri="Deposit\TransTimeoutRetractCash.html" cache="0"> 
+	</Screen>
+
+	<!--重号回收-->
+	<Screen name="UI_CashInRetractForRepeatNumReject" uri="Deposit\CashInRetractForRepeatNumReject.html"  cache="0"/>
+
+	<!--操作超时回收-->
+	<Screen name="UI_OperationTimeoutRetractCash" uri="Deposit\OperationTimeoutRetractCash.html">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_TimeoutRetractCash)"/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+
+	<!--设备故障回收-->
+	<Screen name="UI_CashInRetractForError" uri="Deposit\RetractCashForError.html" cache="0" />
+
+	<!--点钞中-->
+	<Screen name="UI_CountingNote" uri="Deposit\CountingCash.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_CountingCash)"/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+
+	<Screen name="UI_NoteInserted4AutoShutter" uri="Deposit\FirstWaitForInsertCash.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_FirstWaitForInsertCash)"/>
+			</EventTrigger>
+			<EventTrigger condition="loadDenoFailure">
+				<Setter target="divPrompt1" property="visible" value="0"/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+
+	<Screen name="UI_CashInShowResult" uri="Deposit\CountCashResultToContinue.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_CountingCashResult)"/>
+			</EventTrigger>
+			<PropertyTrigger target="F4" property="visible" value="0">
+				<Setter target="prompt" property="visible" value="0"/>
+				<Setter target="promptContinue" property="visible" value="0"/>
+			</PropertyTrigger>
+		</Triggers>
+	</Screen>
+	<!--用户取消存款退钞-->
+	<Screen name="UI_CashInRollback" uri="Deposit\EjectCashToCustomer.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_RejectingCash)"/>
+			</EventTrigger>
+		</Triggers>  
+	</Screen>
+
+	<!--设备故障退钞-->
+	<Screen name="UI_RollbackForHardwareError" uri="Deposit\RolllbackForHardwareError.html" cache="0"/>
+	<!--网络故障退钞-->
+	<Screen name="UI_CashInRollbackForNetworkFailed" uri="Deposit\NetworkFailedAndCashInRollback.html" cache="0"/>
+
+	<!--主机拒绝而退钞-->
+	<Screen name="UI_HostRefuseAndCashInRollback" uri="Deposit\HostRefuseAndCashInRollback.html" cache="0"/>
+	<!--重号退钞-->
+	<Screen name="UI_CashInRollbackForRepeatNumReject" uri="Deposit\CashInRollbackForRepeatNumReject.html" cache="0"/>
+	<!--存入钞箱-->
+	<Screen name="UI_CashInEnd" uri="Foundation\OperatingNoCounter.html">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source="(Voice_CashInEndSuccess)"/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+	<!--主机拒绝后存钞-->
+	<Screen name="UI_CashInEndForCommError" uri="Deposit\CashInEndForCommError.html" cache="0" />
+	<!--存款后是否打印凭条-->
+	<Screen name="UI_IsPrintReceiptAfterDEP" uri="Deposit\IsPrintReceiptAfterDEP.html" cache="0" />
+	<!--打印凭条出错时显示存款信息-->
+	<Screen name="UI_DepositedResult" uri="Deposit\DepositedResult.xaml"  cache="0"/>
+	<!--检测凭条出错时显示存款信息-->
+	<Screen name="UI_DepositedResultForNoPTR" uri="Deposit\DepositedResultForNoPTR.xaml" cache="0" />
+	<Screen name="UI_ConfirmAcount" uri="Deposit\ConfirmAcount.html" cache="0" />
+	<Screen name="UI_WaitingSTMAOperating" uri="Deposit\WaitingSTMAOperating.html" cache="0" />
+	<Screen name="UI_DepositFailBySTMA" uri="Deposit\DepositFailBySTMA.html" cache="0" />
+	<Screen name="UI_DepositSuccessBySTMA" uri="Deposit\DepositSuccessBySTMA.html" cache="0" />
+</Screens>
+
+
+
+
+

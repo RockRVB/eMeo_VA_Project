@@ -1,0 +1,7 @@
+{<NSER>}
+GA{<#5DEN>      <#3ESC>  <#10VAL>}
+HA{<#5DEN>      <#3ESC>  <#10VAL>}
+IA{<#5DEN>      <#3ESC>  <#10VAL>}
+JA{<#5DEN>      <#3ESC>  <#10VAL>}
+KA{<#5DEN>      <#3ESC>  <#10VAL><###>}
+LL{      <#ESC>  <#10VAL>}

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+    <Screen name="UI_InputPassword" uri="UKey\InputPassword.xaml" cache="0"> 
+    </Screen>
+
+	<Screen name="UI_UKeyProtol" uri="UKey\UKeyProtol.xaml" cache="0">
+    </Screen>
+	<Screen name="UI_IdentityAuthUkey" uri="UKey\IDValidate.xaml" cache="0">
+  </Screen>
+  <Screen name="UI_IdentityAuthFailUkey" uri="UKey\IDValidateFailure.xaml" cache="0">
+  </Screen>
+
+  <Screen name="UI_AuditingFailUkey" uri="UKey\AuditingFail.html" cache="0">
+  </Screen>
+
+	<Screen name="UI_ScannedChecking" uri="UKey\ScannedChecking.xaml" cache="0">
+    </Screen>
+	
+	<Screen name="UI_SetUKeyPassword" uri="UKey\SetUKeyPassword.xaml" cache="0">
+    </Screen>
+	
+	<Screen name="UI_SetUKeyPasswordAgain" uri="UKey\SetUKeyPasswordAgain.xaml" cache="0">
+    </Screen>
+	 
+    <Screen name="UI_InputNewPinUnmatchUkey" uri="Ukey\SetUKeyPasswordAgainUnmatch.xaml" cache="0">
+    </Screen>
+	
+	<Screen name="UI_TakeUkey" uri="UKey\TakeUkey.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_IsPrintReceiptAfterUkey" uri="UKey\IsPrintReceipt.xaml" cache="0"/>
+    <Screen name="UI_ScanDocUkey" uri="UKey\ScanCredentials.xaml" cache="0">
+    </Screen> 
+</Screens>
+
+
+
+
+

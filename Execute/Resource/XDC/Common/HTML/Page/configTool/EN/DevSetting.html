@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<script defer type="text/javascript" src="../../../js/ShowResource.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../css/ConfigEditing.css" />
+</head>
+<body>
+<div id="Div">	
+	<form method="post">
+		<fieldset name="Group1">
+		<legend class="FontSize">Device Setting</legend>
+		<table>	
+            <tr>
+				<td>
+					<Label id="labelCDM">Cash Dispenser</Label>
+				</td>
+				<td>
+				  <select id="SelectCDM" type="select" selectValue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/CDM mode=2}">
+				   <option value="0" >Not Present</option>
+				   <option value="1" >Present</option>
+				  </select>
+				</td>
+				<td>
+					<input id="textBoxCDM" type="text"  content="{Binding ServiceName file=Config\DeviceService\CDMConfig.xml xpath=/CashDispenser mode=2}"/>
+				</td>
+		    </tr>		
+				
+			<tr>
+				<td>
+					<Label id="labelCIM">Cash Deposit</Label>
+				</td>
+				<td>
+				  <select id="SelectCIM" type="select" selectValue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/CIM mode=2}">
+				   <option value="0" >Not Present</option>
+				   <option value="1" >Present</option>
+				  </select>
+				</td>
+				<td>
+					<input id="textBoxCIM" type="text"  content="{Binding ServiceName file=Config\DeviceService\CIMConfig.xml xpath=/CashAcceptor mode=2}"/>
+				</td>
+		    </tr>
+    <!--Coin目前无对应配置文件-->
+		    <tr style="display:none">
+				<td>
+					<Label id="labelCoin">Coin</Label>
+				</td>
+				<td>
+				  <select id="SelectCoin" type="select" selectValue="" disabled="false">
+				   
+				  </select>
+				</td>
+				<td>
+					<input id="textBoxCoin" type="text"  content="" disabled="false"/>
+				</td>
+		    </tr>
+		    	
+		    <tr>
+				<td>
+					<Label>Twin Screen</Label>
+				</td>
+				<td>
+				  <select id="Select2" type="select" selectValue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/HtmlDevice mode=2}">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>
+				<td>
+					<input id="textBox102" type="text" content="{Binding ServiceName file=Config\DeviceService\HtmlDeviceConfig.xml xpath=/FlashDevice mode=2}"/>
+				</td>				
+			</tr>
+			
+			<tr>
+				<td>
+					<Label>Journal Printer</Label>
+				</td>
+				<td>
+				  <select id="Select5" type="select" selectValue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/JPTR mode=2}">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>
+				<td>
+					<input id="textBox103" type="text" content="{Binding ServiceName file=Config\DeviceService\JPTRConfig.xml xpath=/JournalPrinter mode=2}"/>
+				</td>	
+			</tr>	
+			<tr>			
+				<td>
+					<Label>PIN Pad</Label>
+				</td>
+				<td>
+				  <select id="Select6" type="select" selectValue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/PIN mode=2}">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>	
+				<td>
+					<input id="textBox104" type="text" content="{Binding ServiceName file=Config\DeviceService\PINConfig.xml xpath=/EPPKeyPad mode=2}"/>
+				</td>								
+			</tr>
+			<tr>			
+				<td>
+					<Label>EPP Mode</Label>
+				</td>
+				<td>
+				  <select id="Select61" type="select" selectValue="{Binding EPPMode file=XDC\Tools\eCATConfigTool\eCATToolConfig.xml xpath=/Config/EPPMode mode=2}">
+				   <option value="0">EPP</option>
+				   <option value="1">EPP_PCI</option>
+				  </select>
+				</td>	
+				<td>
+					<input id="textBox1041" type="text" content="{Binding ServiceName file=Config\DeviceService\PINConfig.xml xpath=/EPPKeyPad mode=2}"/>
+				</td>								
+			</tr>
+			<tr >
+				<td>
+					<Label>SIU</Label>
+				</td>
+				<td>
+				  <select id="Select7" type="select" selectValue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/SIU mode=2}">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>
+				<td>
+					<input id="textBox105" type="text" content="{Binding ServiceName file=Config\DeviceService\SIUConfig.xml xpath=/SensorAndLight mode=2}"/>
+				</td>	
+			</tr>
+			<tr>
+				<td>
+					<Label >Card Reader</Label>
+				</td>
+				<td>
+				  <select id="Select8" type="select" selectValue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/IDC mode=2}">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>		
+				<td>
+					<input id="textBox106" type="text" content="{Binding ServiceName file=Config\DeviceService\IDCConfig.xml xpath=/CardReader mode=2}"/>
+				</td>							
+			</tr>
+			
+			<tr >
+				<td>
+					<Label>Receipt Printer</Label>
+				</td>
+				<td>
+				  <select id="Select9" type="select" selectValue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/RPTR mode=2}">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>
+				<td>
+					<input id="textBox107" type="text" content="{Binding ServiceName file=Config\DeviceService\RPTRConfig.xml xpath=/ReceiptPrinter mode=2}"/>
+				</td>	
+			</tr>
+			<tr>
+				<td>
+					<Label>VDM</Label>
+				</td>
+				<td>
+				  <select id="Select10" type="select" selectValue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/VDM mode=2}">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>
+				<td>
+					<input id="textBox108" type="text" content="{Binding ServiceName file=Config\DeviceService\VDMConfig.xml xpath=/VendorDependentMode mode=2}"/>
+				</td>								
+			</tr>
+			
+			<tr>
+				<td>
+					<Label>Envelope Depositor</Label>
+				</td>
+				<td>
+				  <select id="Select11" type="select" selectValue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/DEP mode=2}">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>	
+				<td>
+					<input id="textBox109" type="text" content="{Binding ServiceName file=Config\DeviceService\DEPConfig.xml xpath=/Depository mode=2}"/>
+				</td>	
+			</tr>
+			
+			<tr>
+				<td>
+					<Label>BarCodeScanner</Label>
+				</td>
+				<td>
+				  <select id="Select12" type="select" selectValue="{Binding enable file=Config\DevConfig.xml xpath=/Config/DeviceManager/BCR mode=2}">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>	
+				<td>
+					<input id="textBox120" type="text" content="{Binding ServiceName file=Config\DeviceService\BCRConfig.xml xpath=/BarCodeScanner mode=2}"/>
+				</td>			
+			</tr>	
+			
+			<tr>
+				<td>
+					<Label>Camera</Label>
+				</td>
+				<td>
+				  <select id="Select13" type="select" selectValue="{Binding value file=Config\XDC\MainConfig\MainConfig.xml xpath=/Root/Application/Item[@key='EnableCameraDevice'] mode=2}">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>
+				<td>
+					<input id="textBox110" type="text" content=""/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<Label>COIN</Label>
+				</td>
+				<td>
+				  <select id="Select14" type="select" selectValue="">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>	
+				<td>
+					<input id="textBox121" type="text" content=""/>
+				</td>			
+			</tr>
+			<tr>
+				<td>
+					<Label>CHEQUE</Label>
+				</td>
+				<td>
+				  <select id="Select15" type="select" selectValue="">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>	
+				<td>
+					<input id="textBox122" type="text" content=""/>
+				</td>			
+			</tr>
+			<tr>
+				<td>
+					<Label>STATEMENT</Label>
+				</td>
+				<td>
+				  <select id="Select16" type="select" selectValue="">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>	
+				<td>
+					<input id="textBox123" type="text" content=""/>
+				</td>			
+			</tr>
+			<tr>
+				<td>
+					<Label>RFREADER</Label>
+				</td>
+				<td>
+				  <select id="Select17" type="select" selectValue="">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>	
+				<td>
+					<input id="textBox124" type="text" content=""/>
+				</td>			
+			</tr>
+			<tr>
+				<td>
+					<Label>DVR</Label>
+				</td>
+				<td>
+				  <select id="Select18" type="select" selectValue="">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>	
+				<td>
+					<input id="textBox125" type="text" content=""/>
+				</td>			
+			</tr>
+			<tr>
+				<td>
+					<Label>PALMVEIN</Label>
+				</td>
+				<td>
+				  <select id="Select19" type="select" selectValue="">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>	
+				<td>
+					<input id="textBox126" type="text" content=""/>
+				</td>			
+			</tr>
+			<tr>
+				<td>
+					<Label>NIGHTSAFE DEPOSIT</Label>
+				</td>
+				<td>
+				  <select id="Select20" type="select" selectValue="">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>	
+				<td>
+					<input id="textBox127" type="text" content=""/>
+				</td>			
+			</tr>
+			<tr>
+				<td>
+					<Label>FINGERPRINT</Label>
+				</td>
+				<td>
+				  <select id="Select21" type="select" selectValue="">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>	
+				<td>
+					<input id="textBox128" type="text" content=""/>
+				</td>			
+			</tr>
+			<tr>
+				<td>
+					<Label>CARD DISPENSER</Label>
+				</td>
+				<td>
+				  <select id="Select22" type="select" selectValue="">
+				   <option value="0">Not Present</option>
+				   <option value="1">Present</option>
+				  </select>
+				</td>	
+				<td>
+					<input id="textBox129" type="text" content=""/>
+				</td>			
+			</tr>
+			
+		</table>
+		
+	 </fieldset>
+	 <BR>
+	<input id="Submit1" type="submit" value="Cancel" tag="OnCancel" ><input id="Submit2" type="submit" value="Submit" tag="OnConfirm" ></form>
+</div>
+</body> 
+</html>

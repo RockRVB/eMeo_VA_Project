@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CMD>
+    <Operation CMDName="s_RebootFile" CMDFile="C:\GrgBanking\grgreset" Remark="重启文件"/>
+	<Operation CMDName="s_ShutdownFile" CMDFile="C:\GrgBanking\grgclose" Remark="关机文件"/>
+	<Operation CMDName="s_InServiceFile" CMDFile="C:\GrgBanking\grgopen" Remark="正常服务文件"/>
+	<Operation CMDName="s_OutOfServiceFile" CMDFile="C:\GrgBanking\grgpause" Remark="暂停服务文件"/>
+	<Operation CMDName="s_DiagnoseFile" CMDFile="C:\GrgBanking\grgdiagnose" Remark="诊断指令文件"/>
+	<Operation CMDName="s_ExitFile" CMDFile="C:\GrgBanking\grgexit" Remark="远程分发3.0接口升级命令"/>
+	<Operation CMDName="s_UpdateDirectory" CMDFile="C:\eCATUpdate" Remark="升级包存放路径"/>
+	
+	<Operation CMDName="s_UpdateZipName" CMDFile="eCATFull.zip" Remark="升级包文件名（包括Rule文件）"/>
+	<Operation CMDName="s_UpdateExeName" CMDFile="eCATFull.exe" Remark="升级包文件名（不含SECONE规则的升级包）"/>
+	<Operation CMDName="s_SECOneRuleName" CMDFile="SECOne.rule" Remark="SECOne规则文件"/>
+	<Operation CMDName="s_SECOneRuleDirectory" CMDFile="C:\grgSecurity\SECOne\UpdateRules" Remark="SECOne规则文件存放路径"/>
+	<Operation CMDName="s_eCATUpdateZipName" CMDFile="eCAT.zip" Remark="eCAT软件压缩包文件名"/>
+	<Operation CMDName="s_eCATUpdateName" CMDFile="eCAT.exe" Remark="eCAT软件安装包文件名"/>
+	<Operation CMDName="s_DeviceCMDFileName" CMDFile="c:\GrgBanking\grgdevicecmd.ini" Remark="FEEL DISTRIBUTION 设备命令"/>
+	
+	<Operation CMDName="s_DeviceCMDResultFileName" CMDFile="c:\GrgBanking\grgdevicecmdresult.ini" Remark="命令结果"/>
+	<Operation CMDName="s_ATMCInfoFileName" CMDFile="c:\GrgBanking\GRGATMCInfo.ini" Remark="ATMC状态文件"/>
+	<Operation CMDName="s_DeviceLogPath" CMDFile="Log\DeviceLog\" Remark="9250 log 存放目录 "/>
+	<Operation CMDName="s_DiagnoseresultFileName" CMDFile="c:\grgapi\grgdiagnoseresult.ini" Remark="eCAT软件压缩包文件名"/>
+	<Operation CMDName="s_SSMStatusIni" CMDFile="C:\GrgBanking\SSMStatus.ini" Remark="ATMC状态文件"/>
+	<Operation CMDName="s_NonXFSDevPath" CMDFile="C:\GrgBanking\NonXFSDevStatus.ini" Remark="非XFS设备状态"/>
+	<Operation CMDName="s_GrgATMUpdateResult" CMDFile="C:\GrgBanking\grgupdate.ini" Remark="远程分发升级结果文件"/>
+	<Operation CMDName="s_ATMSoftwareVersion" CMDFile="C:\GrgBanking\ATMSoftwareVersions.txt" Remark="ATM软件版本文件"/>
+	
+	
+</CMD>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!-- Setting for DDC CIM Protocol -->
+  <Application>
+    <Item key="MultipleDeposit" value="1" valueType="int" />
+    <Item key="BankNoteTypesTest" value="1" valueType="int" />
+    <Item key="CashUnitNearlyFullCount" value="2000" valueType="int" />
+    <Item key="MultipleCurrency" value="0" valueType="int" />
+    <Item key="CurrencyBillTypes" value="CNY!0000000100!00000!1#CNY!0000000050!00000!1#CNY!0000000020!00000!1#CNY!0000000010!00000!1#CNY!0000000005!00000!1#RUB!0000000100!00000!1#RUB!0000000010!00000!1#RUB!0000000500!00000!1#RUB!0000001000!00000!1#RUB!0000000050!00000!1#USD!0000000001!00000!1#USD!0000000010!00000!1#USD!0000000020!00000!1#USD!0000000050!00000!1#USD!0000000100!00000!1#" valueType="string" />
+    <Item key="TotalDepositsCategory2" value="0" valueType="int" />
+    <Item key="TotalDepositsCategory3" value="0" valueType="int" />
+    <Item key="TotalDepositsCategory4" value="0" valueType="int" />
+    <Item key="TotalDepositsRetracts2" value="0" valueType="int" />
+    <Item key="TotalDepositsRetracts3" value="0" valueType="int" />
+    <Item key="TotalDepositsRetracts4" value="0" valueType="int" />
+    <Item key="CounterfeitBillBinCategory2" value="0" valueType="int" />
+    <Item key="CounterfeitBillBinCategory3" value="0" valueType="int" />
+    <Item key="DenominationsNum" value="015" valueType="int" />
+    <Item key="CurrencyIDs" value="CNYCNYCNYCNYCNYRUBRUBRUBRUBRUBUSDUSDUSDUSDUSD" valueType="string" />
+    <Item key="BillValues" value="000000010000000000500000000020000000001000000000050000000100000000001000000005000000001000000000005000000000010000000010000000002000000000500000000100" valueType="string" />
+    <Item key="HWConfStatusDemon" value="15CNY0000000100000001CNY0000000050000001CNY0000000020000001CNY0000000010000001CNY0000000005000001RUB0000000100000001RUB0000000010000001RUB0000000500000001RUB0000001000000001RUB0000000050000001USD0000000001000001USD0000000010000001USD0000000020000001USD0000000050000001USD0000000100000001" valueType="string" />
+    <Item key="HWConfStatusCassetteInfo0" value="5CNY0000000000" valueType="string" />
+    <Item key="HWConfStatusCassetteInfo1" value="00000000000000" valueType="string" />
+    <Item key="HWConfStatusCassetteInfo2" value="00000000000000" valueType="string" />
+    <Item key="HWConfStatusCassetteInfo3" value="00000000000000" valueType="string" />
+    <Item key="HWConfStatusCassetteInfo4" value="00000000000000" valueType="string" />
+    <Item key="IsConfigCurrencyCode" value="1" valueType="int" />
+    <Item key="CurrencyCode" value="CNY" valueType="string" />
+    <!--
+	// 1: determine the closing gate time according to the timeout period defined by the state
+	// 2: determine the time to close the gate according to the time allocated
+	// 3: otherwise the default 13 seconds timeout
+
+	//1：根据状态定义的超时时间来判断关闭闸门时间
+	//2：根据配置的时间来判断关闭闸门的时间
+    //3：否则默认13秒超时
+
+	-->
+    <Item key="isUesLocalConsurmerResponeTime" value="1" localConsurmerResponeTime="15" valueType="int" />
+    <!--EnterMapKey Insert Notes confirm key, Example: C-->
+    <Item key="EnterMapKey_InsertNotes" value="" valueType="string" />
+    <!--CancelMapKey Insert Notes Cancel key, Example: D-->
+    <Item key="CancelMapKey_InsertNotes" value="" valueType="string" />
+  </Application>
+</Root>

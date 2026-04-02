@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Variable>
+    <Item ID="Mode" value="inService" />
+    <Item ID="PreMode" value="inService" />
+  </Variable>
+  <Device>
+    <!--        powerUp = 1,
+        outOfService = 2,
+        inService = 3,
+        offLine = 4,
+        maintenance = 5,
+        suspend=6 -->
+    <Information>
+      <DataGeneral Mode="inService" PreMode="inService" />
+    </Information>
+  </Device>
+  <Configuration>
+    <!-- enable -->
+    <Item source="/Root/Device/Information/DataGeneral" ID="/Root/DataEvent/Item[@ID = '200']/@enable" default="0">
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="outOfService|inService" operator="match">
+          <xmlvariable value="/Root/Device/Information/DataGeneral/@Mode" />
+        </Condition>
+        <Condition value="[xmlvariable]" operand="offLine|maintenance|powerUp" operator="match">
+          <xmlvariable value="/Root/Device/Information/DataGeneral/@PreMode" />
+        </Condition>
+      </Result>
+    </Item>
+  </Configuration>
+  <Signal>
+    <Item value="/Root/Device/Information/DataGeneral/@Mode" />
+  </Signal>
+  <DataEvent>
+    <Item ID="200" enable="0" />
+  </DataEvent>
+</Root>

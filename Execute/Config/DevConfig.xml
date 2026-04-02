@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+  <!--设备管理-->
+  <!--
+          enable： 表明该设备是否可用：1为可用，0为不可用
+          cfg:    表明对应设备的配置文件
+          deps: 依赖列表。格式："设备名[.别名][,设备名[.别名]...]"
+      -->
+  <DeviceManager folder="DeviceService\">
+    <TTU enable="0" cfg="..\Config\DeviceService\TTUConfig.xml" deps="" />
+    <HtmlDevice enable="1" cfg="..\Config\DeviceService\HtmlDeviceConfig.xml" deps="" />
+    <JPTR enable="0" cfg="..\Config\DeviceService\JPTRConfig.xml" deps="SIU" />
+    <PIN enable="1" cfg="..\Config\DeviceService\PINConfig.xml" deps="SIU" />
+    <SIU enable="1" cfg="..\Config\DeviceService\SIUConfig.xml" deps="HtmlDevice" />
+    <IDC enable="1" cfg="..\Config\DeviceService\IDCConfig.xml" deps="SIU" />
+    <IDC enable="0" alias="ContactLessIDC" cfg="..\Config\DeviceService\ContactLessIDCConfig.xml" deps="SIU" />
+    <IDC enable="0" alias="CRDIDC" cfg="..\Config\DeviceService\CRDIDCConfig.xml" deps="SIU,CRD" />
+    <RPTR enable="1" cfg="..\Config\DeviceService\RPTRConfig.xml" deps="SIU" />
+    <!--对帐单打印机-->
+    <RPTR enable="0" alias="StatementPTR" cfg="..\Config\DeviceService\SPTRConfig.xml" deps="SIU" />
+    <!--发票打印机-->
+    <RPTR enable="0" alias="InvoicePTR" cfg="..\Config\DeviceService\IPTRConfig.xml" deps="SIU" />
+    <!--乱序发卡机的打印机-->
+    <RPTR enable="0" alias="CRDPTR" cfg="..\Config\DeviceService\CRDPTRConfig.xml" deps="IDC.CRDIDC" />
+    <CDM enable="1" cfg="..\Config\DeviceService\CDMConfig.xml" deps="SIU" />
+    <CIM enable="1" cfg="..\Config\DeviceService\CIMConfig.xml" deps="CDM" />
+    <VDM enable="0" cfg="..\Config\DeviceService\VDMConfig.xml" deps="SIU" />
+    <BCR enable="0" cfg="..\Config\DeviceService\BCRConfig.xml" deps="SIU" />
+    <DEP enable="0" cfg="..\Config\DeviceService\DEPConfig.xml" deps="SIU" />
+    <Passbook enable="0" cfg="..\Config\DeviceService\PassbookConfig.xml" deps="SIU" />
+    <CRD enable="0" cfg="..\Config\DeviceService\CRDConfig.xml" deps="SIU" />
+    <IDCardReader enable="0" cfg="..\Config\DeviceService\IDCardReaderConfig.xml" deps="SIU" />
+    <FeedChannel enable="0" cfg="..\Config\DeviceService\FeedChannelConfig.xml" deps="SIU" />
+    <DVRDevice enable="0" cfg="..\Config\DeviceService\DVRDeviceConfig.xml" deps="SIU" />
+    <!--护照-->
+    <PassportScanerWosa enable="0" cfg="..\Config\DeviceService\PassportScaner.xml" deps="SIU" />
+    <!--盖章机-->
+    <DocPrinter enable="0" cfg="..\Config\DeviceService\DocPrinterConfig.xml" deps="SIU" />
+    <!--高拍仪-->
+    <CAM enable="0" cfg="..\Config\DeviceService\Camera310.xml" deps="SIU" />
+    <!--高拍仪回收模块-->
+    <FeedChannel enable="0" alias="HSMDev" cfg="..\Config\DeviceService\HSMDev.xml" deps="SIU" />
+    <!--高拍仪-(走驱动调用)-->
+    <DocScanner enable="0" cfg="..\Config\DeviceService\DocScannerConfig.xml" deps="SIU" />
+    <!--logitech摄像头-->
+    <CAM enable="0" alias="USBCam" cfg="..\Config\DeviceService\CAM30.xml" deps="SIU" />
+    <!--支票模块(走PTR协议)-->
+    <CHK enable="0" cfg="..\Config\DeviceService\CheckScannerConfig.xml" deps="SIU" />
+    <!--指纹仪-->
+    <FingerScanner enable="0" cfg="..\Config\DeviceService\FingerScan.xml" deps="SIU" />
+    <!--指静脉-->
+    <FingerveinExScaner enable="0" cfg="..\Config\DeviceService\FingerveinScaner.xml" deps="SIU" />
+    <FingerVein enable="0" cfg="..\Config\DeviceService\FingerVeinConfig.xml" deps="SIU" />
+    <!--身份证读取-->
+    <IDC enable="0" alias="IDReader" cfg="..\Config\DeviceService\IDReaderConfig.xml" deps="SIU" />
+    <!--支票-->
+    <IPM enable="0" cfg="..\Config\DeviceService\IPMConfig.xml" deps="SIU" />
+    <!--支票模块(走CHK协议)-->
+    <CHKXFS enable="0" cfg="..\Config\DeviceService\CHKConfig.xml" deps="SIU" />
+    <CDM enable="0" alias="CoinDispenser" cfg="..\Config\DeviceService\CoinDispenserConfig.xml" deps="SIU" />
+    <CIM enable="0" alias="CoinAcceptor" cfg="..\Config\DeviceService\CoinAcceptorConfig.xml" deps="SIU" />
+    <!--掌静脉-->
+    <PalmVein enable="0" cfg="..\Config\DeviceService\PalmVeinConfig.xml" deps="SIU" />
+  </DeviceManager>
+</Config>

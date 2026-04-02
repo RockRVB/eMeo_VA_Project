@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <NoCardTransConfig>
+    <!--;0 no support, 1 support-->
+    <Item key="SuppordNoCard" value="0" valueType="string" />
+    <!--0,1,2,4,5,6,8,9,F1,F2,F3,F4,F5,F6,F7,F8,ENTER,CANCEL,CLEAR,00,DOT-->
+    <Item key="NoCardKey" value="F8" valueType="string" />
+    <Item key="CardNumberEntryInBuffer" value="B" valueType="string" />
+    <Item key="CardNumerForNoCard" value="9999999999999999=00110000000000000000" valueType="string" />
+    <Item key="NextStateNo_A" value="" valueType="string" />
+    <Item key="NextStateNo_B" value="" valueType="string" />
+    <Item key="NextStateNo_C" value="" valueType="string" />
+    <Item key="NextStateNo_D" value="001" valueType="string" />
+    <Item key="NextStateNo_F" value="" valueType="string" />
+    <Item key="NextStateNo_G" value="" valueType="string" />
+    <Item key="NextStateNo_H" value="" valueType="string" />
+    <Item key="NextStateNo_I" value="" valueType="string" />
+    <Item key="NextStateNo_ENTER" value="" valueType="string" />
+    <Item key="NextStateNo_CANCEL" value="" valueType="string" />
+    <Item key="NextStateNo_CLEAR" value="" valueType="string" />
+    <Item key="NextStateNo_00" value="" valueType="string" />
+    <Item key="NextStateNo_BACKSPACE" value="" valueType="string" />
+    <Item key="NextStateNo_1" value="" valueType="string" />
+    <Item key="NextStateNo_2" value="" valueType="string" />
+    <Item key="NextStateNo_3" value="" valueType="string" />
+    <Item key="NextStateNo_4" value="" valueType="string" />
+    <Item key="NextStateNo_5" value="" valueType="string" />
+    <Item key="NextStateNo_6" value="" valueType="string" />
+    <Item key="NextStateNo_7" value="" valueType="string" />
+    <Item key="NextStateNo_8" value="" valueType="string" />
+    <Item key="NextStateNo_9" value="" valueType="string" />
+    <Item key="NextStateNo_0" value="" valueType="string" />
+    <Item key="NextStateNo_DOT" value="" valueType="string" />
+  </NoCardTransConfig>
+</Root>

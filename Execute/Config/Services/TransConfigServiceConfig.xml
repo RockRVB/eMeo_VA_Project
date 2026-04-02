@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<TransConfigServiceConfig>
+  <!-- 服务名 -->
+  <ServiceName name="TransConfigService" />
+  <!-- 不同语言环境下的流程信息配置文件配置
+		default：默认的流程信息配置文件 -->
+  <ConfigFile default="Config\VTMGeneralConfig.xml">
+	<item language="EN" file="Config\VTMGeneralConfigEN.xml"/>
+  </ConfigFile>
+</TransConfigServiceConfig>

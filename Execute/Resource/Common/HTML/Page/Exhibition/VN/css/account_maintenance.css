@@ -1,0 +1,20 @@
+/* select_card */
+.select_card .card_list .dirty.selected .card_type,
+.select_card .card_list .dirty.selected .card{
+	opacity: 0.4;
+}
+/* select_card */
+
+
+/* ebank_transaction */
+.ebank_transaction .option_list.selected .option{
+  opacity: 0.4;
+}
+/* ebank_transaction */
+
+
+/* completion */
+.completion .title-completion{
+  margin-top: 300px;
+}
+/* completion */

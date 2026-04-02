@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3F8B3A9A-DEA3-4BE4-84E6-321AEB77B14B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IBankProjectBusinessActivity</RootNamespace>
+    <AssemblyName>IBankProjectBusinessActivity</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Execute\Business\Activity\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Execute\Business\Activity\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>eCATAct.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="A4PrinterServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\A4PrinterServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ADServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\ADServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Attribute4ECAT">
+      <HintPath>..\..\Execute\BaseImplement\Attribute4ECAT.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BarCodeScannerDeviceProtocol">
+      <HintPath>..\..\Execute\Protocol\Device\BarCodeScannerDeviceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\..\Execute\GeneralService\BouncyCastle.Crypto.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BusinessActivityBaseImp">
+      <HintPath>..\..\Execute\BaseImplement\BusinessActivityBaseImp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AttributeVTM">
+      <HintPath>..\..\Execute\BaseImplement\AttributeVTM.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BusinessActivityFactoryBaseImp">
+      <HintPath>..\..\Execute\BaseImplement\BusinessActivityFactoryBaseImp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BusinessServiceBaseImp">
+      <HintPath>..\..\Execute\BaseImplement\BusinessServiceBaseImp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BusinessServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\BusinessServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CameraDeviceProtocol">
+      <HintPath>..\..\Execute\Protocol\Device\CameraDeviceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CardDispenserDeviceProtocol">
+      <HintPath>..\..\Execute\Protocol\Device\CardDispenserDeviceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CashAcceptorDeviceProtocol">
+      <HintPath>..\..\Execute\Protocol\Device\CashAcceptorDeviceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CheckDev, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e8bc019b4cbfeb49, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Execute\Business\Activity\CheckDev.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CheckDeviceServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\Device\CheckDeviceServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DataCacheServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\DataCacheServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DataFormatJSON">
+      <HintPath>..\..\Execute\RemoteService\DataFormatJSON.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DataFormatterServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\DataFormatterServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\DevServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DocPrinterDeviceProtocol">
+      <HintPath>..\..\Execute\Protocol\Device\DocPrinterDeviceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="eCATBusinessActivityBase">
+      <HintPath>..\..\Execute\BaseImplement\eCATBusinessActivityBase.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CardReaderDeviceProtocol">
+      <HintPath>..\..\Execute\Protocol\Device\CardReaderDeviceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CashDispenserDeviceProtocol">
+      <HintPath>..\..\Execute\Protocol\Device\CashDispenserDeviceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="eCATBusinessActivityXDCBase">
+      <HintPath>..\..\Execute\Business\XDC\Common\eCATBusinessActivityXDCBase.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="eCATBusinessMaintenanceActivityBase">
+      <HintPath>..\..\Execute\BaseImplement\eCATBusinessMaintenanceActivityBase.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="eCATBusinessServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\eCATBusinessServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="eCATProtocol">
+      <HintPath>..\..\Execute\Protocol\eCATProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="EMVServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\EMVServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="EPPKeypadDeviceProtocol">
+      <HintPath>..\..\Execute\Protocol\Device\EPPKeypadDeviceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FaceRecognitionService4SmartKioskProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\FaceRecognitionService4SmartKioskProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FeedChannelDeviceProtocol">
+      <HintPath>..\..\Execute\Protocol\Device\FeedChannelDeviceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FeelViewServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\FeelViewServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FingerDeviceProtocol">
+      <HintPath>..\..\Execute\Protocol\Device\FingerDeviceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FingerServerRequestService">
+      <HintPath>..\..\Execute\Business\Service\FingerServerRequestService.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FingerServerRequestServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\FingerServerRequestServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FingerveinExDeviceProtocol">
+      <HintPath>..\..\Execute\Protocol\Device\FingerveinExDeviceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FingerveinServerRequestService">
+      <HintPath>..\..\Execute\Business\Service\FingerveinServerRequestService.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FingerveinServerRequestServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\FingerveinServerRequestServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FlashDeviceProtocol">
+      <HintPath>..\..\Execute\Protocol\Device\FlashDeviceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HelperService">
+      <HintPath>..\..\Execute\GeneralService\HelperService.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IBankProjectBusinessActivityBase">
+      <HintPath>..\..\Execute\BaseImplement\IBankProjectBusinessActivityBase.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FaceRecognizeServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\FaceRecognizeServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IBankProjectBusinessService">
+      <HintPath>..\..\Execute\Business\Service\IBankProjectBusinessService.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IBankProjectBusinessServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\IBankProjectBusinessServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IDCardReaderProtocol">
+      <HintPath>..\..\Execute\Protocol\Device\IDCardReaderProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="InputOrSelect, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e8bc019b4cbfeb49, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Execute\Business\Activity\InputOrSelect.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Interop.BioneFPAPILib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>..\..\Execute\COMInterop\Interop.BioneFPAPILib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="LogProcessorService">
+      <HintPath>..\..\Execute\GeneralService\LogProcessorService.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MediaPlatformServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\MediaPlatformServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NetworkServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\NetworkServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\Execute\GeneralService\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PrintReceipt, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e8bc019b4cbfeb49, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Execute\Business\Activity\PrintReceipt.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ReceiptPrinterDeviceProtocol">
+      <HintPath>..\..\Execute\Protocol\Device\ReceiptPrinterDeviceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RemoteServiceModel">
+      <HintPath>..\..\Execute\RemoteService\RemoteServiceModel.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RemoteTellerServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\RemoteTellerServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RequestTrans, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e8bc019b4cbfeb49, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Execute\Business\Activity\RequestTrans.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ResourceManagerProtocol">
+      <HintPath>..\..\Execute\Protocol\ResourceManagerProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="OCRServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\OCRServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RestfulServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\RestfulServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ReversalServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\ReversalServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SensorsDeviceProtocol">
+      <HintPath>..\..\Execute\Protocol\Device\SensorsDeviceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SessionRecordServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\SessionRecordServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="StringFormatter">
+      <HintPath>..\..\Execute\GeneralService\StringFormatter.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TwinScreen, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e8bc019b4cbfeb49, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Execute\Business\Activity\TwinScreen.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UIServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\UIServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="USBCameraServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\USBCameraServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VideoServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\StandardFeature\VideoServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VTMBusinessActivity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e8bc019b4cbfeb49, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Execute\Business\Activity\VTMBusinessActivity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VTMBusinessActivityBase">
+      <HintPath>..\..\Execute\BaseImplement\VTMBusinessActivityBase.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VTMBusinessServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\VTMBusinessServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VTMHelperService">
+      <HintPath>..\..\Execute\GeneralService\VTMHelperService.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VTMModelLibrary">
+      <HintPath>..\..\Execute\Business\ActFactory\VTMModelLibrary.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="XDCBusinessServiceProtocol">
+      <HintPath>..\..\Execute\Protocol\XDC\XDCBusinessServiceProtocol.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\VAB_CreateSessionIDNumber.cs" />
+    <Compile Include="Common\WriteEJLog.cs" />
+    <Compile Include="DisorderCardDispenser\MoveCard.cs" />
+    <Compile Include="DisorderCardDispenser\CheckAddCardCondition.cs" />
+    <Compile Include="DisorderCardDispenser\DepositCard.cs" />
+    <Compile Include="DisorderCardDispenser\DisorderCardReadRawDataProj.cs" />
+    <Compile Include="DisorderCardDispenser\RequestTransViaRestfulSEM.cs" />
+    <Compile Include="DisorderCardDispenser\SlotDispenseCard.cs" />
+    <Compile Include="DisorderCardDispenser\UpdateDisorderCardInfo.cs" />
+    <Compile Include="Exhibition\CRDPrintReceipt.cs" />
+    <Compile Include="Exhibition\CRDPrintReceiptImg.cs" />
+    <Compile Include="Exhibition\SetAddCardFailedTimes4Exhibition.cs" />
+    <Compile Include="Exhibition\FormGetHwnd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Exhibition\FormGetHwnd.Designer.cs">
+      <DependentUpon>FormGetHwnd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Exhibition\ParseQRCodeData4Exhibition.cs" />
+    <Compile Include="Exhibition\ScanDocOperation4Exhibition.cs" />
+    <Compile Include="Face\FaceCheckResultFB20.cs" />
+    <Compile Include="Face\FaceCheckResultFB.cs" />
+    <Compile Include="Face\FaceIdentifyResultFB20.cs" />
+    <Compile Include="Face\FaceIdentifyResultFB.cs" />
+    <Compile Include="Face\FaceImageQualityResultFB.cs" />
+    <Compile Include="Face\FaceRegisterResultFB.cs" />
+    <Compile Include="FBLoginResult.cs" />
+    <Compile Include="Finger\FingerprintCreateTemplateFB.cs" />
+    <Compile Include="Finger\FingerprintDeleteResultFB.cs" />
+    <Compile Include="Finger\FingerprintDevice.cs" />
+    <Compile Include="Finger\FingerprintMatchResultFB20.cs" />
+    <Compile Include="Finger\FingerprintMatchResultFB.cs" />
+    <Compile Include="Finger\FingerprintRegisterResultFB.cs" />
+    <Compile Include="Finger\FingerprintScanFB.cs" />
+    <Compile Include="Finger\FingerveinArg.cs" />
+    <Compile Include="Finger\FingerveinCreateTemplateFB.cs" />
+    <Compile Include="Finger\FingerveinDeleteAllResultFB.cs" />
+    <Compile Include="Finger\FingerveinDevice.cs" />
+    <Compile Include="Finger\FingerveinDLLFunc.cs" />
+    <Compile Include="Finger\FingerveinMatchResultFB20.cs" />
+    <Compile Include="Finger\FingerveinMatchResultFB.cs" />
+    <Compile Include="Finger\FingerveinDeleteResultFB.cs" />
+    <Compile Include="Finger\FingerveinRegisterResultFB.cs" />
+    <Compile Include="Finger\FingerveinScanFB.cs" />
+    <Compile Include="GetCustomerInfoResultFB20.cs" />
+    <Compile Include="GetCustomerInfoResultFB.cs" />
+    <Compile Include="GoXDCMainMenu.cs" />
+    <Compile Include="HandleSessionData.cs" />
+    <Compile Include="ConfirmSignInfo4Html.cs" />
+    <Compile Include="Exhibition\BusinessActivityHttpGet.cs" />
+    <Compile Include="Exhibition\BusinessActivityPDFView.cs" />
+    <Compile Include="Exhibition\BusinessActivityPrintHtml.cs" />
+    <Compile Include="Exhibition\CRDDispenseCardSuccess.cs" />
+    <Compile Include="Exhibition\CRDReturnCard.cs" />
+    <Compile Include="Exhibition\DispenseCard4Exhibition.cs" />
+    <Compile Include="Exhibition\FaceRecognition.cs" />
+    <Compile Include="Exhibition\GenerateDitCarForm4Exhibition.cs" />
+    <Compile Include="Exhibition\GetDevStatusEx4Exhibition.cs" />
+    <Compile Include="Exhibition\GetInfoByID4Exhibition.cs" />
+    <Compile Include="Exhibition\InputIDNum4Exhibition.cs" />
+    <Compile Include="Exhibition\InputInfoMess.cs" />
+    <Compile Include="Exhibition\InputPassportInfoMess.cs" />
+    <Compile Include="Exhibition\PDFViewHelper.cs" />
+    <Compile Include="Exhibition\RestoreSavedAction.cs" />
+    <Compile Include="Exhibition\ReturnCard.cs" />
+    <Compile Include="Exhibition\ReviewInfo4Exhibition.cs" />
+    <Compile Include="Exhibition\ScanIDCard4Exhibition.cs" />
+    <Compile Include="Exhibition\SelectCardType.cs" />
+    <Compile Include="Exhibition\SendRequest.cs" />
+    <Compile Include="Exhibition\SendState.cs" />
+    <Compile Include="Exhibition\SetFormData.cs" />
+    <Compile Include="Exhibition\SetIdentityData.cs" />
+    <Compile Include="Exhibition\SetIDInfo4Exhibition.cs" />
+    <Compile Include="Exhibition\SetIdTestData.cs" />
+    <Compile Include="Exhibition\SetPassprotFormData.cs" />
+    <Compile Include="Exhibition\TakePhoto.cs" />
+    <Compile Include="Exhibition\UpdateFilebyFTP.cs" />
+    <Compile Include="Face\CheckFaceImageQuality.cs" />
+    <Compile Include="Face\InputFaceRegisterInfo.cs" />
+    <Compile Include="Face\JsonExtension.cs" />
+    <Compile Include="FillFormPassport.cs" />
+    <Compile Include="Finger\ShowInfoToPage.cs" />
+    <Compile Include="Finger\InputCifToMatch.cs" />
+    <Compile Include="Finger\InputFingerInfoToRegister.cs" />
+    <Compile Include="GenerateDebitCardForm.cs" />
+    <Compile Include="BusinessActivityDispenseCashEx.cs" />
+    <Compile Include="Face\FaceCaptureImage.cs" />
+    <Compile Include="Face\FaceIdentify.cs" />
+    <Compile Include="Face\FaceIdentifyShowResult.cs" />
+    <Compile Include="Face\FaceRegister.cs" />
+    <Compile Include="ImgProc.cs" />
+    <Compile Include="InputIdNumberFB.cs" />
+    <Compile Include="LocalFace\FaceMatching.cs" />
+    <Compile Include="LocalFace\FaceRecognize.cs" />
+    <Compile Include="LocalFace\FacialRecognition.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TwinScreen\BusinessActivityLocalTotalsEx.cs" />
+    <Compile Include="TwinScreen\DisorderCardModule\ClearDisorderCard.cs" />
+    <Compile Include="TwinScreen\DisorderCardModule\DepositCardToSlot.cs" />
+    <Compile Include="TwinScreen\DisorderCardModule\DisorderCardAdd.cs" />
+    <Compile Include="TwinScreen\DisorderCardModule\PrintTotalForCardUnit.cs" />
+    <Compile Include="UserLoginFB.cs" />
+    <Compile Include="VTMCheckCardState.cs" />
+    <Compile Include="VTMInputWithdrawAmount.cs" />
+    <Compile Include="VTMShowBalance.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="eCATAct.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

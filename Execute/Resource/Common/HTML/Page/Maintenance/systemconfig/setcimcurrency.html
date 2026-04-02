@@ -1,0 +1,105 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>设置存款面额</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/maintenance/cn.css" />
+<script src="../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../js/jquery-ui.min.js"></script>
+<script src="../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../js/maintenance/common/global.js"></script>
+<script src="../../../js/maintenance/component/components.js"></script>
+<script src="../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../js/maintenance/ui/maintenance/systemconfig/setcimcurrency.js"></script>
+</head>
+
+<body>
+<!--界面容器-->
+<div class="wrapper set-cim-currency">
+	<div class="g-margin-wrapper"> 
+		<!--表格控件-->
+		<div class="type-table" type="TABLE" id="TABLE_1"> 
+			<!--翻页按钮-->
+			<div class="type-table-paging">
+				<div class="middle-outer">
+					<div class="middle-inner">
+						<button class="button-page" mark="prev" dataToSend="78" id="prev"><span class="tip"></span> <span class="button-text">▲</span></button>
+						<button class="button-page" mark="next"><span class="tip"></span> <span class="button-text">▼</span></button>
+					</div>
+				</div>
+			</div>
+			<div class="type-table-container setcimcurrency-table-width">
+				<table>
+					<thead>
+						<tr>
+							<th><span id="STATIC_1" ids="IDS_SetCIMCurrencyTitleID">序号</span></th>
+							<th><span id="STATIC_2" ids="IDS_SetCIMCurrencyTitleName">币种</span></th>
+							<th><span id="STATIC_3" ids="IDS_SetCIMCurrencyTitleNote">面额</span></th>
+							<th><span id="STATIC_4" ids="IDS_SetCIMCurrencyTitleVersion">版本</span></th>
+							<th><span id="STATIC_5" ids="IDS_SetCIMCurrencyTitleEnable">是否启用</span></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><span id="STATIC_1_1" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_1_2" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_1_3" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_1_4" type="STATIC_TXT"></span></td>
+							<td><input id="CheckboxGroup_1_5" name="CheckboxGroup" type="checkbox"></td>
+						</tr>
+						<tr>
+							<td><span id="STATIC_2_1" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_2_2" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_2_3" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_2_4" type="STATIC_TXT"></span></td>
+							<td><input id="CheckboxGroup_2_5" name="CheckboxGroup" type="checkbox"></td>
+						</tr>
+						<tr>
+							<td><span id="STATIC_3_1" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_3_2" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_3_3" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_3_4" type="STATIC_TXT"></span></td>
+							<td><input id="CheckboxGroup_3_5" name="CheckboxGroup" type="checkbox"></td>
+						</tr>
+						<tr>
+							<td><span id="STATIC_4_1" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_4_2" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_4_3" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_4_4" type="STATIC_TXT"></span></td>
+							<td><input id="CheckboxGroup_4_5" name="CheckboxGroup" type="checkbox"></td>
+						</tr>
+						<tr>
+							<td><span id="STATIC_5_1" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_5_2" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_5_3" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_5_4" type="STATIC_TXT"></span></td>
+							<td><input id="CheckboxGroup_5_5" name="CheckboxGroup" type="checkbox"></td>
+						</tr>
+						<tr>
+							<td><span id="STATIC_6_1" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_6_2" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_6_3" type="STATIC_TXT"></span></td>
+							<td><span id="STATIC_6_4" type="STATIC_TXT"></span></td>
+							<td><input id="CheckboxGroup_6_5" name="CheckboxGroup" type="checkbox"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!--表格控件END--> 
+		<!--提示文字和按钮-->
+		<div class="set-cim-currency-zone"> 
+			<!--提示文字-->
+			<span id="STATIC_PROMPT" type="STATIC_TXT" class="g-prompt-text float-left"></span>
+			<button id="FUN_OK" type="button" class="button-common float-right"> <span class="tip"></span> <span class="button-text" ids="IDS_SetCIMCurrencyConfirmButton">确定</span> </button>
+		</div>
+	</div>
+</div>
+</body>
+</html>

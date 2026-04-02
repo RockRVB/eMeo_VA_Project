@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="../../css/default.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/Button.css" />
+	<SCRIPT type="text/javascript" src="../../js/util.js"></SCRIPT>
+</head>
+
+<body>
+	<header>
+		<div id="logo">
+			welcome to use
+		</div>
+		<div id="showTime"></div>
+	</header>
+<!--
+    <div id="headerNav">
+        <div class="menu" id="MainMenu" tag="OnMainMenu" type="Button" >menu</div>
+        <div class="exit" id="Cancel" tag="OnCancel" type="Button" >exit</div>
+    </div>
+-->
+	<div class="content">
+		<div class="content__container">
+			Please confirm your cash deposit
+		</div>
+	</div>
+	<div id="btn_container" class="operate">
+		<ul>
+			<li class="exit" id="F8" tag="F8" type="Button">Cancel</li>
+			<li class="yes" id="F6" tag="F6" type="Button" visible="{Binding add_more_Visible}">Add more notes</li>
+			<li class="yes" id="F4" tag="F4" type="Button">Continue</li>
+		</ul>
+	</div>
+	<div id="t01" class="b_table">
+		<table>
+			<thead>
+				<tr>
+					<th>Bills</th>
+					<th>Qty</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+
+			<!--fill begin-->
+		 
+		 <div>
+		 <tr type="Button" id="DENO1_V" visible="{Binding DENO1_Visible}">
+			<td><span type="text" id="depositdetail11deno"></span></td>
+			<td><span type="text" id="depositdetail12count"></span></td>
+			<td><span type="text" id="depositdetail13amount"></span></td>
+		 </tr>
+		 </div>
+		 <div>
+		 <tr type="Button" id="DENO2_V" visible="{Binding DENO2_Visible}">
+			<td><span type="text" id="depositdetail21deno"></span></td>
+			<td><span type="text" id="depositdetail22count"></span></td>
+			<td><span type="text" id="depositdetail23amount"></span></td>
+		 </tr>
+		 </div>
+		 <div>
+		 <tr type="Button" id="DENO3" visible="{Binding DENO3_Visible}">
+			<td><span type="text" id="depositdetail31deno"></span></td>
+			<td><span type="text" id="depositdetail32count"></span></td>
+			<td><span type="text" id="depositdetail33amount"></span></td>
+		 </tr>
+		 </div>
+		 
+		 <div>
+		 <tr type="Button" id="DENO4" visible="{Binding DENO4_Visible}">
+			<td><span type="text" id="depositdetail41deno"></span></td>
+			<td><span type="text" id="depositdetail42count"></span></td>
+			<td><span type="text" id="depositdetail43amount"></span></td>
+		 </tr>
+		 </div>		 
+		 
+		<tr>
+			<div type="Button" id="TOTAL_V">
+			<th colspan="3">
+				TOTAL:&nbsp;￥<span type="text" id="TOTAL_amount"></span>
+			</th>
+		</tr>
+		<!--fill end-->
+
+		</table>
+	</div>
+
+	<script>
+		function displayDepositResult(){
+			let cashResultData = "";
+			if(window.chrome){
+				cashResultData = window.chrome.webview.hostObjects.sync.eCAT.GetData('core_CashDepositResult');	
+				}else{
+					cashResultData = window.external.GetData('core_CashDepositResult');
+				}
+				
+			//CNY|100,5;CNY|50,2;
+			console.log("cashResultData is :"+ cashResultData);
+			if(cashResultData){
+				let cashResultDataArray = cashResultData.split(';');
+				let newArray = [];
+
+				let currency = "";
+				let deno = 0;
+				let count = 0;
+				let totalAmount = 0;
+				cashResultDataArray.map(function(item){
+					if(item != '' && item != undefined){
+						newArray.push(item);
+					}
+				});
+				for(let i=0;i<newArray.length;i++){
+					console.log(newArray[i]);
+					let array = newArray[i].split(',');
+					count = parseInt(array[1]);
+					let curdenoArray = array[0].split('|');
+					currency = curdenoArray[0];
+					deno = parseInt(curdenoArray[1]);
+					let amount = deno * count;
+					totalAmount += amount;
+					let id = i + 1;
+					id = "depositdetail"+id;
+					console.log(deno);
+					console.log(count);				
+					document.getElementById(id+"1deno").innerHTML = deno;
+					document.getElementById(id+"2count").innerHTML = count;
+					document.getElementById(id+"3amount").innerHTML = amount;
+				}
+
+				document.getElementById("TOTAL_amount").innerHTML = totalAmount;
+			}			
+		}
+		
+		displayDepositResult();
+			
+		</script>
+</body>
+
+</html>

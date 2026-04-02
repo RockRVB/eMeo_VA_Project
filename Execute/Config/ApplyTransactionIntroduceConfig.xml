@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApplyTransactionIntroduces>
+  <TransactionTntroduces name="IDS_ApplyTransaction_WimInterest" description="IDS_ApplyTransaction_WimInterest_Desc" comment="加息赢业务介绍" tips="IDS_ApplyTransaction_WimInterest_Tips"  >
+  </TransactionTntroduces>
+</ApplyTransactionIntroduces>

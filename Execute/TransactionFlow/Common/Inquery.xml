@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="Inquery">
+  <Head type="GRGWorkflow" author="wjw" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for powerup" />
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start">
+      <Forward event="OnConfirm" targetID="ID_GetDevStatusForRPTR" />
+    </Start>
+
+    <GetDevStatus ID="ID_GetDevStatusForRPTR" comment="Get device status" devType="RPTR">
+      <Forward event="OnNormal" targetID="ID_Login"/>
+      <Forward event="OnWarn" targetID="ID_Login"/>
+      <Forward event="OnFail" targetID="ID_CheckRPTRStatus"/>
+    </GetDevStatus>
+
+    <VTMSelectFunction ID="ID_CheckRPTRStatus" UI="UI_CheckRPTRStatusResult" timeout="30000">
+      <Forward event="OnConfirm" targetID="ID_Login" />
+      <Forward event="OnNo" targetID="ID_InvokeCloseTransWorkflow" />
+    </VTMSelectFunction>
+
+
+    <InvokeWorkflow ID="ID_Login" name="Login" comment="insert card and input pin">
+      <Forward event="OnConfirm" targetID="ID_CheckCardType"/>
+    </InvokeWorkflow>
+
+    <SelectFunction ID="ID_SelectAccountType" UI="UI_SelectAccountType" comment="Select account type" saveBuffer="{core_AccountType,1}" keyValueMap="[F1,00][F2,10][F3,20][F4,30]">
+      <Forward event="OnCreditAccount" targetID="ID_CheckCardType"/>
+      <Forward event="OnDefaultAccount" targetID="ID_CheckCardType"/>
+      <Forward event="OnCheckAccount" targetID="ID_CheckCardType"/>
+      <Forward event="OnSavingAccount" targetID="ID_CheckCardType"/>
+    </SelectFunction>
+
+    <CheckCardType ID="ID_CheckCardType" cardType="1|2|3|4|5,9" comment="Check card type">
+      <Forward event="OnMagneticType1" targetID="ID_InquiryStd"/>
+      <Forward event="OnMagneticType2" targetID="ID_InquiryStd"/>
+      <Forward event="OnICType1" targetID="ID_ICGetData"/>
+      <Forward event="OnICType2" targetID="ID_ICGetData"/>
+      <Forward event="OnPureEC1" targetID="ID_ICGetData"/>
+      <Forward event="OnPureEC2" targetID="ID_ICGetData"/>
+    </CheckCardType>
+
+    <InvokeWorkflow ID="ID_InquiryStd" name="InquiryStd" comment="insert card and input pin">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+
+    <InvokeWorkflow ID="ID_ICGetData" name="ICInquiry" comment="insert card and input pin">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+
+    <!-- 		<WatiforClick ID="ID_ChooseBusiness" UI="UI_ChooseBusiness">
+		<Forward event="OnConfirm" targetID="ID_ReadCard" />
+    </WatiforClick>
+    <WatiforClick ID="ID_ReadCard" UI="UI_ReadCard">
+		<Forward event="OnConfirm" targetID="ID_InputPin" />
+    </WatiforClick>
+    <WatiforClick ID="ID_InputPin" UI="UI_InputPin">
+		<Forward event="OnConfirm" targetID="ID_AssetDetail" />
+    </WatiforClick>
+    <WatiforClick ID="ID_AssetDetail" UI="UI_AssetDetail">
+		<Forward event="OnConfirm" targetID="ID_AccountDetail" />
+    </WatiforClick>
+    <WatiforClick ID="ID_AccountDetail" UI="UI_AccountDetail">
+		<Forward event="OnConfirm" targetID="ID_AskBusiness" />
+    </WatiforClick>
+    <WatiforClick ID="ID_AskBusiness" UI="UI_AskBusiness">
+		<Forward event="OnConfirm" targetID="ID_RejectCard" />
+    </WatiforClick>
+    <WatiforClick ID="ID_RejectCard" UI="UI_RejectCard">
+		<Forward event="OnConfirm" targetID="ID_ReturnHome" />
+    </WatiforClick> -->
+
+    <!--     <InvokeWF ID="ID_ReturnHome" name="UI_main" comment="Invoke main workflow" syn="0">
+		<Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWF> -->
+    <End ID="9999" comment="End">
+    </End>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnWorkflowTerminated" targetID="ID_ReturnHome"/>
+  </DefaultForward>
+</Workflow>

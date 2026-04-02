@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!--  Device Fault Status Information Field
+		*  When the status Description is '8' - Device Fault. 
+		-->
+	<Data>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Error Severity.  Standard code.-->
+		<Item key="e3" value="[Msg.Solicited.ConfigurationID.DID]" size="9" restriction="Mandatory"/>
+		<Item key="e3" value="[Msg.Solicited.ConfigurationID.Status]" size="9" restriction="Mandatory"/>
+		<Item key="GS" value="[GS]" size="1" restriction="Mandatory"/>
+		<Item key="e3" value="[Msg.Solicited.HardwareConfiguration.DID]" size="9" restriction="Mandatory"/>
+		<Item key="e3" value="[Msg.Solicited.HardwareConfiguration.Status.Standard]" size="8" restriction="Mandatory"/>
+		<Item key="e3" value="[Msg.Solicited.HardwareConfiguration.Status.Expanded]" size="8" restriction="[Options.F2.ExpandedHardwareConfigurationStatus]"/>
+		<Item key="e3" value="[Msg.Solicited.HardwareConfiguration.Status.Double]" size="7" restriction="[Options.F3.DoubleExpandedHardwareConfigurationStatus]"/>
+		<Item key="e3" value="[Msg.Solicited.HardwareConfiguration.Status.Additional.CashAcceptor]" size="7" restriction="[Options.F3.AdditionalHardwareConfigurationData],[OptionCtrl.Configuration.CashAcceptor]"/>
+		<Item key="GS" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.Protocol912]"/>
+		<Item key="e3" value="[Msg.Solicited.CheckPoint.DID]" size="9" restriction="[OptionCtrl.Configuration.Protocol912]"/>
+		<Item key="e3" value="[Msg.Solicited.CheckPoint.Status]" size="9" restriction="[OptionCtrl.Configuration.Protocol912]"/>
+		<Item key="GS" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.Protocol912]"/>
+		<Item key="e3" value="[Msg.Solicited.Cassette.DID]" size="9" restriction="[OptionCtrl.Configuration.Protocol912]"/>
+		<Item key="e3" value="[Msg.Solicited.Cassette.Status]" size="9" restriction="[OptionCtrl.Configuration.Protocol912]"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.Configuration.CoinDispenser]"/>
+		<Item key="Amount of Coins Dispensed" value="[Msg.Solicited.AmountOfCoinsDispensed]" size="3" restriction="[OptionCtrl.Configuration.CoinDispenser]"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="[Options.F2.MDSStatusToNetwork]"/>
+		<Item key="[MDS_1]" value="[Device.{0}.DeviceID]" size="1" restriction="[Options.F2.MDSStatusToNetwork]"/>
+		<Item key="[MDS_2]" value="[Device.{0}.MDS]" size="1" restriction="[Options.F2.MDSStatusToNetwork]"/>
+		<Item key="Buffers.Group" value="[Msg.Solicited.BufferGroup]" size="var" restriction="Optional"/>
+		<!-- Rollover Count -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[Options.F1.AppendRolloverCounts]"/>
+		<Item key="r2" value="[Msg.RolloverCount.Position1]" size="5" restriction="[Options.F1.AppendRolloverCounts]"/>
+		<Item key="r2" value="[Msg.RolloverCount.Position2]" size="5" restriction="[Options.F1.AppendRolloverCounts]"/>
+		<Item key="r2" value="[Msg.RolloverCount.Position3]" size="5" restriction="[Options.F1.AppendRolloverCounts]"/>
+		<Item key="r2" value="[Msg.RolloverCount.Position4]" size="5" restriction="[Options.F1.AppendRolloverCounts]"/>
+		<Item key="r2" value="[Msg.RolloverCount.Position5]" size="5" restriction="[Options.F1.AppendRolloverCounts],[OptionCtrl.Configuration.CoinDispenser],[OptionCtrl.Configuration.AFD5HighFeature]"/>
+	</Data>
+</Root>

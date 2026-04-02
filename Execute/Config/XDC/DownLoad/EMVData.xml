@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!--  
+		* Configuration Parameters from host.
+	-->
+	<ParameterCtr>
+		<Item key="SMRA" value="000" default="000" valueType="string" description="Supply Mode, Ready Status And Amount Buffer Length."/>
+		<Item key="LUNO" value="000" default="000" valueType="string" description="Logical Unit Number."/>
+		<Item key="AutoVoice" value="001" default="001" valueType="string" description="Auto Voice. Automatic voice feature. to fit with one, to off or on. The default setting is on."/>
+		<!--  (Camera service options).-->
+		<Item key="DateFormat" value="0" default="0" valueType="int" description="Format:to one of: MMDD(YY),  DDMM(YY), YYMMDD or YYDDMM"/>
+		<!--  New line occurs if limit is exceeded.(Range 001-040) -->
+		<Item key="RollWidth" value="025" default="025" valueType="string" description="Define the number of columns used in receipt and journal print screens."/>
+		<Item key="LeftPrintColumn" value="008" default="008" valueType="string" description="Define the left-most column used in receipt and journal print screen. (Rang 001-040)."/>
+		<!-- [1] ISO format. [2] VISA format. [3] Auto search backwards.[4] Auto search forwards. The default is 001- ISO format -->
+		<Item key="Track1Format" value="001" default="001" valueType="string" description="Select Method of extracting the name and title from track 1 data on the card."/>
+		<Item key="DieboldVandalGuard" value="001" default="001" valueType="string" description="No vandal gurad errors are ever reported."/>
+		<!-- The default is not to transmit these status.-->
+		<Item key="SpecifyCmdReject" value="000" default="000" valueType="string" description="Whether the terminal transmit specific command reject options."/>
+		<!-- The default is not to append information.-->
+		<Item key="TransStatusInfo" value="000" default="000" valueType="string" description="Whether the transaction status information from last command should be appended to transaction request messages."/>
+		<!-- Maximum time that journal printer backup is allowed before all jouranlling is discontinued.-->
+		<Item key="JPBackupTime" value="000" default="000" valueType="string" description="Maximum time that journal printer backup is allowed before all jouranlling is discontinued."/>
+		<!-- Maximum number of print operations to be buffered while the journal printer is fatal -->
+		<Item key="JPBackupPrintOp" value="000" default="000" valueType="string" description="Journa Printer Backup print operations."/>
+		<!-- Whether envelope dispenser status messages are sent, remove status indicators are set and the remote relay is activeated.
+	  * 000 - Do not send envelope dispenser status messages. set the remote status indicators or activate the remote relay.
+	  * 001 - Send envelope dispenser status messages.
+      * 002 - Set the remote status indicators and activate the remote relay.
+      * 003 - Send envelope dispenser status messages, set the remote status indicators and activate the remote relay.
+	 -->
+		<Item key="EnvelopeDisStatus" value="000" default="000" valueType="string" description="Envelope Dispenser Status."/>
+		<!-- Allows the Enhanced T1/Sensor Status Unsolicited Message to be send from the terminal when tampering is suspended on device not supported in existing T1/Sensor status unsolicited message..
+	  * 000 - Do not send the Enhanced T1/Sensor Status USM. Continue to send the existing T1/Sensors Status USM.
+	  * 001 - Send  the Enhanced T1/Sensor Status USM. Continue to send the existing T1/Sensors Status USM.
+	 -->
+		<Item key="EnSensorStatusUSM" value="000" default="000" valueType="string" description="Send Enhanced/T1 Sensor Status Unsolicited Message."/>
+		<!-- The flash rate can range from 4.0 HZ to continuously on. The default is 4.0 Hz. -->
+		<Item key="MediaIndiFlashRate" value="040" default="040" valueType="string" description="Media Entry/Exit Indicators Flash Rate. "/>
+		<!-- Determine when the remote relay is active. The default value is 000.
+	  * 000 - Remote relay is active when a deivce condition that needs operation intervention occurs and during Off-Line mode.
+	  * 001 - Remote relay is only active when the terminal is in service.
+	 -->
+		<Item key="RemoteRelay" value="000" default="000" valueType="string" description="Remote Relay."/>
+		<!-- Simulate supervisor mode entry/exit after safe door activity. The default value is 000.
+	  * 000 - Simulate Supervisor mode entry/exit(default) Cash Dispenser is cleared when the safe door is closed. And again switch to In-Service mode.
+	  * 001 - Do not. No clear is issued when the safe door is closed.
+	 -->
+		<Item key="SimulateSuperMode" value="000" default="000" valueType="string" description="Simulate Supervisor Mode Entry/Exit."/>
+		<!-- Control the range of the message coordination number(MCN).. The default value is 000.
+	  * 000 - 31H to 3FH (default).
+	  * 001 - 31H to 7EH
+	  * Any other value will keep the previous MCN range. 
+	 -->
+		<Item key="MCNRange" value="000" default="000" valueType="string" description="MCN Range."/>
+		<!-- Report Dual Mode EJ and hardcopy bakcup unsolicited messages.
+	  * 000 - Do not report either dual mode EJ or hardcopy backup USM (default).
+	  * 001 - Report only dual mode EJ unsolicited error message to host with USSM.
+	  * 002 - Report both dual mode EJ and hardcopy backup USM to the host.
+	 -->
+		<Item key="DualModeUSM" value="000" default="000" valueType="string" description="Report Dual Mode EJ and Hardcopy Backup USM."/>
+		<!-- Control whether multiple or standard EJ backups are allowed..
+	  * 000 - Allow standard EJ backup. (default).
+	  * 001 - Allow multiple EJ backup.
+	 -->
+		<Item key="EnEJBackup" value="000" default="000" valueType="string" description="Enhanced EJ backup."/>
+		<!-- Allows the first 22 characters of data from card track 2 to be automatically printed to journal printer or an eletronic journal when a card is read.
+	  * 000 - Do not print data on journal. (default).
+	  * 001 - Print data on journal.
+	 -->
+		<Item key="PrintTrack2OnJP" value="000" default="000" valueType="string" description="Print Track 2 to journal."/>
+		<!-- Bunch Note Acceptor(BNA) is present and determine whether vaulted notes counts are written to the journal printer. Default value is 000..
+	  * 000 - Do not journal vaulted notes count. (default).
+	  * 001 - Journal vaulted notes count.
+	 -->
+		<Item key="BNAJPVaultNoteCount" value="000" default="000" valueType="string" description="BNA Journal Vaulted Notes Count."/>
+		<!-- Allows the inclusion of BNA transaction in Transaction Request Message, and configure note report and the retract option. Default value is 000..	 
+	  * 000 - Do not include transaction counts; accept up to 90 notes; do not retract notes.(default).
+	  * 001 - Includes transaction counts, accept up to 90 notes; do not retract notes.
+	  * 002 - Do not include transaction counts, accept more than 90 notes; do not retract notes.
+
+      * 003 - Include transaction counts, accept more than 90 notes; do not retract notes.
+	  * 004 - Do not include transaction counts; accept up to 90 notes; retract notes.
+	  * 005 - Include transaction counts; accept up to 90 notes; retract notes.
+
+	  * 006 - Do not Include transaction counts, accept more than 90 notes; retract notes left by customer.
+	  * 007 - Include transaction counts, accept more than 90 notes; retract notes left by customer.
+      * 008 - Use extended message format.
+
+	  * 009 - Use extended message format.include transaction counts
+	  * 010 - Use extended message format. accept more than 90 notes.
+	  * 011 - Use extended message format. include transaction counts; accept more than 90 notes.
+
+	  * 012 - Use extended message format. retract notes left by customer.
+	  * 013 - Use extended message format; include transaction counts. retract notes left by customer.
+	  * 014 - Use extended message format; accept more than 90 notes; retract notes left by customer.
+
+	  * 015 - Use extended message format; include transaction counts; accept more than 90 notes; retract notes left by customer.
+	 -->
+		<Item key="BNAMsgSetting" value="000" default="000" valueType="string" description="BNA Message Settings."/>
+		<!-- Set the level of ECD(Enhanced card device) Jitter to be applied during card entry/exit. Default value is 000..
+	  * 000 - No ECD Jitter. (default).
+	  * 001 - Standard ECD Jitter.
+	  * 002 - Maximum ECD Jitter (but slower read/write).
+	 -->
+		<Item key="EnCardDevSecurity" value="000" default="000" valueType="string" description="Enhanced Card Device Security."/>
+		<!-- Enabe EMV Smart cards to be accepted. Default value is 000..
+	  * 000 - No ECD Jitter. (default).
+	  * 001 - Standard ECD Jitter.
+	 -->
+		<Item key="EmvSmartCard" value="000" default="000" valueType="string" description="Enhanced Card Device Security."/>
+	</ParameterCtr>
+	<!--  
+	* Timer Number
+	-->
+	<TimerNumber>
+		<Item key="00" value="000" default="000" valueType="string" description="Keyboard entry time-out."/>
+		<Item key="01" value="000" default="000" valueType="string" description="Cardholder response to time-out screen time-out."/>
+		<Item key="02" value="000" default="000" valueType="string" description="Close state screen time-out."/>
+		<Item key="03" value="000" default="000" valueType="string" description="Communications response time-out."/>
+		<Item key="04" value="000" default="000" valueType="string" description="Cheque/envelope insertion time-out"/>
+		<Item key="05" value="000" default="000" valueType="string" description="Cash retract time-out."/>
+		<Item key="06" value="000" default="000" valueType="string" description="Communication connection sample intervalt."/>
+		<Item key="07" value="000" default="000" valueType="string" description="Present time-out."/>
+		<Item key="08" value="000" default="000" valueType="string" description="Night safe deposit time-out."/>
+		<Item key="09" value="000" default="000" valueType="string" description="Card removal time-out."/>
+		<Item key="68" value="000" default="000" valueType="string" description="Statement media entry/exit indicator duration time-out."/>
+		<Item key="72" value="000" default="000" valueType="string" description="Card removal from DASH card reader time-out."/>
+		<Item key="77" value="000" default="000" valueType="string" description="BNA cash acceptance time-out"/>
+		<Item key="78" value="000" default="000" valueType="string" description="BNA and GBXX cash removal by cardholder time-out."/>
+		<Item key="82" value="000" default="000" valueType="string" description="Camera Delay Period. Not support."/>
+		<Item key="83" value="000" default="000" valueType="string" description="File Expiry Mechanism. Not support."/>
+		<Item key="87" value="000" default="000" valueType="string" description="Cheque capture screen time-out."/>
+		<Item key="91" value="000" default="000" valueType="string" description="In Service EJ Inspection time-out. Not support."/>
+		<Item key="92" value="000" default="000" valueType="string" description="Fault display time-out."/>
+		<Item key="94" value="000" default="000" valueType="string" description="Cheuqe/envelope eject time-out."/>
+		<Item key="95" value="000" default="000" valueType="string" description="Statement retract time-out"/>
+		<Item key="96" value="000" default="000" valueType="string" description="Statement present time-out."/>
+		<Item key="97" value="000" default="000" valueType="string" description="Door access open time-out. Not support.."/>
+		<Item key="98" value="000" default="000" valueType="string" description="Reserved"/>
+		<Item key="99" value="000" default="000" valueType="string" description="Reserved"/>
+	</TimerNumber>
+	<Options>
+		<Item key="00" value="002" default="000" valueType="string" description="Keyboard entry time-out."/>
+		<Item key="01" value="002" default="000" valueType="string" description="Cardholder response to time-out screen time-out."/>
+		<Item key="02" value="000" default="000" valueType="string" description="Close state screen time-out."/>
+		<Item key="03" value="000" default="000" valueType="string" description="Communications response time-out."/>
+		<Item key="04" value="000" default="000" valueType="string" description="Cheque/envelope insertion time-out"/>
+		<Item key="05" value="000" default="000" valueType="string" description="Cash retract time-out."/>
+		<Item key="06" value="000" default="000" valueType="string" description="Communication connection sample intervalt."/>
+		<Item key="07" value="000" default="000" valueType="string" description="Present time-out."/>
+		<Item key="08" value="000" default="000" valueType="string" description="Night safe deposit time-out."/>
+		<Item key="09" value="000" default="000" valueType="string" description="Card removal time-out."/>
+		<Item key="68" value="000" default="000" valueType="string" description="Statement media entry/exit indicator duration time-out."/>
+		<Item key="72" value="000" default="000" valueType="string" description="Card removal from DASH card reader time-out."/>
+		<Item key="77" value="000" default="000" valueType="string" description="BNA cash acceptance time-out"/>
+		<Item key="78" value="000" default="000" valueType="string" description="BNA and GBXX cash removal by cardholder time-out."/>
+		<Item key="82" value="000" default="000" valueType="string" description="Camera Delay Period. Not support."/>
+		<Item key="83" value="000" default="000" valueType="string" description="File Expiry Mechanism. Not support."/>
+		<Item key="87" value="000" default="000" valueType="string" description="Cheque capture screen time-out."/>
+		<Item key="91" value="000" default="000" valueType="string" description="In Service EJ Inspection time-out. Not support."/>
+		<Item key="92" value="000" default="000" valueType="string" description="Fault display time-out."/>
+		<Item key="94" value="000" default="000" valueType="string" description="Cheuqe/envelope eject time-out."/>
+		<Item key="95" value="000" default="000" valueType="string" description="Statement retract time-out"/>
+		<Item key="96" value="000" default="000" valueType="string" description="Statement present time-out."/>
+		<Item key="97" value="000" default="000" valueType="string" description="Door access open time-out. Not support.."/>
+		<Item key="98" value="000" default="000" valueType="string" description="Reserved"/>
+		<Item key="99" value="000" default="000" valueType="string" description="Reserved"/>
+	</Options>
+</Root>

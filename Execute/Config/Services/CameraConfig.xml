@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CameraConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!--使用USB摄像头直接拍照(该服务直接调用设备层 USBCam)的配置
+CutImagWindow：拍出图片后对图片进行处理 X:相对图片X轴的位置，Y相对图片Y轴的位置，Height:图片截取的高度，Width:图片截取的宽度
+TimeImage: 超时倒计时动画
+FrameBg:拍照蒙版图片
+TimeOutWindow: 超时动画放置位置,X 相对于屏幕X轴坐标，Y 相对于屏幕Y轴坐标,Height 动画容器高度，Width 动画容器宽度
+PhoBg: 相框
+SonWindow: 装载摄像头投影的窗体设置，X 相对于屏幕X轴坐标，Y 相对于屏幕Y轴坐标,Height 投影容器高度，Width 投影容器宽度
+ParentWindow：父窗体设置，X 相对于屏幕X轴坐标，Y 相对于屏幕Y轴坐标,Height 父窗体高度，Width 父窗体宽度
+-->
+  <CutImagWindow>
+    <X>206</X>
+    <Y>79</Y>
+    <Height>306</Height>
+    <Width>230</Width>
+  </CutImagWindow>
+  <TimeImage>Resource\source\timeOut.gif</TimeImage>
+  <FrameBg>Resource\source\photo_frame.png</FrameBg>
+  <TimeOutWindow>
+    <X>1541</X>
+    <Y>107</Y>
+    <Height>195</Height>
+    <Width>194</Width>
+  </TimeOutWindow>
+  <PhoBg>Resource\source\background.png</PhoBg>
+  <SonWindow>
+    <X>442</X>
+    <Y>223</Y>
+    <Height>768</Height>
+    <Width>1024</Width>
+  </SonWindow>
+  <ParentWindow>
+    <X>2720</X>
+    <Y>0</Y>
+    <Height>1080</Height>
+    <Width>1920</Width>
+  </ParentWindow>
+</CameraConfig>

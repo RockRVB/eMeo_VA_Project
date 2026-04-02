@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=""></script>
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/grg-ui.min.js"></script>
+    <script src="../../js/ibank.js"></script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+</head>
+<body>
+    <div id="app">
+        <g-header :height='100'>
+            <img slot='left' class='logo' src="../../images/logo.png" alt="">
+            <g-button class="exit-btn" slot='right' id='exitBtn' ids='ids_Exit' transparent round>Exit</g-button>
+        </g-header>
+        <g-main>
+            <h2 ids='ids_opac_putpassport' class='main-title' ids="ids_Common_inputpassportscanner">Please put the passport on the scanner</h2>
+            <div class="img-wrapper">
+                <img src="../../../Image/CN/Animal/scanpassport.gif" alt="">
+            </div>
+        </g-main>
+        <g-footer style="justify-content: center">
+            <g-button class="command-btn" id='OnCancel' type='button' ids='ids_Btn_cancel' tag='OnCancel' round transparent>Cancel</g-button>
+            <g-button class="command-btn hide" id='OnConfirm' type='button' ids='ids_Btn_confirm' tag='OnScan' round>Confirm</g-button>
+        </g-footer>        
+    </div>
+</body>
+</html>
+

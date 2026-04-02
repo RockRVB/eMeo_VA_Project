@@ -1,0 +1,73 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>错误解决向导</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/maintenance/cn.css" />
+<script src="../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../js/jquery-ui.min.js"></script>
+<script src="../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../js/maintenance/common/global.js"></script>
+<script src="../../../js/maintenance/component/components.js"></script>
+<script src="../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../js/maintenance/ui/maintenance/dailymaintenance/errorhandle.js"></script>
+<script src="../../../js/maintenance/ui/maintenance/dailymaintenance/resolveerror.js"></script>
+</head>
+
+<body>
+<!--界面容器-->
+<div class="wrapper resolve-error">
+	<div class="g-margin-wrapper"> 
+		<!--声音播放器-->
+		<audio id="audioPlayer" type="Audio" class="none"></audio>
+		<!--行-->
+		<div class="resolve-error-row"><span id="STATIC_1" type="STATIC_TXT"  class="left-label" ids="IDS_ErrorCodeMalfunctionGuide">错误码：</span><span id="STATIC_ERRORCODE" type="STATIC_TXT"></span></div>
+		<!--行-->
+		<div class="resolve-error-row"><span id="STATIC_ERRORMSG" type="STATIC_TXT" class="error-msg"></span></div>
+		<!--行-->
+		<div class="resolve-error-row"><span id="STATIC_MALFUNGUIDE" type="STATIC_TXT"  class="left-label" ids="IDS_OperationGuideMalfunctionGuide">操作向导:</span></div>
+		
+		<!--帮助图片-->
+		<div class="help-image"><img id="help-image" type="IMAGE" src=""> </div>
+		<!--帮助文字-->
+		<div id="help-text" type="STATIC_TXT" class="help-text"></div>
+		<!--按钮区域-->
+		<div class="g-button-zone">
+			<button id="FUN_RESET" type="button" class="button-common mr5"> <span class="tip"></span> <span class="button-text" ids="IDS_ResetTestMalfunctionGuide">复位测试</span> </button>
+			<button id="FUN_SOUND" type="button" class="button-common mr5" isAutoSend = "0"> <span class="tip"></span> <span class="button-text" ids="IDS_MuteMalfunctionGuide">关闭声音</span> </button>
+			<button id="FUN_UPSTEP" type="button" class="button-common mr5" isAutoSend = "0"> <span class="tip"></span> <span class="button-text" ids="IDS_PreviousMalfunctionGuide">上一步</span> </button>
+			<button id="FUN_DWONSTEP" type="button" class="button-common mr5" isAutoSend = "0"> <span class="tip"></span> <span class="button-text" ids="IDS_NextMalfunctionGuide">下一步</span> </button>
+			<button id="FUN_BACK" type="button" class="button-common" dataToSend="FUN_RETURN" isAutoSend = "0"> <span class="tip"></span> <span class="button-text" ids="IDS_ReturnMalfunctionGuide">返回</span> </button>
+		</div>
+		<!--提示文字-->
+		<div id="STATIC_PROMPT" type="STATIC_TXT" class="g-prompt-text" color="#e01e1e" disabledColor="#000000" flashType="color"></div>
+	</div>
+	<!--底部-->
+	<div class="bottom">
+		<div class="bottom-button-zone">
+			<div class="float-left">
+				<button id="FUN_LOGOUT" type="button" class="button-operate"> 
+					<span><img alt="" src="../../../../Image/CN/maintenance/button/icon-logout.png"/></span>
+					<span class="tip"></span> 
+					<span class="button-text" ids="IDS_Logout">注销用户</span> 
+				</button>
+				<button id="FUN_QUIT" type="button" class="button-operate operate-button-space-left">
+					<span><img alt="" src="../../../../Image/CN/maintenance/button/icon-quit.png"/></span>
+					<span class="tip"></span> 
+					<span class="button-text" ids="IDS_Quit">退出维护</span> 
+				</button>
+			</div>
+			<div class="float-right">
+				<button id="FUN_TABMODE" type="button" class="button-operate icon-tabmode" dataToSend="MENU_99999"> <span class="tip"></span> <span class="button-text" ids="IDS_SwitchMaintenance">快捷模式</span> </button>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

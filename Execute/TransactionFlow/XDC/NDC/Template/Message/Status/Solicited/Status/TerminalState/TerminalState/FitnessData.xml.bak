@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!-- Fitness Data.
+		* 	This solicited status message is sent to central in response to a Send Configuration Information Terminal Command message..
+		*  (a command code of '7' with a command modifier of '3')
+		-->
+  <FitnessData>
+    <Item key="g1" value="J" size="1" restriction="Mandatory" />
+    <!--  Hardware Fitness Identifier -->
+    <!--  Device Identifier. This identifies the device to which the following supplies data applies. .-->
+    <!--  Device Identifier. This identifies the device to which the following supplies data applies. .-->
+    <Item key="g2" value="A" size="1" restriction="[OptionCtrl.Configuration.TimeOfDayClock]" />
+    <Item key="g4-1d" value="[Device.TimeOfDayClock.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.TimeOfDayClock]" />
+    <Item key="g4-2d" value="[Device.TimeOfDayClock.Fitness]" size="1" restriction="[OptionCtrl.Configuration.TimeOfDayClock]" />
+    <!--  Group Field. -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="Optional" />
+    <Item key="g4-1d" value="[Device.HighOrderCommunications.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.HighOrderCommunications]" />
+    <Item key="g4-2d" value="[Device.HighOrderCommunications.Fitness]" size="1" restriction="[OptionCtrl.Configuration.HighOrderCommunications]" />
+    <!--  Group Field. -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="Optional" />
+    <Item key="g4-1c" value="[Device.SystemDisk.DeviceID]" size="1" restriction="Optional" />
+    <Item key="g4-2c" value="[Device.SystemDisk.Fitness]" size="1" restriction="Optional" />
+    <!--  Group Field. -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="Optional" />
+    <Item key="g4-1c" value="[Device.CardReader.DeviceID]" size="1" restriction="Optional" />
+    <Item key="g4-2c" value="[Device.CardReader.Fitness]" size="1" restriction="Optional" />
+    <!--  Group Field. -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="Optional" />
+    <Item key="g4-1e" value="[Device.CashHandler.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.CashHandler]" />
+    <Item key="g4-2e" value="[Device.CashHandler.Fitness]" size="5" restriction="[OptionCtrl.Configuration.CashHandler]" />
+    <!--  Group Field. -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.EnvelopeDepository]" />
+    <Item key="g4-F1" value="[Device.EnvelopeDepository.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.EnvelopeDepository]" />
+    <Item key="g4-F2" value="[Device.EnvelopeDepository.Fitness]" size="5" restriction="[OptionCtrl.Configuration.EnvelopeDepository]" />
+    <!--  Group Field. -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="Optional" />
+    <Item key="g4-1g" value="[Device.ReceiptPrinter.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.ReceiptPrinter]" />
+    <!--  Fitness Data. Thie contains information for each device indicating the condition of the device's replenishables..-->
+    <Item key="g4-2g" value="[Device.ReceiptPrinter.Fitness]" size="1" restriction="[OptionCtrl.Configuration.ReceiptPrinter]" />
+    <!--  Group Field. -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="Optional" />
+    <Item key="g4-1h" value="[Device.JournalPrinter.DeviceID]" size="1" restriction="Mandatory" />
+    <!--  Fitness Data. Thie contains information for each device indicating the condition of the device's replenishables..-->
+    <Item key="g4-2h" value="[Device.JournalPrinter.Fitness]" size="1" restriction="Mandatory" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="Optional" />
+    <Item key="g4-1i" value="[Device.Encryptor.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.Encryptor]" />
+    <!--  Fitness Data. Thie contains information for each device indicating the condition of the device's replenishables..-->
+    <Item key="g4-2i" value="[Device.Encryptor.Fitness]" size="1" restriction="[OptionCtrl.Configuration.Encryptor]" />
+    <!--		<Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.FlexDisk]"/>
+		<Item key="g4-1i" value="[Device.FlexDisk.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.FlexDisk]"/>
+		<Item key="g4-2i" value="[Device.FlexDisk.Fitness]" size="1" restriction="[OptionCtrl.Configuration.FlexDisk]"/>
+		<Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.CardholderKeyboard]"/>
+		<Item key="g4-1i" value="[Device.CardholderKeyboard.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.CardholderKeyboard]"/>
+		<Item key="g4-2i" value="[Device.CardholderKeyboard.Fitness]" size="1" restriction="[OptionCtrl.Configuration.CardholderKeyboard]"/>
+-->
+    <!-- BNA -->
+    <!--		<Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.BarCodeReader]"/>
+		<Item key="g4-w" value="[Device.BarCodeReader.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.BarCodeReader]"/>
+		<Item key="g4-w" value="[Device.BarCodeReader.Fitness]" size="var" restriction="[OptionCtrl.Configuration.BarCodeReader]"/>	
+-->
+    <!-- Cheque Processor -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.IPM]" />
+    <Item key="g4-11" value="[Device.IPM.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.IPM]" />
+    <Item key="g4-12" value="[Device.IPM.Fitness]" size="8" restriction="[OptionCtrl.Configuration.IPM]" />
+    <!-- BNA -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <Item key="g4-1w" value="[Device.BNA.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <Item key="g4-2w" value="[Device.BNA.Fitness]" size="var" restriction="[OptionCtrl.Configuration.CashAcceptor]" />
+    <!--  Secondary Card Reader -->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.ContactLessIDC]" />
+    <Item key="g4-11" value="[Device.ContactLessIDC.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.ContactLessIDC]" />
+    <Item key="g4-12" value="[Device.ContactLessIDC.Fitness]" size="1" restriction="[OptionCtrl.Configuration.ContactLessIDC]" />
+    <!--  EnvelopeDispenser -->
+    <!--		<Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.EnvelopeDepository]"/>
+		<Item key="g4-F1" value="[Device.EnvelopeDispenser.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.EnvelopeDepository]"/>
+		<Item key="g4-F2" value="[Device.EnvelopeDispenser.Fitness]" size="1" restriction="[OptionCtrl.Configuration.EnvelopeDepository]"/>
+-->
+    <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.Configuration.FingerService]" />
+    <Item key="g4-13" value="[Device.FingerService.DeviceID]" size="1" restriction="[OptionCtrl.Configuration.FingerService]" />
+    <Item key="g4-14" value="[Device.FingerService.Fitness]" size="1" restriction="[OptionCtrl.Configuration.FingerService]" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.NoUse]" />
+    <!--  Data Identifier .-->
+    <Item key="g5" value="[FitnessDataID]" size="1" restriction="[OptionCtrl.NoUse]" />
+    <!--  Data.-->
+    <Item key="g5-1" value="[FitnessData]" size="var" restriction="[OptionCtrl.NoUse]" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]" />
+    <!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+    <Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]" />
+  </FitnessData>
+</Root>

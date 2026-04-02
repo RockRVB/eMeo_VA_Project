@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!-- Setting for GRG NDC CIM Protocol -->
+	<Application>
+		<Item key="EnableGrgNdcCimProtocol" value="0" valueType="string"/>
+		<!-- Overlay screen number to be shown (After change with the overlay screen number in Cash Accetpor State) -->
+		<Item key="OverLayScrNum" value="3000" valueType="string"/>
+	</Application>
+</Root>

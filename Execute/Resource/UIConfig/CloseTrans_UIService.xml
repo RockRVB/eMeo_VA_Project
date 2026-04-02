@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+	<Screen name="UI_EjectingCard" uri="CloseTrans\EjectingCard.html" cache="0">
+	</Screen>
+	<Screen name="UI_KeyError" uri="CloseTrans\KeyError.html" cache="0"> 
+	</Screen>
+	<Screen name="UI_InvalidCard" uri="CloseTrans\InvalidCard.html" cache="0">
+	</Screen>
+	<Screen name="UI_HardwareError" uri="CloseTrans\HardwareError.html" cache="0"> 
+	</Screen>		
+	<Screen name="UI_ServiceCloseTrans" uri="CloseTrans\ServiceCloseTrans.html" cache="0"> 
+	</Screen>
+	<Screen name="UI_CapturingCard" uri="Foundation\Operating.html" cache="0"> 
+	</Screen>
+	<Screen name="UI_CaptureCardForTimeout" uri="CloseTrans\CaptureCardForTimeout.html" cache="0">  
+	</Screen>
+	<Screen name="UI_CaptureCard" uri="CloseTrans\CaptureCard.html" cache="0"> 
+	</Screen>
+	<Screen name="UI_ThankYou" uri="CloseTrans\ThankYou.html" cache="0"> 
+	</Screen>
+	<Screen name="UI_InputWithdrawalAmountExceedRetryTimes" uri="CloseTrans\InputWithdrawalAmountExceedRetryTimes.html" cache="0">
+	</Screen>
+</Screens>
+

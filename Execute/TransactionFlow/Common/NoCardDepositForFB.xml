@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow name="NoCardDepositForFB">
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for no card deposit"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_FBLOGINRequest"/>
+		</Start>
+		<RequestTransViaRestful ID="ID_FBLOGINRequest" UI="UI_CommonProcessing" transType="FBLOGIN"  transFormat="json">
+		  <States>
+			<State name="PackFail" UI="UI_general_error"/>
+			<State name="ConnectFail" UI="UI_general_error"/>
+			<State name="SendFail" UI="UI_general_error"/>
+			<State name="ReceiveFail" UI="UI_general_error"/>
+			<State name="ReceiveTimeout" UI="UI_general_error"/>
+			<State name="NetworkFail" UI="UI_general_error"/>
+			<State name="UnpackFail" UI="UI_general_error"/>
+			<State name="HardwareError" UI="UI_general_error"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_FBLoginResult"/>
+		  <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+		</RequestTransViaRestful>
+		<FBLoginResult ID="ID_FBLoginResult" UI="" comment="" timeout="60000" >
+		  <Forward event="OnConfirm" targetID="ID_FaceCaptureImage" />
+		  <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+		</FBLoginResult>
+		<FaceCaptureImage ID="ID_FaceCaptureImage" UI="UI_LookCameraTakePic" comment="" timeout="30000" >
+			<Forward event="OnConfirm" targetID="ID_FaceIdentify" />
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />	  
+		</FaceCaptureImage>
+		<RequestTransViaRestful ID="ID_FaceIdentify" UI="UI_CommonProcessing" transType="FaceIdentify"  transFormat="json">
+		  <States>
+			<State name="PackFail" UI="UI_general_error"/>
+			<State name="ConnectFail" UI="UI_general_error"/>
+			<State name="SendFail" UI="UI_general_error"/>
+			<State name="ReceiveFail" UI="UI_general_error"/>
+			<State name="ReceiveTimeout" UI="UI_general_error"/>
+			<State name="NetworkFail" UI="UI_general_error"/>
+			<State name="UnpackFail" UI="UI_general_error"/>
+			<State name="HardwareError" UI="UI_general_error"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_FaceIdentifyResultFB"/>
+		  <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+		</RequestTransViaRestful>
+		<FaceIdentifyResultFB ID="ID_FaceIdentifyResultFB" UI="UI_ShowFaceIdentifyResult" comment="" timeout="60000" >
+		  <States>
+				<State name="FaceMatchSuccess" UI="UI_FaceMatchIsSuccess"/>				
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_SelectPasswordType" />
+		  <Forward event="onCancel" targetID="ID_InvokeCloseTransWorkflow" />
+		  <Forward event="NotMatch" targetID="ID_FaceIsNotMatch" />
+		  <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+		</FaceIdentifyResultFB>
+		<WaitSleep ID="ID_FaceIsNotMatch" UI="UI_FaceIsNotMatch" comment="" timeout="4000">
+			<Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+		</WaitSleep>
+		<SelectFunction ID="ID_SelectPasswordType" UI="UI_SelectPasswordType" comment="Select Password Function Type">
+			<Forward event="inputPin" targetID="ID_InputPin"/>
+			<Forward event="fingerveinMatch" targetID="ID_FingerveinScan"/>
+		</SelectFunction>
+		<VTMInputPin ID="ID_InputPin" UI="UI_InputPinWithdraw" autoEnd="0" minLen="4" maxLen="6" comment="输入密码" homeVisible="1">
+		  <DefaultUIStates>
+			<State name="MaintenanceMainWorkflow" UI="UI_InputPinMaintenance"/>
+			<State name="DepositMainFlow" UI="UI_InputPinDeposit"/>
+			<State name="Withdrawal" UI="UI_InputPinWithdraw"/>
+			<State name="SavingAccountMainFlow" UI="UI_InputPinSavingAccount"/>
+			<State name="Enquery" UI="UI_InputPinEnquiry"/>
+			<State name="CardActivation" UI="UI_InputPinActivation"/>
+			<State name="PinChangeMainFlow" UI="UI_InputPinPinChange"/>
+			<State name="PassbookSettleMainFlow" UI="UI_InputPinPassbook"/>
+		  </DefaultUIStates>
+		  <Forward event="OnConfirm" targetID="ID_GoXDCMainMenu"/>
+		  <Forward event="OnCancel" targetID="ID_GoXDCMainMenu" />
+		  <Forward event="OnHardwareError" targetID="ID_GoXDCMainMenu"/>
+		  <Forward event="OnTimeout" targetID="ID_GoXDCMainMenu"/>
+		</VTMInputPin>
+		<GoXDCMainMenu ID="ID_GoXDCMainMenu" UI="UI_CommonProcessing" comment="">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</GoXDCMainMenu>
+		<FingerveinScanFB ID="ID_FingerveinScan" UI="UI_FingerveinMatch" comment="">
+			<Forward event="OnContinue" targetID="ID_FingerveinMatch"/>
+			<Forward event="OnNotFound" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</FingerveinScanFB>
+		<RequestTransViaRestful ID="ID_FingerveinMatch" UI="UI_CommonProcessing" transType="FingerveinMatch"  transFormat="json">
+		  <States>
+			<State name="PackFail" UI="UI_general_error"/>
+			<State name="ConnectFail" UI="UI_general_error"/>
+			<State name="SendFail" UI="UI_general_error"/>
+			<State name="ReceiveFail" UI="UI_general_error"/>
+			<State name="ReceiveTimeout" UI="UI_general_error"/>
+			<State name="NetworkFail" UI="UI_general_error"/>
+			<State name="UnpackFail" UI="UI_general_error"/>
+			<State name="HardwareError" UI="UI_general_error"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_FingerveinMatchResult"/>
+		  <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+		</RequestTransViaRestful>
+		<FingerveinMatchResultFB ID="ID_FingerveinMatchResult"  comment="">
+			<States>
+				<State name="FingerMatchSuccess" UI="UI_FingerShowSuccess"/>				
+			</States>
+			<Forward event="OnMatch" targetID="ID_GoXDCMainMenu"/>
+			<Forward event="OnNotFound" targetID="ID_FingerveinShowNotMatch"/>
+			<Forward event="OnFail" targetID="ID_FingerveinShowNotMatch"/>
+		</FingerveinMatchResultFB>
+		<Prompt ID="ID_FingerveinShowSuccess" UI="UI_FingerShowSuccess" comment="" timeout="2000">
+          <Forward event="OnConfirm" targetID="ID_GoXDCMainMenu" />
+		  <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+        </Prompt>
+		<Prompt ID="ID_FingerveinShowNotMatch" UI="UI_FingerShowNotMatch" comment="" timeout="5000">
+          <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+		  <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+        </Prompt>
+		<InvokeWorkflow ID="ID_InvokeDepositWorkflow" name="Deposit" comment="Invoke deposit workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+		</End>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

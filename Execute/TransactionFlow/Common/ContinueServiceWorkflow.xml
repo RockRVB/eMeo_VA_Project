@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="ContinueServiceWorkflow">
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2013/08/19 17:23:12" comment="The workflow design is for host refuse continue service"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_CompareZeroStateCardInsertFlag"/>
+		</Start>
+		<CompareData ID="ID_CompareZeroStateCardInsertFlag" comment="判断是不是零状态插的卡" compareBuffer="{core_CardInsertedInZeroState}">
+			<Forward event="OnEqualTrue" targetID="ID_HostRefuseContinueService"/>
+			<DefaultForward targetID="ID_CompareCardInsertFlag"/>
+		</CompareData>
+		<CompareData ID="ID_CompareCardInsertFlag" comment="判断是不是中途插的卡" compareBuffer="{core_CardInserted}">
+			<Forward event="OnEqualTrue" targetID="ID_GetDevStatusForNoContinue"/>
+			<DefaultForward targetID="ID_GetDevStatusForNoCardNoContinue"/>
+		</CompareData>
+		<GetDevStatus ID="ID_GetDevStatusForNoContinue" comment="Get device status for closing transaction" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_HostRefuseNoContinue"/>
+			<Forward event="OnWarn" targetID="ID_HostRefuseNoContinue"/>
+			<Forward event="OnFail" targetID="ID_HostRefuseForReceiptFail"/>
+		</GetDevStatus>
+		<GetDevStatus ID="ID_GetDevStatusForNoCardNoContinue" comment="Get device status for closing transaction" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_HostRefuseNoCardNoContinue"/>
+			<Forward event="OnWarn" targetID="ID_HostRefuseNoCardNoContinue"/>
+			<Forward event="OnFail" targetID="ID_HostRefuseForReceiptFail"/>
+		</GetDevStatus>
+		<SelectFunction ID="ID_HostRefuseContinueService" UI="UI_HostRefuseContinueService" commandMap="[F6,REC]" comment="退卡，打印凭条，继续服务">
+			<Forward event="OnF6" targetID="ID_PrintReceipt"/>
+			<Forward event="OnContinue" targetID="ID_InvokeMainWorkflow"/>
+		</SelectFunction>
+		<SelectFunction ID="ID_HostRefuseNoContinue" UI="UI_HostRefuseNoContinue" commandMap="[F6,REC]" comment="退卡，打印凭条">
+			<Forward event="OnF6" targetID="ID_PrintReceiptForCloseTrans"/>
+		</SelectFunction>
+		<SelectFunction ID="ID_HostRefuseNoCardNoContinue" UI="UI_HostRefuseNoCardNoContinue" commandMap="[F6,REC]" comment="取消，打印凭条">
+			<Forward event="OnF6" targetID="ID_PrintReceiptForCloseTrans"/>
+		</SelectFunction>
+		<Prompt ID="ID_HostRefuseForReceiptFail" UI="UI_HostRefuse" timeout="5000" comment="show host refuse">
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</Prompt>
+		<PrintReceipt ID="ID_PrintReceipt" UI="UI_PrintingReceipt" formName="" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeMainWorkflow"/>
+		</PrintReceipt>
+		<PrintReceipt ID="ID_PrintReceiptForCloseTrans" UI="UI_PrintingReceipt" formName="" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</PrintReceipt>
+		<InvokeWorkflow ID="ID_InvokeMainWorkflow" name="Main" comment="Invoke main workflow" actionID="ID_CheckCardType" syn="0">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+		</End>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

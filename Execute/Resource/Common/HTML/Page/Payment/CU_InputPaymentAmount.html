@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../css/CN.css" replace="1" />
+<link rel="stylesheet" type="text/css" href="../../css/Button.css" />
+<script defer type="text/javascript" src="../../js/ShowResource.js"></script>
+</head>
+<body>
+<div class="backgroundDiv">
+  <div class="CounterDiv" style="display:none" id="Counter" type="countdown" content="{Binding Count}" visible="{Binding CouterVisible}"> </div>
+  <div class="mainDivTwoLines" id="Prompt" type="textblock" ids="IDS_InputPaymentAmount"> </div>
+  
+  <div class="inputDiv">
+    <input class="inputTextCenterAlign" id="InputTransferAmount" type="text" size="12" content="{Binding saveBuffer}" />
+  </div>
+  <div class="promptDiv"> <span class="promptNormalText" ids="IDS_MaxPaymentAmount"></span>&nbsp;<span class="promptKeyText" id="Prompt1" type="text" content="{Binding maxOtherAmount}"></span>&nbsp;<span class="promptNormalText" id="Prompt2" ids="IDS_Currency"></span> </div>
+
+
+  <div  class="mainDivOneLine">
+	  <table border="1" >
+		  <tr>
+					<td><span class="promptNormalTextYK" type="text">缴费号码:</span></td>
+					<td><span class="promptNormalTextYK" id="Prompt01" type="text" content="{Binding core_OtherAccount}"></span></td>
+			</tr>
+			<tr>
+					<td><span class="promptNormalTextYK" type="text">户名:</span></td>
+					<td><span class="promptNormalTextYK" id="Prompt02" type="text" content="{Binding proj_UserName}"></span></td>
+			</tr>
+		  <tr>
+					<td><span class="promptNormalTextYK" type="text">应缴金额:</span></td>
+					<td><span class="promptNormalTextYK" id="Prompt03" type="text" content="{Binding proj_TotalPayAmount}"></span></td>
+			</tr>
+		</table>
+	</div>
+  
+  <div class="f4Div" id="F4" tag="OnClear" type="Button"> <img src="../../../Image/CN/Btn_Bg3_right_up.png" id="bgimg" up="(btnbg3rightup)" down="(btnbg3rightdw)" /> <span class="buttonRight" ids="IDS_Clear"></span> </div>
+  <div class="f6Div" id="F6" tag="OnConfirm" type="Button"> <img src="../../../Image/CN/Btn_Bg1_right_up.png" id="bgimg" up="(btnbg1rightup)" down="(btnbg1rightdw)" /> <span class="buttonRight" ids="IDS_Confirm"></span> </div>
+  <div class="f8Div" id="F8" tag="OnContinue" type="Button"> <img src="../../../Image/CN/Btn_Bg2_right_up.png" id="bgimg" up="(btnbg2rightup)" down="(btnbg2rightdw)" /> <span class="buttonRight" ids="IDS_Return"></span> </div>
+</div>
+</body>
+</html>

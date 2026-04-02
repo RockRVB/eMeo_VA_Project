@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="MainMenu">
+  <Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for MainMenu"/>
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start">
+      <Forward event="OnConfirm" targetID="ID_MainMenu"/>
+    </Start>
+
+	<!--Main Menu-->
+    <VTMSelectFunction ID="ID_MainMenu" UI="UI_MainMenu" timeout="60000" IsCheckDevice="true" homeVisible="1">
+      <!--卡业务-->
+      <Forward event="OnDebitCard" targetID="ID_SelectCardTransType"/>
+      <!--开Ukey-->
+      <Forward event="OnUkey" targetID="ID_Ukey"/>
+    </VTMSelectFunction>
+ 
+   <!--select NewAccount Or NewCard-->
+    <VTMSelectFunction ID="ID_SelectCardTransType" UI="UI_SelectCardType" timeout="60000" homeVisible="1" transTypeMap="[F10,CARD_BUSSINESS]">
+      <Forward event="OnNewAccount" targetID="ID_NewAccountType" />
+      <Forward event="OnNewCard" targetID="ID_DebitCardApply" />
+      <Forward event="OnReplaceCard" targetID="ID_ReplaceCard" />
+	  <Forward event="OnBack" targetID="ID_MainMenu" />
+    </VTMSelectFunction>
+ 
+   <!--开UKey业务-->
+    <InvokeWorkflow ID="ID_Ukey" name="UkeyApply" comment="Invoke UkeyApply workflow" callVisible="0" fallBackAfterEnd="1">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+
+  
+    <!-- Invoke the NewAccount workflow-->
+    <InvokeWorkflow ID="ID_NewAccountType" name="NewAccount" comment="Invoke NewAccount workflow" fallBackAfterEnd="1">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+
+    <!-- Invoke the ReplaceCard workflow-->
+    <InvokeWorkflow ID="ID_ReplaceCard" name="ReplaceCard" comment="Invoke ReplaceCard workflow" fallBackAfterEnd="1">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+
+    <!-- Invoke the DebitCardApply workflow-->
+    <InvokeWorkflow ID="ID_DebitCardApply" name="DebitCardApply" comment="Invoke DebitCardApply workflow" fallBackAfterEnd="1">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+ 
+	 <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+	
+    <InvokeWorkflow ID="ID_InvokeRequestAgent_WF" name="RequestAgent_WF"  comment="Invoke help workflow" fallBackAfterEnd="1">
+      <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+    </InvokeWorkflow>
+
+ 
+    <End ID="9999" comment="End">
+    </End>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	<Forward event="OnHelp" targetID="ID_InvokeRequestAgent_WF"/>
+  </DefaultForward>
+</Workflow>

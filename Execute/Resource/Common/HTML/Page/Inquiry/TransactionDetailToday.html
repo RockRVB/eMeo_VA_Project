@@ -1,0 +1,104 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+		<title>账户交易详情</title>
+		<link rel="stylesheet" type="text/css" href="../../css/CN.css"/>
+		<script src="../../js/require.js" type="text/javascript" charset="utf-8" data-main="../../js/trans_details" async="true"></script>
+	</head>
+	<body class="all_bg" onload="loaded()">
+		<header class="index_top clear">
+			<div class="logo"></div>
+			<div class="index_top_title">
+				<div class="count_down_time" style="display:none" id="Counter" type="countdown" content="{Binding Count}" visible="{Binding CouterVisible}">10</div>
+			</div>
+		</header>
+		<div class="ibank_container">
+			<div class="business_container">
+				<div class="business_title" ids="IDS_AccountTransDetails">账户交易详情</div>
+				<div class="transaction_details_contain">
+					<div class="transaction_details_con_head">
+						<div id="F1" type="Button" tag="OnRecentTransDetail" ids="IDS_RecentTransactions">最近交易</div>
+						<div id="F2" type="Button" tag="OnTodayTransDetail" class="traction_current" ids="IDS_TodayTransDetails">当日交易</div>
+						<div ids="IDS_HistoryDetails">历史交易</div>
+					</div>
+					<div class="transaction_details_con_body">
+						<div class="transac_detail_th">
+							<div ids="IDS_DateHeader">日期</div>
+							<div ids="IDS_TransTypeHeader">交易类型</div>
+							<div ids="IDS_TransAmountHeader">交易金额</div>
+							<div ids="IDS_BalanceHeader">余额</div>
+						</div>
+						<div class="transac_detail_tb">
+							<ul class="swiper-wrapper">
+								<li class="transac_detail_tr swiper-slide">
+									<table id="trans_detail_info" type="list" itemtemplate="TRANSDETAIL" itemsource="{Binding TransDetailCollection}" visibleitemcount="100"><tbody></tbody></table>
+								</li>
+							</ul>
+							<div class="swiper-scrollbar"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="button_container" style="bottom: 5% !important;">
+				<div id="F3" type="Button" tag="OnOtherBusiness" class="cancel_button" ids="IDS_OtherBusiness">其他业务</div>
+				<div id="F4" type="Button" tag="OnPrint" class="enter_button" ids="IDS_NeedPrint">打印</div>
+			</div>
+		</div>
+		<div class="date_select_container">
+			<div class="date_container_main">
+				<div class="date_container_con clear">
+					<div class="date_select_group startdate">
+						<div class="date_select_group_tit" ids="IDS_StartingDate">开始时间</div>
+						<div class="date_select_group_con">
+							<div class="date_select_group_slide">
+								<div class="datelist year"></div>
+							</div>
+							<div class="date_select_group_slide">
+								<div class="datelist month"></div>
+							</div>
+							<div class="date_select_group_slide">
+								<div class="datelist day"></div>
+							</div>
+							<div class="date_selection"></div>
+						</div>
+						<div class="date_select_group_text">
+							<div class="year" ids="IDS_Year">年</div><div class="month" ids="IDS_Month">月</div><div class="day" ids="IDS_Day">日</div>
+						</div>
+					</div>
+					<div class="date_select_group enddate">
+						<div class="date_select_group_tit" ids="IDS_EndingDate">结束时间</div>
+						<div class="date_select_group_con">
+							<div class="date_select_group_slide">
+								<div class="datelist year"></div>
+							</div>
+							<div class="date_select_group_slide">
+								<div class="datelist month"></div>
+							</div>
+							<div class="date_select_group_slide">
+								<div class="datelist day"></div>
+							</div>
+							<div class="date_selection"></div>
+						</div>
+						<div class="date_select_group_text">
+							<div class="year" ids="IDS_Year">年</div><div class="month" ids="IDS_Month">月</div><div class="day" ids="IDS_Day">日</div>
+						</div>
+					</div>
+					<div class="date_button_group">
+						<div ids="IDS_Reset">重置</div>
+						<div ids="IDS_Cancel">取消</div>
+						<div id="F5" type="Button" tag="OnHistoryTransDetail" ids="IDS_Confirm">确认</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="display: none;">
+			<input name="beginyear" id="beginyear" value="" />	
+			<input name="beginmonth" id="beginmonth" value="" />	
+			<input name="beginday" id="beginday" value="" />	
+			<input name="endyear" id="endyear" value="" />	
+			<input name="endmonth" id="endmonth" value="" />	
+			<input name="endday" id="endday" value="" />	
+		</div>
+	</body>
+</html>

@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="AuthorizationFaceAndPassportFB20">
+  <Head type="GRGWorkflow" comment="Combination of witness and testimony"/>
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start">
+      <Forward event="OnConfirm" targetID="ID_PassportGetDevStatusEx"/>
+    </Start>
+	<!-- Check device status of Passport Reader -->
+	 <GetDevStatusEx ID="ID_PassportGetDevStatusEx" comment="Get device status" devType="PassPort" callVisible="0" homeVisible="0">
+	  <States>
+        <State name="GetDevStatusExError" UI="UI_DevError"/>
+      </States>
+        <Forward event="OnNormal" targetID="ID_ScanPassport" />
+        <Forward event="OnWarn" targetID="ID_ScanPassport" />
+        <Forward event="OnFail" targetID="9999" />
+    </GetDevStatusEx>
+	
+	<!-- Scan passport -->
+     <PassportScan  ID="ID_ScanPassport" UI="UI_insert_passport4Face" digitalVoiceKey="||||action_015" CallingMethodType="0" manualScan="0" homeVisible="0" timeout="30000">
+      <States>
+        <State name="TakePassport" UI="UI_take_passport4Face" />
+        <State name="ScanningPassport" UI="UI_reading_passport" />
+		    <State name="ScanError" UI="UI_scan_passport_failure" />
+        <State name="HardwareError" UI="UI_hardware_error" />
+      </States>
+      <Forward event="OnContinue" targetID="ID_FaceCaptureImage" />
+      <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />	  
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </PassportScan>
+	<FaceCaptureImage ID="ID_FaceCaptureImage" UI="UI_LookCameraTakePic" digitalVoiceKey="action_035" comment="" timeout="30000" >
+      <Forward event="OnConfirm" targetID="ID_GetPublicKey" />
+	  <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />	  
+    </FaceCaptureImage>
+	<RequestTransViaRestful ID="ID_GetPublicKey" UI="UI_CommonProcessing" digitalVoiceKey="||||||||" transType="GetPublicKey"  transFormat="json">
+		  <States>
+			<State name="PackFail" UI="UI_general_error"/>
+			<State name="ConnectFail" UI="UI_general_error"/>
+			<State name="SendFail" UI="UI_general_error"/>
+			<State name="ReceiveFail" UI="UI_general_error"/>
+			<State name="ReceiveTimeout" UI="UI_general_error"/>
+			<State name="NetworkFail" UI="UI_general_error"/>
+			<State name="UnpackFail" UI="UI_general_error"/>
+			<State name="HardwareError" UI="UI_general_error"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_UserLoginFB"/>
+		  <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		  <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+	</RequestTransViaRestful>
+	<UserLoginFB ID="ID_UserLoginFB" UI="" comment="" timeout="60000" >
+		  <Forward event="OnConfirm" targetID="ID_FBLOGINRequest" />
+		  <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+	</UserLoginFB>
+	<RequestTransViaRestful ID="ID_FBLOGINRequest" UI="UI_CommonProcessing" digitalVoiceKey="||||||||" transType="FB20LOGIN"  transFormat="json">
+	  <States>
+		<State name="PackFail" UI="UI_BAB_GeneralError"/>
+		<State name="ConnectFail" UI="UI_BAB_GeneralError"/>
+		<State name="SendFail" UI="UI_BAB_GeneralError"/>
+		<State name="ReceiveFail" UI="UI_BAB_GeneralError"/>
+		<State name="ReceiveTimeout" UI="UI_BAB_GeneralError"/>
+		<State name="NetworkFail" UI="UI_BAB_GeneralError"/>
+		<State name="UnpackFail" UI="UI_BAB_GeneralError"/>
+		<State name="HardwareError" UI="UI_BAB_GeneralError"/>
+	  </States>
+	  <Forward event="OnConfirm" targetID="ID_FBLoginResult"/>
+	  <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+	</RequestTransViaRestful>
+	<FBLoginResult ID="ID_FBLoginResult" UI="" comment="" timeout="60000" >
+	  <Forward event="OnConfirm" targetID="ID_FaceComparewithID" />
+	  <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+	</FBLoginResult>
+	<RequestTransViaRestful ID="ID_FaceComparewithID" UI="UI_CommonProcessing" digitalVoiceKey="||||||||" transType="FB20FaceCompare2Img"  transFormat="json">
+	  <States>
+		<State name="PackFail" UI="UI_BAB_GeneralError"/>
+		<State name="ConnectFail" UI="UI_BAB_GeneralError"/>
+		<State name="SendFail" UI="UI_BAB_GeneralError"/>
+		<State name="ReceiveFail" UI="UI_BAB_GeneralError"/>
+		<State name="ReceiveTimeout" UI="UI_BAB_GeneralError"/>
+		<State name="NetworkFail" UI="UI_BAB_GeneralError"/>
+		<State name="UnpackFail" UI="UI_BAB_GeneralError"/>
+		<State name="HardwareError" UI="UI_BAB_GeneralError"/>
+	  </States>
+	  <Forward event="OnConfirm" targetID="ID_FaceCheckResultFB"/>
+	  <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnHostRefuse" targetID="ID_FaceCompare2ImgFail"/>
+	</RequestTransViaRestful>
+	<FaceCheckResultFB20 ID="ID_FaceCheckResultFB" UI="UI_CommonProcessing" digitalVoiceKey="action_078|action_039|||||||" comment="" timeout="60000" >
+	  <States>
+		<State name="FaceMatchSuccess" UI="UI_FaceMatchIsSuccess"/>
+        <State name="FaceNotMatch" UI="UI_FaceIsNotMatch"/>				
+	  </States>
+	  <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="NotMatch" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+	</FaceCheckResultFB20>
+	<WaitSleep ID="ID_FaceCompare2ImgFail" UI="UI_HostRefuseFailTryAgain" digitalVoiceKey="action_038" comment="" timeout="4000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+    </WaitSleep>
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+    <End ID="9999" comment="End">
+    </End>
+
+
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	<Forward event="OnHelp" targetID="ID_InvokeRequestAgent_WF"/>
+  </DefaultForward>
+</Workflow>

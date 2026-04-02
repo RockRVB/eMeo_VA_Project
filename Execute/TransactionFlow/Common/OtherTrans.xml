@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="OtherTrans">
+	<Head type="GRGWorkflow" author="" timeStamp="2017/09/17 16:59:12" comment="The workflow design is for External URL"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_ExternalURL"/>
+		</Start>
+		
+	
+    <ExternalWebsite  ID="ID_ExternalURL" UI="UI_OtherTrans" finishedCallback="OnFinished" browserWidth="1280" browserHeight="880" browserStartX="0" browserStartY="0" cancelMethod="cancel" jsFinish="Resource\Common\HTML\js\Finish4WebKit.js" keyboardPath="Tools\ASK\ASK.exe" waitWhenFinish="3000" autoJumpWhenFinished="1" homeVisible="0" timeout="3600000" url="https://global.grgbanking.com/en" enableKeyboard="1" kbNoTitle="0">
+      <States>
+        <State name="Waiting" UI="UI_Waiting" />
+      </States>      
+	  <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnBack" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <DefaultForward targetID="ID_InvokeCloseTransWorkflow"/>
+    </ExternalWebsite>	
+		
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+		</End>	
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

@@ -1,0 +1,3103 @@
+﻿/*办卡协议*/
+
+.agreement_container {
+	width: 80%;
+	margin: auto;
+	font-family: "微软雅黑";
+}
+
+.agreement_container .business_title {
+	line-height: 55px;
+}
+
+.agreement_container .card_input_container_group {
+	height: 440px;
+	font-size: 1.8rem;
+	line-height: 55px;
+	margin: 25px auto 0 auto;
+	overflow: hidden;
+	position: relative;
+}
+
+#agreement_padding {
+	padding: 0 50px;
+}
+
+#agreement_start {
+	text-indent: 77px;
+}
+
+
+/*插入身份证*/
+
+.machine_panel.identify {
+	background: url(../../../Image/CN/Animal/insertidcard.gif) no-repeat;
+	background-size: 100% 100%;
+	width: 1272px;
+	height: 558px;
+	margin: 85px auto;
+}
+
+
+/*请取回您的身份证*/
+
+.machine_panel.takeidentification {
+	background: url(../../../Image/CN/Animal/takeidcard.gif) no-repeat;
+	background-size: 100% 100%;
+	width: 1272px;
+	height: 558px;
+	margin: 85px auto;
+}
+
+/*请取走您的UKey*/
+
+.machine_panel.takeukey {
+	background: url(../../../Image/CN/Animal/takeukey.gif) no-repeat;
+	background-size: 100% 100%;
+	width: 1272px;
+	height: 558px;
+	margin: 85px auto;
+}
+
+/*请扫描您的UKey*/
+
+.machine_panel.scanukey {
+	background: url(../../../Image/CN/Animal/scanukey.gif) no-repeat;
+	background-size: 100% 100%;
+	width: 1272px;
+	height: 558px;
+	margin: 85px auto;
+}
+/*客服人员将采集您的面部信息，请抬头正视屏幕上方摄像头*/
+
+.business_title.collectFacial_title {
+	font-size: 2.5rem;
+}
+
+.machine_panel.facial {
+	background: url(../../../Image/CN/Animal/takephoto.gif) no-repeat;
+	background-size: 100% 100%;
+	width: 1272px;
+	height: 558px;
+	margin: 90px auto;
+}
+
+
+/*请将头像置于框内，并停留5秒*/
+
+#count_down {
+	float: right;
+	font-size: 2.5rem;
+	padding: 25px;
+}
+
+.black_bg_title {
+	font-family: "微软雅黑";
+	font-size: 2.75rem;
+	text-align: center;
+	line-height: 78px;
+	padding: 60px 70px;
+}
+
+.camera {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+/*身份验证成功*/
+
+.authenticationSuccess_result {
+	margin: 265px auto;
+}
+
+.authentication_title {
+	background: url(../../../Image/CN/Withdraw/icon_successful_trade.png) no-repeat;
+	background-size: auto 100%;
+    max-width: 1705px;
+	height: 123px;
+	margin: auto;
+	line-height: 123px;
+	padding-left: 168px;
+	font-size: 2.75rem;
+	white-space: nowrap;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*永远居中*/
+.center_title+div{
+	display: inline;
+    position: relative;
+    top: -37px;
+    line-height: 115px;
+}
+
+/*身份验证失败*/
+
+.authenticationFailed_result {
+	margin: 150px auto;
+    text-align: center;
+	font-size: 2.75rem;
+}
+
+.authenticationFiled_title {
+	background: url(../../../Image/CN/Card/icon_fail.png) no-repeat;
+	background-size: auto 100%;
+    max-width: 1705px;
+	height: 123px;
+	margin: auto;
+	line-height: 123px;
+	padding-left: 150px;
+	font-size: 2.75rem;
+	white-space: nowrap;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.authenticationFailed_tip p {
+	font-size: 2.5rem;
+	line-height: 80px;
+	text-align: center;
+}
+
+
+/*请取回您的表单，并在签名处签名*/
+
+.machine_panel.signature {
+	background: url(../../../Image/CN/Animal/printform_F.gif) no-repeat;
+	background-size: 100% 100%;
+	width: 1272px;
+	height: 558px;
+	margin: 85px auto;
+}
+
+
+/*请把表单放入表单扫描口*/
+
+.machine_panel.signatureScan {
+	background: url(../../../Image/CN/Animal/back_scan.gif) no-repeat;
+	background-size: 100% 100%;
+	width: 1272px;
+	height: 558px;
+	margin: 85px auto;
+}
+
+
+/*审核通过，请把打印表单放入回收口中*/
+
+.machine_panel.recycleform {
+	background: url(../../../Image/CN/Animal/retractform.gif) no-repeat;
+	background-size: 100% 100%;
+	width: 1272px;
+	height: 558px;
+	margin: 85px auto;
+}
+
+
+/*放入钞票*/
+
+.put_in_money_container .business_title {
+	line-height: 0px;
+}
+
+.put_in_money_container .machine_panel.bank_note {
+	background: url(../../../Image/CN/Animal/cashin.gif) no-repeat;
+	background-size: 100% 100%;
+	width: 1082px;
+	height: 496px;
+	margin-top: 60px;
+}
+
+
+/*点钞结果*/
+
+.transaction_result_title {
+	background: url(../../../Image/CN/Withdraw/icon_successful_trade.png) no-repeat;
+	height: 123px;
+	width: 280px;
+	margin: 40px auto;
+	line-height: 123px;
+	padding-left: 168px;
+	font-size: 2.75rem;
+	background-size: auto 100%;
+	white-space: nowrap;
+}
+
+.transaction_result_tip {
+	font-size: 2.25rem;
+	text-align: left;
+	line-height: 80px;
+	margin-left: 40px;
+	white-space: nowrap;
+}
+
+.transaction_result_container .transaction_result {
+	margin: 120px auto;
+}
+
+.button_container.bottom_button {
+	bottom: 70px !important;
+}
+
+
+/*开卡业务--设置密码*/
+
+.input_pwd_container {
+	width: 1588px;
+	margin: 100px auto;
+}
+
+.set_password_left {
+	width: 498px;
+	height: 496px;
+	background: url(../../../Image/CN/Animal/inputpin.gif) no-repeat;
+	background-size: 100% 100%;
+	float: left;
+	margin-left: 60px;
+}
+
+.set_password_right {
+	font-size: 2rem;
+	float: right;
+}
+
+.set_new_pwd {
+	padding-top: 10px;
+	padding-bottom: 37px;
+}
+
+.set_pwd_title {
+    width: 970px;
+	word-wrap:break-word;
+	padding-left: 45px;
+}
+
+.set_pwd {
+	width: 1001px;
+	height: 183px;
+	background: url(../../../Image/CN/Card/edit_smal_scale_password_box_uncheck.png) no-repeat;
+	background-size: 100% 100%;
+	position: relative;
+}
+
+.set_pwd.pwd_hover:hover,
+.set_pwd.pwd_hover:active {
+	background: url(../../../Image/CN/Card/edit_smal_scale_password_box_checkpng.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.frosted-glass {
+	width: 908px;
+	height: 85px;
+	position: absolute;
+	background: #333333;
+	margin-left: 50px;
+	margin-top: 50px;
+	-webkit-filter: blur(3px);
+	filter: blur(3px);
+	filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false);
+	opacity: 0.55;
+}
+
+.input_pwd_container .password_panel_input,
+.input_pwd_container .confirmpassword_panel_input {
+	font-size: 3rem;
+    color: #ddd;
+    line-height: 180px;
+    letter-spacing: 2.14em;
+    overflow: hidden;	
+    position: absolute;
+    top: 12px;
+    left: 100px;
+}
+
+.notmatch_tip {
+	font-size: 1.8rem;
+	padding-left: 45px;
+	display: block;
+	position: relative;
+	top: -24px;
+}
+
+.notmatch_tip span {
+	background: url(../../../Image/CN/Withdraw/icon_wrong.png) no-repeat center center;
+	background-size: 100% 100%;
+	width: 32px;
+	height: 32px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 23px;
+	padding: 8px;
+}
+
+.notmatch_tip div {
+    width: 840px;
+	word-wrap:break-word;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+/*生成账户*/
+
+.opencard_result {
+	width: 800px;
+	margin: 200px auto;
+}
+
+.generateaccount_title {
+	background: url(../../../Image/CN/Card/icon_generate_account.png) no-repeat;
+	background-size: auto 100%;
+	font-size: 2.75rem;
+	height: 120px;
+	width: 280px;
+	line-height: 123px;
+	padding-left: 168px;
+	white-space: nowrap;
+	margin: 50px auto;
+}
+
+.generateaccount_info {
+	font-size: 2.5rem;
+	line-height: 80px;
+	white-space: nowrap;
+	margin-left: 35px;
+	text-align: left;
+}
+
+
+/*错误提示功能公用*/
+
+
+/*设备故障，交易取消*/
+
+.error_result {
+	width: 100%;
+	font-size: 3rem;
+	margin: 320px auto;
+	text-align: center;
+}
+
+.error_title {
+	background: url(../../../Image/CN/Card/icon_fail.png) no-repeat;
+	background-size: auto 100%;
+	height: 150px;
+	line-height: 150px;
+	padding-left: 168px;
+	white-space: nowrap;
+	margin: auto;
+	display: inline-block;
+	max-width: 1705px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.error_title+div {
+	display: inline;
+	position: relative;
+	top: -51px;
+	line-height: 145px;
+}
+
+
+/*网络故障，交易取消*/
+
+.error_title.networkfault_title {
+	background: url(../../../Image/CN/ErrorPrompt/icon.png) no-repeat;
+	background-size: auto 100%;
+	height: 150px;
+	font-size: 3rem;
+	line-height: 150px;
+	padding-left: 168px;
+	white-space: nowrap;
+	margin: auto;
+	display: inline-block;
+	max-width: 1705px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+/*对不起,交易超时*/
+
+.error_title.timeout_title {
+	background: url(../../../Image/CN/ErrorPrompt/timeout.png) no-repeat;
+	background-size: auto 100%;
+	height: 150px;
+	font-size: 3rem;
+	line-height: 150px;
+	padding-left: 168px;
+	white-space: nowrap;
+	margin: auto;
+	display: inline-block;
+	max-width: 1705px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+/*谢谢使用，再见*/
+
+.error_title.thanks_title {
+	background: url(../../../Image/CN/ErrorPrompt/icon_thank_using.png) no-repeat;
+	background-size: auto 100%;
+	height: 150px;
+	font-size: 3rem;
+	line-height: 150px;
+	padding-left: 168px;
+	white-space: nowrap;
+	margin: auto;
+	display: inline-block;
+	max-width: 1705px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+/*操作超时，您的钞票将被暂存*/
+
+.error_title.operationtimeout_title {
+	background: url(../../../Image/CN/ErrorPrompt/timeout.png) no-repeat;
+	background-size: auto 100%;
+	height: 150px;
+	font-size: 3rem;
+	line-height: 150px;
+	padding-left: 168px;
+	white-space: nowrap;
+	margin: auto;
+	display: inline-block;
+	max-width: 1705px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+/*交易成功*/
+
+.success_title {
+	background: url(../../../Image/CN/Withdraw/icon_successful_trade.png) no-repeat;
+	background-size: auto 100%;
+	height: 150px;
+	font-size: 3rem;
+	line-height: 150px;
+	padding-left: 168px;
+	white-space: nowrap;
+	margin: auto;
+	display: inline-block;
+	max-width: 1705px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+/*交易成功！存款金额100元，设备故障，无法打印凭条*/
+
+.success_title+.prompt_title {
+	font-size: 2.25rem;
+	padding-top: 60px;
+}
+
+
+/*修改密码功能--修改密码*/
+
+.edit_pwd_container {
+	width: 1600px;
+	margin: 85px auto;
+}
+
+.edit_pwd_container .set_password_left {
+	margin: 50px 0 0 65px;
+}
+
+.edit_pwd_container .password_panel_input,
+.edit_pwd_container .confirmpassword_panel_input {
+	font-size: 3rem;
+    color: #ddd;
+	line-height: 175px;
+	letter-spacing: 2.13em;
+    overflow: hidden;	
+	position: absolute;
+	top: 12px;
+    left: 100px;
+}
+
+.edit_pwd_container .set_new_pwd {
+	padding-top: 57px;
+	padding-bottom: 47px;
+}
+
+.edit_pwd_container .notmatch_tip {
+	top: -27px;
+}
+
+
+/*是否确认退出当前业务？*/
+
+.error_result.exitbusiness_result {
+	margin: 318px auto;
+}
+
+.error_title.exitbusiness_title {
+	background: url(../../../Image/CN/ErrorPrompt/icon_current_business_back.png) no-repeat;
+	background-size: auto 100%;
+	height: 150px;
+	font-size: 3rem;
+	line-height: 150px;
+	padding-left: 180px;
+	white-space: nowrap;
+	margin: auto;
+	display: inline-block;
+	max-width: 1705px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+/*存款--点钞结果*/
+
+.business_container .transaction_result.counting_result_container {
+	width: 1130px;
+	margin: 15px auto;
+}
+
+.counting_result_container .frosted-glass {
+	width: 1070px;
+	height: 380px;
+	margin: 35px auto 1px auto;
+	padding: 32px 30px;
+	filter: blur(1px);
+	webkit-filter: blur(1px);
+}
+
+.moneytype_row_contain {
+	padding: 10px 0 12px 0;
+}
+
+.counting_result {
+	position: relative;
+	top: 58px;
+}
+
+.moneytype_row {
+	height: 100px;
+	text-align: center;
+	font-size: 2.25rem;
+}
+
+
+/*x号*/
+
+.moneytype_row .symbol {
+	padding: 0 50px;
+}
+
+
+/*=号*/
+
+.moneytype_row .equal {
+	padding: 0 30px;
+}
+
+
+/*钞票张数*/
+
+.moneytype_row .number_of_money {
+	width: 100px;
+	text-align: left;
+	display: inline-block;
+}
+
+
+/*结果*/
+
+.moneytype_row .calculation_result {
+	width: 150px;
+	text-align: right;
+	display: inline-block;
+}
+
+
+/*总计*/
+
+.total {
+	height: 100px;
+	line-height: 100px;
+	font-size: 2rem;
+	text-align: center;
+	border-top: 1px solid #333333;
+}
+
+
+/*钞票*/
+
+.moneytype_row .money {
+	width: 165px;
+	height: 75px;
+	text-align: center;
+	font-size: 1.8rem;
+	padding-left: 40px;
+	padding-top: 10px;
+	background: url(../../../Image/CN/Withdraw/btn_choice_uncheck.png) no-repeat;
+	background-size: 100% 100%;
+	display: inline-block;
+	line-height: 65px;
+}
+
+
+/*一共3个步骤*/
+
+.card_container .card_container_title .card_title_menu_three li span {
+	width: 430px;
+	height: 6px;
+}
+
+
+/*多个步骤*/
+
+.card_container .card_container_title ul li {
+	line-height: 0;
+}
+
+.card_container .card_container_title ul li em {
+	vertical-align: middle;
+}
+
+.card_container .card_container_title ul li div {
+	vertical-align: middle;
+}
+
+.card_container .card_container_title .card_title_menu_six li span,
+.card_container .card_container_title .card_title_menu_seven li span,
+.card_container .card_container_title .card_title_menu_eight li span,
+.card_container .card_container_title .card_title_menu_nine li span,
+.card_container .card_container_title .card_title_menu_ten li span {
+	vertical-align: middle;
+	margin: 0 5px;
+}
+
+.card_container .card_container_title .card_title_menu_five li {
+	line-height: 2;
+}
+
+
+/*6个步骤*/
+
+.card_container .card_container_title .card_title_menu_six li span {
+	width: 70px;
+}
+
+.card_container .card_container_title .card_title_menu_six li:nth-child(6) div {
+	display: none;
+}
+
+
+/*7个步骤*/
+
+.card_container .card_container_title .card_title_menu_seven li span {
+	width: 65px;
+}
+
+.card_container .card_container_title .card_title_menu_seven li:nth-child(6) div,
+.card_container .card_container_title .card_title_menu_seven li:nth-child(6) div+span,
+.card_container .card_container_title .card_title_menu_seven li:nth-child(7) div {
+	display: none;
+}
+
+.card_container .card_container_title .card_title_menu_seven li:nth-child(7) {
+	margin-left: -15px;
+}
+
+
+/*8个步骤*/
+
+.card_container .card_container_title .card_title_menu_eight li span {
+	width: 60px;
+}
+
+.card_container .card_container_title .card_title_menu_eight li:nth-child(6) div,
+.card_container .card_container_title .card_title_menu_eight li:nth-child(6) div+span,
+.card_container .card_container_title .card_title_menu_eight li:nth-child(7) div,
+.card_container .card_container_title .card_title_menu_eight li:nth-child(7) div+span,
+.card_container .card_container_title .card_title_menu_eight li:nth-child(8) div {
+	display: none;
+}
+
+.card_container .card_container_title .card_title_menu_eight li:nth-child(7),
+.card_container .card_container_title .card_title_menu_eight li:nth-child(8) {
+	margin-left: -15px;
+}
+
+
+/*9个步骤*/
+
+.card_container .card_container_title .card_title_menu_nine li span {
+	width: 55px;
+}
+
+.card_container .card_container_title .card_title_menu_nine li:nth-child(6) div,
+.card_container .card_container_title .card_title_menu_nine li:nth-child(6) div+span,
+.card_container .card_container_title .card_title_menu_nine li:nth-child(7) div,
+.card_container .card_container_title .card_title_menu_nine li:nth-child(7) div+span,
+.card_container .card_container_title .card_title_menu_nine li:nth-child(8) div,
+.card_container .card_container_title .card_title_menu_nine li:nth-child(8) div+span,
+.card_container .card_container_title .card_title_menu_nine li:nth-child(9) div {
+	display: none;
+}
+
+.card_container .card_container_title .card_title_menu_nine li:nth-child(7),
+.card_container .card_container_title .card_title_menu_nine li:nth-child(8),
+.card_container .card_container_title .card_title_menu_nine li:nth-child(9) {
+	margin-left: -15px;
+}
+
+
+/*10个步骤*/
+
+.card_container .card_container_title .card_title_menu_ten li:nth-child(7),
+.card_container .card_container_title .card_title_menu_ten li:nth-child(8),
+.card_container .card_container_title .card_title_menu_ten li:nth-child(9),
+.card_container .card_container_title .card_title_menu_ten li:nth-child(10) {
+	margin-left: -15px;
+}
+
+.card_container .card_container_title .card_title_menu_ten li:nth-child(6) div,
+.card_container .card_container_title .card_title_menu_ten li:nth-child(6) div+span,
+.card_container .card_container_title .card_title_menu_ten li:nth-child(7) div,
+.card_container .card_container_title .card_title_menu_ten li:nth-child(7) div+span,
+.card_container .card_container_title .card_title_menu_ten li:nth-child(8) div,
+.card_container .card_container_title .card_title_menu_ten li:nth-child(8) div+span,
+.card_container .card_container_title .card_title_menu_ten li:nth-child(9) div,
+.card_container .card_container_title .card_title_menu_ten li:nth-child(9) div+span,
+.card_container .card_container_title .card_title_menu_ten li:nth-child(10) div {
+	display: none;
+}
+
+.card_container .card_container_title .card_title_menu_ten li span {
+	width: 50px;
+}
+
+
+/*首页状态信息卡数量的颜色*/
+
+.device_container .card_record li span {
+	color: #A8A8A8;
+}
+
+/*其它未读步骤的文字颜色*/
+/*步骤———其它步骤文字颜色*/
+.card_container .card_container_title ul li div
+{
+	color: #767676;
+}
+
+
+/*焦点色（鼠标聚集时显示的颜色、突出文字显示的颜色）*/
+
+.card_container_title ul li.step_current div,
+
+/*步骤———当前步骤文字颜色*/
+
+.card_container .card_container_title ul li.step_finish div,
+
+/*步骤———已完成的步骤文字颜色*/
+
+.authenticationFailed_tip p span,
+
+/*开卡业务———身份验证失败页面“次数”文字颜色*/
+
+.transaction_result .transaction_result_tip span,
+
+/*开卡业务——点钞结果页面“点钞结果钞票张数数字、钞票面额数字、钞票总额数字”的文字颜色*/
+
+.generateaccount_info span,
+
+/*开卡业务——生成账户页面“卡号数字”的文字颜色*/
+
+.black_bg_title span,
+
+/*开卡业务——上屏拍照页面“x秒”文字颜色*/
+
+.moneytype_row.total,
+
+/*存款业务——点钞结果页面“总计”的文字颜色*/
+
+.business_container .transaction_result .count_res_contain span,
+
+/*无卡存款——确认您的存款信息页面“账号”文字的颜色*/
+
+.business_container .transaction_result .transaction_res_contain span,
+
+/*查询业务——存款信息页面"账户余额数字和可用余额数字"的文字颜色*/
+
+.button_container .cancel_button
+/*透明按钮的文字颜色（也是全部取消按钮的文字颜色class="cancel_button“）*/
+
+{
+	color: #2CCDFF;
+}
+
+
+/*辅助色(大部分文字的颜色)*/
+
+
+/* 
+ * .business_title的文字颜色（包括的页面有如下：）
+ * 开卡业务———请选择您要开设的账户类型页面“请选择您要办理的业务”标题文字颜色、
+ * 开卡业务———“客服人员将采集您的面部信息，请抬头正视屏幕上方摄像头”文字颜色、
+ * 开卡业务——“正在确认您的身份，请稍后...”
+ * 开卡业务—— 办卡协议页面“办卡协议” ,
+ * 开卡业务——放入钞票页面"请把面额为X元的钞票放入存款口内" 
+ * 开卡业务——"审核通过，请把打印表单放入回收口中"
+ * 开卡业务——“请取回您的表单，并在签名处签名”
+ * 开卡业务——“请把表单放入表单扫描口” 
+ * 开卡业务——取回身份证页面“信息读取完毕，请取回您的身份证” 
+ * 存款业务——插入银行卡页面“请插入您的银行卡”
+ * 存款业务——输入密码页面“请输入银行卡交易密码”，
+ * 存款业务——放入钞票页面“请把钞票叠放整齐放入存钞口内，放入后请按“确认”键”
+ * 存款业务——凭条提示页面“请拿好您的凭条”  
+ * 存款业务——正在点钞“操作正在进行，请稍后...”
+ * 所有提示页面
+ * */
+
+.count_down_time,
+#count_down,/*右上角倒计时*/
+.authenticationFailed_result .authenticationFiled_title+div,	/*开卡业务———身份验证失败页面“身份验证失败”标题文字颜色*/
+.authenticationFailed_result .authenticationFailed_tip,			/*开卡业务———身份验证失败页面“您拍摄的照片未能与身份证照片匹配，您还可以重拍次”文字颜色*/
+.error_result .authentication_title,							/*开卡业务———身份验证成功页面“身份验证成功”文字颜色*/
+.business_title,.transaction_result .transaction_result_title,	/*开卡业务——点钞结果页面“点钞结果”标题的文字颜色*/
+.transaction_result .transaction_result_tip,					/*开卡业务——点钞结果页面“点钞结果钞票张数、钞票面额、钞票总额”的文字颜色*/
+.card_input_container .card_input_container_tit,				/*开卡业务——录入信息页面“请您核实并完善一下信息（其中带（）标志的字段为必填项”的文字颜色*/
+.card_input_container .card_input_container_group .card_input_con .card_input_con_group input,	/*开卡业务——录入信息页面“输入框内容”的文字颜色*/
+.job_container,													/*开卡业务——录入信息页面“职业类型选项”的文字颜色*/
+.generateaccount_title,											/*开卡业务——生成账户页面“正在生成账户”标题的文字颜色*/
+.generateaccount_info,											/*开卡业务——生成账户页面“卡号、开卡日期”的文字颜色*/
+.set_password_right,											/*开卡业务——输入密码页面“请设置银行卡交易密码、请再次输入银行卡交易密码”的文字颜色*/
+.black_bg_title,												/*开卡业务——上屏拍照页面“请将头像置于框内，并停留xx开始拍照”文字颜色*/
+.transaction_title,												/*存款业务——点钞结果页面“点钞结果”标题的文字颜色*/
+.moneytype_row,													/*存款业务——点钞结果页面“中间部分内容”的文字颜色*/
+.business_container .transaction_result .transaction_res_contain,/*存款业务——凭条提示页面“请问是否需要打印凭条”的文字颜色*/
+.error_result,													/*提示页面——交易成功，设备故障，无法打印凭条*/
+.business_container .transaction_result .count_res_contain,		/*无卡存款——请确认您的存款信息页面“账号标题和户名信息”文字的颜色*/
+.business_container .input_acount_contain .business_con_acount,	/*无卡存款——请确认您要存入的卡号页面“输入框”文字的颜色*/
+.transaction_details_contain .transaction_details_con_body .transac_detail_tr table,/*查询业务——账户详细信息页面"内容"的文字颜色*/
+.date_select_container .date_select_group .date_select_group_tit,/*查询业务——账户详细信息页面"点击历史明细时显示层的时间标题：开始时间和结束时间"的文字颜色*/
+.date_select_container .date_button_group div,					/*查询业务——账户详细信息页面"点击历史明细时显示层按钮"的文字颜色*/
+.date_select_container .date_select_group .date_select_group_con .mbsc-mobiscroll-dark .dwfl .dw-li.dw-v,/*查询业务——账户详细信息页面"点击历史明细时显示层的选择的日期"的文字颜色*/
+.other_amount_countain span,									/*取款业务——选择金额页面“其他金额”标题的文字颜色*/
+.button_container_footer .forword_button,						/*蓝色按钮文字颜色 class="forword_button"*/
+.button_container .enter_button,								/*蓝色按钮文字颜色 class="enter_button"*/
+.button_container .other_button                                 /*蓝色+模糊感按钮文字颜色 class="other_button"*/
+{
+	color: #FFFFFF;
+}
+
+
+/*步骤（1、2、3、4、5···）数字的文字颜色（阅读协议页面、身份验证失败页面）*/
+
+.card_container .card_container_title ul li em {
+	color: #181818;
+}
+
+
+/*功能模块的文字颜色（首页、办理其他业务页面）*/
+
+ul.menu_lis li .menu_lis_dl,/*首页业务文字颜色*/
+.submenu_lis li .submenu_lis_dl,/*开卡业务———请选择您要开设的账户类型页面业务文字颜色*/
+.card_input_container .card_input_container_group .card_input_con .card_input_con_group div,/*开卡业务——录入信息页面“每个信息的标题：例：姓名、性别···”的颜色*/
+.agreement_container .card_input_container_group,/*开卡业务——办卡协议页面"协议内容"的文字颜色*/
+.transaction_details_contain .transaction_details_con_head,/*查询业务——账户详细信息页面"最近交易、当然明细、历史明细"三个标题的文字颜色*/
+.transaction_details_contain .transaction_details_con_body .transac_detail_th,/*查询业务——账户详细信息页面"底部显示完整年月日"的文字颜色*/
+.date_select_container .date_container_main .date_select_group .date_select_group_text {
+	color: #B3B3B3;
+}
+
+ul.menu_lis li.menu_lis_li {
+    margin-left:83px;
+    
+}
+
+
+
+
+/*(错误)提示信息的文字颜色*/
+
+.card_input_container .card_input_container_tit span,/*开卡业务——录入信息页面“*”的颜色*/
+.notmatch_tip div,/*开卡业务——输入密码页面“错误提示”的文字颜色*/
+.error_tips,
+.business_container .machine_panel.password_panel .password_panel_tip em        /*输入银行卡交易密码页面"输入密码长度不够，请重新输入"的文字颜色*/
+{
+	color: #FF3737;
+}
+
+
+/*取款业务——选择金额页面“选择的金额”的文字颜色*/
+
+.money_panel .money_panel_lis li div {
+	color: #F5F5F5;
+}
+
+
+/*输入框的文字颜色（请选择或输入取款金额页面、请输入您要存入的卡号页面）*/
+
+.other_amount_countain input      /*取款业务——选择金额"输入框内容"的文字颜色*/
+{
+	color: #868483;
+}
+
+.card_container_title ul li.step_finish em {
+	color: transparent;
+}
+
+
+/*640*480*/
+
+@media only screen and (max-width:640px) {
+	html {
+		font-size: 6px;
+	}
+	/*办卡协议*/
+	.agreement_container .business_title {
+		line-height: 0px !important;
+	}
+	.agreement_container .card_input_container_group {
+		height: 185px;
+		line-height: 20px;
+	}
+	#agreement_start {
+		text-indent: 27px;
+	}
+	/*请插入您的身份证*/
+	/*请取回您的身份证*/
+	/*请取回您的表单，并在签名处签名*/
+	/*请把表单放入表单扫描口*/
+	/*审核通过，请把打印表单放入回收口中*/
+	.machine_panel.identify,
+	.machine_panel.takeidentification,
+    .machine_panel.takeukey,
+    .machine_panel.scanukey,
+	.machine_panel.signature,
+	.machine_panel.signatureScan,
+	.machine_panel.recycleform {
+		width: 417px;
+		height: 210px;
+		margin: 24px auto;
+	}
+	/*客服人员将采集您的面部信息，请抬头正视屏幕上方摄像头*/
+	.machine_panel.facial {
+		width: 417px;
+		height: 215px;
+		margin: 28px auto;
+	}
+	/*请将头像置于框内，并停留5秒开始拍照*/
+	.black_bg_title {
+		line-height: 0;
+		padding: 55px 70px;
+	}
+	/*身份验证成功！*/
+	.authentication_title,
+	.authenticationFiled_title {
+		height: 50px;
+		line-height: 50px;
+		padding-left: 65px;
+	}
+	/*永远居中*/
+	.center_title+div{
+	    top: -20px;
+	    line-height: 45px;
+	}
+	/*身份验证失败！*/
+	.authenticationFailed_result {
+		margin: 70px auto;
+	}
+	.authenticationFailed_tip p {
+		line-height: 30px;
+	}
+	/*请把面额为x元的钞票放入存款口内*/
+	.put_in_money_container .business_title {
+		line-height: 0px !important;
+	}
+	.put_in_money_container .machine_panel.bank_note {
+		width: 362px !important;
+		height: 170px !important;
+		margin: 20px auto !important;
+	}
+	.button_container_footer {
+		bottom: 37.55px!important;
+		line-height: 27.65px!important;
+	}
+	/*点钞结果*/
+	.transaction_result_container .transaction_result {
+		margin: 28px auto !important;
+	}
+	.transaction_result_title {
+		height: 55px;
+		width: 137px;
+		margin: 5px auto;
+		line-height: 55px;
+		padding-left: 80px;
+	}
+	.transaction_result_tip {
+		line-height: 35px;
+		margin-left: 5px;
+	}
+	/*设置密码*/
+	.input_pwd_container {
+		width: 467px;
+		margin: 28px auto;
+	}
+	.frosted-glass {
+		width: 277px;
+		height: 32px;
+		margin-left: 15px;
+		margin-top: 14px;
+	}
+	.set_password_left {
+		width: 154px;
+		height: 170px;
+		margin-left: 0;
+	}
+	.set_new_pwd {
+		padding-top: 6px;
+		padding-bottom: 9px;
+	}
+	.set_pwd_title {
+	    width: 268px;
+		padding-left: 18px;
+	}
+	.set_pwd {
+		width: 301px;
+		height: 60px;
+	}
+	.input_pwd_container .password_panel_input,
+	.input_pwd_container .confirmpassword_panel_input {
+		top: 4px;
+    	left: 29px;
+		line-height: 59px;
+		letter-spacing: 2.14em;
+	}
+	.notmatch_tip {
+		font-size: 1.3rem;
+		padding-left: 20px;
+		top: -7px;
+	}
+	.notmatch_tip span {
+		width: 15px;
+		height: 15px;
+		margin-right: 10px;
+		padding: 0px;
+	}
+	.notmatch_tip div{
+	    width: 244px;
+	}
+	/*生成账户*/
+	.opencard_result {
+		margin: 80px auto;
+	}
+	.generateaccount_title {
+		width: 48% !important;
+		height: 60px;
+		line-height: 55px;
+		padding-left: 90px;
+		margin: 25px auto;
+	}
+	.generateaccount_info {
+		margin-left: 22% !important;
+		line-height: 30px;
+	}
+	/*设备故障，交易取消*/
+	.error_result {
+		margin: 123px auto;
+	}
+	/*设备故障，交易取消*/
+	/*网络故障，交易取消*/
+	/*对不起，交易超时*/
+	/*谢谢使用，再见！*/
+	/*无法打印凭条，是否继续交易！*/
+	/*交易成功！*/
+	.error_title,
+	.error_title.networkfault_title,
+	.error_title.timeout_title,
+	.error_title.thanks_title,
+	.error_title.unabletoprint_title,
+	.success_title,
+	.error_title.exitbusiness_title {
+		height: 60px;
+		line-height: 62px;
+		padding-left: 85px;
+	}
+	/*英文*/
+	.error_title+div {
+		top: -24px;
+		line-height: 55px;
+	}
+	/*交易成功！存款金额100元，设备故障，无法打印凭条*/
+	.success_title+.prompt_title {
+		padding-top: 25px;
+	}
+	/*是否确认退出当前业务*/
+	.error_result.exitbusiness_result {
+		margin: 114px auto;
+	}
+	.error_title.exitbusiness_title {
+		height: 80px;
+		line-height: 80px;
+		padding-left: 105px;
+	}
+	/*设置新密码*/
+	.edit_pwd_container {
+		width: 455px;
+		margin: 10px auto;
+	}
+	.edit_pwd_container .frosted-glass {
+		width: 266px;
+	}
+	.edit_pwd_container .set_password_left {
+		margin: 50px 0 0 -7px;
+	}
+	.edit_pwd_container .password_panel_input,
+	.edit_pwd_container .confirmpassword_panel_input {
+		top: 3px;
+    	left: 30px;	 
+		line-height: 60px;
+		letter-spacing: 2.05em;
+	}
+	.edit_pwd_container .set_new_pwd {
+		padding-top: 52px;
+		padding-bottom: 26px;
+	}
+	.edit_pwd_container .set_pwd {
+		width: 292px;
+	}
+	.edit_pwd_container .notmatch_tip {
+		top: -9px;
+	}
+	.card_container .card_container_title ul li.step_current em {
+		width: 16px !important;
+		height: 16px !important;
+		line-height: 16px !important;
+	}
+	/*存款--点钞结果*/
+	.business_container .transaction_result.counting_result_container {
+		width: 380px !important;
+		margin: 20px auto !important;
+	}
+	.counting_result_container .frosted-glass {
+		width: 380px;
+		height: 153px;
+		padding: 15px 0;
+		margin: 16px auto 1px auto;
+	}
+	.counting_result {
+		top: 26px;
+	}
+	.moneytype_row_contain {
+		padding: 3px 0 4px 0;
+	}
+	.moneytype_row {
+		height: 45px;
+	}
+	.moneytype_row .money {
+		width: 50px;
+		height: 26px;
+		line-height: 17px;
+		padding-left: 20px;
+	}
+	.moneytype_row .symbol {
+		padding: 0 30px;
+	}
+	.moneytype_row .equal {
+		padding: 0;
+	}
+	.moneytype_row .number_of_money {
+		width: 45px;
+	}
+	.moneytype_row .calculation_result {
+		width: 70px;
+	}
+	.total {
+		line-height: 28px;
+	}
+	/*步骤*/
+	.card_container_title ul li span {
+		width: 45.6px !important;
+	}
+	/*3个步骤*/
+	.card_container .card_container_title .card_title_menu_three li span {
+		width: 120px !important;
+	}
+	/*点点点的宽度*/
+	.card_container .card_container_title .card_title_menu_ten li.step_finish span,
+	.card_container_title .card_title_menu_six li span,
+	.card_container_title .card_title_menu_seven li span,
+	.card_container_title .card_title_menu_eight li span,
+	.card_container_title .card_title_menu_nine li span,
+	.card_container_title .card_title_menu_ten li span {
+		width: 10px !important;
+	}
+	.card_container_title ul li:first-child {
+		margin-left: 0 !important;
+	}
+	/*步骤6-10的位置调整*/
+	.card_container_title ul li:nth-child(6),
+	.card_container_title ul li:nth-child(7),
+	.card_container_title ul li:nth-child(8),
+	.card_container_title ul li:nth-child(9),
+	.card_container_title ul li:nth-child(10) {
+		margin-left: -6px !important;
+	}
+	/*步骤6-10的位置调整*/
+	.card_container_title ul li:nth-child(6) em,
+	.card_container_title ul li:nth-child(7) em,
+	.card_container_title ul li:nth-child(8) em,
+	.card_container_title ul li:nth-child(9) em,
+	.card_container_title ul li:nth-child(10) em {
+		line-height: 11px !important;
+	}
+}
+
+
+/*800*600*/
+
+@media only screen and (min-width:641px) and (max-width:800px) {
+	html {
+		font-size: 8px;
+	}
+	/*办卡协议*/
+	.agreement_container .business_title {
+		line-height: 10px !important;
+	}
+	.agreement_container .card_input_container_group {
+		height: 280px;
+		line-height: 25px;
+	}
+	#agreement_start {
+		text-indent: 30px;
+	}
+	/*请插入您的身份证*/
+	/*请取回您的身份证*/
+	/*请取回您的表单，并在签名处签名*/
+	/*请把表单放入表单扫描口*/
+	/*审核通过，请把打印表单放入回收口中*/
+	.machine_panel.identify,
+	.machine_panel.takeidentification,
+    .machine_panel.takeukey,
+    .machine_panel.scanukey,
+	.machine_panel.signature,
+	.machine_panel.signatureScan,
+	.machine_panel.recycleform {
+		width: 520px;
+		height: 260px;
+		margin: 40px auto;
+	}
+	/*客服人员将采集您的面部信息，请抬头正视屏幕上方摄像头*/
+	.business_title.collectFacial_title {
+		font-size: 2.4rem;
+	}
+	.machine_panel.facial {
+		width: 523px;
+		height: 260px;
+		margin: 50px auto;
+	}
+	/*请将头像置于框内，并停留5秒开始拍照*/
+	.black_bg_title {
+		line-height: 0;
+		padding: 55px 70px;
+	}
+	/*身份验证成功！*/
+	.authenticationSuccess_result {
+		margin: 160px auto;
+	}
+	.authentication_title,
+	.authenticationFiled_title {
+		height: 60px;
+		line-height: 60px;
+		padding-left: 80px;
+	}
+	/*永远居中*/
+	.center_title+div{
+	    top: -20px;
+	    line-height: 55px;
+	}
+	/*身份验证失败！*/
+	.authenticationFailed_result {
+		margin: 115px auto;
+	}
+	.authenticationFailed_tip p {
+		line-height: 40px;
+	}
+	/*请把面额为x元的钞票放入存款口内*/
+	.put_in_money_container .business_title {
+		line-height: 5px !important;
+	}
+	.put_in_money_container .machine_panel.bank_note {
+		width: 454px !important;
+		height: 215px !important;
+		margin: 25px auto !important;
+	}
+	/*点钞结果*/
+	.transaction_result_container .transaction_result {
+		margin: 71px auto !important;
+	}
+	.transaction_result_title {
+		height: 65px;
+		width: 157px;
+		margin: 5px auto;
+		line-height: 65px;
+		padding-left: 95px;
+	}
+	.transaction_result_tip {
+		line-height: 40px;
+		margin-left: 15px;
+	}
+	/*设置密码*/
+	.input_pwd_container {
+		width: 589px;
+		margin: 45px auto;
+	}
+	.frosted-glass {
+		width: 350px;
+		height: 38px;
+		margin-left: 14px;
+		margin-top: 19px;
+	}
+	.set_password_left {
+		width: 196px;
+		height: 194px;
+		margin-left: 0;
+	}
+	.set_new_pwd {
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+	.set_pwd_title {
+	    width: 340px;
+		padding-left: 18px;
+	}
+	.set_pwd {
+		height: 75px;
+		width: 377px;
+	}
+	.input_pwd_container .password_panel_input,
+	.input_pwd_container .confirmpassword_panel_input {
+		top: 4px;
+    	left: 37px;
+		line-height: 75px;
+		letter-spacing: 1.98em;
+	}
+	.notmatch_tip {
+		padding-left: 20px;
+		top: -11px;
+	}
+	.notmatch_tip span {
+		width: 20px;
+		height: 20px;
+		margin-right: 15px;
+		padding: 0px;
+	}
+	.notmatch_tip div{
+	    width: 306px;
+	}
+	/*生成账户*/
+	.opencard_result {
+		margin: 110px auto;
+	}
+	.generateaccount_title {
+		width: 28% !important;
+		height: 70px;
+		line-height: 65px;
+		padding-left: 100px;
+		margin: 25px auto;
+	}
+	.generateaccount_info {
+		margin-left: 31.8% !important;
+		line-height: 35px;
+	}
+	/*设备故障，交易取消*/
+	.error_result {
+		margin: 173px auto;
+	}
+	/*设备故障，交易取消*/
+	/*网络故障，交易取消*/
+	/*对不起，交易超时*/
+	/*谢谢使用，再见！*/
+	/*无法打印凭条，是否继续交易！*/
+	/*交易成功！*/
+	.error_title,
+	.error_title.networkfault_title,
+	.error_title.timeout_title,
+	.error_title.thanks_title,
+	.error_title.unabletoprint_title,
+	.success_title,
+	.error_title.exitbusiness_title {
+		height: 65px;
+		line-height: 62px;
+		padding-left: 90px;
+	}
+	/*英文*/
+	.error_title+div {
+		top: -23px;
+		line-height: 65px;
+	}
+	/*交易成功！存款金额100元，设备故障，无法打印凭条*/
+	.success_title+.prompt_title {
+		padding-top: 30px;
+	}
+	/*是否确认退出当前业务*/
+	.error_result.exitbusiness_result {
+		margin: 161px auto;
+	}
+	.error_title.exitbusiness_title {
+		height: 90px;
+		line-height: 90px;
+		padding-left: 115px;
+	}
+	/*修改密码*/
+	.edit_pwd_container {
+		width: 585px;
+		margin: 18px auto;
+	}
+	.edit_pwd_container .set_password_left {
+		margin: 50px 0 0 -3px;
+	}
+	.edit_pwd_container .password_panel_input,
+	.edit_pwd_container .confirmpassword_panel_input {
+		top: 5px;
+    	left: 37px;
+		line-height: 74px;
+		letter-spacing: 1.97em;
+	}
+	.edit_pwd_container .set_new_pwd {
+		padding-top: 52px;
+		padding-bottom: 10px;
+	}
+	.edit_pwd_container .set_pwd {
+		width: 375px;
+	}
+	.edit_pwd_container .notmatch_tip {
+		top: -11px;
+	}
+	.card_container .card_container_title ul li.step_current em {
+		width: 22px !important;
+		height: 22px !important;
+		line-height: 22px !important;
+	}
+	/*存款--点钞结果*/
+	.business_container .transaction_result.counting_result_container {
+		width: 470px !important;
+		margin: 26px auto !important;
+	}
+	.counting_result_container .frosted-glass {
+		width: 470px;
+		height: 192px;
+		padding: 20px 0;
+		margin: 25px auto 1px auto;
+	}
+	.counting_result {
+		top: 40px;
+	}
+	.moneytype_row_contain {
+		padding: 5px 0 5px 0;
+	}
+	.moneytype_row {
+		height: 55px;
+	}
+	.moneytype_row .money {
+		width: 65px;
+		height: 33px;
+		line-height: 23px;
+		padding-left: 20px;
+	}
+	.moneytype_row .symbol {
+		padding: 0 30px;
+	}
+	.moneytype_row .equal {
+		padding: 0;
+	}
+	.moneytype_row .number_of_money {
+		width: 55px;
+	}
+	.moneytype_row .calculation_result {
+		width: 90px;
+	}
+	.total {
+		line-height: 40px;
+	}
+	/*步骤*/
+	/*3个步骤*/
+	.card_container .card_container_title .card_title_menu_three li span {
+		width: 170px !important;
+	}
+	/*点点点的宽度*/
+	.card_container .card_container_title .card_title_menu_ten li.step_finish span,
+	.card_container_title .card_title_menu_six li span,
+	.card_container_title .card_title_menu_seven li span,
+	.card_container_title .card_title_menu_eight li span,
+	.card_container_title .card_title_menu_nine li span,
+	.card_container_title .card_title_menu_ten li span {
+		width: 20px !important;
+	}
+	.card_container_title ul li:first-child {
+		margin-left: 0 !important;
+	}
+	/*步骤6-10的位置调整*/
+	.card_container_title ul li:nth-child(6),
+	.card_container_title ul li:nth-child(7),
+	.card_container_title ul li:nth-child(8),
+	.card_container_title ul li:nth-child(9),
+	.card_container_title ul li:nth-child(10) {
+		margin-left: -8px !important;
+	}
+	/*步骤6-10的位置调整*/
+	.card_container_title ul li:nth-child(6) em,
+	.card_container_title ul li:nth-child(7) em,
+	.card_container_title ul li:nth-child(8) em,
+	.card_container_title ul li:nth-child(9) em,
+	.card_container_title ul li:nth-child(10) em {
+		line-height: 14px !important;
+	}
+}
+
+
+/*1024*768*/
+
+@media only screen and (min-width:801px) and (max-width:1024px) {
+	html {
+		font-size: 10px;
+	}
+	/*办卡协议*/
+	.agreement_container .card_input_container_group {
+		height: 400px;
+		line-height: 30px;
+	}
+	#agreement_start {
+		text-indent: 40px;
+	}
+	.agreement_container .business_title {
+		line-height: 20px !important;
+	}
+	/*请插入您的身份证*/
+	/*请取回您的身份证*/
+	/*请取回您的表单，并在签名处签名*/
+	/*请把表单放入表单扫描口*/
+	/*审核通过，请把打印表单放入回收口中*/
+	.machine_panel.identify,
+	.machine_panel.takeidentification,
+    .machine_panel.takeukey,
+    .machine_panel.scanukey,
+	.machine_panel.signature,
+	.machine_panel.signatureScan,
+	.machine_panel.recycleform {
+		width: 670px;
+		height: 325px;
+		margin: 55px auto;
+	}
+	/*客服人员将采集您的面部信息，请抬头正视屏幕上方摄像头*/
+	.machine_panel.facial {
+		width: 670px;
+		height: 310px;
+		margin: 60px auto;
+	}
+	/*请将头像置于框内，并停留5秒开始拍照*/
+	.black_bg_title {
+		line-height: 20px;
+		padding: 55px 70px;
+	}
+	.photo_scanning {
+		width: 1024px;
+		height: 550px;
+	}
+	/*身份验证成功！*/
+	.authenticationSuccess_result {
+		margin: 210px auto;
+	}
+	.authentication_title,
+	.authenticationFiled_title {
+		height: 70px;
+		line-height: 70px;
+		padding-left: 90px;
+	}
+	/*永远居中*/
+	.center_title+div{
+	    top: -23px;
+	    line-height: 65px;
+	}
+	/*身份验证失败！*/
+	.authenticationFailed_result {
+		margin: 166px auto;
+	}
+	.authenticationFailed_tip p {
+		line-height: 50px;
+	}
+	/*请把面额为x元的钞票放入存款口内*/
+	.put_in_money_container .business_title {
+		line-height: 10px !important;
+	}
+	.put_in_money_container .machine_panel.bank_note {
+		width: 582px !important;
+		height: 280px !important;
+		margin: 33px auto !important;
+	}
+	/*点钞结果*/
+	.transaction_result_title {
+		height: 75px;
+		width: 164px;
+		margin: 10px auto;
+		line-height: 74px;
+		padding-left: 105px;
+	}
+	.transaction_result_tip {
+		line-height: 50px;
+		margin-left: 30px;
+	}
+	/*设置密码*/
+	.input_pwd_container {
+		width: 834px;
+		margin: 60px auto;
+	}
+	.frosted-glass {
+		width: 480px;
+		height: 46px;
+		margin-left: 26px;
+		margin-top: 26px;
+	}
+	.set_password_left {
+		width: 291px;
+		height: 289px;
+		margin-left: 0;
+	}
+	.set_new_pwd {
+		padding-top: 7px;
+		padding-bottom: 50px;
+	}
+	.set_pwd_title {
+	    width: 470px;
+		padding-left: 30px;
+	}
+	.set_pwd {
+		width: 526px;
+		height: 96px;
+	}
+	.input_pwd_container .password_panel_input,
+	.input_pwd_container .confirmpassword_panel_input {
+		top: 8px;
+    	left: 52px;
+		line-height: 92px;
+		letter-spacing: 2.26em;
+	}
+	.notmatch_tip {
+		padding-left: 30px;
+		top: -13px;
+	}
+	.notmatch_tip span {
+		width: 25px;
+		height: 25px;
+		margin-right: 20px;
+		padding: 0px;
+	}
+	.notmatch_tip div{
+	    width: 427px;
+	}
+	/*生成账户*/
+	.opencard_result {
+		margin: 170px auto;
+	}
+	.generateaccount_title {
+		width: 32% !important;
+		height: 75px;
+		line-height: 65px;
+		padding-left: 110px;
+		margin: 25px auto;
+	}
+	.generateaccount_info {
+		margin-left: 29.5% !important;
+		line-height: 45px;
+	}
+	/*设备故障，交易取消*/
+	.error_result {
+		margin: 244px auto;
+	}
+	/*设备故障，交易取消*/
+	/*网络故障，交易取消*/
+	/*对不起，交易超时*/
+	/*谢谢使用，再见！*/
+	/*无法打印凭条，是否继续交易！*/
+	/*交易成功！*/
+	.error_title,
+	.error_title.networkfault_title,
+	.error_title.timeout_title,
+	.error_title.thanks_title,
+	.error_title.unabletoprint_title,
+	.success_title {
+		height: 75px;
+		line-height: 75px;
+		padding-left: 105px;
+	}
+	/*英文*/
+	.error_title+div {
+		top: -26px;
+		line-height: 75px;
+	}
+	/*交易成功！存款金额100元，设备故障，无法打印凭条*/
+	.success_title+.prompt_title {
+		padding-top: 35px;
+	}
+	/*是否确认退出当前业务*/
+	.error_result.exitbusiness_result {
+		margin: 232px auto;
+	}
+	.error_title.exitbusiness_title {
+		height: 100px;
+		line-height: 100px;
+		padding-left: 125px;
+	}
+	/*修改密码*/
+	.edit_pwd_container {
+		width: 795px;
+		margin: 100px auto;
+	}
+	.edit_pwd_container .frosted-glass {
+		width: 460px;
+		margin-left: 22px;
+	}
+	.edit_pwd_container .set_password_left {
+		margin: 50px 0 0 -22px;
+	}
+	.edit_pwd_container .password_panel_input,
+	.edit_pwd_container .confirmpassword_panel_input { 
+		top: 5px;
+    	left: 50px;
+		line-height: 95px;
+		letter-spacing: 2.16em;
+	}
+	.edit_pwd_container .set_new_pwd {
+		padding-top: 55px;
+		padding-bottom: 55px;
+	}
+	.edit_pwd_container .set_pwd {
+		width: 506px;
+		height: 94px;
+	}
+	.edit_pwd_container .notmatch_tip {
+		top: -12px;
+	}
+	.card_container .card_container_title ul li.step_current em {
+		width: 27px !important;
+		height: 27px !important;
+		line-height: 27px !important;
+	}
+	/*存款--点钞结果*/
+	.business_container .transaction_result.counting_result_container {
+		width: 640px !important;
+		margin: 62px auto !important;
+	}
+	.counting_result_container .frosted-glass {
+		width: 640px;
+		height: 230px;
+		padding: 25px 0;
+		margin: 24px auto 1px auto;
+	}
+	.counting_result {
+		top: 50px;
+	}
+	.moneytype_row_contain {
+		padding: 0px 0 12px 0;
+	}
+	.moneytype_row {
+		height: 65px;
+	}
+	.moneytype_row .money {
+		width: 88px;
+		height: 45px;
+		line-height: 35px;
+		padding-left: 20px;
+	}
+	.moneytype_row .symbol {
+		padding: 0 30px;
+	}
+	.moneytype_row .equal {
+		padding: 0;
+	}
+	.moneytype_row .number_of_money {
+		width: 65px;
+	}
+	.moneytype_row .calculation_result {
+		width: 105px;
+	}
+	.total {
+		line-height: 45px;
+	}
+	/*步骤*/
+	/*3个步骤*/
+	.card_container .card_container_title .card_title_menu_three li span {
+		width: 225px !important;
+	}
+	/*点点点的宽度*/
+	.card_container .card_container_title .card_title_menu_ten li.step_finish span,
+	.card_container_title .card_title_menu_six li span,
+	.card_container_title .card_title_menu_seven li span,
+	.card_container_title .card_title_menu_eight li span,
+	.card_container_title .card_title_menu_nine li span,
+	.card_container_title .card_title_menu_ten li span {
+		width: 30px !important;
+	}
+	.card_container_title ul li:first-child {
+		margin-left: 0 !important;
+	}
+	/*步骤6-10的位置调整*/
+	.card_container_title ul li:nth-child(6),
+	.card_container_title ul li:nth-child(7),
+	.card_container_title ul li:nth-child(8),
+	.card_container_title ul li:nth-child(9),
+	.card_container_title ul li:nth-child(10) {
+		margin-left: -10px !important;
+	}
+	/*步骤6-10的位置调整*/
+	.card_container_title ul li:nth-child(6) em,
+	.card_container_title ul li:nth-child(7) em,
+	.card_container_title ul li:nth-child(8) em,
+	.card_container_title ul li:nth-child(9) em,
+	.card_container_title ul li:nth-child(10) em {
+		line-height: 17px !important;
+	}
+}
+
+
+/*1280*1024*/
+
+@media only screen and (min-width:1025px) and (max-width:1280px) {
+	html {
+		font-size: 12px;
+	}
+	/*办卡协议*/
+	.agreement_container .card_input_container_group {
+		height: 360px;
+		line-height: 40px;
+	}
+	#agreement_start {
+		text-indent: 50px;
+	}
+	.agreement_container .business_title {
+		line-height: 20px !important;
+	}
+	/*请插入您的身份证*/
+	/*请取回您的身份证*/
+	/*请取回您的表单，并在签名处签名*/
+	/*请把表单放入表单扫描口*/
+	/*审核通过，请把打印表单放入回收口中*/
+	.machine_panel.identify,
+	.machine_panel.takeidentification,
+    .machine_panel.takeukey,
+    .machine_panel.scanukey,
+	.machine_panel.signature,
+	.machine_panel.signatureScan,
+	.machine_panel.recycleform {
+		width: 841px;
+		height: 375px;
+		margin: 70px auto;
+	}
+	/*客服人员将采集您的面部信息，请抬头正视屏幕上方摄像头*/
+	.machine_panel.facial {
+		width: 845px;
+		height: 365px;
+		margin: 75px auto;
+	}
+	/*请将头像置于框内，并停留5秒开始拍照*/
+	.black_bg_title {
+		line-height: 35px;
+	}
+	/*身份验证成功！*/
+	.authentication_title,
+	.authenticationFiled_title {
+		height: 90px;
+		line-height: 90px;
+		padding-left: 110px;
+	}
+	/*永远居中*/
+	.center_title+div{
+	    top: -29px;
+	    line-height: 75px;
+	}
+	/*身份验证失败！*/
+	.authenticationFailed_result {
+		margin: 252px auto;
+	}
+	.authenticationFailed_tip p {
+		line-height: 60px;
+	}
+	/*请把面额为x元的钞票放入存款口内*/
+	.put_in_money_container .business_title {
+		line-height: 30px !important;
+	}
+	.put_in_money_container .machine_panel.bank_note {
+		width: 727px !important;
+		height: 370px !important;
+		margin: 40px auto !important;
+	}
+	/*点钞结果*/
+	.transaction_result_title {
+		height: 85px;
+		width: 240px;
+		margin: 20px auto;
+		line-height: 85px;
+		padding-left: 130px;
+	}
+	.transaction_result_tip {
+		line-height: 60px;
+		margin-left: 15px;
+	}
+	/*设置密码*/
+	.input_pwd_container {
+		width: 1012px;
+		margin: 90px auto;
+	}
+	.frosted-glass {
+		width: 580px;
+		height: 60px;
+		margin-left: 34px;
+		margin-top: 30px;
+	}
+	.set_new_pwd {
+		padding-top: 10px;
+		padding-bottom: 50px;
+	}
+	.set_pwd_title {
+	    width: 576px;
+		padding-left: 36px;
+	}
+	.set_password_left {
+		width: 348px;
+		height: 346px;
+		margin-left: 0;
+	}
+	.set_pwd {
+		width: 642px;
+		height: 120px;
+	}
+	.input_pwd_container .password_panel_input,
+	.input_pwd_container .confirmpassword_panel_input {
+		top: 8px;
+    	left: 62px;
+		line-height: 115px;
+		letter-spacing: 2.33em;
+	}
+	.notmatch_tip span {
+		padding: 0px;
+	}
+	.notmatch_tip div{
+	    width: 513px;
+	}
+	/*生成账户*/
+	.opencard_result {
+		margin: 225px auto;
+	}
+	.generateaccount_title {
+		width: 35% !important;
+		height: 85px;
+		line-height: 90px;
+		padding-left: 130px;
+		margin: 30px auto;
+	}
+	.generateaccount_info {
+		margin-left: 27% !important;
+		line-height: 55px;
+	}
+	/*设备故障，交易取消*/
+	.error_result {
+		margin: 358px auto;
+	}
+	/*设备故障，交易取消*/
+	/*网络故障，交易取消*/
+	/*对不起，交易超时*/
+	/*谢谢使用，再见！*/
+	/*无法打印凭条，是否继续交易！*/
+	/*交易成功！*/
+	.error_title,
+	.error_title.networkfault_title,
+	.error_title.timeout_title,
+	.error_title.thanks_title,
+	.error_title.unabletoprint_title,
+	.success_title {
+		height: 85px;
+		line-height: 85px;
+		padding-left: 120px;
+	}
+	/*英文*/
+	.error_title+div {
+		top: -30px;
+		line-height: 85px;
+	}
+	/*交易成功！存款金额100元，设备故障，无法打印凭条*/
+	.success_title+.prompt_title {
+		padding-top: 40px;
+	}
+	/*是否确认退出当前业务*/
+	.error_result.exitbusiness_result {
+		margin: 346px auto;
+	}
+	.error_title.exitbusiness_title {
+		height: 110px;
+		line-height: 110px;
+		padding-left: 135px;
+	}
+	/*修改密码*/
+	.edit_pwd_container {
+		width: 1030px;
+		margin: 155px auto;
+	}
+	.edit_pwd_container .set_password_left {
+		margin: 50px 0 0 10px;
+	}
+	.edit_pwd_container .password_panel_input,
+	.edit_pwd_container .confirmpassword_panel_input {
+		top: 7px;
+    	left: 68px;
+		line-height: 120px;
+		letter-spacing: 2.28em;
+	}
+	.edit_pwd_container .set_new_pwd {
+		padding-top: 55px;
+		padding-bottom: 60px;
+	}
+	.edit_pwd_container .notmatch_tip {
+		top: -15px;
+	}
+	.card_container .card_container_title ul li.step_current em {
+		width: 33px !important;
+		height: 33px !important;
+		line-height: 33px !important;
+	}
+	/*存款--点钞结果*/
+	.business_container .transaction_result.counting_result_container {
+		width: 760px !important;
+		margin: 150px auto !important;
+	}
+	.counting_result_container .frosted-glass {
+		width: 760px;
+		height: 283px;
+		padding: 25px 0;
+		margin: 35px auto 1px auto;
+	}
+	.counting_result {
+		top: 67px;
+	}
+	.moneytype_row_contain {
+		padding: 0 0 15px 0;
+	}
+	.moneytype_row {
+		height: 75px;
+	}
+	.moneytype_row .money {
+		width: 100px;
+		height: 55px;
+		line-height: 45px;
+		padding-left: 20px;
+	}
+	.moneytype_row .symbol {
+		padding: 0 35px;
+	}
+	.moneytype_row .equal {
+		padding: 0;
+	}
+	.moneytype_row .number_of_money {
+		width: 70px;
+	}
+	.moneytype_row .calculation_result {
+		width: 120px;
+	}
+	.total {
+		line-height: 55px;
+	}
+	/*步骤*/
+	/*3个步骤*/
+	.card_container .card_container_title .card_title_menu_three li span {
+		width: 290px !important;
+	}
+	/*点点点的宽度*/
+	.card_container .card_container_title .card_title_menu_ten li.step_finish span,
+	.card_container_title .card_title_menu_six li span,
+	.card_container_title .card_title_menu_seven li span,
+	.card_container_title .card_title_menu_eight li span,
+	.card_container_title .card_title_menu_nine li span,
+	.card_container_title .card_title_menu_ten li span {
+		width: 30px !important;
+	}
+	.card_container_title ul li:first-child {
+		margin-left: 0 !important;
+	}
+	/*步骤6-10的位置调整*/
+	.card_container_title ul li:nth-child(6),
+	.card_container_title ul li:nth-child(7),
+	.card_container_title ul li:nth-child(8),
+	.card_container_title ul li:nth-child(9),
+	.card_container_title ul li:nth-child(10) {
+		margin-left: -11px !important;
+	}
+	/*步骤6-10的位置调整*/
+	.card_container_title ul li:nth-child(6) em,
+	.card_container_title ul li:nth-child(7) em,
+	.card_container_title ul li:nth-child(8) em,
+	.card_container_title ul li:nth-child(9) em,
+	.card_container_title ul li:nth-child(10) em {
+		line-height: 21px !important;
+	}
+}
+
+
+/*1366*768*/
+
+@media only screen and (min-width:1281px) and (max-width:1366px) {
+	html {
+		font-size: 14px;
+	}
+	/*办卡协议*/
+	.agreement_container .card_input_container_group {
+		height: 310px;
+		line-height: 40px;
+	}
+	.agreement_container .business_title {
+		line-height: 35px !important;
+	}
+	#agreement_start {
+		text-indent: 50px;
+	}
+	/*请插入您的身份证*/
+	/*请取回您的身份证*/
+	/*请取回您的表单，并在签名处签名*/
+	/*请把表单放入表单扫描口*/
+	/*审核通过，请把打印表单放入回收口中*/
+	.machine_panel.identify,
+	.machine_panel.takeidentification,
+    .machine_panel.takeukey,
+    .machine_panel.scanukey,
+	.machine_panel.signature,
+	.machine_panel.signatureScan,
+	.machine_panel.recycleform {
+		width: 890px;
+		height: 395px;
+		margin: 40px auto;
+	}
+	/*客服人员将采集您的面部信息，请抬头正视屏幕上方摄像头*/
+	.business_container .machine_panel.facial {
+		width: 890px;
+		height: 385px;
+		margin: 50px auto !important;
+	}
+	/*身份验证成功！*/
+	.authentication_title,
+	.authenticationFiled_title {
+		height: 85px;
+		line-height: 88px;
+		padding-left: 96px;
+	}
+	/*永远居中*/
+	.center_title+div{
+	    top: -25px;
+	    line-height: 85px;
+	}
+	/*身份验证失败！*/
+	.authenticationFailed_result {
+		margin: 118px auto;
+	}
+	.authenticationFailed_tip p {
+		line-height: 60px;
+	}
+	/*请把面额为x元的钞票放入存款口内*/
+	.put_in_money_container .business_title {
+		line-height: 0 !important;
+	}
+	.put_in_money_container .machine_panel.bank_note {
+		width: 775px !important;
+		height: 330px !important;
+	}
+	/*点钞结果*/
+	.transaction_result_container .transaction_result {
+		margin: 50px auto !important;
+	}
+	.transaction_result_title {
+		height: 85px;
+		width: 240px;
+		margin: 20px auto;
+		line-height: 85px;
+		padding-left: 130px;
+	}
+	.transaction_result_tip {
+		line-height: 60px;
+		margin-left: 12px;
+	}
+	/*设置密码*/
+	.input_pwd_container {
+		width: 1110px;
+		margin: 55px auto;
+	}
+	.frosted-glass {
+		width: 634px;
+		height: 60px;
+		margin-left: 34px;
+		margin-top: 30px;
+	}
+	.set_new_pwd {
+		padding-top: 6px;
+		padding-bottom: 24px;
+	}
+	.set_pwd_title {
+	    width: 670px;
+		padding-left: 38px;
+	}
+	.set_password_left {
+		width: 388px;
+		height: 356px;
+		margin-left: 0;
+	}
+	.set_pwd {
+		width: 700px;
+		height: 120px;
+	}
+	.input_pwd_container .password_panel_input,
+	.input_pwd_container .confirmpassword_panel_input {
+		top: 8px;
+    	left: 68px;
+		line-height: 120px;
+		letter-spacing: 2.13em;
+	}
+	.notmatch_tip {
+		top: -18px;
+	}
+	.notmatch_tip span {
+		padding: 0px;
+	}
+	.notmatch_tip div{
+	    width: 568px;
+	}
+	/*生成账户*/
+	.opencard_result {
+		margin: 130px auto;
+	}
+	.generateaccount_title {
+		width: 40% !important;
+		height: 90px;
+		line-height: 90px;
+		padding-left: 130px;
+		margin: 35px auto;
+	}
+	.generateaccount_info {
+		margin-left: 24% !important;
+		line-height: 60px;
+	}
+	/*设备故障，交易取消*/
+	.error_result {
+		margin: 219px auto;
+	}
+	/*设备故障，交易取消*/
+	/*网络故障，交易取消*/
+	/*对不起，交易超时*/
+	/*谢谢使用，再见！*/
+	/*无法打印凭条，是否继续交易！*/
+	/*交易成功！*/
+	.error_title,
+	.error_title.networkfault_title,
+	.error_title.timeout_title,
+	.error_title.thanks_title,
+	.error_title.unabletoprint_title,
+	.success_title {
+		height: 85px;
+		line-height: 85px;
+		padding-left: 120px;
+	}
+	/*英文*/
+	.error_title+div {
+		top: -25px;
+		line-height: 90px;
+	}
+	/*交易成功！存款金额100元，设备故障，无法打印凭条*/
+	.success_title+.prompt_title {
+		padding-top: 45px;
+	}
+	/*是否确认退出当前业务*/
+	.error_result.exitbusiness_result {
+		margin: 202px auto;
+	}
+	.error_title.exitbusiness_title {
+		height: 120px;
+		line-height: 120px;
+		padding-left: 145px;
+	}
+	/*修改密码*/
+	.edit_pwd_container {
+		width: 1105px;
+		margin: 32px auto;
+	}
+	.edit_pwd_container .set_password_left {
+		margin: 50px 0 0 0;
+	}
+	.edit_pwd_container .password_panel_input,
+	.edit_pwd_container .confirmpassword_panel_input { 
+		top: 8px;
+    	left: 68px;
+		line-height: 120px;
+		letter-spacing: 2.14em;
+	}
+	.edit_pwd_container .set_new_pwd {
+		padding-top: 55px;
+		padding-bottom: 55px;
+	}
+	.edit_pwd_container .notmatch_tip {
+		top: -20px;
+	}
+	.card_container .card_container_title ul li.step_current em {
+		width: 35px !important;
+		height: 35px !important;
+		line-height: 35px !important;
+	}
+	/*存款--点钞结果*/
+	.business_container .transaction_result.counting_result_container {
+		width: 840px !important;
+		margin: -10px auto !important;
+	}
+	.counting_result_container .frosted-glass {
+		width: 840px;
+		height: 276px;
+		padding: 20px 0;
+		margin: 24px auto 1px auto;
+	}
+	.counting_result {
+		top: 39px;
+	}
+	.moneytype_row_contain {
+		padding: 7px 0 9px 0;
+	}
+	.moneytype_row {
+		height: 75px;
+	}
+	.moneytype_row .money {
+		width: 100px;
+		height: 50px;
+		line-height: 40px;
+		padding-left: 20px;
+	}
+	.moneytype_row .symbol {
+		padding: 0 40px;
+	}
+	.moneytype_row .number_of_money {
+		width: 90px;
+	}
+	.moneytype_row .equal {
+		padding: 0;
+	}
+	.moneytype_row .calculation_result {
+		width: 145px;
+	}
+	.total {
+		line-height: 60px;
+	}
+	/*步骤*/
+	/*3个步骤*/
+	.card_container .card_container_title .card_title_menu_three li span {
+		width: 300px !important;
+	}
+	/*点点点的宽度*/
+	.card_container .card_container_title .card_title_menu_ten li.step_finish span,
+	.card_container_title .card_title_menu_six li span,
+	.card_container_title .card_title_menu_seven li span,
+	.card_container_title .card_title_menu_eight li span,
+	.card_container_title .card_title_menu_nine li span,
+	.card_container_title .card_title_menu_ten li span {
+		width: 35px !important;
+	}
+	.card_container_title ul li:first-child {
+		margin-left: 0 !important;
+	}
+	/*步骤6-10的位置调整*/
+	.card_container_title ul li:nth-child(6),
+	.card_container_title ul li:nth-child(7),
+	.card_container_title ul li:nth-child(8),
+	.card_container_title ul li:nth-child(9),
+	.card_container_title ul li:nth-child(10) {
+		margin-left: -12px !important;
+	}
+	/*步骤6-10的位置调整*/
+	.card_container_title ul li:nth-child(6) em,
+	.card_container_title ul li:nth-child(7) em,
+	.card_container_title ul li:nth-child(8) em,
+	.card_container_title ul li:nth-child(9) em,
+	.card_container_title ul li:nth-child(10) em {
+		line-height: 23px !important;
+	}
+}
+
+
+/*1440*900*/
+
+@media only screen and (min-width:1367px) and (max-width:1440px) {
+	html {
+		font-size: 16px;
+	}
+	/*办卡协议*/
+	#agreement_start {
+		text-indent: 60px;
+	}
+	.agreement_container .business_title {
+		line-height: 25px !important;
+	}
+	.agreement_container .card_input_container_group {
+		height: 400px;
+		line-height: 45px;
+	}
+	/*请插入您的身份证*/
+	/*请取回您的身份证*/
+	/*请取回您的表单，并在签名处签名*/
+	/*请把表单放入表单扫描口*/
+	/*审核通过，请把打印表单放入回收口中*/
+	.machine_panel.identify,
+	.machine_panel.takeidentification,
+    .machine_panel.takeukey,
+    .machine_panel.scanukey,
+	.machine_panel.signature,
+	.machine_panel.signatureScan,
+	.machine_panel.recycleform {
+		width: 942px;
+		height: 463px;
+		margin: 73px auto;
+	}
+	/*客服人员将采集您的面部信息，请抬头正视屏幕上方摄像头*/
+	.business_title.collectFacial_title {
+		font-size: 2.3rem;
+	}
+	.business_container .machine_panel.facial {
+		width: 979.5px;
+		height: 440px;
+		margin: 85px auto !important;
+	}
+	/*身份验证成功！*/
+	.authentication_title,
+	.authenticationFiled_title {
+		height: 90px;
+		line-height: 90px;
+		padding-left: 114px;
+	}
+	/*永远居中*/
+	.center_title+div{
+	    top: -25px;
+	    line-height: 95px;
+	}
+	/*身份验证失败！*/
+	.authenticationFailed_tip p {
+		line-height: 65px;
+	}
+	/*请把面额为x元的钞票放入存款口内*/
+	.put_in_money_container .business_title {
+		line-height: 45px !important
+	}
+	.put_in_money_container .machine_panel.bank_note {
+		width: 818px !important;
+		height: 385px !important;
+		margin: 35px auto;
+	}
+	/*点钞结果*/
+	.transaction_result_container .transaction_result {
+		margin: 90px auto !important;
+	}
+	.transaction_result_title {
+		height: 100px;
+		width: 254px;
+		margin: 20px auto;
+		line-height: 100px;
+		padding-left: 150px;
+	}
+	.transaction_result_tip {
+		line-height: 70px;
+		margin-left: -3px;
+	}
+	/*设置密码*/
+	.input_pwd_container {
+		width: 1170px;
+		margin: 92px auto;
+	}
+	.frosted-glass {
+		width: 671px;
+		height: 68px;
+		margin-left: 39px;
+		margin-top: 37px;
+	}
+	.set_new_pwd {
+		padding-top: 2px;
+		padding-bottom: 57px;
+	}
+	.set_pwd_title {
+	    width: 750px;
+		padding-left: 37px;
+	}
+	.set_password_left {
+		width: 404px;
+		height: 400px;
+		margin-left: 4px;
+	}
+	.set_password_right {
+		width: 63%;
+	}
+	.set_pwd {
+		width: 743px;
+		height: 140px;
+	}
+	.input_pwd_container .password_panel_input,
+	.input_pwd_container .confirmpassword_panel_input {
+		top: 8px;
+    	left: 72px;
+		line-height: 140px;
+		letter-spacing: 1.95em;
+	}
+	.notmatch_tip span {
+		padding: 3px;
+	}
+	.notmatch_tip div{
+	    width: 602px;
+	}
+	/*生成账户*/
+	.generateaccount_title {
+		width: 42% !important;
+		height: 100px;
+		line-height: 90px;
+		padding-left: 150px;
+		margin: 40px auto;
+	}
+	.generateaccount_info {
+		margin-left: 22% !important;
+		line-height: 60px;
+	}
+	/*设备故障，交易取消*/
+	.error_result {
+		margin: 270px auto;
+	}
+	/*设备故障，交易取消*/
+	/*网络故障，交易取消*/
+	/*对不起，交易超时*/
+	/*谢谢使用，再见！*/
+	/*无法打印凭条，是否继续交易！*/
+	/*交易成功！*/
+	.error_title,
+	.error_title.networkfault_title,
+	.error_title.timeout_title,
+	.error_title.thanks_title,
+	.error_title.unabletoprint_title,
+	.success_title {
+		height: 100px;
+		line-height: 100px;
+		padding-left: 140px;
+	}
+	/*英文*/
+	.error_title+div {
+		top: -30px;
+		line-height: 100px;
+	}
+	/*交易成功！存款金额100元，设备故障，无法打印凭条*/
+	.success_title+.prompt_title {
+		padding-top: 50px;
+	}
+	/*是否确认退出当前业务*/
+	.error_result.exitbusiness_result {
+		margin: 258px auto;
+	}
+	.error_title.exitbusiness_title {
+		height: 130px;
+		line-height: 130px;
+		padding-left: 155px;
+	}
+	/*修改密码*/
+	.edit_pwd_container {
+		width: 1160px;
+		margin: 68px auto;
+	}
+	.edit_pwd_container .set_password_left {
+		margin: 50px 0 0 0;
+	}
+	.edit_pwd_container .password_panel_input,
+	.edit_pwd_container .confirmpassword_panel_input {    
+		top: 10px;
+    	left: 72px;
+		line-height: 138px;
+		letter-spacing: 1.95em;
+	}
+	.edit_pwd_container .set_new_pwd {
+		padding-top: 50px;
+		padding-bottom: 62px;
+	}
+	.card_container .card_container_title ul li.step_current em {
+		width: 38px !important;
+		height: 38px !important;
+		line-height: 38px !important;
+	}
+	/*存款--点钞结果*/
+	.business_container .transaction_result.counting_result_container {
+		width: 875px !important;
+		margin: 35px auto !important;
+	}
+	.counting_result_container .frosted-glass {
+		width: 816px;
+		height: 303px;
+		padding: 32px 30px;
+	}
+	.counting_result {
+		top: 51px;
+	}
+	.moneytype_row {
+		height: 85px;
+	}
+	.moneytype_row .money {
+		width: 125px;
+		height: 65px;
+		line-height: 55px;
+		padding-left: 30px;
+	}
+	.moneytype_row .symbol {
+		padding: 0 45px;
+	}
+	.moneytype_row .equal {
+		padding: 0;
+	}
+	.total {
+		line-height: 75px;
+	}
+	/*步骤*/
+	/*3个步骤*/
+	.card_container .card_container_title .card_title_menu_three li span {
+		width: 310px !important;
+	}
+	/*点点点的宽度*/
+	.card_container .card_container_title .card_title_menu_ten li.step_finish span,
+	.card_container_title .card_title_menu_six li span,
+	.card_container_title .card_title_menu_seven li span,
+	.card_container_title .card_title_menu_eight li span,
+	.card_container_title .card_title_menu_nine li span,
+	.card_container_title .card_title_menu_ten li span {
+		width: 40px !important;
+	}
+	.card_container_title ul li:first-child {
+		margin-left: 0 !important;
+	}
+	/*步骤6-10的位置调整*/
+	.card_container_title ul li:nth-child(6),
+	.card_container_title ul li:nth-child(7),
+	.card_container_title ul li:nth-child(8),
+	.card_container_title ul li:nth-child(9),
+	.card_container_title ul li:nth-child(10) {
+		margin-left: -13px !important;
+	}
+	/*步骤6-10的位置调整*/
+	.card_container_title ul li:nth-child(6) em,
+	.card_container_title ul li:nth-child(7) em,
+	.card_container_title ul li:nth-child(8) em,
+	.card_container_title ul li:nth-child(9) em,
+	.card_container_title ul li:nth-child(10) em {
+		line-height: 24px !important;
+	}
+}
+
+
+/*1680*1050*/
+
+@media only screen and (min-width:1441px) and (max-width:1680px) {
+	html {
+		font-size: 18px;
+	}
+	/*办卡协议*/
+	#agreement_start {
+		text-indent: 60px;
+	}
+	.agreement_container .card_input_container_group {
+		line-height: 50px;
+	}
+	/*请插入您的身份证*/
+	/*请取回您的身份证*/
+	/*请取回您的表单，并在签名处签名*/
+	/*请把表单放入表单扫描口*/
+	/*审核通过，请把打印表单放入回收口中*/
+	.machine_panel.identify,
+	.machine_panel.takeidentification,
+    .machine_panel.takeukey,
+    .machine_panel.scanukey,
+	.machine_panel.signature,
+	.machine_panel.signatureScan,
+	.machine_panel.recycleform {
+		width: 1102px;
+		height: 553px;
+		margin: 98px auto;
+	}
+	/*客服人员将采集您的面部信息，请抬头正视屏幕上方摄像头*/
+	.business_title.collectFacial_title {
+		line-height: 100px !important;
+	}
+	.machine_panel.facial {
+		width: 1105px;
+		height: 540px;
+		margin: 95px auto !important;
+	}
+	/*身份验证成功！*/
+	.authentication_title,
+	.authenticationFiled_title {
+		height: 100px;
+		line-height: 100px;
+		padding-left: 132px;
+	}
+	/*身份验证失败！*/
+	.authenticationFailed_result {
+		margin: 197px auto;
+	}
+	.authenticationFiled_title {
+		line-height: 90px;
+	}
+	.authenticationFailed_tip p {
+		line-height: 75px;
+	}
+	/*请把面额为x元的钞票放入存款口内*/
+	.put_in_money_container .business_title {
+		line-height: 50px !important
+	}
+	.put_in_money_container .machine_panel.bank_note {
+		width: 970px !important;
+		height: 453px !important;
+		margin: 50px auto;
+	}
+	/*点钞结果*/
+	.transaction_result_container .transaction_result {
+		margin: 105px auto !important;
+	}
+	.transaction_result_title {
+		height: 115px;
+		width: 270px;
+		margin: 35px auto;
+		line-height: 110px;
+	}
+	.transaction_result_tip {
+		margin-left: 14px;
+	}
+	/*设置密码*/
+	.input_pwd_container {
+		width: 1377px;
+		margin: 115px auto;
+	}
+	.frosted-glass {
+		width: 780px;
+		height: 78px;
+		margin-top: 45px;
+    	margin-left: 45px;
+	}
+	.set_pwd {
+		width: 865px;
+		height: 168px;
+	}
+	.set_password_left {
+		width: 480px;
+		height: 482px;
+		margin-left: 0;
+	}
+	.set_new_pwd {
+		padding-bottom: 70px;
+	}
+	.input_pwd_container .password_panel_input,
+	.input_pwd_container .confirmpassword_panel_input {
+		top: 10px;
+    	left: 85px;
+		line-height: 165px;
+		letter-spacing: 2.05em;
+	}
+	.notmatch_tip span {
+		padding: 7px;
+	}
+	.set_pwd_title{
+	    width: 830px;
+	}
+	.notmatch_tip div{
+	    width: 710px;
+	}
+	/*生成账户*/
+	.generateaccount_title {
+		width: 53% !important;
+	}
+	.generateaccount_info {
+		margin-left: 17%!important;
+		line-height: 70px;
+	}
+	.error_result {
+		margin: 333px auto;
+	}
+	/*设备故障，交易取消*/
+	/*网络故障，交易取消*/
+	/*对不起，交易超时*/
+	/*谢谢使用，再见！*/
+	/*无法打印凭条，是否继续交易！*/
+	/*交易成功！*/
+	/*设备故障，无法打印凭条*/
+	.error_title,
+	.error_title.networkfault_title,
+	.error_title.timeout_title,
+	.error_title.thanks_title,
+	.error_title.unabletoprint_title,
+	.success_title {
+		height: 115px;
+		line-height: 110px;
+		padding-left: 150px;
+	}
+	/*永远居中*/
+	.center_title+div{
+	    top: -31px;
+	    line-height: 105px;
+	}
+	/*英文*/
+	.error_title+div {
+		top: -37px;
+		line-height: 110px;
+	}
+	/*是否确认退出当前业务*/
+	.error_result.exitbusiness_result {
+		margin: 319px auto;
+	}
+	.error_title.exitbusiness_title {
+		height: 140px;
+		line-height: 140px;
+		padding-left: 165px;
+	}
+	/*交易成功！存款金额100元，设备故障，无法打印凭条*/
+	.success_title+.prompt_title {
+		padding-top: 55px;
+	}
+	/*修改密码*/
+	.edit_pwd_container {
+		width: 1375px;
+		margin: 95px auto;
+	}
+	.edit_pwd_container .frosted-glass {
+		margin-left: 44px;
+		margin-top: 45px;
+	}
+	.edit_pwd_container .set_password_left {
+		margin: 50px 0 0 0;
+	}
+	.edit_pwd_container .set_new_pwd {
+		padding-top: 65px;
+		padding-bottom: 68px;
+	}
+	.edit_pwd_container .password_panel_input,
+	.edit_pwd_container .confirmpassword_panel_input {    
+		top: 10px;
+    	left: 86px;
+		line-height: 165px;
+		letter-spacing: 2.03em;
+	}
+	.card_container .card_container_title ul li.step_current em {
+		width: 42px !important;
+		height: 42px !important;
+		line-height: 42px !important;
+	}
+	/*存款--点钞结果*/
+	.business_container .transaction_result.counting_result_container {
+		width: 990px !important;
+		margin: 65px auto !important;
+	}
+	.counting_result_container .frosted-glass {
+		width: 930px;
+		height: 355px;
+		margin: 33px auto 1px auto;
+	}
+	.moneytype_row_contain {
+		padding: 5px 0 10px 0;
+	}
+	.counting_result {
+		top: 66px;
+	}
+	.moneytype_row {
+		height: 95px;
+	}
+	.moneytype_row .money {
+		width: 143px;
+		height: 66px;
+		line-height: 55px;
+		padding-left: 35px;
+	}
+	.moneytype_row .equal {
+		padding: 20px;
+	}
+	.total {
+		line-height: 80px;
+	}
+	/*步骤*/
+	/*3个步骤*/
+	.card_container .card_container_title .card_title_menu_three li span {
+		width: 355px !important;
+	}
+	/*点点点的宽度*/
+	.card_container .card_container_title .card_title_menu_ten li.step_finish span,
+	.card_container_title .card_title_menu_six li span,
+	.card_container_title .card_title_menu_seven li span,
+	.card_container_title .card_title_menu_eight li span,
+	.card_container_title .card_title_menu_nine li span,
+	.card_container_title .card_title_menu_ten li span {
+		width: 45px !important;
+	}
+	.card_container_title ul li:first-child {
+		margin-left: 0 !important;
+	}
+	/*步骤6-10的位置调整*/
+	.card_container_title ul li:nth-child(6),
+	.card_container_title ul li:nth-child(7),
+	.card_container_title ul li:nth-child(8),
+	.card_container_title ul li:nth-child(9),
+	.card_container_title ul li:nth-child(10) {
+		margin-left: -15px !important;
+	}
+	/*步骤6-10的位置调整*/
+	.card_container_title ul li:nth-child(6) em,
+	.card_container_title ul li:nth-child(7) em,
+	.card_container_title ul li:nth-child(8) em,
+	.card_container_title ul li:nth-child(9) em,
+	.card_container_title ul li:nth-child(10) em {
+		line-height: 30px !important;
+	}
+}
+
+@media only screen and (min-width: 1681px) and (max-width: 1920px) {
+	html {
+		font-size: 20px;
+	}
+    	/*设置密码*/
+	.input_pwd_container {
+		width: 1620px;
+		margin: 135px auto;
+	}
+	.frosted-glass {
+		width: 918px;
+		height: 78px;
+		margin-top: 45px;
+    	margin-left: 45px;
+	}
+	.set_pwd {
+		width: 1018px;
+		height: 168px;
+	}
+	.set_password_left {
+		width: 564px;
+		height: 482px;
+		margin-left: 0;
+	}
+	.set_new_pwd {
+		padding-bottom: 70px;
+	}
+	.input_pwd_container .password_panel_input,
+	.input_pwd_container .confirmpassword_panel_input {
+		top: 10px;
+    	left: 85px;
+		line-height: 165px;
+		letter-spacing: 2.05em;
+	}
+	.notmatch_tip span {
+		padding: 7px;
+	}
+	.set_pwd_title{
+	    width: 976px;
+	}
+	.notmatch_tip div{
+	    width: 835px;
+	}
+	/*修改密码*/
+	.edit_pwd_container {
+		width: 1618px;
+		margin: 95px auto;
+	}
+	.edit_pwd_container .frosted-glass {
+		margin-left: 44px;
+		margin-top: 45px;
+	}
+	.edit_pwd_container .set_password_left {
+		margin: 50px 0 0 0;
+	}
+	.edit_pwd_container .set_new_pwd {
+		padding-top: 65px;
+		padding-bottom: 68px;
+	}
+	.edit_pwd_container .password_panel_input,
+	.edit_pwd_container .confirmpassword_panel_input {    
+		top: 10px;
+    	left: 86px;
+		line-height: 165px;
+		letter-spacing: 2.03em;
+	}
+	.card_container .card_container_title ul li.step_current em {
+		width: 42px !important;
+		height: 42px !important;
+		line-height: 42px !important;
+	}
+
+}
+
+@media only screen and (min-width: 1921px) and (max-width: 2160px) {
+	html {
+		font-size: 22px;
+	}
+    	/*设置密码*/
+	.input_pwd_container {
+		width: 1906px;
+		margin: 135px auto;
+	}
+	.frosted-glass {
+		width: 1080px;
+		height: 78px;
+		margin-top: 45px;
+    	margin-left: 45px;
+	}
+	.set_pwd {
+		width: 1198px;
+		height: 168px;
+	}
+	.set_password_left {
+		width: 663px;
+		height: 482px;
+		margin-left: 0;
+	}
+	.set_new_pwd {
+		padding-bottom: 70px;
+	}
+	.input_pwd_container .password_panel_input,
+	.input_pwd_container .confirmpassword_panel_input {
+		top: 10px;
+    	left: 85px;
+		line-height: 165px;
+		letter-spacing: 2.05em;
+	}
+	.notmatch_tip span {
+		padding: 7px;
+	}
+	.set_pwd_title{
+	    width: 1148px;
+	}
+	.notmatch_tip div{
+	    width: 982px;
+	}
+	/*修改密码*/
+	.edit_pwd_container {
+		width: 1904px;
+		margin: 95px auto;
+	}
+	.edit_pwd_container .frosted-glass {
+		margin-left: 44px;
+		margin-top: 45px;
+	}
+	.edit_pwd_container .set_password_left {
+		margin: 50px 0 0 0;
+	}
+	.edit_pwd_container .set_new_pwd {
+		padding-top: 65px;
+		padding-bottom: 68px;
+	}
+	.edit_pwd_container .password_panel_input,
+	.edit_pwd_container .confirmpassword_panel_input {    
+		top: 10px;
+    	left: 86px;
+		line-height: 165px;
+		letter-spacing: 2.03em;
+	}
+	.card_container .card_container_title ul li.step_current em {
+		width: 42px !important;
+		height: 42px !important;
+		line-height: 42px !important;
+	}
+
+}

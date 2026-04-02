@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!--  
+			* The head type of network message.
+			* [1] Include - the total length includes the length of header ot not.
+			* [2] key -  the type of header for message transport.
+			* [3] value - the option for the key (header type) is enabled or not.
+		-->
+	<HeadLength>
+		<Item key="Include" value="1" valueType="int"/>
+	</HeadLength>
+	<HeadType>
+		<Item key="NoHeader" value="0" valueType="int"/>
+		<Item key="L1L2" value="0" valueType="int"/>
+		<Item key="L4L3L2L1_ASCII" value="0" valueType="int"/>
+		<Item key="L2L1" value="1" valueType="int"/>
+		<Item key="L4L3L2L1" value="0" valueType="int"/>
+		<Item key="EOR" value="0" valueType="int"/>
+	</HeadType>
+	<!-- Application 设置offlinetime属性=>在offline模式超时则尝试连接任意enable=1的备用主机; index=>脚本资源在XDC/NDC/Script{index}下-->
+	<Application>
+		<Item key="XDCHostName" enable="1" value="ATMP2" type="TCP"  des="default" valueType="string" />
+		<Item key="XDCHostName2" enable="0" value="ATMP2" type="TCP" des="for Host2" valueType="string" />
+	</Application>
+	<MultiHost>
+		<!-- * Threshold for ATMC send new counter to ATM after CDM transaction.-->
+		<Item key="Threshold" value="10" valueType="long"/>
+		<!-- * the MaximumTimes to send new counter for one day.-->
+		<Item key="MaximumTimes" value="1000" valueType="long"/>
+		<!-- * if more than 3 IN C09~C19.-->
+		<Item key="SettlementScreenNumber" value="C10" valueType="long"/>
+		<!-- Send to CDM after CDM transaction.-->
+		<Item key="NeedToSendTransactionIDS" value="1" valueType="long"/>
+		<!-- Send to ATM Before ATM Transaction-->
+		<Item key="NeedToSendTransactionIDS_ToATM" value="0,1" valueType="long"/>
+		<Item key="CasettleIndexBuffer" value="Buffer.B" valueType="string"/>
+		<Item key="CasettleNoteCountBuffer" value="Buffer.C" valueType="string"/>
+		<Item key="HostSelectState" value="D00" valueType="string"/>
+		<Item key="HostSelectKeyMap" value="[D,XDCHostName];[F,XDCHostName2]" valueType="string"/>
+		<Item key="MinAmountThreshold" value="70000" valueType="long"/>
+		<Item key="MaxAmountThreshold" value="70500" valueType="long"/>
+		<Item key="AutoSettlementTime" value="23:58:00" valueType="string"/>
+		<Item key="AutoSettlementTimesEveryday" value="2" valueType="int"/>
+		<Item key="ATMTerminalID" value="OPENSYSFCA01408" valueType="string"/>
+		<Item key="CDMTerminalID" value="OPENSYSS00A1408" valueType="string"/>
+		<Item key="CimbWaitInsert_ATM_Timeout" value="30" valueType="int"/>
+	</MultiHost>
+	<MaskSensitiveData>
+		<!--if it's to mark the data field to protect the sensitive data  by frde 2014-5-21 11:17:43
+     0:not mark
+    !0:mark
+    -->
+		<!--Track1-->
+		<Item key="T1" value="1" valueType="string"/>
+		<!--Track2-->
+		<Item key="T2" value="1" valueType="string"/>
+		<!--Track3-->
+		<Item key="T3" value="1" valueType="string"/>
+		<!--BuffterA-->
+		<Item key="BA" value="1" valueType="string"/>
+		<!--BuffterB-->
+		<Item key="BB" value="1" valueType="string"/>
+		<!--BuffterC-->
+		<Item key="BC" value="1" valueType="string"/>
+		<!--BuffterData-->
+		<Item key="BData" value="1" valueType="string"/>
+		<!--PINData-->
+		<Item key="PData" value="1" valueType="string"/>
+		<!--MAC-->
+		<Item key="MAC" value="1" valueType="string"/>
+		<!--PAN-->
+		<Item key="PAN" value="1" valueType="string"/>
+		<!--NAME-->
+		<Item key="NAME" value="0" valueType="string"/>
+		<!--INPUT-->
+		<Item key="INPUT" value="0" valueType="string"/>
+		<!--EPPKey-->
+		<Item key="EPPKey" value="1" valueType="string"/>
+	</MaskSensitiveData>
+	<Camera>
+	<!--Value: whether the card information in the camera photos is blocked [1 is, 0 no]
+		StartLen: show the first few bits
+		EndLen: the last few
+		MaskFlag: the mask that blocks the median of the middle -->
+		<!--value:是否屏蔽摄像照片中的卡号信息【1是，0否】
+		startLen：显示前几位
+		endLen:显示后几位
+		maskFlag:屏蔽中间位数时的掩饰符-->
+		<Item key="IsMaskCardPanForCameraPicName" value="1" startLen="6" endLen="4" maskFlag="#"/>
+	</Camera>
+</Root>

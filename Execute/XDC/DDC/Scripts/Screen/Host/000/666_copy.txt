@@ -1,0 +1,7 @@
+{<NSER>}
+GD{<#5DEN>        <#ESC>    <#10VAL>}
+HD{<#5DEN>        <#ESC>    <#10VAL>}
+ID{<#5DEN>        <#ESC>    <#10VAL>}
+JD{<#5DEN>        <#ESC>    <#10VAL>}
+KD{<#5DEN>        <#ESC>    <#10VAL><###>}
+LO{     <#ESC>    <#10VAL>}

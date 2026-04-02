@@ -1,0 +1,10 @@
+{
+  "coreWebView2EnvironmentOptions": {
+    "AdditionalBrowserArguments": "--disable-gpu --ignore-certificate-errors=1 --disable-features=msSmartScreenProtection,OverscrollHistoryNavigation,msExperimentalScrolling --autoplay-policy=no-user-gesture-required",
+    "Language": null,
+    "TargetCompatibleBrowserVersion": null,
+    "AllowSingleSignOnUsingOSPrimaryAccount": false
+  },
+  "browserExecutableFolder": null,
+  "userDataFolder": "AdWebViewService_UserData"
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+
+  <!-- <Screen name="UI_SelectAccountType" uri="ICInquiry\SelectAccountType.xaml" cache="0"> 
+  </Screen>
+  
+    <Screen name="UI_InquiryResultIC" uri="ICInquiry\ICInquiryResult.xaml" cache="0"> 
+  </Screen>
+  <Screen name="UI_ICTransactionDetail" uri="ICInquiry\ICTransactionDetail.xaml" cache="0">
+		</Screen>  -->
+  
+
+<!-- 		<Screen name="UI_ShowMinistatementIC" uri="ICModule\ICShowMinistatement.html">
+		</Screen>   -->
+
+</Screens>
+

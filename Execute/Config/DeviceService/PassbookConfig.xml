@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ServiceName：			 设备的服务名
+Supply：   				 供纸器位置，默认"UPPER"
+DefaultFormNameRead： 默认读取的Form名称
+DefaultFormNameWrite：默认打印的Form名称
+MediaName：				 如果以Form方式打印，指定Media的名字
+FormNameNoFormat： 如果以RawData方式打印，指定Form的名字
+MediaNameNoFormat：如果以RawData方式打印，指定Media的名字
+PrintModeNoFormat：打印方式，如果是1，表示以Form方式打印，否则以RawData方式打印
+Newline：  				 换行符，默认"\n"
+ErrorCode：        错误码 用于记录最近一次的设备错误物理码 默认为"ErrorCode"，可以不用配置，系统会自己按顺序查找 
+PrintMode：        这个在代码里并没有用到？？
+-->
+<PassbookPrinter pollInterval="50" ServiceName="PPTR" Supply="UPPER" PrintMode="0" PrintModeNoFormat="1"
+DefaultFormNameRead="PassbookReadForm" DefaultFormNameWrite="PassbookPrintForm" MediaName="PassbookMedia" FormNameNoFormat="ReceiptFormNoFormat" MediaNameNoFormat="ReceiptMediaNoFormat" Newline="&#x0A;"/>
+
+
+

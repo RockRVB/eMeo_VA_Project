@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="ICFBDZHQC">
+	<Head type="GRGWorkflow" author="Roy Chen" timeStamp="2013/12/12" comment="The workflow design is for transfer"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_SaveFirstCardInfo"/>
+		</Start>	
+		<!-- 保存卡号、二磁、三磁信息 -->
+		<SetData ID="ID_SaveFirstCardInfo" saveBuffer="{pro_First_Card_PAN,1}" saveBuffer1="{pro_First_Card_Track2,1}" saveBuffer2="{pro_First_Card_Track3,1}" saveBuffer3="{pro_First_Card_RPTRPAN,1}" value="{core_PAN}|{core_Track2}|{core_Track3}|{core_RPTRPAN}">
+			<Forward event="OnConfirm" targetID="ID_CloseTransaction"/>
+		</SetData>
+		<!-- 退卡 -->
+		<TakeCard ID="ID_CloseTransaction" UI="UI_EjectingCard" comment="Close transaction">
+			<States>
+				<State name="TakeCard" UI="UI_TakeCardAndInserSecondCard"/>
+				<State name="TransTimeOut" UI="UI_TransTimeOut"/>
+				<State name="KeyError" UI="UI_KeyError"/>
+				<State name="InvalidCard" UI="UI_InvalidCard"/>
+				<State name="HardwareError" UI="UI_HardwareError"/>
+				<State name="GeneralError" UI="UI_GeneralError"/>
+				<State name="CapturingCard" UI="UI_CapturingCard"/>
+				<State name="CaptureCardForTimeout" UI="UI_CaptureCardForTimeout"/>
+				<State name="CaptureCard" UI="UI_CaptureCard"/>			
+				<State name="InputWithdrawalAmountExceedRetryTimes" UI="UI_InputWithdrawalAmountExceedRetryTimes"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InsertSecendCard"/>
+			<Forward event="OnCaptureCard" targetID="ID_InvokeCaptureWorkflow"/>
+		</TakeCard>		
+		<!-- 处理吞卡流程 输入手机号码-->
+		<InvokeWorkflow ID="ID_InvokeCaptureWorkflow" name="CloseTrans" comment="Invoke inquiry workflow" actionID="ID_InSertCardFlag" syn="0">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>		
+		<InsertCard ID="ID_InsertSecendCard" UI="UI_InsertSecendCard" comment="insert second card" timeout="30000" activeKeys="CANCEL" terminateKeys="CANCEL">
+			<States>
+				<State name="ReadingCard" UI="UI_Operating"/>
+			</States>
+			<Forward event="OnMagneticCard" targetID="ID_RefuseSecendCardIsMagenticORInvalid"/>
+			<Forward event="OnFallbackCard" targetID="ID_RefuseSecendCardIsMagenticORInvalid"/>
+			<Forward event="OnICCard" targetID="ID_ICBuildAppList"/>
+			<Forward event="OnF8" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnInvalidCard" targetID="ID_RefuseSecendCardIsMagenticORInvalid"/>
+		</InsertCard>
+		<!-- 插入的是磁条卡或无效卡，提示不支持 结束流程 -->		
+		<Prompt ID="ID_RefuseSecendCardIsMagenticORInvalid" UI="UI_RefuseSecendCardIsMagenticORInvalid" timeout="5000" comment="show host refuse">
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</Prompt>
+		<CompareData ID="ID_CompareSecondAndFirstCradPAN" compareBuffer="{pro_First_Card_PAN},{core_PAN}">
+			<Forward event="OnEqual" targetID="ID_SecondAndFirstCradPANIsSame"/>
+			<Forward event="OnGreater" targetID="ID_SaveSecondCardInfo"/>
+			<Forward event="OnLess" targetID="ID_SaveSecondCardInfo"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</CompareData>
+		<Prompt ID="ID_SecondAndFirstCradPANIsSame" UI="UI_SecondAndFirstCradIsSame" timeout="5000" comment="show host refuse">
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</Prompt>
+		<!-- 插入第2张卡是IC卡加载应用列表 start-->		
+		<ICBuildAppList ID="ID_ICBuildAppList" UI="UI_ICTransactionIsBeing" comment="IC卡">
+			<Forward event="OnOneApplication" targetID="ID_ICAppLoadedForFirstTime"/>
+			<Forward event="OnMoreApplication" targetID="ID_ICMoreAppSelectForFirstTime"/>
+			<Forward event="OnFallback" targetID="ID_RefuseSecendCardIsMagenticORInvalid"/>
+			<Forward event="OnCancel" targetID="ID_ICTransCancel"/>
+		</ICBuildAppList>
+		<ICAppLoaded ID="ID_ICAppLoadedForFirstTime" UI="UI_ICTransactionIsBeing" comment="IC卡">
+			<Forward event="OnConfirm" targetID="ID_ICGetTrack"/>
+			<Forward event="OnFallback" targetID="ID_RefuseSecendCardIsMagenticORInvalid"/>
+			<Forward event="OnTryAgain" targetID="ID_ICMoreAppSelectForFirstTime"/>
+			<Forward event="OnICAppLoadedFail" targetID="ID_ICTransCancel"/>
+		</ICAppLoaded>
+		<ICMoreAppSelect ID="ID_ICMoreAppSelectForFirstTime" UI="UI_ICMoreAppSelect" comment="IC卡">
+			<Forward event="OnConfirm" targetID="ID_ICAppLoadedForFirstTime"/>
+		</ICMoreAppSelect>
+		<ICGetTrack ID="ID_ICGetTrack" comment="Get IC tracks for IC卡">
+			<Forward event="OnConfirm" targetID="ID_CompareSecondAndFirstCradPAN"/>
+		</ICGetTrack>
+		<Prompt ID="ID_ICTransCancel" UI="UI_ICTransCancel" timeout="5000" comment="">
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</Prompt>	
+		<!-- 插入第2张卡是IC卡加载应用列表 end-->		
+		<SetData ID="ID_SaveSecondCardInfo" saveBuffer="{core_OtherAccount}" saveBuffer1="{pro_Second_Card_Track2}" saveBuffer2="{pro_Second_Card_Track3}" value="{core_PAN}|{core_Track2}|{core_Track3}">
+			<Forward event="OnConfirm" targetID="ID_SaveSecondCardPan"/>
+		</SetData>
+		<!-- 保存卡号-->
+		<SetData ID="ID_SaveSecondCardPan" saveBuffer="{pro_Second_Card_PAN}"  value="{core_OtherAccount}">
+			<Forward event="OnConfirm" targetID="ID_UpdateFirstCardInfoToCore"/>
+		</SetData>
+		<!-- 交换PAN 2，3磁道信息 -->
+		<SetData ID="ID_UpdateFirstCardInfoToCore" saveBuffer="{core_PAN,1}" saveBuffer1="{core_Track2}" saveBuffer2="{core_Track3}" value="{pro_First_Card_PAN}|{pro_First_Card_Track2}|{pro_First_Card_Track3}">
+			<Forward event="OnConfirm" targetID="ID_InputFirstCardPin"/>
+		</SetData>
+		<!-- Input PIN 输入第一张卡的密码-->
+		<InputPin ID="ID_InputFirstCardPin" UI="UI_InputFirstCardPin" timeout="30000" comment="密码输入">
+			<Forward event="OnConfirm" targetID="ID_ICGetData"/>
+		</InputPin>
+		<ICGetData ID="ID_ICGetData" UI="UI_RequestTrans" comment="Inquiry request" sessionID="0">
+			<Forward event="OnConfirm" targetID="ID_InputTransferAmount"/>
+		</ICGetData>
+		<InputOtherAmount ID="ID_InputTransferAmount" UI="UI_InputFBDICLoadAmount" maxOtherAmount="1000" comment="Input transfer amount">
+			<Forward event="OnConfirm" targetID="ID_RequestTrans"/>	
+		</InputOtherAmount>
+		<RequestTrans ID="ID_RequestTrans" UI="UI_RequestTrans" comment="Transfer request">			
+			<States>
+				<State name="PackFail" UI="UI_GeneralError"/>
+				<State name="ConnectFail" UI="UI_GeneralError"/>
+				<State name="SendFail" UI="UI_GeneralError"/>
+				<State name="ReceiveFail" UI="UI_GeneralError"/>
+				<State name="ReceiveTimeout" UI="UI_GeneralError"/>
+				<State name="NetworkFail" UI="UI_GeneralError"/>
+				<State name="UnpackFail" UI="UI_GeneralError"/>
+				<State name="HardwareError" UI="UI_GeneralError"/>
+				<State name="TransNotAccepted" UI="UI_ICTransNotAccepted"/>
+				<State name="TransDeclined" UI="UI_ICTransDeclined"/>
+				<State name="TransTerminated" UI="UI_ICTransTerminated"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_ICGetDataAgain"/>
+			<Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+			<Forward event="OnReInputPin" targetID="ID_ReInputPin"/>
+			<Forward event="OnFallback" targetID="ID_RequestTrans"/>
+			<Forward event="OnTryAgain" targetID="ID_TryAgain"/>
+			<Forward event="OnICAppLoadedFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</RequestTrans>
+		<InputPin ID="ID_ReInputPin" UI="UI_ReInputPin" comment="ReInput password">
+			<Forward event="OnConfirm" targetID="ID_RequestTrans"/>
+		</InputPin>
+		<!--主机拒绝，显示拒绝码对应的提示信息，然后退卡-->
+		<Prompt ID="ID_HostRefuse" UI="UI_HostRefuse" timeout="5000" comment="show host refuse">
+			<Forward event="OnConfirm" targetID="ID_GetDevStatusForCloseTrans"/>
+		</Prompt>
+		<ICGetData ID="ID_ICGetDataAgain" UI="UI_RequestTrans" comment="Inquiry request" sessionID="0">
+			<Forward event="OnConfirm" targetID="ID_ShowLoadSuccessResultInfo"/>
+		</ICGetData>
+		<SelectFunction ID="ID_ShowLoadSuccessResultInfo" UI="UI_ShowICLoadResult" comment="Show transfer Info">
+			<Forward event="OnConfirm" targetID="ID_GetDevStatus"/>
+		</SelectFunction>		
+		<GetDevStatus ID="ID_GetDevStatus" comment="Get device status" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_IsPrintReceipt"/>
+			<Forward event="OnWarn" targetID="ID_IsPrintReceipt"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</GetDevStatus>
+		<GetDevStatus ID="ID_GetDevStatusForCloseTrans" comment="Get device status" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnWarn" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</GetDevStatus>
+		<!-- 是否打印凭条 -->
+		<SelectFunction ID="ID_IsPrintReceipt" UI="UI_IsPrintReceipt">
+			<Forward event="OnYes" targetID="ID_PrintReceipt"/>
+			<Forward event="OnNo" targetID="ID_InvokeCloseTransWorkflow"/>
+		</SelectFunction>		
+		<!-- 开始打印凭条 -->
+		<PrintReceipt ID="ID_PrintReceipt" UI="UI_PrintingReceipt" formName="" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</PrintReceipt>
+		<PrintReceipt ID="ID_PrintReceiptForCloseTrans" UI="UI_PrintingReceipt" formName="" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</PrintReceipt>
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+		</End>
+		<InvokeWorkflow ID="ID_TryAgain" name="Main" comment="IC returns TryAgain" actionID="ID_ICMoreAppSelectForMainMenu" syn="0">
+		</InvokeWorkflow>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

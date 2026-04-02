@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<MessagesConfig>
+		<PassportInfo>
+			<VerifyDes>Passport Information</VerifyDes>
+			<IsNeedChecker>0</IsNeedChecker>
+			<TransInfo></TransInfo>
+			<CustomerInfo>VTM_PASSPORT</CustomerInfo>
+			<Buttons></Buttons>
+			<ComboBoxes></ComboBoxes>
+			<Inputs></Inputs>
+			<PicType>Passport</PicType>
+		</PassportInfo>
+		<IDCardInfo>
+			<VerifyDes>IDCard Information</VerifyDes>
+			<IsNeedChecker>0</IsNeedChecker>
+			<TransInfo></TransInfo>
+			<CustomerInfo>VTM_IDCARD</CustomerInfo>
+			<Buttons></Buttons>
+			<ComboBoxes></ComboBoxes>
+			<Inputs></Inputs>
+			<PicType>IDCard</PicType>
+		</IDCardInfo>
+
+		<PassportFormData>
+			<VerifyDes>Application Form Information</VerifyDes>
+			<IsNeedChecker>0</IsNeedChecker>
+			<TransInfo></TransInfo>
+			<CustomerInfo>VTM_PASSPORT</CustomerInfo>
+			<Buttons>BtnPass|BtnTryAgain|BtnFail</Buttons>
+			<ComboBoxes></ComboBoxes>
+			<Inputs></Inputs>
+			<PicType></PicType>
+		</PassportFormData>	
+
+		<SignatureCheck>
+			<VerifyDes>Customer Signature Verify</VerifyDes>
+			<IsNeedChecker>0</IsNeedChecker>
+			<TransInfo></TransInfo>
+			<CustomerInfo></CustomerInfo>
+			<Buttons>BtnPass|BtnTryAgain|BtnFail</Buttons>
+			<ComboBoxes></ComboBoxes>
+			<Inputs></Inputs>
+			<PicType>Signature</PicType>
+		</SignatureCheck>
+		
+		<CheckForm>
+			<VerifyDes>Application Form Verify</VerifyDes>
+			<IsNeedChecker>0</IsNeedChecker>
+			<TransInfo></TransInfo>
+			<CustomerInfo></CustomerInfo>
+			<Buttons>BtnPass|BtnTryAgain|BtnFail</Buttons>
+			<ComboBoxes></ComboBoxes>
+			<Inputs></Inputs>
+			<PicType>FormImage</PicType>
+		</CheckForm>
+		<CheckIDCardImage>
+			<VerifyDes>Application IDcardImage Verify</VerifyDes>
+			<IsNeedChecker>0</IsNeedChecker>
+			<TransInfo></TransInfo>
+			<CustomerInfo></CustomerInfo>
+			<Buttons>BtnPass|BtnTryAgain|BtnFail</Buttons>
+			<ComboBoxes></ComboBoxes>
+			<Inputs></Inputs>
+			<PicType>IDcardScanImage</PicType>
+		</CheckIDCardImage>	
+		<CheckPassportImage>
+			<VerifyDes>Application Passport Scan Image Verify</VerifyDes>
+			<IsNeedChecker>0</IsNeedChecker>
+			<TransInfo></TransInfo>
+			<CustomerInfo></CustomerInfo>
+			<Buttons>BtnPass|BtnTryAgain|BtnFail</Buttons>
+			<ComboBoxes></ComboBoxes>
+			<Inputs></Inputs>
+			<PicType>PassportScanImage</PicType>
+		</CheckPassportImage>	
+		
+		<ReadAndSignatureFile>
+				<VerifyDes>Read File and Signature Return</VerifyDes>
+				<IsNeedChecker>0</IsNeedChecker>
+				<TransInfo></TransInfo>
+				<CustomerInfo></CustomerInfo>
+				<Buttons></Buttons>
+				<ComboBoxes></ComboBoxes>
+				<Inputs></Inputs>
+				<PicType>ReadAndSignFile</PicType>
+		</ReadAndSignatureFile>
+		
+		<FaceImage>
+			<VerifyDes>Capture Face Image</VerifyDes>
+			<IsNeedChecker>0</IsNeedChecker>
+			<TransInfo></TransInfo>
+			<CustomerInfo></CustomerInfo>
+			<Buttons></Buttons>
+			<ComboBoxes></ComboBoxes>
+			<Inputs></Inputs>
+			<PicType>FaceImageToVerify</PicType>
+		</FaceImage>
+	</MessagesConfig>
+	
+	<ButtonsConfig>
+		<BtnPass text="Pass" nextCondition="OnConfirm"/>
+		<BtnTryAgain text="TryAgain" nextCondition="OnTryAgain"/>
+		<BtnFail text="Fail" nextCondition="OnFail"/>		
+	</ButtonsConfig>
+	
+	<ComboBoxesConfig>
+		<ComboCurrency text="IDS_Select_Currency" isMultiSelect="0" bindingItem="">
+			<Item key="CNY" value="0"/>
+			<Item key="USD" value="1"/>
+		</ComboCurrency>		
+	</ComboBoxesConfig>
+	
+	<InputsConfig>
+		<InputAmount text="IDS_Input_Amount" rule="[a-zA-Z]" defaultValue=""/>
+	</InputsConfig>
+	
+	<PicTypeConfig>	
+		<Item key="Passport" value="passport_front_image_path"/>	
+		<Item key="IDCard" value="core_IDCardFgImgPath"/>	
+		<Item key="Signature" value="VTM_CustomSignPath"/>	
+		<Item key="FormImage" value="VTM_FEEDSCANIMG"/>
+		<Item key="IDcardScanImage" value="VTM_SCANIMG_MUCH"/>
+		<Item key="PassportScanImage" value="VTM_SCANIMG_ONLY"/>
+		<Item key="ReadAndSignFile" value="SendFile_ResultFile"/>
+		<Item key="FaceImageToVerify" value="iBank_FaceRecognitionImage_Current"/>
+	</PicTypeConfig>
+</Root>

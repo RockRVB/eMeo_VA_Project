@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<config name="Journal">
+	<item key="IDS_AppTitle" value="Welcome to eCAT Configuration"/>
+	<item key="IDS_Back" value="Back(_B)"/>
+	<item key="IDS_Next" value="Next(_N)"/>
+	<item key="IDS_Cancel" value="Cancel"/>
+	<item key="IDS_ATMType" value="ATM Type"/>
+	<item key="IDS_PleaseSelect" value="Please select "/>
+	<item key="IDS_BankSettings" value="Bank Settings"/>
+	<item key="IDS_BankNumber" value="Bank Number "/>
+	<item key="IDS_BranchNumber" value="Branch Number "/>
+	<item key="IDS_ATMNumber" value="ATM Number "/>
+	<item key="IDS_Devicetype" value="Device type"/>
+	<item key="IDS_MaintenanceUnit" value="Maintenance Unit"/>
+	<item key="IDS_OtherDevice" value="Other Device"/>
+	<item key="IDS_EppTypes" value="Epp Types"/>
+	<item key="IDS_TwinScreen" value="Twin Screen"/>
+	<item key="IDS_TextTerminalUnit" value="Text Terminal Unit"/>
+	<item key="IDS_CIM" value="CIM"/>
+	<item key="IDS_CDM" value="CDM"/>
+	<item key="IDS_JournalPrinter" value="Journal Printer"/>
+	<item key="IDS_ReceiptPrinter" value="Receipt Printer"/>
+	<item key="IDS_SIU" value="SIU"/>
+	<item key="IDS_CardReader" value="Card Reader"/>
+	<item key="IDS_VDM" value="VDM"/>
+	<item key="IDS_PIN" value="PIN"/>
+	<item key="IDS_EPP" value="EPP"/>
+	<item key="IDS_EPPPCI" value="EPP__PCI"/>
+	<item key="IDS_PORT" value="Port "/>
+	<item key="IDS_Language" value="Language "/>
+	<item key="CN" value="中文"/>
+	<item key="EN" value="English"/>
+	<item key="IDS_RunOnlyOnce" value="eCATConfig tool has been executed! Please reinstall eCAT if necessary!"/>
+	<item key="IDS_Confirm" value="Confirm"/>
+	<item key="IDS_SettingIPInvalid" value="IP address or Port setting is invalid, more details :"/>
+	<item key="IDS_UpdateSettingConfirm" value="Update these settings?"/>
+	<item key="IDS_Successfully" value="Successfully"/>
+	<item key="IDS_Unsuccessfully" value="Unsuccessfully"/>
+	<item key="IDS_Update" value="Update "/>
+	<item key="IDS_ConfirmExit" value="Are you sure to exit?"/>
+	<item key="IDS_Finish" value="Finish"/>
+	<item key="ATMP" value="ATMP "/>
+	<item key="ATMV" value="ATMV "/>
+	<item key="ATMS" value="ATMS "/>
+	
+	<item key="IDS_ScreenType" value="Twin Screen Type"/>
+	<item key="IDS_ScreenTypeFlash" value="Flash"/>
+	<item key="IDS_ScreenTypeHTML" value="HTML"/>
+</config>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="ChangePin">
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for changing password"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_InputPin"/>
+		</Start>
+		<InputPin ID="ID_InputPin" comment="Change password">
+			<States>
+				<State name="InputOldPin" UI="UI_InputOldPin"/>
+				<State name="InputOldNewPinSame" UI="UI_InputOldNewPinSame"/>
+				<State name="InputNewPin" UI="UI_InputNewPin"/>
+				<State name="InputNewPinAgain" UI="UI_InputNewPinAgain"/>
+				<State name="InputNewPinUnmatch" UI="UI_InputNewPinUnmatch"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_RequestTrans"/>
+			<Forward event="OnContinue" targetID="9999"/>
+		</InputPin>
+		<RequestTrans ID="ID_RequestTrans" UI="UI_RequestTrans" comment="Change password request">
+			<States>
+				<State name="PackFail" UI="UI_GeneralError"/>
+				<State name="ConnectFail" UI="UI_GeneralError"/>
+				<State name="SendFail" UI="UI_GeneralError"/>
+				<State name="ReceiveFail" UI="UI_GeneralError"/>
+				<State name="ReceiveTimeout" UI="UI_GeneralError"/>
+				<State name="NetworkFail" UI="UI_GeneralError"/>
+				<State name="UnpackFail" UI="UI_GeneralError"/>
+				<State name="HardwareError" UI="UI_GeneralError"/>
+				<State name="TransNotAccepted" UI="UI_ICTransNotAccepted"/>
+				<State name="TransDeclined" UI="UI_ICTransDeclined"/>
+				<State name="TransTerminated" UI="UI_ICTransTerminated"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_ChangePinResult"/>
+			<Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+			<Forward event="OnReInputPin" targetID="ID_ReInputPin"/>
+			<Forward event="OnFallback" targetID="ID_RequestTrans"/>
+			<Forward event="OnTryAgain" targetID="ID_TryAgain"/>
+			<Forward event="OnICAppLoadedFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</RequestTrans>
+		<InputPin ID="ID_ReInputPin" UI="UI_ReInputPin" comment="ReInput password">
+			<Forward event="OnConfirm" targetID="ID_RequestTrans"/>
+		</InputPin>
+		<!--主机拒绝，显示拒绝码对应的提示信息，然后退卡-->
+		<Prompt ID="ID_HostRefuse" UI="UI_HostRefuse" timeout="5000" comment="show host refuse">
+			<Forward event="OnTimeout" targetID="ID_GetDevStatusForCloseTrans"/>
+			<Forward event="OnFail" targetID="ID_GetDevStatusForCloseTrans"/>
+		</Prompt>
+		<Prompt ID="ID_ChangePinResult" UI="UI_ChangePinSuccess" comment="Change pin result" timeout="4000">
+			<Forward event="OnTimeout" targetID="ID_GetDevStatus"/>
+			<Forward event="OnFail" targetID="ID_GetDevStatus"/>
+		</Prompt>
+		<GetDevStatus ID="ID_GetDevStatus" comment="Get device status" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_PrintReceipt"/>
+			<Forward event="OnWarn" targetID="ID_PrintReceipt"/>
+			<Forward event="OnFail" targetID="9999"/>
+		</GetDevStatus>
+		<GetDevStatus ID="ID_GetDevStatusForCloseTrans" comment="Get device status" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnWarn" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</GetDevStatus>
+		<!-- 开始打印凭条 -->
+		<PrintReceipt ID="ID_PrintReceipt" UI="UI_PrintingReceipt" formName="" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="9999"/>
+		</PrintReceipt>
+		<PrintReceipt ID="ID_PrintReceiptForCloseTrans" UI="UI_PrintingReceipt" formName="" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</PrintReceipt>
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+		</End>
+		<InvokeWorkflow ID="ID_TryAgain" name="Main" comment="IC returns TryAgain" actionID="ID_ICMoreAppSelectForMainMenu" syn="0">
+		</InvokeWorkflow>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

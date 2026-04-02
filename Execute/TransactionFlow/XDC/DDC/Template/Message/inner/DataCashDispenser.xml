@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<Device>
+		<Enable CashDispenser="1"/>
+		<Information>
+			<CashDispenser IntermediateStackerIsEmpty="True" OutPositionIsEmpty="True" DeviceState="ONLINE" MediaState="CUSTOP" LastErrorCode="" IsSuccess="True" IsFailure="False" Cancelled="False" UserState="10" TransportIsEmpty="True" Shutter="CLOSED" IntermediateStacker="EMPTY" OutPosition="EMPTY" Transport="OK"/>
+			<CashPresenter LastErrorCode="" DefineErrorCode=""/>
+			<Cassette>
+				<RejectBin UseType="REJECT" CurrencyID="   " DenoValue="0" Count="0" InitialCount="0" RejectCount="0" Maximum="1400" Minimum="0" CashInCount="0" Status="OK" PhysicalPositionName="S0_I0" UnitID="S0_I0" usNumber="1" CashOutCount="0"/>
+				<RetractBin UseType="RETRACT" CurrencyID="   " DenoValue="0" Count="1" InitialCount="0" RejectCount="0" Maximum="170" Minimum="0" CashInCount="0" Status="OK" PhysicalPositionName="S0_I1" UnitID="S0_I1" usNumber="2" CashOutCount="0"/>
+			</Cassette>
+			<CassetteHope>
+				<Hope1 UseType="RECYCLING" CurrencyID="CNY" DenoValue="100" Count="0" InitialCount="0" RejectCount="0" Maximum="2500" Minimum="30" CashInCount="0" Status="OK" PhysicalPositionName="S1_I0" UnitID="1111" usNumber="3" CashOutCount="1"/>
+				<Hope2 UseType="RECYCLING" CurrencyID="CNY" DenoValue="100" Count="0" InitialCount="0" RejectCount="0" Maximum="2500" Minimum="30" CashInCount="0" Status="OK" PhysicalPositionName="S2_I0" UnitID="2222" usNumber="4" CashOutCount="1"/>
+				<Hope3 UseType="RECYCLING" CurrencyID="CNY" DenoValue="100" Count="0" InitialCount="0" RejectCount="0" Maximum="2500" Minimum="30" CashInCount="0" Status="OK" PhysicalPositionName="S3_I0" UnitID="3333" usNumber="5" CashOutCount="1"/>
+				<Hope4 UseType="RECYCLING" CurrencyID="CNY" DenoValue="100" Count="0" InitialCount="0" RejectCount="0" Maximum="2500" Minimum="30" CashInCount="0" Status="OK" PhysicalPositionName="S4_I0" UnitID="4444" usNumber="6" CashOutCount="0"/>
+			</CassetteHope>
+			<CassettePhysical>
+      </CassettePhysical>
+			<Manual State="" RecoverFail="0"/>
+		</Information>
+		<Initiation>
+			<!--0:not config, _:Not exist-->
+			<!--0:没有配置  _:不存在 -->
+			<DenominationID Hope1="0" Hope2="0" Hope3="0" Hope4="0" Hope5="0"/>
+		</Initiation>
+		<Capability>
+			<CashDispenser SupportStacker="True" SupportShutter="True" IsSuccess="True" IsFailure="False" Cancelled="False" UserState="10" MaxDispenseNotes="200"/>
+		</Capability>
+	</Device>
+	<Calculate>
+		<Status work="0" MDS=":00:00:00">
+			<MDS Hope0=":00:00:00" Hope1=":00:00:00" Hope2=":00:00:00" Hope3=":00:00:00" Hope4=":00:00:00" RetractBin=":00:00:00" RejectBin=":00:00:00" Handle=":00:00:00"/>
+		</Status>
+		<Sensor Hope1="1" Hope2="1" Hope3="1" Hope4="1" RejectBin="1"/>
+		<CassetteStatus Hope1="0" Hope2="0" Hope3="0" Hope4="0"/>
+	</Calculate>
+	<AfterCalculate>	
+	</AfterCalculate>
+	<Configuration>
+		<Item source="/Root/Device/Information/Manual" ID="/Root/Calculate/Status/@MDS" default=":00:00:00">
+			<Result value=":39:00:00">
+				<Condition value="[xmlvariable]" operand="1" operator="==">
+					<xmlvariable value="/Root/Device/Information/Manual/@RecoverFail"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/Cassette/RejectBin" ID="/Root/Calculate/Status/MDS/@RejectBin" default=":00:00:00">
+			<Result value=":3D:37:38">
+				<Condition value="[xmlvariable]" operand="FULL" operator="match">
+					<xmlvariable value="/Root/Device/Information/Cassette/RejectBin/@Status"/>
+				</Condition>
+			</Result>
+			<Result value=":3D:37:26">
+				<Condition value="[xmlvariable]" operand="HIGH" operator="match">
+					<xmlvariable value="/Root/Device/Information/Cassette/RejectBin/@Status"/>
+				</Condition>
+			</Result>
+			<Result value=":3D:37:39">
+				<Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+					<xmlvariable value="/Root/Device/Information/Cassette/RejectBin/@Status"/>
+				</Condition>
+			</Result>
+			<!--Result value=":3D:60:00">
+				<Condition value="[xmlvariable]" operand="INOP|NOVAL|NOREF|MANIP" operator="match">
+					<xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status"/>
+				</Condition>
+			</Result-->
+		</Item>
+		<Item source="/Root/Device/Information/Cassette/RetractBin" ID="/Root/Calculate/Status/MDS/@RetractBin" default=":00:00:00">
+			<Result value=":3D:36:38">
+				<Condition value="[xmlvariable]" operand="FULL" operator="match">
+					<xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status"/>
+				</Condition>
+			</Result>
+			<Result value=":3D:36:26">
+				<Condition value="[xmlvariable]" operand="HIGH" operator="match">
+					<xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status"/>
+				</Condition>
+			</Result>
+			<Result value=":3D:36:39">
+				<Condition value="[xmlvariable]" operand="INOP|MISSING|NOVAL|NOREF|MANIP" operator="match">
+					<xmlvariable value="/Root/Device/Information/Cassette/RetractBin/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/CassetteHope/Hope1" ID="/Root/Calculate/Status/MDS/@Hope1" default=":00:00:00">
+			<Result value=":3D:0m:0n">
+				<Condition value="[xmlvariable]" operand="EMPTY" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@Status"/>
+				</Condition>
+			</Result>
+			<Result value=":2D:0m:0n">
+				<Condition value="[xmlvariable]" operand="LOW" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/CassetteHope/Hope2" ID="/Root/Calculate/Status/MDS/@Hope2" default=":00:00:00">
+			<Result value=":3D:0m:0n">
+				<Condition value="[xmlvariable]" operand="EMPTY" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@Status"/>
+				</Condition>
+			</Result>
+			<Result value=":2D:0m:0n">
+				<Condition value="[xmlvariable]" operand="LOW" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/CassetteHope/Hope3" ID="/Root/Calculate/Status/MDS/@Hope3" default=":00:00:00">
+			<Result value=":3D:0m:0n">
+				<Condition value="[xmlvariable]" operand="EMPTY" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@Status"/>
+				</Condition>
+			</Result>
+			<Result value=":2D:0m:0n">
+				<Condition value="[xmlvariable]" operand="LOW" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/CassetteHope/Hope4" ID="/Root/Calculate/Status/MDS/@Hope4" default=":00:00:00">
+			<Result value=":3D:0m:0n">
+				<Condition value="[xmlvariable]" operand="EMPTY" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@Status"/>
+				</Condition>
+			</Result>
+			<Result value=":2D:0m:0n">
+				<Condition value="[xmlvariable]" operand="LOW" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/CassetteHope/Hope1" ID="/Root/Calculate/Sensor/@Hope1" default="1">
+			<Result value="0">
+				<Condition value="[xmlvariable]" operand="MISSING" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope1/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/CassetteHope/Hope2" ID="/Root/Calculate/Sensor/@Hope2" default="1">
+			<Result value="0">
+				<Condition value="[xmlvariable]" operand="MISSING" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope2/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/CassetteHope/Hope3" ID="/Root/Calculate/Sensor/@Hope3" default="1">
+			<Result value="0">
+				<Condition value="[xmlvariable]" operand="MISSING" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope3/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+		<Item source="/Root/Device/Information/CassetteHope/Hope4" ID="/Root/Calculate/Sensor/@Hope4" default="1">
+			<Result value="0">
+				<Condition value="[xmlvariable]" operand="MISSING" operator="match">
+					<xmlvariable value="/Root/Device/Information/CassetteHope/Hope4/@Status"/>
+				</Condition>
+			</Result>
+		</Item>
+	</Configuration>
+	<Host>
+		<Status work="0" MDS=":00:00:00">
+			<MDS Hope0=":00:00:00" Hope1=":00:00:00" Hope2=":00:00:00" Hope3=":00:00:00" Hope4=":00:00:00" RetractBin=":00:00:00" RejectBin=":00:00:00" Handle=":00:00:00"/>
+		</Status>
+	</Host>
+	<Signal>
+		<!-- <Item value="/Root/Calculate/Status/@MDS" DataEventID="103"/> -->
+		<Item value="/Root/Calculate/Status/MDS/@RetractBin" DataEventID="111"/>
+		<Item value="/Root/Calculate/Status/MDS/@RejectBin" DataEventID="111"/>
+		<Item value="/Root/Calculate/Status/MDS/@Hope1" DataEventID="111"/>
+		<Item value="/Root/Calculate/Status/MDS/@Hope2" DataEventID="111"/>
+		<Item value="/Root/Calculate/Status/MDS/@Hope3" DataEventID="111"/>
+		<Item value="/Root/Calculate/Status/MDS/@Hope4" DataEventID="111"/>
+		<Item value="/Root/Calculate/Sensor/@RejectBin" DataEventID="110"/>
+		<Item value="/Root/Calculate/Sensor/@Hope1" DataEventID="110"/>
+		<Item value="/Root/Calculate/Sensor/@Hope2" DataEventID="110"/>
+		<Item value="/Root/Calculate/Sensor/@Hope3" DataEventID="110"/>
+		<Item value="/Root/Calculate/Sensor/@Hope4" DataEventID="110"/>
+	</Signal>
+	<DataEvent>
+		<!--Item ID="103" enable="1"/-->
+	</DataEvent>
+</Root>

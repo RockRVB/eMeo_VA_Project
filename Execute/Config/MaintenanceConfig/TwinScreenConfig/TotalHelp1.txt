@@ -1,0 +1,76 @@
+Print Totals:
+
+2012-03-24 20:20:34[00009210] print totals
+==============cassette details==============  
+Cassette     type        denomination fill left status    
+PHY01   Reject/Retract                  0    7    OK      
+PHY02   Recycling            100       200   221  LOW      
+PHY03   Recycling            50        300   300  NORMAL    
+PHY04   Recycling            100       400   400  NORMAL    
+PHY05   Bill                 100       500   500  LOW      
+Cassette Remaining[Reject/Retract bin not included]:127100.00   
+
+-----Cassette ID
+
+-----Type
+
+-----Denomination
+
+-----Left
+
+-----Status
+
+=========Transaction Details===========  
+Number  Transaction Type    Transaction amount      
+3           Withdrwal             700.00           
+2           Transfer              336.00           
+1           Deposit               300.00           
+1           Cardless Deposit      3200.00          
+
+-----Number
+
+-----Transaction Type
+
+-----Transaction Amount
+
+------Abnormal Transaction
+
+----------Abnormal Transactions Due To Device Failure--------------    
+[001]6858000803158074    000053 Deposit    
+     03-24 20:19:50 CNY?                
+     Reason: note jam while performing note validation                      
+------------CWC----------------    
+[001]6858000803158074    000014 Withdrawal     
+     04-12 11:33:24 CNY100.00           
+     Reason: dispense failure                      
+     CWC successfully, response code:00                
+[002]6858000803158074    000051 Withdrawal    
+     04-12 11:33:24 CNY500.00           
+     Reason: dispense failure                     
+     CWC successfully, response code:00                
+----------Abnormal transactions due to operation time out----------    
+[001]6858000803158074    000018 Withdrawal    
+     04-12 11:33:24 CNY600.00           
+     Reason: take cash time out                      
+[002]6858000803158074    000049 Withdrawal        
+     04-12 11:33:24 CNY100.00           
+     Reason: take cash time out                      
+----Retained money due to host reject (maybe surplus money)----      
+[001]6224110803158074    000064 Deposit    
+     04-12 11:31:45 CNY200.00           
+     Response Code:01                          
+[002]6224110803158074    000065 Deposit        
+     04-12 11:31:45 CNY300.00           
+     Response Code:02                          
+[003]000000000000000000  000067 Carless deposit
+     04-06 13:09:21 CNY600.00           
+     Response Code:20                          
+==============Retained Card Details==============    
+Card Retained:3                              
+[001]03-24 15:23:19<=>6858000803158074  
+    Reason: take card time out                       
+[002]03-24 20:28:39<=>6858000803158074  
+    Reason: take card time out                       
+[003]03-24 20:30:11<=>6224110803158074  
+    Reason: take card time out                      
+============Print Totals Completed============    

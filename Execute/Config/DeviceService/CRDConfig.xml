@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--ServiceName：设备的服务名-->
+<!--FontName：打印的字体的名字-->
+<!--FontType：打印的字体的类型,取值为(粗体)"BOLD"（斜体）"INCLINE"、（下划线）"UNDERLINE"、（删除线）"CANCELLINE"中的一个-->
+<!--FontSize：打印的字体的大小，为整数-->
+<CardDispenser ServiceName="CRD" FontName="Arial" FontType="BOLD" FontSize="10"/>

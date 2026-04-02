@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<root>
+		<level value="debug" />
+	</root>
+	<logger name="CDM">
+		<level value="debug" />
+		<additivity value="false" />
+		<appender-ref ref="CashDispenser" />
+	</logger>
+	<logger name="CIM">
+		<level value="debug" />
+		<additivity value="false" />
+		<appender-ref ref="CashAcceptor" />
+	</logger>
+	<logger name="DEP30">
+		<level value="debug" />
+		<additivity value="false" />
+		<appender-ref ref="DEP30" />
+	</logger>
+	<logger name="IDC">
+		<level value="debug" />
+		<additivity value="false" />
+		<appender-ref ref="CardReader" />
+	</logger>	
+	<!--logger name="JournalPrinter" additivity="false">
+		<level value="debug" />
+		<additivity value="false" />
+		<appender-ref ref="JournalPrinter" />
+	</logger-->		
+	<logger name="EPP" additivity="false">
+		<level value="debug" />
+		<additivity value="false" />
+		<appender-ref ref="Encryptor" />
+	</logger>
+	<!--logger name="ReceiptPrinter" additivity="false">
+		<level value="debug" />
+		<additivity value="false" />
+		<appender-ref ref="ReceiptPrinter" />
+	</logger-->
+	<logger name="SIU" additivity="false">
+		<level value="debug" />
+		<additivity value="false" />
+		<appender-ref ref="SIU" />
+	</logger>
+	<logger name="TTU" additivity="false">
+		<level value="debug" />
+		<additivity value="false" />
+		<appender-ref ref="TTU" />
+	</logger>
+	<logger name="VDM" additivity="false">
+		<level value="debug" />
+		<additivity value="false" />
+		<appender-ref ref="VDM" />
+	</logger>
+	
+	 <logger name="PBP" additivity="false">   <!-- PBP 是根据代码中的 this->m_abTrace->ResetTraceName("PBP");来的 -->
+      <level value="debug" /> 
+      <additivity value="false" />     
+     <appender-ref ref="Passbook" /> 
+   </logger> 
+   <appender name="Passbook" class="org.apache.log4j.DailyRollingFileAppender"> 
+     <param name="encoding" value="UTF-8" /> 
+     <param name="DatePattern" value="'Log/XFSControl/PASSBOOK_'yyyy-MM-dd'.txt'" /> 
+     <param name="Append" value="true" /> 
+     <layout class="org.apache.log4j.PatternLayout"> 
+       <param name="ConversionPattern" value="%d{HH:mm:ss,SSS} [%t] -- %m%n" /> 
+    </layout> 
+   </appender>  
+
+   	<appender name="CashDispenser" class="org.apache.log4j.DailyRollingFileAppender">
+   		<param name="encoding" value="UTF-8" />
+   		<param name="DatePattern" value="'Log/XFSControl/CashDispenser_'yyyy-MM-dd'.txt'" /> 
+   		<param name="Append" value="true" />
+   		<layout class="org.apache.log4j.PatternLayout">
+       		<param name="ConversionPattern" value="%d{HH:mm:ss,SSS} [%t] --  %m%n" />
+   		</layout>
+   </appender>
+   	<appender name="CashAcceptor" class="org.apache.log4j.DailyRollingFileAppender">
+   		<param name="encoding" value="UTF-8" />
+   		<param name="DatePattern" value="'Log/XFSControl/CashAcceptor_'yyyy-MM-dd'.txt'" /> 
+   		<param name="Append" value="true" />
+   		<layout class="org.apache.log4j.PatternLayout">
+       		<param name="ConversionPattern" value="%d{HH:mm:ss,SSS} [%t] --  %m%n" />
+   		</layout>
+   </appender>
+   	<appender name="DEP30" class="org.apache.log4j.DailyRollingFileAppender">
+   		<param name="encoding" value="UTF-8" />
+   		<param name="DatePattern" value="'Log/XFSControl/DEP_'yyyy-MM-dd'.txt'" /> 
+   		<param name="Append" value="true" />
+   		<layout class="org.apache.log4j.PatternLayout">
+       		<param name="ConversionPattern" value="%d{HH:mm:ss,SSS} [%t] --  %m%n" />
+   		</layout>
+   </appender>
+   	<appender name="CardReader" class="org.apache.log4j.DailyRollingFileAppender">
+   		<param name="encoding" value="UTF-8" />
+   		<param name="DatePattern" value="'Log/XFSControl/CardReader_'yyyy-MM-dd'.txt'" /> 
+   		<param name="Append" value="true" />
+   		<layout class="org.apache.log4j.PatternLayout">
+       		<param name="ConversionPattern" value="%d{HH:mm:ss,SSS} [%t] --  %m%n" />
+   		</layout>
+   </appender>
+ 
+   	<appender name="Encryptor" class="org.apache.log4j.DailyRollingFileAppender">
+   		<param name="encoding" value="UTF-8" />
+   		<param name="DatePattern" value="'Log/XFSControl/Encryptor_'yyyy-MM-dd'.txt'" /> 
+   		<param name="Append" value="true" />
+   		<layout class="org.apache.log4j.PatternLayout">
+       		<param name="ConversionPattern" value="%d{HH:mm:ss,SSS} [%t] --  %m%n" />
+   		</layout>
+   </appender>  
+    <appender name="SIU" class="org.apache.log4j.DailyRollingFileAppender">
+   		<param name="encoding" value="UTF-8" />
+   		<param name="DatePattern" value="'Log/XFSControl/SIU_'yyyy-MM-dd'.txt'" /> 
+   		<param name="Append" value="true" />
+   		<layout class="org.apache.log4j.PatternLayout">
+       		<param name="ConversionPattern" value="%d{HH:mm:ss,SSS} [%t] --  %m%n" />
+   		</layout>
+   </appender>  
+      	<appender name="TTU" class="org.apache.log4j.DailyRollingFileAppender">
+   		<param name="encoding" value="UTF-8" />
+   		<param name="DatePattern" value="'Log/XFSControl/TTU_'yyyy-MM-dd'.txt'" /> 
+   		<param name="Append" value="true" />
+   		<layout class="org.apache.log4j.PatternLayout">
+       		<param name="ConversionPattern" value="%d{HH:mm:ss,SSS} [%t] --  %m%n" />
+   		</layout>
+   </appender>  
+      	<appender name="VDM" class="org.apache.log4j.DailyRollingFileAppender">      	
+   		<param name="encoding" value="UTF-8" />
+   		<param name="DatePattern" value="'Log/XFSControl/VDM_'yyyy-MM-dd'.txt'" /> 
+   		<param name="Append" value="true" />
+   		<layout class="org.apache.log4j.PatternLayout">
+       		<param name="ConversionPattern" value="%d{HH:mm:ss,SSS} [%t] --  %m%n" />
+   		</layout>
+   </appender>  
+</log4j:configuration>

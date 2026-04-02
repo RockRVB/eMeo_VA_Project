@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EVERemoteAssistConfig name="EVE" port="8601" serverIP="10.2.44.254" timeout="30000">
+
+</EVERemoteAssistConfig>

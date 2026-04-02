@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!--  SupervisorKeys / No support 	-->
+	<SupervisorKeys>
+		<!-- Device Identification Graphic. -->
+		<Item key="e1" 																		value="R"  																			size="1" 				restriction="Mandatory"/>
+		
+		<!--   Transaction/Device Status. Always 'Selcect Menu''.-->
+		<Item key="e2" 																		value="00"  																	    size="1" 				restriction="Mandatory"/>	
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="[OptionCtrl.NoUse]"/>
+		
+		<!--  Error Severity..-->
+		<Item key="e3" 																		value="1"  																			size="1" 				restriction="[OptionCtrl.NoUse]"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="[OptionCtrl.NoUse]"/>
+		
+		<!--  Diagnostic Status. (M-status plus M-data). The M-status describes the main error found. -->
+		<Item key="e4" 																		value="[TouchScreenKeyboardDiagnosticStatus]"  			size="var" 			restriction="[OptionCtrl.NoUse]"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="[OptionCtrl.NoUse]"/>
+		
+		<!--  Suplies Status -->
+		<Item key="e5" 																		value="[EnvelopeDispenserSuppliesStatus]"  					size="1" 				restriction="[OptionCtrl.NoUse]"/>
+		
+	</SupervisorKeys>	
+</Root>

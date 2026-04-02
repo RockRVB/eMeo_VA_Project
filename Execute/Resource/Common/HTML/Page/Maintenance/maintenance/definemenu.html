@@ -1,0 +1,214 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>定制菜单</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/maintenance/cn.css" />
+<script src="../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../js/jquery-ui.min.js"></script>
+<script src="../../../js/maintenance/common/common.js"></script>
+<script src="../../../js/maintenance/common/global.js"></script>
+<script src="../../../js/maintenance/component/components.js"></script>
+<script src="../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../js/maintenance/ui/definemenu/dlymenu.js"></script>
+<script src="../../../js/maintenance/ui/maintenance/definemenu.js"></script>
+</head>
+
+<body>
+<!--界面容器-->
+<div class="wrapper define-menu"> 
+	<!--菜单-->
+	<div class="navigation"> 
+		<!--一级菜单-->
+		<div class="level-1 clear">
+			<!--向左按钮-->
+			<!--<button id="MENU1_PRE_PAGE" type="button" class="button-arrow-prev nav-left"> 
+				<span class="tip"></span>
+				<span class="button-text"></span>
+			</button>-->
+			<!--向右按钮-->
+			<!--<button id="MENU1_NEXT_PAGE" type="button" class="button-arrow-next nav-right"> 
+				<span class="tip"></span>
+				<span class="button-text"></span>
+			</button> -->
+			<!--菜单区域-->
+			<div class="nav-zone">
+				<ul >
+					<li class="selected">
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>清机管理</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>系统诊断</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>系统配置</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>日常维护</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>日志操作</span></div>
+						</div>
+						</a></li>
+					<li>
+						<div class="bg"></div>
+						<a href="#">
+						<div class="middle-outer">
+							<div class="middle-inner"><span>使用帮助</span></div>
+						</div>
+						</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--菜单遮罩-->
+		<div id="navigation-mask none"></div>
+	</div>
+	<div class="g-margin-wrapper"> 
+		<!--已选择按钮-->
+		<div id="STATIC_1" type="STATIC_TXT" class="define-menu-title" ids="IDS_SelectMax">您已选择(点击取消选择,最大19项)：</div>
+		<!--已选择区域-->
+		<div class="seleted-box clearfix"> 
+			<!--向左按钮-->
+			<button id="SELECTED_PRE_PAGE" type="button" class="button-prev nav-left none"> 
+				<span class="tip"></span>
+				<span class="button-text"></span>
+			</button>
+			<!--向右按钮-->
+			<button id="SELECTED_NEXT_PAGE" type="button" class="button-next nav-right none"> 
+				<span class="tip"></span>
+				<span class="button-text"></span>
+			</button>
+			<!--菜单区域-->
+			<div class="nav-zone">
+				<ul >
+					<li style="visibility:hidden">
+						<button id="FUN_1" type="button" class="button-define" isAutoSend="0" focusGroup="define"> <span class="tip"></span> <span class="button-text">清机加钞</span> </button>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+		<!--虚线-->
+		<div class="dash-line"></div>
+		<!--待选择按钮-->
+		<div id="STATIC_2" type="STATIC_TXT" class="define-menu-title" ids="IDS_Operate">请点击选择日常操作项：</div>
+		<!--待选择区域-->
+		<div class="choice-box clearfix"> 
+			<!--菜单区域-->
+			<div class="nav-zone">
+				<ul>
+					<li>
+						<button id="BUTTON_1" type="button" class="button-define" isAutoSend="0" focusGroup="row1"> <span class="tip"></span> <span class="button-text">清机加钞</span> </button>
+					</li>
+					<li>
+						<button id="BUTTON_2" type="button" class="button-define" isAutoSend="0" focusGroup="row1"> <span class="tip"></span> <span class="button-text">系统自动诊断</span> </button>
+					</li>
+					<li>
+						<button id="BUTTON_3" type="button" class="button-define" isAutoSend="0" focusGroup="row1"> <span class="tip"></span> <span class="button-text">查询钱箱余额</span> </button>
+					</li>
+					<li>
+						<button id="BUTTON_4" type="button" class="button-define" isAutoSend="0" focusGroup="row1"> <span class="tip"></span> <span class="button-text">本周期异常交易</span> </button>
+					</li>
+					
+					<li>
+						<button id="BUTTON_5" type="button" class="button-define" isAutoSend="0" focusGroup="row2"> <span class="tip"></span> <span class="button-text">清机加钞</span> </button>
+					</li>
+					<li>
+						<button id="BUTTON_6" type="button" class="button-define" isAutoSend="0" focusGroup="row2"> <span class="tip"></span> <span class="button-text">系统自动诊断</span> </button>
+					</li>
+					<li>
+						<button id="BUTTON_7" type="button" class="button-define" isAutoSend="0" focusGroup="row2"> <span class="tip"></span> <span class="button-text">查询钱箱余额</span> </button>
+					</li>
+					<li>
+						<button id="BUTTON_8" type="button" class="button-define" isAutoSend="0" focusGroup="row2"> <span class="tip"></span> <span class="button-text">本周期异常交易</span> </button>
+					</li>
+					
+					<li>
+						<button id="BUTTON_9" type="button" class="button-define" isAutoSend="0" focusGroup="row3"> <span class="tip"></span> <span class="button-text">清机加钞</span> </button>
+					</li>
+					<li>
+						<button id="BUTTON_10" type="button" class="button-define" isAutoSend="0" focusGroup="row3"> <span class="tip"></span> <span class="button-text">系统自动诊断</span> </button>
+					</li>
+					<li>
+						<button id="BUTTON_11" type="button" class="button-define" isAutoSend="0" focusGroup="row3"> <span class="tip"></span> <span class="button-text">查询钱箱余额</span> </button>
+					</li>
+					<li>
+						<button id="BUTTON_12" type="button" class="button-define" isAutoSend="0" focusGroup="row3"> <span class="tip"></span> <span class="button-text">本周期异常交易</span> </button>
+					</li>
+					
+					<li>
+						<button id="BUTTON_13" type="button" class="button-define" isAutoSend="0" focusGroup="row4"> <span class="tip"></span> <span class="button-text">清机加钞</span> </button>
+					</li>
+					<li>
+						<button id="BUTTON_14" type="button" class="button-define" isAutoSend="0" focusGroup="row4"> <span class="tip"></span> <span class="button-text">系统自动诊断</span> </button>
+					</li>
+					<li>
+						<button id="BUTTON_15" type="button" class="button-define" isAutoSend="0" focusGroup="row4"> <span class="tip"></span> <span class="button-text">查询钱箱余额</span> </button>
+					</li>
+					<!--<li>
+						<button id="BUTTON_16" type="button" class="button-define" isAutoSend="0" focusGroup="row4"> <span class="tip"></span> <span class="button-text">本周期异常交易</span> </button>
+					</li>-->
+				</ul>
+			</div>
+		</div>
+		<!--按钮区域-->
+		<div class="g-button-zone">
+			<button id="FUN_RESET" type="button" dataToSend="KEYBOARD_CLEAR" class="button-common mr5"> <span class="tip"></span> <span class="button-text" ids="IDS_ResumeSetting">恢复设置</span> </button>
+			<button id="FUN_UP" type="button" class="button-common mr5"> <span class="tip"></span> <span class="button-text" ids="IDS_Previous">上一页</span> </button>
+			<button id="FUN_DOWN" type="button" class="button-common mr5"> <span class="tip"></span> <span class="button-text" ids="IDS_Next">下一页</span> </button>
+			<button id="FUN_OK" type="button" class="button-common mr5"> <span class="tip"></span> <span class="button-text" ids="IDS_Save">保存</span> </button>
+			<button id="FUN_BACK" type="button" class="button-common"> <span class="tip"></span> <span class="button-text" ids="IDS_Return">返回</span> </button>
+		</div>
+	</div>
+	<!--底部-->
+	<div class="bottom">
+		<div class="bottom-button-zone">
+			<div class="float-left">
+				<button id="FUN_LOGOUT" type="button"  class="button-operate "> 
+					<span><img alt="" src="../../../../Image/CN/maintenance/button/icon-logout.png"/></span>
+					<span class="tip"></span>
+					<span class="button-text" ids="IDS_Logout">注销用户</span>
+				</button>
+				<button id="FUN_QUIT" type="button" class="button-operate operate-button-space-left disabled"  dataToSend="MENU_88888">
+				    <span><img alt="" src="../../../../Image/CN/maintenance/button/icon-quit.png"/></span>
+					<span class="tip"></span>
+					<span class="button-text" ids="IDS_Quit">退出维护</span>
+				</button>
+			</div>
+			<div class="float-right">
+				<button id="FUN_TABMODE" type="button" class="button-operate " dataToSend="MENU_99999">
+					<span><img alt="" src="../../../../Image/CN/maintenance/button/icon-tabmode.png"/></span>
+					<span class="tip"></span>
+					<span class="button-text" ids="IDS_SwitchMaintenance">快捷维护</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

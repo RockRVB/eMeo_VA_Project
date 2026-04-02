@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<Data>
+		<!--  Track 2 data. 
+		* 	Contains up to 39 characters of track 2 data from the start sentinel to the end sentinel inclusive. (in the range 30 - 3F hex).
+		-->
+		<Item key="h" value="[Buffer.Track2]" size="0-39" restriction="0"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Track 3 data. 
+		* 	Contains up to 106 characters of track 3 data from the start sentinel to the end sentinel inclusive. (in the range 30 - 3F hex).
+		-->
+		<Item key="i" value="[Buffer.Track3]" size="0-106" restriction="0"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Operation Code Data. 
+		* 	Contains the data collected in the opration Code buffer as a result of function idsplay keys pressed. 
+		* States D, E and Y determine the contents of this field, which idenfiies the transaction selected by cardholder.
+		-->
+		<Item key="j" value="[Msg.Transaction.OpCode]" size="8" restriction="0"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!-- Amount Entry Field
+		* Determined by the Amount Entry and Enhanced Amount Entry states. 
+		* Data is right-justified with zeros to fill unused positions on the left. 
+		* The length is selecte din Configuration Parameters Load message or the Enhanced Configuration Parameters Load message.
+		 -->
+		<Item key="k" value="[Msg.Transaction.AmoutEntryField]" size="8-12" restriction="0"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  PIN Buffer (Buffer A).. 
+		* 	Contains a 16-character PIN, encrypted as specified in the FIT, for remote PIN verification.
+		-->
+		<Item key="l" value="[Buffer.PIN]" size="var(32)" restriction="0"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  General Purpose Buffer B 
+		* 	Contains the keyboard data entered during the information entry state or after receiving an Interactive Transaction
+		* Response. The last character in this buffer is a graphic 'T' if the terminal 'time-out' waiting for the cardholder to respond(via keyboard entry) to
+		* an interactive transaction response, or a graphic 'E' if the cardholder pressed  the Cancel key. Length is 3-32..
+		-->
+		<Item key="m" value="[Buffer.B]" size="var(32)" restriction="1"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  General Purpose Buffer C
+		* 	Contains the keyboard data entered during the information entry state
+		-->
+		<Item key="n" value="[Buffer.C]" size="0-32" restriction="0"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]"/>
+		<!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+		<Item key="x" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]"/>
+	</Data>
+</Root>

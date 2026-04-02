@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="Shutdown">
+	<Head type="GRGWorkflow" author="hxlong" timeStamp="2013/01/28 12:32:00" comment="The workflow design is for Shutdown"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" UI="UI_Shutdown" comment="Start">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</Start>
+		<End ID="9999" comment="End">
+		</End>
+	</Activities>
+</Workflow>

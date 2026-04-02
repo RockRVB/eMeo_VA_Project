@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ServiceName：设备的服务名   
+ResetManal： 复位时，对介质的处理方式)
+PaperTakeAwayTimeOut：取纸超时时间，默认30S(不能小于5S，配置值>=5时，才会覆盖系统默认值)
+-->
+<FeedChannel ServiceName="GRGA4Scanner"  ResetManal="RESETMANNERRETRACT" PaperTakeAwayTimeOut ="30"/>

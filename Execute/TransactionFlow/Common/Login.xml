@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--插卡并输密码-公共流程-->
+<Workflow name="Login">
+  <Head type="GRGWorkflow" author="yyyao" timeStamp="2014/03/12" comment="The workflow design is for inquiry"/>
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start">
+      <Forward event="OnConfirm" targetID="ID_GetDevStatusEx"/>
+    </Start>
+   <!-- 插卡前检查读卡器状态 -->
+    <GetDevStatusEx ID="ID_GetDevStatusEx" UI="UI_Operating" comment="Get device status" devType="IDC" eject="1" callVisible="0">
+      <States>
+        <State name="GetDevStatusExError" UI="UI_DevError"></State>
+      </States>
+      <Forward event="OnNormal" targetID="ID_CompareZeroStateCardInsertFlag"/>
+      <Forward event="OnWarn" targetID="ID_CompareZeroStateCardInsertFlag"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </GetDevStatusEx>
+
+		<CompareData ID="ID_CompareZeroStateCardInsertFlag" comment="判断是不是零状态插的卡" compareBuffer="{core_CardInsertedInZeroState}">
+			<Forward event="OnEqualTrue" targetID="9999"/>
+			<DefaultForward targetID="ID_CompareCardInsertFlag"/>
+		</CompareData>
+		<CompareData ID="ID_CompareCardInsertFlag" comment="判断是不是中途插的卡" compareBuffer="{core_CardInserted}">
+			<Forward event="OnEqualTrue" targetID="9999"/>
+			<DefaultForward targetID="ID_InsertCard"/>
+		</CompareData>
+
+    <VTMInsertCard ID="ID_InsertCard" UI="UI_InsertCardWithdraw" timeout="30000"  digitalVoiceKey="|action_001" activeKeys="CANCEL" supportBothContactAndContactLess="1"  terminateKeys="CANCEL" homeVisible="1">
+      <States>
+        <State name="ReadingCard" UI="UI_ReadingCard"/>
+      </States>
+	  <DefaultUIStates>
+		<State name="MaintenanceMainWorkflow" UI="UI_InsertCardMaintenance"/>
+		<State name="DepositMainFlow" UI="UI_InsertCardDeposit"/>
+		<State name="Withdrawal" UI="UI_InsertCardWithdraw"/>
+		<State name="Enquery" UI="UI_InsertCardEnquiry"/>
+		<State name="SavingAccountMainFlow" UI="UI_InsertCardSavingAccount"/>
+		<State name="CardActivation" UI="UI_InsertCardActivation"/>
+		<State name="PinChangeMainFlow" UI="UI_InsertCardPinChange"/>
+		<State name="PassbookSettleMainFlow" UI="UI_InsertCardPassbookSettle"/>
+	  </DefaultUIStates>
+      <Forward event="OnMagneticCard" targetID="ID_InputPin"/>
+      <Forward event="OnFallbackCard" targetID="ID_InputPin"/>
+      <Forward event="OnICCard" targetID="ID_ICGetTrack"/>
+      <Forward event="OnInvalidCard" targetID="ID_VTMRejectCard"/>
+      <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+    </VTMInsertCard>
+    <ICBuildAppList ID="ID_ICBuildAppList" UI="UI_OperatingDoubleLanguage" comment="">
+      <Forward event="OnOneApplication" targetID="ID_ICAppLoadedForFirstTime"/>
+      <Forward event="OnMoreApplication" targetID="ID_ICMoreAppSelectForFirstTime"/>
+      <Forward event="OnFallback" targetID="ID_ICGetTrack"/>
+      <Forward event="OnCancel" targetID="ID_ICTransCancel"/>
+    </ICBuildAppList>
+    <ICAppLoaded ID="ID_ICAppLoadedForFirstTime" UI="UI_OperatingDoubleLanguage" comment="">
+      <Forward event="OnConfirm" targetID="ID_ICGetTrack"/>
+      <Forward event="OnFallback" targetID="ID_ICGetTrack"/>
+      <Forward event="OnTryAgain" targetID="ID_ICMoreAppSelectForFirstTime"/>
+      <Forward event="OnICAppLoadedFail" targetID="ID_ICTransCancel"/>
+    </ICAppLoaded>
+    <ICMoreAppSelect ID="ID_ICMoreAppSelectForFirstTime" UI="UI_ICMoreAppSelect" comment="">
+      <Forward event="OnConfirm" targetID="ID_ICAppLoadedForFirstTime"/>
+    </ICMoreAppSelect>
+    <Prompt ID="ID_ICTransCancel" UI="UI_ICTransCancel" timeout="5000" comment="">
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </Prompt>
+    <ICGetTrack ID="ID_ICGetTrack" comment="Get IC tracks">
+      <Forward event="OnConfirm" targetID="ID_InputPin"/>
+    </ICGetTrack>
+    <VTMInputPin ID="ID_InputPin" UI="UI_InputPinWithdraw" digitalVoiceKey="||||||||action_030" autoEnd="0" minLen="4" maxLen="6" comment="输入密码" homeVisible="1">
+	  <DefaultUIStates>
+	    <State name="MaintenanceMainWorkflow" UI="UI_InputPinMaintenance"/>
+		<State name="DepositMainFlow" UI="UI_InputPinDeposit"/>
+		<State name="Withdrawal" UI="UI_InputPinWithdraw"/>
+		<State name="SavingAccountMainFlow" UI="UI_InputPinSavingAccount"/>
+		<State name="Enquery" UI="UI_InputPinEnquiry"/>
+		<State name="CardActivation" UI="UI_InputPinActivation"/>
+		<State name="PinChangeMainFlow" UI="UI_InputPinPinChange"/>
+		<State name="PassbookSettleMainFlow" UI="UI_InputPinPassbook"/>
+	  </DefaultUIStates>
+      <Forward event="OnConfirm" targetID="9999"/>
+      <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    </VTMInputPin>
+
+	<VTMRejectCard ID="ID_VTMRejectCard" UI="UI_InvalidCard" timeout="30000">
+      <Forward event="OnContinue" targetID="ID_InsertCard" />
+	  <Forward event="OnConfirm" targetID="ID_InsertCard" />
+    </VTMRejectCard>
+	
+	<RequestTransForXDC ID="ID_RequestTransForXDC_Login" UI="UI_RequestTrans" transType="AUT" msgID="TransactionRequestAUT" inputPinTimes="3" operationCode="HHD_B___" comment="xdc Login request" >
+	<States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+        <State name="SendFail" UI="UI_GeneralError"/>
+        <State name="ReceiveFail" UI="UI_GeneralError"/>
+        <State name="ReceiveTimeout" UI="UI_GeneralError"/>
+        <State name="NetworkFail" UI="UI_GeneralError"/>
+        <State name="UnpackFail" UI="UI_GeneralError"/>
+        <State name="HardwareError" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_ReadyB"/>
+	  <Forward event="OnFail" targetID="ID_ReadyBFail"/>
+      <Forward event="OnPackFail" targetID="ID_ShowNetWorkError"/>
+      <Forward event="OnConnectFail" targetID="ID_ShowNetWorkError"/>
+      <Forward event="OnSendFail" targetID="ID_ShowNetWorkError"/>
+      <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnHostRefuse" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnReInputPin" targetID="ID_InputPin"/>
+	  <Forward event="OnFallback" targetID="ID_RequestTransForXDC_Login"/>
+	  <Forward event="OnTryAgain" targetID="ID_TryAgain"/>
+	  <Forward event="OnICAppLoadedFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnInputTimesOverlimit" targetID="ID_ShowCardDisabled"/>
+	  <Forward event="OnFirst" targetID="ID_ReadyBForFirst"/>
+    </RequestTransForXDC>
+
+	<Prompt ID="ID_ShowNetWorkError" UI="UI_ConnectFail" timeout="5000">
+      <DefaultForward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+    </Prompt>
+
+	<RequestTransForXDC ID="ID_ReadyBForFirst" msgID="ReadyB" comment="xdc readyb request" timeOut="-1" >
+      <States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_ChangePinFirst"/>
+    </RequestTransForXDC>
+	
+	<InvokeWorkflow ID="ID_ChangePinFirst" UI="" comment="" name="CardActivation" actionID="ID_CheckCardType">
+      <Forward event="OnConfirm" targetID="9999" />
+    </InvokeWorkflow>
+	
+	<RequestTransForXDC ID="ID_ReadyB" msgID="ReadyB" comment="xdc readyb request" timeOut="-1" >
+      <States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="9999"/>
+    </RequestTransForXDC>
+
+	<RequestTransForXDC ID="ID_ReadyBFail" msgID="ReadyB" comment="xdc readyb request" timeOut="-1" >
+      <States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_InputPin"/>
+    </RequestTransForXDC>
+	
+	<Prompt ID="ID_ShowCardDisabled" UI="UI_OverLimitPin" timeout="5000">
+      <DefaultForward event="OnConfirm" targetID="ID_CloseTransactionReturnCard"/>
+    </Prompt>
+
+	<CloseTransEx ID="ID_CloseTransactionReturnCard" UI="UI_EjectingCard" comment="Close transaction" forceCaptureCardAndReason="5">
+      <States>
+        <State name="TakeCard" UI="UI_TakeCard"/>
+        <State name="TransTimeOut" UI="UI_TransTimeOut"/>
+        <State name="KeyError" UI="UI_KeyError"/>
+        <State name="InvalidCard" UI="UI_InvalidCard"/>
+        <State name="HardwareError" UI="UI_HardwareError"/>
+        <State name="GeneralError" UI="UI_GeneralError"/>
+        <State name="CapturingCard" UI="UI_CapturingCard"/>
+        <State name="CaptureCardForTimeout" UI="UI_CaptureCardForTimeout"/>
+        <State name="CaptureCardToSlotForPINError" UI="UI_CaptureCard4PinError"/>
+        <State name="ThankYou" UI="UI_ThankYou"/>
+        <State name="InputWithdrawalAmountExceedRetryTimes" UI="UI_InputWithdrawalAmountExceedRetryTimes"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_InvokeMainWorkflow"/>
+      <Forward event="OnCaptureCard" targetID="ID_InvokeMainWorkflow"/>
+    </CloseTransEx>
+	
+	<InvokeWorkflow ID="ID_TryAgain" name="Main" comment="IC returns TryAgain" actionID="ID_ICMoreAppSelectForMainMenu" syn="0">
+    </InvokeWorkflow>
+	
+	<InvokeWorkflow ID="ID_InvokeMainWorkflow" name="Main" comment="Invoke main workflow" syn="0">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+
+    <End ID="9999" comment="End">
+    </End> 
+
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+	
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnHardwareError" targetID="ID_DevError"/>
+    <Forward event="OnFail" targetID="ID_EventError"/>
+    <Forward event="OnTimeout" targetID="ID_GoTimeOut"/>
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+  </DefaultForward>
+</Workflow>

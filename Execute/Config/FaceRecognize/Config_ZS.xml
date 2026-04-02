@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+
+	<!-- Position of video window -->
+	<Location x="1700" y="0" />
+	<!-- Size of video window -->
+	<Size width="1080" height="1080" />
+	<!-- Get TopN  similar picture from face server -->
+	<TopN value="3" />
+
+	<Hint>
+		<Text value="           please look at the camera" />
+		<!-- The Location of above text -->
+		<Location x="140" y="900" />
+		<MaskImage value="box.png" />
+		<!-- The seconds of counting down befor capture photo -->
+		<Counter value="10" />
+		<FontName value="TPB Neo Sans" />
+		<FontSize value="35" />
+		<CounterLocation x="500" y="350" />
+		<ConterFontSize value="80" />
+		<SuccessText value="               Scan success!" />
+		<SuccessLocation x="140" y="900" />
+		<!-- The seconds of counting down after capture photo to close video window -->
+		<SuccessCounter value="1" />
+		<HintColor value="255,255,255"/>
+ 		<SuccessColor value="255,255,255"/>
+ 		<CounterColor value="255,0,0"/>
+	</Hint>
+	
+    <!-- REST API -->
+	<FaceAPI>
+		<!-- user API -->
+        <AddUser value="/grgbanking/biometrics/faceverify/user/add" />
+        <QueryUser value="/grgbanking/biometrics/faceverify/user/get" />
+        <DeleteUser value="/grgbanking/biometrics/faceverify/user/delete" />
+        <!-- feature API -->
+		<QueryFeature value="/grgbanking/biometrics/faceverify/user/features" />
+<!--    <UpdateFeature value="/grgbanking/biometrics/faceverify/user/feature-update" />
+        <AddFeature value="/grgbanking/biometrics/faceverify/user/feature-add" />
+        <DeleteFeature value="/grgbanking/biometrics/faceverify/user/feature-delete" /> -->
+        <!-- Recognize API -->
+		<Verfiy value="/grgbanking/biometrics/faceverify/user/verify" />
+        <Match value="/grgbanking/biometrics/faceverify/user/match" />
+        <Identify value="/grgbanking/biometrics/faceverify/user/identify" />
+        <Check value="/grgbanking/biometrics/faceverify/user/check-image" />
+    </FaceAPI>
+	
+</Config>

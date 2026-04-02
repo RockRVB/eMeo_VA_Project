@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!--  Touch  Disepnser
+		*  The envelope dispenser reports unsolicited status message in Native mode depending on the value 
+		*  of the enhanced configuration option 23. 
+		*  Status messages are sent when the envelope dispenser is detected as being low/out or an envelpe failed to be presented or retracted.
+		-->
+		
+	<TouchScreenKeyboard>
+		<!-- Device Identification Graphic. -->
+		<Item key="e1" 																		value="Q"  																			size="1" 				restriction="Mandatory"/>
+		
+		<!--   Transaction/Device Status. Always '3', indicating a hardware error.-->
+		<Item key="e2" 																		value="3"  																			size="1" 				restriction="Mandatory"/>	
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="Mandatory"/>
+		
+		<!--  Error Severity.  Always '4', indicating fatal.-->
+		<Item key="e3" 																		value="4"  																			size="1" 				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="Mandatory"/>
+		
+		<!--  Diagnostic Status. (M-status plus M-data). The M-status describes the main error found. -->
+		<Item key="e4" 																		value="[TouchScreenKeyboardDiagnosticStatus]"  			size="var" 			restriction="Optional"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="[OptionCtrl.NoUse]"/>
+		
+		<!--  Suplies Status -->
+		<Item key="e5" 																		value="[EnvelopeDispenserSuppliesStatus]"  					size="1" 				restriction="[OptionCtrl.NoUse]"/>
+		
+	</TouchScreenKeyboard>	
+</Root>

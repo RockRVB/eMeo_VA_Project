@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Msg>
+    <!--MessageIdentifier.-->
+    <Item key="g" value="r" size="1" restriction="Mandatory" />
+    <!--FieldSeparator-->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--Message sub identifier-->
+    <Item key="h" value="7" size="1" restriction="Mandatory" />
+    <!--FieldSeparator-->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--Configuration ID-->
+    <Item key="h2" value="[ConfigurationID]" size="4" restriction="Mandatory" />
+    <!--FieldSeparator-->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--Number of drums 00-06 2-->
+    <Item key="h3" value="00" size="1" restriction="Mandatory" />
+    <!--Note ID drum n (1) 00-79 2-->
+    <Item key="h3" value="" size="1" restriction="Mandatory" />
+    <!--FieldSeparator-->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--Number of Note/Coin ID’s 00-99 2-->
+    <Item key="h4" value="[Wincor.CashAcceptor.numberofnoteid]" size="1" restriction="Mandatory" />
+    <!-- Note/Coin ID (2) 01-79/80-99 2-->
+    <!--Modifier (2) -1 -->
+    <!--Item key="h5" value="[Wincor.CashAcceptor.groupnumberofnoteidmodifier]" size="1" restriction="Mandatory"/-->
+    <Item key="h2" value="[Wincor.CashAcceptor.note.t1.id]" size="2" restriction="Mandatory" />
+    <Item key="h2" value="[Wincor.CashAcceptor.note.t1.modifier]" size="5" restriction="Mandatory" />
+    <Item key="h2" value="[Wincor.CashAcceptor.note.t2.id]" size="2" restriction="Mandatory" />
+    <Item key="h2" value="[Wincor.CashAcceptor.note.t2.modifier]" size="5" restriction="Mandatory" />
+    <Item key="h2" value="[Wincor.CashAcceptor.note.t3.id]" size="5" restriction="Mandatory" />
+    <Item key="h2" value="[Wincor.CashAcceptor.note.t3.modifier]" size="5" restriction="Mandatory" />
+    <Item key="h2" value="[Wincor.CashAcceptor.note.t4.id]" size="2" restriction="Mandatory" />
+    <Item key="h2" value="[Wincor.CashAcceptor.note.t4.modifier]" size="5" restriction="Mandatory" />
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--
+			Dispense type of drum n(1) (NDC) 0-4 1
+			Dispense denom. n(1) (DDC) ‘A’-‘H’; ‘a’-‘h’; ‘_’ 1
+			-->
+    <Item key="h4" value="[Wincor.CashAcceptor.DispenseType]" size="1" restriction="Mandatory" />
+    <!--FieldSeparator-->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--Supply status of drum n(1) 0-4 1-->
+    <Item key="h4" value="[Wincor.CashAcceptor.DispenseSupplyStatus]" size="1" restriction="Mandatory" />
+    <!--FieldSeparator-->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--Supply status of cash in retract box 0-3 1-->
+    <Item key="h4" value="[Wincor.CashAcceptor.supplystatusofcashinretractbox]" size="1" restriction="Mandatory" />
+    <!--Group separator-->
+    <Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" />
+    <!--Number of cash in boxes 00-07 2-->
+    <Item key="h4" value="[Wincor.CashAcceptor.numberofcashinboxes]" size="1" restriction="Mandatory" />
+    <!--Supply status of cash in box n(3) 0-3 1-->
+    <!--Item key="h4" value="[Wincor.CashAcceptor.groupsupplystatusofcashinbox]" size="1" restriction="Mandatory" /-->
+    <Item key="h4" value="[Wincor.CashAcceptor.cassette.t1.SuppliesStatus]" size="5" restriction="Mandatory" />
+    <Item key="h4" value="[Wincor.CashAcceptor.cassette.t2.SuppliesStatus]" size="5" restriction="Mandatory" />
+    <Item key="h4" value="[Wincor.CashAcceptor.cassette.t3.SuppliesStatus]" size="5" restriction="Mandatory" />
+    <Item key="h4" value="[Wincor.CashAcceptor.cassette.t4.SuppliesStatus]" size="5" restriction="Mandatory" />
+    <!--Group separator->
+    <Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" />
+    <!- Extended Status Info for cash in bins (notes) (4)  [0, A-O] 2 per bin ->
+    <Item key="h4" value="0000" size="1" restriction="Mandatory" />
+    <!-FieldSeparator->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!-Supply status of coin in  retract box (5) [0-4] 1->
+    <Item key="h4" value="4" size="1" restriction="Mandatory" />
+    <!-Group separator->
+    <Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" />
+    <!-Number of coin in boxes (5) [00-07] 2->
+    <Item key="h4" value="4" size="1" restriction="Mandatory" />
+    <!-Supply status of coin in box n(6) [0-7] 1->
+    <Item key="h4" value="4" size="1" restriction="Mandatory" />-->
+  </Msg>
+</Root>

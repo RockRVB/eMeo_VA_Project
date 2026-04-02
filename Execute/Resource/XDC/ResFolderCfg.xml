@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- 
+  * Define the folder access to find the speicified resource file as expected.
+  -->
+<Root>  
+  <Main>  
+  	 <!-- Define the Icon/Image folder -->   
+      <Item key ="JPG"  value ="Image"/>
+      <Item key ="JPEG"  value ="Image"/>
+      <Item key ="BMP"  value ="Image"/>
+      <Item key ="PNG"  value ="Image"/>
+      <Item key ="GIF"  value ="Image"/>
+      <Item key ="PCX"  value ="Image"/>
+        
+     <!-- Define the Flash/video folder -->   
+      <Item key ="SWF"  value ="Video"/>
+      <Item key ="MPEG"  value ="Video"/>
+      <Item key ="MPG"  value ="Video"/>
+      <Item key ="MPG2"  value ="Video"/>
+      <Item key ="AVI"  value ="Video"/>
+      <Item key ="ASF"  value ="Video"/>      
+      <Item key ="RMVB"  value ="Video"/>
+      <Item key ="WMV"  value ="Video"/>
+      
+     <!-- Define the voice folder --> 
+      <Item key ="WAV"  value ="Voice"/>
+      <Item key ="WAVE"  value ="Voice"/>
+      <Item key ="MP3"  value ="Voice"/>
+      <Item key ="WMA"  value ="Voice"/>
+      <Item key ="XML"  value ="Voice"/>
+      
+     <!-- Define the HTML folder --> 
+      <Item key ="HTML"  value ="HTML"/>
+      <Item key ="HTM"  value ="HTML"/>
+      
+      <!-- Define the default folder --> 
+      <Item key ="Default"  value ="Image"/>    
+  </Main>
+  
+    <Language>
+    <!-- Define the language settiong --> 
+      <Item key ="Chinese"  value ="000"/>
+      <Item key ="English"  value ="001"/>
+      <Item key ="French"  value ="002"/>
+      <Item key ="Default"  value ="000"/>
+  </Language>   
+
+  <Error>    
+      <!-- 
+       * If the item doesn't exist, it will set default to go to "Image" Folder
+       * according to default value. If the default value doesn't exsits, will go to
+       * fatal exception flow.
+       * Flow definition: 
+       *   0 - Fatal error exception reports
+       *   1 - Find the default value to exceute
+       *   2 - Find the each folder from default to other folders(Anywhere could be found)
+       -->   
+      <Item key ="Main"  ErrorException ="2"/>
+      <Item key ="Language"  ErrorException ="1"/>
+      <Item key="Voice" ErrorException ="1"/>
+  </Error>
+</Root>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<GrgCashInTransReplyReady>
+		<Item key="f" value="B" size="1" restriction="Mandatory"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!-- Device Identifier Graphic (DIG) -->
+		<Item key="g" value="r" size="1" restriction="Mandatory"/>
+		<Item key="h" value="[GrgRecycler.GrgCashInTransReplyReady.DepositedNotesInCassettes]" size="5" restriction="Mandatory"/>
+		<Item key="[GS]" value="[GS]" size="1" restriction="Mandatory"/>
+		<Item key="i" value="[GrgRecycler.GrgCashInTransReplyReady.DispensedNotesInCassettes]" size="1" restriction="Mandatory"/>
+		<Item key="[GS]" value="[GS]" size="1" restriction="Mandatory"/>
+		<Item key="j" value="[GrgRecycler.GrgCashInTransReplyReady.SupplyStatusOfCassette]" size="1" restriction="Mandatory"/>
+	</GrgCashInTransReplyReady>
+</Root>

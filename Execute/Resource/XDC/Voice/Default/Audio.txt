@@ -1,0 +1,18 @@
+The following ten messages are supplied as defaults:
+
+0 We regret that the terminal¡¯s services are not available.
+1 Please wait while your transaction is processing.
+2 Enter the amount when you are ready.
+3 Your card and receipt are ready for removal.
+4 Please select the service required and the account to be charged.
+6 Please take your cash.
+7 Welcome. Please enter your secret number.
+8 Thank you for banking with us.
+9 Please take an envelope from the dispenser and place your
+deposit inside. Then enter the amount when ready. Place the
+sealed envelope in the slot, where it will be checked and
+credited to your account.
+12 Tone.
+
+Messages 5, 10, 11 and 13-998 are not provided. Message 999 is
+interpreted as a ¡®stop¡¯ command.

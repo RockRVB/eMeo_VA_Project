@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../js/vue.min.js"></script>
+  <script src="../../js/grg-ui.min.js"></script>
+  <script src="../../js/vue-i18n.js"></script>
+  <script src="../../js/jquery-3.7.0.js"></script>
+  <script src="../../js/class/layer/layer.js"></script>
+  <script src="../../js/index.js"></script>
+  <script src="../../js/coreScript.js"></script>
+  <script src="../../js/ibank.js"></script>
+  <script defer type="text/javascript" src="../../resources/js/ecatBridge.js"></script>
+  <link rel="stylesheet" href="../../css/grg-ui.min.css">
+  <link rel="stylesheet" href="../../css/animate.grg.css">
+  <link rel="stylesheet" href="../../css/ibank.css">
+  <style>
+    .grg-main {
+      display: flex;
+      justify-content: space-between;
+      visibility: hidden;
+    }
+
+    .current-title {
+      color: #333333;
+      font-size: 50px;
+      font-family: 'Alibaba Sans';
+      font-weight: bold;
+      margin-top: 30px;
+    }
+
+    #document-show {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 600px;
+    }
+
+    .text {
+      color: #231815;
+      font-size: 24px;
+      font-family: 'Alibaba Sans';
+      text-align: center;
+    }
+
+    .pdf-container {
+      width: 100%;
+      max-width: 1500px;
+      height: 100%;
+    }
+
+    .pdf-container iframe {
+      width: 100%;
+      height: 100%;
+      max-width: 1200px;
+      border: none;
+    }
+
+    .img-container {
+      width: 100%;
+      max-width: 1500px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .img-container img {
+      width: 100%;
+      max-width: 1500px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .img-wrapper {
+      width: 100%;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .footer-box {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      left: 0;
+      bottom: 25px;
+      gap: 24px;
+      color: #333333;
+      font-size: 20px;
+      font-family: "Alibaba Sans";
+    }
+
+    .footer-box .footer-item {
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-box .footer-item img {
+      margin-right: 4px;
+    }
+
+    .footer-box .footer-item .time-box {
+      display: flex;
+      gap: 5px;
+    }
+
+
+    .button-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 24px;
+      color: #231815;
+      font-family: 'Alibaba Sans';
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="grg-header" class="grg-header">
+    </div>
+    <div id="grg-main" class="grg-main animate_grg_fadeInRight">
+      <div class="main-content-box">
+        <div class="current-title">Read Documents</div>
+        <div class="text">Please read the document carefully and click the "Read&Sign" button after confirmed.</div>
+        <div id="document-show">
+          <div class="img-container" v-if="isImage">
+            <div class="img-wrapper">
+              <img :src="fileSrc" />
+            </div>
+          </div>
+          <div class="pdf-container" v-else-if="isPDF">
+            <iframe id="iframeEle" :src="fileSrc" width="100%" height="100%"></iframe>
+          </div>
+          <div class="container" v-else>
+            <div class="text">Unsupported file type</div>
+          </div>
+        </div>
+
+        <div class="button-box">
+          <div class="button-row">
+            <div class="grg-btn grg-cancel" id='OnConfirm' type='button' tag='OnCancel'>
+              <img class="icon-img" src="../../images/img_2.4/icon-cancel.png" alt="">Disagree
+            </div>
+            <div class="grg-btn grg-confirm" id='OnConfirm' type='button' tag='OnSignatureFile'>
+              <img class="icon-img" src="../../images/img_2.4/icon-ok.png" alt="">Read&Sign
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script>
+  var app = new Base({
+    i18n: i18n,
+    data: {
+      fileSrc: "",
+      isImage: false,
+      isPDF: false
+    },
+    methods: {
+      getEcatData: function (prop) {
+        return window?.chrome?.webview
+          ? window.chrome.webview.hostObjects.sync.eCAT.GetData?.(prop)
+          : null
+      },
+      checkFileType() {
+        const cleanFileSrc = this.fileSrc.split('#')[0];
+        const extension = cleanFileSrc.slice(-3).toLowerCase();
+        this.isImage = ['jpg', 'png', 'gif', 'bmp', 'svg'].includes(extension);
+        this.isPDF = extension === 'pdf';
+      },
+    },
+    computed: {},
+    mounted() {
+      this.fileSrc = this.getEcatData("SendFile_Path") + "#view=FitH,top&toolbar=0";
+      this.checkFileType();
+    },
+  }).$mount('#app')
+</script>

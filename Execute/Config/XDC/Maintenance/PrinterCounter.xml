@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--  
+		* Condition definition
+	-->
+  <Conditions>
+    <Item key="Fixed" value="1" Description="Must print" />
+    <Item key="Cassette1" value="1" Description="Cassette 1 exists" />
+    <Item key="Cassette2" value="1" Description="Cassette 2 exists" />
+    <Item key="Cassette3" value="1" Description="Cassette 3 exists" />
+    <Item key="Cassette4" value="1" Description="Cassette 4 exists" />
+    <Item key="CardDevice" value="1" Description="Card Device" />
+    <Item key="Recycler" value="1" Description="Recycler Cash Handler Device" />
+    <Item key="EnvelopeDeposit" value="0" Description="Envelope Deposit Device" />
+  </Conditions>
+  <!-- Dicitionary/variables defintion
+	-->
+  <Dictionary>
+    <Item key="[RetractCount]" value="0" Restriction="Fixed" Description="Total Retract Count" />
+    <Item key="[DateTime]" value="2026-03-23 11:33:01:121" Restriction="Fixed" Description="Count of cash box" />
+    <Item key="[CassetteCount]" value="4" Restriction="Fixed" Description="Count of cash box" />
+    <Item key="[CassetteId1]" value="00001" Restriction="Cassette1" Description="ID of cassette 1" />
+    <Item key="[CassetteId2]" value="00002" Restriction="Cassette2" Description="ID of cassette 2" />
+    <Item key="[CassetteId3]" value="00003" Restriction="Cassette3" Description="ID of cassette 3" />
+    <Item key="[CassetteId4]" value="00004" Restriction="Cassette4" Description="ID of cassette 4" />
+    <Item key="[CasLoaded1]" value="0050" Restriction="Cassette1" Description="Number of cassette 1 loaded" />
+    <Item key="[CasLoaded2]" value="0050" Restriction="Cassette2" Description="Number of cassette 2 loaded" />
+    <Item key="[CasLoaded3]" value="0050" Restriction="Cassette3" Description="Number of cassette 3 loaded" />
+    <Item key="[CasLoaded4]" value="0050" Restriction="Cassette4" Description="Number of cassette 4 loaded" />
+    <Item key="[CasOut1]" value="0000" Restriction="Cassette1" Description="Number of cassette 1 dispensed" />
+    <Item key="[CasOut2]" value="0000" Restriction="Cassette2" Description="Number of cassette 2 dispensed" />
+    <Item key="[CasOut3]" value="-0001" Restriction="Cassette3" Description="Number of cassette 3 dispensed" />
+    <Item key="[CasOut4]" value="-0002" Restriction="Cassette4" Description="Number of cassette 4 dispensed" />
+    <Item key="[CasIn1]" value="0000" Restriction="Cassette1,Recycler" Description="Number of cassette 1 deposited" />
+    <Item key="[CasIn2]" value="0000" Restriction="Cassette2,Recycler" Description="Number of cassette 2 deposited" />
+    <Item key="[CasIn3]" value="0000" Restriction="Cassette3,Recycler" Description="Number of cassette 3 deposited" />
+    <Item key="[CasIn4]" value="0000" Restriction="Cassette4,Recycler" Description="Number of cassette 4 deposited" />
+    <Item key="[CasRej1]" value="0000" Restriction="Cassette1" Description="Number of cassette 1 rejected" />
+    <Item key="[CasRej2]" value="0000" Restriction="Cassette2" Description="Number of cassette 2 rejected" />
+    <Item key="[CasRej3]" value="0000" Restriction="Cassette3" Description="Number of cassette 3 rejected" />
+    <Item key="[CasRej4]" value="0000" Restriction="Cassette4" Description="Number of cassette 4 rejected" />
+    <Item key="[CasRem1]" value="0050" Restriction="Cassette1" Description="Number of cassette 1 remained" />
+    <Item key="[CasRem2]" value="0050" Restriction="Cassette2" Description="Number of cassette 2 remained" />
+    <Item key="[CasRem3]" value="0051" Restriction="Cassette3" Description="Number of cassette 3 remained" />
+    <Item key="[CasRem4]" value="0052" Restriction="Cassette4" Description="Number of cassette 4 remained" />
+    <Item key="[CardCapturedCount]" value="{Data\CardCapture.dat}" Restriction="CardDevice" Description="Count of Card Captured" />
+    <Item key="[EnvelopeDepositCount]" value="0" Restriction="EnvelopeDeposit" Description="Count of envelope deposit" />
+    <Item key="[CardCaptureList]" value="{Data\CardCapture.dat}" Restriction="CardDevice" Description="List data of card captured format" />
+    <Item key="[CashCaptureList]" value="{Data\CashCapture.dat}" Restriction="Fixed" Description="List data of cash captured format" />
+  </Dictionary>
+</Root>

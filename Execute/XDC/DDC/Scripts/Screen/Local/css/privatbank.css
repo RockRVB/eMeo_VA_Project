@@ -1,0 +1,195 @@
+/*##################################################################*/
+/* Buttons location */
+/*##################################################################*/
+#F1 {
+	position:absolute;
+	top: 260px;
+	right: 0px;
+}
+
+#F2 {
+	position:absolute;
+	top: 345px;
+	right: 0px;
+}
+
+#F3 {
+	position:absolute;
+	top: 430px;
+	right: 0px;
+}
+
+#F4 {
+	position:absolute;
+	top: 515px;
+	right: 0px;
+}
+
+#F5 {
+	position:absolute;
+	top: 515px;
+	left: 0px;
+}
+
+#F6 {
+	position:absolute;
+	top: 430px;
+	left: 0px;
+}
+
+#F7 {
+	position:absolute;
+	top: 345px;
+	left: 0px;
+}
+
+#F8 {
+	position:absolute;
+	top: 260px;
+	left: 0px;
+}
+
+.InputTable {
+	position: absolute;
+	background-image: url(../Images/controls/input.png);
+	height: 37px;
+	width:  184px;
+	padding: 10px;
+	padding-bottom: 0px;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 44px;
+	text-align: center;
+	color: #ffff00;
+}
+
+
+/*##################################################################*/
+/* End buttons location */
+/*##################################################################*/
+
+/*##################################################################*/
+/* Icons locations */
+/*##################################################################*/
+#F1_img {
+	position:absolute;
+	top: 260px;
+	right: 252px;
+}
+
+#F2_img {
+	position:absolute;
+	top: 345px;
+	right: 252px;
+}
+
+#F3_img {
+	position:absolute;
+	top: 430px;
+	right: 252px;
+}
+
+#F4_img {
+	position:absolute;
+	top: 515px;
+	right: 252px;
+}
+
+#F5_img {
+	position:absolute;
+	top: 515px;
+	left: 252px;
+}
+
+#F6_img {
+	position:absolute;
+	top: 430px;
+	left: 252px;
+}
+
+#F7_img {
+	position:absolute;
+	top: 345px;
+	left: 252px;
+}
+
+#F8_img {
+	position:absolute;
+	top: 260px;
+	left: 252px;
+}
+/*##################################################################*/
+/* End icons locations */
+/*##################################################################*/
+
+#withBg {
+	background-image: url(../images/background.jpg);
+	background-repeat: no-repeat;
+}
+
+#welcomeText {
+	position: absolute;
+	top: 60px;
+	right: 20px;
+	text-align: center;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 20px;
+	color: #bed141;
+}
+
+#screenNameText {
+	position: absolute;
+	top: 135px;
+	left: 20px;
+	text-align: center;
+	width: 750px;
+	font-family: Arial;
+	font-size: 35px;
+	color: #ffffff;
+}
+
+#screenTopText {
+	position: absolute;
+	top: 185px;
+	left: 20px;
+	text-align: center;
+	width: 750px;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 24px;
+	color: #ffffff;
+}
+
+#screenBottomText {
+	position: absolute;
+	bottom: 10px;
+	left: 25px;
+	text-align: center;
+	width: 750px;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 17px;
+	color: #ffff00;
+}
+
+#timeText {
+	position: absolute;
+	top: 30px;
+	right: 20px;
+	text-align: center;
+	font-family: Arial Black;
+	font-size: 20px;
+	color: #ffffff;
+}
+
+* html img, 
+* html .png {
+	position:relative;
+	behavior: expression((this.runtimeStyle.behavior="none")&&(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" && this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none",
+	this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')",
+	this.src = "c:/protopas/web/images/transparent.gif"):(this.origBg = this.origBg? this.origBg :this.currentStyle.backgroundImage.toString().replace('url("','').replace('")',''),
+	this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')",
+	this.runtimeStyle.backgroundImage = "none")),this.pngSet=true)
+);
+}

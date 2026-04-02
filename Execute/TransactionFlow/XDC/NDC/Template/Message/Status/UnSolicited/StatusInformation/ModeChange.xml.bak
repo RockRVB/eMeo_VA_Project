@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--  Sensors
+		*  This  is no supprted in Advance NDC. 
+	-->
+  <Sensors>
+    <Item key="e2_1" value="{0}" size="1" restriction="Mandatory" />
+    <Item key="e2_2" value="[Device.Sensors.Supervisor]" size="var" restriction="Mandatory" />
+  </Sensors>
+</Root>

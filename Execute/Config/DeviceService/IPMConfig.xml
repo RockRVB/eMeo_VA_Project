@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--ServiceName：设备的服务名-->
+<IPMCheck ServiceName="IPM" codeFormat="CMC7" ImagePath="D:\Temp">
+  <MediaInConfig>
+    <imageSettings>
+      <imageSetting ImageSource="FRONT" ImageType="BMP" ImageColorFormat="BINARY" ImageScanColor="DEFAULT"/>
+      <imageSetting ImageSource="FRONT" ImageType="TIF" ImageColorFormat="BINARY" ImageScanColor="DEFAULT"/>
+      <imageSetting ImageSource="BACK" ImageType="BMP" ImageColorFormat="BINARY" ImageScanColor="DEFAULT"/>
+      <imageSetting ImageSource="BACK" ImageType="TIF" ImageColorFormat="BINARY" ImageScanColor="DEFAULT"/>
+    </imageSettings>
+  </MediaInConfig>
+</IPMCheck>

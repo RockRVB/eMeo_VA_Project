@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<!--
+	SendTrasactionMsg		是否由ATMC发送交易报文
+	SendStatusMsg				是否由ATMC发送设备状态报文
+	SendCaptureCardMsg	是否由ATMC发送吞卡报文
+	SendAddCashMsg			是否由ATMC发送加钞报文
+	SendSettlementMsg		是否由ATMC发送清算报文
+	TimerOfStatusMsg		设备状态报文的时间间隔
+		
+	SendStatusMsgInMaintenance// 后台维护时，也要定时发送状态报文
+	SendStatusMsgInTransaction// 前台交易时，也要定时发送状态报文
+	SendStatusMsgAlways// 任何情况下，都会定时发送状态报文
+	 -->
+	<IsSendMsg  SendTrasactionMsg="1" SendStatusMsg="1" SendCaptureCardMsg="1" SendAddCashMsg="1" SendSettlementMsg="1" SendCaptureCashMsg="0" 
+	SendStatusMsgInMaintenance="0"  SendStatusMsgInTransaction="0" SendStatusMsgAlways="0"/>
+	<!--
+		IntervalTime  其他报文的时间间隔，以毫秒为单位，默认为1000毫秒
+		SendSettlementMsgTimes 结算报文次数
+		SendAddCashMsgTimes  加钞报文次数
+		SendCaptureCardMsgTimes 吞卡报文次数
+	-->
+	<Timer TimerOfStatusMsg="300000" SendSettlementMsgTimes="3" IntervalTime="2000"/>
+	
+	<!--
+		设置时候接收FeelView回应报文
+		Enable =0 不接收
+		ReceiveTimeout 接收超时时间间隔，以毫秒为单位，默认为5000毫秒
+		ReceivedMsgType 需要接收回应的报文类型，使用“|”分割多个报文类型例如"STA|CAP"
+	-->
+	<FeelViewReceiveMsg Enable="0" ReceiveTimeout="5000" ReceivedMsgType="STA" />
+	
+	<!--交易结果不是立即知道的交易，如取款，可能在发收包成功后，最终却配钞失败，在这种情况下发给FeelView的交易结果就是失败
+	这类交易的发送时机是，下一个MainMenu时，或者下一下CloseTrans时-->
+	<!--交易结果立即知道的交易有：INQ,PIN,TFR,TFI,ADI,ICTZ,ADC,CWC等等
+	这类交易的发送时机是，RequestTrans时-->
+	<!--下面配置“交易结果不是立即知道的交易”-->
+	<NotImmediateTrans Trans="CWD|AWD|DEP|ADP|ICXJCZ"/>
+	
+	<!--根据CPV接口技术规范-附录V1.1.0
+	ECAT的交易类型映射成FeelView定义的交易类型-->
+	<MapTransTypeToFeelViewTransType> 
+		<Map TransType="INQ" FeelViewTransType="101"/>		
+		<Map TransType="CWD" FeelViewTransType="102"/>		
+		<Map TransType="DEP" FeelViewTransType="103"/>		
+		<Map TransType="PIN" FeelViewTransType="104"/>		
+		<Map TransType="TFR" FeelViewTransType="105"/>		
+		
+		<!--转账查询-->
+		<Map TransType="TFI" FeelViewTransType="123"/>		
+		<!--无卡存款查询-->
+		<Map TransType="ADI" FeelViewTransType="116"/>		
+		<!--无卡存款-->
+		<Map TransType="ADP" FeelViewTransType="118"/>		
+		<!--IC卡脚本通知-->
+		<Map TransType="ICTZ" FeelViewTransType="707"/>		
+		<!---->
+		<Map TransType="CDC" FeelViewTransType="105"/>		
+		<!--无卡存款冲正-->
+		<Map TransType="ADC" FeelViewTransType="409"/>		
+		<!--取款冲正-->
+		<Map TransType="CWC" FeelViewTransType="402"/>		
+		<!--IC卡绑定帐户圈存-->
+		<Map TransType="ICBDZHQC" FeelViewTransType="701"/>
+		<!--IC卡绑定帐户圈套冲正-->
+		<Map TransType="ICBDZHQCCZ" FeelViewTransType="489"/>
+		
+	</MapTransTypeToFeelViewTransType>
+	
+	<!--设置是否启用重发机制
+		Enable = 0 不重发，使用旧的报文格式
+        Version 版本号，默认为V05.00
+        ResendMsgType 需要重发的报文类型，使用“|”分割多个报文类型例如"STA|CAP"
+		ReceiveACKTimeout 接收超时时间间隔，以毫秒为单位，默认为10000毫秒        
+        ResendInterval 重发进程扫描重发队列时间间隔，目前默认1分钟
+        ResendDays 报文重发有效期，目前默认10天        
+        MsgTypeMaxResendTimes = "[ADD,3][SET,3]"  报文最大重发次数，当没在此配置时使用MaxResendTimes的值
+        MaxResendTimes 报文最大重发次数，-1表示不受次数限制
+        NotResendTransType 不需要重发报文的交易类型，使用“|”分割多个交易类型例如"101|104"
+	    ResendMsgInMaintenance  后台维护时，也要定时重发报文
+	    ResendMsgInTransaction    前台交易时，也要定时重发报文
+	    ResendMsgAlways               任何情况下，都会定时重发报文
+        ResendSleep 两条接连重发报文休眠间隔，单位是毫秒
+    -->
+	<FeelViewResendMsg Enable="1" Version="V06.00"  
+	ResendMsgType="TRA|CAP|ADD|SET" 
+	ReceiveACKTimeout="10000" ResendInterval="60000" ResendDays="10" 
+	MsgTypeMaxResendTimes = "[ADD,3][SET,3]" MaxResendTimes="-1"  
+	NotResendTransType="101"
+	ResendMsgInMaintenance="0" ResendMsgInTransaction="0" ResendMsgAlways="0"
+	ResendSleep="300"/>
+	
+	<!--ECAT的卡表类型映射成FeelView定义的卡种类型
+        000－它行卡
+        111－本行本省本地卡
+        110－本行本省卡
+        100－本行外省卡
+        666－本行卡(不能判断 111、110、100)
+        888－境外卡/国际卡
+        999-未能判断（如不确定，请默认填999）
+    -->
+	<MapCardTypeToFeelViewCardType> 
+		<Map CardType="1" FeelViewCardType="666"/>		
+		<Map CardType="2" FeelViewCardType="666"/>		
+		<Map CardType="9" FeelViewCardType="000"/>		
+	</MapCardTypeToFeelViewCardType>
+	
+	<!--状态报文相关配置：
+       JPTRPaperLowOrOutSendOK  流水打印机缺纸、少纸时是否上送正常
+       RPTRPaperLowOrOutSendOK  凭条打印机缺纸、少纸时是否上送正常
+       CashUnitEmptyOrLowSendOK 钱箱缺钞、少钞时是否上送正常
+    -->
+	<StatusMsgConfig JPTRPaperOutOrLowSendOK="0" RPTRPaperOutOrLowSendOK="0" CashUnitEmptyOrLowSendOK="0" />
+
+</Configuration>

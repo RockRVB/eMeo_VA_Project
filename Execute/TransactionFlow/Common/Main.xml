@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="Main">
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for main flow"/>
+	<!--数据池变量定义
+	key：变量名称
+	lifeCycle：变量生命周期，1-CardHolder；2-Terminal；3-Workflow。若此项不存在，生命周期默认为Transaction
+	-->
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_RecoverDev"/>
+		</Start>
+		<RecoverDev ID="ID_RecoverDev" UI="UI_out_of_service" comment="Recover device" recoverMap="[JPTR][TTU][PIN][SIU][IDC][RPTR][CDM][CIM][CRD][IDCardReader]">
+			<States>
+				<State name="RecoveringDev" UI="UI_out_of_service"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_QueryDeviceStatus"/>
+			<DefaultForward targetID="ID_QueryDeviceStatus" />
+		</RecoverDev>
+		<QueryDeviceStatus ID="ID_QueryDeviceStatus" comment="" waitEvent="0">
+			<Forward event="OnConfirm" targetID="ID_SwitchNormalUI"/>
+		</QueryDeviceStatus>
+		<SwitchNormalUI ID="ID_SwitchNormalUI" comment="">
+			<Forward event="OnConfirm" targetID="ID_CompareModeFlagAndGoZeroState"/>
+		</SwitchNormalUI>
+		<QueryDeviceStatus ID="ID_QueryDeviceStatusForOutOfService" comment="" waitEvent="0">
+			<Forward event="OnConfirm" targetID="ID_SwitchNormalUIForOutOfService"/>
+		</QueryDeviceStatus>
+		<SwitchNormalUI ID="ID_SwitchNormalUIForOutOfService" comment="">
+			<Forward event="OnConfirm" targetID="ID_InvokeOutOfServiceWorkflow"/>
+		</SwitchNormalUI>
+
+		<!-- 若启用数字人，此值用于控制General Helper返回零状态设置数字人显示隐藏（不启用则可忽略） -->
+		<CompareData ID="ID_CompareModeFlagAndGoZeroState" comment="" compareBuffer="{VTM_GeneralHelperModeFlag}">
+			<Forward event="OnEqual0" targetID="ID_ShowDigitalHuman" />
+			<Forward event="OnEqual1" targetID="ID_HideDigitalHuman" />
+			<DefaultForward targetID="ID_ShowDigitalHuman" />
+		</CompareData>
+		<ControlDigitalHuman ID="ID_ShowDigitalHuman" ControlAction="1|2" SpeechVoiceMutedStatus="0" DelayForClearDialog="2000">
+			<DefaultForward targetID="ID_UpdateConfig" />
+		</ControlDigitalHuman>
+		<ControlDigitalHuman ID="ID_HideDigitalHuman" ControlAction="0|2" SpeechVoiceMutedStatus="0" DelayForClearDialog="2000">
+			<DefaultForward targetID="ID_UpdateConfig" />
+		</ControlDigitalHuman>
+		<ControlDigitalHuman ID="ID_UpdateConfig" NeedToUpdateConfig="1">
+			<DefaultForward targetID="ID_ZeroState" />
+		</ControlDigitalHuman>
+
+		<XDCInService ID="ID_ZeroState" UI="UI_index" timeout="0" comment="Zero state" changeLanguageInCurrentPage="1" >
+			<Forward event="OnStart" targetID="ID_VTMMainMenu"/>
+			<Forward event="OnNoCardTrans" targetID="ID_NoCardDepositForFBFlow" />
+			<Forward event="OnMaintenance" targetID="ID_InvokeMaintenanceWorkflow"/>
+			<Forward event="OnOutOfService" targetID="ID_InvokeOutOfServiceWorkflow"/>
+			<Forward event="OnNoDoorEnterMaintenance" targetID="ID_NoDoorEnterMaintenance"/>
+			<Forward event="OnOffline" targetID="ID_InvokeOfflineWorkflow"/>
+			<Forward event="OnDigitalSpeechAnalysis" targetID="ID_DigitalSpeechAnalysis"/>
+		</XDCInService>
+
+		<MainMenu ID="ID_VTMMainMenu" UI="UI_select_menu" comment="Main menu" digitalVoiceKey="action_033">
+			<Forward event="OnIssueCard" targetID="ID_InvokeIssueCardWorkflow"/>
+			<Forward event="OnNewAccoutApply" targetID="ID_InvokeNewAccoutApplyWorkflow"/>
+			<Forward event="OnWithdraw" targetID="ID_InvokeWithdrawalWorkflow"/>			
+			<Forward event="OnOtherTrans" targetID="ID_InvokeOtherTransWorkflow"/>
+			<Forward event="OnHumanService" targetID="ID_InvokeHumanServiceWorkflow"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnBiometrics" targetID="ID_SelectFunction4Biometrics"/>
+			<Forward event="OnAppointmentWithdrawal" targetID="ID_InvokeAppointmentWithdrawal"/>
+			<Forward event="OnQRCodeWithdrawal" targetID="ID_InvokeQRCodeWithdrawal"/>
+			<Forward event="OnMedia" targetID="ID_InvokeMedia"/>
+			<Forward event="OnExchange" targetID="ID_InvokeExchange"/>
+			<Forward event="OnPayment" targetID="ID_InvokePayment"/>
+			<Forward event="OnCoinDeposit" targetID="ID_InvokeCoinDeposit"/>
+			<Forward event="OnDigitalSpeechAnalysis" targetID="ID_DigitalSpeechAnalysis"/>
+			<Forward event="OnDeposit" targetID="ID_InvokeGCEDepositWorkflow"/>
+		</MainMenu>
+		
+		<VTMSelectFunction ID="ID_SelectFunction4Biometrics" UI="UI_SelectMenu4Biometrics" waitpopu="0" digitalVoiceKey="action_033" popupTimeout="30000" comment="">
+			<Forward event="OnCreateCustomerAccount" targetID="ID_CreateCustomerAccountWorkflow"/>
+			<Forward event="OnFingerprint" targetID="ID_FingerprintWorkflow"/>
+			<Forward event="OnFingervein" targetID="ID_FingerveinWorkflow"/>
+			<Forward event="OnFace" targetID="ID_SelectFaceFunctionType"/>
+			<Forward event="OnBack" targetID="ID_VTMMainMenu"/>
+		</VTMSelectFunction>
+		
+		<VTMZeroState ID="ID_VTMZeroState" UI="UI_index" timeout="0" comment="Zero state" >
+			<Forward event="OnStart" targetID="ID_VTMMainMenu"/>
+			<Forward event="OnNoCardTrans" targetID="ID_NoCardDepositForFBFlow" />
+			<Forward event="OnMaintenance" targetID="ID_InvokeMaintenanceWorkflow"/>
+			<Forward event="OnOutOfService" targetID="ID_InvokeOutOfServiceWorkflow"/>
+			<Forward event="OnNoDoorEnterMaintenance" targetID="ID_NoDoorEnterMaintenance"/>
+			<Forward event="OnOffline" targetID="ID_InvokeOfflineWorkflow"/>
+		</VTMZeroState>
+		
+		<DigitalHumanAnalyseMenu ID="ID_DigitalSpeechAnalysis" UI="" comment="" >
+			<Forward event="OnBALANCEINQUIRY" targetID="ID_InvokeBalanceInquiryForDigitalHuman"/>			
+			<Forward event="OnPASSWORDMODIFICATION" targetID="ID_InvokeChangePinForDigitalHuman"/>
+			<Forward event="OnCARDOPENING" targetID="ID_InvokeIssueCardWorkflow"/>
+			<Forward event="OnACCOUNTOPENING" targetID="ID_InvokeNewAccoutApplyWorkflow"/>
+			<Forward event="OnQRCODETRANSACTION" targetID="ID_InvokeQRCodeWithdrawal"/>
+			<Forward event="OnBIOMETRICS" targetID="ID_SetDigitalHumanPriority"/>
+			<Forward event="OnELECTRICITY" targetID="ID_InvokeElectricityBill"/>
+			<Forward event="OnWATER" targetID="ID_InvokeWaterBill"/>
+			<Forward event="OnGAS" targetID="ID_InvokeGasBill"/>
+			<Forward event="OnLIVINGPAYMENT" targetID="ID_InvokePayment"/>
+			<Forward event="OnHUMANSERVICE" targetID="ID_InvokeHumanServiceWorkflow"/>
+			<Forward event="OnCASHWITHDRAWAL" targetID="ID_InvokeWithdrawalWorkflow"/>
+			<Forward event="OnCASHDEPOSIT" targetID="ID_InvokeGCEDepositWorkflow"/>
+																				   
+			<Forward event="OnSelectTransaction" targetID="ID_SelectFunction4DigitalHuman"/>
+			<Forward event="OnCancel" targetID="ID_TransactionComingSoon"/>
+			<DefaultForward targetID="ID_TransactionComingSoon" />
+		</DigitalHumanAnalyseMenu>
+
+		<VTMSelectFunction ID="ID_SelectFunction4DigitalHuman" UI="UI_DigitalHumanSelectTrans" waitpopu="0" popupTimeout="30000" comment="">
+			<Forward event="OnBALANCEINQUIRY" targetID="ID_InvokeBalanceInquiryForDigitalHuman"/>			
+			<Forward event="OnPASSWORDMODIFICATION" targetID="ID_InvokeChangePinForDigitalHuman"/>
+			<Forward event="OnCARDOPENING" targetID="ID_InvokeIssueCardWorkflow"/>
+			<Forward event="OnACCOUNTOPENING" targetID="ID_InvokeNewAccoutApplyWorkflow"/>
+			<Forward event="OnQRCODETRANSACTION" targetID="ID_InvokeQRCodeWithdrawal"/>
+			<Forward event="OnBIOMETRICS" targetID="ID_SetDigitalHumanPriority"/>																							  																	 
+			<Forward event="OnELECTRICITY" targetID="ID_InvokeElectricityBill"/>
+			<Forward event="OnWATER" targetID="ID_InvokeWaterBill"/>
+			<Forward event="OnGAS" targetID="ID_InvokeGasBill"/>
+			<Forward event="OnFOREIGNEXCHANGE" targetID="ID_InvokeExchange"/>
+			<Forward event="OnHUMANSERVICE" targetID="ID_InvokeHumanServiceWorkflow"/>
+			<Forward event="OnCASHWITHDRAWAL" targetID="ID_InvokeWithdrawalWorkflow"/>
+			<Forward event="OnCASHDEPOSIT" targetID="ID_InvokeGCEDepositWorkflow"/>
+																					  																											   
+			<Forward event="OnBack" targetID="ID_VTMMainMenu"/>
+			<DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+		</VTMSelectFunction>
+
+		<Prompt ID="ID_TransactionComingSoon" UI="UI_TransactionComingSoon" timeout="5000" comment="">
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</Prompt>
+		<ControlDigitalHuman ID="ID_SetDigitalHumanPriority" SetPriority="1">
+			<DefaultForward targetID="ID_SelectFunction4Biometrics" />
+		</ControlDigitalHuman>
+		
+		<InvokeWorkflow ID="ID_InvokeBalanceInquiryForDigitalHuman" name="BalanceInquiryForDigitalHuman" comment="BalanceInquiryForDigitalHuman workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_InvokeChangePinForDigitalHuman" name="ChangePinForDigitalHuman" comment="ChangePinForDigitalHuman workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_InvokeElectricityBill" name="NewPaymentForDigitalHuman" actionID="ID_SetElectricity" comment="Electricity workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_InvokeWaterBill" name="NewPaymentForDigitalHuman" actionID="ID_SetWater" comment="Water workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_InvokeGasBill" name="NewPaymentForDigitalHuman" actionID="ID_SetGas" comment="Gas workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_InvokeCoinDeposit" name="CoinDeposit" comment="NewPayment workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokePayment" name="NewPayment" comment="NewPayment workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeExchange" name="Exchange" comment="Exchange workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeMedia" name="Media" comment="Media workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeAppointmentWithdrawal" name="AppointmentWithdrawal" comment="AppointmentWithdrawal workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_InvokeQRCodeWithdrawal" name="QRCodeWithdrawal" comment="QRCodeWithdrawal workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_NoCardDepositForFBFlow" name="NoCardDepositForFB" comment="Invoke NoCardDepositForFB workflow" callVisible="0" fallBackAfterEnd="1">
+			<Forward event="OnConfirm" targetID="9999" />
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeOtherTransWorkflow" name="OtherTrans" comment="Invoke Other Trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<XDCReadCardState ID="ID_XDCReadCardState" UI="UI_XDCInsertCard" timeout="0" comment="XDCReadCardState" >
+			<States>
+				<State name="ReadingCard" UI="UI_XDCReadingCard"/>				
+			</States>
+			<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>			
+		</XDCReadCardState>
+		
+		<InvokeWorkflow ID="ID_InvokeChequeDepositWorkflow" name="MediaForXDC" comment="ChequeDeposit workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_CreateCustomerAccountWorkflow" name="CreateCustomerAccountWorkflowFB20" comment="CreateAccount workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_FingerprintWorkflow" name="FingerprintWorkFlowFB20" comment="Fingerprint workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_FingerveinWorkflow" name="FingerveinWorkFlowFB20" comment="Fingervein workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+
+		<SelectFunction ID="ID_SelectFaceFunctionType" UI="UI_SelectFaceFunctionType" digitalVoiceKey="action_033" comment="Select Face Function Type">
+			<Forward event="OnFaceRegister" targetID="ID_FaceRegister"/>
+			<Forward event="OnFaceIdentity" targetID="ID_FaceIdentify"/>
+			<Forward event="OnFaceAuthorization" targetID="ID_FaceAuthorization"/>
+			<Forward event="OnFacePassportVerification" targetID="ID_FacePassportVerification"/>
+		</SelectFunction>
+		
+		<InvokeWorkflow ID="ID_FaceRegister" name="FaceRegisterForFB20" comment="Face Register workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_FaceAuthorization" name="AuthorizationFaceFB20" comment="Face Authorization workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_FaceIdentify" name="FaceIndentifyForFB20" comment="Face Indentify workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_FacePassportVerification" name="AuthorizationFaceAndPassportFB20" comment="Combination of witness and testimony">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		
+		<InvokeWorkflow ID="ID_InvokeIssueCardWorkflow" name="VTMA3IBankProjectCardIssue" comment="Invoke Issue Card workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+
+		<ICMatchLanguage ID="ID_ICMatchLanguage" comment="Match IC application preference language">
+			<Forward event="OnConfirm" targetID="ID_GetDevStatus"/>
+			<Forward event="OnFail" targetID="ID_SelectLanguage"/>
+		</ICMatchLanguage>
+		<SelectFunction ID="ID_SelectLanguage" UI="UI_SelectLanguage" commandMap="[F6,Language_CN][F8,Language_EN]" comment="Select language">
+			<Forward event="OnContinue" targetID="ID_GetDevStatus"/>
+		</SelectFunction>
+		<SelectFunction ID="ID_SelectLanguageForNoCardTrans" UI="UI_SelectLanguageForNoCardTrans" commandMap="[F6,Language_CN][F8,Language_EN]" comment="Select language">
+			<Forward event="OnContinue" targetID="ID_GetDevStatusForNoCardTrans"/>
+		</SelectFunction>
+		<InputInfo ID="ID_NoDoorEnterMaintenance" UI="UI_NoDoorEnterMaintenance" comment="Input password" minLen="6" maxLen="10" timeout="10000" showCharacter="*" validateMaintenancePin="1" activeKeys="1,2,3,4,5,6,7,8,9,0,00,.,ENTER,CANCEL,CLEAR,BACKSPACE" terminateKeys="CANCEL">
+			<Forward event="OnConfirm" targetID="ID_InvokeMaintenanceWorkflow"/>
+		</InputInfo>
+		<GetDevStatus ID="ID_GetDevStatus" comment="Get device status" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_InputPin"/>
+			<Forward event="OnWarn" targetID="ID_InputPin"/>
+			<Forward event="OnFail" targetID="ID_CannotPrintReceipt"/>
+		</GetDevStatus>
+		<SelectFunction ID="ID_CannotPrintReceipt" UI="UI_CannotPrintReceipt" comment="cannot print receipt">
+			<Forward event="OnContinue" targetID="ID_InputPin"/>
+		</SelectFunction>
+		<GetDevStatus ID="ID_GetDevStatusForNoCardTrans" comment="Get device status for no card transaction" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_InvokeNoCardDepositWorkflow"/>
+			<Forward event="OnWarn" targetID="ID_InvokeNoCardDepositWorkflow"/>
+			<Forward event="OnFail" targetID="ID_CannotPrintReceiptForNoCardTrans"/>
+		</GetDevStatus>
+		<SelectFunction ID="ID_CannotPrintReceiptForNoCardTrans" UI="UI_CannotPrintReceiptForNoCardTrans" comment="cannot print receipt">
+			<Forward event="OnContinue" targetID="ID_InvokeNoCardDepositWorkflow"/>
+		</SelectFunction>
+		<ICBuildAppList ID="ID_ICBuildAppList" comment="">
+			<Forward event="OnOneApplication" targetID="ID_ICAppLoadedForFirstTime"/>
+			<Forward event="OnMoreApplication" targetID="ID_ICMoreAppSelectForFirstTime"/>
+			<Forward event="OnFallback" targetID="ID_SelectLanguage"/>
+			<Forward event="OnCancel" targetID="ID_ICTransCancel"/>
+		</ICBuildAppList>
+		<ICAppLoadedAsyn ID="ID_ICAppLoadedForFirstTime" comment="">
+			<States>
+				<State name="TryAgain" UI="UI_ICPromptTryAgain"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_SelectLanguage"/>
+			<Forward event="OnFallback" targetID="ID_SelectLanguage"/>
+			<Forward event="OnTryAgain" targetID="ID_ICMoreAppSelectForFirstTime"/>
+			<Forward event="OnICAppLoadedFail" targetID="ID_ICTransCancel"/>
+		</ICAppLoadedAsyn>
+		<ICMoreAppSelect ID="ID_ICMoreAppSelectForFirstTime" UI="UI_ICMoreAppSelect" comment="">
+			<Forward event="OnConfirm" targetID="ID_ICAppLoadedForFirstTime"/>
+		</ICMoreAppSelect>
+		<Prompt ID="ID_ICTransCancel" UI="UI_ICTransCancel" timeout="5000" comment="">
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</Prompt>
+		<ICGetTrack ID="ID_ICGetTrack" comment="Get IC tracks">
+			<Forward event="OnConfirm" targetID="ID_ICMatchLanguage"/>
+		</ICGetTrack>
+		<InputPin ID="ID_InputPin" UI="UI_InputPin" comment="Input password">
+			<States>
+				<State name="ReadingCard" UI="UI_OperatingDoubleLanguage"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_SelectAccountType"/>
+			<Forward event="OnICAppLoadedFail" targetID="ID_ICTransCancel"/>
+		</InputPin>
+		<SelectFunction ID="ID_SelectAccountType" UI="UI_SelectAccountType" comment="Select account type" saveBuffer="{core_AccountType,1}" keyValueMap="[F1,00][F2,10][F3,20][F4,30]">
+			<Forward event="OnF1" targetID="ID_CheckCardType"/>
+			<Forward event="OnF2" targetID="ID_CheckCardType"/>
+			<Forward event="OnF3" targetID="ID_CheckCardType"/>
+			<Forward event="OnF4" targetID="ID_CheckCardType"/>
+		</SelectFunction>
+		<CheckCardType ID="ID_CheckCardType" cardType="1|2|3|4|5,9" comment="Check card type">
+			<Forward event="OnMagneticType1" targetID="ID_MainMenu"/>
+			<Forward event="OnMagneticType2" targetID="ID_MainMenu"/>
+			<Forward event="OnICType1" targetID="ID_MainMenu"/>
+			<Forward event="OnICType2" targetID="ID_MainMenu"/>
+			<Forward event="OnPureEC1" targetID="ID_MainMenuECASH"/>
+			<Forward event="OnPureEC2" targetID="ID_MainMenuECASH"/>
+		</CheckCardType>
+		<MainMenu ID="ID_MainMenu" UI="UI_MainMenu" comment="Main menu" transTypeMap="[F1,TFR][F2,INQ][F3,ECASH][F4,CWD],[F5,IPM],[F6,DEP][F8,PIN]" commandMap="[F4,Currency_CNY][F6,Currency_CNY]">
+			<Forward event="OnF1" targetID="ID_InvokeTransferWorkflow"/>
+			<Forward event="OnF2" targetID="ID_InvokeInquiryWorkflow"/>
+			<Forward event="OnF3" targetID="ID_MainMenuECASH"/>
+			<Forward event="OnF4" targetID="ID_InvokeWithdrawalWorkflow"/>
+			<Forward event="OnF5" targetID="ID_InvokeMediaWorkflow"/>
+			<Forward event="OnF6" targetID="ID_InvokeDepositWorkflow"/>
+			<Forward event="OnF8" targetID="ID_InvokeChangePinWorkflow"/>
+			<Forward event="OnFallback" targetID="ID_MainMenu"/>
+			<Forward event="OnTryAgain" targetID="ID_ICMoreAppSelectForMainMenu"/>
+			<Forward event="OnICAppLoadedFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</MainMenu>
+		<MainMenu ID="ID_MainMenuECASH" UI="UI_MainMenuECASH" comment="Main menu for ECASH" transTypeMap="[F1,ICINQ][F2,ICBDZHQC][F3,ICIND]">
+			<Forward event="OnF1" targetID="ID_InvokeICInquiryWorkflow"/>
+			<Forward event="OnF2" targetID="ID_InvokeICBDZHQCWorkflow"/>
+			<Forward event="OnF3" targetID="ID_InvokeICDetailWorkflow"/>
+			<Forward event="OnContinue" targetID="ID_MainMenu"/>
+			<Forward event="OnFallback" targetID="ID_MainMenuECASH"/>
+			<Forward event="OnTryAgain" targetID="ID_ICMoreAppSelectForMainMenu"/>
+			<Forward event="OnICAppLoadedFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</MainMenu>
+		<ICMoreAppSelect ID="ID_ICMoreAppSelectForMainMenu" UI="UI_ICMoreAppSelect" comment="">
+			<Forward event="OnConfirm" targetID="ID_CheckCardType"/>
+		</ICMoreAppSelect>
+		<InvokeWorkflow ID="ID_InvokeInquiryWorkflow" name="Inquiry" comment="Invoke inquiry workflow">
+			<Forward event="OnConfirm" targetID="ID_CheckCardType"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeWithdrawalWorkflow" name="WithdrawalXDC" comment="Invoke withdrawal workflow">
+			<Forward event="OnConfirm" targetID="ID_CheckCardType"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeTransferWorkflow" name="Transfer" comment="Invoke transfer workflow">
+			<Forward event="OnConfirm" targetID="ID_CheckCardType"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeChangePinWorkflow" name="ChangePin" comment="Invoke changing password workflow">
+			<Forward event="OnConfirm" targetID="ID_CheckCardType"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeDepositWorkflow" name="Deposit" comment="Invoke deposit workflow">
+			<Forward event="OnConfirm" targetID="ID_CheckCardType"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_InvokeGCEDepositWorkflow" name="GCEDeposit" comment="Invoke deposit workflow">
+			<Forward event="OnConfirm" targetID="ID_CheckCardType"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeMediaWorkflow" name="Media" comment="Invoke media workflow">
+			<Forward event="OnConfirm" targetID="ID_CheckCardType"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeICInquiryWorkflow" name="ICInquiry" comment="Invoke IC inquiry workflow">
+			<Forward event="OnConfirm" targetID="ID_MainMenuECASH"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeICBDZHQCWorkflow" name="ICBDZHQC" comment="Invoke ICBDZHQC workflow">
+			<Forward event="OnConfirm" targetID="ID_CheckCardType"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeICDetailWorkflow" name="ICDetail" comment="Invoke IC detail workflow">
+			<Forward event="OnConfirm" targetID="ID_MainMenuECASH"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeNoCardDepositWorkflow" name="NoCardDeposit" comment="Invoke no card deposit workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeFaceMatchWorkflow" name="FaceMatch" comment="Invoke face match workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeOutOfServiceWorkflow" name="OutOfService" comment="Invoke out of service workflow" syn="0">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeMaintenanceWorkflow" name="Maintenance" comment="Invoke maintenance workflow" syn="0">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeOfflineWorkflow" name="Offline" comment="Invoke offline workflow" syn="0">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeNewAccoutApplyWorkflow" name="VTMA3NewAccount" comment="Invoke Issue Card workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokeHumanServiceWorkflow" name="HumanService" comment="Invoke Human Service workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		<InvokeWorkflow ID="ID_InvokePassbookWorkflow" UI="" comment="Invoke maintenance workflow" name="PrintBankbook" syn="0">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		<!--设置用户模式，3为Generap Help-->
+		<SetData ID="ID_SetUserModeType" saveBuffer="{VTMA.send.CallRemoteTeller.userModeType,0}" value="3">
+			<Forward event="OnConfirm" targetID="ID_SetGeneralHelperModeFlag"/>
+		</SetData>
+		<!--设置Generap Help标志，返回零状态不显示数字人-->
+		<SetData ID="ID_SetGeneralHelperModeFlag" saveBuffer="{VTM_GeneralHelperModeFlag,0}" value="1">
+			<Forward event="OnConfirm" targetID="ID_SetTransValue"/>
+		</SetData>
+		<!--设置业务类型，1为其他业务-->
+		<SetData ID="ID_SetTransValue" saveBuffer="{VTMA.send.CallRemoteTeller.args.businessInfo.transaction,0}" value="0">
+			<Forward event="OnConfirm" targetID="ID_InvokeCallAgentWorkflow"/>
+		</SetData>
+		<InvokeWorkflow ID="ID_InvokeCallAgentWorkflow" name="VTMA3CallAgent" comment="Invoke CallAgent workflow" index="0">
+			<Forward event="OnConfirm" targetID="ID_CompareModeFlagAndGoZeroState"/>
+		</InvokeWorkflow>	
+		<End ID="9999" comment="End">
+		</End>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHelp" targetID="ID_SetUserModeType"/>
+	</DefaultForward>
+</Workflow>

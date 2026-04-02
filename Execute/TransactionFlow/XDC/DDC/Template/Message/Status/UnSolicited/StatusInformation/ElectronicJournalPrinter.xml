@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!-- Electronic Journal Printer
+		*  This messge indicates whether or not a print operation has been successfully completed..
+		-->
+		
+	<EJournalPrinter>
+		<!-- Device Identification Graphic. -->
+		<Item key="e1" 																		value="H"  																			size="1" 				restriction="Mandatory"/>
+		
+		<!--   Transaction/Device Status. Indicates whether or not the print was successfully completed.
+		*   '0' -  Succes print.
+		*   '1' -  Print operation not successfully completed.
+		*   '2' - Device not configured.
+        *   '=' - EJ in dual mode printer operation successful.
+		*   '>' - EJ in dual mode printer operation not successful.
+ 		-->
+		<Item key="e2" 																		value="[EJDevStatus]"  														size="1" 				restriction="Mandatory"/>	
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="Mandatory"/>
+		
+		<!--  Error Severity.  Standard code.-->
+		<Item key="e3" 																		value="[EJErrSeverity]"  														size="1" 				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="Mandatory"/>
+		
+		<!--  Diagnostic Status. (M-status plus M-data). The M-status describes the main error found.
+		*  0  -  EJ status OK.
+        *  1  -  EJ fatal.
+		*  5  -  EJ log file full.
+        *  6. -  EJ not configured.
+		*  7. -  EJ not found.
+        *  50  - EJ log file open failure.
+        *  51  - EJ log file close failure.
+        *  53  - EJ flex disk not found.
+        *  53  - EJ flex disk drive head jam.
+        *  54  - EJ flex disk protected. 
+        *  55  - EJ flex disk full 
+		-->
+		<Item key="e4" 																		value="[EJDiagnosticStatus]"  											size="var" 			restriction="Optional"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="Mandatory"/>
+		
+		<!--  Suplies Status Indicates the state of the electronic journal as follows
+		*  Indicates the status of the printer paper. Ribbon, print-head and knife.
+		* Character - 0 (log space)
+		*      '1' - EJ Log space ok.
+		*      '2' - EJ Log space low.
+		*      '3' - EJ Log space full.
+		* Character - 1 
+		*      '1' - always value '1'
+		* Character - 2
+		*     '1' - always value '1'
+		* Character - 3 
+		*      '1' - always value '1'
+		-->
+		<Item key="e5" 																		value="[EJLogSpace]+111"  												size="4" 				restriction="Mandatory"/>
+		
+	</EJournalPrinter>	
+</Root>

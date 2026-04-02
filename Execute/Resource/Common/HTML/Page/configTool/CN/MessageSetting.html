@@ -1,0 +1,167 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+    <script defer type="text/javascript" src="../../../js/configTool/ShowResource.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../css/configTool/ConfigEditing.css" />
+    <script>
+        function ChooseDownloadMode() {
+            var p1 = document.getElementById("Protocol");
+            var p2 = document.getElementById("DownloadNDC");
+            var p3 = document.getElementById("DownloadDDC");
+
+            if ("0000" == p3.value)
+                p3.selectedIndex = 1;
+            else
+                p3.selectedIndex = 0;
+
+            if ("0000" == p2.value)
+                p2.selectedIndex = 1;
+            else
+                p2.selectedIndex = 0;
+
+            if (1 == p1.value) {
+                p2.style.display = "none";
+            }
+            else {
+                p3.style.display = "none";
+            }
+        }
+
+
+
+    </script>
+</head>
+<body onload="ChooseDownloadMode()">
+    <div id="Div2">
+        <form method="post">
+        <div class="btnDIV">
+            <input id="Submit3" type="submit" value="Cancel" tag="OnCancel" />
+            <input id="Submit4" type="submit" value="Submit" tag="OnConfirm" />
+        </div>
+        <br />
+        <div class="contentDIV">
+        <fieldset id="Group1">
+            <legend class="FontSize">Configuration Setting</legend>
+            <table>
+                <tr>
+                    <td>
+                        <label type="text">
+                            Hardware Configuration</label>
+                    </td>
+                    <td>
+                        <input id="textBox101" type="text" content="{Binding value file=Config\XDC\DataConfig\MessageCfg.xml xpath=/Root/MessageCfg/Item[@key='HardwareConfig'] mode=2}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label type="text">
+                            Termination Configuration</label>
+                    </td>
+                    <td>
+                        <input id="textBox102" type="text" content="{Binding value file=Config\XDC\DataConfig\MessageCfg.xml xpath=/Root/MessageCfg/Item[@key='TermConfig'] mode=2}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label type="text">
+                            Enter Supervisor Mode</label>
+                    </td>
+                    <td>
+                        <select id="Select1" type="select" selectvalue="{Binding value file=Config\XDC\DataConfig\MessageCfg.xml xpath=/Root/MessageCfg/Item[@key='EnterSuperMode'] mode=2}">
+                            <option value="4">Supervisor Mode</option>
+                            <option value="2">Supply Mode</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label type="text">
+                            Send Ready To EEKC</label>
+                    </td>
+                    <td>
+                        <select id="Select2" type="select" selectvalue="{Binding value file=Config\XDC\DataConfig\MessageCfg.xml xpath=/Root/MessageCfg/Item[@key='SendReadyToEEKC'] mode=2}">
+                            <option value="0">Send KVV</option>
+                            <option value="1">Send Ready</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label type="text">
+                            Message when Shutter Open Fail</label>
+                    </td>
+                    <td>
+                        <select id="Select3" type="select" selectvalue="{Binding value file=Config\XDC\DataConfig\MessageCfg.xml xpath=/Root/MessageCfg/Item[@key='SendMsgOnOpenShutterFail'] mode=2}">
+                            >
+                            <option value="0">Send Trans Close Message</option>
+                            <option value="1">Send Error Message(E3)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label type="text">
+                            PowerFailure Type</label>
+                    </td>
+                    <td>
+                        <select id="Select4" type="select" selectvalue="{Binding value file=Config\XDC\DataConfig\MessageCfg.xml xpath=/Root/MessageCfg/Item[@key='PowerFailureType'] mode=2}">
+                            <option value="0">With Config ID</option>
+                            <option value="1">Without Config ID</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label type="text">
+                            Send Power Failure Only Startup</label>
+                    </td>
+                    <td>
+                        <select id="Select5" type="select" selectvalue="{Binding value file=Config\XDC\DataConfig\MessageCfg.xml xpath=/Root/MessageCfg/Item[@key='StartupOnce'] mode=2}">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label type="text">
+                            Download Mode</label>
+                    </td>
+                    <td>
+                        <!--获得当前协议0：NDC 1：DDC -->
+                        <input id="Protocol" style="display: none" type="text" content="{Binding value file=XDC\Tools\eCATConfigTool\eCATToolConfig.xml xpath=/Config/CurrentProtocol/Protocol mode=2}" />
+                        <!--修改NDC的Download方式-->
+                        <select id="DownloadNDC" type="select" selectvalue="{Binding value file=XDC\NDC\Scripts\Param\DataParm.xml xpath=/Root/Data/Item[@key='ConfigurationID'] mode=2}">
+                            <option>Partial Download</option>
+                            <option value="0000">Full Download</option>
+                        </select>
+                        <!--修改DDC的Download方式-->
+                        <select id="DownloadDDC" type="select" selectvalue="{Binding value file=XDC\DDC\Scripts\Param\DataParm.xml xpath=/Root/Data/Item[@key='ConfigurationID'] mode=2}">
+                            <option>Partial Download</option>
+                            <option value="0000">Full Download</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label type="text">
+                            MAC Mode</label>
+                    </td>
+                    <td>
+                        <select id="Select7" type="select" selectvalue="{Binding value file=Config\XDC\DataConfig\MessageCfg.xml xpath=/Root/MessageCfg/Item[@key='MACing'] mode=2}">
+                            <option value="0">No MAC</option>
+                            <option value="1">Full MAC</option>
+                            <option value="1">Selective MAC</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <br>
+        </div>
+        </form>
+    </div>
+</body>
+</html>

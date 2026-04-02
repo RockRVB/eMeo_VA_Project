@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<EncryptorInitData>
+		<Item key="e" value="3" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--   * When information identifier = '3':
+        *        characters 6 or 72 bytes:   New Key Verification Value (KVV)
+        *                                                          authentication and base 94 encoding.
+		
+		-->
+		<Item key="f" value="[SolicitedStatus.EncryptorInitData.NewKVV]" size="var" restriction="Mandatory"/>
+	</EncryptorInitData>
+</Root>

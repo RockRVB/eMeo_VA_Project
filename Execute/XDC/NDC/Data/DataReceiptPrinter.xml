@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Device>
+    <Enable ReceiptPrinter="1" />
+    <Information>
+      <ReceiptPrinter PaperStatus="FULL" DeviceState="ONLINE" MediaState="PRESENT" LastErrorCode="" IsSuccess="True" IsFailure="False" Cancelled="False" UserState="52" PaperStatusCollection="System.Collections.Generic.Dictionary`2[ReceiptPrinterDeviceProtocol.PaperSource,ReceiptPrinterDeviceProtocol.StatusOfPaperSource]" TonerStatus="Notsupport" RibbonStatus="System.Collections.Generic.Dictionary`2[System.String,ReceiptPrinterDeviceProtocol.StatusOfToner]" LastErrorCodeDesc="" SPVersion="ATM_LAO_LDB_GRG XFS SP4.0 PR3 WITH SP11_B643_20181217" DriverVersion="V1.4.1.1" FirmwareVersion="Ds" CommandString="GetStatusInfo" />
+      <Manual RecoverFail="0" />
+    </Information>
+    <Event>
+      <ReceiptPrinter m_iD="DEVICE" m_status="ONLINE" Event="ChangeAffair" UnhandleSynCommandEvent="False" Source="ReceiptPrinterDevice.ReceiptPrinterDevice" CommandCompleted="False" QueryInforamtionCompleted="False" />
+    </Event>
+    <Manual>
+      <ReceiptPrinter ID="TimeOut" Event="none" />
+    </Manual>
+    <Capability>
+      <ReceiptPrinter IsSuccess="True" IsFailure="False" Cancelled="False" UserState="52" CommandString="GetCapabilityInfo" />
+    </Capability>
+  </Device>
+  <Calculate>
+    <Status fitness="0" work="0">
+      <SuppliesStatus Paper="1" />
+    </Status>
+  </Calculate>
+  <Configuration>
+    <Item source="/Root/Device/Information/ReceiptPrinter" ID="/Root/Calculate/Status/@fitness" default="4">
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+          <xmlvariable value="/Root/Device/Information/ReceiptPrinter/@DeviceState" />
+        </Condition>
+      </Result>
+      <Result value="0">
+        <Condition value="[xmlvariable]" operand="FULL">
+          <xmlvariable value="/Root/Device/Information/ReceiptPrinter/@PaperStatus" />
+        </Condition>
+      </Result>
+      <Result value="2">
+        <Condition value="[xmlvariable]" operand="LOW">
+          <xmlvariable value="/Root/Device/Information/ReceiptPrinter/@PaperStatus" />
+        </Condition>
+      </Result>
+      <Result value="4">
+        <Condition value="[xmlvariable]" operand="OUT">
+          <xmlvariable value="/Root/Device/Information/ReceiptPrinter/@PaperStatus" />
+        </Condition>
+      </Result>
+    </Item>
+    <Item source="/Root/Device/Information/ReceiptPrinter" ID="/Root/Calculate/Status/SuppliesStatus/@Paper" default="1">
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="FULL">
+          <xmlvariable value="/Root/Device/Information/ReceiptPrinter/@PaperStatus" />
+        </Condition>
+      </Result>
+      <Result value="2">
+        <Condition value="[xmlvariable]" operand="LOW">
+          <xmlvariable value="/Root/Device/Information/ReceiptPrinter/@PaperStatus" />
+        </Condition>
+      </Result>
+      <Result value="3">
+        <Condition value="[xmlvariable]" operand="OUT">
+          <xmlvariable value="/Root/Device/Information/ReceiptPrinter/@PaperStatus" />
+        </Condition>
+      </Result>
+      <Result value="0" />
+    </Item>
+    <Item source="/Root/Device/Information/ReceiptPrinter" ID="/Root/Calculate/Status/@work" default="0">
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="ONLINE|BUSY" operator="!match">
+          <xmlvariable value="/Root/Device/Information/ReceiptPrinter/@DeviceState" />
+        </Condition>
+      </Result>
+      <Result value="1">
+        <Condition value="[xmlvariable]" operand="OUT">
+          <xmlvariable value="/Root/Device/Information/ReceiptPrinter/@PaperStatus" />
+        </Condition>
+      </Result>
+    </Item>
+  </Configuration>
+  <Signal>
+    <Item value="/Root/Calculate/Status/@fitness" />
+    <Item value="/Root/Calculate/Status/SuppliesStatus/@Paper" />
+  </Signal>
+  <DataEvent>
+    <Item ID="101" enable="1" />
+  </DataEvent>
+</Root>

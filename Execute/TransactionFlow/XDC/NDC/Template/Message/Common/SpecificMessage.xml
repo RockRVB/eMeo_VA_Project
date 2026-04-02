@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<Message>
+		<SpecificCommandReject>
+			<Item ID="Reject_MAC" MsgID="Solicited.Status.SpecificCommandReject">
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusValue]" value="1"/>
+				</Data>
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusQualifier]" value=""/>
+				</Data>
+			</Item>
+			<Item ID="Reject_TVN" MsgID="Solicited.Status.SpecificCommandReject">
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusValue]" value="2"/>
+				</Data>
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusQualifier]" value=""/>
+				</Data>
+			</Item>
+			<Item ID="Reject_STN" MsgID="Solicited.Status.SpecificCommandReject">
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusValue]" value="3"/>
+				</Data>
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusQualifier]" value=""/>
+				</Data>
+			</Item>
+			<Item ID="Reject_MessageFormat" MsgID="Solicited.Status.SpecificCommandReject">
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusValue]" value="A"/>
+				</Data>
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusQualifier]" value="01"/>
+				</Data>
+			</Item>
+			<Item ID="Reject_FieldValue" MsgID="Solicited.Status.SpecificCommandReject">
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusValue]" value="B"/>
+				</Data>
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusQualifier]" value="01"/>
+				</Data>
+			</Item>
+			<Item ID="Reject_FieldValue_MCON" MsgID="Solicited.Status.SpecificCommandReject">
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusValue]" value="B"/>
+				</Data>
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusQualifier]" value="09"/>
+				</Data>
+			</Item>
+			<!--Start: Added by Bxue: For Wincor NDC RKL-->
+			<Item ID="Reject_IllegalTerminalCommandCode" MsgID="Solicited.Status.SpecificCommandReject">
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusValue]" value="B"/>
+				</Data>
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusQualifier]" value="04"/>
+				</Data>
+			</Item>
+			<Item ID="Reject_IllegalLoadKeyMessageModifier" MsgID="Solicited.Status.SpecificCommandReject">
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusValue]" value="B"/>
+				</Data>
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusQualifier]" value="03"/>
+				</Data>
+			</Item>
+			<Item ID="Reject_RSASignatureVerificationFailed" MsgID="Solicited.Status.SpecificCommandReject">
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusValue]" value="B"/>
+				</Data>
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusQualifier]" value="23"/>
+				</Data>
+			</Item>
+			<!--End-->
+			<Item ID="Reject_CurrentMode" MsgID="Solicited.Status.SpecificCommandReject">
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusValue]" value="C"/>
+				</Data>
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusQualifier]" value="01"/>
+				</Data>
+			</Item>
+			<Item ID="Reject_Hardware" MsgID="Solicited.Status.SpecificCommandReject">
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusValue]" value="D"/>
+				</Data>
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusQualifier]" value="01"/>
+				</Data>
+			</Item>
+			<Item ID="Reject_NotSupported" MsgID="Solicited.Status.SpecificCommandReject">
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusValue]" value="E"/>
+				</Data>
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusQualifier]" value="01"/>
+				</Data>
+			</Item>
+			<Item ID="Reject_NotSupported_DeviceNotConfigured" MsgID="Solicited.Status.SpecificCommandReject">
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusValue]" value="E"/>
+				</Data>
+				<Data>
+					<Item ID="[SolicitedStatus.CmdReject.StatusQualifier]" value="02"/>
+				</Data>
+			</Item>
+		</SpecificCommandReject>
+		<EnvelopeDepository>
+			<!-- start Solicited.Status.DeviceFault.EnvelopeDepository -->
+			<!--
+        U ‘0’ Successful operation, but an exception has occurred as detailed in 
+		subsequent fields.
+		S  ‘1’ Time‐out on cardholder deposit.
+		S  ‘2’ Failure to enable mechanism for a deposit.
+		S  ‘3’ Envelope/document jam or envelope/document deposit failed. The 
+		cardholder has access. This status is also returned if there is any doubt 
+		about cardholder access.
+		S ‘4’ Envelope/document jam or envelope/document deposit failed. The 
+		cardholder does not have access.-->
+			<Item ID="EnvelopeDepository_TimeOutOnCardholderDeposit" MsgID="Solicited.Status.DeviceFault.EnvelopeDepository">
+				<Data>
+					<Item ID="[Device.EnvelopeDepository.DevStatus]" value="1"/>
+				</Data>
+			</Item>
+			<Item ID="EnvelopeDepository_FailureEnableMechanism" MsgID="Solicited.Status.DeviceFault.EnvelopeDepository">
+				<Data>
+					<Item ID="[Device.EnvelopeDepository.DevStatus]" value="2"/>
+				</Data>
+			</Item>
+			<Item ID="EnvelopeDepository_FailedCardholderHasAccess" MsgID="Solicited.Status.DeviceFault.EnvelopeDepository">
+				<Data>
+					<Item ID="[Device.EnvelopeDepository.DevStatus]" value="3"/>
+				</Data>
+			</Item>
+			<Item ID="EnvelopeDepository_FailedCardholderHasNotAccess" MsgID="Solicited.Status.DeviceFault.EnvelopeDepository">
+				<Data>
+					<Item ID="[Device.EnvelopeDepository.DevStatus]" value="4"/>
+				</Data>
+			</Item>
+			<!-- End Solicited.Status.DeviceFault.EnvelopeDepository -->
+		</EnvelopeDepository>
+		<IPM>
+			<Item ID="IPM_CancelOrTimeOut" MsgID="UnsolicitedStatus.IPM">
+				<Data>
+					<Item ID="[Device.IPM.DevStatus]" value="1"/>
+				</Data>
+			</Item>
+			<Item ID="IPM_HardwareError" MsgID="UnsolicitedStatus.IPM">
+				<Data>
+					<Item ID="[Device.IPM.DevStatus]" value="2"/>
+					<Item ID="[Device.IPM.Fitness]" value="4"/>					
+				</Data>
+			</Item>
+			<Item ID="IPM_ChequeJam" MsgID="UnsolicitedStatus.IPM">
+				<Data>
+					<Item ID="[Device.IPM.DevStatus]" value="5"/>
+				</Data>
+			</Item>
+			<Item ID="IPM_RetractedAndCaptured" MsgID="UnsolicitedStatus.IPM">
+				<Data>
+					<Item ID="[Device.IPM.DevStatus]" value="7"/>
+				</Data>
+			</Item>
+			<Item ID="IPM_Fitness_OnLine" MsgID="UnsolicitedStatus.IPM">
+				<Data>
+					<Item ID="[Device.IPM.Fitness]" value="0"/>
+					<Item ID="[Device.IPM.DiagnosticStatus]" value="00000000000000"/>
+					<Item ID="[Device.IPM.SuppliesStatus]" value="0000"/>
+				</Data>
+			</Item>
+			
+		</IPM>
+		<BNA>
+			<!-- start BNA -->
+			<!-- 
+		U ‘0’ Successful operation, but an exception has occurred or notes have been 
+		moved in the device outside a Transaction Reply function. Up to date 
+		counts are included, which will be in the escrow notes field (refundable 
+		deposits) or the vaulted notes field (direct deposits). In this case, both 
+		counts are cumulative within the transaction. See Table Note 104
+		U  ‘1’ Cancel selected, Refund selected or a time‐out occurs during the Cash 
+		Accept state. Note counts will be in the escrow notes field (refundable 
+		deposit) or the vaulted notes field (direct deposit). See Table Note 104
+		N/A ‘2’ Not used
+		S/U ‘3’ Error ‐ if counts are included, they are as accurate as the available 
+		information allows, except for notes left in escrow in the Close state 
+		when the note counts are accurate. See Table Note 104
+		S/U ‘4’ Device inoperative ‐ notes are left at the exit slot; counts are included. 
+		Usually this is returned counts in the w4 message as notes are at the exit 
+		slot. See Table Note 104
+		S‘5’No notes in escrow when the Transaction Reply function attempts to 
+		vault escrowed notes or return cash, indicating an error at the host
+		U ‘6’ Notes detected at power‐up; if automatic error recovery is disabled 
+		counts are included in the escrow counts field; if automatic error 
+		recovery is enabled and the notes are successfully moved, the counts 
+		will be in the vaulted counts field.
+		U ‘7’ Notes not taken, but retracted; counts are included in the Vaulted counts 
+		field. (not reported on cash acceptors that do not support retract 
+		operations or with retract disabled)
+		N/A ‘8’ Not supported
+		-->
+			<Item ID="BNA_SuccessfulButExceptionHasOccurred" MsgID="UnsolicitedStatus.CashAcceptor">
+				<Data>
+					<Item ID="[Device.BNA.DevStatus]" value="replace:0"/>
+				</Data>
+			</Item>
+			<Item ID="BNA_CancelRefundTimeOut" MsgID="UnsolicitedStatus.CashAcceptor">
+				<Data>
+					<Item ID="[Device.BNA.DevStatus]" value="replace:1"/>
+				</Data>
+			</Item>
+			<Item ID="BNA_Error" MsgID="Solicited.Status.DeviceFault.CashAcceptor">
+				<Data>
+					<Item ID="[Device.BNA.DevStatus]" value="replace:3"/>
+				</Data>
+				<Data>
+					<!--
+					<Item ID="[Device.BNA.Fitness]" value="replace:4"/>
+                 -->
+				</Data>
+			</Item>
+			<Item ID="BNA_Error_Unsolicited" MsgID="UnsolicitedStatus.CashAcceptor">
+				<Data>
+					<Item ID="[Device.BNA.DevStatus]" value="replace:3"/>
+				</Data>
+				<!--
+					<Item ID="[Device.BNA.Fitness]" value="replace:4"/>
+                 -->
+			</Item>
+			<Item ID="BNA_DeviceInoperative" MsgID="Solicited.Status.DeviceFault.CashAcceptor">
+				<Data>
+					<Item ID="[Device.BNA.DevStatus]" value="replace:4"/>
+				</Data>
+				<!--
+					<Item ID="[Device.BNA.Fitness]" value="replace:4"/>
+                 -->
+			</Item>
+			<Item ID="BNA_NoNotesInEscrow" MsgID="Solicited.Status.DeviceFault.CashAcceptor">
+				<Data>
+					<Item ID="[Device.BNA.DevStatus]" value="replace:5"/>
+				</Data>
+			</Item>
+			<Item ID="BNA_NoNotesInEscrow_Unsolicited" MsgID="UnsolicitedStatus.CashAcceptor">
+				<Data>
+					<Item ID="[Device.BNA.DevStatus]" value="replace:5"/>
+				</Data>
+			</Item>
+			<Item ID="BNA_NotesDetectedAtPowerup" MsgID="UnsolicitedStatus.CashAcceptor">
+				<Data>
+					<Item ID="[Device.BNA.DevStatus]" value="replace:6"/>
+				</Data>
+			</Item>
+			<Item ID="BNA_NotesNotTakenButRetracted" MsgID="UnsolicitedStatus.CashAcceptor">
+				<Data>
+					<Item ID="[Device.BNA.DevStatus]" value="replace:7"/>
+				</Data>
+			</Item>
+			<Item ID="BNA_RetractedDuringCloseState" MsgID="UnsolicitedStatus.CashAcceptor">
+				<Data>
+					<Item ID="[Device.BNA.DevStatus]" value="replace:F"/>
+				</Data>
+			</Item>
+			<Item ID="BNA_AutoSatus" MsgID="UnsolicitedStatus.CashAcceptor">
+				<Data>
+					<Item ID="[Device.BNA.DiagnosticStatus]" value="04"/>
+				</Data>
+			</Item>
+			<!-- end BNA -->
+		</BNA>
+		<CardReader>
+			<!--No transaction exception condition occurred but consult other fields for error severity, diagnostic status or supplies status changes-->
+			<Item ID="CardReader_No_Transaction" MsgID="UnsolicitedStatus.CardReader">
+				<Data>
+					<Item ID="[Device.CardReader.DevStatus]" value="0"/>
+				</Data>
+			</Item>
+			<!--The cardholder did not take his card within the allowed time and it was captured or jammed. See Table Note 87-->
+			<Item ID="CardReader_Capture_TimeOut" MsgID="UnsolicitedStatus.CardReader">
+				<Data>
+					<Item ID="[Device.CardReader.DevStatus]" value="1"/>
+				</Data>
+			</Item>
+			<!--The mechanism failed to eject the card, which was either captured or jammed.-->
+			<Item ID="CardReader_EjectFailed" MsgID="UnsolicitedStatus.CardReader">
+				<Data>
+					<Item ID="[Device.CardReader.DevStatus]" value="2"/>
+				</Data>
+			</Item>
+			<Item ID="InFunCmd.CardReader.CaptureFail" MsgID="Solicited.Status.DeviceFault.CardReader">
+				<Data>
+					<Item ID="[Device.CardReader.DevStatus]" value="1"/>
+				</Data>
+			</Item>
+			<Item ID="InFunCmd.CardReader.ConsumerResponseTimeOut" MsgID="Solicited.Status.DeviceFault.CardReader">
+				<Data>
+					<Item ID="[Device.CardReader.DevStatus]" value="1"/>
+				</Data>
+			</Item>
+			<Item ID="InFunCmd.CardReader.EjectFailed" MsgID="Solicited.Status.DeviceFault.CardReader">
+				<Data>
+					<Item ID="[Device.CardReader.DevStatus]" value="2"/>
+				</Data>
+			</Item>
+		</CardReader>
+		<SmartCard>
+			<Item ID="InFunCmd.SmartCard.OK" MsgID="Solicited.Status.SmartCard">
+				<Data>
+ 				</Data>
+			</Item>
+			<Item ID="InFunCmd.SmartCard.fault" MsgID="Solicited.Status.SmartCard">
+				<Data>
+ 				</Data>
+			</Item>
+		</SmartCard>
+		<CashHandler>
+			<!--U ‘0’ Successful operation, but an exception has occurred as detailed in 
+					subsequent fields.
+					S  ‘1’ Short dispense.
+					For a spray dispenser, this can also indicate that an extra note has 
+					been dispensed.
+					S  ‘2’ No notes dispensed.
+					S  ‘3’ Notes dispensed unknown. The cardholder may have had access to 
+					any presented notes, so it should be assumed some may have been 
+					dispensed. Intervention may be required to reconcile the cash 
+					amount totals. The following counts contain requested dispense 
+					values.
+					S‘4’No notes dispensed or card not ejected. This status is returned on a 
+					card before cash transaction if the stack operation fails and the notes 
+					are purged prior to card eject.
+					S/U ‘5’ Some notes have been retracted when the notes were not taken 
+					following a Present time‐out. The number of notes retracted is 
+					unknown-->
+			<Item ID="CashHandler_Successful" MsgID="UnsolicitedStatus.CashHandler">
+				<Data>
+					<Item ID="[Device.CashHandler.DevStatus]" value="replace:0"/>
+				</Data>
+			</Item>
+			<Item ID="CashHandler_ShortDispense" MsgID="Solicited.Status.DeviceFault.CashHandler">
+				<Data>
+					<Item ID="[Device.CashHandler.DevStatus]" value="replace:1"/>
+				</Data>
+			</Item>
+			<Item ID="CashHandler_NoNotesDispensed" MsgID="Solicited.Status.DeviceFault.CashHandler">
+				<Data>
+					<Item ID="[Device.CashHandler.DevStatus]" value="200000000"/>
+				</Data>
+			</Item>
+			<Item ID="CashHandler_NotesDispensedUnknown" MsgID="Solicited.Status.DeviceFault.CashHandler">
+				<Data>
+					<Item ID="[Device.CashHandler.DevStatus]" value="replace:3"/>
+				</Data>
+			</Item>
+			<Item ID="CashHandler_NoNotesDispensedOrCardNotEjected" MsgID="Solicited.Status.DeviceFault.CashHandler">
+				<Data>
+					<Item ID="[Device.CashHandler.DevStatus]" value="replace:4"/>
+				</Data>
+			</Item>
+			<Item ID="CashHandler_TimeOut" MsgID="UnsolicitedStatus.CashHandler">
+				<Data>
+					<Item ID="[Device.CashHandler.DevStatus]" value="replace:5"/>
+				</Data>
+			</Item>
+			<Item ID="InFunCmd.CashHandler.CardNotEjected" MsgID="Solicited.Status.DeviceFault.CashHandler">
+				<Data>
+					<Item ID="[Device.CashHandler.DevStatus]" value="replace:4"/>
+				</Data>
+			</Item>
+		</CashHandler>
+		<Camera>
+			<Item ID="Camera_Fitness_Error1" MsgID="UnsolicitedStatus.Camera">
+				<Data>
+					<Item ID="[Device.Camera.Fitness]" value="4"/>
+					<Item ID="[Device.Camera.DiagnosticStatus]" value="0300000000"/>
+				</Data>
+			</Item>
+			<Item ID="Camera_Fitness_OnLine1" MsgID="UnsolicitedStatus.Camera">
+				<Data>
+					<Item ID="[Device.Camera.Fitness]" value="0"/>
+					<Item ID="[Device.Camera.DiagnosticStatus]" value="0000000000"/>
+				</Data>
+			</Item>
+			<Item ID="Camera_Fitness_Error2" MsgID="UnsolicitedStatus.Camera">
+				<Data>
+					<Item ID="[Device.Camera.Fitness]" value="4"/>
+					<Item ID="[Device.Camera.DiagnosticStatus]" value="0300000000"/>
+				</Data>
+			</Item>
+			<Item ID="Camera_Fitness_OnLine2" MsgID="UnsolicitedStatus.Camera">
+				<Data>
+					<Item ID="[Device.Camera.Fitness]" value="0"/>
+					<Item ID="[Device.Camera.DiagnosticStatus]" value="0000000000"/>					
+				</Data>
+			</Item>			
+		</Camera>
+	</Message>
+	<DeviceEvent>
+		<Item key="BNA.ConsumerResponseTimeOut" value="BNA_CancelRefundTimeOut"/>
+	</DeviceEvent>
+</Root>

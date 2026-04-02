@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!--  This message for rkl
+	-->		
+	<Cmd>
+		<Item key="f" value="9" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"															   size="1"				restriction="Mandatory"/>
+		<Item key="g1" value="9" size="1" restriction="Mandatory"/>
+		<Item key="g2" value="339" size="3" restriction="Mandatory"/>
+		<Item key="g3" value="[Msg.Rkl.BufferData]" size="Var" restriction="Mandatory"/>
+
+	</Cmd>	
+</Root>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+  <Screen name="UI_VAB_GeneralError" uri="common-VAB\transaction_failed_try_again_later.html" cache="0"></Screen>
+	<Screen name="UI_VAB_TransactionFailGoToBranch" uri="common-VAB\transaction_fail_go_to_branch.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source=""/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+	<Screen name="UI_VAB_ThankYou" uri="common-VAB\end_trancsaction.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source=""/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+	<Screen name="UI_VAB_SelectMenu" uri="common-VAB\index.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="Voice_Hello">
+				<PlaySound source=""/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+	<Screen name="UI_Proximity" uri="common-VAB\index.html" cache="0">
+			<Triggers>
+				<EventTrigger condition="Voice_Hello">
+					<PlaySound source=""/>
+				</EventTrigger>
+			</Triggers>
+		</Screen>
+	<Screen name="UI_VAB_Processing" uri="common-VAB\system_processing.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source=""/>
+			</EventTrigger>
+			<EventTrigger condition="ProcessingCashErr">
+				<PlaySound source=""/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+	<Screen name="UI_VAB_ChooseMethod" uri="common-VAB\choose_method.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source=""/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+</Screens>
+

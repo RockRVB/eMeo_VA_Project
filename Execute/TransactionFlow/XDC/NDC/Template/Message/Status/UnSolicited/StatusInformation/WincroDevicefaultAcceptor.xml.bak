@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--  Card Reader/Write
+		*  This messge gives details of any exception condition that is detected during card processing. Solicited device
+		*  device faults are only reported on Card Before cash transation.
+		-->
+  <Device>
+    <!-- Device Identification Graphic. -->
+    <Item key="e1" value="r" size="1" restriction="Mandatory" />
+    <!--   Transaction/Device Status 	-->
+    <Item key="e2" value="[{0}.DevStatus]" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--  Error Severity. -->
+    <Item key="e3" value="[{0}.Fitness]" size="1-2" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--  Diagnostic Status.Used for logging errors. The length of the field is variable(because it is hardware-dependent) and may be omitted if 
+		* if there is no error condition to be reported. The field will always be present if preceded by an error severity field with a value of 1 or greater.
+		* There are certain rules which are followed by all devices.
+		* Characters 1 and 2 contain a main error status value. (M-Status) in the range 0 -99, transmitted as 2 characters which give the decimal representation.
+		* of the M-Status value.
+		* M-Status is used mainly as an error log to assist machine servicing. It may also be used in a transaction log to supplementTransaction status or Device.
+		* status information.
+        * Characters 3 to n (M-Data) 
+		-->
+    <Item key="g4" value="[{0}.DiagnosticStatus]" size="var" restriction="Optional" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!--  Suplies Status. Contains information related to the state of supplies (paper, currency, magnetic cards, envelopes, inkwells, documents)
+		 * in the terminal. This field contains one character for each supplies container managed by the device.Each character is always coded in the same 
+		 * in same way.
+		 *  This is a single character field indicating the state of the card capture bin.
+		 *  '0'  - No new state
+		 *  '1'  - No overfill condition (capture bin).
+		 *  '4'  - Overfill condition (capture bin).
+		-->
+    <Item key="g5" value="[{0}.SuppliesStatus]" size="1" restriction="Mandatory" />
+    <!--  
+		
+		Field separator (FS) [:1C] 1
+		Identified L4 Note/Coin ID’s [-] VAR
+		Group separator (GS) [:1D] 1
+		Identified L3 Note ID’s [-] VAR
+		Group separator (GS) [:1D] 1
+		Identified L2 Note ID’s [-] VAR
+		Field separator (FS) [:1C] 1
+		Track1 Data [-] (max 79)
+		Group separator (GS) [:1D] 1
+		Track2 Data [-] (max 39)
+		Group separator (GS) [:1D] 1
+		Track3 Data [-] (max 106)		
+		-->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <Item key="h2" value="" size="4" restriction="Mandatory" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" />
+    <Item key="h2" value="" size="4" restriction="Mandatory" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" />
+    <Item key="h2" value="" size="4" restriction="Mandatory" />
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" />
+    <Item key="h2" value="" size="4" restriction="Mandatory" />
+    <Item key="[GS]" value="[GS]" size="1" restriction="Mandatory" />
+    <Item key="h2" value="" size="4" restriction="Mandatory" />
+  </Device>
+</Root>

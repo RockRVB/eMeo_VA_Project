@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+    <!-- 服务器 10.53.253.11 10.53.25.188-->
+	<Server Host="10.1.51.111" Port="9080" Protocol="http" />
+	<!-- BaseKey名称 -->
+	<Key value="BaseKey1" />
+	<!-- 页面超时 -->
+	<Timeout value="60000" />
+	<!-- 请求超时 -->
+	<RequestTimeout value="15000" />
+	<!-- 银行代码 -->
+	<BankCode value="012" />
+	<!-- 终端代码 -->
+	<TerminalID value="181050446" />
+	<!-- BaseKey -->
+	<BaseKey1 value="7592A2791A863708F49498CE68070889" />
+	<BaseKey2 value="E9F8645BC861CE5762322664701A94BC" />
+	<BaseKey3 value="1A1A292646C1F21F191649049846D30E" />
+    <!-- 接口 -->
+	<FingerveinAPI>
+		<!-- key接口 -->
+        <GenerateBaseKey value="/grgbanking/ws/key/generateBaseKey" />
+        <GenerateDBKey value="/grgbanking/ws/key/generateDBKey" />
+        <GenerateLMK value="/grgbanking/ws/key/generateLMK" />
+		<DeleteTMK value="/grgbanking/ws/key/deleteTMK" />
+		<DeleteTWK value="/grgbanking/ws/key/deleteTWK" />
+		<GenerateTMK value="/grgbanking/ws/key/generateTMK" />
+		<GenerateTWK value="/grgbanking/ws/key/generateTWK" />
+		<UpdateTMK value="/grgbanking/ws/key/updateTMK" />
+		<UpdateTWK value="/grgbanking/ws/key/updateTWK" />
+        <!-- 特征接口 -->
+		<GRGIdentifyReader value="/grgbanking/ws/finger/grgIdentifyReader" />
+        <GRGRegister value="/grgbanking/ws/finger/grgRegister" />
+        <GRGSameFinger value="/grgbanking/ws/finger/grgSameFinger" />
+        <checkFingerMatch value="/grgbanking/ws/finger/checkFingerMatch" />
+		<createFinger value="/grgbanking/ws/finger/create" />
+		<deleteFinger value="/grgbanking/ws/finger/deleteUser" />
+		<getPeopleState value="/grgbanking/ws/finger/getPeopleState" />
+		<setPeopleState value="/grgbanking/ws/finger/setPeopleState" />
+        <transferEncryptData value="/grgbanking/ws/finger/transferEncryptData" />
+        <getTokenName value="/grgbanking/ws/finger/getTokenName" />
+        <getTransferLog value="/grgbanking/ws/finger/getTransferLog" />
+		<queryByID value="/grgbanking/ws/finger/queryByID" />
+    </FingerveinAPI>
+	
+</Config>

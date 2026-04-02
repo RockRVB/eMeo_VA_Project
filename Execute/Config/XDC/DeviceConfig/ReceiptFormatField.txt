@@ -1,0 +1,10 @@
+	XFSFIELD   "{0}"
+	BEGIN   
+		POSITION   {1}, {2}
+		SIZE   40, {3}
+		OVERFLOW   TRUNCATE
+		HORIZONTAL   CENTER
+		FONT   "{4}"
+		INITIALVALUE "{5}"
+	END 
+  

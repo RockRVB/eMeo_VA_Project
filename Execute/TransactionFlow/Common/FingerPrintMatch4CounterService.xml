@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<Workflow name="FingerPrintMatch4CounterService">
+	<Head type="GRGWorkflow" author="" timeStamp="" comment="" />
+	<DataPool />
+	<Activities>
+		<Start ID="0" UI="" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_GetPublicKey" />
+		</Start>
+		<RequestTransViaRestful ID="ID_GetPublicKey" UI="UI_CommonProcessing" transType="GetPublicKey" transFormat="json">
+			<States>
+				<State name="PackFail" UI="UI_general_error"/>
+				<State name="ConnectFail" UI="UI_general_error"/>
+				<State name="SendFail" UI="UI_general_error"/>
+				<State name="ReceiveFail" UI="UI_general_error"/>
+				<State name="ReceiveTimeout" UI="UI_general_error"/>
+				<State name="NetworkFail" UI="UI_general_error"/>
+				<State name="UnpackFail" UI="UI_general_error"/>
+				<State name="HardwareError" UI="UI_general_error"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_UserLoginFB"/>
+			<Forward event="OnPackFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnConnectFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnSendFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnReceiveFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnNetworkFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnUnpackFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnHostRefuse" targetID="ID_FingerShowError"/>
+		</RequestTransViaRestful>
+		<UserLoginFB ID="ID_UserLoginFB" UI="" comment="" timeout="60000">
+			<Forward event="OnConfirm" targetID="ID_FBLOGINRequest" />
+			<Forward event="OnFail" targetID="ID_SetFingerMatchResultError" />
+		</UserLoginFB>
+		<RequestTransViaRestful ID="ID_FBLOGINRequest" UI="UI_CommonProcessing" transType="FB20LOGIN" transFormat="json">
+			<States>
+				<State name="PackFail" UI="UI_general_error"/>
+				<State name="ConnectFail" UI="UI_general_error"/>
+				<State name="SendFail" UI="UI_general_error"/>
+				<State name="ReceiveFail" UI="UI_general_error"/>
+				<State name="ReceiveTimeout" UI="UI_general_error"/>
+				<State name="NetworkFail" UI="UI_general_error"/>
+				<State name="UnpackFail" UI="UI_general_error"/>
+				<State name="HardwareError" UI="UI_general_error"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_FBLoginResult"/>
+			<Forward event="OnPackFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnConnectFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnSendFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnReceiveFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnNetworkFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnUnpackFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnHostRefuse" targetID="ID_FingerShowError"/>
+		</RequestTransViaRestful>
+		<FBLoginResult ID="ID_FBLoginResult" UI="" comment="" timeout="60000">
+			<Forward event="OnConfirm" targetID="ID_FingerInputCifToMatch" />
+			<Forward event="OnFail" targetID="ID_SetFingerMatchResultError" />
+		</FBLoginResult>
+		<Prompt ID="ID_FingerScanerError" UI="UI_hardware_error" timeout="3000">
+			<DefaultForward targetID="ID_SetFingerMatchResultError"/>
+		</Prompt>
+		<InputIdNumberFB ID="ID_FingerInputCifToMatch" UI="UI_InputFaceRegisterInfo" comment="cannot print receipt">
+			<Forward event="OnConfirm" targetID="ID_GetCustomerInfo"/>
+			<Forward event="OnCancel" targetID="ID_SetFingerMatchResultError"/>
+		</InputIdNumberFB>
+		<RequestTransViaRestful ID="ID_GetCustomerInfo" UI="UI_CommonProcessing" transType="FB20GetCustomerInfo" transFormat="json">
+			<States>
+				<State name="PackFail" UI="UI_general_error"/>
+				<State name="ConnectFail" UI="UI_general_error"/>
+				<State name="SendFail" UI="UI_general_error"/>
+				<State name="ReceiveFail" UI="UI_general_error"/>
+				<State name="ReceiveTimeout" UI="UI_general_error"/>
+				<State name="NetworkFail" UI="UI_general_error"/>
+				<State name="UnpackFail" UI="UI_general_error"/>
+				<State name="HardwareError" UI="UI_general_error"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_GetCustomerInfoResultFB"/>
+			<Forward event="OnPackFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnConnectFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnSendFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnReceiveFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnNetworkFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnUnpackFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnHostRefuse" targetID="ID_FingerShowError"/>
+		</RequestTransViaRestful>
+		<GetCustomerInfoResultFB20 ID="ID_GetCustomerInfoResultFB" comment="" timeout="300000">
+			<Forward event="OnConfirm" targetID="ID_FingerprintScan" />
+			<Forward event="OnFail" targetID="ID_SetFingerMatchResultError" />
+		</GetCustomerInfoResultFB20>
+		<FingerprintScanFB ID="ID_FingerprintScan" UI="UI_FingerMatch" comment="">
+			<States>
+				<State name="FingerError" UI="UI_FingerShowError"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_FingerMatch"/>
+			<Forward event="OnFail" targetID="ID_FingerShowError"/>
+			<Forward event="OnTimeout" targetID="ID_SetFingerMatchResultError" />
+		</FingerprintScanFB>
+		<RequestTransViaRestful ID="ID_FingerMatch" UI="UI_CommonProcessing" transType="FB20FingerprintMatch" transFormat="json">
+			<States>
+				<State name="PackFail" UI="UI_general_error"/>
+				<State name="ConnectFail" UI="UI_general_error"/>
+				<State name="SendFail" UI="UI_general_error"/>
+				<State name="ReceiveFail" UI="UI_general_error"/>
+				<State name="ReceiveTimeout" UI="UI_general_error"/>
+				<State name="NetworkFail" UI="UI_general_error"/>
+				<State name="UnpackFail" UI="UI_general_error"/>
+				<State name="HardwareError" UI="UI_general_error"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_FingerprintMatchResult"/>
+			<Forward event="OnPackFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnConnectFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnSendFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnReceiveFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnNetworkFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnUnpackFail" targetID="ID_SetFingerMatchResultError"/>
+			<Forward event="OnHostRefuse" targetID="ID_SetFingerMatchResultError"/>
+		</RequestTransViaRestful>
+		<FingerprintMatchResultFB20 ID="ID_FingerprintMatchResult" comment="">
+			<Forward event="OnMatch" targetID="ID_FingerShowSuccess"/>
+			<Forward event="OnFail" targetID="ID_FingerShowNotMatch"/>
+		</FingerprintMatchResultFB20>
+		<Prompt ID="ID_FingerShowError" UI="UI_FingerShowError" comment="" timeout="5000">
+			<Forward event="OnConfirm" targetID="ID_SetFingerMatchResultError" />
+			<Forward event="OnTimeout" targetID="ID_SetFingerMatchResultError" />
+		</Prompt>
+
+		<Prompt ID="ID_FingerShowNotMatch" UI="UI_FingerShowNotMatch" comment="" timeout="5000">
+			<Forward event="OnConfirm" targetID="ID_SetFingerMatchResultError" />
+			<Forward event="OnTimeout" targetID="ID_SetFingerMatchResultError" />
+		</Prompt>
+
+		<Prompt ID="ID_FingerShowSuccess" UI="UI_FingerShowSuccess" comment="" timeout="5000">
+			<Forward event="OnConfirm" targetID="ID_SetFingerMatchResultSuccess" />
+			<Forward event="OnTimeout" targetID="ID_SetFingerMatchResultSuccess" />
+		</Prompt>
+
+		<SetData ID="ID_SetFingerMatchResultSuccess" saveBuffer="{CounterService_FingerMatchResult,0}" value="0">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</SetData>
+
+		<SetData ID="ID_SetFingerMatchResultError" saveBuffer="{CounterService_FingerMatchResult,0}" value="-1">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</SetData>
+
+		<SetData ID="ID_SetFingerMatchResultCancel" saveBuffer="{CounterService_FingerMatchResult,0}" value="-2">
+			<DefaultForward targetID="9999" />
+		</SetData>
+
+		<End ID="9999" UI="" comment="End" />
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnHardwareError" targetID="ID_SetFingerMatchResultError" />
+		<Forward event="OnFail" targetID="ID_SetFingerMatchResultError" />
+		<Forward event="OnTimeout" targetID="ID_SetFingerMatchResultError" />
+		<Forward event="OnCancel" targetID="ID_SetFingerMatchResultCancel" />
+	</DefaultForward>
+</Workflow>

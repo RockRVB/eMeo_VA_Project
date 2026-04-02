@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!-- Setting for XDC CIM Protocol -->
+  <Application>
+    <Item key="UpdateNoteId" value="0" valueType="string" />
+    <Item key="CheckCIMMaxNGCount" value="0" valueType="string" />
+    <Item key="MaxNGCount" value="5" valueType="string" />
+    <Item key="CheckMaxRefusedNoteNum" value="0" valueType="string" />
+    <!-- The value of depositing update flash screen option: 0:1 -->
+    <Item key="DepositUpdateFlash" value="0" valueType="int" />
+    <!-- The value of depositing total timeout, unit: second -->
+    <Item key="DepositTotalTimeout" value="180" valueType="int" />
+    <!-- The value of depositing Cash-In End timeout, unit: second -->
+    <Item key="MaxRefusedNotesCount" value="20" valueType="int" />
+    <!-- The maximum value of depositing times(continue) -->
+    <Item key="MaxContinueCashDepositTimes" value="99" valueType="int" />
+    <!-- The maximum value of check CS time -->
+    <Item key="CheckCSTimes" value="5" valueType="int" />
+    <!-- The timeout of waiting for note insert, unit:second -->
+    <Item key="WaitForNoteInsertTimeout" value="60" valueType="int" />
+    <!-- Note after refund slot. value - slow beep, fastBeep - fast beep, unit: second -->
+    <Item key="NoteAtRefundSlot" value="30" fastBeep="30" />
+    <!-- Note base -->
+    <Item key="Note_Base" value="1000" radices="1000" fill="K" valueType="string" />
+    <!-- The map setting of cash acceptor state 
+		* NcrNdcRecycle - NCR NDC recycle protocol
+		* GrgNdcRecycle - GRG NDC recycle protocol
+		-->
+    <Item key="CashAcceptorState" value="NcrNdcRecycle" />
+    <Item key="retract_Active" value="0" />
+    <!--  Reset and Retract times, 1-9: value is 1-9, indicating reset command 1-9 times, 0: no control -->
+    <!--添加Reset及Retract机芯次数，1-9:value为1-9时，表示命令统计1-9次,0:不使用记数控制-->
+    <Item key="reset_Active" value="0" />
+    <Item key="ReturnDepositNotesinCloseState" value="0" valueType="int" />
+    <Item key="RetractDepositNotesHostTimeOut" value="0" valueType="string" />
+  </Application>
+  <!-- Cash acceptor state map setting -->
+  <CashAcceptorState>
+    <Item key="NcrNdcRecycle" value="NcrNDCCashAcceptorState" stateIdentifier="&gt;" enable="1" />
+    <Item key="GrgNdcRecycle" value="GrgNDCCashAcceptorState" stateIdentifier="r" enable="1" />
+  </CashAcceptorState>
+  <!-- Setting of CashIn Note ID 
+	* key -    Note ID of host configuration 
+    * value -  Note ID of SP
+    * serialCode - Version: A/B/C for the same denomination different from version
+    * userFor - usage of the specified ID
+	*    'U' - Disable the note id
+	*    'A' - Enable the note id for only acceptance
+	*    'R' - Enable the note id for recycling(including acceptance)
+    * Default: the value is 'R'.
+    * The order of the note id is not relevant.
+	-->
+  <MapOfNoteId>
+    <Item flag="01" key="01" value="310" currency="CNY" denomination="50" serialCode="A" useFor="R" />
+    <Item flag="02" key="02" value="311" currency="CNY" denomination="100" serialCode="A" useFor="R" />
+    <Item flag="03" key="03" value="294" currency="CNY" denomination="50" serialCode="A" useFor="R" />
+    <Item flag="04" key="04" value="295" currency="CNY" denomination="100" serialCode="A" useFor="R" />
+    <Item flag="05" key="05" value="278" currency="CNY" denomination="50" serialCode="A" useFor="R" />
+    <Item flag="06" key="06" value="279" currency="CNY" denomination="100" serialCode="A" useFor="R" />
+    <Item flag="07" key="07" value="60979" currency="CNY" denomination="5" serialCode="A" useFor="R" />
+    <Item flag="08" key="08" value="60980" currency="CNY" denomination="10" serialCode="A" useFor="R" />
+    <Item flag="09" key="09" value="60981" currency="CNY" denomination="20" serialCode="A" useFor="R" />
+    <Item flag="10" key="10" value="60982" currency="CNY" denomination="50" serialCode="A" useFor="R" />
+    <Item flag="11" key="11" value="60983" currency="CNY" denomination="100" serialCode="A" useFor="R" />
+  </MapOfNoteId>
+  <CIM_Wincor>
+    <Item key="IsShowNoAvailableNotesScr" value="0" valueType="string" />
+    <Item key="IsShowResultScr" value="0" valueType="string" />
+    <Item key="IsPrintReceiptForDanamon" value="0" valueType="string" />
+    <Item key="IsReturnNotesForDanamon" value="0" valueType="string" />
+    <!-- A:1 B:2 C:4 D:8 F:16 G:32 H:64 I:128 -->
+    <Item key="KEYMASK_CANCEL" value="4" valueType="string" />
+    <Item key="KEYMASK_DEPOSIT" value="8" valueType="string" />
+    <Item key="KEYMASK_ADDMORE" value="16" valueType="string" />
+    <Item key="KEYMASK_REFUND" value="4" valueType="string" />
+    <!-- Screen -->
+    <!-- Value is screen number -->
+    <Item key="PlsEnterNotesScr" value="4" valueType="string" />
+    <Item key="PlsRemoveNotesScr" value="4" valueType="string" />
+    <Item key="ConfirmScr" value="4" valueType="string" />
+    <Item key="HardwareErrScr" value="4" valueType="string" />
+    <Item key="EscrowFullScr" value="4" valueType="string" />
+    <Item key="ProcessScr" value="4" valueType="string" />
+    <Item key="PlsRemoveOverCapacityNotesScr" value="4" valueType="string" />
+    <Item key="PlsWaitScrToReadyAcceptNotes" value="4" valueType="string" />
+    <Item key="PlsWaitScrAndNowRetracting" value="4" valueType="string" />
+    <Item key="RemoveRefundNotesScr" value="4" valueType="string" />
+    <Item key="CounterfeitNotesRetainedScr" value="4" valueType="string" />
+  </CIM_Wincor>
+  <CIM_WincorNOAvailableNotes>
+    <Item key="KEYMASK_CANCEL" value="8" valueType="string" />
+    <Item key="KEYMASK_DEPOSIT" value="" valueType="string" />
+    <Item key="KEYMASK_ADDMORE" value="16" valueType="string" />
+    <Item key="KEYMASK_REFUND" value="" valueType="string" />
+  </CIM_WincorNOAvailableNotes>
+  <CIM_WincorDepositShowResult>
+    <Item key="KEYMASK_CANCEL" value="8" valueType="string" />
+    <Item key="KEYMASK_DEPOSIT" value="4" valueType="string" />
+    <Item key="KEYMASK_ADDMORE" value="" valueType="string" />
+    <Item key="KEYMASK_REFUND" value="" valueType="string" />
+  </CIM_WincorDepositShowResult>
+</Root>

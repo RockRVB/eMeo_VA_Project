@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="Withdrawal">
+  <Head type="GRGWorkflow" author="HXL" timeStamp="2013/10/7 15:15:12" comment="The workflow design is for withdrawal"/>
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start" homeVisible="0">
+      <Forward event="OnConfirm" targetID="ID_CheckCardState"/>
+    </Start>
+
+	<VTMCheckCardState ID="ID_CheckCardState" comment="判断是不是有卡">
+		<Forward event="OnYes" targetID="ID_LoginInputPin"/>
+		<Forward event="OnNo" targetID="ID_Login"/>
+	</VTMCheckCardState>
+
+	<InvokeWorkflow ID="ID_LoginInputPin" name="Login" comment="input pin" actionID="ID_InputPin">
+		<Forward event="OnConfirm" targetID="ID_CheckCardType"/>
+	</InvokeWorkflow>
+
+<!-- 检查凭条状态 -->
+    <GetDevStatus ID="ID_GetDevStatusForRPTR" comment="Get device status" devType="RPTR">
+      <Forward event="OnNormal" targetID="ID_Login"/>
+      <Forward event="OnWarn" targetID="ID_Login"/>
+      <Forward event="OnFail" targetID="ID_CheckRPTRStatus"/>
+    </GetDevStatus>
+
+       <VTMSelectFunction ID="ID_CheckRPTRStatus" UI="UI_CheckRPTRStatusResult" timeout="30000">
+         <Forward event="OnConfirm" targetID="ID_CheckCardTypeForLogin" />
+         <Forward event="OnNo" targetID="ID_InvokeCloseTransWorkflow" />
+       </VTMSelectFunction>
+
+	   <!-- 检查是本行卡还是他行卡 -->
+	<CheckCardType ID="ID_CheckCardTypeForLogin" cardType="1|2|3,4|9" comment="此节点为了区分本行卡还是它行卡">
+      <Forward event="OnMagneticType1" targetID="ID_Login"/>
+      <Forward event="OnMagneticType2" targetID="ID_InputWithdrawalAmount"/>
+      <Forward event="OnICType1" targetID="ID_Login"/>
+      <Forward event="OnICType2" targetID="ID_InputWithdrawalAmount"/>
+      <Forward event="OnPureEC1" targetID="ID_Login"/>
+      <Forward event="OnPureEC2" targetID="ID_InputWithdrawalAmount"/>
+    </CheckCardType>
+
+    <InvokeWorkflow ID="ID_Login" name="Login" comment="insert card and input pin">
+      <Forward event="OnConfirm" targetID="ID_CheckCardType"/>
+    </InvokeWorkflow>
+
+
+	<!-- 检查是本行卡还是他行卡 -->
+	<CheckCardType ID="ID_CheckCardType" cardType="1|2|3,4|9" comment="此节点为了区分本行卡还是它行卡">
+      <Forward event="OnMagneticType1" targetID="ID_RequestTransForAccNumber"/>
+      <Forward event="OnMagneticType2" targetID="ID_InputWithdrawalAmount"/>
+      <Forward event="OnICType1" targetID="ID_RequestTransForAccNumber"/>
+      <Forward event="OnICType2" targetID="ID_InputWithdrawalAmount"/>
+      <Forward event="OnPureEC1" targetID="ID_RequestTransForAccNumber"/>
+      <Forward event="OnPureEC2" targetID="ID_InputWithdrawalAmount"/>
+    </CheckCardType>
+
+	<VTMRequestTransaction ID="ID_RequestTransForAccNumber" UI="UI_RequestTrans" transType="GETACCNUMBER" comment="ADI request" homeVisible="0">
+		<States>
+			<State name="PackFail" UI="UI_GeneralError"/>
+			<State name="ConnectFail" UI="UI_GeneralError"/>
+			<State name="SendFail" UI="UI_GeneralError"/>
+			<State name="ReceiveFail" UI="UI_GeneralError"/>
+			<State name="ReceiveTimeout" UI="UI_GeneralError"/>
+			<State name="NetworkFail" UI="UI_GeneralError"/>
+			<State name="UnpackFail" UI="UI_GeneralError"/>
+			<State name="HardwareError" UI="UI_GeneralError"/>
+		</States>
+		<Forward event="OnConfirm" targetID="ID_InputWithdrawalAmount"/>
+		<Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+	</VTMRequestTransaction>
+
+	<VTMSelectAccountWithdraw ID="ID_ShowOwnerAccountNumber" UI="UI_SelectOwnerAccountWithdraw" keyValueMap="" homeVisible="1">
+      <Forward event="OnContinue" targetID="ID_RequestTransForXDC_Interactive"/>
+	  <Forward event="OnEditAmount" targetID="ID_InputWithdrawalAmount"/>
+	  <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+    </VTMSelectAccountWithdraw>
+
+    <VTMInputWithdrawAmount ID="ID_InputWithdrawalAmount" UI="UI_InputWithdrawalAmount" comment="Input withdrawal amount" maxWithdrawalAmount="5000000" keyValueMap="[F1,100][F2,500][F3,1000][F4,5000][F5,10000]" maxRetryTimes="0" homeVisible="1" timeOut="300000">
+      <Forward event="OnConfirm" targetID="ID_RequestTransForXDC_WithDraw"/>
+      <Forward event="OnOtherAmount" targetID="ID_SelectTransType"/>
+    </VTMInputWithdrawAmount>
+
+    <RequestTransForXDC ID="ID_RequestTransForXDC_WithDraw" UI="UI_RequestTrans" transType="CWD" msgID="TransactionRequestWD" operationCode="AA_BBBC_" comment="xdc withdraw request" homeVisible="0">
+	<States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+        <State name="SendFail" UI="UI_GeneralError"/>
+        <State name="ReceiveFail" UI="UI_GeneralError"/>
+        <State name="ReceiveTimeout" UI="UI_GeneralError"/>
+        <State name="NetworkFail" UI="UI_GeneralError"/>
+        <State name="UnpackFail" UI="UI_GeneralError"/>
+        <State name="HardwareError" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_DispenseCash"/>
+	  <Forward event="OnContinue" targetID="ID_ShowOwnerAccountNumber"/>
+	  <Forward event="OnFail" targetID="ID_ReadyBFailWithdraw"/>
+      <Forward event="OnPackFail" targetID="ID_ShowNetWorkError"/>
+      <Forward event="OnConnectFail" targetID="ID_ShowNetWorkError"/>
+      <Forward event="OnSendFail" targetID="ID_ShowNetWorkError"/>
+      <Forward event="OnReceiveFail" targetID="ID_GetDevStatusForCloseTrans"/>
+      <Forward event="OnReceiveTimeout" targetID="ID_GetDevStatusForCloseTrans"/>
+      <Forward event="OnNetworkFail" targetID="ID_GetDevStatusForCloseTrans"/>
+      <Forward event="OnUnpackFail" targetID="ID_GetDevStatusForCloseTrans"/>
+      <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+	  <Forward event="OnFallback" targetID="ID_RequestTransForXDC_WithDraw"/>
+	  <Forward event="OnTryAgain" targetID="ID_TryAgain"/>
+	  <Forward event="OnICAppLoadedFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnEMVRefuse" targetID="ID_ReversalWithdraw"/>
+    </RequestTransForXDC>
+
+	<RequestTransForXDC ID="ID_RequestTransForXDC_Interactive" UI="UI_RequestTrans" transType="IAT" msgID="InteractiveResponse" comment="xdc Interactive request" homeVisible="0">
+	<States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+        <State name="SendFail" UI="UI_GeneralError"/>
+        <State name="ReceiveFail" UI="UI_GeneralError"/>
+        <State name="ReceiveTimeout" UI="UI_GeneralError"/>
+        <State name="NetworkFail" UI="UI_GeneralError"/>
+        <State name="UnpackFail" UI="UI_GeneralError"/>
+        <State name="HardwareError" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_DispenseCash"/>
+	  <Forward event="OnFail" targetID="ID_ReadyBFailWithdraw"/>
+      <Forward event="OnPackFail" targetID="ID_ShowNetWorkError"/>
+      <Forward event="OnConnectFail" targetID="ID_ShowNetWorkError"/>
+      <Forward event="OnSendFail" targetID="ID_ShowNetWorkError"/>
+      <Forward event="OnReceiveFail" targetID="ID_GetDevStatusForCloseTrans"/>
+      <Forward event="OnReceiveTimeout" targetID="ID_GetDevStatusForCloseTrans"/>
+      <Forward event="OnNetworkFail" targetID="ID_GetDevStatusForCloseTrans"/>
+      <Forward event="OnUnpackFail" targetID="ID_GetDevStatusForCloseTrans"/>
+      <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+	  <Forward event="OnFallback" targetID="ID_RequestTransForXDC_WithDraw"/>
+	  <Forward event="OnTryAgain" targetID="ID_TryAgain"/>
+	  <Forward event="OnICAppLoadedFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	  <Forward event="OnEMVRefuse" targetID="ID_ReversalWithdraw"/>
+    </RequestTransForXDC>
+	
+    <Prompt ID="ID_ShowNetWorkError" UI="UI_ConnectFail" timeout="5000">
+      <DefaultForward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+    </Prompt>
+
+	<InputPin ID="ID_ReInputPin" UI="UI_ReInputPinWithdraw" comment="ReInput password" autoEnd="0" minLen="4" maxLen="6" homeVisible="1" timeOut="300000">
+		<Forward event="OnConfirm" targetID="ID_RequestTransForXDC_Login"/>
+	</InputPin>
+    <!--主机拒绝，显示拒绝码对应的提示信息，然后退卡-->
+	<Prompt ID="ID_HostRefuse" UI="UI_HostRefuse" timeout="5000" comment="show host refuse">
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+	</Prompt>
+    <DispenseCashEx ID="ID_DispenseCash" UI="UI_PresentCash" comment="Dispense cash">
+      <States>
+        <State name="DispenseAmountError" UI="UI_DispenseAmountError"/>
+        <State name="RejectingCash" UI="UI_RejectingCash"/>
+        <State name="RejectCashForHardwareError" UI="UI_RejectCashForHardwareError"/>
+        <State name="RejectCashFail" UI="UI_RejectCashFail"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_PresentCash"/>
+      <Forward event="OnHardwareError" targetID="ID_ReversalWithdraw"/>
+    </DispenseCashEx>
+    <PresentCash ID="ID_PresentCash" UI="UI_PresentCash" comment="Present cash">
+      <States>
+        <State name="TakeCash" UI="UI_TakeCash"/>
+        <State name="RetractingCash" UI="UI_RetractingCash"/>
+        <State name="RetractCashForTimeout" UI="UI_RetractCashForTimeout"/>
+        <State name="RetractCashForHardwareError" UI="UI_RetractCashForHardwareError"/>
+        <State name="RetractNoCash" UI="UI_RetractNoCash"/>
+        <State name="RetractCashFail" UI="UI_RetractCashFail"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_ReadyBWithDraw"/>
+      <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+    </PresentCash>
+
+	<RequestTransForXDC ID="ID_ReversalWithdraw" msgID="ReversalMsg" comment="xdc reversal message" timeOut="-1" >
+      <States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_ReadyBReversal"/>
+    </RequestTransForXDC>
+
+	<RequestTransForXDC ID="ID_ReadyBFailWithdraw" msgID="ReadyB" comment="xdc readyb request" timeOut="-1" >
+      <States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+    </RequestTransForXDC>
+
+	<RequestTransForXDC ID="ID_ReadyBWithDraw" msgID="ReadyB" comment="xdc readyb request" timeOut="-1" >
+      <States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_GetDevStatus"/>
+    </RequestTransForXDC>
+
+	<RequestTransForXDC ID="ID_ReadyBReversal" msgID="ReadyB" comment="xdc readyb request" timeOut="-1" >
+      <States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+    </RequestTransForXDC>
+
+    <GetDevStatus ID="ID_GetDevStatus" comment="Get device status" devType="RPTR">
+      <Forward event="OnNormal" targetID="ID_IsPrintReceipt"/>
+      <Forward event="OnWarn" targetID="ID_IsPrintReceipt"/>
+      <Forward event="OnFail" targetID="ID_WithdrawedResultForNoPTR"/>
+    </GetDevStatus>
+
+    <VTMShowBalance ID="ID_WithdrawedResultForNoPTR" UI="UI_WithdrawedResultForNoPTR" timeout="10000">
+      <DefaultForward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+    </VTMShowBalance>
+    <!-- 是否打印凭条 -->
+    <VTMShowBalance ID="ID_IsPrintReceipt" UI="UI_IsPrintReceiptAfterCWD" timeOut="300000">
+      <Forward event="OnYes" targetID="ID_PrintReceipt"/>
+      <Forward event="OnNo" targetID="ID_InvokeCloseTransWorkflow"/>
+    </VTMShowBalance>
+    <!-- 开始打印凭条 -->
+    <PrintReceipt ID="ID_PrintReceipt" UI="UI_Waiting" formName="ReceiptFormWithdraw" showTime="2000">
+      <States>
+        <State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+        <State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+    </PrintReceipt>
+    <GetDevStatus ID="ID_GetDevStatusForCloseTrans" comment="Get device status for closing transaction" devType="RPTR">
+      <Forward event="OnNormal" targetID="ID_PrintReceiptForCloseTrans"/>
+      <Forward event="OnWarn" targetID="ID_PrintReceiptForCloseTrans"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </GetDevStatus>
+    <PrintReceipt ID="ID_PrintReceiptForCloseTrans" UI="UI_PrintingReceipt" formName="" showTime="2000">
+      <States>
+        <State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+        <State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+    </PrintReceipt>
+    <End ID="9999" comment="End">
+    </End>
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="ID_SelectTransType"/>
+    </InvokeWorkflow>
+
+	<InvokeWorkflow ID="ID_InvokeCloseTransWorkflowMain" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+
+    <InvokeWorkflow ID="ID_TryAgain" name="Main" comment="IC returns TryAgain" actionID="ID_ICMoreAppSelectForMainMenu" syn="0">
+    </InvokeWorkflow>
+    <InvokeWorkflow ID="ID_SelectTransType" name="SelectTransType" comment="return SelectTransType page"  syn="0">
+    </InvokeWorkflow>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+  </DefaultForward>
+</Workflow>

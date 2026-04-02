@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<EncryptorInitData>
+
+		-->
+		<Item key="e" value="2" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--   When information identifier = '2':
+        *        characters 320 bytes:        EPP Public key, base 94 encoded. The exponent of the EPP Public Key is always 65537, and is therfore not  sent to Central. 
+		*        characters 320 bytes:        EPP Public key Signature, created using the RSA NCR key, and base 94 encoded. For further details of EPP
+        *                                                          authentication and base 94 encoding.
+		-->
+		<Item key="f1" value="[SolicitedStatus.EncryptorInitData.EPPPublicKey]" size="320" restriction="Mandatory"/>
+		<Item key="f2" value="[SolicitedStatus.EncryptorInitData.EPPPublicKeySignature]" size="320" restriction="Mandatory"/>
+	</EncryptorInitData>
+</Root>

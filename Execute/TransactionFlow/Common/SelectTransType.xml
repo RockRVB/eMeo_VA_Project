@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="SelectTransType">
+  <Head type="GRGWorkflow" comment="The workflow design is for main flow"/>
+  <!--数据池变量定义
+	key：变量名称
+	lifeCycle：变量生命周期，1-CardHolder；2-Terminal；3-Workflow。若此项不存在，生命周期默认为Transaction
+	-->
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start">
+      <Forward event="OnConfirm" targetID="ID_SelectCashType"/>
+    </Start>
+    <!--<QueryDeviceStatus ID="ID_QueryDeviceStatus" comment="" waitEvent="0">
+      <Forward event="OnConfirm" targetID="ID_SelectCashType"/>
+    </QueryDeviceStatus>-->
+    <VTMMainMenu ID="ID_SelectCashType" UI="UI_SelectOtherTransType"  transTypeMap="[F1,INQ][F2,CWD][F3,DEP][F4,TFR][F5,PIN]" Count="60000" homeVisible="0">
+      <Forward event="OnInquiry" targetID="ID_Inquery"/>
+      <!-- <Forward event="OnInquiry" targetID="ID_InquiryStd"/> -->
+      <Forward event="OnDeposit" targetID="ID_InvokeDepositWorkflow"/>
+      <Forward event="OnWithdrawal" targetID="ID_InvokeWithdrawWorkflow"/>
+      <Forward event="OnTransfer" targetID="ID_Transfer"/>
+      <Forward event="OnChangePin" targetID="ID_ChangePin"/>
+      <Forward event="OnFallback" targetID="ID_SelectCashType"/>
+      <Forward event="OnTryAgain" targetID="ID_ICMoreAppSelectForMainMenu"/>
+      <Forward event="OnICAppLoadedFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnQuit" targetID="ID_InvokeCloseTransWorkflow"/>
+    </VTMMainMenu>
+
+    <ICMoreAppSelect ID="ID_ICMoreAppSelectForMainMenu" UI="UI_ICMoreAppSelect" comment="">
+      <Forward event="OnConfirm" targetID="ID_ICAppLoadedForMainMenu"/>
+    </ICMoreAppSelect>
+
+    <ICAppLoaded ID="ID_ICAppLoadedForMainMenu" UI="UI_ICTransactionIsBeing" comment="">
+      <!--<Forward event="OnConfirm" targetID="ID_QueryDeviceStatus"/>-->
+      <Forward event="OnConfirm" targetID="ID_SelectCashType"/>
+      <!--<Forward event="OnFallback" targetID="ID_QueryDeviceStatus"/>-->
+      <Forward event="OnFallback" targetID="ID_SelectCashType"/>
+      <Forward event="OnTryAgain" targetID="ID_ICMoreAppSelectForMainMenu"/>
+      <Forward event="OnICAppLoadedFail" targetID="ID_ICTransCancel"/>
+    </ICAppLoaded>
+
+    <Prompt ID="ID_ICTransCancel" UI="UI_ICTransCancel" timeout="5000" comment="">
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </Prompt>
+
+    <End ID="9999" comment="End">
+    </End>
+    <InvokeWorkflow ID="ID_Transfer" name="Transfer" actionID="ID_InputTransferAccount" comment="Invoke Transfer workflow">
+      <Forward event="OnConfirm" targetID="ID_ICAppLoadedForMainMenu"/>
+    </InvokeWorkflow>
+    <InvokeWorkflow ID="ID_ChangePin" name="ChangePin" actionID="ID_InputOldPin" comment="Invoke ChangePin workflow">
+      <Forward event="OnConfirm" targetID="ID_ICAppLoadedForMainMenu"/>
+    </InvokeWorkflow>
+    <InvokeWorkflow ID="ID_Inquery" name="Inquery" actionID="ID_CheckCardType" comment="Invoke InquiryStd workflow">
+      <Forward event="OnConfirm" targetID="ID_ICAppLoadedForMainMenu"/>
+    </InvokeWorkflow>
+    <InvokeWorkflow ID="ID_InquiryStd" name="InquiryStd" actionID="ID_RequestTrans" comment="Invoke Sign workflow">
+      <Forward event="OnConfirm" targetID="ID_ICAppLoadedForMainMenu"/>
+    </InvokeWorkflow>
+    <InvokeWorkflow ID="ID_InvokeDepositWorkflow" name="Deposit" actionID="ID_CashInStart" comment="Invoke VTMDeposit workflow">
+      <Forward event="OnConfirm" targetID="ID_ICAppLoadedForMainMenu"/>
+    </InvokeWorkflow>
+    <InvokeWorkflow ID="ID_InvokeWithdrawWorkflow" name="Withdrawal" actionID="ID_InputWithdrawalAmount" comment="Invoke VTMWithdrawal workflow">
+      <Forward event="OnConfirm" targetID="ID_ICAppLoadedForMainMenu"/>
+    </InvokeWorkflow>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+  </DefaultForward>
+</Workflow>

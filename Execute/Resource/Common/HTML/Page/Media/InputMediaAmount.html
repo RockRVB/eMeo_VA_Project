@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../js/vue.min.js"></script>
+  <script src="../../js/grg-ui.min.js"></script>
+  <script src="../../js/vue-i18n.js"></script>
+  <script src="../../js/jquery-3.7.0.js"></script>	<script src="../../js/class/layer/layer.js"></script>	<script src="../../js/index.js"></script>
+  <script src="../../js/coreScript.js"></script>
+  <script src="../../js/ibank.js"></script>
+  <link rel="stylesheet" href="../../css/grg-ui.min.css">
+  <link rel="stylesheet" href="../../css/animate.grg.css">
+  <link rel="stylesheet" href="../../css/ibank.css">
+  <style>
+    .grg-main {
+      display: flex;
+      justify-content: space-between;
+      visibility: hidden;
+    }
+
+    .main-content-box {
+      width: 100%;
+      text-align: center;
+    }
+
+    .enter-info {
+      position: absolute;
+      left: 50%;
+      top: 40%;
+      transform: translate(-50%, -40%);
+      width: 580px;
+      border-radius: 8px;
+      text-align: left;
+    }
+
+    .enter-info .enter-info-header {
+      position: relative;
+      width: 100%;
+      height: 110px;
+      line-height: 98px;
+      padding-left: 28px;
+      border-radius: 8px 8px 0px 0px;
+      font-size: 32px;
+      font-family: 'Alibaba Sans';
+      font-weight: bold;
+      color: #ffffff;
+      background: linear-gradient(270deg, #88AEFF 0%, #6AB2FF 100%);
+      box-sizing: border-box;
+    }
+
+    .enter-info .enter-info-header img {
+      position: absolute;
+      right: 0;
+      bottom: 10px;
+    }
+
+    .enter-info-content {
+      position: absolute;
+      width: 580px;
+      top: 98px;
+      background: #ffffff;
+      border-radius: 8px;
+      font-family: 'Alibaba Sans';
+      font-size: 28px;
+      color: #666660;
+      padding: 0 28px;
+      box-sizing: border-box;
+    }
+
+    .enter-info-content .enter-info-item {
+      padding: 20px 0 40px;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    .enter-info-content .g-form {
+      width: 100%;
+    }
+
+    .g-form .g-input {
+      color: #231815;
+    }
+
+    .g-form .g-form-item-label {
+      color: #231815;
+      font-size: 28px;
+      font-family: 'Alibaba Sans';
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="grg-header" class="grg-header">
+    </div>
+    <div id="grg-main" class="grg-main animate_grg_fadeInRight">
+      <div class="main-content-box">
+        <div class="title" ids="IDS_InputMediaAmount">Please input cheque amount</div>
+        <div class="enter-info">
+          <div class="enter-info-header">
+            <div>Amount</div>
+            <img src="../../images/img_2.4/information-img.png" alt="">
+          </div>
+          <div class="enter-info-content">
+            <div class="enter-info-item">
+              <g-form :model="formModel" ref="form" label-position='top'>
+                <g-form-item label="Amount" prop="amount" ids='' required>
+                  <g-input type='number' id='saveBuffer' content='{Binding saveBuffer mode=2}' v-model="formModel.amount"
+                    placeholder="please input your cheque amount"></g-input>
+                </g-form-item>
+              </g-form>
+            </div>
+          </div>
+        </div>
+        <div class="button-box only-page-button-box">
+          <div class="grg-btn grg-cancel" id='OnCancel' tag='OnCancel' type='button' ids='ids_Btn_cancel'>
+            <img class="icon-img" src="../../images/img_2.4/icon-cancel.png" alt="">Cancel
+          </div>
+          <div :class='["grg-btn", formModel.amount ? "grg-confirm" : "grg-cancel"]' :type='formModel.amount ? "button" : ""' tag='OnConfirm' @click="handleSubmit">
+            <img v-if="formModel.amount" class="icon-img" src="../../images/img_2.4/icon-ok.png" alt="">
+            <img v-else class="icon-img" src="../../images/img_2.4/icon_ok.png" alt="">Confirm
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+  var app = new Base({
+    i18n: i18n,
+    data: {
+      formModel: {
+        amount: '',
+      },
+    },
+    methods: {
+      handleSubmit: function () {
+        this.$refs.form.validate(function (valid) {
+          if (valid) {
+            goto('OnConfirm')
+          }
+        }.bind(this))
+      },
+    },
+    computed: {},
+    created: function () {
+      window.onload = function () {
+        var init = document.querySelector('#cif').value
+        this.formModel.amount = init || ''
+      }.bind(this)
+    },
+    mounted: function () {}
+  }).$mount('#app')
+</script>

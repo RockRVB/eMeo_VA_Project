@@ -1,0 +1,1 @@
+You have deposited a total of ${TotalAmount}, consisting of {NotesInfoListSection} To deposit this amount, press 1. To add more cash, press 2.To cancel this transaction, press the cancel key.

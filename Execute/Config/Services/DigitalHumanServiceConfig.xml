@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+<DigitalHumanConfig exeName="D:/GrgAI_PC/startGrgAI.bat" IP="192.168.137.1" Port="8089" ChatTimeLimitation="20" UseDigitalHumanVoice="1" ManualStartBat="0" DigitalHumanVersion="1">
+-->
+<DigitalHumanConfig exeName="/DigitalHuman/DigitalHumanShell4Html.exe" IP="127.0.0.1" Port="18196" ChatTimeLimitation="20" UseDigitalHumanVoice="1" ManualStartBat="0" DigitalHumanVersion="2">
+<Menus>
+	<Menu code="1" parentCode="104" name="CASH DEPOSIT" parentName="OTHERS" icon="" parentIcon="" seq="1" enable="true"/>
+	<Menu code="2" parentCode="104" name="CASH WITHDRAWAL" parentName="OTHERS" icon="" parentIcon="" seq="1" enable="true"/>
+	<Menu code="4" parentCode="101" name="QR CODE TRANSACTION" parentName="COMMON" icon="" parentIcon="" seq="1" enable="true"/>
+	<Menu code="6" parentCode="101" name="CARD OPENING" parentName="COMMON" icon="" parentIcon="" seq="1" enable="true"/>
+	<Menu code="7" parentCode="101" name="ACCOUNT OPENING" parentName="COMMON" icon="" parentIcon="" seq="1" enable="true"/>
+	<Menu code="8" parentCode="102" name="BIOMETRICS" parentName="BIOMETRICS" icon="" parentIcon="" seq="1" enable="true"/>
+	<Menu code="9" parentCode="104" name="LIVING PAYMENT" parentName="OTHERS" icon="" parentIcon="" seq="1" enable="true"/>
+	<Menu code="10" parentCode="103" name="ELECTRICITY" parentName="BILL PAYMENT" icon="" parentIcon="" seq="1" enable="true"/>
+	<Menu code="11" parentCode="103" name="WATER" parentName="BILL PAYMENT" icon="" parentIcon="" seq="1" enable="true"/>
+	<Menu code="12" parentCode="103" name="GAS" parentName="BILL PAYMENT" icon="" parentIcon="" seq="1" enable="true"/>	
+	<Menu code="13" parentCode="101" name="BALANCE INQUIRY" parentName="COMMON" icon="" parentIcon="" seq="1" enable="true"/>
+	<Menu code="14" parentCode="101" name="PASSWORD MODIFICATION" parentName="COMMON" icon="" parentIcon="" seq="1"  enable="true"/>
+	<Menu code="15" parentCode="104" name="HUMAN SERVICE" parentName="OTHERS" icon="" parentIcon="" seq="1" enable="true"/>
+</Menus>
+<Voices>
+	<Voice name ="Welcome"         audioKey="audio_001" transCode="" menuCode="" action="1" audioText="Hello! How can I help you?"/>
+	<Voice name ="Asking"          audioKey="audio_001" transCode="" menuCode="" action="0" audioText="Hello! How can I help you?"/>
+	<Voice name ="MatchedMultiple" audioKey="audio_002" transCode="" menuCode="" action="0" audioText="Find relevant services for you"/>
+	
+	<Voice name ="MatchedTrans" audioKey="audio_003" transCode="014" menuCode="13" action="0" audioText="Find the balance inquiry service for you"/>
+	<Voice name ="MatchedTrans" audioKey="audio_003" transCode="015" menuCode="14" action="0" audioText="Find the password modification service for you"/>
+	<Voice name ="MatchedTrans" audioKey="audio_003" transCode="006" menuCode="6"  action="0" audioText="Find the card opening service for you"/>
+	<Voice name ="MatchedTrans" audioKey="audio_003" transCode="007" menuCode="7"  action="0" audioText="Find the account opening service for you"/>
+	<Voice name ="MatchedTrans" audioKey="audio_003" transCode="009" menuCode="4"  action="0" audioText="Find the QR code transaction service for you"/>
+	<Voice name ="MatchedTrans" audioKey="audio_003" transCode="011" menuCode="10" action="0" audioText="Find the electricity service for you"/>
+	<Voice name ="MatchedTrans" audioKey="audio_003" transCode="012" menuCode="11" action="0" audioText="Find the water service for you"/>
+	<Voice name ="MatchedTrans" audioKey="audio_003" transCode="013" menuCode="12" action="0" audioText="Find the gas service for you"/>
+	<Voice name ="MatchedTrans" audioKey="audio_003" transCode="008" menuCode="8"  action="0" audioText="Find the biometrics service for you"/>
+	<Voice name ="MatchedTrans" audioKey="audio_003" transCode="010" menuCode="9"  action="0" audioText="Find the bill payment service for you"/>
+	<Voice name ="MatchedTrans" audioKey="audio_003" transCode="016" menuCode="15" action="0" audioText="Find the human service for you"/>
+	<Voice name ="MatchedTrans" audioKey="audio_003" transCode="001" menuCode="1"  action="0" audioText="Find the cash deposit service for you"/>
+	<Voice name ="MatchedTrans" audioKey="audio_003" transCode="002" menuCode="2"  action="0" audioText="Find the cash withdrawal service for you"/>
+	<Voice name ="MatchedTrans" audioKey="audio_003" transCode="003" menuCode="3"  action="0" audioText="Find the foreign exchange service for you"/>
+
+	<Voice name ="ActionUI" audioKey="audio" transCode="017" menuCode="" action="1" audioText="Thank you for using our service. Have a great day! Goodbye!"/>
+	<!-- BALANCE INQUIRY -->
+	<Voice name="ActionUI" audioKey="action" transCode="001" menuCode="" action="0" audioText="Please insert your card to continue or say cancel to exit."/>
+	<Voice name="ActionUI" audioKey="action" transCode="002" menuCode="" action="0" audioText="Processing, please wait!"/>
+	<Voice name="ActionUI" audioKey="action" transCode="003" menuCode="" action="0" audioText="Please enter your PIN to check the Balance!"/>
+	<Voice name="ActionUI" audioKey="action" transCode="004" menuCode="" action="0" audioText="Please check your balance. When you're done, say confirm to exit"/>
+	<Voice name="ActionUI" audioKey="action" transCode="005" menuCode="" action="0" audioText="Sorry, your card is invalid"/>
+	<!-- PASSWORD MODIFICATION -->
+	<Voice name="ActionUI" audioKey="action" transCode="006" menuCode="" action="0" audioText="PIN correct!"/>
+	<Voice name="ActionUI" audioKey="action" transCode="007" menuCode="" action="0" audioText="PIN correct, please enter your new PIN!"/>
+	<Voice name="ActionUI" audioKey="action" transCode="008" menuCode="" action="0" audioText="Please re-enter your new PIN!"/>
+	<Voice name="ActionUI" audioKey="action" transCode="009" menuCode="" action="0" audioText="Your PIN has been changed successfully."/>
+	<!-- CARD OPENING -->
+	<Voice name="ActionUI" audioKey="action" transCode="010" menuCode="" action="0" audioText="Please wait while we connect you to an agent."/>
+	<Voice name="ActionUI" audioKey="action" transCode="011" menuCode="" action="0" audioText="Please read the user agreement"/>
+	<Voice name="ActionUI" audioKey="action" transCode="012" menuCode="" action="0" audioText="We need to scan your ID. Which type do you have?"/>
+	<Voice name="ActionUI" audioKey="action" transCode="013" menuCode="" action="0" audioText="Please put the ID card on the scanner"/>
+	<Voice name="ActionUI" audioKey="action" transCode="014" menuCode="" action="0" audioText="Information is being reviewed. Please wait"/>
+	<Voice name="ActionUI" audioKey="action" transCode="015" menuCode="" action="0" audioText="Please put your passport on the scanner"/>
+	<Voice name="ActionUI" audioKey="action" transCode="016" menuCode="" action="0" audioText="Passport is not recognized, would you like to try again?"/>
+	<Voice name="ActionUI" audioKey="action" transCode="017" menuCode="" action="0" audioText="Please input your personal information"/>
+	<Voice name="ActionUI" audioKey="action" transCode="018" menuCode="" action="0" audioText="Please sign on the screen"/>
+	<Voice name="ActionUI" audioKey="action" transCode="019" menuCode="" action="0" audioText="Printing your application form, please wait!"/>
+	<Voice name="ActionUI" audioKey="action" transCode="020" menuCode="" action="0" audioText="Please put your application form to the scanner!"/>
+	<Voice name="ActionUI" audioKey="action" transCode="021" menuCode="" action="0" audioText="Dispensing card, please wait!"/>
+	<Voice name="ActionUI" audioKey="action" transCode="022" menuCode="" action="0" audioText="Please take your card!"/>
+	<Voice name="ActionUI" audioKey="action" transCode="023" menuCode="" action="0" audioText="Agent refused the request."/>
+	<Voice name="ActionUI" audioKey="action" transCode="024" menuCode="" action="0" audioText="Host refused the request."/>
+	<Voice name="ActionUI" audioKey="action" transCode="025" menuCode="" action="0" audioText="Card has been captured."/>
+	<Voice name="ActionUI" audioKey="action" transCode="026" menuCode="" action="0" audioText="Printing receipt, please wait!"/>
+	<!-- ACCOUNT OPENING -->
+	<Voice name="ActionUI" audioKey="action" transCode="027" menuCode="" action="0" audioText="Account successfully opened"/>
+	<!-- QR CODE TRANSACTION -->
+	<Voice name="ActionUI" audioKey="action" transCode="028" menuCode="" action="0" audioText="Please open the app and scan the QR code, or say cancel to exit."/>
+	<Voice name="ActionUI" audioKey="action" transCode="029" menuCode="" action="0" audioText="Welcome! Please select your transaction account, or say cancel to exit."/>
+	<Voice name="ActionUI" audioKey="action" transCode="030" menuCode="" action="0" audioText="Please enter your PIN!"/>
+	<!-- CREATE CUSTOMER ACCOUNT -->
+	<Voice name="ActionUI" audioKey="action" transCode="031" menuCode="" action="0" audioText="Account creation failed."/>
+	<Voice name="ActionUI" audioKey="action" transCode="032" menuCode="" action="0" audioText="Account created successfully!"/>
+	<!-- FACE RECOGNITION -->
+	<Voice name="ActionUI" audioKey="action" transCode="033" menuCode="" action="0" audioText="Please select a transaction"/>
+	<Voice name="ActionUI" audioKey="action" transCode="034" menuCode="" action="0" audioText="Please enter your ID number and say confirm to proceed, or say cancel to exit."/>
+	<Voice name="ActionUI" audioKey="action" transCode="035" menuCode="" action="0" audioText="Please look at the camera to take your picture"/>
+	<Voice name="ActionUI" audioKey="action" transCode="036" menuCode="" action="0" audioText="Image quality check failed. Please try again."/>
+	<Voice name="ActionUI" audioKey="action" transCode="037" menuCode="" action="0" audioText="Your face has been successfully registered."/>
+	<Voice name="ActionUI" audioKey="action" transCode="038" menuCode="" action="0" audioText="Host refused the request. Please try again."/>
+	<Voice name="ActionUI" audioKey="action" transCode="039" menuCode="" action="0" audioText="Face authentication failed"/>
+	<!-- FINGER PRINT -->
+	<Voice name="ActionUI" audioKey="action" transCode="040" menuCode="" action="0" audioText="Please scan your finger vein once using one finger"/>
+	<Voice name="ActionUI" audioKey="action" transCode="041" menuCode="" action="0" audioText="Fingerprint matched successfully."/>
+	<Voice name="ActionUI" audioKey="action" transCode="042" menuCode="" action="0" audioText="Match failed. please try to use another one"/>
+	<Voice name="ActionUI" audioKey="action" transCode="043" menuCode="" action="0" audioText="Please scan your fingerprint three times using the same finger"/>
+	<Voice name="ActionUI" audioKey="action" transCode="044" menuCode="" action="0" audioText="Fingerprint match failed."/>
+	<Voice name="ActionUI" audioKey="action" transCode="045" menuCode="" action="0" audioText="You are not registered in our system. Please register first."/>
+	<!-- ELECTRICITY / WATER / GAS -->
+	<Voice name="ActionUI" audioKey="action" transCode="046" menuCode="" action="0" audioText="Please select the login way or say cancel to exit"/>
+	<Voice name="ActionUI" audioKey="action" transCode="047" menuCode="" action="0" audioText="Please put the passport on the scanner or say cancel to exit"/>
+	<Voice name="ActionUI" audioKey="action" transCode="048" menuCode="" action="0" audioText="Please scan your QRCode or say cancel to exit"/>
+	<Voice name="ActionUI" audioKey="action" transCode="049" menuCode="" action="0" audioText="Please select your bill, or say cancel to exit, or say back to go back."/>
+	<Voice name="ActionUI" audioKey="action" transCode="050" menuCode="" action="0" audioText="Please check your bill information and say confirm to proceed, or say cancel to exit, or back to go back."/>
+	<Voice name="ActionUI" audioKey="action" transCode="051" menuCode="" action="0" audioText="Please select the payment method, or say cancel to exit, or say back to go back."/>
+	<Voice name="ActionUI" audioKey="action" transCode="052" menuCode="" action="0" audioText="Processing. Please Wait!"/>
+	<Voice name="ActionUI" audioKey="action" transCode="053" menuCode="" action="0" audioText="Please put in cash and say confirm to proceed."/>
+	<Voice name="ActionUI" audioKey="action" transCode="054" menuCode="" action="0" audioText="Counting cash, please Wait.."/>
+	<Voice name="ActionUI" audioKey="action" transCode="055" menuCode="" action="0" audioText="Payment complete. Do you want to print a receipt?"/>
+	<Voice name="ActionUI" audioKey="action" transCode="056" menuCode="" action="0" audioText="A hardware error occurred. Please wait while your cash is being returned."/>
+	<Voice name="ActionUI" audioKey="action" transCode="057" menuCode="" action="0" audioText="Operation timed out. Cash rejected."/>
+	<Voice name="ActionUI" audioKey="action" transCode="058" menuCode="" action="0" audioText="Returning cash. Please wait."/>
+	<Voice name="ActionUI" audioKey="action" transCode="059" menuCode="" action="0" audioText="Failed to return cash. Recovering cash now."/>
+	<Voice name="ActionUI" audioKey="action" transCode="060" menuCode="" action="0" audioText="Please wait!"/>
+	<Voice name="ActionUI" audioKey="action" transCode="061" menuCode="" action="0" audioText="Please take your change"/>
+	<!-- FOREIGN EXCHANGE -->
+	<Voice name="ActionUI" audioKey="action" transCode="062" menuCode="" action="0" audioText="Please select the payment method or say cancel to exit"/>
+	<Voice name="ActionUI" audioKey="action" transCode="063" menuCode="" action="0" audioText="Please select the currency, or say cancel to exit, or back to go back."/>
+	<Voice name="ActionUI" audioKey="action" transCode="064" menuCode="" action="0" audioText="Please insert your cash and say Confirm to proceed"/>
+	<Voice name="ActionUI" audioKey="action" transCode="065" menuCode="" action="0" audioText="Please confirm your information. You can say confirm to proceed,  add cash to add more, or cancel to exit"/>
+	<Voice name="ActionUI" audioKey="action" transCode="066" menuCode="" action="0" audioText="Withdrawal complete. You can say confirm to print receipt or cancel to skip."/>
+	<!-- Biometrics -->
+	<Voice name="ActionUI" audioKey="action" transCode="067" menuCode="" action="0" audioText="Please select and say the item to continue"/>
+	<!-- Cash Withdrawal -->
+	<Voice name="ActionUI" audioKey="action" transCode="068" menuCode="" action="0" audioText="Please insert your card"/>
+	<Voice name="ActionUI" audioKey="action" transCode="069" menuCode="" action="0" audioText="Please enter your pin"/>
+	<Voice name="ActionUI" audioKey="action" transCode="070" menuCode="" action="0" audioText="Please enter your withdrawal amount in multiples of 10 and say confirm to proceed"/>
+	<Voice name="ActionUI" audioKey="action" transCode="071" menuCode="" action="0" audioText="Please take your cash. Be sure to remove all bills"/>
+	<Voice name="ActionUI" audioKey="action" transCode="072" menuCode="" action="0" audioText="Withdrawal complete. Do you want to print a receipt?"/>
+	<!-- Cash Deposit -->
+	<Voice name="ActionUI" audioKey="action" transCode="073" menuCode="" action="0" audioText="Please put your cash into cash slot"/>
+	<Voice name="ActionUI" audioKey="action" transCode="074" menuCode="" action="0" audioText="Please check the deposited amount and say confirm to continue"/>
+	<Voice name="ActionUI" audioKey="action" transCode="075" menuCode="" action="0" audioText="Please remove refused notes"/>
+	<Voice name="ActionUI" audioKey="action" transCode="076" menuCode="" action="0" audioText="Please wait for approval"/>
+	<!-- FINGERVEIN -->
+	<Voice name="ActionUI" audioKey="action" transCode="077" menuCode="" action="0" audioText="Please scan your finger print once using one finger"/>
+	<Voice name="ActionUI" audioKey="action" transCode="078" menuCode="" action="0" audioText="Match succeeded"/>
+	<Voice name="ActionUI" audioKey="action" transCode="079" menuCode="" action="0" audioText="Please scan your fingervein three times using the same finger"/>
+	<Voice name="ActionUI" audioKey="action" transCode="080" menuCode="" action="0" audioText="Match failed."/>
+	<!-- HUMAN SERVICE -->
+	<Voice name="ActionUI" audioKey="action" transCode="116" menuCode="" action="0" audioText="Please take back your passport."/>
+	<Voice name="ActionUI" audioKey="action" transCode="117" menuCode="" action="0" audioText="Passport is not recognized."/>
+	<Voice name="ActionUI" audioKey="action" transCode="118" menuCode="" action="0" audioText="You are having a video call with human teller. Our teller can assist you with following transactions: Account opening, Account information modification, Account closing, Password reset, Loan application and consultation, Credit card services, Card loss reporting and replacement, Or anything you need from bank teller."/>
+	<Voice name="ActionUI" audioKey="action" transCode="119" menuCode="" action="0" audioText="Please read the document thoroughly and click agree to confirm."/>
+	
+	<Voice name ="chat" audioKey="audio_004"        transCode=""   menuCode=""  action="0" audioText="Sorry, we couldn't find the service you need"/>
+	<Voice name ="chat" audioKey="audio_005"        transCode=""   menuCode=""  action="0" audioText="Okay, please proceed with the current transaction"/>
+	<Voice name ="chat" audioKey="QA"               transCode="01" menuCode=""  action="0" audioText="The annual fee for credit cards varies by card type. Please call our credit card customer service hotline at 123456 for inquiries."/>
+	<Voice name ="chat" audioKey="QA"               transCode="02" menuCode=""  action="0" audioText="Please bring your ID and go to the manual counter to process the transaction. You can also scan the code to download or log in to the mobile banking app for self-service processing."/>
+	<Voice name ="chat" audioKey="QA"               transCode="03" menuCode=""  action="0" audioText="The transaction limit is in place to protect the security of your account and funds. If needed, you can go to the counter to handle the transaction."/>
+	<Voice name ="chat" audioKey="QA"               transCode="04" menuCode=""  action="0" audioText="You can either go to the counter with your ID or apply through the mobile banking app."/>
+	<Voice name ="chat" audioKey="QA"               transCode="05" menuCode=""  action="0" audioText="Credit card installment applications can be processed through the mobile banking app and customer service hotline at 123456."/>
+	<Voice name ="chat" audioKey="QA"               transCode="06" menuCode=""  action="0" audioText="Credit card limit adjustments can be processed through customer service hotline at 123456 or in-branch submission."/>
+	<Voice name ="chat" audioKey="QA"               transCode="07" menuCode=""  action="0" audioText="You can inquire about your loan repayment plan through the mobile banking app or at the counter."/>
+	<Voice name ="chat" audioKey="QA"               transCode="08" menuCode=""  action="0" audioText="Our bank's credit cards offer various repayment methods, including the mobile banking app's credit card repayment feature, in-branch deposits, scheduled repayments, and online third-party payment channels."/>
+	<Voice name ="chat" audioKey="QA"               transCode="09" menuCode=""  action="0" audioText="To close your credit card account, please ensure that all outstanding balances are paid off. You can call our credit card customer service hotline at 123456 or bring a valid ID and your card to a branch."/>
+	<Voice name ="chat" audioKey="QA"               transCode="10" menuCode=""  action="0" audioText="Hello, how can I assist you?"/>
+	<Voice name ="chat" audioKey="QA"               transCode="11" menuCode=""  action="0" audioText="I'm doing well, thank you. How can I assist you?"/>
+	<Voice name ="chat" audioKey="QA"               transCode="12" menuCode=""  action="0" audioText="I am GRGBanking AI Teller.I can provide you with thoughtful service!"/>
+	<Voice name ="chat" audioKey="QA"               transCode="13" menuCode=""  action="0" audioText="I can help you with business-related questions, quickly find the services you need, and provide you with thoughtful guidance! "/>
+	<Voice name ="chat" audioKey="QA"               transCode="14" menuCode=""  action="0" audioText="I can assist you with cash deposits, withdrawals, or other banking services."/>
+	<Voice name ="chat" audioKey="QA"               transCode="15" menuCode=""  action="0" audioText="I'm not connected to the internet, so I don't know the weather conditions at the moment."/>
+	<Voice name ="chat" audioKey="QA"               transCode="16" menuCode=""  action="0" audioText="I can't do that yet. You can try asking me other questions."/>
+	<Voice name ="chat" audioKey="QA"               transCode="17" menuCode=""  action="0" audioText="See you next time"/>
+	<Voice name ="chat" audioKey="QA"               transCode="18" menuCode=""  action="0" audioText="You're welcome, feel free to ask any questions at any time"/>
+	<Voice name ="chat" audioKey="QA"               transCode="19" menuCode=""  action="0" audioText="Sorry, I will work hard to improve and strive to satisfy you next time"/>
+	<Voice name ="chat" audioKey="QA"               transCode="20" menuCode=""  action="0" audioText="Thank you for your compliment. It's a pleasure to serve you"/>
+	<Voice name ="chat" audioKey="E_audio_fallback" transCode="001" menuCode="" action="0" audioText="Sorry, I haven't learned this question yet"/>
+	<Voice name ="chat" audioKey="E_audio_fallback" transCode="002" menuCode="" action="0" audioText="This question is a bit out of scope, I will continue to learn"/>
+	<Voice name ="chat" audioKey="E_audio_fallback" transCode="003" menuCode="" action="0" audioText="Sorry, I am still working hard to learn the relevant knowledge"/>
+</Voices>
+<CodeCommand>
+    <case code="999001" name="Exit" tag="" enable="true"/>
+	<case code="999002" name="No" tag="" enable="true"/>
+	<case code="999003" name="Yes" tag="" enable="true"/>
+	<case code="999004" name="Friendly Mode" tag="" enable="true"/>
+	<case code="999005" name="FACE RECOGNITION" tag="Face" enable="true"/>
+	<case code="999006" name="Fingervein" tag="Fingervein" enable="true"/>
+	<case code="999007" name="Palmvein" tag="" enable="true"/>
+	<case code="999008" name="Password" tag="" enable="true"/>
+	<case code="999009" name="Back" tag="" enable="true"/>
+	<case code="999010" name="Cancel" tag="" enable="true"/>
+	<case code="999011" name="Edit Amount" tag="" enable="true"/>
+	<case code="999012" name="Confirm Amount" tag="" enable="true"/>
+	<case code="999013" name="Clear" tag="" enable="true"/>
+	<case code="999014" name="Confirm" tag="" enable="true"/>
+	<case code="999015" name="Add Cash" tag="" enable="true"/>
+	<case code="999016" name="USD" tag="" enable="true"/>
+	<case code="999017" name="EUR" tag="" enable="true"/>
+	<case code="999018" name="ID card" tag="" enable="true"/>
+	<case code="999019" name="Passport" tag="" enable="true"/>
+	<case code="999020" name="Resign" tag="" enable="true"/>
+	<case code="999021" name="FACE REGISTER" tag="FaceRegister" enable="true"/>
+	<case code="999022" name="FACE IDENTITY" tag="FaceIdentity" enable="true"/>
+	<case code="999023" name="FACE AUTHORIZATION" tag="FaceAuthorization" enable="true"/>
+	<case code="999024" name="FACE AND PASSPORT" tag="FacePassportVerification" enable="true"/>
+	<case code="999025" name="MATCH FINGERPRINT" tag="Match" enable="true"/>
+	<case code="999026" name="REGISTER FINGERPRINT" tag="register" enable="true"/>
+	<case code="999027" name="DELETE TEMPLATE" tag="Delete" enable="true"/>
+	<case code="999028" name="DELETE ALL TEMPLATE" tag="DeleteAll" enable="true"/>
+	<case code="999029" name="CREATE CUSTOMER ACCOUNT" tag="CreateCustomerAccount" enable="true"/>
+	<case code="999030" name="FINGER PRINT" tag="Fingerprint" enable="true"/>
+	<case code="999031" name="MATCH FINGERVEIN" tag="Match" enable="true"/>
+	<case code="999032" name="REGISTER FINGERVEIN" tag="Register" enable="true"/>
+	<case code="999033" name="DELETE FINGERVEIN" tag="Delete" enable="true"/>
+	<case code="999034" name="DELETE ALL FINGERVEIN" tag="DeleteAll" enable="true"/>
+
+	<!-- 兼容特定流程的意图转指令处理 -->
+	<case code="4"  name="QR CODE" tag="" enable="true"/>
+	<case code="10" name="ELECTRICITY" tag="" enable="true"/>
+	<case code="11" name="WATER" tag="" enable="true"/>
+	<case code="12" name="GAS" tag="" enable="true"/>
+</CodeCommand>
+</DigitalHumanConfig>
+

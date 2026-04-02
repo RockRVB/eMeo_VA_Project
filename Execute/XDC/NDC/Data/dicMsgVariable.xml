@@ -1,0 +1,1100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- protocol: NDC -->
+<Root>
+  <Buffer>
+    <Cfg>
+      <Amount>
+        <Item size="1" key="DepositDecimalPlaces" value="2" />
+        <Item size="1" key="DecimalPlaces" value="0" type="security" />
+        <Item size="1-2" key="Size" value="8" type="security" />
+      </Amount>
+    </Cfg>
+    <Item size="var" key="PIN" value="064" type="security" />
+    <Item size="var" key="A" value="065" type="security" />
+    <Item size="var" key="B" value="066" type="security" />
+    <Item size="var" key="C" value="067" type="security" />
+    <Item size="0-78" key="Track1" value="088" type="security" />
+    <Item size="0-39" key="Track2" value="089" type="security" />
+    <Item size="1-106" key="Track3" value="090" type="security" />
+    <Item size="var" key="e" value="" type="security" />
+    <Item size="var" key="w" value="" type="security" />
+    <Item size="var" key="r" value="" type="security" />
+    <Item size="var" key="ECBL2" value="" type="security" />
+    <Item size="var" key="ECBL3" value="" type="security" />
+    <Item size="var" key="M" value="" type="security" />
+    <Item size="var" key="PAN" value="" type="security" />
+  </Buffer>
+  <Device>
+    <TimeOfDayClock>
+      <Item size="1" key="DeviceID" value="A" />
+      <!-- This Device Identifier is never returned in the configuration field -->
+      <Item size="2" key="Configuration" value="00" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="" />
+    </TimeOfDayClock>
+    <HighOrderCommunications>
+      <Item size="1" key="DeviceID" value="B" />
+      <!-- This Device Identifier is never returned in the configuration field -->
+      <Item size="2" key="Configuration" value="00" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="" />
+    </HighOrderCommunications>
+    <SystemDisk>
+      <Item size="1" key="DeviceID" value="C" />
+      <!-- 00 Hard disk drive present -->
+      <Item size="2" key="Configuration" value="00" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="" />
+    </SystemDisk>
+    <CardReader>
+      <Item size="1" key="DeviceID" value="D" />
+      <!--   00 No card reader attached																																
+					01 Track 2 (read only)																																		
+					03 Track 1/2/3 MCRW (write on track 3 only)																							  
+					07 3 Track Write MCRW																																		  
+					08 Track 2 Smart Card Reader/Writer																											  
+					09 Track 3 Smart Card Reader																															
+					0A 3 Track Write Smart Card Reader																												
+					0B Dip Card Reader (track 1/2 and track 2/3)																							
+					0C Track 1/2/3 with CIM86																																  
+					11 Swipe Card Reader																																			
+					1D DASH Card Reader																																			  
+					1E Track 1/2/3 with MM																																		
+					1F Track 1/2/3 Smart with MM																															
+					20 Track 3 Smart with MM																																	
+				-->
+      <Item size="2" key="Configuration" value="09" />
+      <!-- 	U ‘0’ No transaction exception condition occurred but consult other fields for 
+				error severity, diagnostic status or supplies status changes.
+				S/U ‘1’ The cardholder did not take his card within the allowed time and it was 
+				captured or jammed.
+				S/U ‘2’ The mechanism failed to eject the card and it was captured or jammed.
+				S/U ‘3’ The mechanism failed to update the requested tracks on the card.
+				S/U ‘4’ Invalid track data was received from Central.
+				U ‘7’ Error in track data.
+				-->
+      <Item size="1" key="DevStatus" value="0" />
+      <!--  	
+			‘0’ No Error. Continue to use - no error has occurred. Diagnostic 
+			information follows.
+			‘1’ Routine. Continue to use - a routine error has occurred and 
+			diagnostic information follows.
+			‘2’ Warning. Continue to use, but it is recommended that the 
+			network operator be informed of the error or exception 
+			condition. Diagnostic information follows.
+			‘3’ Suspend. This code indicates that the terminal will suspend 
+			transaction processing on completion of the current 
+			transaction (state 000 entered). This is sent if cardholder 
+			tampering is suspected. If no action is taken by Central, the 
+			terminal will attempt to go back in service in five minutes. 
+			Diagnostic information follows.
+			‘4’ Fatal. This code indicates that the device is out-of-service and 
+			will continue to report fatal error until operator intervention 
+			at the terminal. It is recommended that the terminal is put 
+			out-of-service or that transactions involving the faulty device 
+			are not allowed.
+			-->
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0000" />
+      <!--   ‘0’ No new state ‘1’ No overfill condition (capture bin ‘4’ Overfill condition (capture bin) -->
+      <Item size="1" key="SuppliesStatus" value="1" />
+    </CardReader>
+    <ContactLessIDC>
+      <Item size="1" key="DeviceID" value="y" />
+      <Item size="2" key="Configuration" value="48" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="1" />
+      <Item size="0" key="SuppliesStatus" value="" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+    </ContactLessIDC>
+    <SmartCard>
+      <Item size="1" key="DeviceID" value="c" />
+      <Item size="2" key="Configuration" value="09" />
+      <Item size="1" key="DevStatus" value="1" />
+      <Item size="1" key="Fitness" value="2" />
+      <Item size="1" key="DiagnosticStatus" value="S&amp;S00A4040000006A82" />
+      <!--   ‘0’ No new state ‘1’ No overfill condition (capture bin ‘4’ Overfill condition (capture bin) -->
+      <Item size="0" key="SuppliesStatus" value="" />
+    </SmartCard>
+    <CashHandler>
+      <Item size="1" key="DeviceID" value="E" />
+      <!--  00 Not configured
+			01 -  Standard cash handler configured
+			02 -  Spray dispenser configured. 
+			03 -  Recycler Configured (GRG recycler protocol)
+		-->
+      <Item size="2" key="Configuration" value="01" />
+      <!--   Transaction/Device Status. (T-code plus T-data). Gives details of a dispense operation in respense to a Transaction Reply Command message.
+				* Character 1 (T-code) can be:
+				*    '1'  -  Short dispense. For a spray dispenser, this can also inidcate that an extra note has been dispensed.
+				*    '2'  -  No notes dispensed.
+				*    '3'  - Notes dispensed unknown. The cardholder may have had access to any presented notes, so it should be assumed some
+				*             may have been dispensed. Intervention may be required to reconcile the cash ammount totals. The following counts contain
+				*             requested disepnsed values.
+				*     '4' - No notes dispensed or card not ejected. This status is returned on a card before cash transaction if the stack operation fails and 
+				*             the notes are purged prior to card eject.
+				*    '5'  -  Some notes have been retracted when the notes were not taken following a present time-out. The number of notes retracted is unknown. 
+				* Character 2-9 (T - data) contain notes dispensed counts. Each pair of characters represents a 2-digit decimal value in the range of 00-99 for 
+				* a particular cassette type.
+				-->
+      <!--   Transaction/Device Status. (T-code plus T-data). Gives details of a dispense operation in respense to a Transaction Reply Command message.
+				* Character 2-9 (T - data) contain notes dispensed counts. Each pair of characters represents a 2-digit decimal value in the range of 00-99 for 
+				* a particular cassette type.
+				-->
+      <DevStatus>
+        <Item size="1" key="TCode" value="0" />
+        <Item size="2" key="NotesDispensed1" value="00" />
+        <Item size="2" key="NotesDispensed2" value="00" />
+        <Item size="2" key="NotesDispensed3" value="00" />
+        <Item size="2" key="NotesDispensed4" value="00" />
+        <Item size="2" key="NotesDispensed5" value="00" />
+        <Item size="2" key="NotesDispensed6" value="00" />
+        <Item size="2" key="NotesDispensed7" value="00" />
+      </DevStatus>
+      <Item size="8" key="SprayCashHandlerTData" value="04" />
+      <Fitness>
+        <Item size="1" key="Handler" value="4" />
+        <Item size="1" key="CassetteType1" value="4" />
+        <Item size="1" key="CassetteType2" value="4" />
+        <Item size="1" key="CassetteType3" value="4" />
+        <Item size="1" key="CassetteType4" value="4" />
+        <Item size="1" key="CassetteType5" value="4" />
+        <Item size="1" key="CassetteType6" value="4" />
+        <Item size="1" key="CassetteType7" value="4" />
+      </Fitness>
+      <Item size="1" key="DiagnosticStatus" value="00" />
+      <!--    |reject bin |cassette 1 |cassette 2 |cassette 3 |cassette 4| -->
+      <SuppliesStatus>
+        <!-- ‘0’ No new state ‘1’ No overfill condition.‘4’ Overfill condition. -->
+        <Item size="1" key="RejectBin" value="1" />
+        <!-- ‘0’ No new state ‘1’ Sufficient notes.‘2’ Notes low.‘3’ Out of notes. -->
+        <Item size="1" key="CassetteType1" value="3" />
+        <Item size="1" key="CassetteType2" value="3" />
+        <Item size="1" key="CassetteType3" value="3" />
+        <Item size="1" key="CassetteType4" value="3" />
+        <Item size="1" key="CassetteType5" value="3" />
+        <Item size="1" key="CassetteType6" value="3" />
+        <Item size="1" key="CassetteType7" value="3" />
+      </SuppliesStatus>
+    </CashHandler>
+    <CashAcceptor>
+      <Item size="1" key="DeviceID" value="w" />
+      <Item size="2" key="Configuration" value="00" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="ErrorCode" value="0" />
+      <Item size="1" key="Data" value="0" />
+      <counts>
+        <Item size="50" key="Escrow" value="0" />
+        <Item size="50" key="Vaulted" value="0" />
+        <Item size="50" key="Returned" value="0" />
+      </counts>
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="var" key="DiagnosticStatus" value="" />
+      <Item size="var" key="SuppliesStatus" value="1" />
+    </CashAcceptor>
+    <EnvelopeDepository>
+      <Item size="1" key="DeviceID" value="F" />
+      <!-- Depository 
+			* 00 - not configured.
+			* 01 - Reserved
+			* 02 - Programmable Printing Depository (DPD)
+			* 03 - Recycler Configured (GRG protocol)
+			-->
+      <Item size="2" key="Configuration" value="00" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </EnvelopeDepository>
+    <ReceiptPrinter>
+      <Item size="1" key="DeviceID" value="G" />
+      <!--
+				00  Not configured
+				01	Plain paper	
+				02	Black dot paper
+				03	Sideways printing, no black mark	
+				04	Sideways printing, black mark																									
+				05	Thermal printer ‐ no black mark	
+				06	Thermal printer ‐ black mark	
+				07	Thermal printer ‐ sideways printing, no black mark	
+				08	Thermal printer ‐ sideways printing, black mark		
+			 -->
+      <Item size="2" key="Configuration" value="01" />
+      <!--	U ‘0’ Successful print
+					S/U ‘1’ Print operation not successfully completed
+					U ‘2’ Device not configured
+					U ‘4’ Cancel key pressed during sideways receipt print
+			-->
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="4" key="DiagnosticStatus" value="0000" />
+      <!-- |paper |ribbon |print-head |knife|-->
+      <SuppliesStatus>
+        <!-- ‘0’ No New State.
+	‘1’ Good State. 
+	‘2’ Media Low
+	‘3’ Media Out.
+	‘4’ Overfill. -->
+        <Item size="1" key="Paper" value="1" />
+        <Item size="1" key="Ribbon" value="1" />
+        <Item size="1" key="PrintHead" value="1" />
+        <Item size="1" key="Knife" value="1" />
+      </SuppliesStatus>
+    </ReceiptPrinter>
+    <JournalPrinter>
+      <Item size="1" key="DeviceID" value="H" />
+      <!--00  Not configured                                                                      
+			01  Integral journal printer                                                            
+			02  Reserved                                                                            
+			03  Thermal printer                                                                     
+			80  Electronic journal                                                                  
+			81  Electronic journal and integral journal printer                                     
+			82  Reserved                                                                            
+			83  Electronic journal and thermal printer
+			-->
+      <Item size="2" key="Configuration" value="80" />
+      <!--U ‘0’ Successful print                             
+				U ‘1’ Print operation not successfully completed   
+				U ‘2’ Device not configured                        
+				U ‘6’ Journal printer backup activated             
+				U ‘7’ Journal printer backup and reprint terminated
+				U ‘8’ Journal printer backup reprint started       
+				U ‘9’ Journal printer backup halted                
+				U ‘:’ Journal printer backup log security error    
+				U ‘;’ Journal printer backup reprint halted        
+				U ‘<’ Journal printer backup tamper state entered  
+			-->
+      <Item size="1" key="DevStatus" value="8" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="4" key="DiagnosticStatus" value="0000" />
+      <!-- |paper |ribbon |print-head |knife|-->
+      <SuppliesStatus>
+        <Item size="1" key="Paper" value="1" />
+        <Item size="1" key="Ribbon" value="1" />
+        <Item size="1" key="PrintHead" value="1" />
+        <Item size="1" key="Knife" value="1" />
+      </SuppliesStatus>
+    </JournalPrinter>
+    <NIghtSafeDepository>
+      <Item size="1" key="DeviceID" value="K" />
+      <Item size="2" key="Configuration" value="00" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <!-- |paper |ribbon |print-head |knife|-->
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </NIghtSafeDepository>
+    <Encryptor>
+      <Item size="1" key="DeviceID" value="L" />
+      <Item size="2" key="Configuration" value="C7" />
+      <!-- ‘1’ Encryptor error.
+				  ‘2’ Encryptor not configured.
+			-->
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </Encryptor>
+    <Camera>
+      <Item size="1" key="DeviceID" value="M" />
+      <Item size="2" key="Configuration" value="01" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="1" />
+    </Camera>
+    <DoorAccessSystem>
+      <Item size="1" key="DeviceID" value="N" />
+      <Item size="2" key="Configuration" value="00" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </DoorAccessSystem>
+    <FlexDisk>
+      <Item size="1" key="DeviceID" value="O" />
+      <!--
+			00 Not configured         
+			01 1.44 MB?flex disk drive
+			02 2.88 MB?flex disk drive
+			 -->
+      <Item size="2" key="Configuration" value="01" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </FlexDisk>
+    <TIBins>
+      <Item size="1" key="DeviceID" value="P" />
+      <!--
+			00  No TI Bins present          
+			01  Secure cash, insecure cards, and either insecure deposit bin or no   
+			02  depository 
+			03  Secure cash, insecure cards, and secure deposit bin 
+				Secure cash, secure cards, and either secure deposit bin or no     
+				depository.  
+			-->
+      <Item size="2" key="Configuration" value="01" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </TIBins>
+    <CardholderKeyboard>
+      <Item size="1" key="DeviceID" value="Q" />
+      <!--
+			00 Reserved 
+			01 Standard (BAPE) keyboard
+			02 EPP keyboard
+			-->
+      <Item size="2" key="Configuration" value="02" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </CardholderKeyboard>
+    <OperatorKeyboard>
+      <Item size="1" key="DeviceID" value="R" />
+      <!--
+				00 Not configured  
+				01 Standard keyboard (basic)  
+				02 Keyboard plus FDKs (enhanced)  
+			-->
+      <Item size="2" key="Configuration" value="02" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </OperatorKeyboard>
+    <CardholderDisplay>
+      <Item size="1" key="DeviceID" value="S" />
+      <!--
+			BIT 0  Always zero  
+			BIT 1  Always zero  
+			BIT 2  0 - no voice   
+			BIT 2  1 - voice supported   
+			BIT 3  0 - standard FDKs   
+			BIT 3  1 - touch screen  
+			BIT 4  0 - VGA    
+			BIT 4  1 - VGM translator   
+			BITs 5-7 are reserved - always zero
+			 -->
+      <Item size="2" key="Configuration" value="10" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </CardholderDisplay>
+    <StatementPrinter>
+      <Item size="1" key="DeviceID" value="V" />
+      <Item size="2" key="Configuration" value="00" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0000" />
+      <!-- |paper |ribbon |print-head |knife|-->
+      <Item size="1" key="SuppliesStatus" value="11111" />
+      <SuppliesStatus>
+        <Item size="1" key="Paper" value="0" />
+        <Item size="1" key="Ribbon" value="0" />
+        <Item size="1" key="PrintHead" value="0" />
+        <Item size="1" key="Knife" value="0" />
+        <Item size="1" key="CaptureBin" value="0" />
+      </SuppliesStatus>
+    </StatementPrinter>
+    <CoinDispenser>
+      <Item size="1" key="DeviceID" value="Y" />
+      <Item size="2" key="Configuration" value="00" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </CoinDispenser>
+    <SystemDisplay>
+      <Item size="1" key="DeviceID" value="Z" />
+      <!--
+			00 Not configured            
+			01 2 x 40 display            
+			02 Enhanced display (16 x 32)
+			-->
+      <Item size="2" key="Configuration" value="02" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </SystemDisplay>
+    <MediaEntryIndicators>
+      <Item size="1" key="DeviceID" value="[" />
+      <!--
+			00 Not configured
+			01 Configured 
+			-->
+      <Item size="2" key="Configuration" value="01" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </MediaEntryIndicators>
+    <EnvelopeDispenser>
+      <Item size="1" key="DeviceID" value="\" />
+      <Item size="2" key="Configuration" value="00" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="8" key="DiagnosticStatus" value="00000000" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </EnvelopeDispenser>
+    <CashHandler0>
+      <Item size="1" key="DeviceID" value="d" />
+      <Item size="2" key="Configuration" value="00" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </CashHandler0>
+    <CashHandler1>
+      <Item size="1" key="DeviceID" value="e" />
+      <Item size="2" key="Configuration" value="00" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </CashHandler1>
+    <BarCodeReader>
+      <Item size="1" key="DeviceID" value="f" />
+      <Item size="2" key="Configuration" value="0000" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+      <Item size="4" key="FormatIdentifier" value="0000" />
+    </BarCodeReader>
+    <CPM>
+      <Item size="1" key="DeviceID" value="w" />
+      <Item size="2" key="Configuration" value="03" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </CPM>
+    <BNA>
+      <Item size="1" key="DeviceID" value="w" />
+      <!--
+			00 Not configured
+			03 BNA cash deposit device
+			04 GBRU (recycling capabilities enabled)
+			05 GBNA (GBRU with recycling disabled)
+			-->
+      <Item size="2" key="Configuration" value="03" />
+      <DevStatus>
+        <Item size="1" key="ErrorCode" value="0" />
+        <Item size="50" key="EscrowCounts" value="                                                  " />
+        <Item size="50" key="VaultedCounts" value="                                                  " />
+        <Item size="50" key="ReturnedCounts" value="                                                  " />
+        <Item size="1" key="TotalNumberExitSlot" value=" " />
+        <Item size="1" key="TotalNumberEscrow" value=" " />
+        <Item size="1" key="TotalNumberVaulted" value=" " />
+        <!--(g207/e207)-->
+        <Item size="2" key="NoteType_EscrowCounts" value="00" />
+        <Item size="3" key="NoteCount_EscrowCounts" value="000" />
+        <!--(g208/e208)-->
+        <Item size="2" key="NoteType_VaultedCounts" value="00" />
+        <Item size="3" key="NoteCount_VaultedCounts" value="000" />
+        <!--(g209/e209)-->
+        <Item size="2" key="NoteType_ReturnedCounts" value="00" />
+        <Item size="3" key="NoteCount_ReturnedCounts" value="000" />
+        <!--(g210/e210)-->
+        <Item size="3" key="TotalNumOf_notesReturned" value="000" />
+        <!--(g211/e211)-->
+        <Item size="3" key="TotalNumOf_notesInEscrow" value="000" />
+        <!--(g212/e212)-->
+        <Item size="3" key="TotalNumOf_notesJustVaulted" value="000" />
+      </DevStatus>
+      <Fitness>
+        <Item size="1" key="Overall" value="4" />
+        <Item size="0or16" key="Extended" value="" />
+      </Fitness>
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <SuppliesStatus>
+        <Item size="1" key="Overall" value="0" />
+        <Item size="0or16" key="Extended" value="" />
+      </SuppliesStatus>
+      <Extended>
+        <TypeID>
+          <Item size="3" key="CassetteType1ID" value="001" />
+          <Item size="3" key="CassetteType2ID" value="002" />
+          <Item size="3" key="CassetteType3ID" value="003" />
+          <Item size="3" key="CassetteType4ID" value="004" />
+        </TypeID>
+        <Fitness>
+          <Item size="1" key="RejectBin" value="0" />
+          <Item size="3" key="CassetteType1ID" value="001" />
+          <Item size="1" key="CassetteType1" value="4" />
+          <Item size="3" key="CassetteType2ID" value="002" />
+          <Item size="1" key="CassetteType2" value="4" />
+          <Item size="3" key="CassetteType3ID" value="003" />
+          <Item size="1" key="CassetteType3" value="4" />
+          <Item size="3" key="CassetteType4ID" value="004" />
+          <Item size="1" key="CassetteType4" value="4" />
+        </Fitness>
+        <SuppliesStatus>
+          <!-- ‘0’ No new state ‘1’ No overfill condition.‘4’ Overfill condition. -->
+          <Item size="1" key="RejectBin" value="1" />
+          <Item size="3" key="CassetteType1ID" value="001" />
+          <Item size="1" key="CassetteType1" value="3" />
+          <Item size="3" key="CassetteType2ID" value="002" />
+          <Item size="1" key="CassetteType2" value="3" />
+          <Item size="3" key="CassetteType3ID" value="003" />
+          <Item size="1" key="CassetteType3" value="3" />
+          <Item size="3" key="CassetteType4ID" value="004" />
+          <Item size="1" key="CassetteType4" value="3" />
+        </SuppliesStatus>
+      </Extended>
+    </BNA>
+    <IPM>
+      <Item size="1" key="DeviceID" value="q" />
+      <Item size="2" key="Configuration" value="0039" />
+      <Item size="3" key="TotalChequesReturnCount" value="000" />
+      <Item size="3" key="DepositCurrency" value="CNY" />
+      <Item size="1" key="AmountExponentSign" value="-" />
+      <Item size="2" key="AmountExponentValue" value="02" />
+      <Item size="12" key="TotalCustomerAmount" value="000000000000" />
+      <Item size="12" key="TotalDerivedAmount" value="000000000000" />
+      <Item size="var" key="ChequeInfo" value="" />
+      <DevStatus>
+        <Item size="1" key="ErrorCode" value="0" />
+        <Item size="1" key="ErrorPosition" value=" " />
+      </DevStatus>
+      <Fitness>
+        <Item size="1" key="Overall" value="0" />
+        <Item size="var" key="Extended" value="" />
+      </Fitness>
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <SuppliesStatus>
+        <Item size="1" key="Overall" value="0000" />
+        <Item size="var" key="Extended" value="" />
+      </SuppliesStatus>
+    </IPM>
+    <FingerService>
+      <Item size="1" key="DeviceID" value="x" />
+      <Item size="2" key="Configuration" value="01" />
+      <Item size="var" key="BiometricData" value="" />
+      <Item size="1" key="DevStatus" value="0" />
+      <Item size="1" key="Fitness" value="0" />
+      <Item size="1" key="DiagnosticStatus" value="00" />
+      <Item size="1" key="SuppliesStatus" value="" />
+    </FingerService>
+    <GrgCashAcceptor>
+      <Item size="1" key="DeviceID" value="r" />
+      <Item size="2" key="Configuration" value="01" />
+      <Fitness>
+        <Item size="1" key="Handler" value="0" />
+        <Item size="1" key="CassetteType1" value="0" />
+        <Item size="1" key="CassetteType2" value="0" />
+        <Item size="1" key="CassetteType3" value="0" />
+        <Item size="1" key="CassetteType4" value="0" />
+      </Fitness>
+      <Item size="1" key="DiagnosticStatus" value="0000" />
+      <!--    |reject bin |cassette 1 |cassette 2 |cassette 3 |cassette 4| -->
+      <SuppliesStatus>
+        <!-- ‘0’ No new state ‘1’ No overfill condition.‘4’ Overfill condition. -->
+        <Item size="1" key="Mix" value="1" />
+        <!-- ‘0’ No new state ‘1’ Sufficient notes.‘2’ Notes low.‘3’ Out of notes. -->
+        <Item size="1" key="CassetteType1" value="1" />
+        <Item size="1" key="CassetteType2" value="1" />
+        <Item size="1" key="CassetteType3" value="1" />
+        <Item size="1" key="CassetteType4" value="1" />
+      </SuppliesStatus>
+      <Item size="1" key="DiagnosticStatus" value="0" />
+      <Item size="1" key="SuppliesStatus" value="0" />
+    </GrgCashAcceptor>
+    <Sensors>
+      <!--‘0’ Supervisor mode exit  ‘1’ Supervisor mode entry-->
+      <Item size="1" key="typeofchange" value="0" />
+      <Item size="1" key="Supervisor" value="0" />
+      <Item size="1" key="Vibration" value="0" />
+      <Item size="1" key="DoorContact" value="0" />
+      <Item size="1" key="SilentSignal" value="0" />
+      <Item size="1" key="ElectronicsEnclosure" value="0" />
+      <Item size="1" key="DepositBin" value="0" />
+      <Item size="1" key="CardBin" value="0" />
+      <Item size="1" key="CurrencyRejectBin" value="1" />
+      <Item size="1" key="CurrencyCassetteInPosition1" value="0" />
+      <Item size="1" key="CurrencyCassetteInPosition2" value="0" />
+      <Item size="1" key="CurrencyCassetteInPosition3" value="0" />
+      <Item size="1" key="CurrencyCassetteInPosition4" value="0" />
+      <Item size="1" key="CoinDispenser" value="0" />
+      <Item size="1" key="CoinDispenserHopper1" value="0" />
+      <Item size="1" key="CoinDispenserHopper2" value="0" />
+      <Item size="1" key="CoinDispenserHopper3" value="0" />
+      <Item size="1" key="CoinDispenserHopper4" value="0" />
+    </Sensors>
+    <!--  Secondary Card Reader -->
+    <SecondaryCardReader>
+      <Item size="1" key="DeviceID" value="y" />
+      <Item size="2" key="Configuration" value="48" />
+    </SecondaryCardReader>
+  </Device>
+  <SupplyCounters>
+    <!-- Accynykated Transaction Count Defines the total number of detected transaction attemps since the terminal was installed or the non-volatile terminal memory was last corrupted
+		 * The count is reset to 0 after 9, 999, 999 transacitons
+		 *  A transaction attempt is detected when it is recognised that the TSN received from Central is different from the previously received TSN
+		*  Up to host decision
+		-->
+    <Item size="7" key="AccumulatedTransCount" value="0000000" />
+    <!--  Notes In cassettes Consists of 4 five-digits decimal counts of the total number of notes remaining in cassette types 1, 2, 3 and 4  
+		 * The counts are set by supervisor functions and are decremented on each dispense transaction
+		 *  The counts are zero if not set by and 'Add Cash' or 'Set Standard Cash' supervisor function The count contains 65535 ( the decimal 
+		 * equivalent of 0FFF hex)
+		-->
+    <NotesInCassettes>
+      <Item size="5" key="Type1" value="00000" />
+      <Item size="5" key="Type2" value="00000" />
+      <Item size="5" key="Type3" value="00000" />
+      <Item size="5" key="Type4" value="00000" />
+      <Item size="5" key="Type5" value="00000" />
+      <Item size="5" key="Type6" value="00000" />
+      <Item size="5" key="Type7" value="00000" />
+    </NotesInCassettes>
+    <!--  Notes Rejected Consists of 4 five-digits decimal counts of the total number of notes moved to the reject bin from cassette types 1, 2, 3 and 4  
+		 * Although fields 'g4' and 'g5' may not be totally accurate, the sum of these counts for a particular cassette does accurately represent the different
+		 *  between the original number of notes added and the number of notes dispensed
+		-->
+    <NotesRejected>
+      <Item size="5" key="Type1" value="00000" />
+      <Item size="5" key="Type2" value="00000" />
+      <Item size="5" key="Type3" value="00000" />
+      <Item size="5" key="Type4" value="00000" />
+      <Item size="5" key="Type5" value="00000" />
+      <Item size="5" key="Type6" value="00000" />
+      <Item size="5" key="Type7" value="00000" />
+    </NotesRejected>
+    <!--  Notes Dispensed Consists of 4 five-digits decimal counts of the total number of notes dispensed from cassette types 1, 2, 3 and 4  
+		 * These counts are consistent with note counts reported since the counts were last cleared by a supervisor transaction
+		 *  If a transaction is prematurely stopped by a power failure These counts are updated to reflect the number of notes dispensed up to 
+		 * the time of power failure
+		-->
+    <NotesDispensed>
+      <Item size="5" key="Type1" value="00000" />
+      <Item size="5" key="Type2" value="00000" />
+      <Item size="5" key="Type3" value="00000" />
+      <Item size="5" key="Type4" value="00000" />
+      <Item size="5" key="Type5" value="00000" />
+      <Item size="5" key="Type6" value="00000" />
+      <Item size="5" key="Type7" value="00000" />
+    </NotesDispensed>
+    <LastTransactionNotesDispensed>
+      <Item size="5" key="Type1" value="00000" />
+      <Item size="5" key="Type2" value="00000" />
+      <Item size="5" key="Type3" value="00000" />
+      <Item size="5" key="Type4" value="00000" />
+      <Item size="5" key="Type5" value="00000" />
+      <Item size="5" key="Type6" value="00000" />
+      <Item size="5" key="Type7" value="00000" />
+    </LastTransactionNotesDispensed>
+    <NotesDeposited>
+      <Item size="5" key="Type1" value="00000" />
+      <Item size="5" key="Type2" value="00000" />
+      <Item size="5" key="Type3" value="00000" />
+      <Item size="5" key="Type4" value="00000" />
+      <Item size="5" key="Type5" value="00000" />
+      <Item size="5" key="Type6" value="00000" />
+      <Item size="5" key="Type7" value="00000" />
+    </NotesDeposited>
+    <!--  Card Captured Consists of 1 five-digits decimal counts of the number of cards captured since the count was cleared by a supervisor transaction   
+		 *  This field allows Central to recover note counts after power failure, even if the power failure occurred in the middle of a dispense operation
+		-->
+    <Item size="5" key="CardCaptured" value="00003" />
+    <!--  Envelopes Deposited Consists of 1 five-digits decimal counts of the number of envelopes deposited since the count was last cleared by a supervisor transaction   
+		 *  The count includes envelopes deposited up to and including the transaction defined in filed 'g2'
+		-->
+    <Item size="5" key="EnvelopesDeposited" value="00000" />
+    <!--  Envelopes Deposited Consists of 1 five-digits decimal counts of the number of envelopes deposited since the count was last cleared by a supervisor transaction   
+		 *  The count includes envelopes deposited up to and including the transaction defined in filed 'g2'
+		-->
+    <Item size="5" key="CameraFilmRemaining" value="00000" />
+    <!--  Bunch Note Acceptor (BNA) counters - refunded-->
+    <Item size="5" key="BNATotalRefunded" value="00000" />
+    <!--  Bunch Note Acceptor (BNA) counters - rejected -->
+    <Item size="5" key="BNATotalRejected" value="00000" />
+    <!--  Bunch Note Acceptor (BNA) counters - encashed -->
+    <Item size="5" key="BNATotalEncashed" value="00000" />
+    <!--  Bunch Note Acceptor (BNA) counters - Escrow -->
+    <Item size="5" key="BNATotalEscrow" value="00000" />
+    <Item size="5" key="BNACassetteData" value="" />
+  </SupplyCounters>
+  <Wincor>
+    <CashAcceptor>
+      <Item size="4" key="DispenseType" value="1234" />
+      <Item size="4" key="DispenseSupplyStatus" value="1111" />
+      <Item size="4" key="Reactivationflag" value="1111" />
+      <Item size="4" key="DepositedNotesInCassettes" value="00000000000000000000" />
+      <!-- -->
+      <Item size="4" key="numberofcashintransactions" value="0000" />
+      <!-- -->
+      <Item size="5" key="numberofretractoperations" value="00000" />
+      <!-- -->
+      <Item size="2" key="numberofcashinboxes" value="04" />
+      <!-- -->
+      <Item size="n*5" key="groupofnotestoboxes" value="000000" />
+      <!-- -->
+      <Item size="5" key="l4notesinserted" value="00000" />
+      <!-- -->
+      <Item size="5" key="l3notesinserted" value="00000" />
+      <!-- -->
+      <Item size="5" key="l2notesinserted" value="00000" />
+      <!-- -->
+      <Item size="5" key="groupofnoteidcount" value="00000" />
+      <!-- -->
+      <Item size="2" key="numberofnoteid" value="04" />
+      <!-- -->
+      <Item size="5" key="groupnumberofnoteidmodifier" value="0" />
+      <!-- -->
+      <Item size="1" key="supplystatusofcashinretractbox" value="0" />
+      <!-- -->
+      <Item size="2" key="numberofcashinboxes" value="04" />
+      <!-- -->
+      <Item size="4" key="groupsupplystatusofcashinbox" value="0" />
+      <retract>
+        <Item size="1" key="Fitness" value="0" />
+        <Item size="1" key="SuppliesStatus" value="0" />
+        <Item size="5" key="amount" value="00000" />
+        <Item size="8*x" key="listnotes" value="" />
+      </retract>
+      <ac>
+        <Item size="1" key="Fitness" value="0" />
+        <Item size="1" key="SuppliesStatus" value="0" />
+        <Item size="8*x" key="listnotes" value="" />
+      </ac>
+      <note>
+        <t1>
+          <Item size="2" key="id" value="01" />
+          <Item size="1" key="modifier" value="A" />
+          <Item size="5" key="count" value="00000" />
+        </t1>
+        <t2>
+          <Item size="2" key="id" value="02" />
+          <Item size="1" key="modifier" value="A" />
+          <Item size="5" key="count" value="00000" />
+        </t2>
+        <t3>
+          <Item size="2" key="id" value="03" />
+          <Item size="1" key="modifier" value="A" />
+          <Item size="5" key="count" value="00000" />
+        </t3>
+        <t4>
+          <Item size="2" key="id" value="04" />
+          <Item size="1" key="modifier" value="A" />
+          <Item size="5" key="count" value="00000" />
+        </t4>
+      </note>
+      <cassette>
+        <t1>
+          <Item size="2" key="noteid" value="01" />
+          <Item size="1" key="SuppliesStatus" value="0" />
+          <Item size="5" key="count" value="00000" />
+          <Item size="1" key="deposit" value="1" />
+          <Item size="1" key="dispense" value="1" />
+        </t1>
+        <t2>
+          <Item size="1" key="SuppliesStatus" value="0" />
+          <Item size="5" key="count" value="00000" />
+          <Item size="1" key="deposit" value="1" />
+          <Item size="1" key="dispense" value="1" />
+        </t2>
+        <t3>
+          <Item size="1" key="SuppliesStatus" value="0" />
+          <Item size="5" key="count" value="00000" />
+          <Item size="1" key="deposit" value="1" />
+          <Item size="1" key="dispense" value="1" />
+        </t3>
+        <t4>
+          <Item size="1" key="SuppliesStatus" value="0" />
+          <Item size="5" key="count" value="00000" />
+          <Item size="1" key="deposit" value="1" />
+          <Item size="1" key="dispense" value="1" />
+        </t4>
+      </cassette>
+    </CashAcceptor>
+  </Wincor>
+  <GrgRecycler>
+    <GrgCashInTransReplyReady>
+      <Item size="1-999" key="var" value="0" type="security" />
+      <DepositedNotesInCassettes>
+        <Item size="5" key="Type" value="00000" />
+      </DepositedNotesInCassettes>
+      <DispensedNotesInCassettes>
+        <Item size="1" key="Type" value="0" />
+      </DispensedNotesInCassettes>
+      <SupplyStatusOfCassette>
+        <Item size="1" key="Type" value="0" />
+      </SupplyStatusOfCassette>
+    </GrgCashInTransReplyReady>
+    <GrgSupplyCounters>
+      <Item size="5" key="NumberOfCashInTransactions" value="00083" />
+      <Item size="5" key="NumberOfRetractOperations" value="00083" />
+      <LoadNotesInCassettes>
+        <Item size="5" key="Type1" value="00000" />
+        <Item size="5" key="Type2" value="00000" />
+        <Item size="5" key="Type3" value="00000" />
+        <Item size="5" key="Type4" value="00000" />
+      </LoadNotesInCassettes>
+      <RemainNotesInCassettes>
+        <Item size="5" key="Type1" value="00000" />
+        <Item size="5" key="Type2" value="00000" />
+        <Item size="5" key="Type3" value="00000" />
+        <Item size="5" key="Type4" value="00000" />
+      </RemainNotesInCassettes>
+      <RejectNotesInCassettes>
+        <Item size="5" key="Type1" value="00000" />
+        <Item size="5" key="Type2" value="00000" />
+        <Item size="5" key="Type3" value="00000" />
+        <Item size="5" key="Type4" value="00000" />
+      </RejectNotesInCassettes>
+      <DispensedNotesInCassettes>
+        <Item size="5" key="Type1" value="00000" />
+        <Item size="5" key="Type2" value="00000" />
+        <Item size="5" key="Type3" value="00000" />
+        <Item size="5" key="Type4" value="00000" />
+      </DispensedNotesInCassettes>
+      <DepositedNotesInCassettes>
+        <Item size="5" key="Type1" value="00000" />
+        <Item size="5" key="Type2" value="00000" />
+        <Item size="5" key="Type3" value="00000" />
+        <Item size="5" key="Type4" value="00000" />
+      </DepositedNotesInCassettes>
+      <NotesMixed>
+        <Item size="2" key="NumOfNotesId" value="01" />
+        <Item size="var" key="NotesIdAndCountNums" value="0100000" />
+      </NotesMixed>
+    </GrgSupplyCounters>
+    <NotesDefinition>
+      <Item size="1-999" key="var" value="0" type="security" />
+    </NotesDefinition>
+  </GrgRecycler>
+  <SolicitedStatus>
+    <CmdReject>
+      <Item size="1" key="StatusValue" value="1" />
+      <Item size="2" key="StatusQualifier" value="01" />
+    </CmdReject>
+    <TerminalState>
+      <Item size="6" key="NDCReleaseNum" value="000000" />
+      <Item size="9" key="NDCSoftwareID" value="G531-0283" />
+      <Item size="2" key="ProductClass" value="0E" />
+      <Item size="1" key="TODClockStatus" value="0" />
+      <Item size="12" key="TerminalDateTime" value="130329033718" type="security" />
+      <Item size="var" key="LocalOptionDigits" value="" />
+      <Item size="var" key="BillTypeInfo" value="!01CNY50   !02CNY100  !03CNY50   !04CNY100  !05CNY50   !06CNY100  !07CNY5    !08CNY10   !09CNY20   !0ACNY50   !0BCNY100  " />
+      <Item size="var" key="TallyGroupNum" value="" />
+      <Item size="var" key="ErrLogGroupNum" value="" />
+      <Item size="var" key="ECB6Info" value="" />
+    </TerminalState>
+    <UploadEJData>
+      <Item size="6" key="LastCharPreviousBlock" value="000000" />
+      <!--  Last Char this Block. 
+		* Range 00000000 to 99999999 .  
+		-->
+      <Item size="6" key="LastCharBlock" value="000000" />
+      <!-- Block Length. Range 001 - 350. Default is 200. Set using the EJ options and timers command message. 
+		* Only the last data block sent to the host should  be less than this block length.
+		-->
+      <Item size="3" key="BlockLength" value="000" />
+      <!-- Response data. Range 001-350 as specified by Field 'i'. 
+		* Upload data consists ASCII text with a carriage return (CR) at the end of each line. 
+		* Lines are a maximum of 40 characters. .
+		-->
+      <Item size="var" key="ResponseData" value="" />
+    </UploadEJData>
+    <EncryptorInitData>
+      <!--    When information identifier = '1' : 
+		*        characters 8 bytes:  			EPP Serial Number
+		*        characters 320 bytes: 		EPP Serial Number Signature, created using the RSA NCR key, and base 94 encoded. For further details
+		*        													of EPP authentication and base 94 encoding. 
+		-->
+      <Item size="8" key="EPPSerialNumber" value="0" type="security" />
+      <Item size="320" key="EPPSerialNumberSignature" value="0" type="security" />
+      <!--   When information identifier = '2':
+        *        characters 320 bytes:        EPP Public key, base 94 encoded. The exponent of the EPP Public Key is always 65537, and is therfore not  sent to Central. 
+		*        characters 320 bytes:        EPP Public key Signature, created using the RSA NCR key, and base 94 encoded. For further details of EPP
+        *                                                          authentication and base 94 encoding.
+		-->
+      <Item size="320" key="EPPPublicKey" value="" type="security" />
+      <Item size="320" key="EPPPublicKeySignature" value="" type="security" />
+      <!--   * When information identifier = '3':
+        *        characters 6 or 72 bytes:   New Key Verification Value (KVV)
+        *                                                          authentication and base 94 encoding.
+		
+		-->
+      <Item size="6or72" key="NewKVV" value="A1347012" MaxLen="6" type="security" />
+      <!--  	* When information identifier = '4':  (Key Status, containing KVVs as follows:)
+        *        characters 6 bytes:        Master Key KVV
+		*        characters 6 bytes:   	  Communication Key KVV
+        *        characters 6 bytes:   	  MAC Key KVV
+        *        characters 6 bytes:   	  B Key KVV
+        *        if a key has not been loaded, its KVV will be six zeroes.
+		-->
+      <Item size="6" key="MasterKeyKVV" value="000000" MaxLen="6" />
+      <Item size="6" key="CommunicationKeyKVV" value="000000" MaxLen="6" type="security" />
+      <Item size="6" key="MACKeyKVV" value="000000" MaxLen="6" type="security" />
+      <Item size="6" key="BKeyKVV" value="000000" MaxLen="6" type="security" />
+      <Item size="6" key="TR31KeyKVV" value="000000" MaxLen="6" type="security" />
+      <!-- 	* When information identifier = '6':  (Key Entry Mode, a single character in the range '1' to '4' as follows:)
+        *        '1'  - Single length without XOR 
+		*        '2'  - Single length with XOR
+        *        '3'  - Double length with XOR 
+        *        '4'  - Double length, restricted.
+		-->
+      <Item size="1" key="KeyEntryMode" value="4" />
+      <!-- When information identifier = '7'
+        *       characters 3 bytes:   	- Binary data length
+        *        'var'  - RSA KVV base 94 encoded
+		-->
+      <Item key="BinaryDataLength" size="3" value="000" />
+      <Item key="RSAKVV" size="var" value="" type="security" />
+      <Item size="var" key="SSTCertificate" value="0" />
+      <!--* When information identifier = 9'
+		        *        'var'  - ATM random number. ASCII hexadecimal encoded. 
+		*                    This message is not required in the basic remote key protocol and, if 
+        *                     received, a Specific Command Reject is returned.
+		-->
+      <Item size="var" key="ATMRandomNumber" value="0" />
+      <!--	* When information identifier = 'B'
+        *        	characters 2 bytes:   -  Remote Key Protocol, two characters in the range '00' to '06' as follows: 
+		*                    '00'  - None
+        *                     '01' - Basic Signature
+		*                     '02' - Basic Certificate.
+        *                     '03' - Basic Signature and certificate
+		*                     '04' - Enhanced signature
+		*                     '06' - Enhanced signature and certificate
+		*        	characters 2 bytes: Certificate state
+		*                      '00' - Not ready or not supported.
+		*                      '01' - Certificate primary
+		*                      '02' - Certificate secondary
+		-->
+      <Item size="2" key="RemoteKeyProtocol" value="00" />
+      <Item size="2" key="CertificateState" value="00" />
+      <Item size="var" key="HOSTCertificateLoadedFlag" value="0" />
+      <Item size="var" key="HOSTCertificate" value="00" />
+      <Item size="var" key="AuthenticationToken" value="00" />
+      <Item size="var" key="ExtendedKeyStatus" value="00" />
+    </EncryptorInitData>
+    <!--Start:Added by Bxue-->
+    <WnRKLInformation>
+      <EPPCapabilities>
+        <Item size="1" key="Status" value="" />
+        <Item size="2" key="Vendor" value="" />
+      </EPPCapabilities>
+      <EPPIDAndSignature>
+        <Item size="8or16" key="EPPID" value="" type="security" />
+        <Item size="var" key="EPPIDSignature" value="" type="security" />
+      </EPPIDAndSignature>
+      <EPPPublickeyAndSignature>
+        <Item size="var" key="EPPPK" value="" type="security" />
+        <Item size="var" key="EPPPKSignature" value="" type="security" />
+      </EPPPublickeyAndSignature>
+      <ReadyForWnRKL>
+        <Item size="var" key="KVVKeyLoaded" value="" />
+      </ReadyForWnRKL>
+    </WnRKLInformation>
+    <!--End-->
+  </SolicitedStatus>
+  <Msg>
+    <Transaction>
+      <Item size="1" key="TopOfRcptTransFlag" value="1" />
+      <Item size="1" key="MCON" value="0" />
+      <Item size="8" key="OpCode" value="" />
+      <Item size="8or12" key="AmoutEntryField" value="XDC_BUFFER_AMOUNT" />
+      <Item size="16" key="CSP_1" value="" type="security" />
+      <Item size="16" key="CSP_2" value="" type="security" />
+      <Item size="4" key="CAMFlags" value="0004" />
+      <Item size="var" key="Emv_ICCDataObjects" value="111" type="security" />
+      <Item size="var" key="Emv_FurtherICCDataObjects" value="2222" />
+      <Item size="var" key="WincroExtersionEMVData" value="" />
+      <CashHandler>
+        <!--GoodDispense;ShortDispense;NoNotesDispensed;DispensedUnknown;NoNoesDispensedOrCardEjected;SomeNotesRetracted-->
+        <Item size="v" key="Status" value="None" type="" />
+        <Item size="1" key="Dispensed1" value="00" type="" />
+        <Item size="1" key="Dispensed2" value="00" type="" />
+        <Item size="1" key="Dispensed3" value="00" type="" />
+        <Item size="1" key="Dispensed4" value="00" type="" />
+        <Item size="1" key="Dispensed5" value="00" type="" />
+        <Item size="1" key="Dispensed6" value="00" type="" />
+        <Item size="1" key="Dispensed7" value="00" type="" />
+      </CashHandler>
+    </Transaction>
+  </Msg>
+  <LastTrans>
+    <Item size="4" key="LastTransSerialNum" value="0000" />
+    <Item size="1" key="LastStatusIssued" value="0" />
+    <!--  Last Transaction Notes Dispensed Consists of 4 five-digits decimal counts of the total number of notes dispensed on the last transaction processed by the terminal  
+		 *  The count includes cards captured up to and including the trasnaction defined 'g2'
+		-->
+    <!--‘0’ - last transaction was not a BNA cash deposit
+		‘1’ - vault direction
+		‘2’ - refund direction.
+		-->
+    <Item size="20" key="LastTransNotesDispensed" value="00000000000000000000" />
+    <!--
+Last Transaction Coinage Amount Dispensed ‐ 5 bytes (always 00000)
+Last Transaction Coins Dispensed Data ‐ 20 bytes
+Last Transaction Cash Deposit Data ‐ 21 or Var bytes
+-->
+    <Item size="5" key="LastCoinageAmountDispensed" value="00000" />
+    <Item size="20" key="LastCoinsDispensedData" value="00000000000000000000" />
+    <Item size="1" key="LastCashDepositTransactionDirection" value="0" />
+    <!--Number of Notes Refunded during last transaction ‐ 5 bytes
+		Number of Notes Rejected during last transaction ‐ 5 bytes
+		Number of Notes Encashed during last transaction ‐ 5 bytes
+		Number of Notes to Escrow during last transaction ‐ 5 bytes
+		-->
+    <Item size="20" key="LastCashDepositNumberOfNotes" value="00000000000000000000" />
+    <Item size="2" key="NumberOfRecycleCassettesReported" value="00" />
+    <Item size="var" key="RecycleCassettesReported" value="00000" />
+  </LastTrans>
+  <Item size="1" key="FS" value="" type="security" />
+  <Item size="1" key="GS" value="" type="security" />
+  <Item size="3or9" key="LUNO" value="000" />
+  <Item size="6" key="MachineNumber" value="000000" />
+  <Item size="8" key="TVN" value="" />
+  <Item size="4" key="ConfigurationID" value="0000" />
+  <Item size="8" key="MAC" value="[MACTAG]" type="security" />
+  <SendCondition>
+    <Current>
+      <Item size="1" key="ErrFunctionID" value="0" type="" />
+      <Item size="0-255" key="ReceiveMsgID" value="TerminalCommand.InService" type="" />
+      <Item size="0-999" key="SendMsgID" value="UnsolicitedStatus.SmartCard" type="" />
+      <Item size="0-255" key="SendMsgIDInTran" value="" type="" />
+      <Item size="0-999" key="EventID" value="10000" type="" />
+    </Current>
+    <DeviceStatusChange>
+      <Item size="1" key="CardReader" value="0" />
+      <Item size="1" key="ReceiptPrinter" value="0" />
+      <Item size="1" key="JournalPrinter" value="0" />
+      <Item size="1" key="Encryptor" value="0" />
+      <Item size="1" key="CashHandler" value="0" />
+      <Item size="1" key="CashAcceptor" value="0" />
+      <Item size="1" key="EnvelopeDispenser" value="0" />
+      <Item size="1" key="EnvelopeDepository" value="0" />
+      <Item size="1" key="BarCodeReader" value="0" />
+      <Sensors>
+        <Item size="1" key="ModeChange" value="0" />
+        <Item size="1" key="SensorChange" value="1" />
+      </Sensors>
+    </DeviceStatusChange>
+    <DeviceEventOccur>
+      <Item size="1" key="CashHandler" value="0" />
+      <Sensors>
+        <Item size="1" key="ModeChange" default="0" />
+      </Sensors>
+    </DeviceEventOccur>
+  </SendCondition>
+  <TranReplyMsg>
+    <Item size="var" key="ID" value="Solicited.Status.TransReplyReady" />
+  </TranReplyMsg>
+  <Capability>
+    <Encryptor>
+      <Item size="1" key="RKL" value="0" />
+    </Encryptor>
+  </Capability>
+</Root>

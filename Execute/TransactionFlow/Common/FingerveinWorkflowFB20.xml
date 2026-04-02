@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<Workflow name="FingerveinWorkFlowFB20">
+  <Head type="GRGWorkflow" author="Alson" timeStamp="" comment="" />
+  <DataPool />
+  <Activities>
+    <Start ID="0" UI="" comment="Start">
+      <Forward event="OnConfirm" targetID="ID_FingerveinSelectFunction" />
+    </Start>
+
+		<SelectFunction ID="ID_FingerveinSelectFunction" UI="UI_FingerveinSelectMenu" digitalVoiceKey="action_033" comment="cannot print receipt">
+			<Forward event="OnMatch" targetID="ID_FingerToMatch"/>
+			<Forward event="OnRegister" targetID="ID_FingerToRegister"/>
+			<Forward event="OnDelete" targetID="ID_FingerToDelete"/>
+			<Forward event="OnDeleteAll" targetID="ID_FingerToDeleteAll"/>
+		</SelectFunction>
+		
+		<InvokeWorkflow ID="ID_FingerToMatch" name="FingerveinMatchForFB20" comment="FingerveinMatch workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_FingerToRegister" name="FingerveinRegisterForFB20" comment="FingerveinRegister workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_FingerToDelete" name="FingerveinDeleteForFB20" comment="FingerveinDelete workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+		<InvokeWorkflow ID="ID_FingerToDeleteAll" name="FingerveinDeleteAllForFB20" comment="FingerveinDeleteAll workflow">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InvokeWorkflow>
+		
+    <End ID="9999" UI="" comment="End" />
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" UI="" comment="Invoke close trans workflow" name="CloseTrans">
+      <Forward event="OnConfirm" targetID="9999" />
+    </InvokeWorkflow>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnHardwareError" targetID="ID_DevError" />
+    <Forward event="OnFail" targetID="ID_EventError" />
+    <Forward event="OnTimeout" targetID="ID_GoTimeOut" />
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+  </DefaultForward>
+</Workflow>

@@ -1,0 +1,758 @@
+.f1Div {
+	position:absolute;
+	cursor:hand;
+	left:40px;
+	top:300px;
+}
+.f2Div {
+	position:absolute;
+	cursor:hand;
+	left:190px;
+	top:300px;
+}
+.f3Div {
+	position:absolute;
+	cursor:hand;
+	left:340px;
+	top:300px;
+}
+.f4Div {
+	position:absolute;
+	cursor:hand;
+	left:490px;
+	top:300px;
+}
+.f5Div {
+	position:absolute;
+	cursor:hand;
+	left:40px;
+	top:440px;
+}
+.f6Div {
+	position:absolute;
+	cursor:hand;
+	left:190px;
+	top:440px;
+}
+.f7Div {
+	position:absolute;
+	cursor:hand;
+	left:340px;
+	top:440px;
+}
+.f8Div {
+	position:absolute;
+	cursor:hand;
+	left:490px;
+	top:440px;
+}
+.f9Div {
+	position:absolute;
+	cursor:hand;
+	left:640px;
+	top:300px;
+}
+.f10Div {
+	position:absolute;
+	cursor:hand;
+	left:640px;
+	top:440px;
+}
+.f6LanDiv {
+	position:absolute;
+	cursor:hand;
+	left:210px;
+	top:300px;
+}
+.f7LanDiv {
+	position:absolute;
+	cursor:hand;
+	left:350px;
+	top:300px;
+}
+.f8LanDiv {
+	position:absolute;
+	cursor:hand;
+	left:490px;
+	top:300px;
+}
+.NoCardButtonDiv {
+	position:absolute;
+	cursor:hand;
+	left:0px;
+	top:0px;
+}
+.f1AccDiv {
+	position:absolute;
+	cursor:hand;
+	left:75px;
+	top:228px;
+}
+.f2AccDiv {
+	position:absolute;
+	cursor:hand;
+	right:75px;
+	top:228px;
+}
+.f3AccDiv {
+	position:absolute;
+	cursor:hand;
+	left:75px;
+	top:308px;
+}
+.f4AccDiv {
+	position:absolute;
+	cursor:hand;
+	right:75px;
+	top:308px;
+}
+.f5AccDiv {
+	position:absolute;
+	cursor:hand;
+	left:75px;
+	top:388px;
+}
+.f6AccDiv {
+	position:absolute;
+	cursor:hand;
+	right:75px;
+	top:388px;
+}
+.f7AccDiv {
+	position:absolute;
+	cursor:hand;
+	left:75px;
+	top:468px;
+}
+.f8AccDiv {
+	position:absolute;
+	cursor:hand;
+	right:75px;
+	top:468px;
+}
+
+@charset   "utf-8"; 
+
+#IdleInstructionText
+{
+position:absolute;
+	left: 180px;
+	top: 100px;
+  font-family:Arial;
+  color:BLACK;
+  font-size:36px;
+}
+
+#IdleInstructionTextDeposit
+{
+position:absolute;
+	left: 100px;
+	top: 100px;
+  font-family:Arial;
+  color:BLACK;
+  font-size:36px;
+}
+
+
+
+#InstrPic_Short
+{
+position:absolute;
+	left: 280px;
+	top: 250px;
+  font-family:Arial;
+  color:BLACK;
+}
+
+#InstrPic_Long
+{
+position:absolute;
+	left: 220px;
+	top: 250px;
+  font-family:Arial;
+  color:BLACK;
+}
+
+#InstrPic_Long_M
+{
+position:absolute;
+	left: 320px;
+	top: 200px;
+  font-family:Arial;
+  color:BLACK;
+}
+
+#InstrPic_Long_Notes_out
+{
+position:absolute;
+	left: 295px;
+	top: 200px;
+  font-family:Arial;
+  color:BLACK;
+}
+
+#InstrPic_Long_L
+{
+position:absolute;
+	left: 20px;
+	top: 270px;
+  font-family:Arial;
+  color:BLACK;
+}
+
+#InstrPic_Long_R
+{
+position:absolute;
+	left: 320px;
+	top: 200px;
+  font-family:Arial;
+  color:BLACK;
+}
+
+
+.FDK_I{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyL.png) no-repeat center top;
+border:0 solid #6699FF;
+font-family:"Arial";
+COLOR: #FFF; 
+FONT-SIZE: 22px;
+HEIGHT:94px;
+width:400px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+.Down_FDK_I{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyL-D.png) no-repeat center top;
+border:0 solid #6699FF;
+font-family:"Arial";
+COLOR: #FFF; 
+FONT-SIZE: 22px;
+HEIGHT:59px;
+width:243px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+
+.FDK_A{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyR.png) no-repeat left top;
+border:0 solid #6699FF;
+font-family:"Arial Rounded MT Bold";
+COLOR: #FFF; 
+FONT-SIZE: 22px;
+HEIGHT:94px;
+width:400px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+.Down_FDK_A{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyR.png) no-repeat left top;
+border:0 solid #6699FF;
+font-family:"Arial Rounded MT Bold";
+COLOR: #FFF; 
+FONT-SIZE: 22px;
+HEIGHT:90px;
+width:400px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+
+.FDK_H{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyL.png) no-repeat left top;
+border:0 solid #6699FF;
+font-family:"Arial Rounded MT Bold";
+COLOR: #FFF; 
+FONT-SIZE: 28px;
+HEIGHT:94px;
+width:400px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+.Down_FDK_H{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyR.png) no-repeat left top;
+border:0 solid #6699FF;
+font-family:"Arial Rounded MT Bold";
+COLOR: #FFF; 
+FONT-SIZE: 28px;
+HEIGHT:90px;
+width:400px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+
+.FDK_B{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyR.png) no-repeat center top;
+border:0 solid #6699FF;
+font-family:"Arial Rounded MT Bold";
+COLOR: #FFF; 
+FONT-SIZE: 28px;
+HEIGHT:94px;
+width:400px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+.Down_FDK_B{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyR.png) no-repeat center top;
+border:0 solid #6699FF;
+font-family:"Arial Rounded MT Bold";
+COLOR: #FFF; 
+FONT-SIZE: 28px;
+HEIGHT:90px;
+width:400px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+
+.FDK_G{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyL.png) no-repeat center top;
+border:0 solid #6699FF;
+font-family:"Arial Rounded MT Bold";
+COLOR: #FFF; 
+FONT-SIZE: 28px;
+HEIGHT:94px;
+width:400px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+.Down_FDK_G{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyL.png) no-repeat center top;
+border:0 solid #6699FF;
+font-family:"Arial Rounded MT Bold";
+COLOR: #FFF; 
+FONT-SIZE: 28px;
+HEIGHT:90px;
+width:400px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+
+.FDK_C{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyR.png) no-repeat center top;
+border:0 solid #6699FF;
+font-family:"Arial Rounded MT Bold";
+COLOR: #FFF; 
+FONT-SIZE: 28px;
+HEIGHT:94px;
+width:400px;
+LINE-HEIGHT: normal;
+
+}
+.Down_FDK_C{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyR.png) no-repeat center top;
+border:0 solid #6699FF;
+font-family:"Arial Rounded MT Bold";
+COLOR: #FFF; 
+FONT-SIZE: 28px;
+HEIGHT:90px;
+width:400px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+
+.FDK_F{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyL.png) no-repeat center top;
+border:0 solid #6699FF;
+font-family:"Arial Rounded MT Bold";
+COLOR: #FFF; 
+FONT-SIZE: 28px;
+HEIGHT:94px;
+width:400px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+.Down_FDK_F{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyL.png) no-repeat center top;
+border:0 solid #6699FF;
+font-family:"Arial Rounded MT Bold";
+COLOR: #FFF; 
+FONT-SIZE: 28px;
+HEIGHT:90px;
+width:400px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+
+.FDK_D{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyR.png) no-repeat center top;
+border:0 solid #6699FF;
+font-family:"Arial Rounded MT Bold";
+COLOR: #FFF; 
+FONT-SIZE: 28px;
+HEIGHT:94px;
+width:400px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+.Down_FDK_D{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyR-D.png) no-repeat center top;
+border:0 solid #6699FF;
+font-family:"Arial ROunded MT Bold";
+COLOR: #FFF; 
+FONT-SIZE: 28px;
+HEIGHT:90px;
+width:400px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+
+
+.FDK_X{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyR.png) no-repeat center top;
+border:0 solid #6699FF;
+font-family:"Arial Rounded MT Bold";
+COLOR: #FFF; 
+FONT-SIZE: 28px;
+HEIGHT:94px;
+width:400px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+.Down_FDK_X{/*<------��ť����1----------*/
+background:url(../../Image/default/screenkeyR-D.png) no-repeat center top;
+border:0 solid #6699FF;
+font-family:"Arial Rounded MT Bold";
+COLOR: #FFF; 
+FONT-SIZE: 280px;
+HEIGHT:90px;
+width:400px;
+LINE-HEIGHT: normal; 
+a1:hover
+}
+
+#D_FDK_A {
+	position:absolute;
+	width:400px;
+	height:94px;
+	z-index:-1;
+	left: 400px;
+	top: 224px;
+}
+
+#D_FDK_B {
+	position:absolute;
+	width:400px;
+	height:94px;
+	z-index:-1;
+	left: 400px;
+	top: 318px;
+}
+
+#D_FDK_C {
+	position:absolute;
+	width:400px;
+	height:94px;
+	z-index:-1;
+	left: 400px;
+	top: 412px;
+}
+
+#D_FDK_D {
+	position:absolute;
+	width:400px;
+	height:94px;
+	z-index:-1;
+	left: 400px;
+	top: 506px;
+}
+
+#D_FDK_I {
+	position:absolute;
+	width:400px;
+	height:94px;
+	z-index:-1;
+	left: 0px;
+	top: 224px;
+}
+
+#D_FDK_H {
+	position:absolute;
+	width:400px;
+	height:94px;
+	z-index:-1;
+	left: 0px;
+	top: 318px;
+}
+
+#D_FDK_G {
+	position:absolute;
+	width:400px;
+	height:94px;
+	z-index:-1;
+	left: 0px;
+	top: 412px;
+}
+
+#D_FDK_F {
+	position:absolute;
+	width:400px;
+	height:94px;
+	z-index:-1;
+	left: 0px;
+	top: 506px;
+}
+/*new*/
+	.vip .b_btn{
+	border-radius: 50% 50% 4px 4px;
+	bottom: 6px;
+  }
+  .vip .b_btn.active{ padding:4rem 0.2rem 1.5rem 0.2rem;;box-shadow:inset 0 0 3px rgba(28, 47, 66, 0.6);bottom: 0;}
+  .b_btn{
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	width: 23rem;
+	background-color: rgba(255, 255, 255, 0.4);
+	font-size: 2rem;
+	padding: 1.6rem 0.2rem 1rem 3.7rem;
+	text-align: center;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(27, 29, 30, 0.7);
+	transition: all 0.3s cubic-bezier(.48,.45,.07,1.59);
+	background-repeat: no-repeat;
+	background-position: 0.8rem center;
+	background-size: 3rem 3rem;
+	}
+  
+	.b_btn.center{
+	  width: 27rem;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  background-color: rgba(14, 92, 95, 0.8);
+	  border-radius:  10px 10px 0 0;
+	}
+	.b_btn.center.active{
+	  box-shadow: 0 0 0px rgba(36, 71, 88, 0.7),inset 0 0 4px rgba(0, 0, 0, 0.8);
+	  margin-bottom: -0.2rem;
+	}
+	.b_btn.left{
+	left: 0%;
+	background-color: rgba(14, 92, 95, 0.8);
+	border-radius:  0 10px 0 0;
+	padding: 1.6rem 3rem 1.6rem 0.2rem;
+	background-position: 21rem center;
+	}
+	.b_btn.left.active{
+	  box-shadow: 0 0 0px rgba(36, 71, 88, 0.7),inset -4px 4px 4px rgba(0, 0, 0, 0.5);
+	  padding-left: 0.6rem;
+	  padding-top: 1.3rem;
+	}
+	.b_btn.right{
+	right: 0%;
+	background-color:rgba(160, 48, 70, 0.8);
+	border-radius: 10px 0 0 0;
+	}
+	.b_btn.right.active{
+	  box-shadow: 0 0 0px rgba(36, 71, 88, 0.7), inset 4px 4px 4px rgba(0, 0, 0, 0.2);
+	  padding-right: 0.8rem;
+	  padding-top: 1.4rem;
+	}
+	.b_btn.phone{
+	background-image: url(../../Image/default/phone2.png) ;
+	background-color: rgba(172, 72, 70, 0.6);
+	}
+	.b_btn.selection{
+	  background-color: rgba(26, 111, 114, 0.8);
+	  background-image: url(../../Image/default/selection.png) ;
+	}
+	.b_btn.card{
+	  background-image:url(../../Image/default/card2.png) ;
+	}
+	.b_btn.cardl{
+	  background-image:url(../../Image/default/cardl.png) ;
+	}
+  
+  .b_btn.confirm{
+	  background-image: url(../../Image/default/confirm2.png) ;
+  }
+  .b_btn.back{
+	  background-image:url(../../Image/default/cancel2.png) ;
+	}
+  .b_btn.goback{
+	background-color: rgba(74, 80, 109, 0.8);
+	background-image:url(../../Image/default/goback.png);
+	}
+  .b_hint{
+	position: absolute;
+	bottom: 2rem;
+	right: 0;
+	font-size: 2.4rem;
+	text-align: center;
+	padding: 1rem;
+	color: #a03047;
+	background-color: rgba(255, 255, 255, 0.4);
+	border-radius: 2px;
+	box-shadow: 1px 1px 0 0 hsla(0,0%,100%,.3) inset, 0 0 2px rgba(115, 112, 112, 0.4)
+  }
+  #btn_container {
+	  position: absolute;
+	  bottom: 13rem;
+	  text-align: center;
+	  z-index: 800;
+	  width: 100%;
+	  font-size: 0
+  }
+  
+  
+  #btn_container.widen li{
+	  width: 18.4rem;
+	  line-height: 3rem;
+	  padding-top: 4.6rem;
+	height:4.6rem;
+	background-size: 3.2rem;
+	  background-position: center 0.6rem ;
+  }
+  #btn_container.widen1 li{
+	overflow: hidden;
+	height: 6.6rem;
+	line-height:2.1rem;
+	padding-top: 4.6rem;
+	background-size: 3.2rem;
+	background-position: center 0.6rem;
+  }
+  #btn_container li.show{
+	display: inline-block;
+  }
+  .vip #btn_container li{
+		height: 4.5rem;
+    width: 16rem;
+    position: relative;
+    border-radius: 2px;
+    box-shadow: none;
+    background-color: rgba(12, 10, 4, 0.27);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.6);
+    border-bottom: 4rem solid rgba(0, 0, 0, 0.0);
+    line-height: 13rem;
+    margin: 0.5rem;
+    color: rgba(255, 255, 255, 0.68);
+    background-position: center;
+    background-size: 2.6rem;
+  }
+  .vip #btn_container li.active,  .vip #btn_container.operate li.active{
+	 box-shadow:  0 0 1px rgba(255, 255, 255, 0.9);
+	  padding-right: 0;
+	  padding-left:0;
+	  background-color: rgba(12, 10, 4, 0.5);
+	  margin: 0 1.5rem;
+	  color: rgba(255, 255, 255, 0.9);
+}
+.vip #btn_container li.active::before{
+	transform: rotate(0);
+	
+}
+  #btn_container li{   
+		width: 16.4rem;
+		height: 8.2rem;
+			list-style: none;
+			text-align: center;
+			margin: 0 1rem;
+			line-height: 12.5rem;
+			font-size: 2rem;
+			background-repeat: no-repeat;
+			background-position: center 1rem;
+			background-size: 3.2rem;
+			box-shadow: 0 0 17px rgba(101, 98, 98, 0.7);
+			display: inline-block;
+			transition: all 0.3s cubic-bezier(.48,.45,.07,1.59);
+			box-shadow: 0.4rem 0.4rem 0 rgba(4, 22, 40, 0.3);
+  }
+  #btn_container .exit{background-image: url(../../Image/default/exit2.png) ;color:#fff;background-color:rgba(220, 72, 102, 0.8);}
+  #btn_container .yes{background-image:url(../../Image/default/yes2.png) ;color: #fff;background-color: rgba(27, 130, 134, 0.8) }
+  #btn_container .back{background-color: rgba(103, 154, 192, 0.8); background-image:url(../../Image/default/goback.png);}
+	#btn_container li.active{
+		box-shadow: 0.4rem 0.4rem 0 rgba(56, 124, 251, 0.5);
+    padding-right: 0.1rem;
+    padding-left: 0.1rem;
+	}
+  #btn_container .exit.active{background-color:#dc4866; }
+  #btn_container .yes.active{background-color:#1b8286;}
+  #btn_container.menu{
+	bottom: 16rem;
+  }
+  #btn_container.menu li{
+	width: 12rem;
+	padding-top: 12rem;
+	line-height: 3rem;
+	height:0rem;
+	background-size: 8rem;
+	background-position: center;
+	transform: skewX(0);
+	border-radius: 0;
+	color: rgba(255, 255, 255, 0.8);;
+	box-shadow:0 0 16px rgb(40, 57, 100);
+	font-size: 1.4rem;
+  }
+  .vip #btn_container.menu li{
+	margin: 0 1rem;
+	width: 12rem;
+	padding-top: 0;
+	height: 12rem;
+	background-position: center 2rem;
+	background-size:7rem;
+	border: 1px solid #e89900;
+   border-radius: 0.3rem; 
+   box-shadow:  -1rem 1rem 0.5rem rgba(56, 17, 56, 0.3);
+   line-height: 21rem;
+  }
+  #btn_container.menu li.active{
+	box-shadow: 0 0 4px rgba(236, 231, 231, 0.651),0 0 16px rgb(255, 255, 255);
+	transform: translateY(-4px);
+	color:#fff;
+	}
+	#btn_container.menu li.l{
+		width: 18rem;
+	}
+	#btn_container.menu li.m{
+		width: 14rem;
+	}
+	#btn_container.menu.d{
+		bottom: 8rem;
+	}
+  #btn_container.menu .account{
+	background-image: url(../../Image/default/account.png) ;
+  }
+  #btn_container.menu .money{background-image: url(../../Image/default/money2.png);}
+	#btn_container.menu .cheque{background-image: url(../../Image/default/cheque.png);}
+	#btn_container.menu .pin{background-image: url(../../Image/default/pin.png);}
+	#btn_container.menu .face{background-image: url(../../Image/default/face.png);}
+	#btn_container.menu .fingervein{background-image: url(../../Image/default/fingervein.png);}
+  #btn_container.menu li:nth-child(1) {
+	background-color: #4dcfff;
+  }
+  
+  #btn_container.menu li:nth-child(2) {
+	background-color: #966cfe;
+  }
+  
+  #btn_container.menu li:nth-child(3) {
+	background-color: #ffd17c;
+  }
+  
+  #btn_container.menu li:nth-child(4) {
+	background-color: #59f4ee;;
+  }
+  #btn_container.menu li:nth-child(5) {
+	background-color: #ff4a9b;
+  }
+  #btn_container.operate{
+	bottom: 2rem;
+  }
+  #btn_container.operate li{
+		width: 14rem;
+    height: 7rem;
+    margin: 0 0.5rem;
+    line-height: 11rem;
+    font-size: 1.4rem;
+    background-position: center 0.8rem;
+  }
+  .vip #btn_container.operate li{
+		height: 5rem;
+    width: 14rem;
+    position: relative;
+    box-shadow: none;
+    background-color: rgba(12, 10, 4, 0.27);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    border-bottom: 3rem solid rgba(12, 10, 4, 0);
+    line-height: 13.4rem;
+    margin: 0.3rem;
+    background-position: center 1.5rem;
+    background-size: 2.6rem;
+  }

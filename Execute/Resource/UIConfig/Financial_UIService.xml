@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+    <Screen name="UI_RemoteTellerTest" uri="Financial\InputTransferAccount.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_ChooseCardLoan" uri="Financial\ChooseCard.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_ShowProcessLoan" uri="Financial\TransactPrompt.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_ReadAgumentLoan" uri="Financial\LoanProtol.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_ChooseCarType" uri="Financial\ChooseCar.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_ChooseConfigure" uri="Financial\CarModel.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_LoanInfo" uri="Financial\LoanDetail.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_LoanDetail" uri="Financial\LoanInfo.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_IdInfo" uri="Financial\IDValidate.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_FillInfor" uri="Financial\InputUserInfo.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_Signex" uri="Financial\SureSign.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_RemindScanDocument" uri="Financial\ScanReminder.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_ScanDocument" uri="Financial\CertificatePhoto.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_LoanSystemVerify" uri="Financial\SystemVerify.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_SubmitSucess" uri="Financial\SubmitSuccess.xaml" cache="0">
+    </Screen>
+    <Screen name="UI_RequesSelect" uri="Financial\RequestSelect.xaml" cache="0">
+    </Screen>
+</Screens>
+

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+		<!--  EKC Retrieve Hallmark Key (Unsupported).
+		*  This message is not supported in Adavance NDC 2.06 or later.
+		* 	This solicited status message is sent to central in response to an EKC Retrieve Hallmark Key Terminal Command message (a command code of '='). 
+		-->
+	<EKCRetrieveHallmarkKey>
+
+		<Item key="g1" 						value="F"  																	size="1" 							restriction="Mandatory"/>
+		
+		<!--  EKC status. Contains the EKC status and has the following values.
+		* '0'  - The EKC is operating normally. 
+		* '1'	- The EKC has reported a routine error.
+		* '2'  - The EKC has reported a warning condition.
+		* '3' -  The EKC has reported a suspend condition.
+		* '4' -  The EKC has reported a fatal error. 
+		* '5' -  The EKC has not been initialize and does not contain a Hallmark key.
+		* '6' -  The EKC cannot perform DEA2 block encryption.
+        *         If an error is reported, the remaining fields are set to '0'
+		-->
+		<Item key="g2" 						value="[EKCStatus]"													size="1"							restriction="Mandatory"/>
+		
+		<!-- Authentication Block Length. This field defines the length of the block sent to Central. The length is comprised of 2 bytes, which are expanded to 4 hex ASCII values. 
+		* These allow the length of the block to be transmitted as ASCII characters. The length value 00A1 is transmitted as 30 hex, 30 hex, 41 hex, 31 hex..
+		-->
+		<Item key="g3" 						value="[AuthenBlockLen]"											size="4"						restriction="Mandatory"/>
+		
+		<!--  Authentication Block Data. This field contains the block data generated from the encryptor. This data includes an encrypted version of the Hallmark key. generated when the EKC was initialised.
+		* The block is build up as follows.
+        * 1. A MC is performed over the public key block.
+		* 2. A message containing the Hallmark key, the above MAC adn the serial number is built.
+        * 3. The message is encrypted using the Hallmark key. It is formatted so that the most significant bit is non-zero. and it is padded with zeros.
+		* Each byte of the data generated (up to 72 maximum) is expanded to 2 hex ASCII values. FF hex is represented by 46 bex. 46 hex in the transmitted message.
+		 -->
+		<Item key="g4" 						value="[AuthenBlockData]"										size="144"					restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]"/>
+		<!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+		<Item key="h" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]"/>
+		
+	</EKCRetrieveHallmarkKey>
+	
+</Root>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!--  Sensors
+		*  This  is no supprted in Advance NDC. 
+	-->
+  <Sensors>
+    <Item key="e2_1" value="{0}" size="1" restriction="Mandatory" />
+    <Item key="e2_2" value="[Device.Sensors.Supervisor]" size="var" restriction="Mandatory" />
+    <Item key="e2_3" value="[Device.Sensors.Vibration]" size="var" restriction="Mandatory" />
+    <Item key="e2_4" value="[Device.Sensors.DoorContact]" size="var" restriction="Mandatory" />
+    <Item key="e2_5" value="[Device.Sensors.SilentSignal]" size="var" restriction="Mandatory" />
+    <Item key="e2_6" value="[Device.Sensors.ElectronicsEnclosure]" size="var" restriction="Mandatory" />
+    <Item key="e2_7" value="[Device.Sensors.DepositBin]" size="var" restriction="Mandatory" />
+    <Item key="e2_8" value="[Device.Sensors.CardBin]" size="var" restriction="Mandatory" />
+    <Item key="e2_9" value="[Device.Sensors.CurrencyRejectBin]" size="var" restriction="Mandatory" />
+    <Item key="e2_10" value="[Device.Sensors.CurrencyCassetteInPosition1]" size="var" restriction="Mandatory" />
+    <Item key="e2_11" value="[Device.Sensors.CurrencyCassetteInPosition2]" size="var" restriction="Mandatory" />
+    <Item key="e2_12" value="[Device.Sensors.CurrencyCassetteInPosition3]" size="var" restriction="Mandatory" />
+    <Item key="e2_13" value="[Device.Sensors.CurrencyCassetteInPosition4]" size="var" restriction="Mandatory" />
+    <Item key="e2_14" value="[Device.Sensors.CoinDispenser]" size="var" restriction="[OptionCtrl.Configuration.CoinDispenser]" />
+    <Item key="e2_15" value="[Device.Sensors.CoinDispenserHopper1]" size="var" restriction="[OptionCtrl.Configuration.CoinDispenser]" />
+    <Item key="e2_16" value="[Device.Sensors.CoinDispenserHopper2]" size="var" restriction="[OptionCtrl.Configuration.CoinDispenser]" />
+    <Item key="e2_17" value="[Device.Sensors.CoinDispenserHopper3]" size="var" restriction="[OptionCtrl.Configuration.CoinDispenser]" />
+    <Item key="e2_18" value="[Device.Sensors.CoinDispenserHopper4]" size="var" restriction="[OptionCtrl.Configuration.CoinDispenser]" />
+  </Sensors>
+</Root>

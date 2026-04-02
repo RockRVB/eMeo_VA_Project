@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="ICDetail">
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for inquiry"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start">
+			<Forward event="OnConfirm" targetID="ID_ICReadTransLog"/>
+		</Start>
+		<ICReadTransLog ID="ID_ICReadTransLog" UI="UI_RequestTrans" comment="Inquiry request">
+			<States>
+				<State name="NoLog" UI="UI_ICPromptNoLog"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InquiryResult"/>
+			<Forward event="OnContinue" targetID="9999"/>
+		</ICReadTransLog>
+		<!--主机拒绝，显示拒绝码对应的提示信息，然后退卡-->
+		<Prompt ID="ID_HostRefuse" UI="UI_HostRefuse" timeout="5000" comment="show host refuse">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</Prompt>
+		<SelectFunction ID="ID_InquiryResult" UI="UI_ShowMinistatementIC" comment="Inquiry result">
+			<Forward event="OnContinue" targetID="9999"/>
+		</SelectFunction>
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		<End ID="9999" comment="End">
+		</End>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

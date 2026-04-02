@@ -1,0 +1,404 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="DebitCard4MCRD">
+	<Head type="GRGWorkflow" author="wjw" timeStamp="2013/08/16 19:15:12" comment="The workflow design is for open card"/>
+	<DataPool>
+	</DataPool>
+	<Activities>
+		<Start ID="0" comment="Start" callVisible="0" endflag="1">
+			<Forward event="OnConfirm" targetID="ID_GetDevStatusForRPTR"/>
+		</Start>
+
+		<!-- 检查凭条状态 -->
+		<GetDevStatus ID="ID_GetDevStatusForRPTR" comment="Get device status" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_GetDevStatus_CRD"/>
+			<Forward event="OnWarn" targetID="ID_GetDevStatus_CRD"/>
+			<Forward event="OnFail" targetID="ID_CheckRPTRStatus"/>
+		</GetDevStatus>
+
+		<VTMSelectFunction ID="ID_CheckRPTRStatus" UI="UI_CheckRPTRStatusResult" timeout="30000">
+			<Forward event="OnConfirm" targetID="ID_GetDevStatus_CRD"/>
+			<Forward event="OnNo" targetID="ID_InvokeCloseTransWorkflow"/>
+		</VTMSelectFunction>
+		
+		<!-- 查询发卡器状态及卡箱余额 -->
+		<GetDevStatusEx ID="ID_GetDevStatus_CRD" UI="UI_WaitingNoVoice" devType="CRD" homeVisible="0" comment="Get device status">
+			<States>
+				<State name="GetDevStatusExError" UI="UI_DevError"/>
+				<State name="CardUnitEmpty" UI="UI_CannotOpenCardPrompt"/>
+			</States>
+			<Forward event="OnNormal" targetID="ID_GetDevStatus_IDReader"/>
+			<Forward event="OnWarn" targetID="ID_GetDevStatus_IDReader"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</GetDevStatusEx>
+
+		<!-- 身份证设备状态 -->
+		<GetDevStatusEx ID="ID_GetDevStatus_IDReader" devType="IDReader" homeVisible="0" comment="Get device status">
+			<States>
+				<State name="GetDevStatusExError" UI="UI_DevError"></State>
+			</States>
+			<Forward event="OnNormal" targetID="ID_ScanIDCard"/>
+			<Forward event="OnWarn" targetID="ID_ScanIDCard"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</GetDevStatusEx>
+
+		<!-- 扫描身份证 -->
+		<ScanIDCard ID="ID_ScanIDCard" UI="UI_ScanIDCard" CallingMethodType="1" generateImg="1" homeVisible="1">
+			<States>
+				<State name="IDCardError" UI="UI_DevError"/>
+				<State name="OutDateError" UI="UI_IDCardOutDate"/>
+				<State name="TakeIDCard" UI="UI_MoveIDCard"/>
+				<State name="ReadingCard" UI="UI_IDReadingCard"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_SetIdentityData"/>
+			<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		</ScanIDCard>
+
+		<!-- 设置身份证信息 -->
+		<SetIdentityData ID="ID_SetIdentityData">
+			<Forward event="OnContinue" targetID="ID_ShowIdCardInfo"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</SetIdentityData>
+
+		<!-- 显示身份证信息 -->
+		<VTMSelectFunction ID="ID_ShowIdCardInfo" UI="UI_ShowIdCardInfo" homeVisible="1">
+		    <Forward event="OnLast" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnConfirm" targetID="ID_SetScanCustomerFingerFlag"/>
+		</VTMSelectFunction>
+
+		<!-- 联网核查(无接口，暂跳过) -->		
+		<!-- 设置指纹标志位客户指纹 1 -->
+		<SetData ID="ID_SetScanCustomerFingerFlag" saveBuffer="{proj_CustomerFinger}" value="1">
+			<Forward event="OnConfirm" targetID="ID_InitCustomerFingerScanTimes"/>
+		</SetData>
+
+		<SetData ID="ID_InitCustomerFingerScanTimes" saveBuffer="{proj_UserFingerScanCount}" value="0" comment="Init scan finger times">
+			<Forward event="OnConfirm" targetID="ID_GetDevStatus_FingerScaner"/>
+		</SetData>
+		
+
+		<!-- 查询指纹状态 -->
+		<GetDevStatusEx ID="ID_GetDevStatus_FingerScaner" UI="UI_WaitingNoVoice" devType="FingerScaner" homeVisible="0" comment="Get device status">
+			<States>
+				<State name="GetDevStatusExError" UI="UI_DevError"/>
+				<State name="CardUnitEmpty" UI="UI_CannotOpenCardPrompt"/>
+			</States>
+			<Forward event="OnNormal" targetID="ID_ScanCustmoerFinger"/>
+			<Forward event="OnWarn" targetID="ID_ScanCustmoerFinger"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</GetDevStatusEx>
+		
+		<!--扫描指纹-->
+		<FingerScanner ID="ID_ScanCustmoerFinger" UI="UI_ScanFinger" CallingMethodType="1" homeVisible="1">
+			<States>
+				<State name="TakeFinger" UI="UI_ScanFingerSuccess"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_ChooseCard"/>
+			<Forward event="OnFail" targetID="ID_OperateCustomerFingerScanTimes"/>
+			<Forward event="OnHardwareError" targetID="ID_OperateCustomerFingerScanTimes"/>
+		</FingerScanner>
+
+		<OperateData ID="ID_OperateCustomerFingerScanTimes" operateBuffer="{proj_UserFingerScanCount}" operateMethod="+1" comment="scan finger times add one">
+			<Forward event="OnConfirm" targetID="ID_CompareUserFingerScanCount"/>
+		</OperateData>
+
+		<!-- 开卡客户指纹扫描失败，则提示重试，可连续重试3次-->
+		<CompareData ID="ID_CompareUserFingerScanCount" compareBuffer="{proj_UserFingerScanCount},3" type="int" comment="比较指纹验证不通过的次数">
+			<Forward event="OnLess" targetID="ID_ScanFingerRetry"/>
+			<DefaultForward targetID="ID_ScanFingerFail"/>
+		</CompareData>
+
+		<Prompt ID="ID_ScanFingerFail" UI="UI_ScanFingerFail" timeout="3000" homeVisible="0" comment="show scan finger fail">
+			<DefaultForward targetID="ID_InvokeCloseTransWorkflow"/>
+		</Prompt>
+
+		<Prompt ID="ID_ScanFingerRetry" UI="UI_ScanFingerRetry" timeout="3000" homeVisible="0" comment="show retry scan finger">
+			<DefaultForward targetID="ID_GetDevStatus_FingerScaner"/>
+		</Prompt>
+
+		<!--选择办卡类型-->
+		<VTMSelectFunction ID="ID_ChooseCard" UI="UI_ChooseCard" homeVisible="1">
+			<Forward event="OnDebitCard" targetID="ID_OpenCardAgreement"/>
+			<Forward event="OnCreditCard" targetID="ID_OpenCardAgreement"/>
+			<Forward event="OnFinancingCard" targetID="ID_OpenCardAgreement"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		</VTMSelectFunction>
+
+		<!--阅读开卡协议-->
+		<VTMSelectFunction ID="ID_OpenCardAgreement" UI="UI_OpenCardAgreement" timeout="120000" homeVisible="1">
+			<Forward event="OnConfirm" targetID="ID_TakePhoto"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		</VTMSelectFunction>
+
+		<!--1920*1080(x="218" y="363" w="660" h="495")  1024*768(x="104" y="221" w="363" h="273") -->
+		<TakePhoto ID="ID_TakePhoto" UI="UI_TakePhoto" x="104" y="223" w="363" h="273" homeVisible="1">
+			<States>
+				<State name="CameraError" UI="UI_DevError"/>
+			</States>
+			<Forward event="OnLast" targetID="ID_OpenCardAgreement"/>
+			<Forward event="OnConfirm" targetID="ID_CompareForPassTakePhotosWorkFlow"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</TakePhoto>
+
+		<CompareData ID="ID_CompareForPassTakePhotosWorkFlow" compareBuffer="{proj_ifNeedPassFlowForTakePhoto}" comment="判断是否需要跳过输入信息之后的流程">
+			<Forward event="OnEqualTrue" targetID="ID_ReviewInfo"/>
+			<DefaultForward targetID="ID_InputUserInfo"/>
+		</CompareData>
+
+		<InputInfoMess ID="ID_InputUserInfo" UI="UI_InputUserInfo4MCRD" timeout="300000" homeVisible="1">
+			<Forward event="OnLastStep" targetID="ID_TakePhoto"/>
+			<Forward event="OnConfirm" targetID="ID_UserSignature"/>
+			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		</InputInfoMess>
+
+		<UserSignature ID="ID_UserSignature" UI="UI_UserSignature" homeVisible="1">
+			<Forward event="OnLast" targetID="ID_InputUserInfo"/>
+			<Forward event="OnConfirm" targetID="ID_ReviewInfo"/>
+		</UserSignature>
+
+		<!--现场审核-->
+		<ReviewInfo ID="ID_ReviewInfo" UI="UI_ReviewInfo" homeVisible="0" comment="银行服务人员信息审核">
+			<Forward event="OnReFill" targetID="ID_InputUserInfo"/>
+			<Forward event="OnReTakePhoto" targetID="ID_ifNeedPassFlowForTakePhoto"/>
+			<Forward event="OnReSignature" targetID="ID_UserSignature"/>
+			<Forward event="OnRefuse" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnPass" targetID="ID_SetManagerFingerSign"/>
+		</ReviewInfo>
+
+		<SetData ID="ID_ifNeedPassFlowForTakePhoto" saveBuffer="{proj_ifNeedPassFlowForTakePhoto}" value="True">
+			<Forward event="OnConfirm" targetID="ID_TakePhoto"/>
+		</SetData>
+
+		<!--设置指纹标志位客户经理指纹 2 -->
+		<SetData ID="ID_SetManagerFingerSign" saveBuffer="{proj_CustomerFinger}" value="2">
+			<Forward event="OnConfirm" targetID="ID_InitManagerFingerScanTime"/>
+		</SetData>
+
+		<SetData ID="ID_InitManagerFingerScanTime" saveBuffer="{proj_ManagerFingerScanCount}" value="0" comment="Init scan finger times">
+			<Forward event="OnConfirm" targetID="ID_GetDevStatus_FingerScaner2"/>
+		</SetData>
+
+		
+		<!-- 查询指纹状态 -->
+		<GetDevStatusEx ID="ID_GetDevStatus_FingerScaner2" UI="UI_WaitingNoVoice" devType="FingerScaner" homeVisible="0" comment="Get device status">
+			<States>
+				<State name="GetDevStatusExError" UI="UI_DevError"/>
+				<State name="CardUnitEmpty" UI="UI_CannotOpenCardPrompt"/>
+			</States>
+			<Forward event="OnNormal" targetID="ID_FingerScannerForReview"/>
+			<Forward event="OnWarn" targetID="ID_FingerScannerForReview"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</GetDevStatusEx>
+		
+		<!--扫描指纹现场确认-->
+		<FingerScanner ID="ID_FingerScannerForReview" UI="UI_ScanFinger4Teller" CallingMethodType="1" homeVisible="0" comment="输入用户的指纹信息">
+			<States>
+				<State name="TakeFinger" UI="UI_ScanFingerSuccess"/>
+			</States>
+			<Forward event="OnLastStep" targetID="ID_ReviewInfo"/>
+			<Forward event="OnContinue" targetID="ID_SetDispenseCardData"/>
+			<Forward event="OnFail" targetID="ID_OperateManagerFingerScanTime"/>
+			<Forward event="OnHardwareError" targetID="ID_OperateManagerFingerScanTime"/>
+		</FingerScanner>
+
+		<OperateData ID="ID_OperateManagerFingerScanTime" operateBuffer="{proj_ManagerFingerScanCount}" operateMethod="+1" comment="scan finger times add one">
+			<Forward event="OnConfirm" targetID="ID_CompareManagerFingerScanCount"/>
+		</OperateData>
+
+		<!-- 开卡现场审核客户经理指纹扫描失败，则提示重试，可连续重试3次-->
+		<CompareData ID="ID_CompareManagerFingerScanCount" compareBuffer="{proj_ManagerFingerScanCount},3" type="int" comment="比较指纹验证不通过的次数">
+			<Forward event="OnLess" targetID="ID_ManagerFingerScanRetry"/>
+			<DefaultForward targetID="ID_ManagerFingerScanFail"/>
+		</CompareData>
+
+		<Prompt ID="ID_ManagerFingerScanFail" UI="UI_ScanFingerFail" timeout="3000" homeVisible="0" comment="show scan finger fail">
+			<DefaultForward targetID="ID_InvokeCloseTransWorkflow"/>
+		</Prompt>
+
+		<Prompt ID="ID_ManagerFingerScanRetry" UI="UI_ScanFingerRetry" timeout="2000" homeVisible="0" comment="show retry scan finger">
+			<DefaultForward targetID="ID_GetDevStatus_FingerScaner2"/>
+		</Prompt>
+
+		<!--上传影像文件 -->
+
+		<SetData ID="ID_SetDispenseCardData" saveBuffer="{VTM_DebitReturnCardFlag}" value="True">
+			<Forward event="OnConfirm" targetID="ID_DispenseCard"/>
+		</SetData>
+		
+		<!-- 出卡 -->
+		<DispenseCard ID="ID_DispenseCard" UI="UI_Waiting" homeVisible="0" supply="1">
+			<States>
+				<State name="DispenseCardError" UI="UI_DevError"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_ReadRawData"/>
+			<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+		</DispenseCard>
+
+		<ReadRawData ID="ID_ReadRawData" UI="UI_Waiting" homeVisible="0">
+			<States>
+				<State name="ReadRawDataError" UI="UI_DevError"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_InputPin"/>
+			<Forward event="OnICType" targetID="ID_ICBuildAppList"/>
+			<Forward event="OnFail" targetID="ID_ReturnCard"/>
+			<Forward event="OnHardwareError" targetID="ID_ReturnCard"/>
+		</ReadRawData>
+
+		<ICBuildAppList ID="ID_ICBuildAppList" UI="UI_Waiting" homeVisible="0" comment="">
+			<Forward event="OnOneApplication" targetID="ID_ICAppLoadedForFirstTime"/>
+			<Forward event="OnMoreApplication" targetID="ID_ICMoreAppSelectForFirstTime"/>
+			<Forward event="OnFallback" targetID="ID_ICGetTrack"/>
+			<Forward event="OnCancel" targetID="ID_ICTransCancel"/>
+		</ICBuildAppList>
+
+		<ICAppLoaded ID="ID_ICAppLoadedForFirstTime" UI="UI_WaitingNoVoice" homeVisible="0" comment="">
+			<Forward event="OnConfirm" targetID="ID_ICGetTrack"/>
+			<Forward event="OnFallback" targetID="ID_ICGetTrack"/>
+			<Forward event="OnTryAgain" targetID="ID_ICMoreAppSelectForFirstTime"/>
+			<Forward event="OnICAppLoadedFail" targetID="ID_ICTransCancel"/>
+		</ICAppLoaded>
+
+		<ICMoreAppSelect ID="ID_ICMoreAppSelectForFirstTime" UI="UI_ICMoreAppSelect" homeVisible="0" comment="">
+			<Forward event="OnConfirm" targetID="ID_ICAppLoadedForFirstTime"/>
+		</ICMoreAppSelect>
+
+		<Prompt ID="ID_ICTransCancel" UI="UI_ICTransCancel" timeout="5000" homeVisible="0" comment="">
+			<Forward event="OnTimeout" targetID="ID_ReturnCard"/>
+			<Forward event="OnFail" targetID="ID_ReturnCard"/>
+		</Prompt>
+
+		<ICGetTrack ID="ID_ICGetTrack" comment="Get IC tracks">
+			<Forward event="OnConfirm" targetID="ID_InputPin"/>
+		</ICGetTrack>
+
+		<VTMInputPin ID="ID_InputPin"  UI="UI_InputPinCard4MCRD" comment="Change password" autoEnd="1"  minLen="6" maxLen="6">
+			<States>
+				<State name="InputNewPin" UI=""/>
+				<State name="InputNewPinAgain" UI=""/>
+				<State name="InputNewPinUnmatch" UI=""/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_SetData"/>
+			<Forward event="OnCancel" targetID="ID_ReturnCard"/>
+			<Forward event="OnHardwareError" targetID="ID_ReturnCard"/>
+			<Forward event="OnTimeout" targetID="ID_ReturnCard_TimeOut"/>
+		</VTMInputPin>
+
+		<SetData ID="ID_SetData" saveBuffer="{core_Pin}" value="{core_NewPin}">
+			<Forward event="OnConfirm" targetID="ID_RequestCard"/>
+		</SetData>
+
+		<RequestTrans ID="ID_RequestCard" UI="UI_WaitingNoVoice" transType="VTM_NEWACC_CURRENT" timeout="90000" homeVisible="0">
+			<States>
+				<State name="PackFail" UI="UI_VTMGeneralError"/>
+				<State name="ConnectFail" UI="UI_VTMGeneralError"/>
+				<State name="SendFail" UI="UI_VTMGeneralError"/>
+				<State name="ReceiveFail" UI="UI_VTMGeneralError"/>
+				<State name="ReceiveTimeout" UI="UI_VTMGeneralError"/>
+				<State name="NetworkFail" UI="UI_VTMGeneralError"/>
+				<State name="UnpackFail" UI="UI_VTMGeneralError"/>
+				<State name="HardwareError" UI="UI_DevError"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_DispenseCardSuccess"/>
+			<Forward event="OnPackFail" targetID="ID_ReturnCard"/>
+			<Forward event="OnConnectFail" targetID="ID_ReturnCard"/>
+			<Forward event="OnSendFail" targetID="ID_ReturnCard"/>
+			<Forward event="OnReceiveFail" targetID="ID_ReturnCard"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_ReturnCard"/>
+			<Forward event="OnNetworkFail" targetID="ID_ReturnCard"/>
+			<Forward event="OnUnpackFail" targetID="ID_ReturnCard"/>
+			<Forward event="OnHostRefuse" targetID="ID_ReturnCard"/>
+			<Forward event="OnFallback" targetID="ID_RequestTrans"/>
+			<Forward event="OnTryAgain" targetID="ID_ReturnCard"/>
+		</RequestTrans>
+
+		<DispenseCardSuccess ID="ID_DispenseCardSuccess" UI="UI_DispenseCard" timeout="20000" homeVisible="0">
+			<States>
+				<State name="EjectWait" UI="UI_WaitingNoVoice"/>
+				<State name="TakeCard" UI="UI_TakeCard"/>
+				<State name="EjectCardError" UI="UI_DevError"/>
+				<State name="TransTimeOut" UI="UI_CaptureCardForTimeout"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_GetDevStatus"/>
+			<Forward event="OnTimeout" targetID="ID_ReturnCard_TimeOut"/>
+			<Forward event="OnHardwareError" targetID="ID_ReturnCard"/>
+		</DispenseCardSuccess>
+
+		<!-- 故障吞卡 -->
+		<ReturnCard ID="ID_ReturnCard" UI="UI_CapturingCard" captureCardReason="2" homeVisible="0">
+			<States>
+				<State name="ReturnCardError" UI="UI_DevError"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_GetDevStatusForCloseTrans"/>
+			<Forward event="OnHardwareError" targetID="ID_GetDevStatusForCloseTrans"/>
+		</ReturnCard>
+
+		<!-- 超时，吞卡 -->
+		<ReturnCard ID="ID_ReturnCard_TimeOut" UI="UI_WaitingNoVoice" captureCardReason="1" homeVisible="0">
+			<States>
+				<State name="ReturnCardError" UI="UI_DevError"/>
+			</States>
+			<Forward event="OnContinue" targetID="ID_GetDevStatusForCloseTrans"/>
+			<Forward event="OnHardwareError" targetID="ID_GetDevStatusForCloseTrans"/>
+		</ReturnCard>
+
+		<!-- 设备故障或非主动存钞时检查凭条状态 -->
+		<GetDevStatus ID="ID_GetDevStatusForCloseTrans" comment="Get device status for close transaction" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnWarn" targetID="ID_PrintReceiptForCloseTrans"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</GetDevStatus>
+
+		<!-- 设备故障或非主动存钞时开始打印凭条 -->
+		<PrintReceipt ID="ID_PrintReceiptForCloseTrans" UI="UI_PrintingReceipt" formName="" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</PrintReceipt>
+		
+		<!-- 检查凭条状态 -->
+		<GetDevStatus ID="ID_GetDevStatus" comment="Get device status" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_IsPrintReceipt"/>
+			<Forward event="OnWarn" targetID="ID_IsPrintReceipt"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</GetDevStatus>
+
+		<!-- 是否打印凭条 -->
+		<VTMSelectFunction ID="ID_IsPrintReceipt" UI="UI_IsPrintReceiptAfterCard" homeVisible="0">
+			<Forward event="OnYes" targetID="ID_PrintReceipt"/>
+			<Forward event="OnNo" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		</VTMSelectFunction>
+
+		<!-- 开始打印凭条 -->
+		<PrintReceipt ID="ID_PrintReceipt" UI="UI_PrintingReceipt" formName="" showTime="2000" homeVisible="0">
+			<States>
+				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
+				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</PrintReceipt>
+
+		<Prompt ID="ID_HostRefuse" UI="UI_HostRefuse" timeout="5000" homeVisible="0" comment="show host refuse">
+			<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		</Prompt>
+
+		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans4MCRD" comment="Invoke close trans workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+
+		<End ID="9999" comment="End">
+		</End>
+	</Activities>
+	<DefaultForward>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

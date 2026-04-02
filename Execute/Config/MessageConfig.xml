@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<!--
+	field：表示交易响应(返回)码所在的域
+	CaptureCardCode：表示交易需吞卡的响应码，用竖线分隔，需要银行需求文档明确提供
+	PrintReceiptCode：表示交易需打印凭条的响应码，用竖线分隔，需要银行需求文档明确提供（此项配置已不再使用）
+	ReSignInCode：表示交易需重新签到的响应码，用竖线分隔，需要银行需求文档明确提供
+	ReInputPinCode：表示交易需重新输入密码的响应码，用竖线分隔，需要银行需求文档明确提供
+	EjectCashCode：表示存款需退钞的响应码，用竖线分隔，需要银行需求文档明确提供
+	ContinueService：表示主机拒绝时，需继续服务的响应码，用竖线分隔，需要银行需求文档明确提供；nextWorkflow表示主机返回继续服务的响应码时走向的工作流
+			 注意适用范围不能是存款交易
+	HostRefuse：nextWorkflow表示主机拒绝时，走向的工作流
+		    注意适用范围不能是存款交易，并且没有走ContinueService流程
+	-->
+	<Response field="F_RESPONSECODE" jsonField="F_RESPONSECODE">
+		<CaptureCardCode value="04|07|34|35|36|37|41|43|67"/>
+		<PrintReceiptCode value=""/>
+		<ReSignInCode value="A0"/>
+		<ReInputPinCode value="55"/>
+		<EjectCashCode value="01"/>
+		<ContinueService value="51" nextWorkflow="ContinueServiceWorkflow"/>
+		<HostRefuse nextWorkflow=""/>
+	</Response>
+	
+	<DataFormatManager folder="DataFormatterService\">
+		<DataFormatterService alias="Default" enable="1" cfg="..\Config\DataFormatterService\ATMP_8583.xml"/>
+		<DataFormatterService alias="FeelView" enable="1" cfg="..\Config\DataFormatterService\ATMV_FieldSeperator_V5.0.xml"/>
+		<JSONDataFormatterService alias="Json" enable="1" cfg="..\Config\DataFormatterService\ATMP_Json.xml"/>
+	</DataFormatManager>
+	
+	<!--核心默认使用的密钥组，与PINConfig里的配置对应，如果不用核心默认的，则在Action中配置所需的密钥组-->
+	<EncryptionKey value="EncryptKey1"/>
+	
+	<!--核心默认使用的P端Session ID-->
+	<ATMPSession value="ATMP1"/>
+
+	<!--核心默认使用的V端Session ID-->
+	<ATMVSession value="ATMV1"/>
+	
+	<!--签到配置
+	transType：签到时发送的交易，可以有多个，以竖线分隔，在有多个的情况必须放在RQK后面
+	keyInTransType：PINkey、MACKey在哪个交易类型里面
+	allowFailTransType：允许失败的交易类型，可以有多个，以竖线分隔
+	saveField：PINkey、MACKey数据存放在哪个报文域
+	-->    
+	<SignIn transType="" keyInTransType="" allowFailTransType="" saveField="F_PRIVATEDATA_RQK" importFailGoOutofservice="3" />
+
+	<!--清机相关配置
+	transType：清机需要发送的交易类型
+	sendSetMsgDefault：为1表示同时给Feel View发送清机报文，为0不给Feel View发
+	-->
+	<Settlement transType="" sendSetMsgDefault="1"/>
+
+	<!--加钞相关配置
+	transType：加钞需要发送的交易类型
+	allowInServiceIfFail：加钞失败是否允许进入服务，1为允许，0不允许
+	disable：当加钞失败允许进入服务后，需要屏蔽的交易类型，以竖线分隔
+	sendAddMsgDefault：为1表示同时给Feel View发送加钞报文，为0不给Feel View发
+	-->
+	<AddCash transType="" allowInServiceIfFail="1" disable="" sendAddMsgDefault="1"/>
+	
+	<!--吞卡需要发送的交易类型，当插件返回Default时有效-->
+	<CaptureCard transType=""/>
+	
+	<!--吞钞需要发送的交易类型，当插件返回Default时有效-->
+	<CaptureCash transType=""/>
+	
+	<!--接收报文时，需要校验主机返回报文MAC的交易类型-->
+	<CheckMAC transType="CWD|ICBDZHQC"/>
+
+	<!--不需要记录数据库的交易类型-->
+	<NotRecordDatabase transType="TTI|RWT"/>
+</Config>

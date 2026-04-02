@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+JpgQuality:图像质量 VeryBad,//20Bad,//40£¬Normal,//60£¬Good,//80£¬VeryGood//99
+Resolution:图像大小 VeryBig,//2592x1944 Big,//2048x1536 Middle,//1600x1200 Small,//1280x1024 VerySmall,//640x480 ExtreamSamll//320x240
+ScanSize:扫描尺寸 A3,A4,A5,A6,A7,VisitingCard,IDCard
+Rotation:旋转角度 Degree_0,Degree_90,Degree_180,Degree_270
+ScanColor:扫描颜色 Color,Gray,Black
+ThresValue:黑白阈值 VeryBad,//50Bad,//100 Normal,//150Good,//200VeryGood //255
+实际测试发现视频窗口的宽始终保持为高的1.34倍，故只需设定高即可
+-->
+<configuration>
+<DocScanner JpgQuality="4"  Resolution="3"  ScanSize="1"  Rotation="1"  ScanColor="0"  ThresValue="3"/> 
+<WindowPos X="100"  Y="100"  Height="500" />
+</configuration>

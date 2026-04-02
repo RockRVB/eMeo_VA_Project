@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	fileSavePath:生成文件保存目录的名字，一般不会修改，路径为Excute\Reconciliation目录，如果有非法字符，取默认值“Reconciliation”
+	fileEncoding:生成文件的编码，一般不会修改
+	IsIgnoreEmptyFile:如果该时间端没有对账记录，是否忽略空的对账文件(1、忽略 0、不忽略 如果格式错误，默认为1 )
+-->
+<ReconciliationService  fileSavePath="Reconciliation" fileEncoding="UTF8" IsIgnoreEmptyFile="1">
+		<!--
+		文件转移的接口实现，默认是核心CPV的实现
+		className:实现类的类名
+		namespace:命名空间
+		assembly:dll名称、版本号以及publicKeyToken
+		-->
+		<FileTransfer className="CPVFileTransfer" namespace="ReconciliationService.CPV"  assembly="ReconciliationService,version=1.0.0.0,publicKeyToken=7066f3d5e996c61a,culture=neutral"/>
+		<!--
+		生成对账文件的接口实现，默认是核心CPV的实现
+		className:实现类的类名
+		namespace:命名空间
+		assembly:dll名称、版本号以及publicKeyToken
+		-->
+		<FileGenerator className="CPVFileGenerator" namespace="ReconciliationService.CPV" assembly="ReconciliationService,version=1.0.0.0,publicKeyToken=7066f3d5e996c61a,culture=neutral"/>
+		<!--
+		处理文件上传、重传、补传、过期文件清理
+		enable:1为开启，其他均为不开启，核心默认不开启
+		reuploadNumberOfTime:重传次数，大于0的整数，否则取默认值2，单位（次）
+		reuploadInterval:重传间隔时间，大于0的整数，否则取默认值10，单位（分钟）
+		dayNumberOfFileRetained:文件保留时间，大于0的整数，否则取默认值30，单位（天）
+		monitorInterval:内部线程轮询时间间隔，大于10的整数，否则取默认值30，单位（秒）
+		-->
+		<FileUpload enable="0" reuploadNumberOfTime="2" reuploadInterval="10" dayNumberOfFileRetained="30"  monitorInterval="30"/>
+</ReconciliationService>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<Cmd>
+		<Item key="f" value="9" size="1" restriction="Mandatory"/>
+		<Item key="f1" value="[Msg.Solicited.ReplyReady.AdditionalTail]" size="1" restriction="Mandatory"/>
+	</Cmd>
+	<Trans>
+		<Item key="f" value="B" size="1" restriction="Mandatory"/>
+		<Item key="f1" value="[Msg.ReadyBCassetteRecycleData]" size="1" restriction="0"/>
+		<Item key="f2" value="[Msg.Solicited.ReplyReady.AdditionalTail]" size="1" restriction="Mandatory"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="0"/>		
+		<Item key="f3" value="[Msg.RolloverCount]" size="12" restriction="0"/>
+	</Trans>
+	<SmartCard>
+		<Item key="f" value="B" size="1" restriction="Mandatory"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<Item key="f1" value="9" size="1" restriction="Mandatory"/>
+		<Item key="f2" value="077" size="3" restriction="Mandatory"/>
+		<Item key="f3" value="[Buffer.M]" size="3" restriction="Mandatory"/>
+		<Item key="f4" value="[Msg.EmvReadyBCassetteRecycleData]" size="3" restriction="0"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="0"/>				
+		<Item key="f5" value="[Msg.RolloverCount]" size="12" restriction="0"/>
+	</SmartCard>
+	<WinCorCashIn>
+		<Item key="f" value="B" size="1" restriction="Mandatory"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!-- Device Identifier Graphic (DIG) -->
+		<Item key="g" value="r" size="1" restriction="Mandatory"/>
+		<Item key="h" value="" size="5" restriction="Mandatory"/>
+		<Item key="[GS]" value="[GS]" size="1" restriction="Mandatory"/>
+		<Item key="i" value="" size="1" restriction="Mandatory"/>
+		<Item key="[GS]" value="[GS]" size="1" restriction="Mandatory"/>
+		<Item key="j" value="" size="1" restriction="Mandatory"/>
+	</WinCorCashIn>
+</Root>

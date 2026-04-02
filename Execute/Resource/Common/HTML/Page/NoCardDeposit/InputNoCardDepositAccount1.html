@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../css/CN.css"  replace="1" />
+    <link rel="stylesheet" type="text/css" href="../../css/Button.css" />
+    <script defer type="text/javascript" src="../../js/ShowResource.js"></script>
+</head>
+<body>
+    <div class="backgroundDiv_inputAccount">
+        <div class="CounterDiv" style="display: none" reserved="2" id="Counter" type="countdown"
+            content="{Binding Count}" visible="{Binding CouterVisible}">
+        </div>
+        <input style="height: 42px; width: 400; margin-top: 215px; margin-left: 209px; border: 0px; background-color: transparent; font-family: 微软雅黑; font-weight: bold; font-size: 28px; text-align: center;"
+            format="#### " id="InputAccount" type="text" content="{Binding saveBuffer}" />
+        <table style="border-color: red; margin-left: 250px; margin-top: 75px; height: 195px; width: 300px;" cellpadding="0">
+            <tr>
+                <td>
+                    <div style="height: 30px;" id="Num1"  type="Button" />
+                </td>
+                <td>
+                    <div style="height: 30px;" id="Num2"  type="Button" />
+                </td>
+                <td>
+                    <div style="height: 30px;" id="Num3"  type="Button" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="height: 35px;" id="Num4"  type="Button" />
+                </td>
+                <td>
+                    <div style="height: 35px;" id="Num5"  type="Button" />
+                </td>
+                <td>
+                    <div style="height: 35px;" id="Num6"  type="Button" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="height: 35px;" id="Num7"  type="Button" />
+                </td>
+                <td>
+                    <div style="height: 35px;" id="Num8"  type="Button" />
+                </td>
+                <td>
+                    <div style="height: 35px;" id="Num9"  type="Button" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="height: 35px;" id="NumReset"  type="Button" />
+                </td>
+                <td>
+                    <div style="height: 35px;" id="Num0"  type="Button" />
+                </td>
+                <td>
+                    <div style="height: 35px;" id="NumBackSpace"  type="Button" />
+                </td>
+            </tr>
+        </table>
+        <div class="f4Div" id="F4" tag="OnClear" type="Button">
+            <img src="../../../Image/CN/Btn_Bg1_right_up.png" id="bgimg" up="(btnbg1rightup)"
+                down="(btnbg1rightdw)" />
+            <span class="buttonRight" ids="IDS_Clear"></span>
+        </div>
+        <div class="f6Div" id="F6" tag="OnConfirm" type="Button">
+            <img src="../../../Image/CN/Btn_Bg1_right_up.png" id="bgimg" up="(btnbg1rightup)"
+                down="(btnbg1rightdw)" />
+            <span class="buttonRight" ids="IDS_Confirm"></span>
+        </div>
+        <div class="f7Div" id="F7" tag="OnCancel" type="Button">
+            <img src="../../../Image/CN/Btn_Bg1_left_up.png" id="bgimg" up="(btnbg1leftup)" down="(btnbg1leftdw)" />
+            <span class="buttonLeft" ids="IDS_Cancel"></span>
+        </div>
+    </div>
+</body>
+</html>

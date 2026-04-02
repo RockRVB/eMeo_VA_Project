@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCAT Configuration Tool</title>
+    <script src="../../js/vue.min.js"></script>
+    <link rel="stylesheet" href="../../css/ConfigurationTool/configTool.css">
+    <style>
+        /* .header-row td{
+            padding: 15px;
+        } */
+
+        #Table1 td{
+            width: 20%;
+            text-align: center;
+        }
+
+        #Table1 #Select1 {
+            width: 100%;
+            margin: 5px ;  
+            text-align: center;
+        }
+
+        #Table1 #Input1{
+            width: 80%;
+            margin: 5px;
+            text-align: center;
+        }
+        .toggle-container{
+            margin-left: 35px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" currentSetting="CassetteSetting">
+        <div class="header"></div>
+        <div class="sidebar" ref="sidebar">
+            <div class="menu-top">
+                <img :src="profileImg" alt="Profile Image">
+                <h2>{{selectedATMType || 'XXX'}}</h2>
+                <button @click="showModal">⇋</button>
+            </div>
+            <div class="menu-containers" v-for="menu in menus">
+                <div class="menu-container">
+                    <div class="setting-category" @click="toggleDropdown(menu.id)">
+                        <span class="item-icon">📦</span>
+                        <span>{{ menu.label }}</span>
+                        <span class="dropdown-arrow" :class="{ 'open': menu.isDropdownOpen }">></span>
+                    </div>
+    
+                    <div class="setting-item" v-show="menu.isDropdownOpen" :id="item.id"  :class="{ 'active': item.id === setting }"
+                      v-for="item in settings[menu.id]" :key="item.id"  >
+                      <div class="setting-item-parent" @click="toggleSelection(item)" :style="getStyle(item.id)">
+                        <span class="item-icon">{{ item.icon }}</span>
+                        <span>{{ item.label }}</span>
+                        <span class="dropdown-arrow" :class="{ 'open': item.isDropdownOpen }">></span>
+                      </div>
+    
+                      <div class="setting-item-child" v-if="itemChilds.owner === item.id && itemChilds.content" v-show="item.isDropdownOpen" :id="childItem" :style="getStyle(childItem)" :class="{ 'active': childItem === itemChild }"
+                        v-for="childItem in itemChilds.content" :key="childItem"  @click="toggleChildSelection(childItem)">
+                        <span class="item-icon">-</span>
+                        <span>{{ childItem }}</span>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-container">
+                <div class="setting-category">
+                    <span class="item-icon"><</span>
+                    <span @click="getPage(backPage)">Back</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <h2>Current cassette setting</h2>
+            <table id="Table1">
+                <tr class="header-row">
+                    <td>
+                        Cassette ID
+                    </td>
+                    <td>
+                        Denomination
+                    </td>
+                    <td>
+                        Currency
+                    </td>
+                    <td>
+                        Type
+                    </td>
+                    <td>
+                        Enabled
+                    </td>
+                </tr>
+
+                <tr v-for="cassette in settingData.CassetteConfig" :key="cassette.keyID" class="cassette-item">
+                    <td>
+                        <input id="Input1" type="Text" v-model="cassette.cassetteID" :disabled="cassette.enabled !== '1'"/>
+                    </td>
+                    <td>
+                        <input id="Input1" type="number" v-model="cassette.denomination" disabled/>
+                    </td>
+                    <td>
+                        <input id="Input1" type="Text" v-model="cassette.currency" disabled/>
+                    </td>
+                    <td>
+                        <select id="Select1" type="select" v-model="cassette.hostCassetteType" @change="updateCassetteValues(cassette)" :disabled="cassette.enabled !== '1'">
+                            <option>A</option>
+                            <option>B</option>
+                            <option>C</option>
+                            <option>D</option>
+                            <option>E</option>
+                            <option>F</option>
+                            <option>G</option>
+                            <option>H</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div class="toggle-container" :class="{ active: cassette.enabled === '1' }" 
+                        @click="toggleEnabled(settingData.CassetteConfig,cassette.keyID,'keyID','enabled')">
+                            <div class="toggle"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="buttons buttons-bottom"></div>
+        </div>
+
+        <div class="modal-bg" v-if="isModalVisible" @click="hideModal"></div>
+        <div class="modal" v-if="isModalVisible">
+            <h3>ATM Type</h3>
+            <select v-model="currentSelectType">
+                <option v-for="type in atmTypes" :key="type" :value="type">{{ type }}</option>
+            </select>
+            <div class="buttons">
+                <button class="btn cancel" @click="hideModal">Cancel</button>
+                <button class="btn" @click="confirmSelection(true)">Confirm & Apply</button>
+                <button class="btn" @click="confirmSelection(false)">Confirm & No Apply</button>
+            </div>
+        </div>
+
+        <div v-if="showAlertBox" class="custom-alert">
+            <span>{{ alertMessage }}</span>
+            <div class="buttons">
+                <button @click="closeAlert">OK</button>
+            </div>     
+        </div>
+        <div v-if="isConfirmVisible" class="custom-confirm">
+            <span>{{ confirmMessage }}</span>
+            <div class="buttons">
+                <button @click="cancelConfirmation">Cancel</button>
+                <button @click="confirmAction">Confirm</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="../../js/ConfigurationTool/configTool.js"></script>
+</body>
+
+</html>

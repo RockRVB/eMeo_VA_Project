@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<!--FSN文件自动转移功能
+		Version:版本号
+		SourceDIR：SP产生FSN文件的路径，可用SP设备配置文件中查找（文件转移源目录）
+		DestinationDIR：冠字号系统网络软件配置提供的路径（文件转移目标目录）
+        SerchPattern：配置SP产生的文件名的文件规则，用于转移时遍历文件
+		其中SerchPattern支持数据池赋值，格式如{数据池KEY}
+	-->
+	  <!-- notPrintOCRCommandForJPTR 的数值为以下的数字，屏蔽多项指令时，使用|分隔
+		Unknown = 0,
+		Dispense = 1,		取款
+		RetractForCDM = 2,	取款回收
+		ResetForCDM = 3,
+		Reject = 4,			拒钞回收
+		CashIn = 5,
+		RetractForCIM = 6,	存款回收
+		CashInEnd = 7,		存款
+		ResetForCIM = 8,
+		Rollback = 9,
+		OpenForCDM = 10,
+		OpenForCIM = 11,
+		ResetCDMByAdmin = 12,
+		ResetCIMByAdmin = 13,
+		StartExchangeForCDM = 14,
+		StartExchangeForCIM = 15,
+		EndExchangeForCDM = 16,
+		EndExchangeForCIM = 17,
+  -->
+	<FSNFileTransfer Version="11" SourceDIR="c:\FSN" DestinationDIR="c:\FSN1" SerchPattern="*.FSN">
+		<CWD OCRCommandType="1"/>
+		<DEP OCRCommandType="7"/>
+		<RET OCRCommandType="2,4,6"/>-->
+		<!--核心实现了标准的FSN功能，对应接口文档为《广电运通冠字号系统接入协议V1.1.docx》。
+		以下配置是针对此协议的配置（一般不需要更改），如果不是此协议，该配置不起作用，此时FSN功能需要在bankinterface的HandleFSNFile中由工程实现-->
+		<TransCodeMap>
+			<Trans Key="CWD" Value="ATMQK" Command="1"/>
+			<Trans Key="DEP" Value="ATMCK" Command="7"/>
+			<Trans Key="ICFBDZHQC" Value="ATMXJQC" Command="7" />
+			<Trans Key="ICBDZHQC" Value="ATMXJQC" Command="7"/>
+		</TransCodeMap>
+	</FSNFileTransfer>
+</Config>

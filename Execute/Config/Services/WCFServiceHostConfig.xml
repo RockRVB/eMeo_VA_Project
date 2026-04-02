@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WCFConfig>
+	<Service name="Inspector" enable="0" assembly="eCATInspectorService,version=1.0.0.0,publicKeyToken=7066f3d5e996c61a,culture=neutral" single="1" cfg="DistributedService\eCATInspectorServiceConfig.xml" />
+	<Service name="eCATPlatformDistributedService" enable="1" assembly="eCATPlatformProxyService,version=1.0.0.0,publicKeyToken=7066f3d5e996c61a,culture=neutral" single="1" cfg="Config\DistributedService\eCATPlatformDistributedServiceConfig.xml" />
+</WCFConfig>

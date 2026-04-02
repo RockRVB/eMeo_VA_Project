@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="VTMA3CallAgent">
+  <Head type="GRGWorkflow" comment="Workflow for making Call to Agent"/>
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start">
+      <Forward event="OnConfirm" targetID="ID_HideDigitalHuman"/>
+    </Start>
+    <!-- 若启动了数字人，默认隐藏数字人（没有数字人则直接走下一步） -->
+    <ControlDigitalHuman ID="ID_HideDigitalHuman" ControlAction="0|2">
+      <DefaultForward targetID="ID_CompareVideoStatus" />
+    </ControlDigitalHuman>
+
+	<!--Check Agin Video Connection-->
+	<!-- 判断视频状态 -->
+    <!-- STATUS_END = 0,        未初始化前的状态，登陆前状态  -->
+    <!-- STATUS_INITIAL_REQ,    初始化请求状态, 登陆中状态  -->
+    <!-- STATUS_IDLE,           初始化成功后还未呼叫时的空闲状态  -->
+    <!-- STATUS_CALL_REQ,       呼叫发起请求状态  -->
+    <!-- STATUS_IN_TALKING,     通话中状态  -->
+    <!-- STATUS_RELEASE_REQ,    呼叫发起释放状态  -->
+    <!-- STATUS_ENDING_REQ,     发起结束初始化状态  -->
+    <!-- STATUS_ANSWER_REQ,     应答中，此时点击应答，等有TALKING事件上报后，将迁移到STATUS_IN_TALKING  -->
+    <!-- STATUS_IN_CALLING,     正在 来电中， 也就是收到振铃事件；对于AVAYA，主叫会收到振铃事件但被叫反而不会收到振铃事件  -->
+    <!-- STATUS_IN_REJECTING,   正在拒绝中  -->
+    <!-- STATUS_NETWORK_ERROR,  网络故障  -->
+    <CompareData ID="ID_CompareVideoStatus" comment="" compareBuffer="{VTM_VideoStatusWrapper}">
+      <Forward event="OnEqualSTATUS_IN_TALKING" targetID="ID_SwitchAd" />
+      <Forward event="OnEqualSTATUS_IDLE" targetID="ID_GetAgentState" />
+      <DefaultForward targetID="ID_VideoConnectFail" />
+    </CompareData>
+	
+	<WaitSleep ID="ID_VideoConnectFail" UI="UI_network_error" timeout="3000">
+      <Forward event="OnContinue" targetID="9999"/>
+    </WaitSleep>
+	    
+	<VTMAActGetAgentState ID="ID_GetAgentState" UI="UI_contacting_agent" comment="Get Agent State">
+	  <States>
+      <State name="NoAgent" UI="UI_no_agent_online"/>
+		  <State name="NetWorkError" UI="UI_network_error"/>
+    </States>
+		<Forward event="OnNoAgent" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnContinue" targetID="ID_Ring"/>
+	</VTMAActGetAgentState>
+	<!-- Ring an agent -->
+    <VTMAActRing ID="ID_Ring" timeout="60000" UI="UI_contacting_agent" waitpopu="0" homeVisible="0" digitalVoiceKey="||action_010">
+	  <States>
+        <State name="ServiceNoResponding" UI="UI_network_error"/>
+		<State name="NetWorkError" UI="UI_network_error"/>
+		<State name="TimeOutError" UI="UI_TransTimeOut"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_VTARequestVideoRq" />
+      <Forward event="OnFail" targetID="9999" />
+    </VTMAActRing>
+
+    <!-- Request video connection -->
+    <VTMAActVTARequest ID="ID_VTARequestVideoRq" timeout="60000" UI="UI_contacting_agent" IDSName="IDS_waitVideo">
+      <States>
+        <State name="NetWorkError" UI="UI_network_error"/>
+        <State name="TimeOutError" UI="UI_timeout"/>
+        <State name="ServiceCloseTrans" UI="UI_host_refuse"/>
+		<State name="CameraError" UI="UI_hardware_error"/>
+		<State name="videoshown" UI="UI_CommonProcessing"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_CheckDealActVideo" />
+      <Forward event="OnFail" targetID="9999" />
+    </VTMAActVTARequest>
+
+    <!-- Check whether the agent agree the video connection or not -->
+    <!--CheckDeal ID="ID_CheckDealActVideo">
+      <States>
+        <State name="NetWorkError" UI="UI_network_error"/>
+      </States>
+      <Forward event="OnYes" targetID="ID_CompareVideoStatusAgain" />
+      <Forward event="OnNo" targetID="9999" />
+      <Forward event="OnFail" targetID="9999" />
+    </CheckDeal-->
+	<CompareData ID="ID_CheckDealActVideo" comment="" compareBuffer="{VTMA.recv.response.result}">
+      <Forward event="OnEqual0" targetID="ID_VTM_VideoStatusWrapper" />
+      <DefaultForward targetID="9999" />
+    </CompareData>
+	<SetData ID="ID_VTM_VideoStatusWrapper" saveBuffer="{VTM_VideoStatusWrapper}" value="STATUS_IN_TALKING">
+      <Forward event="OnConfirm" targetID="ID_CompareVideoStatusAgain" />
+    </SetData>
+    <CompareData ID="ID_CompareVideoStatusAgain" comment="" compareBuffer="{VTM_VideoStatusWrapper}">
+      <Forward event="OnEqualSTATUS_IN_TALKING" targetID="ID_VTARequestDeviceStatus"/>
+      <DefaultForward targetID="9999" />
+    </CompareData>
+	
+	<VTMASendDeviceStatus ID="ID_VTARequestDeviceStatus" timeout="60000" waitpopu="0">
+      <States>
+        <State name="NetWorkError" UI="UI_network_error"/>
+        <State name="TimeOutError" UI="UI_timeout"/>
+        <State name="ServiceCloseTrans" UI="UI_host_refuse"/>
+		<State name="CameraError" UI="UI_hardware_error"/>
+      </States>
+      <Forward event="OnContinue" targetID="ID_SwitchAd" />
+      <Forward event="OnFail" targetID="9999" />
+    </VTMASendDeviceStatus>
+    <!-- Show video screen -->
+    <!-- VideoType：1(Maximize agent video, local video is on the bottom right corner), 
+		 2(Maximize local video, agent video is on the bottom right corner), 
+		 3(Agent video only), 4(Local video only), 5(No video) -->
+    <!-- ADName: UI_Idle(Video and AD), UI_Video(Video), UI_TimeTakePhoto(AD while taking photo), UI_AdTrans(AD with pictures) -->
+    <SwitchAd ID="ID_SwitchAd" videoType="1"  ADName="UI_Video" >
+      <States>
+        <State name="SwitchAdError" UI="UI_general_error"/>
+      </States>
+      <Forward event="OnContinue" targetID="9999" />
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
+    </SwitchAd>
+
+	<!-- Invoke the CloseTrans workflow -->
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+	
+	<End ID="9999" comment="End"/>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+  </DefaultForward>
+</Workflow>

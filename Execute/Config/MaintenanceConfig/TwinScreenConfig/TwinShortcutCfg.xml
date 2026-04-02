@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--快捷维护显示的菜单项
+	RoleID: 角色ID
+	DailyHandleSet: 快捷维护显示的菜单项
+	DefDailyHandleSet: 系统默认的快捷维护显示的菜单项
+	Comment: 注释
+	-->
+<TwinShortcutCfg>
+	<RecordItem>
+		<RoleID>1</RoleID>
+		<DailyHandleSet>FLOW_1,52,511,161,141,41,42,15,13,21</DailyHandleSet>
+		<DefDailyHandleSet>FLOW_1,52,511,161,141,41,42,15</DefDailyHandleSet>
+		<Comment>当前用户为银行操作员</Comment>
+	</RecordItem>
+	<RecordItem>
+		<RoleID>2</RoleID>
+		<DailyHandleSet>FLOW_1,52,511,26,41,54,55,512,513</DailyHandleSet>
+		<DefDailyHandleSet>FLOW_1,52,511,26,41,42</DefDailyHandleSet>
+		<Comment>当前用户为系统管理员</Comment>
+	</RecordItem>
+</TwinShortcutCfg>

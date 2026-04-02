@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<!-- protocol : NDC -->
+<Root>
+  <SendMessag>
+    <Item key="TransactionRequest" value="\Transaction\TransRequest.xml" pos="TransRequest" />
+    <Item key="ReplytoInteractiveTransactionResponse" value="\Transaction\InterTransResponse.xml" pos="InterTransResponse" />
+    <Item key="Solicited" value="\Status\Solicited\Solicited.xml" pos="Msg">
+      <Item key="Status" value="\Status\Solicited\Status\SSMElement.xml" pos="SSMHeader">
+        <Item key="DeviceFault" value="\Status\Solicited\Status\DeviceFault\DeviceFaultElement.xml" pos="DeviceFaultTemplate">
+          <Item key="CardReader" value="\Status\Solicited\Status\DeviceFault\DeviceFault\CardReader.xml" pos="CardReader" param="Device.CardReader" />
+          <Item key="CashHandler" value="\Status\Solicited\Status\DeviceFault\DeviceFault\CashHandler.xml" pos="CashHandler" />
+          <Item key="ReceiptPrinter" value="\Status\Solicited\Status\DeviceFault\DeviceFault\ReceiptPrinter.xml" pos="ReceiptPrinter" param="Device.ReceiptPrinter" />
+          <Item key="EnvelopeDepository" value="\Status\Solicited\Status\DeviceFault\DeviceFault\EnvelopeDepository.xml" pos="Device" />
+          <!--Item key="CashAcceptor" value="\Status\Solicited\Status\DeviceFault\DeviceFault\GrgBundleNoteAcceptor.xml" pos="BundleNoteAcceptor"/-->
+          <Item key="CashAcceptor" value="\Status\Solicited\Status\DeviceFault\DeviceFault\CashAcceptor.xml" pos="CashAcceptor" />
+          <Item key="WinCorCashInStatus" value="\Status\Solicited\Status\DeviceFault\DeviceFault\WinCorCashInStatus.xml" pos="Device" />
+          <Item key="ChipCard" value="\Status\Solicited\Status\DeviceFault\DeviceFault\ChipCard.xml" pos="Data" param="Device.ChipCard" />
+          <Item key="IPM" value="\Status\Solicited\Status\DeviceFault\DeviceFault\ChequeProcessingModule.xml" pos="ChequeProcessingModule" />
+        </Item>
+        <Item key="CmdReplyReady" value="\Status\Solicited\Status\Ready\CmdReplyReady.xml" pos="Msg" />
+        <!--Added by Bxue-->
+        <Item key="CmdReplyReadyForWnRKL" value="\Status\Solicited\Status\Ready\CmdReplyReadyForWnRKL.xml" pos="Msg" />
+        <Item key="TransReplyReady" value="\Status\Solicited\Status\Ready\TransReplyReady.xml" pos="Msg" />
+        <Item key="SmartCard" value="\Status\Solicited\Status\Ready\TransReplyReady.xml" pos="SmartCard" />
+        <Item key="GrgCashInTransReplyReady" value="\Status\Solicited\Status\Ready\GrgCashInTransReplyReady.xml" pos="GrgCashInTransReplyReady" />
+        <Item key="CommandReject" value="\Status\Solicited\Status\CmdReject\CmdReject.xml" pos="CmdReject" />
+        <Item key="SpecificCommandReject" value="\Status\Solicited\Status\CmdReject\SpecificCmdReject.xml" pos="CmdReject" />
+        <Item key="TerminalState" value="\Status\Solicited\Status\TerminalState\TerminalStateElement.xml" pos="TerminalState">
+          <Item key="ConfigurationInformation" value="\Status\Solicited\Status\TerminalState\TerminalState\SendConfigInfo.xml" pos="SendConfigInfo" param="[OptionCtrl.Mandatory]" />
+          <Item key="HardwareConfiguration" value="\Status\Solicited\Status\TerminalState\TerminalState\HardwareConfigData.xml" pos="HardwareConfigData" />
+          <Item key="SuppliesData" value="\Status\Solicited\Status\TerminalState\TerminalState\SuppliesData.xml" pos="SuppliesData" />
+          <Item key="FitnessData" value="\Status\Solicited\Status\TerminalState\TerminalState\FitnessData.xml" pos="FitnessData" />
+          <Item key="TamperSensorStatusData" value="\Status\Solicited\Status\TerminalState\TerminalState\TamperSensorStatusData.xml" pos="TamperSensorStatusData" />
+          <Item key="SoftwareIDReleaseNumberData" value="\Status\Solicited\Status\TerminalState\TerminalState\SoftwareIDReleaseNumberData.xml" pos="SoftwareIDReleaseNumberData" />
+          <Item key="ConfigurationInformationEnhance" value="\Status\Solicited\Status\TerminalState\TerminalState\SendConfigInfo.xml" pos="SendConfigInfo" param="Mandatory" />
+          <Item key="LocalConfigurationOptionDigits" value="\Status\Solicited\Status\TerminalState\TerminalState\LocalConfigurationOptionDigits.xml" pos="LocalConfigurationOptionDigits" />
+          <Item key="NoteDefinitions" value="\Status\Solicited\Status\TerminalState\TerminalState\NoteDefinitions.xml" pos="NoteDefinitions" />
+          <Item key="SupplyCountersBasic" value="\Status\Solicited\Status\TerminalState\TerminalState\SupplyCountersBasic.xml" pos="Msg" />
+          <Item key="SupplyCountersExtended" value="\Status\Solicited\Status\TerminalState\TerminalState\SupplyCountersExtended.xml" pos="Msg" />
+          <Item key="WincorCashInSupplyCounters" value="\Status\Solicited\Status\TerminalState\TerminalState\WincorCashInSupplyCounters.xml" pos="Msg" />
+          <Item key="TallyInformation" value="\Status\Solicited\Status\TerminalState\TerminalState\SendTallyInfo.xml" pos="" />
+          <Item key="ErrorLogInformation" value="\Status\Solicited\Status\TerminalState\TerminalState\SendErrLogInfo.xml" pos="" />
+          <Item key="DateTimeInformation" value="\Status\Solicited\Status\TerminalState\TerminalState\SendDateTimeInfo.xml" pos="SendDateTimeInfo" />
+          <Item key="ConfigurationID" value="\Status\Solicited\Status\TerminalState\TerminalState\SendConfigID.xml" pos="" />
+          <Item key="GrgRecyclerConfig" value="\Status\Solicited\Status\TerminalState\TerminalState\GrgRecyclerConfig.xml" pos="GrgRecyclerConfig" />
+          <Item key="GrgRecyclerSupplyCounter" value="\Status\Solicited\Status\TerminalState\TerminalState\GrgRecyclerSupplyCounter.xml" pos="GrgRecyclerSupplyCounter" />
+          <Item key="WinCorCashInStatusInformation" value="\Status\Solicited\Status\TerminalState\TerminalState\WinCorCashInStatusInformation.xml" pos="Msg" />
+        </Item>
+        <!--Start: Added by Bxue-->
+        <Item key="RKLInformation" value="\Status\Solicited\Status\RKLInformation\RKLInformationElement.xml" pos="RKLInformation">
+          <Item key="EPPCapabilities" value="\Status\Solicited\Status\RKLInformation\RKLInformation\EPPCapabilities.xml" pos="EPPCapabilities" param="C" />
+          <Item key="EPPIDAndSignature" value="\Status\Solicited\Status\RKLInformation\RKLInformation\EPPIDAndSignature.xml" pos="EPPIDAndSignature" param="I" />
+          <Item key="EPPPublickeyAndSignature" value="\Status\Solicited\Status\RKLInformation\RKLInformation\EPPPublickeyAndSignature.xml" pos="EPPPublickeyAndSignature" param="P" />
+        </Item>
+        <!--End-->
+      </Item>
+      <Item key="EncryptorInitialisationData" value="\Status\Solicited\Others\EncryptorInitData.xml" pos="EncryptorInitData">
+        <Item key="EPPSerialNumberSignature" value="\Status\Solicited\Others\EncryptorInitData\EPPSerialNumberSignature.xml" pos="EncryptorInitData" param="1" />
+        <Item key="EPPPublicKeySignature" value="\Status\Solicited\Others\EncryptorInitData\EPPPublicKeySignature.xml" pos="EncryptorInitData" param="2" />
+        <Item key="NewKVV" value="\Status\Solicited\Others\EncryptorInitData\NewKVV.xml" pos="EncryptorInitData" param="3" />
+        <Item key="KeysStatus" value="\Status\Solicited\Others\EncryptorInitData\KeysStatus.xml" pos="EncryptorInitData" param="4" />
+        <Item key="KeyLoaded" value="\Status\Solicited\Others\EncryptorInitData\KeyLoaded.xml" pos="EncryptorInitData" param="5" />
+        <Item key="KeyEntryMode" value="\Status\Solicited\Others\EncryptorInitData\KeyEntryMode.xml" pos="EncryptorInitData" param="6" />
+        <Item key="RSAencryptionKVV" value="\Status\Solicited\Others\EncryptorInitData\RSAencryptionKVV.xml" pos="EncryptorInitData" param="7" />
+        <Item key="SSTCertificate" value="\Status\Solicited\Others\EncryptorInitData\SSTCertificate.xml" pos="EncryptorInitData" param="8" />
+        <Item key="HOSTCertificate" value="\Status\Solicited\Others\EncryptorInitData\HOSTCertificate.xml" pos="EncryptorInitData" param="H" />
+        <Item key="AuthenticationToken" value="\Status\Solicited\Others\EncryptorInitData\AuthenticationToken.xml" pos="EncryptorInitData" param="L" />
+        <Item key="ATMRandomNumber" value="\Status\Solicited\Others\EncryptorInitData\ATMrandomNumber.xml" pos="EncryptorInitData" param="9" />
+        <Item key="EncryptorCapabilitiesState" value="\Status\Solicited\Others\EncryptorInitData\EncryptorCapabilitiesState.xml" pos="EncryptorInitData" param="B" />
+        <Item key="KeyDeleted" value="\Status\Solicited\Others\EncryptorInitData\KeyDeleted.xml" pos="" param="C" />
+        <Item key="ExtendedCapabilities" value="\Status\Solicited\Others\EncryptorInitData\ExtendedCapabilities.xml" pos="" param="J" />
+        <Item key="ExtendedKeyStatus" value="\Status\Solicited\Others\EncryptorInitData\ExtendedKeyStatus.xml" pos="" param="K" />
+        <Item key="EPPUnbound" value="\Status\Solicited\Others\EncryptorInitData\EPPUnbound.xml" pos="EncryptorInitData" param="I" />
+      </Item>
+    </Item>
+    <Item key="Solicited_UploadEJData" value="\Status\Solicited\Others\UploadEJData.xml" pos="Data" />
+    <Item key="UnsolicitedStatus" value="\Status\UnSolicited\USMElement.xml" pos="UNSSMHeader">
+      <Item key="PowerFailure" value="\Status\UnSolicited\StatusInformation\PowerFailure.xml" pos="PowerFailure" />
+      <Item key="CardReader" value="\Status\UnSolicited\StatusInformation\Devicefault.xml" pos="Device" param="Device.CardReader" />
+      <Item key="BarCodeReader" value="\Status\UnSolicited\StatusInformation\Devicefault.xml" pos="Device" param="Device.BarCodeReader" />
+      <Item key="CashHandler" value="\Status\UnSolicited\StatusInformation\Devicefault.xml" pos="Device" param="Device.CashHandler" />
+      <Item key="ReceiptPrinter" value="\Status\UnSolicited\StatusInformation\Devicefault.xml" pos="Device" param="Device.ReceiptPrinter" />
+      <Item key="JournalPrinter" value="\Status\UnSolicited\StatusInformation\Devicefault.xml" pos="Device" param="Device.JournalPrinter" />
+      <Item key="Encryptor" value="\Status\UnSolicited\StatusInformation\Devicefault.xml" pos="Device" param="Device.Encryptor" />
+      <Item key="CashAcceptor" value="\Status\UnSolicited\StatusInformation\Devicefault.xml" pos="Device" param="Device.BNA" />
+      <Item key="Camera" value="\Status\UnSolicited\StatusInformation\Devicefault.xml" pos="Device" param="Device.Camera" />
+      <Item key="IPM" value="\Status\UnSolicited\StatusInformation\Devicefault.xml" pos="Device" param="Device.IPM" />
+      <Item key="ContactLessIDC" value="\Status\UnSolicited\StatusInformation\Devicefault.xml" pos="Device" param="Device.ContactLessIDC" />
+      <Item key="WincorCashAcceptor" value="\Status\UnSolicited\StatusInformation\WincroDevicefaultAcceptor.xml" pos="Device" param="Device.BNA" />
+      <Item key="EnvelopeDispenser" value="\Status\UnSolicited\StatusInformation\Devicefault.xml" pos="Device" param="Device.EnvelopeDispenser" />
+      <Item key="EnvelopeDepository" value="\Status\UnSolicited\StatusInformation\Devicefault.xml" pos="Device" param="Device.EnvelopeDepository" />
+      <Item key="FingerService" value="\Status\UnSolicited\StatusInformation\Devicefault.xml" pos="Device" param="Device.FingerService" />
+      <Item key="Sensors" value="\Status\UnSolicited\StatusInformation\Sensors.xml" pos="Sensors" param="Device.Sensors">
+        <Item key="SensorChange" value="\Status\UnSolicited\StatusInformation\SensorChange.xml" pos="Sensors" param="1" />
+        <Item key="ModeChange" value="\Status\UnSolicited\StatusInformation\ModeChange.xml" pos="Sensors" param="2" />
+        <Item key="AlarmStateChange" value="\Status\UnSolicited\StatusInformation\SensorChange.xml" pos="Sensors" param="3" />
+        <Item key="InServiceSupervisorChange" value="\Status\UnSolicited\StatusInformation\ModeChange.xml" pos="Sensors" param="4" />
+        <Item key="FullChangeDetected" value="\Status\UnSolicited\StatusInformation\SensorChange.xml" pos="Sensors" param="5" />
+      </Item>
+    </Item>
+  </SendMessag>
+  <ReceiveMessage>
+    <Item key="Head" value="" pos="b">
+      <Item key="TerminalCommand" value="1" pos="f">
+        <Item key="InService" value="1" pos="" />
+        <Item key="OutService" value="2" pos="" />
+        <Item key="ConfigurationID" value="3" pos="" />
+        <Item key="SupplyCounters" value="4" pos="g">
+          <Item key="Basic" value="" pos="" />
+          <Item key="Basic" value=" " pos="" />
+          <Item key="Basic" value="1" pos="" />
+          <Item key="Extended" value="2" pos="" />
+          <Item key="WincorCashInSupplyCounters" value="r" pos="" />
+        </Item>
+        <Item key="TallyInformation" value="5" pos="" />
+        <Item key="ErrorLogInformation" value="6" pos="" />
+        <Item key="ConfigurationInformation" value="7" pos="g">
+          <Item key="ConfigurationInformation" value="" pos="" />
+          <Item key="ConfigurationInformation" value=" " pos="" />
+          <Item key="HardwareConfiguration" value="1" pos="" />
+          <Item key="SuppliesData" value="2" pos="" />
+          <Item key="FitnessData" value="3" pos="" />
+          <Item key="TamperSensorStatusData" value="4" pos="" />
+          <Item key="SoftwareIDReleaseNumberData" value="5" pos="" />
+          <Item key="ConfigurationInformationEnhance" value="6" pos="" />
+          <Item key="LocalConfigurationOptionDigits" value="7" pos="" />
+          <Item key="NoteDefinitions" value="8" pos="" />
+          <Item key="WincorCashInStatusInformation" value="r" pos="" />
+        </Item>
+        <Item key="DateTime" value="8" pos="" />
+        <Item key="GrgRecyclerCmd" value="r" pos="g">
+          <Item key="GrgRecyclerStatusRequestCmd" value="1" pos="" />
+          <Item key="GrgRecyclerSupplyCounterRequestCmd" value="5" pos="" />
+          <Item key="GrgCashInNoteIdConfigCmd" value="2" pos="" />
+          <Item key="GrgNoteConfigCheckCmd" value="3" pos="" />
+          <Item key="GrgCassetteTypeConfigCmd" value="4" pos="h">
+            <Item key="GrgSetCassetteTypeToRetractingCmd" value="A" pos="" />
+            <Item key="GrgSetCassetteTypeToDispenseOnlyCmd" value="B" pos="" />
+            <Item key="GrgSetCassetteTypeToDepositOnlyCmd" value="I" pos="" />
+            <Item key="GrgSetCassetteTypeToRecyclingCmd" value="R" pos="" />
+          </Item>
+        </Item>
+        <!--Start: Added by Bxue-->
+        <Item key="ReceiveRKLInformation" value="R" pos="g">
+          <Item key="EPPCapabilities" value="C" pos="" />
+          <Item key="EPPIDSignature" value="I" pos="" />
+          <Item key="EPPPublicKeySignature" value="P" pos="" />
+        </Item>
+        <!--End-->
+      </Item>
+      <Item key="DataCommand" value="3" pos="f">
+        <Item key="CustomisationData" value="1" pos="g">
+          <Item key="Screen" value="1" pos="" />
+          <Item key="StateTable" value="2" pos="" />
+          <Item key="ConfigurationParameters" value="3" pos="" />
+          <Item key="FITData" value="5" pos="" />
+          <Item key="ConfigurationIDNumber" value="6" pos="" />
+          <Item key="EnhancedConfigurationParameters" value="A" pos="" />
+          <Item key="MessageAuthenticationFieldSelection" value="B" pos="" />
+          <Item key="DateTime" value="C" pos="" />
+          <Item key="ADA" value="V" pos="" />
+        </Item>
+        <Item key="EMVCustomisationData" value="e" pos="g">
+          <Item key="ICCTerminalAcceptableAIDsTable" value="A" pos="" />
+        </Item>
+        <Item key="InterTransResponse" value="2" pos="" />
+        <Item key="EncryptionKeyChange" value="3" pos="g">
+          <Item key="NewMaster_M" value="1" pos="" />
+          <Item key="NewComm_M" value="2" pos="" />
+          <Item key="NewComm_C" value="3" pos="" />
+          <Item key="NewComm_BKey" value="4" pos="" />
+          <Item key="NewMac_M" value="5" pos="" />
+          <Item key="NewMac_C" value="6" pos="" />
+          <Item key="NewMac_BKey" value="7" pos="" />
+          <Item key="NewVMaster_VM" value="8" pos="" />
+          <Item key="VisaKeyTabl" value="9" pos="" />
+          <Item key="NewVMaster_M" value=":" pos="" />
+          <!--Start: Added by Bxue-->
+          <Item key="LoadHSMPublickeySignature" value="P" pos="" />
+          <Item key="LoadAkeySignature" value="M" pos="" />
+          <!--End-->
+        </Item>
+        <Item key="ExtendedEncryptionKeyChange" value="4" pos="g">
+          <Item key="NewMaster_M" value="1" pos="" />
+          <Item key="NewComm_M" value="2" pos="" />
+          <Item key="NewComm_C" value="3" pos="" />
+          <Item key="NewComm_BKey" value="4" pos="" />
+          <Item key="NewMac_M" value="5" pos="" />
+          <Item key="NewMac_C" value="6" pos="" />
+          <Item key="NewMac_BKey" value="7" pos="" />
+          <Item key="NewVISA_VISAKey" value="8" pos="" />
+          <Item key="NewVISATAB" value="9" pos="" />
+          <Item key="NewVISA_M" value="A" pos="" />
+          <Item key="LoadHSMPublicKeyAndSignature" value="B" pos="" />
+          <Item key="LoadAKeyWRSA" value="C" pos="" />
+          <Item key="LoadBKeyWRSA" value="D" pos="" />
+          <Item key="LoadVKeyWRSA" value="E" pos="" />
+          <Item key="SendEPPSerialNumber" value="F" pos="" />
+          <Item key="SendEPPPublicKey" value="G" pos="" />
+          <Item key="SendAllKVVs" value="H" pos="" />
+          <Item key="SetKeyEntryMode" value="J" pos="" />
+          <Item key="SendKeyEntryMode" value="K" pos="" />
+          <Item key="LoadHostCertificate" value="L" pos="" />
+          <Item key="SendSSTCertificate" value="M" pos="" />
+          <Item key="SendSSTRandomNumber" value="N" pos="" />
+          <Item key="LoadAKeyPKCS7" value="O" pos="" />
+          <Item key="ReplaceCertificationAuthorityCertificate" value="P" pos="" />
+          <Item key="SendEncryptorCapabilitiesAndState" value="Q" pos="" />
+          <Item key="LoadNCRSubPublicKeyAndSignature" value="R" pos="" />
+          <Item key="DeleteHSMPublicKey" value="S" pos="" />
+          <Item key="DeleteNCRSubPublicKey" value="T" pos="" />
+          <Item key="SendEPPAttributes" value="U" pos="" />
+          <Item key="SendVariableLengthEPPSerialNumber" value="V" pos="" />
+          <Item key="LoadHSMPublicKeyByTR34" value="X" pos="" />
+          <Item key="LoadTR31KBPKeyByTR34" value="Y" pos="" />
+          <Item key="ReLoadHSMPublicKeyRebindEPPByTR34" value="Z" pos="" />
+          <Item key="ReLoadHSMPublicKeyForceRebindEPPByTR34" value="a" pos="" />
+          <Item key="DeleteHSMPublicKeyUnbindEPPByTR34" value="b" pos="" />
+          <Item key="DeleteHSMPublicKeyForceUnbindEPPByTR34" value="c" pos="" />
+          <Item key="NewComm_TR31" value="e" pos="" />
+          <Item key="NewMac_TR31" value="f" pos="" />
+          <Item key="SendHOSTCertificate" value="g" pos="" />
+          <Item key="ExtendedCapabilities" value="h" pos="" />
+          <Item key="ExtendedKeyStatus" value="i" pos="" />
+          <Item key="StartAuthenticated" value="k" pos="" />
+        </Item>
+      </Item>
+      <Item key="TransactionReplyCommand" value="4" pos="" />
+      <Item key="ElectronicJournal" value="6" pos="f">
+        <Item key="AcknowledgeUploadBlock" value="1" pos="" />
+        <Item key="AcknowledgeAndStopEJ" value="2" pos="" />
+        <Item key="EJOptionsAndTimers" value="3" pos="" />
+      </Item>
+      <Item key="EMVConfigurationMessage" value="8" pos="e">
+        <Item key="ICCCurrencyDataObjectsTable" value="1" pos="" />
+        <Item key="ICCTransactionDataObjectsTable" value="2" pos="" />
+        <Item key="ICCLanguageSupportTable" value="3" pos="" />
+        <Item key="ICCTerminalDataObjectsTable" value="4" pos="" />
+        <Item key="ICCTerminalAcceptableAIDsTable" value="5" pos="" />
+      </Item>
+    </Item>
+  </ReceiveMessage>
+  <ParserField>
+    <!--key="Head" is head node -->
+    <Item key="Head">
+      <Field ID="a" split="0, 1,1" />
+    </Item>
+    <Item key="TerminalCommand">
+      <Field ID="f" split="1 , 1" />
+    </Item>
+    <Item key="DataCommand">
+      <Field ID="f" split="1 ,-1" />
+    </Item>
+    <Item key="DataCommand.InterTransResponse">
+      <Field ID="g" split="1 ,-1" />
+    </Item>
+    <Item key="DataCommand.CustomisationData.EnhancedConfigurationParameters">
+      <Field ID="i" split="0 ,-1" />
+      <Field ID="k" split="0 ,-1" />
+    </Item>
+    <Item key="DataCommand.CustomisationData.ConfigurationParameters">
+      <Field ID="h" split="1,3,3,3,3,3,-1" />
+    </Item>
+    <Item key="TransactionReplyCommand">
+      <Field ID="g" split="2,2,2,-1" />
+      <Field ID="k" split="4,1,3,-1" />
+      <Field ID="o" split="1,1,-1" />
+      <Field ID="r" split="0,0,0,0,0,-1" />
+      <Field ID="w" split="1,-1" />
+    </Item>
+    <Item key="ElectronicJournal">
+      <Field ID="f" split="1,-1" />
+    </Item>
+  </ParserField>
+</Root>

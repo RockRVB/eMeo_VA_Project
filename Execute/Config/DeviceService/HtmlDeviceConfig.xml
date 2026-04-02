@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                                                                                 
+ServiceName：设备的服务名                                                                   
+ServerIP：   服务器IP
+Port：       服务端口号
+ProcessName：双屏程序名称，默认"TwinScreen.exe"
+CmdPrefix：  命令前缀，默认"FUN_,MENU_,KEYBOARD_"
+Timeout：    超时时间，默认5000ms
+BufferSize： 缓冲区大小，默认2048字节  
+Config：     配置文件名称   
+IsDebug:     是否调试,是则会调用谷歌浏览器调试
+WebBrowserProgramPath: 谷歌浏览器程序路径 (调试模式下才有用) 
+IsShowBrowserLog: 是否显示浏览器日志 
+Host :       主机地址 127.0.0.1  
+Port:        端口号  12306
+UrlPrefix：  服务器地址头部 如 http:// 、https://
+DefaultEncoding:  默认编码方式
+-->                                                                               
+<FlashDevice ServiceName="HtmlDevice" CmdPrefix="FUN_,MENU_,KEYBOARD_" Timeout="5000" IsDebug="0" UseEdge="1" IsShowBrowserLog="1" 
+ WebBrowserProgramPath="C:\Program Files\Google\Chrome\Application\chrome.exe"  Config="Config/GeneralConfig.xml" CmdGetTimeout="5000" CmdSetTimeout="5000" CmdPromptTimeout="5000"/>

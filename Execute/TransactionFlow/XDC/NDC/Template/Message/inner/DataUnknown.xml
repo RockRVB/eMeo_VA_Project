@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Device>
+    <Enable unknown="0" />
+    <Information>
+ 
+      <unknown DeviceState="ONLINE" MediaState="unknown" LastErrorCode="" IsSuccess="True" IsFailure="False" Cancelled="False" UserState="16" />
+    </Information>
+    <Event>
+ 
+      <unknown EventName="CARDUNIT" EventValue="SLOW" Event="ChangeAffair" UnhandleSynCommandEvent="False" Source="SensorsDevice.SensorsDevice" CommandCompleted="False" QueryInforamtionCompleted="False" />
+ 
+    </Event>
+ 
+    <Capability>
+ 
+    </Capability>
+  </Device>
+</Root>

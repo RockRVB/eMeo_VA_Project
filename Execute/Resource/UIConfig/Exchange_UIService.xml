@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+
+  <Screen name="UI_SelectPaymentWay" uri="Exchange\payment-method.html" cache="0">
+  </Screen>
+
+  <Screen name="UI_UI_SelectHomeCurrency" uri="Exchange\select-currency.html" cache="0">
+  </Screen>
+
+  <Screen name="UI_ShowExchangeInfo" uri="Exchange\exchange-info.html" cache="0">
+  </Screen>
+
+  <Screen name="UI_TakeCash_Exchange" uri="Exchange\take-cash.html" cache="0">
+  </Screen>
+  
+  <Screen name="UI_ExchangePromptWhenModuleError" uri="Exchange\dispense-info.html" cache="0">
+  </Screen>
+  
+  <Screen name="UI_ScanBarCode_Profile" uri="common-page\ScanBarcode_Profile.html" cache="0">
+  </Screen>
+  
+  
+  <!--这里开始是现金缴费的UI-->
+  <Screen name="UI_SelectLoginWay" uri="New-Payment\login-method.html" cache="0">
+  </Screen>
+  
+  <Screen name="UI_SelectBillType" uri="New-Payment\select-bill-type.html" cache="0">
+  </Screen>
+  
+   <Screen name="UI_ShowBillInfo" uri="New-Payment\show-bill-info.html" cache="0">
+  </Screen>
+  
+  <Screen name="UI_CashInPutCash" uri="New-Payment\payment-put-cash.html" cache="0">
+  </Screen>
+  
+  <Screen name="UI_Change" uri="New-Payment\take-change.html" cache="0">
+  </Screen>
+  
+  <Screen name="UI_ChangeZero" uri="New-Payment\change-zero.html" cache="0">
+  </Screen>
+  
+  <Screen name="UI_IsPrintReceiptAfterPayment" uri="New-Payment\payment_complete.html" cache="0">
+  </Screen>
+  
+  
+  <Screen name="UI_ShowCashInResult" uri="New-Payment\payment-cashin-result.html" cache="0">
+  </Screen>
+  
+  <Screen name="UI_CashInShowResultForNotEnough" uri="New-Payment\cashin-result-notenought.html" cache="0">
+  </Screen>
+  
+   <Screen name="UI_SelectPaymentWay_Payment" uri="New-Payment\payment-method.html" cache="0">
+  </Screen>
+
+</Screens>
+

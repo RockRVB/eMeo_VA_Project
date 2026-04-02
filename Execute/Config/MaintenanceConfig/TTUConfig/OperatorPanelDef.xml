@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!--
+&#xD;    表示\r
+&#xA;     表示\n
+-->
+<Property TitlePos="5%,1" MenuPos="10%,1" CommentPos="95%,1" ResultPos="95%,1">
+	<LoginMenu title="IDS_LoginMenu" select="IDS_Input">
+		<item remark="银行管理员" text="IDS_BankOperator" mapKey="1"/>
+		<item remark="系统管理员" text="IDS_SystemOperator" mapKey="2"/>
+		<item remark="退出" text="IDS_Exit" mapKey="0"/>
+	</LoginMenu>
+	<MainMenu title="IDS_MainMenu" select="IDS_Input">
+		<item remark="清机管理" text="IDS_ClearAndAddCash" mapKey="1"/>
+		<item remark="系统诊断" text="IDS_SytemDiagnose" mapKey="2"/>
+		<item remark="系统配置" text="IDS_SystemConfigure" mapKey="3"/>
+		<item remark="日常维护" text="IDS_NormalMaintenance" mapKey="4"/>
+		<item remark="日志操作" text="IDS_LogOperate" mapKey="5"/>
+		<item remark="注销" text="IDS_Logout" mapKey="6"/>
+		<item remark="退出" text="IDS_Exit" mapKey="0"/>
+	</MainMenu>
+	<NormalMaintenanceMenu title="IDS_NormalMaintenance" select="IDS_Input">
+		<item remark="重启机器" text="IDS_RestartPC" mapKey="1"/>
+		<item remark="关闭机器" text="IDS_ShutDownPC" mapKey="2"/>
+		<item remark="查询正错误码" text="IDS_QueryPositiveError" mapKey="3"/>
+		<item remark="查询负错误码" text="IDS_QueryNegativeError" mapKey="4"/>
+		<item remark="修改密码" text="IDS_ModifyPassword" mapKey="5"/>
+		<item remark="日光灯设置" text="IDS_LightControlTTU" mapKey="6"/>
+		<item remark="查询主机返回码" text="IDS_QueryHostError" mapKey="7"/>
+		<item remark="返回主菜单" text="IDS_Back" mapKey="0"/>
+	</NormalMaintenanceMenu>
+	<SystemDiagnose title="IDS_SytemDiagnose" select="IDS_Input">
+		<item remark="设备复位" text="IDS_DeviceReset" mapKey="1"/>
+		<item remark="设备测试" text="IDS_DeviceTest" mapKey="2"/>
+		<item remark="系统环境诊断" text="IDS_SystemEnvironmentTest" mapKey="3"/>
+		<item remark="网络测试" text="IDS_NetworkTest" mapKey="4"/>
+		<!--
+		<item  remark="打印版本" text="IDS_PrintVersion" mapKey="3"/>
+		-->
+		<item remark="返回主菜单" text="IDS_Back" mapKey="0"/>
+	</SystemDiagnose>
+	<TestMenu title="IDS_DeviceTest" select="IDS_Input">
+		<item remark="读卡器测试" text="IDS_IDCTest" mapKey="1"/>
+		<item remark="指示灯测试" text="IDS_GuidLightTest" mapKey="2"/>
+		<item remark="凭条打印机测试" text="IDS_RPPRTest" mapKey="3"/>
+		<item remark="流水打印机测试" text="IDS_JRPRTest" mapKey="4"/>
+		<!--<item remark="初始化密钥" text="IDS_PinInitialization" mapKey="5"/>-->
+		<item remark="返回上一级菜单" text="IDS_Back" mapKey="0"/>
+	</TestMenu>
+
+	<ResetMenu title="IDS_DeviceReset" select="IDS_Input">
+		<item remark="所有设备" text="IDS_AllDevice" mapKey="1"/>
+		<item remark="读卡器设备" text="IDS_IDC" mapKey="2"/>
+		<item remark="键盘设备" text="IDS_EPP" mapKey="3"/>
+		<item remark="取款设备" text="IDS_CDM" mapKey="4"/>
+		<item remark="存款设备" text="IDS_CIM" mapKey="5"/>
+		<item remark="凭条打印机" text="IDS_RPPR" mapKey="6"/>
+		<item remark="流水打印机" text="IDS_JRPR" mapKey="7"/>
+		<item remark="返回上一级菜单" text="IDS_Back" mapKey="0"/>
+	</ResetMenu>
+	<CleanMenu title="IDS_ClearAndAddCash" select="IDS_Input">
+		<item remark="打印结账" text="IDS_LocalTotals" mapKey="1"/>
+		<item remark="加钞" text="IDS_CashReplenish" mapKey="2"/>
+		<item remark="打印异常交易" text="IDS_QUERYEXCEPTION" mapKey="3"/>
+		<item remark="打印吞卡记录" text="IDS_QUERYCAPTURECARD" mapKey="4"/>
+		<item remark="钞票信息查询" text="IDS_QueryNotesInfo" mapKey="5"/>
+		<item remark="异常交易查询" text="IDS_QueryAbnormalTransInfo" mapKey="6"/>
+		<item remark="设置钱箱以及面额" text="IDS_SetCurAndDeno" mapKey="7"/>
+		<item remark="返回主菜单" text="IDS_Back" mapKey="0"/>
+	</CleanMenu>
+
+	<!--打印异常交易-->
+	<AbnormalTransaction title="IDS_QUERYEXCEPTION" select="IDS_Input">
+		<item remark="本周期异常交易" text="IDS_CURRENTPERIODEXP" mapKey="1"/>
+		<item remark="上周期异常交易" text="IDS_LASTPERIODEXP" mapKey="2"/>
+		<item remark="指定周期异常交易" text="IDS_SPECIFIEDDATEEXP" mapKey="3"/>
+		<item remark="清机周期异常交易" text="IDS_CLEARMACHINEPERIODEXP" mapKey="4"/>
+		<item remark="返回主菜单" text="IDS_Back" mapKey="0"/>
+	</AbnormalTransaction>
+	
+	<!--查询异常交易-->
+	<QueryAbnormalTransaction title="IDS_CURRENTPERIODEXP" select="IDS_Input">
+		<item remark="流水号异常交易" text="IDS_QueryAbnormalByJou" mapKey="1"/>
+		<item remark="账号异常交易" text="IDS_QueryAbnormalByAccount" mapKey="2"/>
+		<item remark="交易类型异常交易" text="IDS_QueryAbnormalByTransType" mapKey="3"/>
+		<item remark="日期异常交易" text="IDS_QueryAbnormalByDate" mapKey="4"/>
+		<item remark="时间异常交易" text="IDS_QueryAbnormalByDateTime" mapKey="5"/>
+		<item remark="返回主菜单" text="IDS_Back" mapKey="0"/>
+	</QueryAbnormalTransaction>
+	
+	<!--按交易类型异常交易-->
+	<QueryAbnormalTransactionByTransType title="IDS_CURRENTPERIODEXP" select="IDS_Input">
+		<item remark="存款" text="IDS_QueryAbnormalByDEP" mapKey="1"/>
+		<item remark="取款" text="IDS_QueryAbnormalByCWD" mapKey="2"/>
+		<item remark="无卡存款" text="IDS_QueryAbnormalByNoCardDep" mapKey="3"/>
+		<item remark="转账" text="IDS_QueryAbnormalByTFR" mapKey="4"/>
+		<item remark="返回主菜单" text="IDS_Back" mapKey="0"/>
+	</QueryAbnormalTransactionByTransType>
+	
+
+	<BankNotesInfoInquiryMenu title="IDS_QueryNotesInfo" select="IDS_Input">
+		<item remark="按流水号查询" text="IDS_INQUIRYBYJOURNALNO" mapKey="1"/>
+		<item remark="按卡号查询" text="IDS_INQUIRYBYCARDNO" mapKey="2"/>
+		<item remark="按钞票序列号查询" text="IDS_INQUIRYBYSERIALNO" mapKey="3"/>
+		<item remark="返回上一级菜单" text="IDS_Back" mapKey="0"/>
+	</BankNotesInfoInquiryMenu>
+	
+	<PrintMenu title="IDS_PrintMenu" select="IDS_Input">
+		<item remark="流水打印" text="IDS_JouranlPrint" mapKey="1"/>
+		<item remark="凭条打印" text="IDS_ReceiptPrint" mapKey="2"/>
+		<item remark="返回上一级菜单" text="IDS_Back" mapKey="0"/>
+	</PrintMenu>
+
+	<PrintMenu4ListFormat title="IDS_PrintMenu" select="IDS_Input">
+		<item remark="流水打印" text="IDS_JouranlPrint" mapKey="1"/>
+		<item remark="凭条打印" text="IDS_ReceiptPrint" mapKey="2"/>
+		<item remark="返回上一级菜单" text="IDS_Back" mapKey="0"/>
+	</PrintMenu4ListFormat>
+
+	<QueryDeviceStatusMenu title="IDS_QueryDeviceStatus" select="IDS_Input">
+		<item remark="门状态" text="IDS_DoorState" mapKey="1"/>
+		<item remark="读卡器状态" text="IDS_CardReaderState" mapKey="2"/>
+		<item remark="取款设备状态" text="IDS_CDMState" mapKey="3"/>
+		<item remark="存款设备状态" text="IDS_CIMState" mapKey="4"/>
+		<item remark="凭条打印机状态" text="IDS_RPPRState" mapKey="5"/>
+		<item remark="流水打印机状态" text="IDS_JRPRState" mapKey="6"/>
+		<item remark="返回主菜单" text="IDS_Back" mapKey="0"/>
+	</QueryDeviceStatusMenu>
+	<PrintTotalMenu title="IDS_PrintLocalTotal" select="IDS_Input">
+		<item remark="凭条打印" text="IDS_ReceiptPrint" mapKey="1"/>
+		<item remark="流水打印" text="IDS_JouranlPrint" mapKey="2"/>
+		<item remark="凭条、流水同时打印" text="IDS_PrintLocalTotalInTwoWay" mapKey="3"/>
+		<item remark="返回主菜单" text="IDS_Back" mapKey="0"/>
+	</PrintTotalMenu>
+
+	<PrintTotalMenuExceptReceiptPrint title="IDS_PrintLocalTotal" select="IDS_Input">
+		<item remark="流水打印" text="IDS_JouranlPrint" mapKey="1"/>
+		<item remark="凭条、流水同时打印" text="IDS_PrintLocalTotalInTwoWay" mapKey="2"/>
+		<item remark="返回主菜单" text="IDS_Back" mapKey="0"/>
+	</PrintTotalMenuExceptReceiptPrint>
+
+	<PrintTotalMenuExceptJouranlPrint title="IDS_PrintLocalTotal" select="IDS_Input">
+		<item remark="凭条打印" text="IDS_ReceiptPrint" mapKey="1"/>
+		<item remark="凭条、流水同时打印" text="IDS_PrintLocalTotalInTwoWay" mapKey="2"/>
+		<item remark="返回主菜单" text="IDS_Back" mapKey="0"/>
+	</PrintTotalMenuExceptJouranlPrint>
+
+	<PrintTotalMenuExceptPrintInTwoWay title="IDS_PrintLocalTotal" select="IDS_Input">
+		<item remark="返回主菜单" text="IDS_Back" mapKey="0"/>
+	</PrintTotalMenuExceptPrintInTwoWay>
+
+	<SIUGuidLightTest title="IDS_GuidLightTest" select="IDS_Input">
+		<item remark="键盘指示灯" text="IDS_PINPAD" mapKey="1"/>
+		<item remark="读卡器指示灯" text="IDS_CardUnit" mapKey="2"/>
+		<item remark="出钞口指示灯" text="IDS_NotesDispenser" mapKey="3"/>
+		<item remark="扫描仪指示灯" text="IDS_Scanner" mapKey="4"/>
+		<item remark="存折打印机指示灯" text="IDS_PassbookPrinter" mapKey="5"/>
+		<item remark="钞票存入口指示灯" text="IDS_CashAccepter" mapKey="6"/>
+		<item remark="帐单打印机指示灯" text="IDS_DocumentPrinter" mapKey="7"/>
+		<item remark="凭条打印机指示灯" text="IDS_ReceiptPrinter" mapKey="8"/>
+		<item remark="返回主菜单" text="IDS_Back" mapKey="0"/>
+	</SIUGuidLightTest>
+	<CardReaderTest title="IDS_IDCTest" select="IDS_Input">
+		<item remark="读卡并退卡" text="IDS_ReadAndEject" mapKey="1"/>
+		<item remark="读卡并吞卡" text="IDS_ReadAndCapture" mapKey="2"/>
+		<item remark="返回主菜单" text="IDS_Back" mapKey="0"/>
+	</CardReaderTest>
+	<DeviceQuery title="IDS_QueryDeviceStatus" select="IDS_Input">
+		<item remark="门状态" text="IDS_DoorState" mapKey="1"/>
+		<item remark="读卡器状态" text="IDS_CardReaderState" mapKey="2"/>
+		<item remark="取款设备状态" text="IDS_CDMState" mapKey="3"/>
+		<item remark="存款设备状态" text="IDS_CIMState" mapKey="4"/>
+		<item remark="凭条打印机状态" text="IDS_RPPRState" mapKey="5"/>
+		<item remark="流水打印机状态" text="IDS_JRPRState" mapKey="6"/>
+		<item remark="返回上一级菜单" text="IDS_Back" mapKey="0"/>
+	</DeviceQuery>
+	<SystemConfig title="IDS_SystemConfigure" select="IDS_Input">
+		<item remark="ATM参数" text="IDS_AtmParameters" mapKey="1"/>
+		<item remark="厂商模式" text="IDS_VDMManage" mapKey="2"/>
+                <item remark="设置存款面额" text="IDS_SetCIMCurrency" mapKey="3"/>
+		<item remark="通过U盘升级" text="IDS_SOFTWAREUPGRADEBYFLASHDISK" mapKey="4"/>
+		<item remark="通过CDROM升级" text="IDS_SOFTWAREUPGRADEBYCDROM" mapKey="5"/>
+		<item remark="返回上一级菜单" text="IDS_Back" mapKey="0"/>
+	</SystemConfig>
+  <AtmParameters title="IDS_SystemConfigure" select="IDS_Input">
+    <item remark="设置ATM号" text="IDS_SetATMID" mapKey="1"/>
+    <item remark="设置Atmp" text="IDS_SetATMPIP" mapKey="2"/>
+    <item remark="设置Atmv" text="IDS_SetATMVIP" mapKey="3"/>
+    <item remark="设置主密钥" text="IDS_SetMasterKey" mapKey="4"/>
+    <item remark="设置最大限额" text="IDS_SetMaxAmount" mapKey="5"/>
+    <item remark="设置流水号" text="IDS_SetJouNo" mapKey="6"/>
+    <item remark="设置主密钥" text="Set COM Key" mapKey="7"/>
+    <item remark="设置主密钥" text="Set B Key" mapKey="8"/>
+    <item remark="显示主密钥KVV" text="IDS_ShowMasterKeyKVV" mapKey="9"/>
+    <item remark="返回上一级菜单" text="IDS_Back" mapKey="0"/>
+  </AtmParameters>
+	<AtmSetting title="IDS_SystemConfigure" select="IDS_Input">
+		<item remark="设置终端号" text="IDS_SetATMTerminalID" mapKey="1"/>
+		<item remark="设置银行号" text="IDS_SetBankNo" mapKey="2"/>
+		<item remark="设置网点号" text="IDS_SetBranchID" mapKey="3"/>
+		<item remark="设置第二ATM号" text="IDS_SetSecondATMID" mapKey="4"/>
+		<item remark="返回上一级菜单" text="IDS_Back" mapKey="0"/>
+	</AtmSetting>
+	<MaxAmount title="IDS_SystemConfigure" select="IDS_Input">
+		<item remark="设置取款最大限额" text="IDS_MaxWithdrawAmount" mapKey="1"/>
+		<item remark="设置转账最大限额" text="IDS_MaxTransferAmount" mapKey="2"/>
+		<item remark="返回上一级菜单" text="IDS_Back" mapKey="0"/>
+	</MaxAmount>
+	
+	<LogOperate title="IDS_LogOperate" select="IDS_Input">
+		<item remark="补打流水" text="IDS_Reprint" mapKey="1"/>
+		<item remark="拷贝电子流水" text="IDS_CopyElectronicJou" mapKey="2"/>
+		<item remark="拷贝电子流水到CD" text="IDS_CopyElectronicJouToCD" mapKey="4"/>
+		<item remark="版本跟踪" text="IDS_VersionTracing" mapKey="5"/>
+		<item remark="返回上一级菜单" text="IDS_Back" mapKey="0"/>
+	</LogOperate>
+	<ReprintJou title="IDS_LogOperate" select="IDS_Input">
+		<item remark="按日期补打流水" text="IDS_ReprintJouByDate" mapKey="1"/>
+		<item remark="按卡号补打流水" text="IDS_ReprintJorByCardNo" mapKey="2"/>
+		<item remark="按流水号补打流水" text="IDS_ReprintJouByJouNo" mapKey="3"/>
+		<item remark="返回上一级菜单" text="IDS_Back" mapKey="0"/>
+	</ReprintJou>
+	<LightControlTTU title="IDS_LightControlTTU" select="IDS_Input">
+		<item remark="输入日光灯设置时间（小时）" text="IDS_LightControlSetHour" mapKey="1"/>
+		<item remark="返回上一级菜单" text="IDS_Back" mapKey="0"/>
+	</LightControlTTU>
+
+</Property>

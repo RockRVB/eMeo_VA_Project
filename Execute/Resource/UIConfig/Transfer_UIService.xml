@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+  <!-- Transfer-->
+  <Screen name="UI_InputTransferAccount" uri="Transfer\InputTransferAccount.html" cache="0">
+    <Triggers>
+      <EventTrigger condition="show">
+        <PlaySound source="(Voice_InputTransferAccount)"/>
+        <Setter target="PromptIcon" property="visible" value="0"/>
+      </EventTrigger>
+      <EventTrigger condition="LengthNotEnough">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+      </EventTrigger>
+    </Triggers>
+  </Screen>
+  <Screen name="UI_InputTransferAccountAgain" uri="Transfer\InputTransferAccountAgain.html" cache="0">
+    <Triggers>
+      <EventTrigger condition="show">
+        <PlaySound source="(Voice_InputTransferAccountAgain)"/>
+        <Setter target="PromptIcon" property="visible" value="0"/>
+      </EventTrigger>
+      <EventTrigger condition="LengthNotEnough">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+      </EventTrigger>
+    </Triggers>
+  </Screen>
+  <Screen name="UI_InputTransferAccountUnmatch" uri="Transfer\InputTransferAccountUnmatch.html" cache="0">
+    <Triggers>
+      <EventTrigger condition="show">
+        <PlaySound source="(Voice_InputTransferAccountUnmatch)"/>
+        <Setter target="PromptIcon" property="visible" value="0"/>
+      </EventTrigger>
+      <EventTrigger condition="LengthNotEnough">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+      </EventTrigger>
+    </Triggers>
+  </Screen>
+
+  <Screen name="UI_InputAccountSameAsPAN" uri="Transfer\InputAccountSameAsPAN.html" cache="0">
+    <Triggers>
+      <EventTrigger condition="show">
+        <PlaySound source="(Voice_InvalidAccountNumberNeedReInput)"/>
+        <Setter target="PromptIcon" property="visible" value="0"/>
+      </EventTrigger>
+      <EventTrigger condition="LengthNotEnough">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+      </EventTrigger>
+    </Triggers>
+  </Screen>
+
+  <Screen name="UI_InputTransferAmount" uri="Transfer\InputTransferAmount.html" cache="0">
+    <Triggers>
+      <EventTrigger condition="show">
+        <Setter target="PromptIcon" property="visible" value="0"/>
+        <PlaySound source="(Voice_InputTransferAmount)"/>
+      </EventTrigger>
+      <EventTrigger condition="InputAmountError">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+        <Setter target="Prompt" property="content" value="(IDS_InputAmountError)"/>
+        <PlaySound source="(Voice_InputAmountError)"/>
+      </EventTrigger>
+      <EventTrigger condition="InputAmountExceedsLimit">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+        <Setter target="Prompt" property="content" value="(IDS_InputTransferAmountExceedsLimit)"/>
+        <PlaySound source="(Voice_InputAmountError)"/>
+      </EventTrigger>
+      <EventTrigger condition="InputAmountLessThanLimit">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+        <Setter target="Prompt" property="content" value="(IDS_InputTransferAmountLessThanLimit)"/>
+        <PlaySound source="(Voice_InputAmountError)"/>
+      </EventTrigger>
+      <EventTrigger condition="InputAmountMultipleError">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+        <Setter target="Prompt" property="content" value="(IDS_InputTransferAmountMultipleError)"/>
+        <PlaySound source="(Voice_InputAmountError)"/>
+      </EventTrigger>
+      <EventTrigger condition="InputAmountExceedICAvailableRechargeAmount">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+        <Setter target="Prompt" property="content" value="(IDS_InputAmountExceedICAvailableRechargeAmount)"/>
+        <PlaySound source="(Voice_InputAmountError)"/>
+      </EventTrigger>
+      <EventTrigger condition="InputAmountExceedICBalance">
+        <Setter target="PromptIcon" property="visible" value="1"/>
+        <Setter target="Prompt" property="content" value="(IDS_InputAmountExceedICBalance)"/>
+        <PlaySound source="(Voice_InputAmountError)"/>
+      </EventTrigger>
+    </Triggers>
+  </Screen>
+  <Screen name="UI_ShowTransferInfoWithName" uri="Transfer\ShowTransferInfoWithName.html" cache="0">
+  </Screen>
+  <Screen name="UI_ShowTransferInfo" uri="Transfer\ShowTransferInfo.xaml" cache="0">
+  </Screen>
+  <Screen name="UI_TransferSuccess" uri="Transfer\TransferSuccess.html" cache="0">
+    <Triggers>
+      <EventTrigger condition="show">
+        <PlaySound source="(Voice_TransferSuccess)"/>
+      </EventTrigger>
+    </Triggers>
+  </Screen>
+  <Screen name="UI_TransferWaiting" uri="Transfer\TransferWaiting.html" cache="0">
+  </Screen>
+  <Screen name="UI_TransferResultForNoRPT" uri="Transfer\TransferResultForNoRPT.xaml" cache="0">
+  </Screen>
+  <Screen name="UI_TransferAccountError" uri="Transfer\TransferAccountError.xaml" cache="0">
+  </Screen>
+  <Screen name="UI_ShowAccountInfoForTFR" uri="Transfer\ShowTransferAccountInfo.html" cache="0">
+    <Triggers>
+      <EventTrigger condition="show">
+        <PlaySound source="(Voice_ConfirmDepositInfo)"/>
+      </EventTrigger>
+    </Triggers>
+  </Screen>
+</Screens>
+

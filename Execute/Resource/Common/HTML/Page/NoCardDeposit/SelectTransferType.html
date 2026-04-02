@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!--author="hxlin"-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../css/CN.css"  replace="1" />
+<link rel="stylesheet" type="text/css" href="../../css/Button.css" />
+<script defer type="text/javascript" src="../../js/ShowResource.js"></script>
+</head>
+<body>
+<div class="backgroundDiv">
+<div class="CounterDiv" style="display: none" id="Counter" type="countdown" reserved="2"
+content="{Binding Count}" visible="{Binding CouterVisible}">
+</div>
+<div class="PageTopTitleNew" ids="IDS_SelectService">
+</div>
+
+
+<div class="f3Div" id="F3" tag="OnF3" type="Button" visible="{Binding F3_Visible}">
+<img src="../../../Image/CN/Btn_Bg1_left_up.png" id="bgimg" up="(btnbg1leftup)" down="(btnbg1leftdw)" />
+<span class="buttonLeft" ids="IDS_FixedDeposit"></span>
+</div>
+<div class="f7Div" id="F7" tag="OnCancel" type="Button">
+<img src="../../../Image/CN/Btn_Bg1_left_up.png" id="bgimg" up="(btnbg1leftup)" down="(btnbg1leftdw)" />
+<span class="buttonLeft" ids="IDS_Exit"></span>
+</div>
+<div class="f8Div" id="F8" tag="OnF8" type="Button" visible="{Binding F8_Visible}">
+<img src="../../../Image/CN/Btn_Bg1_right_up.png" id="Img1" up="(btnbg1rightup)"
+down="(btnbg1rightdw)" />
+<span class="buttonRight" ids="IDS_Deposit"></span>
+</div>
+</div>
+</body>
+</html>

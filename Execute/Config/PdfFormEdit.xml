@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--pdf表单编辑功能-->
+<Config>
+  <!--pdf文件保存的目录-->
+  <PdfFileSavePath>d:\pdffile</PdfFileSavePath>
+  <!--pdf文件保存的文件名，可以使用的宏定义：{yyyy}-{MM}-{dd} {HH}-{mm}-{ss}，默认不配置，则直接采用原来的文件名，配置文件名的时候，记得带上文件后缀名-->
+  <PdfFileSaveName>{yyyy}-{MM}-{dd} {HH}-{mm}-{ss}.pdf</PdfFileSaveName>
+  <!--签名相关-->
+  <Sign>
+    <!--签名图片保存目录-->
+    <SignImageSavePath>d:\signImage</SignImageSavePath>
+    <!--空白签名图片路径-->
+    <EmptySignImageFile>Resource\Common\Image\CN\sign.png</EmptySignImageFile>
+    <!--签名图片保存策略，默认退出pdfviewAction就会删除所有签名图片-->
+    <SignImageDeleteWhenExitAction>true</SignImageDeleteWhenExitAction>
+    <!--数字证书目录-->
+    <CertificateFilePath>D:\GrgBanking\eCAT\Resource\Common\HTML\css\pdfEdit\PDFEdit.pfx</CertificateFilePath>
+    <!--数字证书口令-->
+    <CertificatePassword>123456</CertificatePassword>
+  </Sign>
+</Config>

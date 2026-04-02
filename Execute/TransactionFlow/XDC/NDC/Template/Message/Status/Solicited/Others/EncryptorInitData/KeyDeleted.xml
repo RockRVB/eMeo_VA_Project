@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!--  This message class/Sub-class is used when initialising the encryptor module, and is used in a similar
+	*  way to the terminal state message. 
+	* However, it does not contains any of the fields associated with message authentication, and is therefore suitable for the 
+	* initial exchange of data required to initialise the encryptor. 
+	* This solicited message is returned in response to an Extended Encryption Key Change message, described in "Extended 
+	* Encryption Key Change".
+	-->		
+	<EncryptorInitData>
+		<Item key="e" 																		value="C"  									size="1" 				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																size="1"				restriction="Mandatory"/>
+		
+	</EncryptorInitData>	
+</Root>

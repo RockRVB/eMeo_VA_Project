@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!--  RKL Information-->
+	<RKLInformation>
+		<Item key="e" 	value="[TVN]"	size="3-9"	restriction="[OptionCtrl.EnableMAC]"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" 	value="[FS]"	size="1"	restriction="[OptionCtrl.EnableMAC]"/>	
+		<Item key="f" 	value="R"  	size="1" 	restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]"  value="[FS]"	size="1"	restriction="Mandatory"/>
+	</RKLInformation>
+</Root>

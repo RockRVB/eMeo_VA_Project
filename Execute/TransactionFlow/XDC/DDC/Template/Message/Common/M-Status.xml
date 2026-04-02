@@ -1,0 +1,800 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<!-- CR01 (Card Reader Status Messages) -->
+  <CardReader>
+    <Item ErrorCode="DefaultNoError" MData=":00:00:00"  Description="The card reader device performed a self-test, and no errors occurred." />
+    <Item ErrorCode="DefaultError/1284" MData=":38:00:00"  Description="Default error code" />
+    <Item ErrorCode="CR01_230/1202/1262" MData=":23:00:00"  Description="Consumer timeout. The card was moved to the return position but was not removed withithe allotted time" />
+    <Item ErrorCode="1201/1214/1260/1263" MData=":30:42:31"  Description="Unable to retain the card. The card is not present in the card reader" />
+    <Item ErrorCode="1233" MData=":30:46:31"  Description="Unable to write data to track 3. The card is not present in the card reader." />
+    <Item ErrorCode="" MData=":30:55:31"  Description="Unable to write data to track 1. The card is not present in the card reader." />
+    <Item ErrorCode="" MData=":30:56:31"  Description="Unable to write data to track 2. The card is not present in the card reader." />
+    <Item ErrorCode="1225/1226/1227/1229/1230/1232/1234/1235/1237/1238/1244/1290/1295/1298" MData=":38:00:00"  Description="The card reader is unavailable or inoperative." />
+    <Item ErrorCode="1221/1222/1228/1236/1280/1285/1286/1291/1292/1296/1299" MData=":38:62:40"  Description="Self-test open failure. The card reader is not available." />
+    <Item ErrorCode="1231/1267/1268/" MData=":3C:00:00"  Description="Read operation is incomplete due to timeout or cancellation.Eject or retain command was rejected due to unsupported data type." />
+    <Item ErrorCode="1284" MData=":3D:58:60"  Description="A card is jammed in the card reader. A possible fraud (fishing) attempt occurred." />
+    <Item ErrorCode="" MData=":3E:00:00"  Description="Error is due to function command processing.Error is due to state processing" />
+    <Item ErrorCode="1223/1224" MData=":3E:00:40"  Description="The operation cannot be performed due to improper network data. There is a format fault in state data or in Function Command message data." />
+    <Item ErrorCode="" MData=":3E:40:42"  Description="Unable to write data to track 3 (state processing). The write fault limit in the device properties has been exceeded." />
+    <Item ErrorCode="" MData=":3E:40:53"  Description="Unable to write data to track 1 (state processing). The write fault limit in the device properties has been exceeded." />
+    <Item ErrorCode="1282" MData=":3E:40:55"  Description="Unable to write data to track 2 (state processing). The write fault limit in the device properties has been exceeded." />
+    <Item ErrorCode="1239/1240/1241/1242/1243/1245/1246/1247/1249/" MData=":3E:42:40"  Description="The read conditions cannot be satisfied (state processing). The read fault limit in the ACU has been exceeded." />
+    <Item ErrorCode="1219/1297" MData=":3E:44:40"  Description="The card retain bin is full. The card reader cannot retain the card. It might be possible to return the card." />
+    <Item ErrorCode="CR01_840" MData=":3E:48:40"  Description="The card is jammed in the card reader. The card cannot be returned to the consumer. It might be possible to retain the card." />
+	<Item ErrorCode="1248/1269/1270/1271/1272/1273/1274/" MData=":3E:52:40"  Description="Card reading performance has degraded to an unacceptable level. The dip card reader cannot reliably read track data." />
+	<Item ErrorCode="CR01_283/1203/1204/1205/1283/1288" MData=":3E:58:60"  Description="A card is jammed in the card reader. A possible fraud attempt occurred" />
+	<Item ErrorCode="1220/1261" MData=":3E:60:48"  Description="A card was partially inserted, rather than fully inserted (state processing). The partial insertion was repeated several times, or the card stayed partially inserted for a length of time." />
+	<Item ErrorCode="" MData=":3F:40:41"  Description="An unsolicited card retain has occurred The card was present in the card reader on powerup The card was moved to the return position, but the consumer did not take the card within the allotted time." />
+	<Item ErrorCode="1253/1254" MData=":3F:40:42"  Description="Unable to write data to track 3 (function command processing)." />
+	<Item ErrorCode="1259" MData=":3F:40:53"  Description="Unable to write data to track 1 (function command processing)." />
+	<Item ErrorCode="1255/1256/1257/1258/" MData=":3F:40:55"  Description="Unable to write data to track 2 (function command processing)." />
+	<Item ErrorCode="" MData=":3F:40:60"  Description="The card was not retained. The card was removed from the card reader, the card was held by the user, or the card is jammed in the card reader." />
+    <Item ErrorCode="1250/1251/1252/1265/1266" MData=":3F:42:40"  Description="The read conditions cannot be satisfied (function command processing)." />
+    <Item ErrorCode="1219/1289" MData=":3F:48:40"  Description="The card is jammed in the card reader. The card cannot be returned to the consumer. It might be possible to retain the card." />
+    <Item ErrorCode="1287" MData=":3F:48:60"  Description="Card tease. A card was inserted into the device but was not released by the consumer. The card was withdrawn from the device within 60 seconds" />
+    <Item ErrorCode="1275/1276/1278/1279/1293/1294" MData=":3F:52:40"  Description="Card reading performance has degraded to an unacceptable level. The dip card reader cannot reliably read track data." />
+    <Item ErrorCode="" MData=":3F:60:48"  Description="A card was partially inserted, rather than fully inserted (function command processing). The partial insertion was repeated several times, or the card stayed partially inserted for a length of time." />
+	<Item ErrorCode="" MData=":3F:68:60"  Description="Rear Balance card tease. Card tease during rear insertion of the card for Rear Balance functions." />
+	<Item ErrorCode="1206/1207/1208/1209/1210/1211" MData=":3F:80:01"  Description="The status of the foreign device detection sensor has changed to OFF.A possible fraud attempt occurred. A foreign device, such as a skimmer, might have been removed from the card reader." />
+	<Item ErrorCode="1212/1213/1215/1216/1217/1218" MData=":3F:80:02"  Description="The status of the foreign device detection sensor has changed to ON.A possible fraud attempt occurred. A foreign device, such as a skimmer, might have been placed on or into the card reader." />
+	<Item ErrorCode="CR01_001"	SendOnce='0'  MData=":23:00:00"  Description="card retain" />
+	<Item ErrorCode="CR01_002" MData=":3E:44:40"  Description="CardReader_BinFull." />
+  </CardReader>
+  
+  
+  <!-- DI01 or D901 (Cash Dispenser Status Messages) -->
+  <CashHandler>
+	<Item ErrorCode="DefaultNoError" MData=":00:00:00"  Description="No error" />
+	<!-- <Item ErrorCode="" MData=":38:39:31"  Description="The dispenser returned garbled status. No retry is attempted." /> -->
+	<Item ErrorCode="DI01_302/11013/11014/11015/11399" MData=":38:39:31"  Description="The dispenser returned garbled status. No retry is attempted." />
+	<Item ErrorCode="DI01_022/13199/13092/11491/11492/11493/11495/11496" MData=":22:00:00"  Description="Network error" />
+	<Item ErrorCode="DI01_011/13011" MData=":2D:01:00"  Description="Supply is low. Denomination A" />
+	<Item ErrorCode="DI01_012/13012" MData=":2D:02:00"  Description="Supply is low. Denomination B" />
+	<Item ErrorCode="DI01_013/13013" MData=":2D:04:00"  Description="Supply is low. Denomination C" />
+	<Item ErrorCode="DI01_014/13014" MData=":2D:08:00"  Description="Supply is low. Denomination D" />
+	<Item ErrorCode="DI01_015/13015" MData=":2D:00:01"  Description="Supply is low. Denomination E" />
+	<Item ErrorCode="DI01_016" MData=":2D:00:02"  Description="Supply is low. Denomination F" />
+	<Item ErrorCode="DI01_017" MData=":2D:00:04"  Description="Supply is low. Denomination G" />
+	<Item ErrorCode="DI01_018" MData=":2D:00:08"  Description="Supply is low. Denomination H" />
+	<Item ErrorCode="" MData=":30:30:30"  Description="A dispenser command reject.The command rejected is reset device and the reason code is invalid command" />
+	<Item ErrorCode="" MData=":30:30:31"  Description="A dispenser command reject.The command rejected is reset device and the reason code is command received out of sequence" />
+	<Item ErrorCode="" MData=":30:30:32"  Description="A dispenser command reject.The command rejected is reset device and the reason code is buffer overflow" />
+	<Item ErrorCode="" MData=":30:30:33"  Description="A dispenser command reject.The command rejected is reset device and the reason code is device ID incorrect" />
+	<Item ErrorCode="" MData=":30:30:40"  Description="A dispenser command reject.The command rejected is reset device and the reason code is denomination error" />
+	<Item ErrorCode="" MData=":30:30:41"  Description="A dispenser command reject.The command rejected is reset device and the reason code is dispense data invalid" />
+	<Item ErrorCode="" MData=":30:31:30"  Description="A dispenser command reject.The command rejected is idle device and the reason code is invalid command" />
+	<Item ErrorCode="" MData=":30:31:31"  Description="A dispenser command reject.The command rejected is idle device and the reason code is command received out of sequence" />
+	<Item ErrorCode="" MData=":30:31:32"  Description="A dispenser command reject.The command rejected is idle device and the reason code is buffer overflow" />
+	<Item ErrorCode="" MData=":30:31:33"  Description="A dispenser command reject.The command rejected is idle device and the reason code is device ID incorrect" />
+	<Item ErrorCode="" MData=":30:31:40"  Description="A dispenser command reject.The command rejected is idle device and the reason code is denomination error" />
+	<Item ErrorCode="" MData=":30:31:41"  Description="A dispenser command reject.The command rejected is idle device and the reason code is dispense data invalid" />
+	<Item ErrorCode="" MData=":30:34:30"  Description="A dispenser command reject.The command rejected is and the reason code is invalid command" />
+	<Item ErrorCode="" MData=":30:34:31"  Description="A dispenser command reject.The command rejected is return device configuration data and the reason code is command received out of sequence" />
+	<Item ErrorCode="" MData=":30:34:32"  Description="A dispenser command reject.The command rejected is return device configuration data and the reason code is buffer overflow" />
+	<Item ErrorCode="" MData=":30:34:33"  Description="A dispenser command reject.The command rejected is return device configuration data and the reason code is device ID incorrect" />
+	<Item ErrorCode="" MData=":30:34:40"  Description="A dispenser command reject.The command rejected is return device configuration data and the reason code is denomination error" />
+	<Item ErrorCode="" MData=":30:34:41"  Description="A dispenser command reject.The command rejected is return device configuration data and the reason code is dispense data invalid" />
+	<Item ErrorCode="" MData=":30:37:30"  Description="A dispenser command reject.The command rejected is return device configuration data and the reason code is invalid command" />
+	<Item ErrorCode="" MData=":30:37:31"  Description="A dispenser command reject.The command rejected is return device CRCs and the reason code is command received out of sequence" />
+	<Item ErrorCode="" MData=":30:37:32"  Description="A dispenser command reject.The command rejected is return device CRCs and the reason code is buffer overflow" />
+	<Item ErrorCode="" MData=":30:37:33"  Description="A dispenser command reject.The command rejected is return device CRCs and the reason code is device ID incorrect" />
+	<Item ErrorCode="" MData=":30:37:40"  Description="A dispenser command reject.The command rejected is return device CRCs and the reason code is denomination error" />
+	<Item ErrorCode="" MData=":30:37:41"  Description="A dispenser command reject.The command rejected is return device CRCs and the reason code is dispense data invalid" />
+	<Item ErrorCode="" MData=":30:41:30"  Description="A dispenser command reject.The command rejected is purge mechanism and the reason code is invalid command" />
+	<Item ErrorCode="" MData=":30:41:31"  Description="A dispenser command reject.The command rejected is purge mechanism and the reason code is command received out of sequence" />
+	<Item ErrorCode="" MData=":30:41:32"  Description="A dispenser command reject.The command rejected is purge mechanism and the reason code is buffer overflow" />
+	<Item ErrorCode="" MData=":30:41:33"  Description="A dispenser command reject.The command rejected is purge mechanism and the reason code is device ID incorrect" />
+	<Item ErrorCode="" MData=":30:41:40"  Description="A dispenser command reject.The command rejected is purge mechanism and the reason code is denomination error" />
+	<Item ErrorCode="" MData=":30:41:41"  Description="A dispenser command reject.The command rejected is purge mechanism and the reason code is dispense data invalid" />
+	<Item ErrorCode="" MData=":30:42:30"  Description="A dispenser command reject.The command rejected is dispense and the reason code is invalid command" />
+	<Item ErrorCode="" MData=":30:42:31"  Description="A dispenser command reject.The command rejected is dispense and the reason code is command received out of sequence" />
+	<Item ErrorCode="" MData=":30:42:32"  Description="A dispenser command reject.The command rejected is dispense and the reason code is buffer overflow" />
+	<Item ErrorCode="" MData=":30:42:33"  Description="A dispenser command reject.The command rejected is dispense and the reason code is device ID incorrect" />
+	<Item ErrorCode="DI01_240" MData=":30:42:40"  Description="A dispenser command reject.The command rejected is dispense and the reason code is denomination error" />
+	<Item ErrorCode="" MData=":30:42:41"  Description="A dispenser command reject.The command rejected is dispense and the reason code is dispense data invalid" />
+	<Item ErrorCode="" MData=":30:4A:30"  Description="A dispenser command reject.The command rejected is purge notes and the reason code is invalid command" />
+	<Item ErrorCode="" MData=":30:4A:31"  Description="A dispenser command reject.The command rejected is purge notes and the reason code is command received out of sequence" />
+	<Item ErrorCode="" MData=":30:4A:32"  Description="A dispenser command reject.The command rejected is purge notes and the reason code is buffer overflow" />
+	<Item ErrorCode="" MData=":30:4A:33"  Description="A dispenser command reject.The command rejected is purge notes and the reason code is device ID incorrect" />
+	<Item ErrorCode="" MData=":30:4A:40"  Description="A dispenser command reject.The command rejected is purge notes and the reason code is denomination error" />
+	<Item ErrorCode="" MData=":30:4A:41"  Description="A dispenser command reject.The command rejected is purge notes and the reason code is dispense data invalid" />
+	<Item ErrorCode="" MData=":30:43:30"  Description="A dispenser command reject while in the diagnostics mode.The command rejected is test dispense and the reason code is invalid command" />
+	<Item ErrorCode="" MData=":30:43:31"  Description="A dispenser command reject while in the diagnostics mode.The command rejected is test dispense and the reason code is command received out of sequence" />
+	<Item ErrorCode="" MData=":30:43:32"  Description="A dispenser command reject while in the diagnostics mode.The command rejected is test dispense and the reason code is dispense data invalid" />
+	<Item ErrorCode="" MData=":30:47:30"  Description="A dispenser command reject while in the diagnostics mode.The command rejected is operate motor and the reason code is invalid command" />
+	<Item ErrorCode="" MData=":30:47:31"  Description="A dispenser command reject while in the diagnostics mode.The command rejected is operate motor and the reason code is command received out of sequence" />
+	<Item ErrorCode="" MData=":30:47:32"  Description="A dispenser command reject while in the diagnostics mode.The command rejected is operate motor and the reason code is dispense data invalid" />
+	<Item ErrorCode="" MData=":30:48:30"  Description="A dispenser command reject while in the diagnostics mode.The command rejected is operate diverter and the reason code is invalid command" />
+	<Item ErrorCode="" MData=":30:48:31"  Description="A dispenser command reject while in the diagnostics mode.The command rejected is operate diverter and the reason code is command received out of sequence" />
+	<Item ErrorCode="" MData=":30:48:32"  Description="A dispenser command reject while in the diagnostics mode.The command rejected is operate diverter and the reason code is dispense data invalid" />
+	<Item ErrorCode="" MData=":30:53:30"  Description="A dispenser command reject while in the diagnostics mode.The command rejected is adjust double detect and the reason code is invalid command" />
+	<Item ErrorCode="" MData=":30:53:31"  Description="A dispenser command reject while in the diagnostics mode.The command rejected is adjust double detect and the reason code is command received out of sequence" />
+	<Item ErrorCode="" MData=":30:53:32"  Description="A dispenser command reject while in the diagnostics mode.The command rejected is adjust double detect and the reason code is dispense data invalid" />
+	<Item ErrorCode="" MData=":30:54:30"  Description="A dispenser command reject while in the diagnostics mode.The command rejected is last dispense data dump and the reason code is invalid command" />
+	<Item ErrorCode="" MData=":30:54:31"  Description="A dispenser command reject while in the diagnostics mode.The command rejected is last dispense data dump and the reason code is command received out of sequence" />
+	<Item ErrorCode="" MData=":30:54:32"  Description="A dispenser command reject while in the diagnostics mode.The command rejected is last dispense data dump and the reason code is dispense data invalid" />
+    <Item ErrorCode="12191/12192/12193/5091/5190/5191/5192/5199/13083" MData=":38:00:00"  Description="ExpressBus communications problem. Notes may or may not have been dispensed" />
+    <Item ErrorCode="" MData=":39:00:00"  Description="Dispenser shutdown (broken). This fault is caused by a previous fault occurrence (probably a jam not being physically cleared at the ATM and not entering Supply mode and running a test dispense.)" />
+	<Item ErrorCode="" MData=":39:00:01"  Description="The drawer sensor is blocked prior to more than three consecutive dispenses." />
+    <Item ErrorCode="" MData=":39:00:03"  Description="The drawer sensor is not blocked after three consecutive dispenses. The status is first reported prior to the fourth dispense attempt" />
+	<Item ErrorCode="" MData=":39:00:05"  Description="The drawer sensor is blocked after a power fail or the sensor is clear after previous but blocked before the current dispense" />
+    <Item ErrorCode="" MData=":39:00:07"  Description="The drawer sensor is blocked leaving the Supply mode or fascia diagnostic routine" />
+	<Item ErrorCode="11097/12125" MData=":39:36:33"  Description="RAM error. No retry is attempted." />
+	<!-- <Item ErrorCode="" MData=":3A:36:33"  Description="RAM error. No retry is attempted." /> -->
+    <Item ErrorCode="" MData=":3A:30:31"  Description="An unsolicited note from feed module 1. The retry option is disabled or the dispense recovery preceding the retry failed" />
+	<Item ErrorCode="" MData=":3A:30:32"  Description="An unsolicited note from feed module 2. The retry option is disabled or the dispense recovery preceding the retry failed" />
+	<Item ErrorCode="" MData=":3A:30:33"  Description="An unsolicited note from feed module 3. The retry option is disabled or the dispense recovery preceding the retry failed" />
+	<Item ErrorCode="" MData=":3A:30:34"  Description="An unsolicited note from feed module 4. The retry option is disabled or the dispense recovery preceding the retry failed" />
+	<Item ErrorCode="" MData=":3B:30:31"  Description="An unsolicited note from feed module 1 as reported by the dispenser. This status is converted before being sent to the network to either :3F:30:31 if the retry is attempted but resulted in the same fault, or :3A:30:31 if otherwise. See DI01:3F:30:31 or DI01:3A:30:31 for further status processing." />
+	<Item ErrorCode="" MData=":3B:30:32"  Description="An unsolicited note from feed module 2 as reported by the dispenser. This status is converted before being sent to the network to either :3F:30:32 if the retry is attempted but resulted in the same fault, or :3A:30:32 if otherwise. See DI01:3F:30:32 or DI01:3A:30:32 for further status processing" />
+	<Item ErrorCode="" MData=":3B:30:33"  Description="An unsolicited note from feed module 3 as reported by the dispenser. This status is converted before being sent to the network to either :3F:30:33 if the retry is attempted but resulted in the same fault, or :3A:30:33 if otherwise. See DI01:3F:30:33 or DI01:3A:30:33 for further status processing" />
+	<Item ErrorCode="" MData=":3B:30:34"  Description="An unsolicited note from feed module 4 as reported by the dispenser. This status is converted before being sent to the network to either :3F:30:34 if the retry is attempted but resulted in the same fault, or :3A:30:34 if otherwise. See DI01:3F:30:34 or DI01:3A:30:34 for further status processing" />
+	<Item ErrorCode="" MData=":3F:30:31"  Description="An unsolicited note from feed module 1 as reported by the dispenser. " />
+	<Item ErrorCode="" MData=":3F:30:32"  Description="An unsolicited note from feed module 2 as reported by the dispenser. " />
+	<Item ErrorCode="" MData=":3F:30:33"  Description="An unsolicited note from feed module 3 as reported by the dispenser. " />
+	<Item ErrorCode="" MData=":3F:30:34"  Description="An unsolicited note from feed module 4 as reported by the dispenser. " />
+	<Item ErrorCode="" MData=":3A:33:37"  Description="The diverter does not go to reject during the dispense operation. The retry option is disabled or the dispense recovery preceding the retry failed." />
+    <Item ErrorCode="DefaultError/12102/12128/5046/11256/41143/2051/2052/2053/2054/2055/2056/2057/2058/2059/2060/2061/2069/2070/2071/2099/41140/11063/11064/11065/11067/11072/11073/11075/11076/11077/11081/11082/11083/11084/11085/11086/11090/11091/11092/11093/11094/11095/11096/11097/11110/11209/11210/11231/11240/11241/11242/11243/11244/11245/11246/11247/11248/11249/11250/11251/11252/11253/11254/11256/11255/11257/11258/11259/11260/11261/11262/11263/11264/11265/11266/11291/11292/11293/11294/11295/11296/11297/11298/11299/11300/11301/11302/11303/11304/11305/11344/11345/11346/11347/11348/11349/11350/11351/11352/11353/11354/11355/11356/11357/11358/11359/11360/11361/11362/11363/11401/11402/11403/11404/11405/11406/11407/11408/11409/11410/11411/11412/11413/11414/11415/11416/11417/11418/11419/11420/11421/11422/11423/11424/11425/11426/11427/11428/11429/11430/11431/11432/11433/11434/11435/11436/11437/11438/11439/11440/11441/11442/11443/11444/11445/11481/11482/11483/11485/11497/12107/12108/12109/12110/12111/12112/12113/12114/12115/12116/12117/12118/12119/12125/12126/12127/41140/41141/41142/41143/41144/41145/41199 " MData=":3A:35:39"  Description="A timing wheel error. The retry option is disabled or the dispense recovery preceding the retry failed" />
+	<Item ErrorCode="" MData=":3B:38:34"  Description="A purge error following a dispense as reported by the dispenser." />
+	<Item ErrorCode="5024/13095" MData=":3A:36:30"  Description="The counting sensor is blocked. The possible dispense operation completion is as follows: 1) The retry option is disabled or the dispense recovery preceding the retry failed. No retry is attempted. 2) The retry is attempted but resulted in the same faul " />
+	<Item ErrorCode="5040/12125" MData=":3A:36:33"  Description=" A RAM error as reported by the dispenser. No retry is attempted" />
+	<!-- <Item ErrorCode="" MData=":3B:33:37"  Description="The diverter does not go to reject during the dispense operation. The retry option is disabled or the dispense recovery preceding the retry failed." /> -->
+	<!-- <Item ErrorCode="5046" MData=":3B:35:39"  Description="A timing wheel error. The retry option is disabled or the dispense recovery preceding the retry failed" /> -->
+	<!-- <Item ErrorCode="5024" MData=":3E:36:30 "  Description="The counting sensor is blocked. The possible dispense operation completion is as follows: 1) The retry option is disabled or the dispense recovery preceding the retry failed. No retry is attempted. 2) The retry is attempted but resulted in the same faul " /> -->
+    <!-- <Item ErrorCode="5040" MData=":39:36:33"  Description=" A RAM error as reported by the dispenser. No retry is attempted" /> -->
+	
+	<Item ErrorCode="" MData=":3A:36:37"  Description="The diverter does not energize prior to a dispense operation" />
+    <!-- <Item ErrorCode="" MData=":3B:36:37"  Description="The diverter does not energize prior to a dispense operation.This status is converted to status :3A:36:37 before being sent to the network" /> -->
+	<Item ErrorCode="5028/11233/11235" MData=":3B:33:33"  Description="A jam between double detect and exit. The retry is attempted but resulted in the same faul" />
+	<!-- <Item ErrorCode="5031" MData=":3E:33:33"  Description="A jam between double detect and exit. The retry is attempted but resulted in the same faul" /> -->
+	<Item ErrorCode="5016/12045" MData=":3B:35:38"  Description="Too many notes are dispensed as reported by the dispenser" />
+	<!-- <Item ErrorCode="5016" MData=":3F:35:38"  Description="Too many notes are dispensed as reported by the dispenser" /> -->
+	<Item ErrorCode="11231" MData=":3B:35:39"  Description="A timing wheel or dispense purge error. If there is no corresponding DAL status" />
+	<Item ErrorCode="" MData=":3B:37:32"  Description="A purge failure. No retry is attempted." />
+	<Item ErrorCode="13031" MData=":3B:38:31"  Description="A dispense timeout." />
+	<Item ErrorCode="" MData=":3C:38:31"  Description="A dispense timeout as reported by the dispenser." />
+	<Item ErrorCode="DI01_031/13038/11111" MData=":3D:01:00"  Description="The supply is out. Denomination A" />
+	<Item ErrorCode="DI01_032/5013/5134/13039/11121" MData=":3D:02:00"  Description="The supply is out. Denomination B" />
+	<Item ErrorCode="DI01_033/5014/5135/13040/11131" MData=":3D:04:00"  Description="The supply is out. Denomination C" />
+	<Item ErrorCode="DI01_034/5015/5136/13041/11141" MData=":3D:08:00"  Description="The supply is out. Denomination D" />
+	<Item ErrorCode="DI01_035/5137/13042/11151" MData=":3D:00:01"  Description="The supply is out.  Denomination E" />
+	<Item ErrorCode="DI01_036/5138" MData=":3D:00:02"  Description="The supply is out. Denomination F" />
+	<Item ErrorCode="DI01_037/5139" MData=":3D:00:04"  Description="The supply is out. Denomination G" />
+	<Item ErrorCode="DI01_038/5140" MData=":3D:00:08"  Description="The supply is out. Denomination H" />
+	<Item ErrorCode="5020/11115" MData=":3D:31:37"  Description="A feed failure from feed module 1 as reported by the dispenser" />
+	<Item ErrorCode="DI01_125/5021/11125" MData=":3D:31:38"  Description="A feed failure from feed module 2 as reported by the dispenser" />
+	<Item ErrorCode="DI01_135/5022/11135" MData=":3D:31:39"  Description="A feed failure from feed module 3 as reported by the dispenser" />
+	<Item ErrorCode="DI01_145/5023/11145" MData=":3D:32:30"  Description="A feed failure from feed module 4 as reported by the dispenser" />
+	<Item ErrorCode="DI01_335" MData=":3D:33:35"  Description="A command reject while the terminal is inservice due to a command reject sent from the dispenser" />
+	<Item ErrorCode="11066 /5131/5132" MData=":3D:33:36"  Description="An unidentified cassette code as reported by the dispenser" />
+	<!-- <Item ErrorCode="5131/5132" MData=":3F:33:36"  Description="An unidentified cassette code as reported by the dispenser" /> -->
+	 <!--  :钞票长度或厚度配置出错 -->
+	<Item ErrorCode="DI01_115/12079/5052/11332" MData=":3F:34:30"  Description="The bill size does not match the cassette coding" />
+	<Item ErrorCode="11336" MData=":3D:33:41"  Description="The feed module 1 notes are thicker than the key data as reported by the dispenser" />
+	<Item ErrorCode="" MData=":3D:33:42"  Description="The feed module 2 notes are thicker than the key data as reported by the dispenser" />
+	<Item ErrorCode="" MData=":3D:33:43"  Description="The feed module 3 notes are thicker than the key data as reported by the dispenser" />
+	<Item ErrorCode="" MData=":3D:33:44"  Description="The feed module 4 notes are thicker than the key data as reported by the dispenser" />
+	<!-- <Item ErrorCode="" MData=":3D:35:41"  Description="The feed module 1 notes are thinner than the key data as reported by the dispenser" /> -->
+	<!-- <Item ErrorCode="" MData=":3D:35:42"  Description="The feed module 2 notes are thinner than the key data as reported by the dispenser" /> -->
+	<!-- <Item ErrorCode="" MData=":3D:35:43"  Description="The feed module 3 notes are thinner than the key data as reported by the dispenser" /> -->
+	<!-- <Item ErrorCode="" MData=":3D:35:44"  Description="The feed module 4 notes are thinner than the key data as reported by the dispenser" /> -->
+	<Item ErrorCode="11334" MData=":3D:36:41"  Description="Feed module 1 notes are shorter than the key data as reported by the dispenser" />
+	<Item ErrorCode="" MData=":3D:36:42"  Description="Feed module 2 notes are shorter than the key data as reported by the dispenser" />
+	<Item ErrorCode="" MData=":3D:36:43"  Description="Feed module 3 notes are shorter than the key data as reported by the dispenser" />
+	<Item ErrorCode="" MData=":3D:36:44"  Description="Feed module 4 notes are shorter than the key data as reported by the dispenser" />
+	<Item ErrorCode="11335" MData=":3D:37:41"  Description="Feed module 1 notes are longer than the key data as reported by the dispenser" />
+	<Item ErrorCode="" MData=":3D:37:42"  Description="Feed module 2 notes are longer than the key data as reported by the dispenser" />
+	<Item ErrorCode="" MData=":3D:37:43"  Description="Feed module 3 notes are longer than the key data as reported by the dispenser" />
+	<Item ErrorCode="" MData=":3D:37:44"  Description="Feed module 4 notes are longer than the key data as reported by the dispenser" />
+	<Item ErrorCode="" MData=":3D:35:26"  Description="The divert cassette is near full. " /> <!-- :3D:37:26 -->
+	<Item ErrorCode="11192/11193" MData=":3D:35:38"  Description="The divert cassette is full." /><!-- :3D:37:38 -->
+	<Item ErrorCode="DI01_639/5044/12075/DI01_739/11191" MData=":3D:37:39"  Description="The divert cassette is missing" /><!-- :3D:37:39 -->
+	<Item ErrorCode="DI01_526/DI01_726" MData=":3D:37:26"  Description="The retract cassette is near full. " />
+	<Item ErrorCode="DI01_635" MData=":3D:36:35"  Description="The cassettes are shuffled as reported by the dispenser" />
+	<!-- <Item ErrorCode="" MData=":3F:36:35"  Description="The cassettes are shuffled" /> -->
+	<Item ErrorCode="DI01_538/DI01_738/5043/12076" MData=":3D:37:38"  Description="The retract cassette is full. " />
+	<Item ErrorCode="" MData=":3D:36:39"  Description="The retract cassette is missing" />
+	<Item ErrorCode="" MData=":3E:00:00"  Description="Network error，If this status is received during a opcommanded self-test, the device was specifically requested to do a self-test but was not enabled or present" />
+	<Item ErrorCode="DI01_310/5056" MData=":3E:01:01"  Description="The door is open before the dispense" />
+	<Item ErrorCode="" MData=":3E:02:00"  Description="Attempted a dispense with the chest door open" />
+	<Item ErrorCode="" MData=":3E:02:01"  Description="Attempted a dispense with one or more service cassettes installed" />
+	<Item ErrorCode="" MData=":3E:02:02"  Description="A self-test was performed with a service cassette installed" />
+	<Item ErrorCode="" MData=":3E:02:03"  Description="A Dispense Test diagnostic ran without service cassettes installed on a non-presenter unit." />
+	<Item ErrorCode="" MData=":3E:03:03"  Description="A dispense was attempted after currency that had been presented was not removed. This status only appears if the no retracts feature was selected." />
+	<Item ErrorCode="11232/11233" MData=":3E:32:35"  Description="A jam failure from feed module 1 as reported by the dispenser" />
+	<Item ErrorCode="11234/11235" MData=":3E:32:36"  Description="A jam failure from feed module 2 as reported by the dispenser" />
+	<Item ErrorCode="11236/11237" MData=":3E:32:37"  Description="A jam failure from feed module 3 as reported by the dispenser" />
+	<Item ErrorCode="11238/11239" MData=":3E:32:38"  Description="A jam failure from feed module 4 as reported by the dispenser" />
+	<Item ErrorCode="DI01_137/13043" MData=":3F:31:37"  Description="Cash unit 1 is empty or inoperative." />
+	<Item ErrorCode="DI01_138/13044" MData=":3F:31:38"  Description="Cash unit 2 is empty or inoperative" />
+	<Item ErrorCode="DI01_139/13045" MData=":3F:31:39"  Description="Cash unit 3 is empty or inoperative" />
+	<Item ErrorCode="DI01_230/13046" MData=":3F:32:30"  Description="Cash unit 4 is empty or inoperative" />
+	<Item ErrorCode="12087/5029/11248/11249/11250/11251/11252/11253/11254/11255/11256/11257/11258/11259/112560/112561/112562/112563/112564/112565/112566/11207/11208" MData=":3E:33:34"  Description="A jam between double detect and reject" />
+	<!-- <Item ErrorCode="5029" MData=":3F:33:34"  Description="A jam between double detect and reject" /> -->
+	<Item ErrorCode="12124" MData=":3E:36:30"  Description="The counting sensor is blocked as reported by the dispense" />
+	<Item ErrorCode="" MData=":3E:38:41"  Description="A double detect fault from feed module 1 as reported by the dispenser." />
+	<Item ErrorCode="" MData=":3E:38:42"  Description="A double detect fault from feed module 2 as reported by the dispenser." />
+	<Item ErrorCode="" MData=":3E:38:43"  Description="A double detect fault from feed module 3 as reported by the dispenser." />
+	<Item ErrorCode="" MData=":3E:38:44"  Description="A double detect fault from feed module 4 as reported by the dispenser." />
+	<Item ErrorCode="" MData=":3F:00:01"  Description="The drawer sensor is blocked prior to dispensing the first, second, or third consecutive time" />
+	<Item ErrorCode="" MData=":3F:00:03"  Description="The drawer sensor is not blocked after the first, second, or third consecutive dispense operation" />
+	<Item ErrorCode="" MData=":3F:34:39"  Description="Too few notes are dispensed from feed module 1" />
+	<Item ErrorCode="" MData=":3F:35:30"  Description="Too few notes are dispensed from feed module 2" />
+	<Item ErrorCode="" MData=":3F:35:31"  Description="Too few notes are dispensed from feed module 3" />
+	<Item ErrorCode="" MData=":3F:35:32"  Description="Too few notes are dispensed from feed module 4" />
+	<Item ErrorCode="12010/12011/12012/12013/12014/12015/12016/12017/12018/12019/11367" MData=":3F:36:31"  Description="The counting sensor is dirty. No retry is attempted. This status is not reported to the network" />
+	<Item ErrorCode="12063" MData=":3F:39:34"  Description="Unable to dispense on feed module 1. Dispense completed on another feed module. No retry is attempted" />
+	<Item ErrorCode="12064" MData=":3F:39:35"  Description="Unable to dispense on feed module 2. Dispense completed on another feed module. No retry is attempted" />
+	<Item ErrorCode="12065" MData=":3F:39:36"  Description="Unable to dispense on feed module 3. Dispense completed on another feed module. No retry is attempted" />
+	<Item ErrorCode="12066" MData=":3F:39:37"  Description="Unable to dispense on feed module 4. Dispense completed on another feed module. No retry is attempted" />   
+  </CashHandler>
+  
+
+   <!-- DR01 (Cash Presenter Status Messages) -->
+  <CashPresenter>
+	<Item ErrorCode="" MData=":00:00:00"  Description="This is a status received from a device indicating that a self-test was performed and no errors were found" />
+	<Item ErrorCode="DefaultNoError" MData="00"  Description="No error" />
+	<Item ErrorCode="DR01_030/DR01_001" MData=":23:00:01"  Description="Consumer timeout. The consumer had access to the cash but did not take all of it" />
+	<Item ErrorCode="" MData=":23:00:30"  Description="Money not removed." />
+	<Item ErrorCode="" MData=":38:00:00"  Description="Internal communications error" />
+	<Item ErrorCode="" MData=":3A:31:41"  Description="This status may appear because of one of the following: 1) The money tray does not move during the present. 2) This status also appears in diagnostics and indicates that there is no money to present." />
+	<Item ErrorCode="" MData=":3A:31:46"  Description="A hardware error occurred during a dump operation." />
+	<Item ErrorCode="" MData=":3A:32:46"  Description="The divert does not move during the purge" />
+	<Item ErrorCode="" MData=":3A:33:41"  Description="The cash was not presented to the customer but is in transport and may be vulnerable." />
+	<Item ErrorCode="" MData=":3A:33:44"  Description="Exit shutter does not open during Restore" />
+	<Item ErrorCode="" MData=":3A:33:45"  Description="Exit shutter does not open during Retract." />
+	<Item ErrorCode="" MData=":3A:34:45"  Description="A hardware error occurred during the dump operation." />
+	<Item ErrorCode="" MData=":3A:34:46"  Description="The transport motor is locked in purge." />
+	<Item ErrorCode="" MData=":3A:36:41"  Description="Bill sensor stuck clear during Present" />
+	<Item ErrorCode="" MData=":3A:36:44"  Description="The bill sensor stuck clear during the Restore." />
+	<Item ErrorCode="" MData=":3A:36:46"  Description="The bill sensor is stuck clear during the purge" />
+	<Item ErrorCode="" MData=":3A:37:41"  Description="A hardware error occurred during the present operation. No bills were presented to the consumer." />
+	<Item ErrorCode="" MData=":3A:37:45"  Description="Pushplate stepper clock timeout during a Retract" />
+	<Item ErrorCode="" MData=":3A:37:46"  Description="Pushplate stepper clock timeout during a purge" />
+	<Item ErrorCode="" MData=":3A:38:46"  Description="Pushplate sensor blocked during purge" />
+	<Item ErrorCode="" MData=":3A:39:44"  Description="Pushplate sensor failure during a Restore" />
+	<Item ErrorCode="" MData=":3A:39:46"  Description="Pushplate sensor failure during a purge" />
+	<Item ErrorCode="" MData=":3A:41:40"  Description="The cash cannot be  presented to the consumer. (Some bills might have been presented to the consumer.)" />
+	<Item ErrorCode="" MData=":3B:30:45"  Description="The bills cannot be retracted and dumped. All the cash was taken." />
+	<Item ErrorCode="" MData=":3C:33:44"  Description="The exit shutter does not close after the Restore." />
+	<Item ErrorCode="" MData=":3C:33:45"  Description="The exit shutter will not close after the dump operation. The dump operation was not completed due to some obstruction at the exit shutter" />
+	<Item ErrorCode="" MData=":3E:00:00"  Description="The terminal attempted to perform an illegal operation" />
+	<Item ErrorCode="" MData=":3E:35:45"  Description="The bill sensor is jammed during the Retract" />
+	<Item ErrorCode="" MData=":3E:35:46"  Description="The bill sensor is jammed during the purge" />
+	<Item ErrorCode="DR01_040" MData=":3F:00:40"  Description="The forgotten cash has been removed." />
+	<Item ErrorCode="" MData=":3F:30:41"  Description="The cash cannot be presented to the consumer. There are no bills to present" />
+	<Item ErrorCode="" MData=":3F:30:45"  Description="The bills cannot be retracted and dumped. All the cash was taken." />
+	<Item ErrorCode="" MData=":3F:46:??"  Description="One or more bills have been dumped. The last two digits of the status indicated the number of bills dumped." />
+  </CashPresenter>
+  
+  
+  <CashAcceptor>
+	<!-- <Item ErrorCode="" MData=":00:00:00"  Description="This is a status received from a device indicating that a self-test was performed and no errors were found" /> -->
+	<Item ErrorCode="DefaultNoError" MData=":00:00:00"  Description="No error" />
+	 <!-- CI01 (Bulk Note Acceptor Currency Acceptor Messages) -->
+	 <Item ErrorCode="CI01_300/14021/14022/" MData=":23:00:00"  Description="Consumer Timeout" />
+	 <Item ErrorCode="CI01_400/14046" MData=":24:00:00"  Description="Consumer cancel" />
+	 <Item ErrorCode="" MData=":30:35:30 "  Description="Command reject" />
+	 <Item ErrorCode="26998" MData=":38:00:00"  Description="Communications problem with device." />
+	 <Item ErrorCode="" MData=":38:40:00 "  Description="The device application is not responding." />
+	 <Item ErrorCode="26201" MData=":3A:33:41"  Description="The shutter would not open" />
+	 <Item ErrorCode="DefaultError/15241/15242/15243/15244/15251/15253/15252" MData=":3A:39:39"  Description="Hardware error" />
+	 <Item ErrorCode="26202" MData=":3C:33:45"  Description="The shutter would not close." />
+	 <Item ErrorCode="CI01_500" MData=":3D:50:00"  Description="Reject cassette(s) are full at the end of the operation. The operation completed successfully" />
+	 <Item ErrorCode="CI01_510" MData=":3D:51:00"  Description="Reject cassette(s) are full at the beginning of the operation. The operation was not started." />
+	 <Item ErrorCode="CI01_600" MData=":3D:60:00"  Description="Reject cassette is absent" />
+	 <Item ErrorCode="" MData=":3E:40:34"  Description="The operation could not be performed due to improper network command data. There is a state or function format error" />
+	 <Item ErrorCode="" MData=":3E:40:35"  Description="Error in loading buffers for the cash deposit" />
+	 <Item ErrorCode="CI01_130" MData=":3F:31:30"  Description="Cash retracted during the close state" />
+	 <Item ErrorCode="" MData=":3F:31:31"  Description="There is no cash in the cash pocket when the cash verify operation was attempted" />
+	 <Item ErrorCode="" MData=":3F:31:32"  Description="There is no cash in escrow when the cash return operation was attempted." />
+	 <Item ErrorCode="" MData=":3F:31:33"  Description="There were one or more bills rejected during the cash verification" />
+	 <Item ErrorCode="" MData=":3F:31:34"  Description="The currency acceptor escrow stacker limit was exceeded. The consumer inserted more bills than the device could escrow." />
+	 <Item ErrorCode="" MData=":3F:31:35"  Description="There is a cash position error in the cash pocket or cash pocket stack limit has been exceeded." />
+	 <Item ErrorCode="" MData=":3F:31:37"  Description="All bills were rejected during the cash verification" />
+	 <Item ErrorCode="" MData=":3F:31:38"  Description="Bill reject limit reached, no bills verified" />
+	 <Item ErrorCode="" MData=":3F:31:39"  Description="Bill reject limit reached, some bills verified" />
+	 <Item ErrorCode="CI01_230" MData=":3F:32:30"  Description="Cash retracted during a clear cash operation" />
+	 <Item ErrorCode="CI01_231" MData=":3F:32:31"  Description="Cash retracted during a deposit operation" />
+	 <Item ErrorCode="CI01_635" MData=":3F:36:35"  Description="Cassette shuffle" />
+	 <Item ErrorCode="" MData=":3F:40:31"  Description="The device is not in the proper mode to accept the network command requested. The command is out of sequence or the CAS mode is active." />
+	 <Item ErrorCode="" MData=":3F:40:40"  Description="An unexpected or unknown fault was returned from the currency acceptor." />
+
+	 
+	 <!-- DP01 (Depositor Status Messages) -->
+	<!-- <Item ErrorCode="DefaultError/15241/15242/15243/15244/15251/15253/15252" MData=":3A:39:39 "  Description="Hardware error" /> -->
+	<!-- <Item ErrorCode="14021/14022/" MData=":23:00:00"  Description="Consumer timeout" /> -->
+	<Item ErrorCode="" MData=":23:00:01"  Description="Possible incomplete deposit. Both switches are blocked at the end of the deposit" />
+	<Item ErrorCode="14063/14063" MData=":23:00:02"  Description="Device timeout. No deposit after 15 minutes" />
+	<Item ErrorCode="14089" MData=":23:00:03"  Description="Possible incomplete deposit. Both switches are blocked at the end of the deposit" />
+	<!-- <Item ErrorCode="14046" MData=":24:00:00"  Description="Consumer cancel" /> -->
+	<Item ErrorCode="14390/14394/15122/15123/15124/15125/15126/15127/15128/15129/15130/15131/15132/15133/15134/15135" MData=":30:41:32"  Description="Unsupported command or invalid data(internal error)" />
+	<Item ErrorCode="14031/14033/14041/14053/14076/15083/15080/15085/15086" MData=":34:31:30"  Description="Configuration data status (34) with the data to follow (31:30)." />
+	<Item ErrorCode="2190/14071/14072/14073/14074/14075/14077/14084/14086/14398/14399" MData=":38:00:00"  Description="Internal communications error" />
+	<Item ErrorCode="" MData=":3C:42:56"  Description="Jam at the front switch at the beginning and end of the transaction. The rear switch is activated in the normal manner. There is a possible broken front switch" />
+	<Item ErrorCode="" MData=":3C:42:69"  Description="Jam at the rear switch at the beginning and end of the transaction. The front switch is activated in the normal manner. There is a possible broken rear switch" />
+	<Item ErrorCode="" MData=":3C:42:6F"  Description="Jam at the rear switch at the end of the transaction. The front switch is activated in the normal manner. There is a possible broken rear switch" />
+	<Item ErrorCode="2421/14092" MData=":3C:42:7F"  Description="The deposit gate is jammed open." />
+	<Item ErrorCode="2102/14124 " MData=":3D:50:6F"  Description="The deposit cassette is nearly full" />
+	<Item ErrorCode="2165/14078/14370/15341" MData=":3D:50:7F"  Description="The deposit cassette is full." />
+	<Item ErrorCode="" MData=":3D:60:6C"  Description="The deposit cassette is inoperative." />
+	<Item ErrorCode="14079/15361" MData=":3D:60:7C"  Description="The deposit cassette is absent" />
+	<Item ErrorCode="" MData=":3E:40:4F"  Description="During a self-test this status message indicates that the switches are blocked" />
+	<Item ErrorCode="" MData=":3E:40:54"  Description="Jam at the front switch at the beginning and end of the transaction. The rear switch is not activated" />
+	<Item ErrorCode="" MData=":3E:40:56"  Description="Jam at the front switch at the beginning and end of the transaction. The rear switch is activated in the normal manner. There is a possible broken front switch" />
+	<Item ErrorCode="" MData=":3E:40:5D"  Description="Jam at the front switch at the end of the transaction. The rear switch is not activated" />
+	<Item ErrorCode="" MData=":3E:40:5F"  Description="Jam at the front switch at the end of the transaction. The rear switch is activated in the normal manner. There is a possible broken front switch" />
+	<Item ErrorCode="" MData=":3E:40:6C"  Description="Soft fault, device cannot operate / no errors. The front switch was closed and the rear switch was open at completion (not a normal finish). The front switch was closed and the rear switch was closed at the beginning (a normal entry)." />
+	<Item ErrorCode="" MData=":3E:40:70"  Description="Soft fault, device cannot operate/ no errors. Front and rear switches were closed at completion (a normal finish). The front and rear switches were open at the beginning (not a normal entry)." />
+	<Item ErrorCode="" MData=":3E:40:74"  Description="Soft fault, device cannot operate / no errors. The front and rear switches are closed at completion (a normal finish). The front switch was open and the rear switch was closed at the beginning (not a normal entry)" />
+	<Item ErrorCode="2401/2420" MData=":3E:40:7C"  Description="The deposit gate did not open." />
+	<Item ErrorCode="" MData=":3E:42:40"  Description="An envelope is jammed in the transport or is present in the transport." />
+	<Item ErrorCode="" MData=":3E:42:46"  Description="Jam at the front switch at the beginning and both switches at the end of the transaction" />
+	<Item ErrorCode="" MData=":3E:42:48"  Description="Soft fault, device cannot operate / envelope detect, gate switch fault. The front and rear switches were open at completion (not a normal finish). The front was closed and the rear switch was open at the beginning (not a normal entry). Neither switch changed status" />
+	<Item ErrorCode="" MData=":3E:42:49"  Description="Jam at the rear switch at the beginning and both switches at the end of the transaction" />
+	<Item ErrorCode="" MData=":3E:42:4F"  Description="Jam at both switches at the end of the transaction." />
+	<Item ErrorCode="" MData=":3E:42:54"  Description="Jam at the front switch at the beginning and end of the transaction. The rear switch is not activated" />
+	<Item ErrorCode="" MData=":3E:42:5F"  Description="Jam at the front switch at the end of the transaction. The rear switch is activated in the normal manner. There is a possible broken front switch" />
+	<Item ErrorCode="" MData=":3E:42:68"  Description="Jam at the rear switch at the beginning and the end of the transaction. The front switch is not activated" />
+	<Item ErrorCode="" MData=":3E:42:6E"  Description="Jam at the rear switch at the end of the transaction. The front switch is not activated" />
+	<Item ErrorCode="" MData=":3E:42:7C"  Description="Gate is jammed open. Neither the front nor rear switch is activated" />
+	<Item ErrorCode="" MData=":3E:42:74"  Description="Jam at the front switch at the beginning and end of the transaction. The rear switch is not activated" />
+	<Item ErrorCode="" MData=":3F:40:4F"  Description="Jam at both switches at the end of the transaction" />
+	<Item ErrorCode="" MData=":3F:40:54"  Description="Jam at front switch at the beginning and end of the transaction. The rear switch is not activated" />
+	<Item ErrorCode="" MData=":3F:40:56"  Description="Jam at the front switch at the beginning and end of the transaction. The rear switch is activated in the normal manner. There is a possible broken front switch" />
+	<Item ErrorCode="" MData=":3F:40:5D"  Description="Jam at the front switch at the end of the transaction. Rear switch is not activated" />
+	<Item ErrorCode="" MData=":3F:40:5F"  Description="Jam at the front switch at the end of the transaction. The rear switch is activated in the normal manner. There is a possible broken front switch" />
+	<Item ErrorCode="" MData=":3F:42:54"  Description="Jam at the front switch at the beginning and end of the transaction. The rear switch is not activated " />
+	<Item ErrorCode="" MData=":3F:42:56"  Description="Jam at the front switch at the beginning and end of the transaction. The rear switch is activated in the normal manner. There is a possible broken front switch" />
+	<Item ErrorCode="" MData=":3F:42:5F"  Description="Jam at the front switch at the end of the transaction. The rear switch is activated in the normal manner. Possible broken front switch" />
+	<Item ErrorCode="2402" MData=":3F:42:7C"  Description="The deposit gate is jammed open" />
+	<Item ErrorCode="" MData=":3F:42:80"  Description="Deposit printer is inoperative" />
+	<Item ErrorCode="15104/15105/15106/15107/15108/15109/15110/15111/15112/15113/15114/15115/15116/15121" MData=":3F:42:81"  Description="Printer error. The XFS SP has reported an unspecified problem with the depository printer." />
+	<Item ErrorCode="15288/15289/15290/15291/15292/15293/15294/15295" MData=":3F:42:85"  Description="Gate error. The XFS SP has reported an unspecified problem with the deposit gate." />
+	<Item ErrorCode="14093/14095/14096/14097/14150/15211/15212/15213/15214/15215/15216/15217/15218/15219/15220/15221/15222/15223/15224/15225/15226/15227/15228/15312/15313/15314/15315/15316/15317/15321/15322/15323/15324/15325/15326/15327/15328/15329/15330/15331/15391/15392/15393/15394/15395/15396/15397/15398/15399/15400/15401/15402/15403/15404/15405/15406/15407/15408/15409/15410/15411/15414/15415/15416/15417" MData=":3F:42:86"  Description="Transport error. The XFS SP has reported an unspecified problem with the depository transport." />
+	<Item ErrorCode="" MData=":3F:42:87"  Description="The envelope is the wrong size" />
+	<Item ErrorCode="" MData=":3F:50:00"  Description="Ink Low Status" />
+	<Item ErrorCode="" MData=":30:41:30"  Description="Reject of Deposit Envelope command" />
+	<Item ErrorCode="" MData=":30:44:30"  Description="Reject of Document Accept command" />
+	<Item ErrorCode="14043" MData=":30:45:30"  Description="Reject of deposit document (Escrow to Cassette) command" />
+	<Item ErrorCode="" MData=":30:46:30"  Description="Reject of return document command" />	
+	<Item ErrorCode="" MData=":30:30:30"  Description="The IDM3 rejected a command. The command rejected is reset device and the reason code is reset device. Valid commands invalid command" />
+	<Item ErrorCode="" MData=":30:30:31"  Description="The IDM3 rejected a command. The command rejected is reset device and the reason code is reset device. Valid commands command received out of sequence" />
+	<Item ErrorCode="" MData=":30:30:32"  Description="The IDM3 rejected a command. The command rejected is reset device and the reason code is reset device. Valid commands buffer overflow" />
+	<Item ErrorCode="" MData=":30:30:33"  Description="The IDM3 rejected a command. The command rejected is reset device and the reason code is reset device. Valid commands device ID incorrect" />
+	<Item ErrorCode="" MData=":30:30:34"  Description="The IDM3 rejected a command. The command rejected is reset device and the reason code is reset device. Valid commands data format error" />
+	<Item ErrorCode="" MData=":30:31:30"  Description="The IDM3 rejected a command. The command rejected is idle device and the reason code is reset device. Valid commands invalid command" />
+	<Item ErrorCode="" MData=":30:31:31"  Description="The IDM3 rejected a command. The command rejected is idle device and the reason code is reset device. Valid commands command received out of sequence" />
+	<Item ErrorCode="" MData=":30:31:32"  Description="The IDM3 rejected a command. The command rejected is idle device and the reason code is reset device. Valid commands buffer overflow" />
+	<Item ErrorCode="" MData=":30:31:33"  Description="The IDM3 rejected a command. The command rejected is idle device and the reason code is reset device. Valid commands device ID incorrect" />
+	<Item ErrorCode="" MData=":30:31:34"  Description="The IDM3 rejected a command. The command rejected is idle device and the reason code is reset device. Valid commands data format error" />
+	<Item ErrorCode="" MData=":30:34:30"  Description="The IDM3 rejected a command. The command rejected is return device configuration data and the reason code is reset device. Valid commands invalid command" />
+	<Item ErrorCode="" MData=":30:34:31"  Description="The IDM3 rejected a command. The command rejected is return device configuration data and the reason code is reset device. Valid commands command received out of sequence" />
+	<Item ErrorCode="" MData=":30:34:32"  Description="The IDM3 rejected a command. The command rejected is return device configuration data and the reason code is reset device. Valid commands buffer overflow" />
+	<Item ErrorCode="" MData=":30:34:33"  Description="The IDM3 rejected a command. The command rejected is return device configuration data and the reason code is reset device. Valid commands device ID incorrect" />
+	<Item ErrorCode="" MData=":30:34:34"  Description="The IDM3 rejected a command. The command rejected is return device configuration data and the reason code is reset device. Valid commands data format error" />
+	<Item ErrorCode="" MData=":30:35:30"  Description="The IDM3 rejected a command. The command rejected is return statuses and the reason code is reset device. Valid commands invalid command" />
+	<Item ErrorCode="" MData=":30:35:31"  Description="The IDM3 rejected a command. The command rejected is return statuses and the reason code is reset device. Valid commands command received out of sequence" />
+	<Item ErrorCode="" MData=":30:35:32"  Description="The IDM3 rejected a command. The command rejected is return statuses and the reason code is reset device. Valid commands buffer overflow" />
+	<Item ErrorCode="" MData=":30:35:33"  Description="The IDM3 rejected a command. The command rejected is return statuses and the reason code is reset device. Valid commands device ID incorrect" />
+	<Item ErrorCode="" MData=":30:35:34"  Description="The IDM3 rejected a command. The command rejected is return statuses and the reason code is reset device. Valid commands data format error" />
+	<Item ErrorCode="" MData=":30:37:30"  Description="The IDM3 rejected a command. The command rejected is return device CRCs and the reason code is reset device. Valid commands invalid command" />
+	<Item ErrorCode="" MData=":30:37:31"  Description="The IDM3 rejected a command. The command rejected is return device CRCs and the reason code is reset device. Valid commands command received out of sequence" />
+	<Item ErrorCode="" MData=":30:37:32"  Description="The IDM3 rejected a command. The command rejected is return device CRCs and the reason code is reset device. Valid commands buffer overflow" />
+	<Item ErrorCode="" MData=":30:37:33"  Description="The IDM3 rejected a command. The command rejected is return device CRCs and the reason code is reset device. Valid commands device ID incorrect" />
+	<Item ErrorCode="" MData=":30:37:34"  Description="The IDM3 rejected a command. The command rejected is return device CRCs and the reason code is reset device. Valid commands data format error" />
+	<Item ErrorCode="" MData=":30:41:30"  Description="The IDM3 rejected a command. The command rejected is deposit envelope and the reason code is reset device. Valid commands invalid command" />
+	<Item ErrorCode="" MData=":30:41:31"  Description="The IDM3 rejected a command. The command rejected is deposit envelope and the reason code is reset device. Valid commands command received out of sequence" />
+	<Item ErrorCode="" MData=":30:41:32"  Description="The IDM3 rejected a command. The command rejected is deposit envelope and the reason code is reset device. Valid commands buffer overflow" />
+	<Item ErrorCode="" MData=":30:41:33"  Description="The IDM3 rejected a command. The command rejected is deposit envelope and the reason code is reset device. Valid commands device ID incorrect" />
+	<Item ErrorCode="" MData=":30:41:34"  Description="The IDM3 rejected a command. The command rejected is deposit envelope and the reason code is reset device. Valid commands data format error" />
+	<Item ErrorCode="" MData=":30:42:30"  Description="The IDM3 rejected a command. The command rejected is print on document after power fail and the reason code is reset device. Valid commands invalid command" />
+	<Item ErrorCode="" MData=":30:42:31"  Description="The IDM3 rejected a command. The command rejected is print on document after power fail and the reason code is reset device. Valid commands command received out of sequence" />
+	<Item ErrorCode="" MData=":30:42:32"  Description="The IDM3 rejected a command. The command rejected is print on document after power fail and the reason code is reset device. Valid commands buffer overflow" />
+	<Item ErrorCode="" MData=":30:42:33"  Description="The IDM3 rejected a command. The command rejected is print on document after power fail and the reason code is reset device. Valid commands device ID incorrect" />
+	<Item ErrorCode="" MData=":30:42:34"  Description="The IDM3 rejected a command. The command rejected is print on document after power fail and the reason code is reset device. Valid commands data format error" />
+	<Item ErrorCode="" MData=":30:44:30"  Description="The IDM3 rejected a command. The command rejected is check accept and the reason code is reset device. Valid commands invalid command" />
+	<Item ErrorCode="" MData=":30:44:31"  Description="The IDM3 rejected a command. The command rejected is check accept and the reason code is reset device. Valid commands command received out of sequence" />
+	<Item ErrorCode="" MData=":30:44:32"  Description="The IDM3 rejected a command. The command rejected is check accept and the reason code is reset device. Valid commands buffer overflow" />
+	<Item ErrorCode="" MData=":30:44:33"  Description="The IDM3 rejected a command. The command rejected is check accept and the reason code is reset device. Valid commands device ID incorrect" />
+	<Item ErrorCode="" MData=":30:44:34"  Description="The IDM3 rejected a command. The command rejected is check accept and the reason code is reset device. Valid commands data format error" />
+	<Item ErrorCode="" MData=":30:45:30"  Description="The IDM3 rejected a command. The command rejected is retain and the reason code is reset device. Valid commands invalid command" />
+	<Item ErrorCode="" MData=":30:45:31"  Description="The IDM3 rejected a command. The command rejected is retain and the reason code is reset device. Valid commands command received out of sequence" />
+	<Item ErrorCode="" MData=":30:45:32"  Description="The IDM3 rejected a command. The command rejected is retain and the reason code is reset device. Valid commands buffer overflow" />
+	<Item ErrorCode="" MData=":30:45:33"  Description="The IDM3 rejected a command. The command rejected is retain and the reason code is reset device. Valid commands device ID incorrect" />
+	<Item ErrorCode="" MData=":30:45:34"  Description="The IDM3 rejected a command. The command rejected is retain and the reason code is reset device. Valid commands data format error" />
+	<Item ErrorCode="" MData=":30:46:30"  Description="The IDM3 rejected a command. The command rejected is return and the reason code is reset device. Valid commands invalid command" />
+	<Item ErrorCode="" MData=":30:46:31"  Description="The IDM3 rejected a command. The command rejected is return and the reason code is reset device. Valid commands command received out of sequence" />
+	<Item ErrorCode="" MData=":30:46:32"  Description="The IDM3 rejected a command. The command rejected is return and the reason code is reset device. Valid commands buffer overflow" />
+	<Item ErrorCode="" MData=":30:46:33"  Description="The IDM3 rejected a command. The command rejected is return and the reason code is reset device. Valid commands device ID incorrect" />
+	<Item ErrorCode="" MData=":30:46:34"  Description="The IDM3 rejected a command. The command rejected is return and the reason code is reset device. Valid commands data format error" />
+	<Item ErrorCode="" MData=":30:48:30"  Description="The IDM3 rejected a command. The command rejected is enable check scan and the reason code is reset device. Valid commands invalid command" />
+	<Item ErrorCode="" MData=":30:48:31"  Description="The IDM3 rejected a command. The command rejected is enable check scan and the reason code is reset device. Valid commands command received out of sequence" />
+	<Item ErrorCode="" MData=":30:48:32"  Description="The IDM3 rejected a command. The command rejected is enable check scan and the reason code is reset device. Valid commands buffer overflow" />
+	<Item ErrorCode="" MData=":30:48:33"  Description="The IDM3 rejected a command. The command rejected is enable check scan and the reason code is reset device. Valid commands device ID incorrect" />
+	<Item ErrorCode="" MData=":30:48:34"  Description="The IDM3 rejected a command. The command rejected is enable check scan and the reason code is reset device. Valid commands data format error" />
+	<Item ErrorCode="" MData=":30:49:30"  Description="The IDM3 rejected a command. The command rejected is unlock envelope and the reason code is reset device. Valid commands invalid command" />
+	<Item ErrorCode="" MData=":30:49:31"  Description="The IDM3 rejected a command. The command rejected is unlock envelope and the reason code is reset device. Valid commands command received out of sequence" />
+	<Item ErrorCode="" MData=":30:49:32"  Description="The IDM3 rejected a command. The command rejected is unlock envelope and the reason code is reset device. Valid commands buffer overflow" />
+	<Item ErrorCode="" MData=":30:49:33"  Description="The IDM3 rejected a command. The command rejected is unlock envelope and the reason code is reset device. Valid commands device ID incorrect" />
+	<Item ErrorCode="" MData=":30:49:34"  Description="The IDM3 rejected a command. The command rejected is unlock envelope and the reason code is reset device. Valid commands data format error" />
+	<Item ErrorCode="" MData=":30:50:30"  Description="The IDM3 rejected a command. The command rejected is calibrate and the reason code is reset device. Valid commands invalid command" />
+	<Item ErrorCode="" MData=":30:50:31"  Description="The IDM3 rejected a command. The command rejected is calibrate and the reason code is reset device. Valid commands command received out of sequence" />
+	<Item ErrorCode="" MData=":30:50:32"  Description="The IDM3 rejected a command. The command rejected is calibrate and the reason code is reset device. Valid commands buffer overflow" />
+	<Item ErrorCode="" MData=":30:50:33"  Description="The IDM3 rejected a command. The command rejected is calibrate and the reason code is reset device. Valid commands device ID incorrect" />
+	<Item ErrorCode="" MData=":30:50:34"  Description="The IDM3 rejected a command. The command rejected is calibrate and the reason code is reset device. Valid commands data format error" />	
+	<Item ErrorCode="" MData=":38:nn:nn"  Description="Communications problem" />
+	<Item ErrorCode="" MData=":39:00:01"  Description="Depositor is disabled due to a fault condition" />
+	<Item ErrorCode="" MData=":39:00:02"  Description="Depositor is disabled by the network." />
+	<Item ErrorCode="" MData=":39:00:03"  Description="Depositor is disabled due to a fault condition and the network" />	
+	<Item ErrorCode="14260/14261/14262/14263/14264/14265/14266/14267/14268/14269/14270/14271/14272/14273/14274/14275/14276/14277/14278/14279/14280/14281/14282/14283" MData=":3A:XX:4F"  Description="One or more document sensors are blocked. The document is jammed, or there is a defective sensor." />
+	<Item ErrorCode="" MData=":3A:45:4B"  Description="Bin mechanism failure during a document retain." />
+	<Item ErrorCode="" MData=":3A:80:80"  Description="The scanner image buffer is not allocated by the device driver or the device driver is not installed. (not applicable for Opteva terminals)" />
+	<Item ErrorCode="" MData=":3A:80:81"  Description="PCISCAN.SYS device driver could not find the PCI Scanner card. (not applicable for Opteva terminals)" />
+	<Item ErrorCode="" MData=":3A:80:82"  Description="PCI Scanner card configuration error. (not applicable for Opteva terminals)" />
+	<Item ErrorCode="" MData=":3A:81:20"  Description="Character recognition is not available" />
+	<!-- Fault Decoding is bitmapped as follows: 0 - Reserved 1 - Reserved 2 - Recognition Initialization fault 3 - ICS.CFG file not found 4 - Reserved 5 - through  7 - Reserved -->
+	<Item ErrorCode="" MData=":3A:81:XX"  Description="Image Processor internal fault." />
+	<Item ErrorCode="" MData=":3A:82:00"  Description="Image Processor not responding." />
+	<Item ErrorCode="" MData=":3A:A0:01"  Description="Buffer allocation failed" />
+	<Item ErrorCode="" MData=":3A:A0:02"  Description="Document image display request failed" />
+	<Item ErrorCode="" MData=":3A:A0:03"  Description="Video rejected image icon" />
+	<Item ErrorCode="" MData=":3A:A0:04"  Description="Image icon storage failed." />
+	<Item ErrorCode="" MData=":3A:A0:XX"  Description="Scan operation failed." />
+	<Item ErrorCode="" MData=":3B:XX:71"  Description="The front sensors(s) never became blocked while attempting to return a check to a consumer" />
+	<Item ErrorCode="" MData=":3B:80:XX"  Description="Image Processor communication error" />
+	<Item ErrorCode="" MData=":3B:81:XX"  Description="RSS software exception. XX is the code indicating the software exception module." />
+	<Item ErrorCode="" MData=":3C:00:30"  Description="No MICR data is detected on the check. The MICR fault limit is reached. This fault will only occur during a deposit state." />
+	<Item ErrorCode="" MData=":3C:80:00"  Description="Multiple failures to locate RSS window data." />
+	<Item ErrorCode="" MData=":3D:30:4A"  Description="PLD failure during reset." />
+	<Item ErrorCode="" MData=":3D:30:4B"  Description="Bin mechanism failure during reset" />
+	<Item ErrorCode="" MData=":3D:30:4C"  Description="Gate mechanism failure during reset." />
+	<Item ErrorCode="" MData=":3D:30:4D"  Description="Scanner not latched during reset." />
+	<Item ErrorCode="" MData=":3D:30:4E"  Description="Printer not latched during reset." />
+	<Item ErrorCode="" MData=":3D:30:4F"  Description="Printer failure during reset." />
+	<Item ErrorCode="" MData=":3D:41:4A"  Description="PLD failure during envelope deposit." />
+	<Item ErrorCode="" MData=":3D:41:4B"  Description="Bin mechansim failure duiring envelope deposit" />
+	<Item ErrorCode="" MData=":3D:41:4C"  Description="Gate failure during envelope deposit." />
+	<Item ErrorCode="" MData=":3D:41:4F"  Description="Printer failure during an envelope deposit" />
+	<Item ErrorCode="" MData=":3D:44:4B"  Description="Bin mechanismfailure during a check deposit." />
+	<Item ErrorCode="" MData=":3D:44:4C"  Description="Gate failure during a check deposit." />
+	<Item ErrorCode="" MData=":3D:44:4D"  Description="Scanner not latched during a check deposit." />
+	<Item ErrorCode="" MData=":3D:44:4E"  Description="Printer not latched during a check deposit." />
+	<Item ErrorCode="" MData=":3D:44:4F"  Description="Printer failure during a check deposit." />
+	<Item ErrorCode="" MData=":3D:45:4F"  Description="Printer failure during a deposit" />
+	<Item ErrorCode="" MData=":3D:46:4C"  Description="Gate mechanism failure during a document return" />
+	<Item ErrorCode="" MData=":3D:46:4F"  Description="Printer failure during a document return." />
+	<!-- Note: nn = status of bottom scanner(Possibly 50 - 55) -->
+	<Item ErrorCode="" MData=":3D:51:nn"  Description="Scanner hardware error" />
+	<Item ErrorCode="" MData=":3D:52:nn"  Description="Scanner init error" />
+	<Item ErrorCode="" MData=":3D:53:nn"  Description="Scanner host error" />
+	<Item ErrorCode="" MData=":3D:54:nn"  Description="Scanner interface error" />
+	<Item ErrorCode="" MData=":3E:00:00"  Description="If this status is received during an op- commanded selftest, the device was specifically requested to do a self-test but was not enabled or present" />
+	<Item ErrorCode="" MData=":3F:00:30"  Description="No MICR data is detected on the check" />
+	<Item ErrorCode="" MData=":3F:40:41"  Description="Abnormal document retain. A document was either jammed in the IDM or abandoned by the transaction sequence and retained into the Deposit Cassette during the close state." />
+	<Item ErrorCode="" MData=":3F:44:31"  Description="The document that was inserted was not a check. It could be too short or too long." />
+	<!-- Note: 5t = status of top scanner (Possibly 50 - 55) -->
+	<Item ErrorCode="" MData=":3F:55:5t"  Description="Scan error" />
+	<Item ErrorCode="" MData=":3F:XX:3b"  Description="Document jam or b bin full during retain operation" />
+	<Item ErrorCode="" MData=":3F:80:XX"  Description="Recognition software error." />
+	<Item ErrorCode="" MData=":3F:81:00"  Description="Display image error" />
+	<Item ErrorCode="" MData=":3F:81:01"  Description="Generate display fault.RAW_IMAGE_TOO_SMALL" />
+	<Item ErrorCode="" MData=":3F:81:02"  Description="Generate display fault.IMAGE_LENGTH_LT_MINIMUM" />
+	<Item ErrorCode="" MData=":3F:81:03"  Description="Generate display fault.IMAGE_WIDTH_LT_MINIMUM" />
+	<Item ErrorCode="" MData=":3F:81:04"  Description="Generate display fault.FAIL_TO_FIND_LEADING_EDGE" />
+	<Item ErrorCode="" MData=":3F:81:05"  Description="Generate display fault.FAIL_TO_FIND_TRAILING_EDGE" />
+	<Item ErrorCode="" MData=":3F:81:06"  Description="Generate display fault.FAIL_TO_FIND_LEFT_EDGE" />
+	<Item ErrorCode="" MData=":3F:81:07"  Description="Generate display fault.FAIL_TO_FIND_RIGHT_EDGE" />
+	<Item ErrorCode="" MData=":3F:81:81"  Description="Generate display fault.DISPLAY_BUFFER_GT_MAX" />
+	<Item ErrorCode="" MData=":3F:81:82"  Description="Generate display fault.DISPLAY_BUFFER_TOO_SMALL" />
+	<Item ErrorCode="" MData=":3F:81:83"  Description="Generate display fault. ORIENTATION_PARM_NOT_VALID" />
+	<Item ErrorCode="" MData=":3F:81:84"  Description="Generate display fault.RESOURCE_MALLOC_FAILURE" />
+	<Item ErrorCode="" MData=":3F:81:FE"  Description="Generate display fault.Deskew Move it Error" />
+	<Item ErrorCode="" MData=":3F:81:FF"  Description="Generate display fault.RESOURCE_MALLOC_FAILURE. Deskew Process Error" />
+	<Item ErrorCode="" MData=":3F:82:00"  Description="Image operation error.No template size match to document image" />
+	<Item ErrorCode="" MData=":3F:82:01"  Description="Image operation error.IP has no image present" />	
+	<Item ErrorCode="" MData=":3F:9M:XX"  Description="Scanner operationalerror." />
+	<Item ErrorCode="" MData=":3F:A0:00"  Description="Kernal mismatch" />
+	<Item ErrorCode="" MData=":3F:A0:XX"  Description="RAM manager access failed" />
+	<Item ErrorCode="" MData=":3F:nn:3b"  Description="Document jam or b bin full during retain operation." />
+	<Item ErrorCode="" MData=":61:00:00"  Description="The deposit bin has been closed." />
+	<Item ErrorCode="" MData=":61:00:01"  Description="The deposit bin has been opened." />
+    <Item ErrorCode="" MData="01"  Description="Transport jam" />
+	<Item ErrorCode="" MData="02"  Description="Transport jammed and shutter jammed open" />
+    <Item ErrorCode="" MData="03"  Description="Transport jammed and shutter jammed closed" />
+  </CashAcceptor>
+  
+  
+   <!-- PR01 - Receipt Printer -->
+  <ReceiptPrinter>
+    <Item ErrorCode="DefaultNoError" MData=":00:00:00"  Description="No error" />
+    <Item ErrorCode="DefaultError" MData=":39:40:02"  Description="Default error code / event code" />
+	<!-- <Item ErrorCode="" MData=":39:40:01"  Description="The receipt printer device performed a self-test, and no errors occurred." /> -->
+	<Item ErrorCode="1338" MData=":23:00:00"  Description="Consumer timeout. The receipt was presented to the consumer, but the consumer did not take the receipt" />
+	<Item ErrorCode="1325" MData=":2D:50:00"  Description="Supply of paper is running low" />
+	<Item ErrorCode="PR01_134/1327" MData=":30:00:00"  Description="The receipt printer rejected a command." />
+	<Item ErrorCode="1398" MData=":38:23:30"  Description="The receipt printer failed to respond to a command(reset device) within the allotted time.." />
+	<Item ErrorCode="1399" MData=":38:??:??"  Description="The receipt printer detected a print head unlocked error and has failed to complete the operation." />
+	<Item ErrorCode="" MData=":38:23:31"  Description="The receipt printer failed to respond to a command (idle device) within the allotted time" />
+	<Item ErrorCode="" MData=":38:23:34"  Description="The receipt printer failed to respond to a command (return device configuration data) within the allotted time." />
+	<Item ErrorCode="" MData=":38:23:37"  Description="The receipt printer failed to respond to a command (return device ROM CRCs) within the allotted time." />
+	<Item ErrorCode="" MData=":38:23:41"  Description="The receipt printer failed to respond to a command (print on device) within the allotted time" />
+	<Item ErrorCode="" MData=":38:23:45"  Description="The receipt printer failed to respond to a command (move to top of form, burst and deliver form) within the allotted time." />
+	<Item ErrorCode="" MData=":38:30:00"  Description="During the initialization of the receipt printer, the printer responded to a command (reset device) with an invalid completion status." />
+	<Item ErrorCode="1328" MData=":38:34:00"  Description="During the initialization of the receipt printer, the printer responded to a command (return device configuration data) with an invalid completion status" />
+	<Item ErrorCode="1352" MData=":38:37:00"  Description="During the initialization of the receipt printer, the printer responded to a command (return device ROM CRCs) with an invalid completion status." />
+	<Item ErrorCode="1375" MData=":38:51:00"  Description="The receipt printer is not communicating with Agilis 91x." />
+	<Item ErrorCode="" MData=":38:62:00"  Description="The receipt printer is not communicating with Agilis 91x." />
+	<Item ErrorCode="PR01_139/PR01_140" MData=":38:60:00"  Description="The receipt printer failed to initialize." />
+	<Item ErrorCode="1390" MData=":38:00:00"  Description="Internal communications error" />
+	<Item ErrorCode="PR01_138/PPR01_127/R01_120/PR01_018/1321/1374" MData=":39:40:01"  Description="Hardware error" />
+	<Item ErrorCode="" MData=":39:40:02"  Description="The receipt printer detected voltage error and has failed to complete the operation" />
+	<Item ErrorCode="1360" MData=":39:40:04"  Description="The receipt printer detected a print head unlocked error and has failed to complete the operation" />
+	<Item ErrorCode="1326/1327/1328/1329/1330/1331/1332/1333/1334/1335/1340/1341/1355/1379/1380" MData=":39:44:00"  Description="Equipment fault" />
+	<!-- <Item ErrorCode="1361" MData=":39:44:nn"  Description="The receipt printer failed to find the head home position during the last print operation." /> -->
+	<!-- <Item ErrorCode="" MData=":39:45:nn"  Description="Both of the following events occurred 1) The receipt printer failed to find the head home position during the last print operation 2) The receipt printer detected a continuous topof-form mark while searching for top-of-form" /> -->
+	<!-- <Item ErrorCode="" MData=":39:46:nn"  Description="Both of the following events occurred: 1) The receipt printer failed to find the head home position during the last print operation. 2) The receipt printer did not detect a top-of-form mark while searching for top-of-form." /> -->
+	<Item ErrorCode="1335" MData=":39:50:01"  Description="Supply of paper is running low. A hardware error might have occurred at the same time." />
+	<Item ErrorCode="" MData=":39:50:04"  Description="The receipt printer detected a print head unlocked error and low supplies. It has failed to complete the operation" />
+	<!-- <Item ErrorCode="" MData=":39:54:nn"  Description="Both of the following events occurred: 1) The receipt printer failed to find the head home position during the last print operation. 2) The paper supply is running low" /> -->
+	<!-- <Item ErrorCode="" MData=":39:55:nn"  Description="All of the following events occurred: 1) The receipt printer failed to find the head home position during the last print operation. 2) The receipt printer detected a continuous topof-form mark while searching for top-of-form. 3) The paper supply is running low." /> -->
+	<!-- <Item ErrorCode="" MData=":39:56:nn"  Description="All of the following events occurred: 1) The receipt printer failed to find the head home position during the last print operation. 2) The receipt printer did not detect a top-of-form mark while searching for top-of-form. 3) The paper supply is running low" /> -->
+	<Item ErrorCode="PR01_023/1370" MData=":39:60:01"  Description="Supply of paper has run out. A hardware error might have occurred at the same time" />
+	<Item ErrorCode="" MData=":39:60:04"  Description="The receipt printer detected a print head unlocked error and supplies out. It has failed to complete the operation" />
+	<!-- <Item ErrorCode="" MData=":39:64:nn"  Description="Both of the following events occurred: 1) The receipt printer failed to find the head home position during the last print operation. 2) The paper supply has run out" /> -->
+	<!-- <Item ErrorCode="" MData=":39:65:nn"  Description="All of the following events occurred: 1) The receipt printer failed to find the head home position during the last print operation. 2) The receipt printer detected a continuous topof-form mark while searching for top-of-form. 3) The paper supply has run out." /> -->
+	<!-- <Item ErrorCode="" MData=":39:66:nn"  Description="All of the following events occurred: 1) The receipt printer failed to find the head home position during the last print operation. 2) The receipt printer did not detect a top-of-form mark while searching for top-of-form. 3) The paper supply has run out" /> -->
+	<Item ErrorCode="1357" MData=":3C:41:00"  Description="The receipt printer detected a continuous top-of-form mark." />
+	<Item ErrorCode="1304" MData=":3C:42:00"  Description="The receipt printer cannot detect a top-of-form mark" />
+	<Item ErrorCode="" MData=":3C:48:00"  Description="Transport entry sensor malfunction" />
+	<Item ErrorCode="1378" MData=":3D:40:05"  Description="The retain bin is full" />
+	<Item ErrorCode="1351" MData=":3D:60:0D"  Description="The retain bin is full or jammed. This status corresponds to Statement Printer status SP01:3D:00:0D" />
+	<Item ErrorCode="PR01_123/1371" MData=":3D:60:00"  Description="Supply of paper has run out" />
+	<Item ErrorCode="PR01_128" MData=":3E:00:00"  Description="1) Self-test failed (operational command processing). The receipt mprinter is not present or is not enabled. 2) Format error detected in the print data. The most likely cause is an incomplete control sequence or too much print data between line terminators (CR or LF)" />
+	<Item ErrorCode="PR01_133/PR01_129/PR01_120//PR01_013/PR01_012/PR01_011/PR01_010/PR01_008/PR01_007/PR01_001/PR01_000/PR01_105/1376" MData=":3E:00:01"  Description="Data error. The data error status could be the result of incorrect print data, an incorrect software device configuration, or a problem with XFS forms and media definitions" />
+	<Item ErrorCode="" MData=":3E:01:04"  Description="Continuous Availability spool file error (too many open files)." />
+	<Item ErrorCode="" MData=":3E:01:05"  Description="Continuous Availability spool file error (access denied)" />
+	<Item ErrorCode="1359" MData=":3E:01:08"  Description="Continuous Availability spool file error (not enough memory)" />
+	<Item ErrorCode="" MData=":3E:01:20"  Description="Continuous Availability spool file error (sharing violation)." />
+	<Item ErrorCode="" MData=":3E:01:70"  Description="Continuous Availability spool file error (disk full)." />
+	<Item ErrorCode="PR01_125" MData=":3E:02:06"  Description="The ribbon cartridge is missing. This status corresponds to Statement Printer status SP01:3E:00:06" />
+	<Item ErrorCode="" MData=":3E:02:07"  Description="There is a delivery module positioning fault. There may be a paper jam in the delivery module. This status corresponds to Statement Printer status SP01:3E:00:07" />
+	<Item ErrorCode="" MData=":3E:02:0A"  Description="There may be a paper jam in the delivery module. This status corresponds to Statement Printer status SP01:3E:00:0A" />
+	<Item ErrorCode="1358" MData=":3E:02:0E"  Description="The cutter has failed or the paper is out. This status corresponds to Statement Printer status SP01:3A:00:0E." />
+	<Item ErrorCode="" MData=":3E:10:01"  Description="Data error. A paper supply low condition occurred at the same time. The data error status could be the result of incorrect print data, an incorrect software device configuration, or a problem with XFS forms and media definitions" />
+	<Item ErrorCode="" MData=":3E:20:01"  Description="Data error. A paper supply out condition occurred at the same time. The data error status could be the result of incorrect print data, an incorrect software device configuration, or a problem with XFS forms and media definitions." />
+	<Item ErrorCode="1382" MData=":3E:40:03"  Description="The receipt printer detected a print head overheat error and has failed to complete the operation" />
+	<Item ErrorCode="" MData=":3E:40:06"  Description="Dump error. The receipt might not have been dumped." />
+	<Item ErrorCode="PR01_119/PR01_122/1381" MData=":3E:40:07"  Description="Paper jam" />
+	<Item ErrorCode="PR01_115/1397" MData=":3E:40:08"  Description="Deliver error. The receipt might not have been delivered to the consumer" />
+	<Item ErrorCode="1339" MData=":3E:40:09"  Description="Cut error. The receipt might not have been delivered to the consumer." />
+	<!-- <Item ErrorCode="1354" MData=":3E:41:nn"  Description="The receipt printer detected a continuous top-of-form mark while searching for top-of-form." /> -->
+	<!-- <Item ErrorCode="" MData=":3E:42:nn"  Description="The receipt printer did not detect any top-of-form mark while searching for top-ofform" /> -->
+	<Item ErrorCode="" MData=":3E:50:03"  Description="The receipt printer detected a print head overheat error and low supplies. It has failed to complete the operation" />
+	<Item ErrorCode="" MData=":3E:50:06"  Description="Dump error. The receipt might not have been dumped. A paper supply low condition occurred at the same time" />
+	<Item ErrorCode="" MData=":3E:50:07"  Description="Paper jam. A paper supply low condition occurred at the same time" />
+	<Item ErrorCode="" MData=":3E:50:08"  Description="Deliver error. The receipt might not have been delivered to the consumer A paper supply low condition occurred at the same time" />
+	<Item ErrorCode="1377" MData=":3E:50:09"  Description="Cut error. The receipt might not have been delivered to the consumer. A paper supply low condition occurred at the same time" />
+	<!-- <Item ErrorCode="" MData=":3E:51:nn"  Description="Both of the following events occurred: 1) The receipt printer detected a continuous topof-form mark while searching for top-of-form. 2) The paper supply is running low" /> -->
+	<!-- <Item ErrorCode="" MData=":3E:52:nn"  Description="Both of the following events occurred: 1) The receipt printer did not detect any top-of-form mark while searching for top-of-form. 2) The paper supply is running low" /> -->
+	<Item ErrorCode="" MData=":3E:60:03"  Description="The receipt printer detected a print head overheat error and supplies out. It has failed to complete the operation" />
+	<Item ErrorCode="" MData=":3E:60:06"  Description="Dump error. The receipt might not have been dumped. A paper supply out condition occurred at the same time" />
+	<Item ErrorCode="" MData=":3E:60:07"  Description="Paper jam. A paper supply out condition occurred at the same time" />
+	<Item ErrorCode="" MData=":3E:60:08"  Description="Deliver error. The receipt might not have been delivered to the consumer. A paper supply out condition occurred at the same time." />
+	<Item ErrorCode="" MData=":3E:60:09"  Description="Cut error. The receipt might not have been delivered to the consumer. A paper supply out condition occurred at the same time" />
+	<!-- <Item ErrorCode="" MData=":3E:61:nn"  Description="Both of the following events occurred: 1) The receipt printer detected a continuous topof-form mark while searching for top-of-form. 2) The paper supply has run out." /> -->
+	<!-- <Item ErrorCode="" MData=":3E:62:nn"  Description="Both of the following events occurred: 1) The receipt printer did not detect any top-of-form mark while searching for top-of-form. 2) The paper supply has run out" /> -->
+	<Item ErrorCode="1336" MData=":3F:00:08"  Description="A document was not found during the presentation attempt. There is a possible sequence error, paper jam in the delivery module, orsensor failure. This status corresponds to Statement Printer status SP01:3F:00:08" />
+	<Item ErrorCode="PR01_132" MData=":3F:00:03"  Description="Corrupted print data" />
+	<Item ErrorCode="" MData=":3F:00:0B"  Description="Difficulty locating the top-ofform marks on the paper. The receipt printer settings may not match the actual form. The form lengths may be incorrectly cut. This status corresponds to Statement Printer status SP01:3F:00:0" />
+	<Item ErrorCode="" MData=":3F:00:0F"  Description="The midway sensor is not operating. This status corresponds to Statement Printer status SP01:3F:00:0F" />
+	<Item ErrorCode="1376" MData=":3F:00:10"  Description="Document not found during retain operation. Possible jam or sequence error caused by consumer removing jam. This fault may be sent as part of a terminal software attempt to automatically clear a sequence fault. This message corresponds to Statement Printer status SP01:3F:00:10" />
+	<Item ErrorCode="" MData=":3F:23:30"  Description="The receipt printer failed to respond to a command (reset device) within the allotted time" />
+	<Item ErrorCode="" MData=":3F:23:31"  Description="The receipt printer failed to respond to a command (idle device) within the allotted time" />
+	<Item ErrorCode="" MData=":3F:23:34"  Description="The receipt printer failed to respond to a command (return device configuration data) within the allotted time.e" />
+	<Item ErrorCode="" MData=":3F:23:37"  Description="The receipt printer failed to respond to a command (return device ROM CRCs) within the allotted time" />
+	<Item ErrorCode="" MData=":3F:23:41"  Description="The receipt printer failed to respond to a command (print on device) within the allotted time" />
+	<Item ErrorCode="" MData=":3F:23:42"  Description="The receipt printer failed to respond to a command (enable paper advance button on the receipt printer) within the allotted time." />
+	<Item ErrorCode="" MData=":3F:23:43"  Description="The receipt printer failed to respond to a command (burst and deliver form) within the allotted time" />
+	<Item ErrorCode="" MData=":3F:23:45"  Description="The receipt printer failed to respond to a command (move to top of form, burst and deliver form) within the allotted time." />
+	<Item ErrorCode="" MData=":3F:23:47"  Description="The receipt printer failed to respond to a command (retain form) within the allotted time." />
+	<Item ErrorCode="" MData=":3F:23:48"  Description="The receipt printer failed to respond to a command (dump form) within the allotted time" />
+	<Item ErrorCode="" MData=":3F:40:0A"  Description="There is no receipt for the receipt printer to deliver. The receipt printer might have attempted a deliver operation before performing a print operation" />
+	<Item ErrorCode="" MData=":3F:40:0B"  Description="There is no receipt for the receipt printer to retain. The consumer might have taken the receipt before the receipt printer could retain it, or the receipt printer might have attempted a retain operation before performing a print operation." />
+	<Item ErrorCode="1322/1323/1383/1384/1385/1386" MData=":3F:40:40"  Description="Unexpected or unknown fault" />
+	<Item ErrorCode="" MData=":3F:40:60"  Description="A document retain command was automatically done. The presented documents have been retained" />
+	<Item ErrorCode="" MData=":3F:40:61"  Description="A document dump was performed automatically" />
+	<Item ErrorCode="" MData=":3F:30:31"  Description="The receipt printer responded to a command with an invalid completion status. reset device, and device idling" />
+	<Item ErrorCode="" MData=":3F:30:34"  Description="The receipt printer responded to a command with an invalid completion status. reset device, and device configuration data" />
+	<Item ErrorCode="" MData=":3F:30:37"  Description="The receipt printer responded to a command with an invalid completion status. reset device, and device ROM CRCs" />
+	<Item ErrorCode="" MData=":3F:30:39"  Description="The receipt printer responded to a command with an invalid completion status. reset device, and device hard fault" />
+	<Item ErrorCode="" MData=":3F:30:3E"  Description="The receipt printer responded to a command with an invalid completion status. reset device, and device fault" />
+	<Item ErrorCode="" MData=":3F:30:3F"  Description="The receipt printer responded to a command with an invalid completion status. reset device, and device warnin" />
+	<Item ErrorCode="" MData=":3F:30:41"  Description="The receipt printer responded to a command with an invalid completion status. reset device, and print command completed" />
+	<Item ErrorCode="" MData=":3F:30:42"  Description="The receipt printer responded to a command with an invalid completion status. reset device, and paper advance button enabled" />
+	<Item ErrorCode="" MData=":3F:30:43"  Description="The receipt printer responded to a command with an invalid completion status. reset device, and burst and delivered" />
+	<Item ErrorCode="" MData=":3F:30:45"  Description="The receipt printer responded to a command with an invalid completion status. reset device, and TOF search, burst, and deliver completed" />
+	<Item ErrorCode="" MData=":3F:30:47"  Description="The receipt printer responded to a command with an invalid completion status. reset device, and form retained" />
+	<Item ErrorCode="" MData=":3F:30:48"  Description="The receipt printer responded to a command with an invalid completion status. reset device, and form dumped" />
+	<Item ErrorCode="" MData=":3F:31:31"  Description="The receipt printer responded to a command with an invalid completion status. idle device, and device idling" />
+	<Item ErrorCode="" MData=":3F:31:34"  Description="The receipt printer responded to a command with an invalid completion status. idle device, and device configuration data" />
+	<!-- <Item ErrorCode="" MData=":3F:31:37"  Description="The receipt printer responded to a command with an invalid completion status. idle device, and device ROM CRCs" /> -->
+	<!-- <Item ErrorCode="" MData=":3F:31:39"  Description="The receipt printer responded to a command with an invalid completion status. idle device, and device hard fault" /> -->
+	<Item ErrorCode="" MData=":3F:31:3E"  Description="The receipt printer responded to a command with an invalid completion status. idle device, and device fault" />
+	<Item ErrorCode="" MData=":3F:31:3F"  Description="The receipt printer responded to a command with an invalid completion status. idle device, and device warnin" />
+	<Item ErrorCode="" MData=":3F:31:41"  Description="The receipt printer responded to a command with an invalid completion status. idle device, and print command completed" />
+	<Item ErrorCode="" MData=":3F:31:42"  Description="The receipt printer responded to a command with an invalid completion status. idle device, and paper advance button enabled" />
+	<Item ErrorCode="" MData=":3F:31:43"  Description="The receipt printer responded to a command with an invalid completion status. idle device, and burst and delivered" />
+	<Item ErrorCode="" MData=":3F:31:45"  Description="The receipt printer responded to a command with an invalid completion status. idle device, and TOF search, burst, and deliver completed" />
+	<Item ErrorCode="" MData=":3F:31:47"  Description="The receipt printer responded to a command with an invalid completion status. idle device, and form retained" />
+	<Item ErrorCode="" MData=":3F:31:48"  Description="The receipt printer responded to a command with an invalid completion status. idle device, and form dumped" />
+	<Item ErrorCode="" MData=":3F:34:31"  Description="The receipt printer responded to a command with an invalid completion status. return device configuration data, and device idling" />
+	<Item ErrorCode="" MData=":3F:34:34"  Description="The receipt printer responded to a command with an invalid completion status. return device configuration data, and device configuration data" />
+	<Item ErrorCode="" MData=":3F:34:37"  Description="The receipt printer responded to a command with an invalid completion status. return device configuration data, and device ROM CRCs" />
+	<Item ErrorCode="" MData=":3F:34:39"  Description="The receipt printer responded to a command with an invalid completion status. return device configuration data, and device hard fault" />
+	<Item ErrorCode="" MData=":3F:34:3E"  Description="The receipt printer responded to a command with an invalid completion status. return device configuration data, and device fault" />
+	<Item ErrorCode="" MData=":3F:34:3F"  Description="The receipt printer responded to a command with an invalid completion status. return device configuration data, and device warnin" />
+	<Item ErrorCode="" MData=":3F:34:41"  Description="The receipt printer responded to a command with an invalid completion status. return device configuration data, and print command completed" />
+	<Item ErrorCode="" MData=":3F:34:42"  Description="The receipt printer responded to a command with an invalid completion status. return device configuration data, and paper advance button enabled" />
+	<Item ErrorCode="" MData=":3F:34:43"  Description="The receipt printer responded to a command with an invalid completion status. return device configuration data, and burst and delivered" />
+	<Item ErrorCode="" MData=":3F:34:45"  Description="The receipt printer responded to a command with an invalid completion status. return device configuration data, and TOF search, burst, and deliver completed" />
+	<Item ErrorCode="" MData=":3F:34:47"  Description="The receipt printer responded to a command with an invalid completion status. return device configuration data, and form retained" />
+	<Item ErrorCode="" MData=":3F:34:48"  Description="The receipt printer responded to a command with an invalid completion status. return device configuration data, and form dumped" />
+	<Item ErrorCode="" MData=":3F:37:31"  Description="The receipt printer responded to a command with an invalid completion status. return device ROM CRCs, and device idling" />
+	<Item ErrorCode="" MData=":3F:37:34"  Description="The receipt printer responded to a command with an invalid completion status. return device ROM CRCs, and device configuration data" />
+	<Item ErrorCode="" MData=":3F:37:37"  Description="The receipt printer responded to a command with an invalid completion status. return device ROM CRCs, and device ROM CRCs" />
+	<Item ErrorCode="" MData=":3F:37:39"  Description="The receipt printer responded to a command with an invalid completion status. return device ROM CRCs, and device hard fault" />
+	<Item ErrorCode="" MData=":3F:37:3E"  Description="The receipt printer responded to a command with an invalid completion status. return device ROM CRCs, and device fault" />
+	<Item ErrorCode="" MData=":3F:37:3F"  Description="The receipt printer responded to a command with an invalid completion status. return device ROM CRCs, and device warnin" />
+	<Item ErrorCode="" MData=":3F:37:41"  Description="The receipt printer responded to a command with an invalid completion status. return device ROM CRCs, and print command completed" />
+	<Item ErrorCode="" MData=":3F:37:42"  Description="The receipt printer responded to a command with an invalid completion status. return device ROM CRCs, and paper advance button enabled" />
+	<Item ErrorCode="" MData=":3F:37:43"  Description="The receipt printer responded to a command with an invalid completion status. return device ROM CRCs, and burst and delivered" />
+	<Item ErrorCode="" MData=":3F:37:45"  Description="The receipt printer responded to a command with an invalid completion status. return device ROM CRCs, and TOF search, burst, and deliver completed" />
+	<Item ErrorCode="" MData=":3F:37:47"  Description="The receipt printer responded to a command with an invalid completion status. return device ROM CRCs, and form retained" />
+	<Item ErrorCode="" MData=":3F:37:48"  Description="The receipt printer responded to a command with an invalid completion status. return device ROM CRCs, and form dumped" />
+	<Item ErrorCode="" MData=":3F:41:31"  Description="The receipt printer responded to a command with an invalid completion status. print on device, and device idling" />
+	<Item ErrorCode="" MData=":3F:41:34"  Description="The receipt printer responded to a command with an invalid completion status. print on device, and device configuration data" />
+	<Item ErrorCode="" MData=":3F:41:37"  Description="The receipt printer responded to a command with an invalid completion status. print on device, and device ROM CRCs" />
+	<Item ErrorCode="" MData=":3F:41:39"  Description="The receipt printer responded to a command with an invalid completion status. print on device, and device hard fault" />
+	<Item ErrorCode="" MData=":3F:41:3E"  Description="The receipt printer responded to a command with an invalid completion status. print on device, and device fault" />
+	<Item ErrorCode="" MData=":3F:41:3F"  Description="The receipt printer responded to a command with an invalid completion status. print on device, and device warnin" />
+	<Item ErrorCode="" MData=":3F:41:41"  Description="The receipt printer responded to a command with an invalid completion status. print on device, and print command completed" />
+	<Item ErrorCode="" MData=":3F:41:42"  Description="The receipt printer responded to a command with an invalid completion status. print on device, and paper advance button enabled" />
+	<Item ErrorCode="" MData=":3F:41:43"  Description="The receipt printer responded to a command with an invalid completion status. print on device, and burst and delivered" />
+	<Item ErrorCode="" MData=":3F:41:45"  Description="The receipt printer responded to a command with an invalid completion status. print on device, and TOF search, burst, and deliver completed" />
+	<Item ErrorCode="" MData=":3F:41:47"  Description="The receipt printer responded to a command with an invalid completion status. print on device, and form retained" />
+	<Item ErrorCode="" MData=":3F:41:48"  Description="The receipt printer responded to a command with an invalid completion status. print on device, and form dumped" />
+	<Item ErrorCode="" MData=":3F:42:31"  Description="The receipt printer responded to a command with an invalid completion status. enable paper advance button on the receipt printer, and device idling" />
+	<Item ErrorCode="" MData=":3F:42:34"  Description="The receipt printer responded to a command with an invalid completion status. enable paper advance button on the receipt printer, and device configuration data" />
+	<Item ErrorCode="" MData=":3F:42:37"  Description="The receipt printer responded to a command with an invalid completion status. enable paper advance button on the receipt printer, and device ROM CRCs" />
+	<Item ErrorCode="" MData=":3F:42:39"  Description="The receipt printer responded to a command with an invalid completion status. enable paper advance button on the receipt printer, and device hard fault" />
+	<Item ErrorCode="" MData=":3F:42:3E"  Description="The receipt printer responded to a command with an invalid completion status. enable paper advance button on the receipt printer, and device fault" />
+	<Item ErrorCode="" MData=":3F:42:3F"  Description="The receipt printer responded to a command with an invalid completion status. enable paper advance button on the receipt printer, and device warnin" />
+	<Item ErrorCode="" MData=":3F:42:41"  Description="The receipt printer responded to a command with an invalid completion status. enable paper advance button on the receipt printer, and print command completed" />
+	<Item ErrorCode="" MData=":3F:42:42"  Description="The receipt printer responded to a command with an invalid completion status. enable paper advance button on the receipt printer, and paper advance button enabled" />
+	<Item ErrorCode="" MData=":3F:42:43"  Description="The receipt printer responded to a command with an invalid completion status. enable paper advance button on the receipt printer, and burst and delivered" />
+	<Item ErrorCode="" MData=":3F:42:45"  Description="The receipt printer responded to a command with an invalid completion status. enable paper advance button on the receipt printer, and TOF search, burst, and deliver completed" />
+	<Item ErrorCode="" MData=":3F:42:47"  Description="The receipt printer responded to a command with an invalid completion status. enable paper advance button on the receipt printer, and form retained" />
+	<Item ErrorCode="" MData=":3F:42:48"  Description="The receipt printer responded to a command with an invalid completion status. enable paper advance button on the receipt printer, and form dumped" />
+	<Item ErrorCode="" MData=":3F:43:31"  Description="The receipt printer responded to a command with an invalid completion status. burst and deliver form, and device idling" />
+	<Item ErrorCode="" MData=":3F:43:34"  Description="The receipt printer responded to a command with an invalid completion status. burst and deliver form, and device configuration data" />
+	<Item ErrorCode="" MData=":3F:43:37"  Description="The receipt printer responded to a command with an invalid completion status. burst and deliver form, and device ROM CRCs" />
+	<Item ErrorCode="" MData=":3F:43:39"  Description="The receipt printer responded to a command with an invalid completion status. burst and deliver form, and device hard fault" />
+	<Item ErrorCode="" MData=":3F:43:3E"  Description="The receipt printer responded to a command with an invalid completion status. burst and deliver form, and device fault" />
+	<Item ErrorCode="" MData=":3F:43:3F"  Description="The receipt printer responded to a command with an invalid completion status. burst and deliver form, and device warnin" />
+	<Item ErrorCode="" MData=":3F:43:41"  Description="The receipt printer responded to a command with an invalid completion status. burst and deliver form, and print command completed" />
+	<Item ErrorCode="" MData=":3F:43:42"  Description="The receipt printer responded to a command with an invalid completion status. burst and deliver form, and paper advance button enabled" />
+	<Item ErrorCode="" MData=":3F:43:43"  Description="The receipt printer responded to a command with an invalid completion status. burst and deliver form, and burst and delivered" />
+	<Item ErrorCode="" MData=":3F:43:45"  Description="The receipt printer responded to a command with an invalid completion status. burst and deliver form, and TOF search, burst, and deliver completed" />
+	<Item ErrorCode="" MData=":3F:43:47"  Description="The receipt printer responded to a command with an invalid completion status. burst and deliver form, and form retained" />
+	<Item ErrorCode="" MData=":3F:43:48"  Description="The receipt printer responded to a command with an invalid completion status. burst and deliver form, and form dumped" />
+	<Item ErrorCode="" MData=":3F:45:31"  Description="The receipt printer responded to a command with an invalid completion status. move to top of form, burst and deliver form, and device idling" />
+	<Item ErrorCode="" MData=":3F:45:34"  Description="The receipt printer responded to a command with an invalid completion status. move to top of form, burst and deliver form, and device configuration data" />
+	<Item ErrorCode="" MData=":3F:45:37"  Description="The receipt printer responded to a command with an invalid completion status. move to top of form, burst and deliver form, and device ROM CRCs" />
+	<Item ErrorCode="" MData=":3F:45:39"  Description="The receipt printer responded to a command with an invalid completion status. move to top of form, burst and deliver form, and device hard fault" />
+	<Item ErrorCode="" MData=":3F:45:3E"  Description="The receipt printer responded to a command with an invalid completion status. move to top of form, burst and deliver form, and device fault" />
+	<Item ErrorCode="" MData=":3F:45:3F"  Description="The receipt printer responded to a command with an invalid completion status. move to top of form, burst and deliver form, and device warnin" />
+	<Item ErrorCode="" MData=":3F:45:41"  Description="The receipt printer responded to a command with an invalid completion status. move to top of form, burst and deliver form, and print command completed" />
+	<Item ErrorCode="" MData=":3F:45:42"  Description="The receipt printer responded to a command with an invalid completion status. move to top of form, burst and deliver form, and paper advance button enabled" />
+	<Item ErrorCode="" MData=":3F:45:43"  Description="The receipt printer responded to a command with an invalid completion status. move to top of form, burst and deliver form, and burst and delivered" />
+	<Item ErrorCode="" MData=":3F:45:45"  Description="The receipt printer responded to a command with an invalid completion status. move to top of form, burst and deliver form, and TOF search, burst, and deliver completed" />
+	<Item ErrorCode="" MData=":3F:45:47"  Description="The receipt printer responded to a command with an invalid completion status. move to top of form, burst and deliver form, and form retained" />
+	<Item ErrorCode="" MData=":3F:45:48"  Description="The receipt printer responded to a command with an invalid completion status. move to top of form, burst and deliver form, and form dumped" />
+	<Item ErrorCode="" MData=":3F:47:31"  Description="The receipt printer responded to a command with an invalid completion status. retain form, and device idling" />
+	<Item ErrorCode="" MData=":3F:47:34"  Description="The receipt printer responded to a command with an invalid completion status. retain form, and device configuration data" />
+	<Item ErrorCode="" MData=":3F:47:37"  Description="The receipt printer responded to a command with an invalid completion status. retain form, and device ROM CRCs" />
+	<Item ErrorCode="" MData=":3F:47:39"  Description="The receipt printer responded to a command with an invalid completion status. retain form, and device hard fault" />
+	<Item ErrorCode="" MData=":3F:47:3E"  Description="The receipt printer responded to a command with an invalid completion status. retain form, and device fault" />
+	<Item ErrorCode="" MData=":3F:47:3F"  Description="The receipt printer responded to a command with an invalid completion status. retain form, and device warnin" />
+	<Item ErrorCode="" MData=":3F:47:41"  Description="The receipt printer responded to a command with an invalid completion status. retain form, and print command completed" />
+	<Item ErrorCode="" MData=":3F:47:42"  Description="The receipt printer responded to a command with an invalid completion status. retain form, and paper advance button enabled" />
+	<Item ErrorCode="" MData=":3F:47:43"  Description="The receipt printer responded to a command with an invalid completion status. retain form, and burst and delivered" />
+	<Item ErrorCode="" MData=":3F:47:45"  Description="The receipt printer responded to a command with an invalid completion status. retain form, and TOF search, burst, and deliver completed" />
+	<Item ErrorCode="" MData=":3F:47:47"  Description="The receipt printer responded to a command with an invalid completion status. retain form, and form retained" />
+	<Item ErrorCode="" MData=":3F:47:48"  Description="The receipt printer responded to a command with an invalid completion status. retain form, and form dumped" />
+	<Item ErrorCode="" MData=":3F:48:31"  Description="The receipt printer responded to a command with an invalid completion status. dump form, and device idling" />
+	<Item ErrorCode="" MData=":3F:48:34"  Description="The receipt printer responded to a command with an invalid completion status. dump form, and device configuration data" />
+	<Item ErrorCode="" MData=":3F:48:37"  Description="The receipt printer responded to a command with an invalid completion status. dump form, and device ROM CRCs" />
+	<Item ErrorCode="" MData=":3F:48:39"  Description="The receipt printer responded to a command with an invalid completion status. dump form, and device hard fault" />
+	<Item ErrorCode="" MData=":3F:48:3E"  Description="The receipt printer responded to a command with an invalid completion status. dump form, and device fault" />
+	<Item ErrorCode="" MData=":3F:48:3F"  Description="The receipt printer responded to a command with an invalid completion status. dump form, and device warnin" />
+	<Item ErrorCode="" MData=":3F:48:41"  Description="The receipt printer responded to a command with an invalid completion status. dump form, and print command completed" />
+	<Item ErrorCode="" MData=":3F:48:42"  Description="The receipt printer responded to a command with an invalid completion status. dump form, and paper advance button enabled" />
+	<Item ErrorCode="" MData=":3F:48:43"  Description="The receipt printer responded to a command with an invalid completion status. dump form, and burst and delivered" />
+	<Item ErrorCode="" MData=":3F:48:45"  Description="The receipt printer responded to a command with an invalid completion status. dump form, and TOF search, burst, and deliver completed" />
+	<Item ErrorCode="" MData=":3F:48:47"  Description="The receipt printer responded to a command with an invalid completion status. dump form, and form retained" />
+	<Item ErrorCode="" MData=":3F:48:48"  Description="The receipt printer responded to a command with an invalid completion status. dump form, and form dumped" />
+  </ReceiptPrinter>
+  
+  
+  <JournalPrinter>
+	<Item ErrorCode="DefaultNoError" MData="00"  Description="No error" />
+    <Item ErrorCode="DefaultError" MData=""  Description="Default error code / event code" />
+    <Item ErrorCode="" MData="01"  Description="Head jam" />
+    <Item ErrorCode="" MData="05"  Description="Paper out" />
+    <Item ErrorCode="" MData="07"  Description="Paper not loaded" />
+    <Item ErrorCode="" MData="08"  Description="Communications failure to the printer" />
+    <Item ErrorCode="" MData="09"  Description="Printer open" />
+    <Item ErrorCode="" MData="10"  Description="Ribbon needs to be replaced soon" />
+    <Item ErrorCode="" MData="11"  Description="Printhead needs to be replaced soon" />
+    <Item ErrorCode="" MData="13"  Description="Ribbon needs to be replaced now" />
+    <Item ErrorCode="" MData="14"  Description="Printhead needs to be replaced now" />
+    <Item ErrorCode="" MData="46"  Description="SDC link failure" />
+  </JournalPrinter>
+  
+  
+  <!-- EP01 (Encrypting PIN Pad Status Messages) -->
+  <Encryptor>
+	<!-- ED01 (Encryption/Decryption Status Messages) -->
+	<!-- <Item ErrorCode="" MData=":38:00:0F"  Description="Internal communications error" /> -->
+	<!-- <Item ErrorCode="" MData=":39:00:64"  Description="General error. This status is used for any error not covered by one of the other status messages" /> -->
+	<!-- <Item ErrorCode="" MData=":39:00:7E"  Description="Software error. Object creation failed" /> -->
+	<!-- <Item ErrorCode="" MData=":3F:00:04"  Description="PIN format not supported, algorithm not supported, or command not supported" /> -->
+	<!-- <Item ErrorCode="" MData=":3F:00:05"  Description="Encryption module is neither ready nor initialized." /> -->
+	<!-- <Item ErrorCode="" MData=":3F:00:0D"  Description="Invalid data or no data" /> -->
+	<!-- <Item ErrorCode="" MData=":3F:00:12"  Description="The PIN has been cleared" /> -->
+	<!-- <Item ErrorCode="" MData=":3F:00:19"  Description="Out of memory. Object creation failed" /> -->
+	<!-- <Item ErrorCode="" MData=":3F:00:1C"  Description="Invalid key length, or a key with that name already exists and cannot be overwritten" /> -->
+	<!-- <Item ErrorCode="" MData=":3F:00:1E"  Description="The terminal attempted to use a nonexistent key, or the number of keys imported exceeded the limit." /> -->
+	<!-- <Item ErrorCode="" MData=":3F:00:27"  Description="Incorect key. The key does not support the specified use" /> -->
+	<!-- <Item ErrorCode="" MData=":3F:00:56"  Description="The PIN block format is not supported, or the minimum length of the PIN exceeds the maximum PIN length" /> -->
+	<!-- <Item ErrorCode="" MData=":3F:00:B2"  Description="User error" /> -->
+    <Item ErrorCode="DefaultNoError" MData="00:00:00"  Description="No error detected" />
+    <Item ErrorCode="DefaultError" MData=""  Description="Default error code / event code" />
+	<Item ErrorCode="40099/40098/40082" MData=":38:00:0F"  Description="Internal communications error" />
+	<Item ErrorCode="EP01_01C/40052" MData=":39:00:1C"  Description="Key storage error" />
+	<Item ErrorCode="40085" MData=":39:00:64"  Description="Crypto hardware error" />
+	<Item ErrorCode="40095/40092" MData=":39:00:7E"  Description="Internal EPP firmware error" />
+	<Item ErrorCode="40076" MData=":39:00:A0"  Description="EPP key management failure" />
+	<Item ErrorCode="40021" MData=":3C:00:nn"  Description="A battery low or alarm status" />
+	<Item ErrorCode="40019" MData=":3F:00:02"  Description="Unknown option" />
+	<Item ErrorCode="40045/40055 " MData=":3F:00:04"  Description="Unsupported command" />
+	<Item ErrorCode="40046/40047" MData=":3F:00:05"  Description="Unauthorized command" />
+	<Item ErrorCode="40083" MData=":3F:00:0D"  Description="Invalid data" />
+	<Item ErrorCode="40061/40048" MData=":3F:00:12"  Description="Sequence error. There is no PIN." />
+	<Item ErrorCode="" MData=":3F:00:19"  Description="Data area is full (out of memory)" />
+	<Item ErrorCode="40060/40063" MData=":3F:00:1A"  Description="Invalid key usage" />
+	<Item ErrorCode="40067/40041/40042/40043 " MData=":3F:00:1E"  Description="Invalid key. An attempt was made to use a nonexistent key or a key with an invalid ID" />
+	<Item ErrorCode="40065/40049/40053/40054" MData=":3F:00:56"  Description="PIN formatting failure (format not supported) or PIN length error" />
+	<Item ErrorCode="40068/40070/40071/40062/40072/40073" MData=":3F:00:B2"  Description="User error. The device is inoperable because a person is preventing proper operationr" />
+	<Item ErrorCode="40079" MData=":3F:00:D1"  Description="Certificate check failed (invalid certification state or invalid format)" />
+  </Encryptor>
+  <BarCodeReader>
+	<Item ErrorCode="DefaultNoError" MData="00"  Description="No error" />
+    <Item ErrorCode="DefaultError" MData=""  Description="Default error code / event code" />
+  </BarCodeReader>
+  <!-- AL01 (Alarm Status Messages -->
+  <Alarm>
+	<Item ErrorCode="DefaultNoError" MData="00"  Description="No error" />
+    <Item ErrorCode="DefaultError" MData=""  Description="Default error code / event code" />
+	
+	<Item ErrorCode="AL01_000" MData=":3F:00:00"  Description="Ambush detector ON, burglary sensor OFF, safe door OPEN" />
+	<Item ErrorCode="AL01_001" MData=":3F:01:00"  Description="Ambush detector ON, burglary sensor OFF, safe door CLOSED" />
+	<Item ErrorCode="AL01_040" MData=":3F:40:00"  Description="Ambush detector ON, burglary sensor ON, safe door OPEN" />
+	<Item ErrorCode="AL01_041" MData=":3F:41:00"  Description="Ambush detector ON, burglary sensor ON, safe door CLOSED" />
+	<Item ErrorCode="AL01_080" MData=":3F:80:00 "  Description="Ambush detector OFF, burglary sensor OFF, safe door OPEN" />
+	<Item ErrorCode="AL01_081" MData=":3F:81:00"  Description="Ambush detector OFF, burglary sensor OFF, safe door CLOSED" />
+	<Item ErrorCode="AL01_0C0" MData=":3F:C0:00"  Description="Ambush detector OFF, burglary sensor ON, safe door OPEN" />
+	<Item ErrorCode="AL01_0C1" MData=":3F:C1:00"  Description="Ambush detector OFF, burglary sensor ON, safe door CLOSED" />
+  </Alarm>
+</Root>

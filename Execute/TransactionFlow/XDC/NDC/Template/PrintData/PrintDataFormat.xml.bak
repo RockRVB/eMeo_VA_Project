@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <!-- 
+ * The definition of main control character for printer control characters
+ * [1] The control character of printer(Receipt/Journal) 
+ -->
+  <ControlCharacter>
+    <Item key="[0x0B]" value="StartCtrCode" name="VT" description="Printer Control Character" />
+  </ControlCharacter>
+  <!-- 
+	* The list of print data control code
+	-->
+  <PrintDataType>
+    <Item key="0" value="SetLeftMargin" />
+    <Item key="1" value="SetRightMargin" />
+    <Item key="2" value="SelectOs2CodePage" />
+    <Item key="3" value="SelectInternationalCharSet" />
+    <Item key="4" value="SelectArabicCharSet" />
+    <Item key="5" value="PrintDownloadBitImage" />
+    <Item key="6" value="PrintBarCode" />
+    <Item key="7" value="PrintGraphics" />
+    <Item key="8" value="DefineDownloadCharSet" />
+    <Item key="9" value="SelectPrintPosHriChar" />
+    <Item key="10" value="SelectWidthOfBarcode" />
+    <Item key="11" value="SelectHorizontalHeightOfBarcode" />
+    <Item key="12" value="PrimaryPrintPage" />
+    <Item key="13" value="SecondaryPrintPage" />
+    <Item key="14" value="CleanAndCutReceipt" />
+  </PrintDataType>
+  <!-- 
+		 * The format of clean screen and cut receipt
+	-->
+  <CleanAndCutReceipt>
+    <Item key="0" value="[0x0C]" size="6" identifier="1" />
+  </CleanAndCutReceipt>
+  <!-- 
+		 * The format of set left margin
+	-->
+  <SetLeftMargin>
+    <Item key="0" value="[0x1B]" size="6" identifier="1" />
+    <Item key="1" value="[" size="1" identifier="1" />
+    <Item key="2" value="[LeftMostColumn]" size="3" setValue="1" />
+    <Item key="3" value="p" size="1" identifier="1" />
+  </SetLeftMargin>
+  <!-- 
+		 * The format of set right margin
+	-->
+  <SetRightMargin>
+    <Item key="0" value="[0x1B]" size="6" identifier="1" />
+    <Item key="1" value="[" size="1" identifier="1" />
+    <Item key="2" value="[RightMostColumn]" size="3" setValue="1" />
+    <Item key="3" value="q" size="1" identifier="1" />
+  </SetRightMargin>
+  <!-- 
+		 * The format of select OS/2 code page
+	-->
+  <SelectOs2CodePage>
+    <Item key="0" value="[0x1B]" size="6" identifier="1" />
+    <Item key="1" value="%" size="1" identifier="1" />
+    <Item key="2" value="[Os2CodePage]" size="3" setValue="1" />
+  </SelectOs2CodePage>
+  <!-- 
+		 * The format of select international character sets
+	-->
+  <SelectInternationalCharSet>
+    <Item key="0" value="[0x1B]" size="6" identifier="1" />
+    <Item key="1" value="2" size="1" identifier="1" />
+  </SelectInternationalCharSet>
+  <!-- 
+		 * The format of select arabic character sets
+	-->
+  <SelectArabicCharSet>
+    <Item key="0" value="[0x1B]" size="6" identifier="1" />
+    <Item key="1" value="3" size="1" identifier="1" />
+  </SelectArabicCharSet>
+  <!-- 
+		 * The format of print download bit image
+	-->
+  <PrintDownloadBitImage>
+    <Item key="0" value="[0x1B]" size="6" identifier="1" />
+    <Item key="1" value="/" size="1" identifier="1" />
+    <Item key="2" value="[PrintDownloadBitImgCode]" size="1" setValue="1" />
+    <Item key="3" value="[PrintDownloadWidthAndHeight]" size="1" setValue="1" />
+  </PrintDownloadBitImage>
+  <!-- 
+		 * The format of print barcode
+	-->
+  <PrintBarCode>
+    <Item key="0" value="[0x1B]" size="6" identifier="1" />
+    <Item key="1" value="k" size="1" identifier="1" />
+    <Item key="2" value="[BarcodeType]" size="1" setValue="1" />
+    <Item key="3" value="[BarcodeData]" size="var" setValue="1" />
+    <Item key="4" value="[0x1B]" size="6" identifier="1" />
+    <Item key="5" value="\" size="1" identifier="1" />
+  </PrintBarCode>
+  <!-- 
+		 * The format of print graphics
+	-->
+  <PrintGraphics>
+    <Item key="0" value="[0x1B]" size="6" identifier="1" />
+    <Item key="1" value="G" size="1" identifier="1" />
+    <Item key="2" value="[GraphicFileName]" size="var" setValue="1" />
+    <Item key="3" value="[0x1B]" size="6" identifier="1" />
+    <Item key="4" value="\" size="1" identifier="1" />
+  </PrintGraphics>
+  <!-- 
+		 * The format of define download character set
+	-->
+  <DefineDownloadCharSet>
+    <Item key="0" value="[0x1B]" size="6" identifier="1" />
+    <Item key="1" value="&amp;" size="1" identifier="1" />
+    <Item key="2" value="[DownloadCharSetFileName]" size="var" setValue="1" />
+    <Item key="3" value="[0x1B]" size="6" identifier="1" />
+    <Item key="4" value="\" size="1" identifier="1" />
+  </DefineDownloadCharSet>
+  <!-- 
+		 * The format of select printing position of HRI characters
+	-->
+  <SelectPrintPosHriChar>
+    <Item key="0" value="[0x1B]" size="6" identifier="1" />
+    <Item key="1" value="e" size="1" identifier="1" />
+    <Item key="2" value="[PrintPos]" size="1" setValue="1" />
+  </SelectPrintPosHriChar>
+  <!-- 
+		 * The format of select width of barcode
+	-->
+  <SelectWidthOfBarcode>
+    <Item key="0" value="[0x1B]" size="6" identifier="1" />
+    <Item key="1" value="w" size="1" identifier="1" />
+    <Item key="2" value="[MinWidthOfBarcode]" size="1" setValue="1" />
+  </SelectWidthOfBarcode>
+  <!-- 
+		 * The format of select horizontal height of barcode
+	-->
+  <SelectHorizontalHeightOfBarcode>
+    <Item key="0" value="[0x1B]" size="6" identifier="1" />
+    <Item key="1" value="h" size="1" identifier="1" />
+    <Item key="2" value="[BarcodeHeight]" size="3" setValue="1" />
+  </SelectHorizontalHeightOfBarcode>
+  <!-- 
+		 * The format of primary print page
+	-->
+  <PrimaryPrintPage>
+    <Item key="0" value="[0x1B]" size="6" identifier="1" />
+    <Item key="1" value="(" size="1" identifier="1" />
+    <Item key="2" value="[PrimaryCharSet]" size="1" setValue="1" />
+  </PrimaryPrintPage>
+  <!-- 
+		 * The format of secondary print page
+	-->
+  <SecondaryPrintPage>
+    <Item key="0" value="[0x1B]" size="6" identifier="1" />
+    <Item key="1" value=")" size="1" identifier="1" />
+    <Item key="2" value="[SecondaryCharSet]" size="1" setValue="1" />
+  </SecondaryPrintPage>
+</Root>

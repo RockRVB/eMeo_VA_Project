@@ -1,0 +1,371 @@
+3000:
+Please insert and remove your card to begin.Please insert and remove your card to begin.Please insert and remove your card to begin.
+If you do not insert your card, instructions for using audio guided transactions will follow.
+
+The card reader is located three inches to the right of the keypad.
+
+The keypad is located seven inches below the audio jack, and three inches to the left.
+
+The keypad is arranged in telephone style with the one key in the upper left.
+
+The five key has a raised dot on it.
+
+The cancel key has a raised X symbol on it and is located at the top of the right most column of keys.
+The clear key has a raised less than symbol on it and is below the cancel key.
+The enter key has a raised circle symbol on it and is below the clear key.
+
+Pressing the key to the right of the zero key will increase the volume.
+Pressing the key to the left of the zero key will decrease the volume.
+
+Pressing the key below the enter key will repeat the instructions for the screen.
+
+Press the cancel key to cancel a transaction and then remove your headset when instructed.
+
+The cash is dispensed through a shutter that is approximately 3 inches to the left of the keypad.
+
+The receipt is presented six inches above the audio jack and slightly to the right.
+
+All transactions can be completed using only the keypad.
+
+To begin, please insert your card and remove your card.
+лллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллл≤│
+000:
+Do you want more time?
+Press 1 for YES,
+Press 2 for No,
+
+001:
+Temporarily Out of service
+
+002:
+Temporarily Out of service
+
+003:
+Temporarily Out of service
+
+005:
+Please insert and remove your card to begin
+Press the star left to 0 to decrease volume
+Press the star right to 0 to increase volume
+Press blank key to repeat this instruction
+
+010:
+Please enter your Personal Identification Number.
+and Press ENTER when complete.
+Press CLEAR to re-enter.
+Press CANCEL to exit.
+
+011:
+Please enter your Personal Identification Number.
+and Press ENTER when complete.
+Press CLEAR to re-enter.
+Press CANCEL to exit.
+
+020:
+Please select Transaction; 
+for Withdrawal  Press 1 ,
+For balance Inquiry  Press 2,
+for Transfer Press 3, 
+Press Cancel for Exit
+
+
+025:
+Please select Transaction; 
+for Withdrawal  Press 1 ,
+For Deposit  Press 2,
+for Fast Cash Press 3, 
+for other transactions press 4,
+Press Cancel for Exit
+
+
+029:
+Please select Account Type.
+for Checking  Press 1 ,
+For Savings   Press 2,
+for Credit Card Press 3, 
+
+
+030:
+Please select Your Withdrawal amount.
+For $20 press 1.
+For $40 press 2.
+For $60 press 3.
+For $80 press 4.
+For $100 press 5.
+For $200 press 6.
+For $300 press 7.
+For Other Amounts press 8.
+
+032:
+Please select Transfer From Account Type.
+for Checking  Press 1 ,
+For Savings   Press 2,
+for Credit Card Press 3, 
+
+
+034:
+Please select Your Fast Cash Withdrawal amount.
+For $20 press 1.
+For $40 press 2.
+For $80 press 3.
+For $100 press 4.
+
+
+035:
+Please select Transfer To Account Type.
+for Checking  Press 1 ,
+For Savings   Press 2,
+ 
+
+
+036:
+Please re-Enter withdrawal amount.  It must be in multiples of $50;
+Then press Enter to continue.
+Press clear to re-enter;
+Press cancel to quit;
+
+038:
+Please select Account Type for your Balance Inquiry.
+for Checking  Press 1 ,
+For Savings   Press 2,
+for Credit Card Press 3, 
+
+
+042:
+Enter withdrawal amount in multiples of $20;
+Then press Enter to continue.
+Press clear to re-enter;
+Press cancel to quit;
+
+046:
+Please re-Enter withdrawal amount.  It must be in multiples of $20;
+Then press Enter to continue.
+Press clear to re-enter;
+Press cancel to quit;
+
+050:
+Please wait, your transaction is being processed.
+
+052:
+Please take your cash and receipt.  The cash is four inches to the right of the keyboard.  The receipt is eight inches to the right of the keyboard, and 12 inches above.  It is above the card reader.
+
+053:
+Please take your receipt.  The receipt is eight inches to the right of the keyboard, and 12 inches above.  It is above the card reader.
+
+060:
+<!--fill begin-->'Available balance is $9420.00'<!--fill End-->.  Thank you for using this ATM. 
+
+070:
+Please select Account Type for your Balance.
+for Checking  Press 1 ,
+For Savings   Press 2,
+for Credit Card Press 3, 
+
+
+074:
+Enter withdrawal amount in multiples of $20;
+Then press Enter to continue.
+Press clear to re-enter;
+Press cancel to quit;
+
+080:
+Please select the Transfer From Account Type.
+for Checking  Press 1 ,
+For Savings   Press 2,
+for Credit Card Press 3, 
+
+
+082:
+Please select the Account Type you want to transfer To.
+for Checking  Press 1 ,
+For Savings   Press 2,
+for Credit Card Press 3, 
+
+
+085:
+Please Enter your transfer amount;
+Then press Enter to continue.
+Press clear to re-enter;
+Press cancel to quit;
+
+
+090:
+Your transaction has been cancelled.
+
+091:
+Please wait, your transaction is being processed.
+
+092:
+Enter your deposit amount;
+Then press Enter to continue.
+Press clear to re-enter;
+Press cancel to quit;
+
+094:
+Please insert your documents into an envelope.  Insert the envelope into the depository slot to the immediate left of the keyboard.
+
+095:
+Please select Account Type.
+for Checking  Press 1 ,
+For Savings   Press 2,
+for Credit Card Press 3, 
+
+
+096:
+Your card has expired.
+
+097:
+Your card is not valid.
+
+098:
+Your card is not valid.
+
+099:
+YOUR CARD WAS NOT PROCESSED.  PLEASE RE-SWIPE YOUR CARD.
+
+100:
+Your card has unauthorized usage.
+
+101:
+Your card has unauthorized usage.
+
+102:
+Unable to complete transaction.
+
+103:
+You did not enter your correct Personal Identification Number.
+
+105:
+YOUR TRANSACTION HAS TIMED OUT.  The TRANSACTION HAS BEEN CANCELLED.  PLEASE TAKE YOUR RECEIPT.
+
+106:
+YOU have cancelled the TRANSACTION.  PLEASE TAKE YOUR RECEIPT.
+
+108:
+YOUR TRANSACTION HAS TIMED OUT.  The TRANSACTION HAS BEEN CANCELLED.  
+
+109:
+YOU have cancelled the TRANSACTION.  
+
+111:
+Do you want a receipt for this transaction?
+Press 1 for YES,
+Press 2 for No,
+
+112:
+Sorry, you are restricted from using this a t m. 
+
+113:
+The owner Elan Financial of this a t m will charge a $3.00 service fee in addition to any fees by your financial institution.  Please press 1 to accept or press 2 to cancel.
+
+116:
+Do you want a receipt for this transaction?
+Press 1 for YES,
+Press 2 for No,
+
+117:
+Unable to print a receipt for this transaction.  Do you wish to continue without a receipt?
+Press 1 for YES,
+Press 2 for No,
+
+120:
+You have insufficient funds for this transaction.
+
+122:
+PRESS THE NUMBER KEY TO SELECT THE    ACCOUNT.  1. 2. 3. 4. 5.  PRESS 1 IF CORRECT.  PRESS 2 IF INCORRECT.
+
+124:
+Do you want another transaction?
+Press 1 for YES,
+Press 2 for No,
+
+127:
+PLEASE TAKE YOUR RECEIPT.  THANK YOU.
+
+129:
+PLEASE CONTACT YOUR FINANCIAL INSTITUTION.
+
+130:
+Your card is not allowed at this ATM.
+
+137:
+WOULD YOU LIKE TO TAKE THIS OPPORTUNITY TO CHECK YOUR ACCOUNT BALANCE?  PRESS 1 IF YES.  PRESS 2 IF NO.
+
+140:
+incorrect pin, Please re-enter your Personal Identification Number.
+Press ENTER when complete.
+Press CLEAR to re-enter.
+Press CANCEL to quit.
+
+153:
+LAST TRANSACTION CANCELLED
+
+154:
+YOUR TRANSACTION IS COMPLETE.  PLEASE TAKE YOUR RECEIPT
+
+155:
+RECEIPT COULD NOT BE PRODUCED.  YOUR TRANSACTION IS COMPLETE
+
+156:
+YOUR MAXIMUM DAILY WITHDRAWAL LIMIT HAS BEEN REACHED
+
+157:
+LAST TRANSACTION IS INCOMPLETE.
+
+158:
+YOU HAVE SELECTED AN INVALID TRANSACTION OR ACCOUNT.
+
+159:
+TEMPORARILY UNABLE TOBGPROCESS THIS TRANSACTION
+
+160:
+UNABLE TO PROCESS THIS AMOUNT
+
+161:
+YOUR TRANSACTION SELECTION IS NOT ALLOWED AT THIS TERMINAL.
+
+162:
+SORRY, TEMPORARILY UNABLE TO ACCEPT DEPOSIT, PAYMENT, OR MESSAGE ENVELOPES.
+
+163:
+SORRY, TEMPORARILY UNABLE TO DISPENSE CASH.
+
+164:
+RECEIPT COULD NOT BE PRODUCED.  TRANSACTION DENIED.
+
+165:
+YOUR ACCOUNT HAS INSUFFICIENT FUNDS FOR THIS TRANSACTION.
+
+166:
+SELECT THE TYPE OF CREDIT.  Press 1 for Credit Line.  Press 2 for Credit Card.  TO VOID TRANSACTION PRESS CANCEL.
+
+167:
+SELECT THE TRANSFER FROM ACCOUNT.  To VOID TRANSACTION PRESS CANCEL.  
+Press 1 for Credit Line,
+Press 2 for Credit Card,
+
+177:
+AMOUNT ENTERED INVALID.  PLEASE ENTER WHOLE DOLLAR AMOUNT IN MULTIPLES OF $20.00.  Press 1 if correct.  Press 2 if incorrect.
+
+300:
+PLEASE SELECT THE ACCOUNT FOR THE PURCHASE.  TO VOID TRANSACTION PRESS CANCEL.  Press 1 for CHECKING.  PRESS 2 IF YOU WOULD LIKE SAVINGS.
+
+310:
+PLEASE SELECT THE NUMBER OF STAMPS YOU WISH TO PURCHASE.  EACH SHEET CONTAINS 18 STAMPS.  Press 1 for 1 SHEET FOR $7.56.  Press 2 for 2 SHEETS FOR $15.12.  Press 3 for 3 SHEETS FOR $22.68.  Press 4 for 4 SHEETS FOR $30.24.
+
+451:
+ 
+for English Press 1 ,
+For Espanyol 2,
+
+Press Cancel for Exit
+
+
+814:
+Please select Transaction; 
+for Withdrawal  Press 1 ,
+For balance Inquiry  Press 2,
+for Transfer Press 3, 
+Press Cancel for Exit
+
+

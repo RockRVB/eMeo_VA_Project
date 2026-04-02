@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<item key="btnbg1leftdw" value="Btn_Bg1_left_dw.png" />
+	<item key="btnbg1leftup" value="Btn_Bg1_left_up.png" />
+	<item key="btnbg1rightdw" value="Btn_Bg1_right_dw.png" />
+	<item key="btnbg1rightup" value="Btn_Bg1_right_up.png" />
+	<item key="btnbg2leftdw" value="Btn_Bg2_left_dw.png" />
+	<item key="btnbg2leftup" value="Btn_Bg2_left_up.png" />
+	<item key="btnbg2rightdw" value="Btn_Bg2_right_dw.png" />
+	<item key="btnbg2rightup" value="Btn_Bg2_right_up.png" />
+	<item key="btnbg3leftdw" value="Btn_Bg3_left_dw.png" />
+	<item key="btnbg3leftup" value="Btn_Bg3_left_up.png" />
+	<item key="btnbg3rightdw" value="Btn_Bg3_right_dw.png" />
+	<item key="btnbg3rightup" value="Btn_Bg3_right_up.png" />
+	<item key="btnbg1NoArrowdw" value="Btn_NoArrow_Bg1_dw.png" />
+	<item key="btnbg1NoArrowup" value="Btn_NoArrow_Bg1_up.png" />
+	<item key="btnbg2NoArrowdw" value="Btn_NoArrow_Bg2_dw.png" />
+	<item key="btnbg2NoArrowup" value="Btn_NoArrow_Bg2_up.png" />
+	<item key="btnbg3NoArrowdw" value="Btn_NoArrow_Bg3_dw.png" />
+	<item key="btnbg3NoArrowup" value="Btn_NoArrow_Bg3_up.png" />
+	<item key="bkimg800" value="Bkimg_800.png" />
+	<item key="bkimg1024" value="Bkimg_1024.png" />
+	<item key="kioskbtnbg1dw" value="Btn_Kiosk_Bg1_dw.png" />
+	<item key="kioskbtnbg1up" value="Btn_Kiosk_Bg1_up.png" />
+	<item key="kioskbtnbg2dw" value="Btn_Kiosk_Bg2_dw.png" />
+	<item key="kioskbtnbg2up" value="Btn_Kiosk_Bg2_up.png" />
+	<item key="kioskbtnbg3dw" value="Btn_Kiosk_Bg3_dw.png" />
+	<item key="kioskbtnbg3up" value="Btn_Kiosk_Bg3_up.png" />
+	<item key="EPPInputGuide" value="EPP.png" />
+</config>

@@ -1,0 +1,33 @@
+{
+	"hostList": [
+		{
+			"name": "core banking",
+			"desc": "corebanking",
+			"encoding": "utf-8",
+			"server": {
+				"host": "10.252.39.14",
+				"port": "8781",
+				"protocol": "http",
+				"isSendToSwitch": false
+			},
+			"head": {
+				"method": "post",
+				"contentType": "text/plain",
+				"requestTimeout": "30000",
+				"Headers": "X-GB-Client-Id=bytest"
+			},
+			"transactions": [
+				{
+					"name": "addFaceUser",
+					"url": "/grgbanking/biometrics/faceverify/user/add",
+					"response": "addFaceUserResponse",
+					"body": "{senddata}"
+				}, {
+					"name": "addFaceUserResponse",
+					"SuccessCode": "0",
+					"body": "{recvdata}"
+				}
+			]
+		}
+	]
+}

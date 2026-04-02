@@ -1,0 +1,307 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+    <script defer type="text/javascript" src="../../../js/configTool/ShowResource.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../css/configTool/ConfigEditing.css" />
+</head>
+<body>
+    <div id="Div3">
+        <form method="post">
+        <div class="btnDIV">
+            <input id="Submit3" type="submit" value="Cancel" tag="OnCancel" />
+            <input id="Submit4" type="submit" value="Submit" tag="OnConfirm" />
+        </div>
+        <br />
+        <div class="contentDIV">
+            <fieldset id="Group0">
+                <legend class="FontSize">General Log Setting</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <input id="Text001" type="checkbox" state="{Binding enable file=Config\XDC\DataConfig\LogCfg.xml xpath=/Root/GeneralSetting/Item[@key='EJAutoChangeLine'] mode=2}">EJ
+                            Auto Change Line
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <br>
+            <fieldset id="Group1">
+                <legend class="FontSize">PJ Log Setting</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <input id="Text101" type="checkbox" state="{Binding enable file=Config\XDC\DataConfig\LogCfg.xml xpath=/Root/PJ/Item[@key='ATMMode'] mode=2}">ATM
+                            Mode
+                        </td>
+                        <td>
+                            <input id="Text102" type="checkbox" state="{Binding enable file=Config\XDC\DataConfig\LogCfg.xml xpath=/Root/PJ/Item[@key='DeviceError'] mode=2}">Device
+                            Error
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text103" type="checkbox" state="{Binding enable file=Config\XDC\DataConfig\LogCfg.xml xpath=/Root/PJ/Item[@key='DeviceWarning'] mode=2}">Device
+                            Warning
+                        </td>
+                        <td>
+                            <input id="Text104" type="checkbox" state="{Binding enable file=Config\XDC\DataConfig\LogCfg.xml xpath=/Root/PJ/Item[@key='Maintenance'] mode=2}">Maintenance
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text105" type="checkbox" state="{Binding enable file=Config\XDC\DataConfig\LogCfg.xml xpath=/Root/PJ/Item[@key='ATMBootup'] mode=2}">ATM
+                            Bootup
+                        </td>
+                        <td>
+                            <input id="Text106" type="checkbox" state="{Binding enable file=Config\XDC\DataConfig\LogCfg.xml xpath=/Root/PJ/Item[@key='HostJournal'] mode=2}">Host
+                            Journal
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text107" type="checkbox" state="{Binding enable file=Config\XDC\DataConfig\LogCfg.xml xpath=/Root/PJ/Item[@key='CardCapture'] mode=2}">Card
+                            Capture
+                        </td>
+                        <td>
+                            <input id="Text108" type="checkbox" state="{Binding enable file=Config\XDC\DataConfig\LogCfg.xml xpath=/Root/PJ/Item[@key='CardInsert'] mode=2}">Card
+                            Insert
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text109" type="checkbox" state="{Binding enable file=Config\XDC\DataConfig\LogCfg.xml xpath=/Root/PJ/Item[@key='DispenseResult'] mode=2}">Dispense
+                            Result
+                        </td>
+                        <td>
+                            <input id="Text110" type="checkbox" state="{Binding enable file=Config\XDC\DataConfig\LogCfg.xml xpath=/Root/PJ/Item[@key='DispenseDetail'] mode=2}">Dispense
+                            Detail
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text111" type="checkbox" state="{Binding enable file=Config\XDC\DataConfig\LogCfg.xml xpath=/Root/PJ/Item[@key='HostDispenseData'] mode=2}">Host
+                            Data
+                        </td>
+                        <td>
+                            <input id="Text112" type="checkbox" state="{Binding enable file=Config\XDC\DataConfig\LogCfg.xml xpath=/Root/PJ/Item[@key='FuncCmd'] mode=2}">Function
+                            Command
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text113" type="checkbox" state="{Binding enable file=Config\XDC\DataConfig\LogCfg.xml xpath=/Root/PJ/Item[@key='Others'] mode=2}">Others
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <br>
+            <fieldset name="Group2">
+                <legend class="FontSize">EJ Log Setting</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <input id="Text1" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCElectricJournal']/GrgFilter/Keyword[@value='TransBuffer'] mode=2}">Transaction
+                            Buffer
+                        </td>
+                        <td>
+                            <input id="Text2" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCElectricJournal']/GrgFilter/Keyword[@value='FuncCmd'] mode=2}">Function
+                            Command
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text3" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCElectricJournal']/GrgFilter/Keyword[@value='DeviceWarning'] mode=2}">Device
+                            Warning
+                        </td>
+                        <td>
+                            <input id="Text4" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCElectricJournal']/GrgFilter/Keyword[@value='StateFlow'] mode=2}">State
+                            Flow
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text5" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCElectricJournal']/GrgFilter/Keyword[@value='DeviceError'] mode=2}">Device
+                            Error
+                        </td>
+                        <td>
+                            <input id="Text6" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCElectricJournal']/GrgFilter/Keyword[@value='Maintenance'] mode=2}">Maintenance
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text7" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCElectricJournal']/GrgFilter/Keyword[@value='ATMMode'] mode=2}">ATM
+                            Mode
+                        </td>
+                        <td>
+                            <input id="Text8" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCElectricJournal']/GrgFilter/Keyword[@value='HostJournal'] mode=2}">Host
+                            Journal
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text9" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCElectricJournal']/GrgFilter/Keyword[@value='DispenserDetail'] mode=2}">Dispenser
+                            Detail
+                        </td>
+                        <td>
+                            <input id="Text10" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCElectricJournal']/GrgFilter/Keyword[@value='CardInsert'] mode=2}">Card
+                            Insert
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text11" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCElectricJournal']/GrgFilter/Keyword[@value='CardCapture'] mode=2}">Card
+                            Capture
+                        </td>
+                        <td>
+                            <input id="Text12" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCElectricJournal']/GrgFilter/Keyword[@value='DispenseResult'] mode=2}">Dispense
+                            Result
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text13" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCElectricJournal']/GrgFilter/Keyword[@value='ATMBootup'] mode=2}">ATM
+                            Bootup
+                        </td>
+                        <td>
+                            <input id="Text14" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCElectricJournal']/GrgFilter/Keyword[@value='Host DispenseData'] mode=2}">Host
+                            DispenseData
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text15" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCElectricJournal']/GrgFilter/Keyword[@value='Others'] mode=2}">Others
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <br>
+            <fieldset name="Group3">
+                <legend class="FontSize">Trace Log Setting</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <input id="Text201" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='TransBuffer'] mode=2}">Transaction
+                            Buffer
+                        </td>
+                        <td>
+                            <input id="Text202" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='FuncCmd'] mode=2}">Function
+                            Command
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text203" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='DeviceWarning'] mode=2}">Device
+                            Warning
+                        </td>
+                        <td>
+                            <input id="Text204" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='StateFlow'] mode=2}">State
+                            Flow
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text205" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='DeviceError'] mode=2}">Device
+                            Error
+                        </td>
+                        <td>
+                            <input id="Text206" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='Maintenance'] mode=2}">Maintenance
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text207" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='ATMMode'] mode=2}">ATM
+                            Mode
+                        </td>
+                        <td>
+                            <input id="Text208" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='HostJournal'] mode=2}">Host
+                            Journal
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text209" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='DispenserDetail'] mode=2}">Dispense
+                            Detail
+                        </td>
+                        <td>
+                            <input id="Text210" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='CardInsert'] mode=2}">Card
+                            Insert
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text211" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='CardCapture'] mode=2}">Card
+                            Capture
+                        </td>
+                        <td>
+                            <input id="Text212" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='DispenseResult'] mode=2}">Dispense
+                            Result
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text213" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='ATMBootup'] mode=2}">ATM
+                            Bootup
+                        </td>
+                        <td>
+                            <input id="Text214" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='HostDispenseData'] mode=2}">Host
+                            Data
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text215" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='Others'] mode=2}">Others
+                        </td>
+                        <td>
+                            <input id="Text216" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='Screen'] mode=2}">Screen
+                            Module
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text217" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='Exception'] mode=2}">Exception
+                        </td>
+                        <td>
+                            <input id="Text218" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='MessageParser'] mode=2}">Message
+                            parser
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text219" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='XDCBaseElement'] mode=2}">Base
+                            Element
+                        </td>
+                        <td>
+                            <input id="Text220" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='FuncCmdModule'] mode=2}">Screen
+                            Module
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text221" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='EmvModule'] mode=2}">EMV
+                            Module
+                        </td>
+                        <td>
+                            <input id="Text222" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='AdaModule'] mode=2}">ADA
+                            Module
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="Text223" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='RklModule'] mode=2}">RKL
+                            Module
+                        </td>
+                        <td>
+                            <input id="Text224" type="checkbox" state="{Binding enable file=Config\LogConfig.xml xpath=/log4net/appender[@name='NDCTrace']/GrgFilter/Keyword[@value='CashAcceptorCashIn'] mode=2}">CIM
+                            Module
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <br>
+        </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<!--  Cash Handler
+		*  This messge gives details of a dispense operation in response to a Transaction Reply Command message.
+		-->
+		
+	<CashHandler>
+		<!-- Device Identification Graphic. -->
+		<Item key="e1" 																		value="E"  																			size="1" 				restriction="Mandatory"/>
+		
+		<!--   Transaction/Device Status. (T-code plus T-data). Gives details of a dispense operation in respense to a Transaction Reply Command message.
+		* Character 1 (T-code) can be:
+		*    '1'  -  Short dispense. For a spray dispenser, this can also inidcate that an extra note has been dispensed.
+		*    '2'  -  No notes dispensed.
+		*    '3'  - Notes dispensed unknown. The cardholder may have had access to any presented notes, so it should be assumed some
+		*             may have been dispensed. Intervention may be required to reconcile the cash ammount totals. The following counts contain
+		*             requested disepnsed values.
+		*     '4' - No notes dispensed or card not ejected. This status is returned on a card before cash transaction if the stack operation fails and 
+        *             the notes are purged prior to card eject.
+		*    '5'  -  Some notes have been retracted when the notes were not taken following a present time-out. The number of notes retracted is unknown. 
+		* Character 2-9 (T - data) contain notes dispensed counts. Each pair of characters represents a 2-digit decimal value in the range of 00-99 for 
+		* a particular cassette type.
+		-->
+		<Item key="e2" 																		value="[Device.CashHandler.TCode]"  									size="1" 				restriction="Mandatory"/>
+		
+		<!--   Transaction/Device Status. (T-code plus T-data). Gives details of a dispense operation in respense to a Transaction Reply Command message.
+		* Character 2-9 (T - data) contain notes dispensed counts. Each pair of characters represents a 2-digit decimal value in the range of 00-99 for 
+		* a particular cassette type.
+		-->
+		<Item key="e2-1" 																	value="[Device.CashHandler.TData]"  											size="8" 				restriction="Mandatory"/>
+		
+		<!--   Transaction/Device Status. (T-code plus T-data). Gives details of a dispense operation in respense to a Transaction Reply Command message.
+		*  Character 10-17 are only valid for a spray cash dispenser, and contain a count of notes dispensed to the cardholder plus notes in an unknown loaction.
+		*  Each pair of characters represents a two-digit decimal value in the range 00-99 for particular cassette type.
+		* .The default message format does not include these characters.The extra fields are enabled in Native Mode option 4c. 
+		*  Then maximum dispense for the spray cash dispenser is 70 notes, not 40 as for standard dispensers.
+		-->
+		<Item key="e2-2" 																	value="[SprayCashHandlerTData]"  									size="8" 				restriction="[OptionCtrl.NoUse]"/>			
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="Mandatory"/>
+		
+		<!--  Error Severity. Used to make a shut-down decision..
+		*  0 - Severity information related to complete device.
+		*  1 - Severity related to casstte type 1.
+		*  2 - Severity related to casstte type 2
+		*  3 - Severity related to casstte type 3.
+		*  4 - Severity related to casstte type 4.
+		-->
+		<Item key="e3" 																		value="[Device.CashHandler.Fitness]"  								size="5" 				restriction="Mandatory"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="Mandatory"/>
+		
+		<!--  Diagnostic Status.Used for logging errors. The length of the field is variable(because it is hardware-dependent) and may be omitted if 
+		* if there is no error condition to be reported. The field will always be present if preceded by an error severity field with a value of 1 or greater.
+		* There are certain rules which are followed by all devices.
+		* Characters 1 and 2 contain a main error status value. (M-Status) in the range 0 -99, transmitted as 2 characters which give the decimal representation.
+		* of the M-Status value.
+		* M-Status is used mainly as an error log to assist machine servicing. It may also be used in a transaction log to supplementTransaction status or Device.
+		* status information.
+        * Characters 3 to n (M-Data) 
+		-->
+		<Item key="e4" 																		value="[USMCashHandlerDiagnosticStatus]"  					size="var" 			restriction="[OptionCtrl.NoUse]"/>
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" 																	value="[FS]"																		size="1"				restriction="Mandatory"/>
+		
+		<!--  Suplies Status Indicates the state of the currency cassette and reject bin. 
+		 * Character
+		 *  0 - state of reject bin.
+		 *  1 - state of cassette type 1.
+		 *  2 - state of cassette type 2.
+		 *  3 - state of cassette type 3.
+		 *  4 - state of cassette type 4.
+		 *  Codes for character 1 - 4. .
+		 *  '0'  - No new state
+		 *  '1'  - Sufficient notes.
+		 *  '2'  - Notes low.
+		 *  '3'. - Out of notes.
+		 *  Codes for character 0. .
+		 *  '0'  - No new state
+		 *  '1'  - Sufficient notes.
+		 *  '4'  - Overfill condition..       
+		-->
+		<Item key="e5" 																		value="[Device.CashHandler.SuppliesStatus]"  								size="5" 				restriction="Mandatory"/>
+		
+	</CashHandler>	
+</Root>

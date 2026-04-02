@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../js/vue.min.js"></script>
+  <script src="../../js/grg-ui.min.js"></script>
+  <script src="../../js/vue-i18n.js"></script>
+  <script src="../../js/jquery-3.7.0.js"></script>	<script src="../../js/class/layer/layer.js"></script>	<script src="../../js/index.js"></script>
+  <script src="../../js/jquery.dragscroll.js"></script>
+  <script src="../../js/coreScript.js"></script>
+  <script src="../../js/ibank.js"></script>
+  <link rel="stylesheet" href="../../css/grg-ui.min.css">
+  <link rel="stylesheet" href="../../css/animate.grg.css">
+  <link rel="stylesheet" href="../../css/ibank.css">
+  <style>
+    .card-protocol-dialog {
+      position: absolute;
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background-color: rgba(0, 0, 0, 0.75);
+      z-index: 12;
+      text-align: center;
+    }
+
+    .card-protocol-dialog-header {
+      margin: 26px 0 10px;
+      line-height: 50px;
+    }
+
+    .card-protocol-dialog .text-1 {
+      font-family: 'Alibaba Sans';
+      font-weight: bold;
+      font-size: 40px;
+    }
+
+    .card-protocol-dialog .text-2 {
+      font-family: 'Alibaba Sans';
+      font-size: 32px;
+      z-index: 10;
+    }
+
+    .drag-box {
+      height: 536px;
+      top: 195px;
+      overflow: hidden;
+      font-size: 25px;
+      font-family: 'Alibaba Sans';
+      padding: 20px;
+      border-radius: 24px;
+      text-align: left;
+      box-sizing: border-box;
+      background-color: #ffffff;
+      border-radius: 24px;
+      box-shadow: inset 0px 5px 6px 0px #296CFF;
+      z-index: 10;
+    }
+
+    .drag-y {
+      padding: 10px;
+      cursor: grab;
+      user-select: none;
+      color: #333333;
+      z-index: 10;
+    }
+
+    .button-box {
+      text-align: center;
+    }
+
+    .card-protocol-dialog-content .dialog-circle-1 {
+      position: absolute;
+      width: 200px;
+      height: 150px;
+      top: -90px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #fff;
+      border-radius: 50%;
+      opacity: 0.24;
+      filter: blur(8px);
+    }
+
+    .card-protocol-dialog-content .dialog-circle-2 {
+      position: absolute;
+      width: 245px;
+      height: 260px;
+      top: 120px;
+      left: -60px;
+      background-color: #fff;
+      border-radius: 50%;
+      opacity: 0.36;
+      filter: blur(8px);
+      z-index: -1;
+    }
+
+    .card-protocol-dialog-content .card-bg-img {
+      position: absolute;
+      right: -120px;
+      top: -18px;
+      z-index: -1;
+    }
+
+    #card-protocol-dialog.dialog-box {
+      transform: scaleY(0.01) scaleX(0);
+      animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    }
+
+    #card-protocol-dialog .card-protocol-dialog-content {
+      transform: scale(0);
+      animation: zoomIn-2 0.7s 1.1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="grg-header" class="grg-header">
+    </div>
+    <div id="grg-main" class="grg-main">
+    </div>
+    <div id="card-protocol-dialog" class="card-protocol-dialog dialog-box">
+      <div class="card-protocol-dialog-content">
+        <div class="card-protocol-dialog-header">
+          <div class="text-1">Card protocol</div>
+          <div class="text-2" ids="ids_NewPayment_readagreement">Please read the user agreement and agree to</div>
+        </div>
+        <div class="drag-box">
+          <div class="drag-y">
+            <p ids="ids_opac_protocolParagraph1">To establish the good cooperative relationship between the bank and the
+              enterprise, and to improve the mutual development and the long term cooperation of both parties.</p><br>
+            <p ids="ids_opac_protocolParagraph2">I. Party B is willing to take Party A as an important primary client,
+              and put Party A in a preferential position when providing various credit fund supports and other
+              high-quality financial services, under the premise of keeping in compliance with laws and financial
+              policies.</p><br>
+            <p ids="ids_opac_protocolParagraph3">II. Party B will provide Party A with all-round credit services
+              including the working capital loans, capital construction loans, technological transformation loans,
+              reserve loans, real estate loans, and bill acceptance and discount according to the conditions and process
+              for loans.</p><br>
+            <p ids="ids_opac_protocolParagraph4">III. Party B will try its best to satisfy Party A's reasonable demand
+              for working capital loans. Party A shall maintain a good financial structure, in which the current ratio
+              shall be controlled as above____%, the account receivable turnover ratio above____%, and the
+              asset-liability ratio below____%.</p><br>
+            <p ids="ids_opac_protocolParagraph5">IV. Party B will actively support Party A in its capital construction
+              and technological transformation. For Party A’s projects which have been listed in the programs by the
+              authorities, Party B will give assessment as soon as possible; and for the committed projects, Party B
+              shall make a preferential arrangement in its annual credit program and ensure the timely fund supply.</p>
+          </div>
+        </div>
+        <div class="button-box">
+          <div class="grg-btn grg-cancel" id='OnCancel' type='button' ids='ids_Btn_cancel' tag='OnCancel'>
+            <img class="icon-img" src="../../images/img_2.4/icon-cancel.png" alt="">Cancel
+          </div>
+          <div class="grg-btn grg-confirm" id='OnConfirm' type='button' ids='ids_Btn_confirm' tag='OnConfirm'>
+            <img class="icon-img" src="../../images/img_2.4/icon-ok.png" alt="">Confirm
+          </div>
+        </div>
+        <img class="card-bg-img" src="../../images/img_2.4/card-img.png" alt="">
+        <div class="dialog-circle-1"></div>
+        <div class="dialog-circle-2"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+  new Base({}).$mount('#app')
+  // 垂直方向
+  $('.drag-y').dragscroll({
+    direction: 'scrollTop'
+  });
+</script>

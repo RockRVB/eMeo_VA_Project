@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="InquiryStd">
+  <Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for inquiry"/>
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start" homeVisible="1">
+      <Forward event="OnConfirm" targetID="ID_RequestTrans"/>
+    </Start>
+
+    <InvokeWorkflow ID="ID_Login" name="Login" comment="insert card and input pin">
+      <Forward event="OnConfirm" targetID="ID_RequestTrans"/>
+    </InvokeWorkflow>
+
+    <RequestTrans ID="ID_RequestTrans" UI="UI_Waiting" comment="Transfer request" transType="INQ" homeVisible="0">
+      <States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+        <State name="SendFail" UI="UI_GeneralError"/>
+        <State name="ReceiveFail" UI="UI_GeneralError"/>
+        <State name="ReceiveTimeout" UI="UI_GeneralError"/>
+        <State name="NetworkFail" UI="UI_GeneralError"/>
+        <State name="UnpackFail" UI="UI_GeneralError"/>
+        <State name="HardwareError" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_INQResult"/>
+      <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+      <Forward event="OnReInputPin" targetID="ID_ReInputPin"/>
+      <Forward event="OnFallback" targetID="ID_RequestTrans"/>
+      <Forward event="OnTryAgain" targetID="ID_TryAgain"/>
+      <Forward event="OnICAppLoadedFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </RequestTrans>
+
+    <InputPin ID="ID_ReInputPin" UI="UI_ReInputPin" comment="ReInput password" homeVisible="1" autoEnd="1" minLen="6" maxLen="6">
+      <Forward event="OnConfirm" targetID="ID_RequestTrans"/>
+    </InputPin>
+
+    <!--显示余额-->
+    <SelectFunctionBase ID="ID_INQResult" UI="UI_CurrentAsset" timeout="50000" homeVisible="1" videoarea="false">
+      <Forward event="OnOtherBusiness" targetID="ID_ShowScreenForSelectTransType" />
+      <Forward event="OnDetail" targetID="ID_SetINDReq59Field" />
+    </SelectFunctionBase>
+
+    <!--根据选择设详情的查询时间-->
+    <SelectDetailPeriod ID="ID_SelectPeriod" UI="UI_SelectPeriod" comment="选择查询时间段" homeVisible="0">
+      <Forward event="OnConfirm" targetID="ID_RequestTrans_IND" />
+      <Forward event="OnReturn" targetID="ID_INDResult" />
+    </SelectDetailPeriod>
+
+    <SelectDetailPeriod ID="ID_SelectPeriod1" UI="UI_SelectPeriod" comment="选择查询时间段" homeVisible="0">
+      <Forward event="OnConfirm" targetID="ID_RequestTrans_IND" />
+      <Forward event="OnReturn" targetID="ID_INDResultHistory" />
+    </SelectDetailPeriod>
+
+    <SetData ID="ID_SetINDReq59Field" saveBuffer="{INDReq59Field}" value="012QL0000000001">
+      <Forward event="OnConfirm" targetID="ID_RequestTrans_IND"/>
+    </SetData>
+
+    <RequestTrans ID="ID_RequestTrans_IND" UI="UI_Waiting" comment="Transfer request" transType="IND" homeVisible="0">
+      <States>
+        <State name="PackFail" UI="UI_GeneralError"/>
+        <State name="ConnectFail" UI="UI_GeneralError"/>
+        <State name="SendFail" UI="UI_GeneralError"/>
+        <State name="ReceiveFail" UI="UI_GeneralError"/>
+        <State name="ReceiveTimeout" UI="UI_GeneralError"/>
+        <State name="NetworkFail" UI="UI_GeneralError"/>
+        <State name="UnpackFail" UI="UI_GeneralError"/>
+        <State name="HardwareError" UI="UI_GeneralError"/>
+      </States>
+      <Forward event="OnConfirm" targetID="ID_CheckIsEnd"/>
+      <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnHostRefuse" targetID="ID_HostRefuse"/>
+      <Forward event="OnReInputPin" targetID="ID_ReInputPin_IND"/>
+      <Forward event="OnFallback" targetID="ID_RequestTrans_IND"/>
+      <Forward event="OnTryAgain" targetID="ID_TryAgain"/>
+      <Forward event="OnICAppLoadedFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </RequestTrans>
+
+    <CompareData ID="ID_CheckIsEnd" compareBuffer="{ind_isEnd}" homeVisible="1">
+      <Forward event="OnEqualTrue" targetID="ID_CheckINDType"/>
+      <DefaultForward targetID="ID_RequestTrans_IND" />
+    </CompareData>
+
+    <!--检测明细类型,日期范围明细or最近明细-->
+    <CompareData ID="ID_CheckINDType" compareBuffer="{ind_startDate},{NULL}">
+      <Forward event="OnEqual" targetID="ID_INDResult"/>
+      <DefaultForward targetID="ID_CheckINDType2" />
+    </CompareData>
+
+    <CompareData ID="ID_CheckINDType2" compareBuffer="{ind_transDetailToday}">
+      <Forward event="OnEqualTrue" targetID="ID_INDResultToday"/>
+      <DefaultForward targetID="ID_INDResultHistory" />
+    </CompareData>
+
+    <!--显示最近交易明细-->
+    <ShowTransDetails ID="ID_INDResult" UI="UI_TransactionDetail" comment="transaction details">
+      <Forward event="OnOtherBusiness" targetID="ID_ShowScreenForSelectTransType" />
+      <Forward event="OnPrint" targetID="ID_PrintTransDetails" />
+      <Forward event="OnRecentTransDetail" targetID="ID_RequestTrans_IND" />
+      <Forward event="OnTodayTransDetail" targetID="ID_RequestTrans_IND" />
+      <Forward event="OnHistoryTransDetail" targetID="ID_RequestTrans_IND" />
+    </ShowTransDetails>
+
+
+    <!--显示当日交易明细-->
+    <ShowTransDetails ID="ID_INDResultToday" UI="UI_TransactionDetailToday" comment="transaction details">
+      <Forward event="OnOtherBusiness" targetID="ID_ShowScreenForSelectTransType" />
+      <Forward event="OnPrint" targetID="ID_PrintTransDetails" />
+      <Forward event="OnRecentTransDetail" targetID="ID_RequestTrans_IND" />
+      <Forward event="OnTodayTransDetail" targetID="ID_RequestTrans_IND" />
+      <Forward event="OnHistoryTransDetail" targetID="ID_RequestTrans_IND" />
+    </ShowTransDetails>
+
+
+    <!--显示日期范围内交易明细-->
+    <ShowTransDetails ID="ID_INDResultHistory" UI="UI_TransactionDetailHistory" comment="transaction details">
+      <Forward event="OnOtherBusiness" targetID="ID_ShowScreenForSelectTransType" />
+      <Forward event="OnPrint" targetID="ID_PrintTransDetails" />
+      <Forward event="OnRecentTransDetail" targetID="ID_RequestTrans_IND" />
+      <Forward event="OnTodayTransDetail" targetID="ID_RequestTrans_IND" />
+      <Forward event="OnHistoryTransDetail" targetID="ID_RequestTrans_IND" />
+    </ShowTransDetails>
+
+    <!--打印 -->
+    <PrintTransDetails ID="ID_PrintTransDetails" UI="UI_Waiting" homeVisible="0">
+      <States>
+        <State name="PrintDetailsFailure" UI="UI_PrintDetailsFailure" />
+        <State name="TakeCheck" UI="UI_TakeCheck" />
+        <State name="ControlMediaFailure" UI="UI_ControlMediaFailure" />
+      </States>
+      <DefaultForward targetID="ID_ShowScreenForSelectTransType" />
+    </PrintTransDetails>
+
+    <InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="ID_ShowScreenForSelectTransType"/>
+    </InvokeWorkflow>
+
+    <!--主机拒绝，显示拒绝码对应的提示信息，然后退卡-->
+    <Prompt ID="ID_HostRefuse" UI="UI_HostRefuse" timeout="5000" comment="show host refuse">
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+      <Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow"/>
+    </Prompt>
+
+    <InputPin ID="ID_ReInputPin_IND" UI="UI_ReInputPin" autoEnd="1" comment="输入密码" >
+      <Forward event="OnConfirm" targetID="ID_RequestTrans_IND"/>
+    </InputPin>
+
+    <EjectCard ID="ID_EjectMyCard">
+      <Forward event="OnContinue" targetID="ID_TakeMyCard"/>
+    </EjectCard>
+
+    <Prompt ID="ID_GoTimeOut"  UI="VTM_TimeOut" timeout="3000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+    </Prompt>
+
+    <InvokeWorkflow ID="ID_InvokeWithdrawalWorkflow" name="Withdrawal" actionID="ID_InputWithdrawalAmount" comment="Invoke withdrawal workflow">
+      <Forward event="OnConfirm" targetID="ID_ShowScreenForSelectTransType"/>
+    </InvokeWorkflow>
+
+    <InvokeWorkflow ID="ID_InvokeDepositWorkflow" name="Deposit" actionID="ID_CashInStart" comment="Invoke Deposit workflow">
+      <Forward event="OnConfirm" targetID="ID_ShowScreenForSelectTransType"/>
+    </InvokeWorkflow>
+
+    <InvokeWorkflow ID="ID_InvokeTransferWorkflow" name="Transfer" comment="Invoke Transfer workflow">
+      <Forward event="OnConfirm" targetID="ID_ShowScreenForSelectTransType"/>
+    </InvokeWorkflow>
+
+    <!--<End ID="9999" comment="End">
+    </End>-->
+    <ShowScreen ID="ID_ShowScreenForSelectTransType" UI="UI_OperatingNoCounter">
+      <Forward event="OnContinue" targetID="ID_SelectTransType"/>
+    </ShowScreen>
+    <InvokeWorkflow ID="ID_SelectTransType" name="SelectTransType" comment="IC returns TryAgain"  syn="0">
+    </InvokeWorkflow>
+
+    <InvokeWorkflow ID="ID_TryAgain" name="Main" comment="IC returns TryAgain" actionID="ID_ICMoreAppSelectForMainMenu" syn="0">
+    </InvokeWorkflow>
+
+    <WaitSleep ID="ID_TakeMyCard" UI="VTM_RejectMyCard" timeout="5000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow" />
+    </WaitSleep>
+
+    <DevError ID="ID_DevError"  UI="VTM_DevError" timeout="2000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+    </DevError>
+
+    <EventError ID="ID_EventError"  UI="VTM_EventError" timeout="2000">
+      <Forward event="OnContinue" targetID="ID_InvokeCloseTransWorkflow"/>
+    </EventError>
+
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnHardwareError" targetID="ID_DevError"/>
+    <Forward event="OnFail" targetID="ID_EventError"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHome" targetID="ID_InvokeCloseTransWorkflow" />
+  </DefaultForward>
+
+</Workflow>

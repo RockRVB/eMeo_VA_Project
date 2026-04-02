@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCAT Configuration Tool</title>
+    <script src="../../js/vue.min.js"></script>
+    <link rel="stylesheet" href="../../css/ConfigurationTool/configTool.css">
+
+    <style>
+        #Table1 .table-label {
+            width: 48%;
+        }
+
+        #Table1 #Input1{
+            width: 75%;
+        }
+       </style>
+</head>
+
+<body>
+    <div id="app" currentSetting="DevicePropertySetting">
+        <div class="header"></div>
+        
+        <div class="sidebar" ref="sidebar">
+            <div class="menu-top">
+                <img :src="profileImg" alt="Profile Image">
+                <h2>{{selectedATMType || 'XXX'}}</h2>
+                <button @click="showModal">⇋</button>
+            </div>
+            <div class="menu-containers" v-for="menu in menus">
+                <div class="menu-container">
+                    <div class="setting-category" @click="toggleDropdown(menu.id)">
+                        <span class="item-icon">📦</span>
+                        <span>{{ menu.label }}</span>
+                        <span class="dropdown-arrow" :class="{ 'open': menu.isDropdownOpen }">></span>
+                    </div>
+    
+                    <div class="setting-item" v-show="menu.isDropdownOpen" :id="item.id"  :class="{ 'active': item.id === setting }"
+                      v-for="item in settings[menu.id]" :key="item.id"  >
+                      <div class="setting-item-parent" @click="toggleSelection(item)" :style="getStyle(item.id)">
+                        <span class="item-icon">{{ item.icon }}</span>
+                        <span>{{ item.label }}</span>
+                        <span class="dropdown-arrow" :class="{ 'open': item.isDropdownOpen }">></span>
+                      </div>
+    
+                      <div class="setting-item-child" v-if="itemChilds.owner === item.id && itemChilds.content" v-show="item.isDropdownOpen" :id="childItem" :style="getStyle(childItem)" :class="{ 'active': childItem === itemChild }"
+                        v-for="childItem in itemChilds.content" :key="childItem"  @click="toggleChildSelection(childItem)">
+                        <span class="item-icon">-</span>
+                        <span>{{ childItem }}</span>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-container">
+                <div class="setting-category">
+                    <span class="item-icon"><</span>
+                    <span @click="getPage(backPage)">Back</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>Device Property setting</h2>
+            <div v-for="device in settingData.Devices">
+                <h3 :id="`content-${device.DeviceName}`">{{device.DeviceName}}</h3>
+                <table id="Table1">
+                    <tr v-for="(value, key) in device.DeviceProperty" :key="key">
+                        <td class="table-label">
+                            <label>{{ key }}</label>
+                        </td>
+                        <td>
+                            <input id="Input1" type="text" v-model="device.DeviceProperty[key]" 
+                                @input="validateDevicePropertyInput(device, key,$event)"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="buttons buttons-bottom"></div>
+        </div>
+
+        <div class="modal-bg" v-if="isModalVisible" @click="hideModal"></div>
+        <div class="modal" v-if="isModalVisible">
+            <h3>ATM Type</h3>
+            <select v-model="currentSelectType">
+                <option v-for="type in atmTypes" :key="type" :value="type">{{ type }}</option>
+            </select>
+            <div class="buttons">
+                <button class="btn cancel" @click="hideModal">Cancel</button>
+                <button class="btn" @click="confirmSelection(true)">Confirm & Apply</button>
+                <button class="btn" @click="confirmSelection(false)">Confirm & No Apply</button>
+            </div>
+        </div>
+
+        <div v-if="showAlertBox" class="custom-alert">
+            <span>{{ alertMessage }}</span>
+            <div class="buttons">
+                <button @click="closeAlert">OK</button>
+            </div>     
+        </div>
+        <div v-if="isConfirmVisible" class="custom-confirm">
+            <span>{{ confirmMessage }}</span>
+            <div class="buttons">
+                <button @click="cancelConfirmation">Cancel</button>
+                <button @click="confirmAction">Confirm</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="../../js/ConfigurationTool/configTool.js"></script>
+</body>
+
+</html>

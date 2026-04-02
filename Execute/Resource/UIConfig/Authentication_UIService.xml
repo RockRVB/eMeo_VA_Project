@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+  <Screen name="UI_IDValidate" uri="Authentication\IDValidate.xaml" cache="0">
+  </Screen>
+  <Screen name="UI_IdentityAuthSuccess" uri="Authentication\IdentityAuthSuccess.xaml" cache="0">
+  </Screen>  
+  <Screen name="UI_IdentityAuthFail" uri="Authentication\IdentityAuthFail.xaml" cache="0">
+  </Screen>    
+  <Screen name="UI_IdentityAuthAgain" uri="Authentication\IdentityAuthAgain.xaml" cache="0">
+  </Screen> 
+  <Screen name="UI_TakePassport" uri="Authentication\TakePassport.xaml" cache="0">
+  </Screen>   
+
+</Screens>
+

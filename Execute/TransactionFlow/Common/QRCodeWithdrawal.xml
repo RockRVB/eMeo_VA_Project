@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="QRCodeWithdrawal">
+  <Head type="GRGWorkflow" author="HXL" timeStamp="2013/10/7 15:15:12" comment="The workflow design is for withdrawal"/>
+  <DataPool>
+  </DataPool>
+  <Activities>
+    <Start ID="0" comment="Start" homeVisible="0">
+      <Forward event="OnConfirm" targetID="ID_GenerateQRCode"/>
+    </Start>
+	<!--生成二维码-->
+	<GenerateQRCode ID="ID_GenerateQRCode" UI="UI_waiting" digitalVoiceKey="" timeout="30000">
+       <Forward event="OnConfirm" targetID="ID_ShowQRCode" />
+       <Forward event="OnNo" targetID="ID_InvokeCloseTransWorkflow" />
+    </GenerateQRCode>
+	<!--展示二维码-->
+	<ShowQRCode ID="ID_ShowQRCode" UI="UI_ShowQRCode" digitalVoiceKey="|action_028" Protocol="https" Ip="sg.grgtech.top" Port="18007">
+	  <States>
+        <State name="QRCodaDataEmptyError" UI="UI_GeneralError"></State>
+      </States>
+       <Forward event="OnConfirm" targetID="ID_SelectAmount" />
+	   <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+    </ShowQRCode>
+	<!--选择交易账户-->
+	<SelectTransAccount ID="ID_SelectAmount" UI="UI_SelectAmount" digitalVoiceKey="action_029" timeout="30000">
+        <Forward event="OnConfirm" targetID="ID_InputPin" /> 
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+        <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+    </SelectTransAccount>
+	<VTMInputPinEx ID="ID_InputPin" UI="UI_Input_PIN_QRCode" digitalVoiceKey="action_030" comment="Enter your PIN" autoEnd="1" minLen="4" maxLen="4" timeout="120000">
+      <Forward event="OnConfirm" targetID="ID_ShowWelcome" />
+      <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow" />
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+      <DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+    </VTMInputPinEx>
+	<PromptEx ID="ID_ShowWelcome" UI="UI_ShowWelcome" digitalVoiceKey="" timeout="60000" comment="">
+	  <Forward event="OnConfirm" targetID="ID_GoXDCMainMenu" />
+      <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+	  <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+    </PromptEx>
+	<GoXDCMainMenu ID="ID_GoXDCMainMenu" UI="UI_XDCMainMenu_QRCode">
+		<DefaultForward targetID="ID_InvokeCloseTransWorkflow" />
+	</GoXDCMainMenu>
+	<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+	<End ID="9999" comment="End">
+	</End>
+  </Activities>
+  <DefaultForward>
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow" />
+    <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+    <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+  </DefaultForward>
+</Workflow>

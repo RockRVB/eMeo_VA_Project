@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../js/vue.min.js"></script>
+  <script src="../../js/grg-ui.min.js"></script>
+  <script src="../../js/vue-i18n.js"></script>
+  <script src="../../js/jquery-3.7.0.js"></script>	<script src="../../js/class/layer/layer.js"></script>	<script src="../../js/index.js"></script>
+  <script src="../../js/coreScript.js"></script>
+  <script src="../../js/ibank.js"></script>
+  <link rel="stylesheet" href="../../css/grg-ui.min.css">
+  <link rel="stylesheet" href="../../css/animate.grg.css">
+  <link rel="stylesheet" href="../../css/ibank.css">
+  <style>
+    .grg-main {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .open-card-right-box {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      visibility: hidden;
+      padding: 0 60px;
+      box-sizing: border-box;
+    }
+
+    .enter-password-box .pin-wrapper-error span {
+      border-color: #F5222D !important;
+      color: #F5222D !important;
+    }
+
+    .enter-password-box .pin-wrapper span {
+      width: 83px;
+      height: 83px;
+      line-height: 83px;
+      text-align: center;
+      font-weight: bold;
+      margin: 15px 10px;
+      color: #296cff;
+      font-size: 45px;
+      font-weight: 600;
+      border-bottom: 2px solid #afafaf;
+    }
+
+    .enter-password-box .pin-wrapper span.active {
+      border-bottom: 2px solid #296cff;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="grg-header" class="grg-header">
+    </div>
+    <div id="grg-main" class="grg-main">
+      <!-- <div class="count-down">
+        <div class="count-down-2">60</div>
+      </div> -->
+      <div class="open-card-right-box animate_grg_fadeInRight">
+        <div class="enter-password-img-box">
+          <img class="enter-password-img" src="../../images/img_2.4/enter-password.png" alt="">
+          <div class="text"id="text1" ids="ids_Common_notdiscoverpin">PLEASE DO NOT DISCLOSE YOUR PIN TO ANY PERSON (INCLUDING THE POLICE AND THE BANK STAFF)
+          </div>
+        </div>
+        <div class="enter-password-box">
+          <div class="text"id="text1" ids="ids_Common_checkBalance">Please Enter Your PIN to check Balance!</div>
+          <div :class='["pin-wrapper", {"pin-wrapper-error": isError}]'>
+            <span class='pin' v-for='(v,index) in 6'
+              :class='{"active": pinVal.length >= v}'>{{ pinVal[index] ? '*' : ''}}</span>
+          </div>
+          <input type="text" hidden id='saveBuffer' content='{Binding saveBuffer mode=2}' v-model='pinVal'>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+  var app = new Base({
+    i18n: i18n,
+    data: {
+      stepList: [{
+          status: 'finish',
+          title: 'Scan Passport',
+        },
+        {
+          status: 'finish',
+          title: 'Customer Info',
+        },
+        {
+          status: 'finish',
+          title: 'Sign',
+        },
+        {
+          status: 'finish',
+          title: 'Print Form',
+        },
+        {
+          status: 'finish',
+          title: 'Scan Form',
+        },
+        {
+          status: 'finish',
+          title: 'Printing Card',
+        },
+        {
+          status: 'active',
+          title: 'User Set Password',
+        },
+        {
+          status: 'unFinish',
+          title: 'Take Card',
+        },
+        {
+          status: 'unFinish',
+          title: 'Print Receipt',
+        },
+      ],
+      timer: null,
+      pinVal: '',
+      oldpinVal: '',
+      isError: false,
+    },
+    methods: {
+      showError: function () {
+        this.isError = true
+        this.pinVal = ''
+      },
+    },
+    watch: {
+      pinVal: function (v) {
+        this.isError && v.length ? this.isError = false : '';
+        this.pinVal = this.pinVal.slice(0, 6);
+      }
+    },
+    computed: {},
+    created: function () {
+      this.timer = setInterval(function () {
+        var pinVal = document.querySelector('#saveBuffer').value
+        if (this.oldpinVal == pinVal) return
+        this.oldpinVal = this.pinVal = pinVal.slice(0, 6);
+      }.bind(this), 300)
+    },
+    beforeDestory: function () {
+      clearInterval(this.timer)
+    },
+    mounted: function () {}
+  }).$mount('#app')
+</script>

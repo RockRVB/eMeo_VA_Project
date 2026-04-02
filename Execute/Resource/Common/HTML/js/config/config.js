@@ -1,0 +1,1 @@
+require.config({baseUrl:"../../js/class/",paths:{jquery:"jquery-3.0.0.min",createCon:"createCon.min",layer:"layer/layer",swiper:"swiper.min",mobiscroll:"datescroll",animals:"animals",imgview:"jQuery.imgView",drag:"jQuery.drag"},shim:{createCon:["jquery"],layer:["jquery"],animals:["jquery"],mobiscroll:["jquery"],drag:["jquery"],imgview:["jquery","drag"]},waitSeconds:1});

@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <CardReader>
+    <Item ErrorCode="DefaultNoError" MData="00"  Description="Operation successful" />
+    <Item ErrorCode="DefaultError" MData=""  Description="Default error code / event code" />
+    <Item ErrorCode="1250" MData="01"  Description="Blank track" />
+    <Item ErrorCode="1251,1245/1246/1247/1248/1249/1252/1270/1275" MData="02"  Description="Track not supported" />
+    <Item ErrorCode="1231" MData="03"  Description="Read error" />
+    <Item ErrorCode="1233" MData="04"  Description="Write error" />
+    <Item ErrorCode="1201" MData="05"  Description="No card in reader at start of command" />
+    <Item ErrorCode="1260" MData="06"  Description="Card removed by customer during capture" />
+    <Item ErrorCode="1284" MData="07"  Description="Shutter jammed open" />
+    <Item ErrorCode="" MData="08"  Description="Shutter switch failure detected" />
+    <Item ErrorCode="" MData="09"  Description="Error recovery successful" />
+    <Item ErrorCode="1284" MData="10"  Description="Shutter jammed closed" />
+    <Item ErrorCode="1283" MData="11"  Description="Card jammed (not during capture)" />
+    <Item ErrorCode="" MData="12"  Description="Card captured after unsuccessful eject operation" />
+    <Item ErrorCode="" MData="13"  Description="Possible customer tampering, card stuck in card reader throat" />
+    <Item ErrorCode="" MData="14"  Description="Too many consecutive read errors or blank tracks" />
+    <Item ErrorCode="" MData="15"  Description="Too many consecutive write errors" />
+    <Item ErrorCode="" MData="16"  Description="Too many consecutive card jams" />
+    <Item ErrorCode="" MData="17"  Description="Too many consecutive shutter jammed closed status's" />
+    <Item ErrorCode="" MData="18"  Description="Card jam during capture" />
+    <Item ErrorCode="" MData="19"  Description="Too many consecutive invalid cards" />
+	<Item ErrorCode="" MData="20"  Description="Device still inoperable" />
+	<Item ErrorCode="" MData="21"  Description="No card entered during cleaning cycle test" />
+	<Item ErrorCode="" MData="22"  Description="Speed out of specification greater than +3%" />
+	<Item ErrorCode="" MData="23"  Description="Speed within +3%" />
+	<Item ErrorCode="" MData="24"  Description="Speed within +/- 1%" />
+	<Item ErrorCode="" MData="25"  Description="TSpeed within -3%" />
+	<Item ErrorCode="" MData="26"  Description="Speed out of specification less than -3%" />
+	<Item ErrorCode="" MData="27"  Description="Invalid card detected (diagnostic only)" />
+    <Item ErrorCode="" MData="37"  Description="Card Return on Power Failure option not supported" />
+    <Item ErrorCode="" MData="38"  Description="Tamper Indicating Card Capture bin full" />
+    <Item ErrorCode="" MData="39"  Description="Tamper Indicating Card Capture bin shutter mechanism failure" />
+    <Item ErrorCode="" MData="40"  Description="Tamper Indicating Card Capture bin removed or not configured" />
+    <Item ErrorCode="" MData="41"  Description="Card Return on Power Failure option failed" />
+    <Item ErrorCode="" MData="46"  Description="SDC link failure" />
+  </CardReader>
+  <CashHandler>
+	<Item ErrorCode="DefaultNoError" MData="00"  Description="No error" />
+    <Item ErrorCode="DefaultError" MData=""  Description="Default error code / event code" />
+    <Item ErrorCode="15344/15351/15352/15353/15354" MData="01"  Description="Pick requested from cassette that is not installed" />
+    <Item ErrorCode="15245/15412/15413" MData="02"  Description="Too many bills being rejected" />
+    <Item ErrorCode="15356,15357,15358,15359" MData="03"  Description="Pick failure" />
+    <Item ErrorCode="15180/15181/15182/15183" MData="04"  Description="Pick failure from cassette low or out of currency" />
+    <Item ErrorCode="15640/15641/15642/15643/15644/15645/15824/15825/15826/15827/15828/15831/15832/15833/15834/15850/15851/15852/15853/15854/15855/15084" MData="05"  Description="Sensor failure or currency jammed" />
+    <Item ErrorCode="15283/15285/15431/15678/15679/15680/15682/15683/15684/15685/15687/15688/15689/15690/15691/15692/15693" MData="06"  Description="Divert gate failure" />
+    <Item ErrorCode="15361" MData="07"  Description="Reject bin not present" />
+    <Item ErrorCode="15042,15345/15346/15432/15433/15434/15442/15443/15395" MData="08"  Description="Reject bin overfilled or sensor blocked" />
+    <Item ErrorCode="15000/15505/15071/15073/15074/15075,15121/15165/15166/15167/15204/15317/15319/15082/15076/15077/15078" MData="09"  Description="Communications failure at dispenser" />
+    <Item ErrorCode="" MData="10"  Description="Operation not attempted due to previous failure" />
+    <Item ErrorCode="15393/15394/15403/15404/15405/15406/15407/15408/15409/15725/15726/15727/15728/15729/15730/15763/15764/15765/15766/15767/15768/15776/15777/15778/15779/15782/15823/" MData="11"  Description="Bills still in transport, operation not attempted" />
+    <Item ErrorCode="15694/15695/15296/15297/15298/15299/15300/15301/15302/15303/15304/15305/15306/15307/15308/15309/15310/15311/15312/15048/15045/15318/15437/15696/15673/15674/15675/15676" MData="12"  Description="Presenter mechanism failed or jammed" />
+    <Item ErrorCode="15001/15003/15004/15005/15218/15288/15289/15290/15292/15436/" MData="13"  Description="Exit shutter jammed open" />
+    <Item ErrorCode="15002/15226/15291/15293/15294/15295/" MData="14"  Description="Exit shutter jammed closed" />
+    <Item ErrorCode="" MData="15"  Description="Bills observed passing overfill sensor" />
+    <Item ErrorCode="15284/15694/15695/15696/15697/15698/15699/15700/15701/15702/15703/15704" MData="16"  Description="Main transport timing disk or main AC motor failed" />
+    <Item ErrorCode="" MData="17"  Description="Exit sensor failed to clear or is blocked" />
+    <Item ErrorCode="12126" MData="18"  Description="Currency jam in presenter transport or sensor failed" />
+    <Item ErrorCode="15300" MData="19"  Description="Exit sensor blocked (bills may be in exit slot)" />
+	<Item ErrorCode="" MData="20"  Description="Dispenser not configured" />
+	<Item ErrorCode="" MData="21"  Description="Security violation" />
+	<Item ErrorCode="" MData="22"  Description="Security inhibition" />
+	<Item ErrorCode="" MData="25"  Description="Flex disk authorization not required" />
+	<Item ErrorCode="" MData="28"  Description="An area of NVRAM cannot be accessed (SOH cannot be updated)" />
+	<Item ErrorCode="15694/15695/15696/15315" MData="29"  Description="Presenter transport timing disk or motor failure" />
+	<Item ErrorCode="15885/15886/15887/15888/15889/15890/15891/15892/15893/" MData="30"  Description="Presenter transport sensors blocked or failed" />
+	<Item ErrorCode="" MData="32"  Description="Heartbeat on execution processor failed (80652)" />
+	<Item ErrorCode="" MData="33"  Description="Communication failure on the I2C bus (80852)" />
+	<Item ErrorCode="15461/15462/15463/15464/15465/15466/15467/" MData="34"  Description="A present notes operation has been attempted without any notes being stacked or a retract operation has been
+attempted without notes having been presented" />
+	<Item ErrorCode="15260" MData="35"  Description="Operation incomplete due to power disconnection resulting from the interlock on the ATM access door being tripped" />
+	<Item ErrorCode="" MData="36"  Description="Pick valve test not attempted because cassettes were installed" />
+    <Item ErrorCode="" MData="37"  Description="Tamper Indicating service switched ON" />
+    <Item ErrorCode="" MData="38"  Description="Tamper Indicating service switched OFF" />
+    <Item ErrorCode="" MData="39"  Description="LVDT or associated circuitry malfunctioning" />
+    <Item ErrorCode="" MData="40"  Description="Note parameters not configured because of an NVRAM corruption or it is the first operation since initial power-up" />
+    <Item ErrorCode="" MData="41"  Description="An attempt was made to pick from a cassette which has been disabled for in-service replenishment" />
+    <Item ErrorCode="" MData="46"  Description="SDC link failure" />
+  </CashHandler>
+  <CashAcceptor>
+	<Item ErrorCode="DefaultNoError" MData="00"  Description="No error" />
+    <Item ErrorCode="DefaultError" MData=""  Description="Default error code / event code" />
+    <Item ErrorCode="" MData="01"  Description="Transport jam" />
+	<Item ErrorCode="" MData="02"  Description="Transport jammed and shutter jammed open" />
+    <Item ErrorCode="" MData="03"  Description="Transport jammed and shutter jammed closed" />
+	<Item ErrorCode="15001/15003/15004/15005/15218/15288/15289/15290/15292/15436/" MData="04"  Description="Shutter jammed open" />
+    <Item ErrorCode="15002/15226/15291/15293/15294/15295/" MData="05"  Description="Shutter jammed closed" />
+	<Item ErrorCode="" MData="06"  Description="Transport sensor failed" />
+    <Item ErrorCode="15000/15505/15071/15078/15074/15073/15075" MData="07"  Description="Depository communication failure" />
+    <Item ErrorCode="15036/15037/15038/15039/15040/15041/15042/15044/15341/15343/15345/15347/15441/15443/15444/15457,15027/15028/15029/15030/15031/15032/15033/15035" MData="11"  Description="Depository bin overfill" />
+    <Item ErrorCode="" MData="13"  Description="Timing disk failure" />
+    <Item ErrorCode="" MData="14"  Description="A failure has occurred in the control electronics" />
+    <Item ErrorCode="15610/15611/15616/15617/15618/15619/15620/15720,15694/15696" MData="15"  Description="Transport motor failure" />
+    <Item ErrorCode="" MData="50"  Description="Anti fishing sensor not returned" />
+	<Item ErrorCode="" MData="51"  Description="Lost depository print characters due to transport speed (incomplete envelope printing)" />
+	<Item ErrorCode="" MData="52"  Description="Printhead removed" />
+	<Item ErrorCode="15673/15674/15675/15676/15212/15213/15214/15215/15220/15221/15222/15223/15224/15227/15228/15253/15284/15461/15463" MData="55"  Description="Interlock failed" />
+    <Item ErrorCode="" MData="46"  Description="SDC link failure" />
+  </CashAcceptor>
+  <ReceiptPrinter>
+    <Item ErrorCode="DefaultNoError" MData="00"  Description="No error" />
+    <Item ErrorCode="DefaultError" MData=""  Description="Default error code / event code" />
+    <Item ErrorCode="" MData="01"  Description="Head jam/Knife jam" />
+    <Item ErrorCode="1304/1354,1357" MData="03"  Description="Black mark error" />
+    <Item ErrorCode="1370" MData="05"  Description="Paper out" />
+    <Item ErrorCode="1321/1351" MData="07"  Description="Paper not loaded or paper jam before transport" />
+    <Item ErrorCode="1375/1376/1379/1380/1390/1397/1398/1399" MData="08"  Description="Communications failure to the printer" />
+    <Item ErrorCode="1374" MData="09"  Description="Printer open" />
+    <Item ErrorCode="" MData="10"  Description="Ribbon needs to be replaced soon" />
+    <Item ErrorCode="1360/1361" MData="11"  Description="Printhead needs to be replaced soon" />
+    <Item ErrorCode="1377" MData="12"  Description="Knife needs to be replaced soon" />
+    <Item ErrorCode="" MData="13"  Description="Ribbon needs to be replaced now" />
+    <Item ErrorCode="" MData="14"  Description="Printhead needs to be replaced now" />
+    <Item ErrorCode="" MData="15"  Description="Sideways communications error" />
+    <Item ErrorCode="1381" MData="16"  Description="Eject jam" />
+    <Item ErrorCode="" MData="46"  Description="SDC link failure" />
+  </ReceiptPrinter>
+  <JournalPrinter>
+	<Item ErrorCode="DefaultNoError" MData="00"  Description="No error" />
+    <Item ErrorCode="DefaultError" MData=""  Description="Default error code / event code" />
+    <Item ErrorCode="" MData="01"  Description="Head jam" />
+    <Item ErrorCode="" MData="05"  Description="Paper out" />
+    <Item ErrorCode="" MData="07"  Description="Paper not loaded" />
+    <Item ErrorCode="" MData="08"  Description="Communications failure to the printer" />
+    <Item ErrorCode="" MData="09"  Description="Printer open" />
+    <Item ErrorCode="" MData="10"  Description="Ribbon needs to be replaced soon" />
+    <Item ErrorCode="" MData="11"  Description="Printhead needs to be replaced soon" />
+    <Item ErrorCode="" MData="13"  Description="Ribbon needs to be replaced now" />
+    <Item ErrorCode="" MData="14"  Description="Printhead needs to be replaced now" />
+    <Item ErrorCode="" MData="46"  Description="SDC link failure" />
+  </JournalPrinter>
+  <Encryptor>
+    <Item ErrorCode="DefaultNoError" MData="00"  Description="No error detected" />
+    <Item ErrorCode="DefaultError" MData=""  Description="Default error code / event code" />
+    <Item ErrorCode="40066/40069" MData="01"  Description="Parity error" />
+    <Item ErrorCode="40082/40083/40097/40098/40099" MData="02"  Description="Hardware error" />
+    <Item ErrorCode="" MData="03"  Description="Invalid command, not all key spaces are closed" />
+    <Item ErrorCode="40050/40051" MData="04"  Description="Invalid command, no key space open" />
+    <Item ErrorCode="" MData="05"  Description="Invalid command as keyboard is currently enabled" />
+	<Item ErrorCode="" MData="07"  Description="Communications failure" />
+	<Item ErrorCode="" MData="08"  Description="Security module reset was successful" />
+	<Item ErrorCode="" MData="11"  Description="Invalid command data" />
+	<Item ErrorCode="" MData="12"  Description="Data mismatch" />
+	<Item ErrorCode="" MData="13"  Description="No key loaded in Data Encryption Unit prior to encryption or decryption request" />
+	<Item ErrorCode="" MData="70"  Description="PIN verification failed" />
+	<Item ErrorCode="" MData="74"  Description="Invalid PIN encrypt type function (encryption mode changed)" />
+	<Item ErrorCode="" MData="75"  Description="Key integrity error" />
+	<Item ErrorCode="" MData="76"  Description="Invalid PIN, no encryption allowed (truncated PIN does not contain decimal digits)" />
+	<Item ErrorCode="" MData="97"  Description="Timeout error" />
+	<Item ErrorCode="" MData="98"  Description="Communications error" />
+	<Item ErrorCode="" MData="46"  Description="SDC link failure" />
+  </Encryptor>
+  <BarCodeReader>
+	<Item ErrorCode="DefaultNoError" MData="00"  Description="No error" />
+    <Item ErrorCode="DefaultError" MData=""  Description="Default error code / event code" />
+  </BarCodeReader>
+</Root>

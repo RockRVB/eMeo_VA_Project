@@ -1,0 +1,73 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>读卡器</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="pragma" content="no-cache"  />
+<meta http-equiv="cache-control" content="no-cache,must-revalidate" />
+<meta http-equiv="expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="../../../../thirdparty/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../../../css/maintenance/cn.css" />
+<script src="../../../../js/jquery-3.7.0.min.js"></script>
+<script src="../../../../js/jquery-ui.min.js"></script>
+<script src="../../../../thirdparty/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../../js/maintenance/common/global.js"></script>
+<script src="../../../../js/maintenance/component/components.js"></script>
+<script src="../../../../js/maintenance/system/widget-manage.js"></script>
+<script src="../../../../js/maintenance/ui/interface.js"></script>
+<script src="../../../../js/maintenance/ui/custom-ui.js"></script>
+</head>
+
+<body>
+<!--界面容器-->
+<div class="wrapper cardreader-test">
+	<div class="g-margin-wrapper">
+	 <div class="g-left-wrapper"> 
+		<!--滚动文本框START-->
+		<div id="STATIC_TXTBOX" type="TEXTBOX" class="textbox-panel" isAppend="1"> 
+			<!--按钮区域-->
+			<div class="textbox-button-zone">
+				<div class="middle-outer">
+					<div class="middle-inner center">
+						<button class="button-page" mark="top"> <span class="tip"></span> <span class="button-text button-scroll-top"><span class="button-scroll-border"></span><span class="button-scroll-arrow"></span></span> </button>
+						<button class="button-page textbox-button-vspace" mark="up"> <span class="tip"></span> <span class="button-text button-scroll-up"></span></button>
+						<button class="button-page textbox-button-vspace" mark="down"> <span class="tip"></span> <span class="button-text button-scroll-down"></span> </button>
+						<button class="button-page textbox-button-vspace" mark="bottom"> <span class="tip"></span> <span class="button-text button-scroll-bottom"><span class="button-scroll-arrow"></span><span class="button-scroll-border"></span></span> </button>
+					</div>
+				</div>
+			</div>
+			<!--面板容器-->
+			<div class="grg-panel"> 
+				<!--面板容器-头部-->
+				<div class="grg-panel-title textbox-title"> </div>
+				<!--面板容器-内容-->
+				<div class="grg-panel-content textbox-content-wrapper">
+					<textarea class="textbox-content" wrap="off" readonly></textarea>
+				</div>
+			</div>
+		</div>
+		<!--滚动文本框END-->
+		<!--提示文字-->
+		<div id="STATIC_PROMPT" type="STATIC_TXT" class="g-prompt-text" color="#e01e1e" disabledColor="#000000" flashType="color"></div>
+		<span id="INPUT_PROMPT" ids="IDS_INPUT_CARD_BIN_NO">卡箱号（从1开始）：</span><input id="INPUT_CARD_SLOT_NUMBER" type="text" class="input-text input-sheet"  value="" maxlength="3" validchars = "12345678">
+		<!--按钮区域-->
+		<div class="g-button-zone">
+			<button id="FUN_1" type="button" class="button-common mr5"> <span class="tip"></span> <span class="button-text" ids="IDS_Dispense_Card_Bin">卡箱发卡</span> </button>
+			<button id="FUN_2" type="button" class="button-common mr5"> <span class="tip"></span> <span class="button-text" ids="IDS_InitializeMenu_251">复位</span> </button>
+			<button id="FUN_3" type="button" class="button-common"> <span class="tip"></span> <span class="button-text" ids="IDS_StateTestMenu_251">状态测试</span> </button>
+			<button id="FUN_4" type="button" class="button-common"> <span class="tip"></span> <span class="button-text" ids="IDS_CRD_Retain_Card">回收卡</span> </button>
+		</div>
+	</div>
+    <!--右边-->
+	<div class="g-right"> 
+	<!--键盘-->
+	<div id="KEYBOARD_NUMBER_1" type="KEYBOARD_NUMBER" class="keyboard-number" > 
+		<!--键盘操作提示-->
+		<div id="keyboard-tip" class="keyboard-tip clear none" ids="IDS_KeyboardTip">按00键可以在输入框和键盘之间切换</div>
+	</div>
+	</div>
+	</div>
+</div>
+</body>
+</html>

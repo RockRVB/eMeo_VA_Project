@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  ****************************************************************************************************
+  * [1] Function command definition 
+  * [2] The map setting between NDC function and NDC command  
+  *****************************************************************************************************
+-->
+<Root>
+	<!-- Define the basic function command with unit definition-->
+	<FuncCmdBase>
+		<Item key="f" value="PrintJournal" description="Record Journal Log"/>
+		<Item key="B" value="DispenseNote" description="Dispense Note"/>
+		<Item key="E" value="EjectCard" description="Eject Card"/>
+		<Item key="C" value="PresentNote" description="Present Note"/>
+		<Item key="5" value="JumpToNextState" description="Jump to next state"/>
+		<Item key="x" value="RecordTransactionLog" description="Record Transaction Log"/>
+		<Item key="4" value="PrintData" description="Print Receipt"/>
+		<Item key="1" value="TakeDepositEnvelope" description="Take In Envelope"/>
+		<Item key="V" value="WriteTrackData" description="Write Track Data"/>
+		<Item key="u" value="RefundDepositNote" description="Refund Deposit Note"/>
+		<Item key="e" value="EnCashDepositNote" description="Enhance Cash Deposit Note"/>
+		<Item key="t" value="EnCashDepositWaitNextReply" description="Enhance Cash Deposit And Wait Next Reply"/>
+		<Item key="r" value="WincorCashDepositNote" description="WincorCashDepositNote"/>
+		<Item key=":" value="ProcessCheque" description="ProcessCheque"/>		
+		<Item key="c" value="ProcessBunchCheque" description="ProcessBunchCheque"/>
+	</FuncCmdBase>
+	<!-- Define the map setting between NDC function command and unit definition-->
+	<Command>
+		<Item key="2" value="fBC5x4" existNextState="1" dispenseAction="1" description="Dispense and print."/>
+		<Item key="5" value="f4x" existNextState="1" dispenseAction="0" description="Set next state and print"/>
+		<Item key="8" value="fBC5x4" existNextState="1" dispenseAction="1" description="Dispense and print."/>
+		<Item key="C" value="fEBC5x4" existNextState="1" dispenseAction="1" description="Parallel dispense and print and card eject"/>
+		<Item key="4" value="f4x" existNextState="0" dispenseAction="0" description="Print immediate"/>
+		<Item key="B" value="BECf5x4" existNextState="1" dispenseAction="1" description="Parallel dispense and print and card eject"/>
+		<Item key="A" value="BEC5x4f" existNextState="1" dispenseAction="1" description="Eject card and dispense and print (card before cash)"/>
+		<Item key="F" value="fEBC5x4" existNextState="1" dispenseAction="1" description="Card before parallel dispense/print"/>
+		<Item key="1" value="f14x" existNextState="1" dispenseAction="0" description="Deposit and print"/>
+		<Item key="3" value="f4x" existNextState="1" dispenseAction="0" description="Display and print"/>
+		<Item key="9" value="f4x" existNextState="1" dispenseAction="0" description="Display and print"/>
+		<Item key="7" value="f14x" existNextState="1" dispenseAction="0" description="Deposit and print"/>
+		<Item key="*" value="u" existNextState="1" dispenseAction="0" description="GRG Refund Deposit Money"/>
+		<Item key="-" value="e4" existNextState="1" dispenseAction="0" description="GRG Enhance Cash Deposit Note"/>
+		<Item key="'" value="t" existNextState="1" dispenseAction="0" description="GRG En-Cash Deposit And Wait Next Reply"/>
+		<Item key="r" value="r" existNextState="1" dispenseAction="0" description="Wincor Deposit"/>
+		<Item key="D" value="e4" existNextState="1" dispenseAction="0" description="GRG Enhance Cash Deposit Note"/>
+		<Item key="R" value="u" existNextState="1" dispenseAction="0" description="GRG Refund Deposit Money"/>
+		<Item key=":" value=":" existNextState="1" dispenseAction="0" description="ProcessCheque"/>
+		<Item key="c" value="c4f" existNextState="1" dispenseAction="0"  description="ProcessBunchCheque"/>
+		<Item key="b" value="EBCe4f" existNextState="1" dispenseAction="1"  description="Dispense Cash First During Valuable Media Exchange"/>
+		<Item key="f" value="eEBC4f" existNextState="1" dispenseAction="1"  description="Deposit Media First During Valuable Media Exchange"/>
+	</Command>
+</Root>

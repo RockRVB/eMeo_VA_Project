@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../../css/default.css" />
+<link rel="stylesheet" type="text/css" href="../../css/Button.css" />
+
+<link rel="stylesheet" type="text/css" href="../../css/slick.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/slick-theme.min.css"/>
+
+<script TYPE="text/javascript" SRC="../../js/jquery.min.js"></script>
+<script type="text/javascript" src='../../js/slick.min.js'></script>
+<SCRIPT type="text/javascript" src="../../js/util.js" ></SCRIPT>
+
+</head>
+<body>
+	<header>
+		<div id="logo">
+			welcome to use
+		</div>
+		<div id="showTime"></div>	
+    </header> 
+    <div id="headerNav">
+        <!--<div class="menu" id="Fallback" tag="OnFallback" type="Button" >menu</div>-->
+        <div class="exit" id="Cancel" tag="CANCEL" type="Button" >exit</div>
+    </div>
+    <nav >
+        <ul id="hex"  ondragstart="return false">
+            <li id="F1" tag="F1" type="Button" visible="{Binding F1_Visible}">
+                <h2 class="title">Fast Cash</h2>
+              <img src="../../../Image/default/cash.png" alt="">
+            </li>
+            <li id="F2" tag="OnF2" type="Button" visible="{Binding F2_Visible}">
+                <h2 class="title" >Withdrawal</h2>
+                <img src="../../../Image/default/withdrawal.png" alt="">
+            </li>
+            <li  id="F3" tag="F3" type="Button" visible="{Binding F3_Visible}">
+                <h2 class="title">Transfer</h2>
+                <img src="../../../Image/default/transfer.png" alt="">
+            </li>
+            <li  id="F4" tag="OnF4" type="Button" visible="{Binding F4_Visible}">
+                <h2 class="title" >Balance Inquiry</h2>
+               <img src="../../../Image/default/balance.png" alt="">
+            </li>
+        </ul>
+		
+		<ul id="hex"  ondragstart="return false">
+            <li id="F5" tag="OnF5" type="Button" visible="{Binding F5_Visible}">
+                <h2 class="title" >Withdrawal</h2>
+                <img src="../../../Image/default/withdrawal.png" alt="">
+            </li>
+			 <li id="F6" tag="OnF6" type="Button" visible="{Binding F6_Visible}">
+                  <h2 class="title">Deposit</h2>
+                  <img src="../../../Image/default/deposit.png" alt="">
+              </li>
+        </ul>
+		
+    </nav>
+    <div id="bi" style="left:8rem">
+        <div>THE INNOVATION DESIGN OF INTELLIGENTIZATION </div>
+        <p>CONSOLIDATE WITH OPERATIONAL CAPITAL</p><p>VISUALIZE ON GLOBAL COOPERATION</p>
+    </div>
+	<script>
+        $("nav").slick({
+             arrows:false,
+             dots: true,
+             infinite: false,
+             slidesToShow: 1,
+            slidesToScroll: 1,
+             touchThreshold:100,
+             centerPadding:"10rem",
+		 	draggable:true
+			
+         });
+		 $('nav').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+				console.log(nextSlide);
+		});
+    </script>
+    </body>
+
+</html>

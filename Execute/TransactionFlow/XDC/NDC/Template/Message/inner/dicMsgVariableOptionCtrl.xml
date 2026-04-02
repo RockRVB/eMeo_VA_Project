@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- protocol: NDC -->
+<Root>
+	<OptionCtrl>
+		<Configuration>
+			<Item size="1" key="CashAcceptor" value="0"/>
+			<Item size="1" key="BarCodeReader" value="1"/>
+			<Item size="1" key="CardholderKeyboard" value="1"/>
+			<Item size="1" key="CardholderDisplay" value="1"/>
+			<Item size="1" key="CardReader" value="1"/>
+			<Item size="1" key="CashHandler" value="1"/>
+			<Item size="1" key="Camera" value="0"/>
+			<Item size="1" key="CoinDispenser" value="0"/>
+			<Item size="1" key="Encryptor" value="1"/>
+			<Item size="1" key="EnvelopeDepository" value="0"/>
+			<Item size="1" key="EnvelopeDispenser" value="0"/>
+			<Item size="1" key="FlexDisk" value="1"/>
+			<Item size="1" key="GrgBundleCashAcceptor" value="0"/>
+			<Item size="1" key="JournalPrinter" value="1"/>
+			<Item size="1" key="OperatorKeyboard" value="1"/>
+			<Item size="1" key="ReceiptPrinter" value="1"/>
+			<Item size="1" key="SystemDisplay" value="1"/>
+			<Item size="1" key="HighOrderCommunications" value="1"/>
+			<Item size="1" key="TIBins" value="1"/>
+			<Item size="1" key="TimeOfDayClock" value="1"/>
+			<Item size="1" key="NdcDenoTypeEx" value="0"/>
+			<Item size="1" key="IPM" value="1"/>
+			<Item size="1" key="ContactLessIDC" value="1"/>
+			<Item size="1" key="FingerService" value="0"/>
+		</Configuration>
+		<I_State>
+			<Item size="1" key="SendPINBuffer" value="1"/>
+			<Item size="1" key="EnableTrack1" value="0"/>
+			<Item size="1" key="EnableTrack2" value="1"/>
+			<Item size="1" key="EnableTrack3" value="0"/>
+			<Item size="1" key="EnableOperationCode" value="0"/>
+			<Item size="1" key="EnableAmount" value="0"/>
+			<Item size="1" key="EnableUserData" value="0"/>
+			<Item size="1" key="FieldID_PIN" value="0"/>
+			<Item size="1" key="FieldID_A" value="0"/>
+			<Item size="1" key="FieldID_B" value="0"/>
+			<Item size="1" key="FieldID_C" value="0"/>
+			<Item size="1" key="FieldID_D" value="0"/>
+			<Item size="1" key="FieldID_E" value="0"/>
+			<Item size="1" key="FieldID_F" value="0"/>
+			<Item size="1" key="FieldID_G" value="0"/>
+			<Item size="1" key="FieldID_H" value="0"/>
+			<Item size="1" key="FieldID_I" value="0"/>
+			<Item size="1" key="FieldID_J" value="0"/>
+			<Item size="1" key="FieldID_K" value="0"/>
+			<Item size="1" key="FieldID_L" value="0"/>
+			<Item size="1" key="FieldID_M" value="0"/>
+			<Item size="1" key="FieldID_N" value="0"/>
+			<Item size="1" key="FieldID_O" value="0"/>
+			<Item size="1" key="FieldID_P" value="0"/>
+			<Item size="1" key="FieldID_Q" value="0"/>
+			<Item size="1" key="FieldID_R" value="0"/>
+			<Item size="1" key="FieldID_S" value="0"/>
+			<Item size="1" key="FieldID_T" value="0"/>
+			<Item size="1" key="FieldID_U" value="0"/>
+			<Item size="1" key="FieldID_V" value="0"/>
+			<Item size="1" key="FieldID_r" value="0"/>
+			<Item size="1" key="FieldID_w" value="0"/>
+			<Item size="1" key="FieldID_a" value="0"/>
+			<Item size="1" key="FieldID_b" value="0"/>
+			<Item size="1" key="FieldID_e" value="0"/>
+			<Item size="1" key="FieldID_g" value="0"/>
+			<Item size="1" key="FieldID_i" value="0"/>
+			<Item size="1" key="EnableEMVCAM2" value="0"/>
+			<Item size="1" key="EnablePartialEMVCAM2" value="0"/>
+			<Item size="4" key="TransactionSerialNumber" value="0918"/>
+			<Item size="1" key="ECB6" value="0"/>
+		</I_State>
+		<ReadyB>
+			<Item size="1" key="bSendAddtionalData" value="0"/>
+			<Item size="1" key="DataIdentifier" value="2"/>
+			<Item size="var" key="TransactionData" value=""/>
+		</ReadyB>
+		<EMV>
+			<Item size="1" key="enable" value="0"/>
+		</EMV>
+		<WincroEMV>
+			<Item size="1" key="enable" value="0"/>
+		</WincroEMV>
+		<Item size="1" key="EnableMAC" value="0"/>
+		<Item size="1" key="NoUse" value="0"/>
+		<Item size="1" key="ECB6" value="0"/>
+		<Item size="1" key="Enhanced_Config" value="0"/>
+		<BNA_Save>
+			<Item size="50" key="the50NDCnotetypes" value="                                                  "/>
+			<Item size="1" key="Total_number_of_notes" value=" "/>
+			<Item size="3" key="Note_count_added_previous_note" value="000"/>
+		</BNA_Save>
+		<EJ>
+			<Item size="1" key="startData" value="2014-08-15 00:00:00"/>
+			<Item size="1" key="LenThisBlock" value="0"/>
+			<Item size="1" key="LastCharThisBlock" value="0"/>
+			<Item size="1" key="LastCharPreviousBlock" value="0"/>
+		</EJ>
+		<Debug>
+			<Item size="1" key="ReloadVarFile" value="0"/>
+			<Item size="1" key="NoHoldUnsolicitedMsg" value="0"/>
+		</Debug>
+	</OptionCtrl>
+</Root>

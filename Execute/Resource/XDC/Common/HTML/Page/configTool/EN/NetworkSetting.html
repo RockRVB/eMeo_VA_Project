@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<script defer type="text/javascript" src="../../js/ShowResource.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../css/ConfigEditing.css" />
+</head>
+<body>
+
+<div id="Div2">	
+	<form method="post">
+		<fieldset name="Group1">
+		<legend class="FontSize">ATMP-1 Setting</legend>
+		<table>				
+			<tr>
+				<td>
+					<Label>Type</Label>
+				</td>
+				<td>
+				  <select id="Select1" type="select" selectValue="{Binding type file=Config\NetworkConfig.xml xpath=/NetConfig/NetworkService[@name='IPNetworkService']/Sessions/Session[@name='ATMP1'] mode=2}">
+				   <option value="TCP">TCP/IP</option>
+				  </select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<Label>Enable ATMP-1</Label>
+				</td>
+				<td>
+				  <select id="Select2" type="select" selectValue="{Binding enable file=Config\NetworkConfig.xml xpath=/NetConfig/NetworkService[@name='IPNetworkService']/Sessions/Session[@name='ATMP1'] mode=2}">
+				   <option value="0">Disable</option>
+				   <option value="1">Enable</option>
+				  </select>
+				</td>				
+			</tr>
+			
+			<tr>
+				<td>
+					<Label>Set To Default Session</Label>
+				</td>
+				<td>
+				  <select id="Select3" type="select" state="{Binding default file=Config\NetworkConfig.xml xpath=/NetConfig/NetworkService[@name='IPNetworkService']/Sessions/Session[@name='ATMP1'] mode=2}">
+				   <option value="0">No</option>
+				   <option value="1">Yes</option>
+				  </select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<Label>Keep Alive</Label>
+				</td>
+				<td>
+				  <input id="Inputbox10" type="Text" content="{Binding keepAlive file=Config\NetworkConfig.xml xpath=/NetConfig/NetworkService[@name='IPNetworkService']/Sessions/Session[@name='ATMP1'] mode=2}"/>
+				</td>				
+			</tr>
+			
+			<tr>
+				<td>
+					<Label>Protocol</Label>
+				</td>
+				<td>
+				  <select id="Select7" type="select" selectValue="{Binding protocol file=Config\NetworkConfig.xml xpath=/NetConfig/NetworkService[@name='IPNetworkService']/Sessions/Session[@name='ATMP1'] mode=2}">
+				   <option value="ISO8583">ISO8583</option>
+				   <option value="NDC/DDC">NDC+/DDC912</option>
+				  </select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<Label>IP Address</Label>
+				</td>
+				<td>
+				  <input id="Inputbox11" type="Text" content="{Binding remote file=Config\NetworkConfig.xml xpath=/NetConfig/NetworkService[@name='IPNetworkService']/Sessions/Session[@name='ATMP1']/Address mode=2}"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<Label>Auto Recovery</Label>
+				</td>
+				<td>
+				  <select id="Select9" type="select" selectValue="{Binding autoRecovery file=Config\NetworkConfig.xml xpath=/NetConfig/NetworkService[@name='IPNetworkService']/Sessions/Session[@name='ATMP1']/Connection mode=2}">
+				   <option value="0">No</option>
+				   <option value="1">Yes</option>
+				  </select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<Label>Interval(Second)</Label>
+				</td>
+				<td>
+				  <input id="Inputbox20" type="text" content="{Binding autoRecoveryInterval file=Config\NetworkConfig.xml xpath=/NetConfig/NetworkService[@name='IPNetworkService']/Sessions/Session[@name='ATMP1']/Connection mode=2}"/>
+				</td>				
+			</tr>
+			
+			<tr>
+				<td>
+					<Label >Connection Mode</Label>
+				</td>
+				<td>
+				  <select id="Select11" type="select" selectValue="{Binding mode file=Config\NetworkConfig.xml xpath=/NetConfig/NetworkService[@name='IPNetworkService']/Sessions/Session[@name='ATMP1']/Connection mode=2}">
+				   <option value="0">Long Mode</option>
+				   <option value="1">Short Mode</option>
+				   <option value="2">Half Short Mode</option>
+				  </select>
+				</td>
+			</tr>	
+				<td>
+					<Label>Auto Connect After Open(Default:Not Open)</Label>
+				</td>
+				<td>
+				  <select id="Select12" type="select" selectValue="{Binding autoConnectAfterOpen file=Config\NetworkConfig.xml xpath=/NetConfig/NetworkService[@name='IPNetworkService']/Sessions/Session[@name='ATMP1']/Connection mode=2}">
+				   <option value="0">Not Open</option>
+				   <option value="1">Open</option>
+				  </select>
+				</td>	
+			</tr>	
+			
+			<tr>
+				<td>
+					<Label>Net Header</Label>
+				</td>
+				<td>
+				  <select id="Select21" type="select" selectValue="{Binding headPattern file=Config\NetworkConfig.xml xpath=/NetConfig/NetworkService[@name='IPNetworkService']/Sessions/Session[@name='ATMP1']/Packet mode=2}">
+				   <option value="NoHeader">No Header</option>
+				   <option value="L1L2">L1L2</option>
+				   <option value="L4L3L2L1_ASCII">L4L3L2L1_ASCII</option>
+				   <option value="L2L1">L2L1</option>
+				   <option value="L4L3L2L1">L4L3L2L1</option>
+				   <option value="EOR">EOR</option>
+				  </select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<Label>Head Include</Label>
+				</td>
+				<td>
+				  <select id="Select22" type="select" selectValue="{Binding headIncluded file=Config\NetworkConfig.xml xpath=/NetConfig/NetworkService[@name='IPNetworkService']/Sessions/Session[@name='ATMP1']/Packet mode=2}">
+				   <option value="0">No Included</option>
+				   <option value="1">Included</option>
+				  </select>
+				</td>	
+			</tr>
+
+			<tr>
+				<td>
+					<Label>Pinblock Format</Label>
+				</td>
+				<td>
+					<select id="Select23" type="select" selectValue="{Binding value file=Config\XDC\MainConfig\MainConfig.xml xpath=/Root/Application/Item[@key='PinblockFormat'] mode=2}">
+					   <option value="0">0 - ANSI X9.8</option>
+					   <option value="1">1 - Diebold</option>	
+					   <option value="2">2 - IBM3624</option>
+					</select>
+				</td>
+			</tr>			
+									
+		</table>
+	 </fieldset><BR>
+	<input id="Submit1" type="submit" value="Cancel" tag="OnCancel" ><input id="Submit2" type="submit" value="Submit" tag="OnConfirm" ></form>
+</div>
+</body> 
+</html>

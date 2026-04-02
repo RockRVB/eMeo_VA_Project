@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<!--注意，交易类型如PIN、TFR、ECASH、CWD、AWD等均对应于TransactionFlow\Common目录下transTypeMap的配置-->
+	<!--卡类型开启或屏蔽的交易
+	enable：表示卡类型需开启的交易，如enable="[5,PIN]"表示5号卡开启改密，其余卡均屏蔽改密
+	disable：表示卡类型需屏蔽的交易，如disable="[2|3,PIN|TFR][4,PIN]"表示2号卡和3号卡屏蔽改密和转账，4号卡屏蔽改密，其余卡均开启改密和转账
+                                           disable="[9,TFR|DEP|PIN]"表示9号卡屏蔽转账、存款和改密
+	注意：enable和disable不能同时设置，若都设置以disable为准
+	-->
+	<CardType enable="" disable=""/>
+	
+	<!--IC卡需屏蔽的交易，以及IC卡不走IC流程的交易（即按磁条卡流程走）
+	disable：表示卡类型需屏蔽的交易，如disable="TFR|PIN|DEP"表示IC卡需屏蔽转账、改密
+	notRunICFlow="DEP"/>：表示IC卡不走IC流程的交易，如notRunICFlow="DEP"表示当插入的是IC时，存款不走IC流程
+	-->
+	<ICCard disable="" notRunICFlow=""/>
+	
+	<!--磁条卡需屏蔽的交易
+	表示磁条卡需屏蔽的交易，如disable="ECASH"/>表示磁条卡屏蔽电子现金交易
+	-->
+	<MagneticCard disable="ECASH"/>
+	
+	<!--设备故障时屏蔽的交易
+	表示相应设备故障需屏蔽的交易，如<CDM disable="CWD|AWD"/>表示出钞机芯故障时屏蔽有卡取款和无卡取款
+	-->
+	<Device>
+		<CDM disable="CWD|AWD"/>
+		<CIM disable="DEP|ADP|ICXJCZ"/>
+		<RPTR disable="REC|RECOCR"/>
+		<IDC disable="CWD|PIN|TFR"/>
+		<ContactLessIDC disable="ContactLess"/>
+		<Passbook disable="PASSBOOK"/>
+	</Device>
+	
+	<!--相关命令屏蔽的交易,	如<Present disable="[1,TFR][3,TFR|CWD|AWD]"/>表示取款连续1次送钞失败（门故障引起）屏蔽转账，连续3次送钞失败屏蔽转账、有卡取款和无卡取款，
+                                                                           但在成功做1笔存取款交易后或加钞后开启上述屏蔽的交易，0表示不限次数
+	                        如<Retract disable="2,CWD|AWD|DEP|ADP"/>表示取款和存款超时回收共计2次后，屏蔽有卡取款、无卡取款、有卡存款和无卡存款，但在加钞成功后开启上述屏蔽的交易，0表示不限次数
+	-->
+	<Command>
+		<Present disable="[0,TFR][0,TFR|CWD|AWD|PIN]"/>
+		<Retract disable="0,CWD|AWD|DEP|ADP"/>
+	</Command>
+	
+	<!--工程自定义屏蔽的交易
+	表示工程自定义屏蔽的交易，如<Project_DisableCWD disable="CWD|AWD"/>表示当在工程代码里设置Project_DisableCWD数据池为true时，屏蔽有卡取款和无卡取款
+	Project_DisableCWD和Project_DisableDEP这些结点名称可自定义，也可以自行添加更多的结点
+	核心默认将core_AlwaysTrue数据池设为true，用于工程屏蔽交易使用，如某些分行要屏蔽代缴费业务，就可以通过BankSetting脚本根据不同的分行对此处进行修改
+	注意，数据池只能是TerminalDataCache
+	-->
+	<Project>
+		<core_AlwaysTrue disable=""/>
+		<core_DisableRECOCRButton disable="RECOCR"/>
+		<core_DisableRECButton disable="REC"/>
+		<core_CoerceEnterInService disable=""/>
+	</Project>
+	
+	<!--进入服务的条件，用竖线分隔
+	KeyCondition：表示关键条件，如<Device available="PIN"/>，表示密码键盘可用时，关键条件满足，其中Device和Trans的条件必须同时满足，多个条件以竖线分隔
+	OneOfCondition：在关键条件满足的前提下，表示其中之一的条件，如<Device available="IDC"/>，<Trans available="ADP"/>，表示“读卡器可用”或“无卡存款可用”时，其中之一条件满足，
+	在关键条件满足的前提下，其中之一的条件必须满足，才可进入服务，多个条件以竖线分隔
+	-->
+	<EnterService>
+		<KeyCondition>
+			<Device available=""/>
+			<Trans available=""/>
+		</KeyCondition>
+		<OneOfCondition>
+			<Device available=""/>
+			<Trans available=""/>
+		</OneOfCondition>
+	</EnterService>
+</Config>

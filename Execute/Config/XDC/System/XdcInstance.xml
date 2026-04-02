@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  * Define the folder access to find the speicified resource file as expected.
+  -->
+<Root>
+	<!--The following XDCConfigDataProcessor is commented out without configuration
+	Access is provided through the IXDCConfigDataProcessor interface -->
+	<!--下面XDCConfigDataProcessor.开头的key，不需要配置，所以被注释掉
+	访问方式，通过IXDCConfigDataProcessor接口提供-->
+	<!--Item key="XDCConfigDataProcessor.XDCConfigDataCommon" value=""/>
+	<Item key="XDCConfigDataProcessor.XDCConfigDataGeneric" value=""/>
+	<Item key="XDCConfigDataProcessor.ExchangeKeyName" value=""/>	
+	<Item key="XDCConfigDataProcessor.XDCConfigItem" value=""/>
+	<Item key="XDCConfigDataProcessor.ScreenCRTPosition" value=""/>	
+	<Item key="XDCConfigDataProcessor.XDCScreenConfig" value=""/>
+	<Item key="XDCConfigDataProcessor.XDCDevPropertyCfgItem" value=""/>
+	<Item key="XDCConfigDataProcessor.XDCCassetteSetting" value=""/>
+	<Item key="XDCConfigDataProcessor.XDCLogConfigProcessorItem" value=""/>	
+	<Item key="XDCConfigDataProcessor.XDCNoteIdMapDataItem" value=""/-->
+	
+	<Item key="XDCDataDefinitionImp" value="\Business\XDC\Common\XDCDataDefinition.dll"/>	
+	<Item key="XDCDataFormImp" value="\Business\XDC\Common\XDCDataForm.dll"/>
+	<Item key="XDCTrigger" value="\Business\XDC\Common\XDCDeviceDocument.dll"/>
+	<Item key="XDCData.OXDCData" value="\Business\XDC\Common\XDCData.dll"/>
+	<Item key="NDCPrintDataParserImp" value="\Business\XDC\Common\NDCPrintDataParser.dll"/>	
+	<Item key="DDCPrintDataParserImp" value="\Business\XDC\Common\DDCPrintDataParser.dll"/>	
+	<Item key="XDCMsgMgr" value="\Business\XDC\Common\XDCMessageParser.dll"/>
+	<Item key="XDCServiceApp" value="\Business\XDC\Common\XDCServiceApp.dll"/>	
+	<Item key="XDCConfigDataProcessor" value="\Business\XDC\Common\XDCConfigDataProcessor.dll"/>	
+	<Item key="GrgNdcOverlayConfirmScrParser.GrgNdcOverlayScr" value="\Business\XDC\Common\GrgNdcOverlayConfirmScrParser.dll"/>		
+	<Item key="ADAService.ADAServiceModule" value="\Business\XDC\Common\AdaService.dll"/>
+	<Item key="XDCCopyDataImp" value="\Business\XDC\Common\XDCCopyData.dll"/>
+  <!--<Item key="XDCData.XDCConfigManager" value="\Business\XDC\Common\XDCData.dll"/>-->		 
+	<Item key="XDCData.XDCCmdList" value=""/>
+	<Item key="XDCData.ResourceConfiguration" value=""/>
+	<Item key="XDCKeyExchangeParser" value="\Business\XDC\Common\XDCKeyExchange.dll"/>	
+	<Item key="XDCFunctionCmdImp" value="\Business\XDC\Common\XDCFunctionCommand.dll"/>
+	<Item key="XDCService" value="\Business\XDC\Common\XDCService.dll"/>	
+	<Item key="XDCCashAcceptorImp" value="\Business\XDC\Common\XDCCashAcceptor.dll"/>
+	<Item key="XDCCashAcceptorBaseImp" value="\Business\XDC\Common\XDCCashAcceptorBase.dll"/>	
+	<Item key="XDCService.NDCPrintDataObject" value=""/>
+	<Item key="XDCService.XDCCashDevBase" value=""/>	
+	<Item key="XDCService.XDCCIMCassetteData" value=""/>
+	<Item key="XDCService.XDCCashAcceptorCommon" value=""/>
+	<Item key="XDCADAService.ADAServiceImp" value=""/>
+	<Item key="DDCCashAcceptor.DDCCashAcceptorImp" value="\Business\XDC\Common\DDCCashAcceptor.dll"/>
+	<Item key="Test.NDC.MasterExpansionState" value="\Business\XDC\Activity\NDC\NDCBunchChequeAccept.dll"/>
+
+	<Item key="XdcEmvService.EmvServiceImp" value="\Business\XDC\Common\XdcEmvService.dll"/>
+	<Item key="XdcEmvService.EmvRegister" value="\Business\XDC\Common\XdcEmvService.dll"/>
+</Root>

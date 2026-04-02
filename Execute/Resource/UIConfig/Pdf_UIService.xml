@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+	<Screen name="UI_ActPdfEdit" uri="Pdf\ActPdfEdit.html" cache="0">
+  </Screen>
+	<Screen name="UI_ActPdfPrint" uri="Pdf\ActPdfPrint.html" cache="0">
+  </Screen>
+</Screens>

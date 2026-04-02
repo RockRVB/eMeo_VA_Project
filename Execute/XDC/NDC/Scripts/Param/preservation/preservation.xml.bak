@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <EJUpload>
+    <startData value="" />
+    <LenThisBlock value="000" />
+    <LastCharThisBlock value="000000" />
+    <LastCharPreviousBlock value="000000" />
+  </EJUpload>
+</Root>

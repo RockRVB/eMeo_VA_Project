@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select item</title>
+    <script src="../../js/vue.min.js">
+    </script>
+    <script src="../../js/grg-ui.min.js">
+    </script>
+    <script src="../../js/vue-i18n.js">
+    </script>
+    <script src="../../js/jquery-3.7.0.js">
+    </script>
+    <script src="../../js/coreScript.js">
+    </script>
+    <script src="../../js/ibank.js">
+    </script>
+    <link rel="stylesheet" href="../../css/grg-ui.min.css">
+    <link rel="stylesheet" href="../../css/animate.grg.css">
+    <link rel="stylesheet" href="../../css/ibank.css">
+    <style>
+	.main-btn { 
+	display: flex; 
+	flex-direction: column; 
+	align-items: center; 
+	} 
+	
+	.btn-position{ 
+	position: absolute; 
+	bottom: 5%; 
+	left: 40%;
+	} 
+	
+	.main-content-box {
+	width: 100%; 
+	text-align: center; 
+	font-family: 'Alibaba Sans';
+	position: absolute;
+	top: 30%;
+	} 
+	
+	.operating-button-box { 
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	color: #333333;
+	} 
+	
+	.operating-button-box .operating-but-li { 
+	position: relative;
+	margin-right: 40px;
+	padding-top: 39px;
+	box-sizing: border-box;
+	
+	width: 250px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 20px 0px rgba(28, 42, 74, 0.23);
+    border-radius: 24px;
+    overflow: hidden;
+	} 
+	
+	.operating-button-box .operating-but-li .operating-button-shade { 
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.5);
+	left: 0;
+	top: 0;
+	} 
+	
+	.operating-button-box .operating-but-li .coming-soon-box {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 166px;
+	height: 32px; 
+	background: #F1F1F1; 
+	border-radius: 24px 0px 10px 0px; 
+	font-size: 20px; 
+	color: #999999;
+	}
+	.info-text{
+	font-size: 40px;
+	color: #333333;
+	text-align: center;
+    font-family: 'Alibaba Sans';
+	line-height:normal;
+	font-weight: blod
+	}
+	.button-box {
+    position: absolute;
+    display: flex;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    margin-bottom: 5%;
+	}
+	
+ </style>
+  </head>
+  
+  <body>
+    <div id="app">
+      <div id="grg-header" class="grg-header">
+      </div>
+      <div id="grg-main" class="grg-main animate_grg_fadeInRight_other">
+        <!-- <div class="count-down">
+        <div class="count-down-2">60</div>
+        </div> -->
+		<div class="main-title" ids="ids_exchange_paymentmethod">Please select the payment method</div>
+		<div class="info-text">
+		<div>
+        <div class="main-content-box">
+          <div class="select-business-box">
+			<div class="operating-button-box">
+              <div v-for="(item, index) in operatingButton" :key="index" class="operating-but-li"
+                @click="item.disable ? '' : event(item.eventName)">
+                <img class="btn-icon" :src="item.iconUrl" alt="">
+                <div class="btn-text" :ids="item.ids">{{item.text}}</div>
+                <div v-if="item.disable" class="coming-soon-box" ids="ids_Common_Comingsoon">Coming soon</div>
+                <div v-if="item.disable" class="operating-button-shade"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+		<div class="button-box" >
+          <div v-if="item.show" v-for="(item, index) in buttonBtnData" :class="['grg-btn', item.type]"
+            @click="buttonBtnEvent(item.eventName)" :key="index">
+            <img class="icon-img" :src="item.iconUrl" alt="">
+            <span :ids="item.ids">{{ item.text }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+	</div>
+	</div>
+  </body>
+
+</html>
+<script>var app = new Base({
+    i18n: i18n,
+    data: {
+		bill: '',
+		buttonBtnData: [{
+          type: 'grg-cancel',
+          text: 'Cancel',
+          iconUrl: '../../images/img_2.4/icon-cancel.png',
+          eventName: 'cancel',
+		  ids:'ids_Btn_cancel',
+          show: true,
+        },
+        {
+          type: 'grg-cancel',
+          text: 'Back',
+          iconUrl: '../../images/img_2.4/icon-back.png',
+          eventName: 'back',
+		  ids:'IDS_MediaReturnToConfirm',
+          show: true,
+        },
+        {
+          type: 'grg-confirm',
+          text: 'Confirm',
+          iconUrl: '../../images/img_2.4/icon-ok.png',
+          eventName: 'confirm',
+		  ids:'ids_Btn_confirm',
+          show: false,
+        },
+      ],
+		operatingButton:[{
+			text: 'Cash',
+			iconUrl: '../../images/img_2.4/cash-img.png',
+			eventName: 'cash',
+			ids:'ids_Common_Cash',
+			disable: false,
+			},
+			{
+			text: 'Bank Card',
+			iconUrl: '../../images/img_2.4/bank-card.png',
+			eventName: 'bank card',
+			ids:'ids_Common_BankCard',
+			disable: true,
+			},
+			{
+			text: 'E-Wallet',
+			iconUrl: '../../images/img_2.4/e-wallet-img.png',
+			eventName: 'e-wallet',
+			ids:'ids_Common_e-wallet',
+			disable: true,
+			},
+		]
+	},
+    methods: {
+	event(type) {
+        let _this = this;
+        switch (type.toLowerCase()) {
+          case 'cash':
+			goto('OnCash');
+            //console.log('water bill');
+            break;
+          case 'bank card':
+			goto('OnCard');
+            //console.log('gas bill');
+            break;
+          case 'e-wallet':
+			goto('OnEWallet');
+            //console.log('electricity bill');
+            break;
+        }
+      },
+	  buttonBtnEvent(type) {
+        let _this = this;
+        switch (type.toLowerCase()) {
+          case 'cancel':
+            goto('OnCancel');
+            break;
+          case 'back':
+            goto('OnBack');
+            break;
+        }
+      },
+	  setAmount: function(arg){
+		console.log("amount: "+arg);
+		document.getElementById('amountID').value = arg;
+	  }
+	},
+    computed: {},
+    mounted: function() {}
+  }).$mount('#app')</script>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+		<title>是否确认退出当前业务</title>
+		<link rel="stylesheet" type="text/css" href="../../css/CN.css"/>
+        <script type="text/javascript">
+            var time = 30;
+            function settime() {
+                if (time != 0) {
+                    time--;
+                }
+                document.getElementById("time").innerText = time;
+            }
+            function onCancel() {
+                window.external.PopupEventRaised('Cancel');
+            }
+            function onConfirm() {
+                window.external.PopupEventRaised('Confirm');
+            }
+            window.onload = function(){
+				document.getElementById("txtTitle").innerText=(window.external.GetResourceValue("IDS_ExistsTrans"));
+				document.getElementById("btnCancel").innerText=window.external.GetResourceValue("IDS_Cancel");
+				document.getElementById("btnConfirm").innerText=window.external.GetResourceValue("IDS_Confirm");
+				
+			setInterval(function () {
+                settime();
+            }, 1000)};
+		</script>
+	</head>
+	<body class="all_bg">
+		<header class="index_top clear">
+			<div class="logo"></div>
+			<div class="index_top_title">
+				<div class="count_down_time" id="time">30</div>
+			</div>
+		</header>
+		<div class="ibank_container">
+			<div class="business_container">
+				<div class="error_result exitbusiness_result">
+					<div id="txtTitle" class="error_title exitbusiness_title" ids="IDS_ExistsTrans">是否确认退出当前业务？？</div>
+				</div>
+			</div>
+			<div class="button_container">
+				<div id="btnCancel" class="cancel_button" onclick="onCancel();" ids="IDS_Cancel">取消</div>
+				<div id="btnConfirm" class="enter_button" onclick="onConfirm();" ids="IDS_Confirm">确认</div>
+			</div>
+		</div>
+	</body>
+</html>

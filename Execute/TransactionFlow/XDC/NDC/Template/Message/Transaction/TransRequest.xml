@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- protocol:NDC -->
+<Root>
+	<TransRequest>
+		<!--  Message Class and the message is unsolicitied message  -->
+		<Item key="b" value="1" size="1" restriction="Mandatory"/>
+		<!--  Message Sub-Class. The message sub-class is '1' - Transaction Request message.  -->
+		<Item key="c" value="1" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Logical Unit Number(LUNO).Default value is 000  -->
+		<Item key="d" value="[LUNO]" size="3-9" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Timer Vaiant Number-. The field can contain an eight-digit number derived from the time of day be the terminal for each transaction request.(-0-9, A- F).  -->
+		<Item key="e" value="[TVN]" size="8" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Top of Receipt Transaction Flag. 
+		* 	'0' - will not print data for this transaction at the top of the receipt.
+		* 	'1' - will print data for this transction at the top of the receipt
+		-->
+		<Item key="f" value="[Msg.Transaction.TopOfRcptTransFlag]" size="1" restriction="Mandatory"/>
+		<!--  Message Co-Ordination. 
+		* 	The valid range of the co-ordination number is 31 hex to 3F hex, or if enhanced cofiguration parameter 34 'MCN Range' has been set to 001, from 31 hex to 7E hex..
+		-->
+		<Item key="g" value="[Msg.Transaction.MCON]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Track 2 data. 
+		* 	Contains up to 39 characters of track 2 data from the start sentinel to the end sentinel inclusive. (in the range 30 - 3F hex).
+		-->
+		<Item key="h" value="[Buffer.Track2]" size="0-39" restriction="[OptionCtrl.I_State.EnableTrack2]"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Track 3 data. 
+		* 	Contains up to 106 characters of track 3 data from the start sentinel to the end sentinel inclusive. (in the range 30 - 3F hex).
+		-->
+		<Item key="i" value="[Buffer.Track3]" size="0-106" restriction="[OptionCtrl.I_State.EnableTrack3]"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  Operation Code Data. 
+		* 	Contains the data collected in the opration Code buffer as a result of function idsplay keys pressed. 
+		* States D, E and Y determine the contents of this field, which idenfiies the transaction selected by cardholder.
+		-->
+		<Item key="j" value="[Msg.Transaction.OpCode]" size="8" restriction="[OptionCtrl.I_State.EnableOperationCode]"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!-- Amount Entry Field
+		* Determined by the Amount Entry and Enhanced Amount Entry states. 
+		* Data is right-justified with zeros to fill unused positions on the left. 
+		* The length is selecte din Configuration Parameters Load message or the Enhanced Configuration Parameters Load message.
+		 -->
+		<Item key="k" value="[Msg.Transaction.AmoutEntryField]" size="8-12" restriction="[OptionCtrl.I_State.EnableAmount]"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  PIN Buffer (Buffer A).. 
+		* 	Contains a 16-character PIN, encrypted as specified in the FIT, for remote PIN verification.
+		-->
+		<Item key="l" value="[Buffer.PIN]" size="var(32)" restriction="[OptionCtrl.I_State.FieldID_PIN]"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  General Purpose Buffer B 
+		* 	Contains the keyboard data entered during the information entry state or after receiving an Interactive Transaction
+		* Response. The last character in this buffer is a graphic 'T' if the terminal 'time-out' waiting for the cardholder to respond(via keyboard entry) to
+		* an interactive transaction response, or a graphic 'E' if the cardholder pressed  the Cancel key. Length is 3-32..
+		-->
+		<Item key="m" value="[Buffer.B]" size="var(32)" restriction="[OptionCtrl.I_State.FieldID_B]"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--  General Purpose Buffer C
+		* 	Contains the keyboard data entered during the information entry state
+		-->
+		<Item key="n" value="[Buffer.C]" size="0-32" restriction="[OptionCtrl.I_State.FieldID_C]"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Table Note 2|Table Note 7"/>
+		<!-- Track 1 Identifier. 
+		* Identifies data in the next  field as Track 1 data:
+		* '1' - Track 1 data
+		-->
+		<!-- [OptionCtrl.I_State.EnableTrack1] -->
+		<Item key="o" value="1" size="1" restriction="[OptionCtrl.I_State.EnableTrack1]"/>
+		<!--  Track 1 data
+		* 	Contains up to 78 characters of Track 1 data from the start sentinel to the end sential inclusive. The character range is 20-5F hex.
+		-->
+		<Item key="p" value="[Buffer.Track1]" size="0-78" restriction="[OptionCtrl.I_State.EnableTrack1]"/>
+		<!-- Field Separator "[Options.Option15]" -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Table Note 2|Table Note 7"/>
+		<!-- Transaction Status Data Identifier. 
+		* Identifies data in the next field as Transaction Status Data.
+		-->
+		<Item key="q" value="2" size="1" restriction="[Options.Option15]"/>
+		<!--  Last Transaction Status Data.
+		* 	Contains status data relating to the previous transaction performed by the terminal. It contains the following data:
+		* Last Transaction Serial Number - 4 bytes. 
+		* Last Status Issued - 1 byte. 
+		* '0' - none sent. 
+		* '1' - good termnation sent. 
+		* '2' - error status sent.
+		* '3' - transaction reply rejected.
+		* Last Transaction Notes Dispensed - 20 bytes.
+		* 	1 	-  Total number of notes refunded 	- 5 bytes.
+		* 	2	-  Total number of notes rejected 	- 5 bytes. 
+		* 	3 	-  Total number of notes encashed 	- 5 bytes.
+		* 	4	-  Total number of notes to escrow	- 5 bytes.
+		-->
+		<Item key="r" value="[LastTrans.LastTransSerialNum]" size="4" restriction="[Options.Option15]"/>
+		<Item key="r1" value="[LastTrans.LastStatusIssued]" size="1" restriction="[Options.Option15]"/>
+		<Item key="r2" value="[LastTrans.LastTransNotesDispensed]" size="20" restriction="[Options.Option15]"/>
+		<Item key="r2" value="[LastTrans.LastCoinageAmountDispensed]" size="5" restriction="[Options.Option15],[OptionCtrl.Configuration.CashAcceptor]"/>
+		<Item key="r2" value="[LastTrans.LastCoinsDispensedData]" size="20" restriction="[Options.Option15],[OptionCtrl.Configuration.CashAcceptor]"/>
+		<Item key="r3" value="[LastTrans.LastCashDepositTransactionDirection]" size="1" restriction="[Options.Option15],[OptionCtrl.Configuration.CashAcceptor]"/>
+		<Item key="r3" value="[LastTrans.LastCashDepositNumberOfNotes]" size="20" restriction="[Options.Option15],[OptionCtrl.Configuration.CashAcceptor],[Options.BNA.LastTransactionStatus]"/>
+		<Item key="r3" value="[LastTrans.NumberOfRecycleCassettesReported]" size="2" restriction="[Options.Option15],[OptionCtrl.Configuration.CashAcceptor],[Options.BNA.AcceptMoreThan90Notes],[Options.BNA.ExtendedMessageFormat],[Options.BNA.Recycling]"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.I_State.FieldID_U]"/>
+		<!-- CSP Data ID 'U'. A value of 'U' (55H, ASCII) in this field identifies the following field as the first customer select pin data.. 
+		* Identifies data in the next field as Transaction Status Data.
+		-->
+		<Item key="av1" value="U" size="1" restriction="[OptionCtrl.I_State.FieldID_U]"/>
+		<!-- CSP Data. This field contains an encrypted 16 character PIN. (Refer to "Financial Institution Tables." 
+		* Identifies data in the next field as Transaction Status Data.
+		-->
+		<Item key="av2" value="[Msg.Transaction.CSP_1]" size="1" restriction="[OptionCtrl.I_State.FieldID_U]"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.I_State.FieldID_V]"/>
+		<!-- Confirmation CSP Data ID 'V'. A value of 'V' (56H, ASCII) in this field identifies the following field as the second customer select pin data.. 
+		* Identifies data in the next field as Transaction Status Data.
+		-->
+		<Item key="aw1" value="V" size="1" restriction="[OptionCtrl.I_State.FieldID_V]"/>
+		<!-- CSP Data. This field contains an encrypted 16 character PIN. (Refer to "Financial Institution Tables." 
+		* Identifies data in the next field as Transaction Status Data.
+		-->
+		<Item key="aw2" value="[Msg.Transaction.CSP_2]" size="1" restriction="[OptionCtrl.I_State.FieldID_V]"/>
+		
+		<!-- NDC Wincro Extersion-->
+		<Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.WincroEMV.enable]"/>
+		<!-- NDC Wincro Extersion  Device Identifies Graphic.-->
+		<Item key="DIG" value="e" size="1" restriction="[OptionCtrl.WincroEMV.enable]"/>
+		<!-- NDC Wincro Extersion  EMV data.-->
+		<Item key="emvData" value="[Msg.Transaction.WincroExtersionEMVData]" size="" restriction="[OptionCtrl.WincroEMV.enable]"/>	
+		
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EMV.enable]"/>
+		<!-- NDC Wincro Extersion  EMV Data Buffer Identifies -->
+		<Item key="emvBufferId" value="e" size="1" restriction="[OptionCtrl.WincroEMV.enable]"/>
+		<!-- Smart Card Data ID '5'. The value '5' in this field identifies the following field as containing data inserted by CAM2/EMV Exits.
+		* Identifies data in the next field as Transaction Status Data.
+		-->
+		<Item key="bd1" value="5" size="1" restriction="[OptionCtrl.EMV.enable]"/>
+		<!--  The field is available for use by EMV/CAM2 Exits.-->
+		<!--
+		Smart card data identifier.
+		CAM - data in buffer is for CAM
+		VEE - data in buffer is for 'Visa Easy Entry'.
+		-->
+		<Item key="bd2a" value="CAM" size="3" restriction="[OptionCtrl.EMV.enable]"/>
+		<!--
+		CAM Flags. For values, see the following ‘CAM Flags’ section.
+		-->
+		<Item key="bd2b" value="[Msg.Transaction.CAMFlags]" size="4" restriction="[OptionCtrl.EMV.enable]"/>
+		<!--ICC data objects requested by Central.-->
+		<Item key="bd2c" value="[Msg.Transaction.Emv_ICCDataObjects]" size="var" restriction="[OptionCtrl.EMV.enable]"/>
+		<!--
+		Further ICC data objects requested by Central; see “ICC Transaction
+		Data Objects Table” in Chapter 5, “Central to Terminal Messages”.
+		-->
+		<Item key="bd2d" value="[Msg.Transaction.Emv_FurtherICCDataObjects]" size="var" restriction="[OptionCtrl.EMV.enable]"/>
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.I_State.FieldID_w]"/>
+		<!--  Device ID 'w', The value 'w' in this field identifies the following 2 fields as containing BNA or GBXX data. -->
+		<Item key="ca1" value="w" size="1" restriction="[OptionCtrl.I_State.FieldID_w]"/>
+		<!--  2 digits hex number (01-32) representing a note type, allowing up to 50 note type to be represented. -->
+		<Item key="ca2" value="[Buffer.w]" size="1" restriction="[OptionCtrl.I_State.FieldID_w]"/>
+	     <!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.I_State.FieldID_r]"/>
+		<!--  Device ID 'r', The value 'r' in this field identifies the following 2 fields as containing BNA or GBXX data. -->
+		<Item key="wincor_r" value="r" size="1" restriction="[OptionCtrl.I_State.FieldID_r]"/>
+		<!--  2 digits hex number (01-32) representing a note type, allowing up to 50 note type to be represented. -->
+		<Item key="wincor_r" value="[Buffer.r]" size="1" restriction="[OptionCtrl.I_State.FieldID_r]"/>
+		<Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.I_State.FieldID_r]"/>		
+		<Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.I_State.FieldID_r]"/>	
+		<Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.I_State.FieldID_r]"/>
+		<Item key="wincor_r" value="0" size="1" restriction="[OptionCtrl.I_State.FieldID_r]"/>			
+		<!--  Number of notes in escrow for the note type defined in ca2.(refer to option 45, see "Enhance Configuration Parameters Load".-->
+		<!--Item key="ca3" value="[EmvCam]" size="1" restriction="[OptionCtrl.Configuration.CashAcceptor]"/ -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.I_State.ECB6]"/>
+		<Item key="cc1" value="c" size="1" restriction="[OptionCtrl.I_State.ECB6]"/>
+		<Item key="cc2" value="[Buffer.ECBL3]" size="1" restriction="[OptionCtrl.I_State.ECB6]"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.I_State.ECB6]"/>
+		<Item key="cd1" value="d" size="1" restriction="[OptionCtrl.I_State.ECB6]"/>
+		<Item key="cd2" value="[Buffer.ECBL2]" size="1" restriction="[OptionCtrl.I_State.ECB6]"/>
+		<!--barcodereader -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.I_State.FieldID_e]"/>
+		<!--  Device ID 'e', TThe value ‘e’ in this field shows that barcode data is being reported. -->
+		<Item key="ce1" value="e" size="1" restriction="[OptionCtrl.I_State.FieldID_e]"/>
+		<!--  ASCII hexadecimal representation of the Barcode Format identifier. -->
+		<Item key="ce2" value="[Device.BarCodeReader.FormatIdentifier]" size="4" restriction="[OptionCtrl.I_State.FieldID_e]"/>
+		<!--  Reserved-->
+		<Item key="ce3" value="00" size="2" restriction="[OptionCtrl.I_State.FieldID_e]"/>
+		<!--  The scanned barcode data.-->
+		<Item key="ce4" value="[Buffer.e]" size="var" restriction="[OptionCtrl.I_State.FieldID_e]"/>
+		<!--  bunch cheque deposit-->
+		<!--  Field Separator-->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.I_State.FieldID_g]"/>
+		<!--  Data ID ‘g’. The value ‘g’ in this field shows that a bunch cheque deposit is being reported-->
+		<Item key="cg1" value="g" size="1" restriction="[OptionCtrl.I_State.FieldID_g]"/>
+		<!--  Total Cheques to Return. This field contains a count of the cheques inserted into the bunch cheque acceptor, but not included in the deposit transaction-->
+		<Item key="cg2" value="[Device.IPM.TotalChequesReturnCount]" size="var" restriction="[OptionCtrl.I_State.FieldID_g]"/>
+		<!--  Must be ‘0000’-->
+		<Item key="cg3" value="0000" size="4" restriction="[OptionCtrl.I_State.FieldID_g]"/>
+		<!--  Deposit Currency. This field contains the three-character ISO 4217 currency code for the deposited chequesIf multiple currencies are deposited, fields cg4 to cg16 are repeated for each deposited currency-->
+		<Item key="cg4" value="[Device.IPM.DepositCurrency]" size="3" restriction="[OptionCtrl.I_State.FieldID_g]"/>
+		<!--  Amount Exponent Sign. This field contains the amount exponent sign, which is either ‘+’ or ‘-’-->
+		<Item key="cg5" value="[Device.IPM.AmountExponentSign]" size="1" restriction="[OptionCtrl.I_State.FieldID_g]"/>
+		<!--  Amount Exponent Value. This field contains the exponent value for all cheque amounts reported in the bunch cheque deposit buffer-->
+		<Item key="cg6" value="[Device.IPM.AmountExponentValue]" size="2" restriction="[OptionCtrl.I_State.FieldID_g]"/>
+		<!--  Total Customer Amount. This field contains the sum of all amounts entered or corrected by the cardholder for cheques to be deposited.-->
+		<Item key="cg7" value="[Device.IPM.TotalCustomerAmount]" size="12" restriction="[OptionCtrl.I_State.FieldID_g]"/>
+		<!--  Total Derived Amount. This field contains the sum of all amounts for cheque to be deposited derived from image processing technologies-->
+		<Item key="cg8" value="[Device.IPM.TotalDerivedAmount]" size="12" restriction="[OptionCtrl.I_State.FieldID_g]"/>
+		<!--  Must be ‘0000‘-->
+		<Item key="cg9" value="0000" size="4" restriction="[OptionCtrl.I_State.FieldID_g]"/>
+		<!--  All Cheque Info-->
+		<Item key="cg10" value="[Device.IPM.ChequeInfo]" size="var" restriction="[OptionCtrl.I_State.FieldID_g]"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.I_State.FieldID_i]"/>
+		<Item key="cj1" value="i" size="1" restriction="[OptionCtrl.I_State.FieldID_i]"/>
+		<Item key="cj2" value="[Device.FingerService.BiometricData]" size="1" restriction="[OptionCtrl.I_State.FieldID_i]"/>
+		<!--  Cheque Group separator-->
+		<!-- <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.I_State.FieldID_g]"/> -->
+		<!--  Currency Group separator-->
+		<!-- <Item key="[GS]" value="[GS]" size="1" restriction="[OptionCtrl.I_State.FieldID_g]"/>	 -->
+		<!-- Field Separator  -->
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EnableMAC]"/>
+		<!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+		<Item key="x" value="[MAC]" size="8" restriction="[OptionCtrl.EnableMAC]"/>
+	</TransRequest>
+</Root>

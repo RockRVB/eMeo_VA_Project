@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<config name="Error">
+	<item key="00" value="Approved or completed successfully"/>
+	<item key="01" value="Refer to card issuer"/>
+	<item key="02" value="Refer to card issuer's special condition"/>
+	<item key="03" value="Invalid merchant"/>
+	<item key="04" value="Pick-up"/>
+	<item key="05" value="Do not honor"/>
+	<item key="06" value="Error"/>
+	<item key="07" value="Pick-up card, special condition"/>
+	<item key="09" value="Request in progress"/>
+	<item key="12" value="Invalid transaction"/>
+	<item key="13" value="Invalid amount"/>
+	<item key="14" value="Invalid card number (no such number)"/>
+	<item key="15" value="No such issuer"/>
+	<item key="19" value="Re-enter transaction"/>
+	<item key="20" value="Invalid response"/>
+	<item key="21" value="No action taken"/>
+	<item key="22" value="Suspected malfunction"/>
+	<item key="23" value="Unacceptable transaction fee"/>
+	<item key="25" value="Unable to locate original transaction"/>
+	<item key="30" value="Format error"/>
+	<item key="31" value="Bank not supported by switch"/>
+	<item key="33" value="Expired card"/>
+	<item key="34" value="Suspected fraud"/>
+	<item key="35" value="Card acceptor contact security"/>
+	<item key="36" value="Restricted card"/>
+	<item key="37" value="Card acceptor call acquirer security"/>
+	<item key="38" value="Allowable PIN tries exceeded"/>
+	<item key="39" value="No credit account"/>
+	<item key="40" value="Requested function not supported"/>
+	<item key="41" value="Lost card"/>
+	<item key="42" value="No universal account"/>
+	<item key="43" value="Stolen card, pick-up"/>
+	<item key="44" value="No investment account"/>
+	<item key="51" value="Not sufficient funds"/>
+	<item key="52" value="No chequing account"/>
+	<item key="53" value="No saving account"/>
+	<item key="54" value="Expired card"/>
+	<item key="55" value="Incorrect personal identification number"/>
+	<item key="56" value="No card record"/>
+	<item key="57" value="Transaction not permitted to cardholder"/>
+	<item key="58" value="Transaction not permitted to terminal"/>
+	<item key="59" value="Suspected fraud"/>
+	<item key="60" value="Card acceptor contact acquirer"/>
+	<item key="61" value="Exceeds amount limit"/>
+	<item key="62" value="Restricted card"/>
+	<item key="63" value="Security violation"/>
+	<item key="64" value="Original amount incorrect"/>
+	<item key="65" value="Exceeds withdrawal frequency limit"/>
+	<item key="66" value="Card acceptor call acquirer’s security department"/>
+	<item key="67" value="Hard capture (requires that card be picked up at ATM)"/>
+	<item key="68" value="Response received too late"/>
+	<item key="75" value="Allowable number of PIN tries exceeded"/>
+	<item key="76" value="Invalid Account"/>
+	<item key="90" value="Cutoff is in process"/>
+	<item key="91" value="Issuer is inoperative"/>
+	<item key="92" value="Financial institution or intermediate network facility cannot be found for routing"/>
+	<item key="93" value="Transaction cannot be completed. Violation of law"/>
+	<item key="94" value="Duplicate transaction"/>
+	<item key="95" value="Reconcile error"/>
+	<item key="96" value="Switch system malfunction"/>
+	<item key="97" value="Invalid ATM/POS Ids"/>
+	<item key="98" value="SW couldn’t get reply from IS"/>
+	<item key="99" value="PIN Block Error"/>
+	<item key="A0" value="MAC failed"/>
+	<item key="A1" value="Check random code failed"/>
+	<item key="B1" value="Need Terminal download key"/>
+	<item key="B2" value="Need Terminal download Parameter"/>
+</config>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--双屏自定义流程文件
+	FlowID: 流程ID，系统事先定义好的不能修改
+	FlowName: 流程名称
+	FlowMenuItems: 流程包含的功能项
+	bReversible: 流程是否可逆
+	comment: 注释
+-->
+<TwinFlowCfg>
+	<RecordItem>
+		<FlowID>FLOW_1</FlowID>
+		<FlowName>IDS_Flow_AddCash</FlowName>
+		<FlowMenuItems>11,192,13,161</FlowMenuItems>
+		<bReversible>0</bReversible>
+		<comment>清机加钞:打印结账&gt;打开钱箱&gt;设置张数&gt;查询余额</comment>
+	</RecordItem>
+	<RecordItem>
+		<FlowID>FLOW_2</FlowID>
+		<FlowName>IDS_Flow_InitSetting</FlowName>
+		<FlowMenuItems>311,3151,3152,312</FlowMenuItems>
+		<bReversible>1</bReversible>
+		<comment>初始设置:设ATM号&gt;设本机IP&gt;设前置IP&gt;设主密钥</comment>
+	</RecordItem>
+	<RecordItem>
+		<FlowID>FLOW_3</FlowID>
+		<FlowName>IDS_Flow_LoadNotes</FlowName>
+		<FlowMenuItems>11,12,13,161</FlowMenuItems>
+		<bReversible>0</bReversible>
+		<comment>少钞加钞:打印结账&gt;打开钱箱&gt;设置张数&gt;查询余额</comment>
+	</RecordItem>
+</TwinFlowCfg>

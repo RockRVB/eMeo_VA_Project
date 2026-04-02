@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--与WebAPI通讯服务
+VTAServiceSession: 网络会话名称,对应NetworkConfig.xml Session中的name 属性
+MessageTimeOut: 超时时间
+VideoRequestTrace: 保留属性
+BusinessTrace: 保留属性
+VTAListenerSession: 客户端监听服务名称, 对应NetworkConfig.xml Listener中的name 属性
+-->
+<WebSocketServiceConfig>
+  <HashCode value="0" />
+  <ModuleSensitiveFields value="m_track1,m_track2,m_track3,Track2,PINBlock,argTrace2Data,img,feature,facialdata"/>
+  <Address url="localhost" port="8863" path="/cmd"/>
+  <SSL enable="0">
+  	<Authenticate sslProtocol="Tls12" requireClientCertificate="0" clientX509CertificateName="FEEL Biometric Platform Client" checkCertificateRevocation="0">
+  		<ServerX509Certificate value="fbfs.grgbanking.com" findType="FindBySubjectName" storeLocation="CurrentUser"/>
+  	</Authenticate>
+  </SSL>
+</WebSocketServiceConfig>

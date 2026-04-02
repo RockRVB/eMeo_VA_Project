@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<Data>
+		<Item key="f" value="J" size="1" restriction="Mandatory"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!-- Field Separator  -->
+	</Data>
+	<SmartCard>
+		<!--  Message Authentication Code Data. The field contains the calculated value for authentication of this message. -->
+		<Item key="h" value="[TranReplyMsg.OperationSequenceNumber]" size="3" restriction="Mandatory"/>
+		<Item key="h1" value="[Device.SmartCard.DeviceID]" size="4" restriction="Mandatory"/>
+		<Item key="h2" value="[Device.SmartCard.MDS]" size="var" restriction="Mandatory"/>
+		<Item key="[FS]" value="[FS]" size="1" restriction="[OptionCtrl.EMV.SmartCardDataDelivered]"/>
+		<Item key="f1" value="9" size="1" restriction="[OptionCtrl.EMV.SmartCardDataDelivered]"/>
+		<Item key="f2" value="077" size="3" restriction="[OptionCtrl.EMV.SmartCardDataDelivered]"/>
+		<Item key="f2" value="[Buffer.M]" size="3" restriction="[OptionCtrl.EMV.SmartCardDataDelivered]"/>
+	</SmartCard>
+	<CashAcceptor>
+		<Item key="h" value="[TranReplyMsg.OperationSequenceNumber]" size="3" restriction="Mandatory"/>
+		<Item key="h1" value="[Device.CashAcceptor.DeviceID]" size="4" restriction="Mandatory"/>
+		<Item key="h2" value="[Device.CashAcceptor.MDS]" size="var" restriction="Mandatory"/>
+	</CashAcceptor>
+</Root>

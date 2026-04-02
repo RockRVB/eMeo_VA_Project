@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<Msg>
+		<!--MessageIdentifier.-->
+		<Item key="g" value="r" size="1" restriction="Mandatory"/>
+		<!--FieldSeparator-->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--Message sub identifier-->
+		<Item key="h" value="4" size="1" restriction="Mandatory"/>
+		<!--FieldSeparator-->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--Number of cash in transactions  - 4-->
+		<Item key="h2" value="[Wincor.CashAcceptor.numberofcashintransactions]" size="5" restriction="Mandatory"/>
+		<!--FieldSeparator-->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--Number of retract operations (notes) - 5-->
+		<Item key="h2" value="[Wincor.CashAcceptor.numberofretractoperations]" size="5" restriction="Mandatory"/>
+		<!--GroupSeparator-->
+		<Item key="[GS]" value="[GS]" size="1" restriction="Mandatory"/>
+		<!--Number of cash in boxes 00-07 2
+			Number of notes to cash in box n (1) -5-->
+		<Item key="h2" value="[Wincor.CashAcceptor.numberofcashinboxes]" size="4" restriction="Mandatory"/>
+		<!--Item key="h2" value="[Wincor.CashAcceptor.groupofnotestoboxes]" size="5*n" restriction="Mandatory"/-->
+		<Item key="h2" value="[Wincor.CashAcceptor.cassette.t1.deposit]" size="5" restriction="Mandatory"/>
+		<Item key="h2" value="[Wincor.CashAcceptor.cassette.t2.deposit]" size="5" restriction="Mandatory"/>
+		<Item key="h2" value="[Wincor.CashAcceptor.cassette.t3.deposit]" size="5" restriction="Mandatory"/>
+		<Item key="h2" value="[Wincor.CashAcceptor.cassette.t4.deposit]" size="5" restriction="Mandatory"/>
+		<!--GroupSeparator->
+		<Item key="[GS]" value="[GS]" size="1" restriction="Mandatory"/>
+		<!-Number of retract operations (coins) (2) [-] 5->
+		<Item key="h2" value="" size="4" restriction="Mandatory"/>
+		<!-GroupSeparator->
+		<Item key="[GS]" value="[GS]" size="1" restriction="Mandatory"/>
+		<!-Number of coin in boxes (2) [00-07] 2  - 4->
+		<Item key="h2" value="" size="4" restriction="Mandatory"/>
+		<!-FieldSeparator->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!-Number of coins to coin in box n (2) (3) [-] 5->
+		<Item key="h2" value="" size="4" restriction="Mandatory"/-->
+		<!--FieldSeparator-->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--Number of drums 00-06 2
+			Number of notes to drum n (4) - 5-->
+		<Item key="h2" value="00" size="4" restriction="Mandatory"/>
+		<!--FieldSeparator-->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--Number of L4 notes inserted - 5
+		Number of L3 notes inserted - 5
+		Number of L2 notes inserted - 5
+		-->
+		<Item key="h2" value="[Wincor.CashAcceptor.l4notesinserted]" size="4" restriction="Mandatory"/>
+		<Item key="h2" value="[Wincor.CashAcceptor.l3notesinserted]" size="4" restriction="Mandatory"/>
+		<Item key="h2" value="[Wincor.CashAcceptor.l2notesinserted]" size="4" restriction="Mandatory"/>
+		<!--FieldSeparator-->
+		<Item key="[FS]" value="[FS]" size="1" restriction="Mandatory"/>
+		<!--
+		Note/Coin ID (5) - 2
+		Number of notes per Note ID and coins
+		per Coin ID cashed in (5)- 5-->
+		<Item key="h2" value="[Wincor.CashAcceptor.groupofnoteidcount]" size="4" restriction="Mandatory"/>
+		<!--Item key="h2" value="[Wincor.CashAcceptor.note.t1.id]" size="2" restriction="Mandatory"/>
+		<Item key="h2" value="[Wincor.CashAcceptor.note.t1.count]" size="5" restriction="Mandatory"/>
+		<Item key="h2" value="[Wincor.CashAcceptor.note.t2.id]" size="2" restriction="Mandatory"/>
+		<Item key="h2" value="[Wincor.CashAcceptor.note.t2.count]" size="5" restriction="Mandatory"/>
+		<Item key="h2" value="[Wincor.CashAcceptor.note.t3.id]" size="5" restriction="Mandatory"/>
+		<Item key="h2" value="[Wincor.CashAcceptor.note.t3.count]" size="5" restriction="Mandatory"/>
+		<Item key="h2" value="[Wincor.CashAcceptor.note.t4.id]" size="2" restriction="Mandatory"/>
+		<Item key="h2" value="[Wincor.CashAcceptor.note.t4.count]" size="5" restriction="Mandatory"/-->
+	</Msg>
+</Root>

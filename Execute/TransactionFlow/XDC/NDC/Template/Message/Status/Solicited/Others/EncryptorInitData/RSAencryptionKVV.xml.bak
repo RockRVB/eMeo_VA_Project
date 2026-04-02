@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <EncryptorInitData>
+    <Item key="e" value="7" size="1" restriction="Mandatory" />
+    <!-- Field Separator  -->
+    <Item key="[FS]" value="[FS]" size="1" restriction="Mandatory" />
+    <!-- When information identifier = '7'
+        *       characters 3 bytes:   	- Binary data length
+        *        'var'  - RSA KVV base 94 encoded
+		-->
+    <Item key="f1" value="[SolicitedStatus.EncryptorInitData.BinaryDataLength]" size="3" restriction="Mandatory" />
+    <Item key="f2" value="[SolicitedStatus.EncryptorInitData.RSAKVV]" size="var" restriction="Mandatory" />
+  </EncryptorInitData>
+</Root>

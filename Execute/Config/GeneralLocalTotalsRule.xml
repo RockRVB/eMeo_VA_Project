@@ -1,0 +1,112 @@
+﻿<Config>
+	<!--打印结账默认打印方式 0:让客户选择打印；1-系统默认流水打印；2-系统默认凭条打印；3-系统默认流水、凭条均打印-->
+	<LocalTotalDefaultPrint mode="1"></LocalTotalDefaultPrint>
+	<!--是否打印冲正成功交易的汇总数据-->
+	<PrintReversalSucTrans mode="0"></PrintReversalSucTrans>
+	<!--打印结账是否打印吞卡记录-->
+	<PrintCaptureCardInfo mode="1"/>
+	<!--吞卡记录打印成功后，是否清除吞卡记录和读卡器吞卡张数-->
+	<ClearCaptureCardInfoWhenPrintSuccess mode="0"/>
+	<!--统计格式
+		NormalTransTotalFormat：正常交易统计格式
+		AbnormalTransTotalFormat：异常交易统计格式
+		FieldLength1：笔数占用字符数(中文算2个字符)
+		FieldLength2：交易类型占且字符数(中文算2个字符)
+
+	<LocalTotalsFormat>
+		<NormalTransTotalFormat enable="0" FieldLength1="8" FieldLength2="12"/>
+		<AbnormalTransTotalFormat enable="0" FieldLength1="8" FieldLength2="16"/>
+	</LocalTotalsFormat>
+	-->
+	<Rule>
+		<!--
+		title 表示交易统计的标题，包含两种格式 横 "-" 、竖 "|"
+		例如
+横的（一般用于交易统计）
+			笔数  交易类型  张数
+			1      发卡		1
+
+竖的（一般用于交易明细里）	
+		身份证号： 1357000
+		发卡号码： 666666666666
+		主机相应码：0013
+		原因： 发卡器故障
+		
+title中的TransType 表示TransType这一列的数据是： 从数据库获取的value值需要通过后台的GetResValue方法获取之后再展示出来
+ Reason:F[NV]  表示TransType这一列的数据是： 列名 + 从数据库获取的value值 合成一个新的值，然后用这个新的值通过后台的GetResValue方法获取之后再展示出来
+	如 列名 CashDevErrorFlag 对应的值为 1 那么 F[NV] 就表示GetResValue("CashDevErrorFlag1")的值
+ Reason:F[NV] 就表示 GetResValue（"Reason"）+":"+ GetResValue("CashDevErrorFlag1") 即“原因：配钞失败”
+CashDevErrorFlag: 15, 代表存在部分出钞
+V以及D[V]为关键字，表示V数据库获取的值，D[V]表示将V格式化为标准的日期格式
+Rule 下都有SubRule的节点：提供includeTransType（需要统计的交易类型）、sql（完整的数据库sql语句）
+		-->
+		<!--正常交易统计规则-->
+		<NormalTransRule title="COUNT-TRANSTYPE-AMOUNT:{f2}">
+			<SubRule includeTransType="CWD|DEP|ADP|TFR|ICBDZHQC|AccountOpen|CardIssue" 
+			sql="select count(1),TransType,sum(TransAmount) - sum(FailDispenseAmount) from TransDetail where ((HostCommFlag=0 and HostResponseCode='00' and ((CashDevErrorFlag=0 and ReversalFlag=0) or CashDevErrorFlag=15) and ICErrorFlag=0) or CardType='1111')" />
+		</NormalTransRule>
+
+		<!--异常交易统计规则-->
+		<AbnormalTransRule title="COUNT-TRANSTYPE-AMOUNT:{f2}">			
+			<SubRule includeTransType="CWD" 
+			sql="select count(1),TransType,sum(case CashDevErrorFlag when 15 then FailDispenseAmount ELSE TransAmount END)  from TransDetail where ((HostCommFlag=0 and CashDevErrorFlag in (1,2,3,4,15) and ReversalFlag &lt;&gt; 2) or (HostCommFlag in (4,5,6,8) and ReversalFlag &lt;&gt; 2) or (ReversalFlag &gt; 0 and ReversalFlag &lt;&gt; 2) or (ICErrorFlag in (1,3) and ReversalFlag &lt;&gt; 2))" />
+			<SubRule includeTransType="DEP|ADP" 
+			sql="select count(1),TransType,sum(TransAmount) from TransDetail where ((CashDevErrorFlag in (7,8,9,10,11,12,13,14,99) and ReversalFlag &lt;&gt; 2) or (HostCommFlag in (3,4,5,6,8) and CashDevErrorFlag=0 and ReversalFlag=0) or (HostCommFlag=7 and HostResponseCode not in ({0}) and CashDevErrorFlag=0) or (ReversalFlag &gt; 0 and ReversalFlag &lt;&gt; 2) or (ICErrorFlag in (1,3) and ReversalFlag &lt;&gt; 2))" />
+			<SubRule includeTransType="TFR|ICBDZHQC" 
+			sql="select count(1),TransType,sum(TransAmount) from TransDetail where ((HostCommFlag in (4,5,6,8) and ReversalFlag=0) or (ReversalFlag &lt;&gt; 0 and ReversalFlag &lt;&gt; 2) or (ICErrorFlag in (1,3) and ReversalFlag &lt;&gt; 2))" />
+			<!--冲正成功交易统计规则-->			
+			<SubRule includeTransType="CWD" isReversal="1" isReversalNormal="1"
+			sql="select count(1),TransType,sum(TransAmount) from TransDetail where (ReversalFlag=2)" />
+			<!--冲正失败交易统计规则-->
+			<SubRule includeTransType="CWD" isReversal="1" isReversalNormal="0"
+			sql="select count(1),TransType,sum(TransAmount) from TransDetail where (ReversalFlag &lt;&gt; 0 and ReversalFlag &lt;&gt; 2)" />
+            <SubRule includeTransType="AccountOpen|CardIssue" 
+			sql="select count(1),TransType,0 from TransDetail where (CardType='0000')" />
+		</AbnormalTransRule>
+
+		<!--设备异常交易明细规则-->
+		<DevErrorAbnormalTransDetailRule title="V,V,V|D[V],V,V|ResponseCode:V,Reason:F[NV]">
+			<SubRule includeTransType="CWD|DEP|ADP"
+			sql="select CardNumber,LocalSerialNumber,TransType,LocalTransDate||LocalTransTime,TransCurrency,TransAmount,HostResponseCode,CashDevErrorFlag from TransDetail where (CashDevErrorFlag in (1,2,4,7,8,10,11,12,13,14,99) and ReversalFlag=0)" />
+		</DevErrorAbnormalTransDetailRule>
+
+		<!--冲正成功交易明细规则-->
+		<ReversalNormalTransDetailRule title="V,V,V|D[V],V,V|ResponseCode:V,Reason:F[NV]|[F[NV]]">
+			<SubRule includeTransType="CWD|DEP|ADP|TFR" 
+			sql="select CardNumber,LocalSerialNumber,TransType,LocalTransDate||LocalTransTime,TransCurrency,TransAmount,HostResponseCode,CashDevErrorFlag,ReversalFlag,HostCommFlag from TransDetail where (ReversalFlag=2)" />
+		</ReversalNormalTransDetailRule>
+
+		<!--冲正失败交易明细规则-->
+		<ReversalAbnormalTransDetailRule title="V,V,V|D[V],V,V|ResponseCode:V,Reason:F[NV]|[F[NV]]">
+			<SubRule includeTransType="CWD|DEP|ADP|TFR" 
+			sql="select CardNumber,LocalSerialNumber,TransType,LocalTransDate||LocalTransTime,TransCurrency,TransAmount,HostResponseCode,CashDevErrorFlag,ReversalFlag,HostCommFlag from TransDetail where (ReversalFlag &lt;&gt; 0 and ReversalFlag &lt;&gt; 2)" />
+		</ReversalAbnormalTransDetailRule>
+
+		<!--通讯故障交易明细规则-->
+		<CommErrorAbnormalTransDetailRule title="V,V,V|D[V],V,V|ResponseCode:V,Reason:F[NV]">
+			<SubRule includeTransType="CWD" 
+			sql="select CardNumber,LocalSerialNumber,TransType,LocalTransDate||LocalTransTime,TransCurrency,TransAmount,HostResponseCode,HostCommFlag from TransDetail where (HostCommFlag in (4,5,6,8) and CashDevErrorFlag=0 and ReversalFlag=0)" />
+			<SubRule includeTransType="DEP|ADP" 
+			sql="select CardNumber,LocalSerialNumber,TransType,LocalTransDate||LocalTransTime,TransCurrency,TransAmount,HostResponseCode,HostCommFlag from TransDetail where (HostCommFlag in (4,5,6,8) and CashDevErrorFlag=0 and ReversalFlag=0)" />
+			<SubRule includeTransType="TFR|ICBDZHQC" 
+			sql="select CardNumber,LocalSerialNumber,TransType,LocalTransDate||LocalTransTime,TransCurrency,TransAmount,HostResponseCode,HostCommFlag from TransDetail where (HostCommFlag in (4,5,6,8) and ReversalFlag=0)" />
+		</CommErrorAbnormalTransDetailRule>
+
+		<!--超时未拿交易明细规则-->		
+		<TimeoutAbnormalTransDetailRule title="V,V,V|D[V],V,V|ResponseCode:V,Reason:F[NV]">
+			<SubRule includeTransType="CWD|DEP|ADP" 
+			sql="select CardNumber,LocalSerialNumber,TransType,LocalTransDate||LocalTransTime,TransCurrency,TransAmount,HostResponseCode,CashDevErrorFlag from TransDetail where (CashDevErrorFlag in (3,9) and ReversalFlag &lt;&gt; 2)" />
+		</TimeoutAbnormalTransDetailRule>
+
+		<!--存款主机拒绝吞钞交易明细规则-->
+		<DepositHostRefuseAbnormalTransDetailRule title="V,V,V|D[V],V,V|ResponseCode:V,Reason:F[NV]">
+			<SubRule includeTransType="DEP|ADP" 
+			sql="select CardNumber,LocalSerialNumber,TransType,LocalTransDate||LocalTransTime,TransCurrency,TransAmount,HostResponseCode,HostCommFlag from TransDetail where ((HostCommFlag=7 and HostResponseCode not in ({0}) and CashDevErrorFlag=0 and ReversalFlag &lt;&gt; 2) or (HostResponseCode in ({0}) and HostCommFlag=7 and CashDevErrorFlag &lt;&gt;  6))" />
+		</DepositHostRefuseAbnormalTransDetailRule>
+
+		<ICErrorAbnormalTransDetailRule title="V,V,V|D[V],V,V|ResponseCode:V,Reason:F[NV]">
+			<SubRule includeTransType="CWD|DEP|ADP|TFR|ICBDZHQC|ICXJCZ" 
+			sql="select CardNumber,LocalSerialNumber,TransType,LocalTransDate||LocalTransTime,TransCurrency,TransAmount,HostResponseCode,ICErrorFlag from TransDetail where (ICTransFlag=1 and HostCommFlag &lt;&gt; 9 and ICErrorFlag &gt; 0 and CashDevErrorFlag=0 and ReversalFlag &lt;&gt; 2 and HostResponseCode=0)" />
+		</ICErrorAbnormalTransDetailRule>
+	</Rule>
+</Config>

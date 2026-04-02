@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+  <Screen name="UI_MicrocreditProtol" uri="Microcredit\MicrocreditProtol.xaml" cache="0">
+  </Screen>
+  <Screen name="UI_AppliedSuccess" uri="Microcredit\AppliedSuccess.xaml" cache="0">
+  </Screen>
+  <Screen name="UI_ScanCredentials" uri="Microcredit\ScanCredentials.xaml" cache="0">
+  </Screen>
+  <Screen name="UI_InputUserInfo" uri="Microcredit\InputUserInfo.xaml" cache="0">
+  </Screen> 
+   <Screen name="UI_MicrocreditAuditingFail" uri="Microcredit\AuditingFail.html" cache="0">
+  </Screen> 
+    <Screen name="UI_MicrocreditIDValidateFailure" uri="Microcredit\IDValidateFailure.xaml" cache="0">
+  </Screen> 
+</Screens>
+

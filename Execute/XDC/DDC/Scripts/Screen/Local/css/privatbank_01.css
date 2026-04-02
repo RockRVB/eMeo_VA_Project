@@ -1,0 +1,104 @@
+/*html, body, div,object{ margin:  0px; padding : 0px; border : 0px;}*/
+/*body { border: 1px red solid;}*/
+
+/* Buttons location left:500px;*/
+#F1{position:absolute;top:260px;right:0px;}
+#F2{position:absolute;top:345px;right:0px;}
+#F3{position:absolute;top:430px;right:0px;}
+#F4{position:absolute;top:515px;right:0px;}
+#F5{position:absolute;top:515px;left:0px;}
+#F6{position:absolute;top:430px;left:0px;}
+#F7{position:absolute;top:345px;left:0px;}
+#F8{position:absolute;top:260px;left:0px;}
+.InputTable{position:absolute;background-image:url(../Images/controls/input_01.png);height:37px;width:184px;padding:10px;padding-bottom:0px;font-family:Arial;font-weight:bold;font-size:44px;text-align:center;color:#ffff00;}
+/* Icons locations */
+#F1_img{position:absolute;top:263px;right:310px;}
+#F2_img{position:absolute;top:348px;right:310px;}
+#F3_img{position:absolute;top:433px;right:310px;}
+#F4_img{position:absolute;top:518px;right:310px;}
+#F5_img{position:absolute;top:518px;left:310px;}
+#F6_img{position:absolute;top:433px;left:310px;}
+#F7_img{position:absolute;top:348px;left:310px;}
+#F8_img{position:absolute;top:263px;left:310px;}
+/* Text classes */
+/*#adv{margin:0px;}*/
+#withBg{position:relative;background-image:url(../images/background_01.jpg);padding:0px;margin:0px;}
+#welcomeText{position:absolute;top:30px;right:40px;text-align:center;font-family:Arial;font-weight:bold;font-size:22px;color:#ffffff;}
+#screenNameText{position:absolute;top:140px;left:25px;text-align:center;width:750px;font-family:Arial;font-size:40px;color:#ffffff;}
+#screenTopText{position:absolute;top:200px;left:25px;text-align:center;width:750px;font-family:Arial;font-size:27px;color:#ffffff;}
+#screenBottomText{position:absolute;bottom:5px;left:25px;text-align:center;width:750px;font-family:Arial;font-size:18px;color:#ffffff;}
+#timeText{position: absolute;top:60px;right:40px;text-align:center;font-family:Arial;font-weight:bold;font-size:22px;color:#ffffff;}
+/* Style */
+#l_19{font-size:19px;float:left;}
+#c_19{font-size:19px;float:center;}
+#r_19{font-size:19px;float:right;}
+#l_20{font-size:20px;float:left;}
+#c_20{font-size:20px;float:center;}
+#r_20{font-size:20px;float:right;}
+#l_21{font-size:21px;float:left;}
+#c_21{font-size:21px;float:center;}
+#r_21{font-size:21px;float:right;}
+#l_22{font-size:22px;float:left;}
+#c_22{font-size:22px;float:center;}
+#r_22{font-size:22px;float:right;}
+#l_23{font-size:23px;float:left;}
+#c_23{font-size:23px;float:center;}
+#r_23{font-size:23px;float:right;}
+#l_24{font-size:24px;float:left;}
+#c_24{font-size:24px;float:center;}
+#r_24{font-size:24px;float:right;}
+#l_25{font-size:25px;float:left;}
+#c_25{font-size:25px;float:center;}
+#r_25{font-size:25px;float:right;}
+#l_26{font-size:26px;float:left;}
+#c_26{font-size:26px;float:center;}
+#r_26{font-size:26px;float:right;}
+#l_27{font-size:27px;float:left;}
+#c_27{font-size:27px;float:center;}
+#r_27{font-size:27px;float:right;}
+#l_28{font-size:28px;float:left;}
+#c_28{font-size:28px;float:center;}
+#r_28{font-size:28px;float:right;}
+#l_29{font-size:29px;float:left;}
+#c_29{font-size:29px;float:center;}
+#r_29{font-size:29px;float:right;}
+#l_30{font-size:30px;float:left;}
+#c_30{font-size:30px;float:center;}
+#r_30{font-size:30px;float:right;}
+#l_31{font-size:31px;float:left;}
+#c_31{font-size:31px;float:center;}
+#r_31{font-size:31px;float:right;}
+#l_32{font-size:32px;float:left;}
+#c_32{font-size:32px;float:center;}
+#r_32{font-size:32px;float:right;}
+#l_33{font-size:33px;float:left;}
+#c_33{font-size:33px;float:center;}
+#r_33{font-size:33px;float:right;}
+#l_34{font-size:34px;float:left;}
+#c_34{font-size:34px;float:center;}
+#r_34{font-size:34px;float:right;}
+#l_35{font-size:35px;float:left;}
+#c_35{font-size:35px;float:center;}
+#r_35{font-size:35px;float:right;}
+#l_36{font-size:36px;float:left;}
+#c_36{font-size:36px;float:center;}
+#r_36{font-size:36px;float:right;}
+#l_37{font-size:37px;float:left;}
+#c_37{font-size:37px;float:center;}
+#r_37{font-size:37px;float:right;}
+#l_38{font-size:38px;float:left;}
+#c_38{font-size:38px;float:center;}
+#r_38{font-size:38px;float:right;}
+#l_39{font-size:39px;float:left;}
+#c_39{font-size:39px;float:center;}
+#r_39{font-size:39px;float:right;}
+#l_40{font-size:40px;float:left;}
+#c_40{font-size:40px;float:center;}
+#r_40{font-size:40px;float:right;}
+* html img, 
+* html .png{position:relative;
+behavior: expression((this.runtimeStyle.behavior="none")&&(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" && this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none",
+this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')",
+this.src = "c:/protopas/web/images/transparent.gif"):(this.origBg = this.origBg? this.origBg :this.currentStyle.backgroundImage.toString().replace('url("','').replace('")',''),
+this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')",
+this.runtimeStyle.backgroundImage = "none")),this.pngSet=true));}

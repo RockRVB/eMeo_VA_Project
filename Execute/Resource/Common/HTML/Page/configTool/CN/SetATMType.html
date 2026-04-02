@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../css/CN.css" replace="1" />
+<link rel="stylesheet" type="text/css" href="../../css/Button.css" />
+<script defer type="text/javascript" src="../../js/ShowResource.js"></script>
+</head>
+<body>
+<div class="backgroundDiv" style="position: absolute; width: 380px; height: 780px; z-index: 1; left: 20px; top: 30px;">
+	<form method="post">
+	 <fieldset id="Group1">
+		<legend>ATM Type</legend>
+		<table style="width: 100%;font-size:12px" >				
+			<tr>
+				<td>
+				  <select id="Select1" type="select" style="width: 202px" selectValue="{Binding value file=Config\XDC\MainConfig\MainConfig.xml xpath=/Root/MainConfig/Item[@key='ATMType'] mode=2}">
+				   <option value="0" OnSelected="XDC\Tools\eCATConfigTool\Customization\CfgGRG.xml" OnUnselected="XDC\Tools\eCATConfigTool\Customization\CfgNCR.xml">GRG ATM</option>
+				   <option value="1" OnSelected="XDC\Tools\eCATConfigTool\Customization\CfgNCR.xml" OnUnselected="XDC\Tools\eCATConfigTool\Customization\CfgGRG.xml">NCR ATM</option>
+				  </select>
+				</td>
+			</tr>
+		</table>
+	  </fieldset><BR>
+	  	<input id="Submit1" type="submit" value="Cancel" tag="OnCancel" ><input id="Submit2" type="submit" value="Submit" tag="OnConfirm" ></form>
+</div>
+</body>
+</html>
