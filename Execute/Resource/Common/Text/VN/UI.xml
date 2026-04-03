@@ -462,17 +462,17 @@
 	<item key="ids_VAB_nt_02_qdnt_1" value="Chỉ chấp nhận tiền polymer Việt Nam mệnh giá từ 50,000 VNĐ." />
 	<item key="ids_VAB_nt_02_qdnt_2" value="Số tờ nộp tối đa 200 tờ/ lần." />
 	<item key="ids_VAB_nt_02_qdnt_3" value="Vui lòng loại bỏ các vật thể không phải là tiền" />
-	<item key="ids_VAB_nt_02_pls_input_money" value="Vui lòng đưa tiền vào khoang<br>(Tối đa 200 tờ)" />
+	<item key="ids_VAB_nt_02_pls_input_money" value="Vui lòng đưa tiền vào khoang&lt;br&gt;(Tối đa 200 tờ)" />
 	<item key="ids_VAB_nt_02_alert" value="Lưu ý: Các điều kiện tiền không được chấp nhận" />
 	<item key="ids_VAB_nt_02_gap_mep" value="Gấp mép" />
 	<item key="ids_VAB_nt_02_gap_tien" value="Gấp tiền" />
-	<item key="ids_VAB_nt_02_xo_lech" value="Xô lệch<br>Dính nhau" />
+	<item key="ids_VAB_nt_02_xo_lech" value="Xô lệch&lt;br&gt;Dính nhau" />
 	<item key="ids_VAB_nt_02_nhan_nheo" value="Nhăn nheo" />
 	<item key="ids_VAB_nt_02_rach" value="Rách, thủng" />
 	<item key="ids_VAB_nt_02_dat_doc" value="Đặt dọc" />
-	<item key="ids_VAB_nt_02_niem_phong" value="Buộc,<br>niêm phong" />
+	<item key="ids_VAB_nt_02_niem_phong" value="Buộc,&lt;br&gt;niêm phong" />
 	<item key="ids_VAB_nt_02_cuon" value="Cuộn" />
-	<item key="ids_VAB_nt_02_kem_di_vat" value="Kèm<br>dị vật" />
+	<item key="ids_VAB_nt_02_kem_di_vat" value="Kèm&lt;br&gt;dị vật" />
 	<item key="ids_VAB_nt_02_select_account_title" value="Vui lòng chọn TKTT để nộp tiền" />
 	<item key="ids_VAB_nt_02_cus_name" value="Tên khách hàng" />
 	<item key="ids_VAB_nt_02_cccd" value="Số CCCD" />
@@ -481,7 +481,7 @@
 	<item key="ids_VAB_nt_02_cccd_value" value="" />
 	<item key="ids_VAB_nt_02_cif_value" value="" />
 	<item key="ids_VAB_nt_02_cif_value" value="" />
-	<item key="ids_VAB_nt_03_loading_title" value="Máy đang kiểm đếm ....<br>Quý khách vui lòng đợi trong giây lát" />
+	<item key="ids_VAB_nt_03_loading_title" value="Máy đang kiểm đếm ....&lt;br&gt;Quý khách vui lòng đợi trong giây lát" />
 	<item key="ids_VAB_nt_04_confirm_deposit" value="Xác nhận" />
 	<item key="ids_VAB_nt_04_add_on_deposit" value="Nộp thêm" />
 	<item key="ids_VAB_nt_04_count_down_text" value="Giao dịch kết thúc sau" />
@@ -509,7 +509,7 @@
 	<item key="ids_VAB_nt_08_print_trans_bill" value="IN BIÊN LAI GIAO DỊCH" />
 	<item key="ids_VAB_nt_08_end_transaction" value="Kết thúc giao dịch" />
 	<item key="ids_VAB_nt_07_deposit_error_title" value="Nạp tiền không thành công" />
-	<item key="ids_VAB_nt_05_cancel_deposit_title" value="Giao dịch đã hủy <br>Quý khách vui lòng nhận tiền từ khay" />
+	<item key="ids_VAB_nt_05_cancel_deposit_title" value="Giao dịch đã hủy &lt;br&gt;Quý khách vui lòng nhận tiền từ khay" />
 	<item key="ids_VAB_nt_05_cancel_deposit_message" value="Hộc tiền sẽ tự động đóng sau 120s và toàn bộ tiền sẽ bị giữ lại" />
 	<item key="ids_VAB_withdraw_qr_step_1" value="Xác thực" />
 	<item key="ids_VAB_withdraw_qr_step_2" value="Chọn tài khoản" />
@@ -561,7 +561,7 @@
 	<item key="ids_VAB_rt_05_take_off_helmet" value="Tháo mũ bảo hiểm" />
 	<item key="ids_VAB_rt_05_start_face_authen" value="Bắt đầu xác thực" />
 	<item key="ids_VAB_rt_05_face_authenting" value="Đang xác thực..." />
-	<item key="ids_VAB_rt_06_counting_money" value="Máy đang kiểm đếm ....<br>Quý khách vui lòng đợi trong giây lát" />
+	<item key="ids_VAB_rt_06_counting_money" value="Máy đang kiểm đếm ....&lt;br&gt;Quý khách vui lòng đợi trong giây lát" />
 	<item key="ids_VAB_rt_07_withdraw_error_title" value="Rút tiền không thành công" />
 	<item key="ids_VAB_rt_08_withdraw_success" value="Giao dịch thành công" />
 	<item key="ids_VAB_rt_08_account_num" value="Số tài khoản" />

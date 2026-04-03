@@ -419,6 +419,10 @@ class StmCard extends HTMLElement {
         const iconUrl = this.getAttribute('icon-url') || '';
         const title = this.getAttribute('title') || 'default-title';
         const ids = this.getAttribute('ids') || '';
+		
+		if (this.hasAttribute('ids')) {
+          this.removeAttribute('ids');
+		}
 
         // Gắn cấu trúc HTML vào component
         this.innerHTML = `
