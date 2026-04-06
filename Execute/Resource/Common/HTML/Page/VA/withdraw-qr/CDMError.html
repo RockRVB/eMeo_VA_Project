@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Error</title>
+    <link rel="stylesheet" href="../../../css/VA/style.css">
+    <script src="../../../js/coreScript.js"></script>
+    <script src="../../../js/VA/common.js"></script>
+    <script src="../../../js/VA/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="stm-layout">
+    <!-- Header -->
+
+    <stm-auth-header-auto-back-home></stm-auth-header-auto-back-home>
+
+    <!-- Body -->
+    <main class="stm-body confirm-deposit-body">
+        <div class="stm-content">
+            <div class="cash-deposit-error-wrap">
+                <div class="error-deposit-img-container">
+                    <img src="../../../images/VA/icon-error.svg" width="128" height="128" style="margin: auto;">
+                </div>
+
+                <h2 class="cash-deposit-error-title" ids="ids_VAB_CDMError" id="error-title">Thông báo lỗi</h2>
+                <!-- <div class="cash-deposit-message-container"> -->
+                    <!-- <span class="cash-deposit-message" id="error-message">Message lỗi gì đó</span> -->
+                <!-- </div> -->
+            </div>
+        </div>
+    </main>
+
+    <stm-footer></stm-footer>
+    <input style="display: none;" id="input-val" value='{}' />
+    <input style="display: none;" id="output-val" value='{}'/>
+</div>
+<script src="../../../js/VA/scale.js"></script>
+<script>
+    $(document).ready(function (){
+        // const message = document.getElementById("error-message");
+        // message.innerText = 'Message lỗi gì đó [404: djkasdjaskdjkasjdkajskdjaksjdkasjkdjaskjddjkasdjaskdjkasjdkajskdjaksjdkasjkdjaskjddjkasdjaskdjkasjdkajskdjaksjdkasjkdjaskjd]';
+
+    })
+</script>
+</body>
+</html>

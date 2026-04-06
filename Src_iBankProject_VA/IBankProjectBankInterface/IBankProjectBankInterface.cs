@@ -47,15 +47,37 @@ namespace IBankProjectBankInterface
         public override emRetCode BeforePackRestMessage(string argType)
         {
             Log.Project.LogDebugFormat("BankInterface.BeforePackRestMessage({0}) ", argType);
-
+            SetJsonHeader(argType);
+            SetJsonData(argType);
+            WriteJournalLogBefore(argType);
             return emRetCode.Default;
         }
 
         public override emRetCode AfterUnpackRestMessage(string argType, string resultCode, string argResponse)
         {
             Log.BusinessService.LogDebugFormat("AfterUnpackRestMessage respCode: {0}", resultCode);
-
-
+            JObject dataObj = null;
+            dataObj = JObject.Parse(argResponse);
+            Log.Project.LogDebug("begin to get the data from dataObj");
+            if (!string.IsNullOrEmpty(dataObj["errorCode"]?.ToString()))
+            {
+                //corebank msg
+               // ProjVTMContext.BankErrorCode = dataObj["errorCode"]?.ToString();
+            }
+            else
+            {
+                //FB msg
+              //  ProjVTMContext.BankErrorCode = dataObj["code"]?.ToString();
+            }
+            switch (argType)
+            {
+                case "QueryCustomerInfo":
+                    UnpackQueryCustomerInfo(dataObj);
+                    break;
+                default:
+                    break;
+            }
+             
             return emRetCode.Default;
         }
 
@@ -167,5 +189,35 @@ namespace IBankProjectBankInterface
 
             return true;
         }
+        private void UnpackQueryCustomerInfo(JObject dataObj)
+        {
+            try
+            {
+                CustomerInfo customerInfo = new CustomerInfo();
+                customerInfo.Accounts.Clear();
+                customerInfo.CIF = dataObj["cif_information"]["customerId"]?.ToString();
+                customerInfo.FullName = dataObj["cif_information"]["fullName"]?.ToString();
+
+                foreach (var item in dataObj["accounts"])
+                {
+                    Account account = new Account();
+
+                    account.AccountName = item["accountName"]?.ToString();
+                    account.AccountNumber = item["accountNumber"]?.ToString();
+                    account.AvailableBalance = item["availableBalance"]?.ToString();
+                    account.AccountStatus = item["accountStatus"]?.ToString();
+                    account.Currency = item["currency"]?.ToString();
+
+                    customerInfo.Accounts.Add(account);
+                }
+                ProjVTMContext.TransactionDataCache.Set("VAB_CustomerInfo", customerInfo, GetType());
+            }
+            catch 
+            { 
+                ProjVTMContext.TransactionDataCache.Set("VAB_CustomerInfo", null, GetType());
+            }
+        }
+        
+        
     }
 }

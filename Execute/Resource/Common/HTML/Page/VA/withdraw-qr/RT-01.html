@@ -62,8 +62,8 @@
 <!--    <stm-footer></stm-footer>-->
     <stm-footer-continue id="footer-continue"></stm-footer-continue>
     <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
-    <input style="display: none;" id="input-val" value='{Replace input-val}' />
-    <input style="display: none;" id="output-val" content='{Binding output-val mode=2}'/>
+    <input style="display: none;" id="input-val" value='{}' />
+    <input style="display: none;" id="output-val" value='{}'/>
 </div>
 <script src="../../../js/VA/scale.js"></script>
 <script>
@@ -75,10 +75,7 @@
             cancelTransDialog.openDialog = true
         };
 
-		var data = '[{"id": "123456789000", "accountNumber": "123456789000", "balance": "100 000"},{"id": "987654321111", "accountNumber": "987654321111", "balance": "500 000"},{"id": "555566667777", "accountNumber": "555566667777", "balance": "250 000"},{"id": "898989328489", "accountNumber": "898989328489", "balance": "250 000"},{"id": "489384843278", "accountNumber": "489384843278", "balance": "250 000"}, {"id": "973987291832", "accountNumber": "973987291832", "balance": "250 000"}]';
-		const lsData = data;
-		<!-- const lsData = $('#input-val').val(); -->
-		
+
         const accList = document.getElementById('account-list');
         const footer = document.getElementById('footer-continue');
         const cusName = document.getElementById('cus-name');
@@ -90,8 +87,15 @@
             {"label": "Số tài khoản", "ids": "ids_VAB_withdraw_qr_account_num"},
             {"label": "Số dư", "ids": "ids_VAB_withdraw_qr_avail_balance"}
         ]));
-        <!-- accList.setAttribute('accounts', JSON.stringify(data)) -->
-		accList.setAttribute('accounts', lsData)
+        accList.setAttribute('accounts', JSON.stringify([
+            {"id": "123456789000", "accountNumber": "123456789000", "balance": "100 000"},
+            {"id": "987654321111", "accountNumber": "987654321111", "balance": "500 000"},
+            {"id": "555566667777", "accountNumber": "555566667777", "balance": "250 000"},
+            {"id": "898989328489", "accountNumber": "898989328489", "balance": "250 000"},
+            {"id": "489384843278", "accountNumber": "489384843278", "balance": "250 000"},
+            {"id": "973987291832", "accountNumber": "973987291832", "balance": "250 000"}
+        ]))
+
         cusName.innerText = 'ABC';
         cccd.innerText = 'Số CCCD';
         cif.innerText = 'Số CIF';

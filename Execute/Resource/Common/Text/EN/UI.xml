@@ -585,4 +585,7 @@
 	<item key="ids_VAB_xt_qr_02_title" value="Vui lòng đăng nhập ứng dụng VAB của bạn để quét mã QR" />
 	<item key="ids_VAB_xt_qr_02_update_qr_btn" value="Cập nhật" />
 	<item key="ids_VAB_Hello" value="XIN CHÀO" />
+	<item key="ids_VAB_CDMError" value="Dispenser Error" />
+	<item key="ids_VAB_QRCWDProcessing" value="Transaction processing" />
+	<item key="ids_VAB_QRCWDSystemErr" value="System Error" />
 </config>

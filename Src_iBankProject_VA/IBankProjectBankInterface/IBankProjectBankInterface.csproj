@@ -105,6 +105,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FunctionBeforePackRestMessage.cs" />
+    <Compile Include="FunctionUnpackRestMessage.cs" />
     <Compile Include="IBankProjectBankInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebSocketServiceExtension.cs" />
