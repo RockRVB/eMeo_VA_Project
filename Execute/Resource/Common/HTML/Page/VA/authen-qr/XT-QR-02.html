@@ -38,13 +38,13 @@
                     </div>
                 </div>
 
-                <div style="display: flex; flex-direction: row; gap: 50px;">
-                    <span style="font-size: 25px;" ids="ids_VAB_xt_qr_02_countdown_update_qr" id="countdown-update-qr"></span>
+                <!-- <div style="display: flex; flex-direction: row; gap: 50px;"> -->
+                    <!-- <span style="font-size: 25px;" ids="ids_VAB_xt_qr_02_countdown_update_qr" id="countdown-update-qr"></span> -->
 
-                    <button style="background: transparent; border: none; cursor: pointer;">
-                        <span style="font-size: 22px; color: #67E3F9;" ids="ids_VAB_xt_qr_02_update_qr_btn" id="update-qr-btn">Cập nhật</span>
-                    </button>
-                </div>
+                    <!-- <button style="background: transparent; border: none; cursor: pointer;" type="button"> -->
+                        <!-- <span style="font-size: 22px; color: #67E3F9;" ids="ids_VAB_xt_qr_02_update_qr_btn" id="update-qr-btn">Cập nhật</span> -->
+                    <!-- </button> -->
+                <!-- </div> -->
 
             </div>
 
@@ -53,21 +53,27 @@
 
     <stm-footer></stm-footer>
     <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
-    <input style="display: none;" id="input-val" value='{}' />
-    <input style="display: none;" id="output-val" value='{}'/>
+    <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
+    <input style="display: none;" id="input_val" value='{}' />
+    <input style="display: none;" id="output_val" value='{}'/>
 </div>
 <script src="../../../js/VA/scale.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         const headerElement = document.getElementById("auth-task-header");
-        const cancelTransDialog = document.getElementById("cancel-trans-dialog");
+        // const cancelTransDialog = document.getElementById("cancel-trans-dialog");
 
-        headerElement.onCancelTransBtnClick = function() {
-            cancelTransDialog.openDialog = true
-        };
-
+        // headerElement.onCancelTransBtnClick = function() {
+        //     cancelTransDialog.openDialog = true
+        // };
+        const countdownData = '{"countdown" : 120, "countdownCancelTrans" : 10, "QR_Code":"con meo con"}'
+        // const countdownData = $('#input_val').val();
+		const sampleObj = JSON.parse(countdownData);
+        headerElement.countdownTime = sampleObj.countdown;
+        headerElement.countdownCancel = sampleObj.countdownCancelTrans;
+		var QRdata = sampleObj.QR_Code
         var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: "https://google.com",
+            text: QRdata,
             width: 400,
             height: 400,
             colorDark : "#000000",

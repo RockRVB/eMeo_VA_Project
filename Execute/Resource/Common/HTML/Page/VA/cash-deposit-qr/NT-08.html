@@ -13,7 +13,7 @@
 <div class="stm-layout">
     <!-- Header -->
 
-    <stm-auth-header-no-cus-name></stm-auth-header-no-cus-name>
+    <stm-only-logo-header></stm-only-logo-header>
 
     <!-- Body -->
     <main class="stm-body confirm-deposit-body">
@@ -69,17 +69,20 @@
                 </div>
 
                 <div class="statement-btns-container">
-                    <div class="dialog-actions">
-                        <button class="btn-dialog-secondary" id="do_another_task_btn" tag="do_another_task_btn">
+
+                    <span style="font-size: 25px; margin-top: 180px;" ids="ids_VAB_rt_12_auto_back_home_countdown" id="countdown-end-trans" style="font-size: 18px;"></span>
+
+                    <div class="dialog-actions" style="margin-top: 20px;">
+                        <button class="btn-dialog-secondary" id="do_another_task_btn" tag="do_another_task_btn" type="button">
                             <span ids="ids_VAB_nt_08_do_another_task">Thực hiện giao dịch khác</span>
                         </button>
 
-                        <button class="btn-dialog-primary" id="print_trans_bill_btn" tag="print_trans_bill_btn">
-                            <img src="../../../images/VA/icon-printer.svg" style="margin-right: 10px;">
-                            <span ids="ids_VAB_nt_08_print_trans_bill">IN BIÊN LAI GIAO DỊCH</span>
-                        </button>
+<!--                        <button class="btn-dialog-primary" id="print_trans_bill_btn" tag="print_trans_bill_btn">-->
+<!--                            <img src="../../../images/VA/icon-printer.svg" style="margin-right: 10px;">-->
+<!--                            <span ids="ids_VAB_nt_08_print_trans_bill">IN BIÊN LAI GIAO DỊCH</span>-->
+<!--                        </button>-->
 
-                        <button class="btn-dialog-secondary" id="end_transaction_btn" tag="end_transaction_btn">
+                        <button class="btn-dialog-secondary" id="end_transaction_btn" tag="end_transaction_btn" type="button">
                             <span ids="ids_VAB_nt_08_end_transaction">Kết thúc giao dịch</span>
                         </button>
                     </div>
@@ -90,8 +93,8 @@
     </main>
 
     <stm-footer></stm-footer>
-    <input style="display: none;" id="input-val" value='{}' />
-    <input style="display: none;" id="output-val" value='{}'/>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
 </div>
 <script src="../../../js/VA/scale.js"></script>
 <script>
@@ -103,13 +106,30 @@
         const depositAmount = document.getElementById("deposit_amount");
         const transFee = document.getElementById("transaction_fee");
         const finalTransAmount = document.getElementById("final_transaction_amount");
-        accName.innerText = 'Nguyen Van Teo';
-        receiverInfo.innerText = '09123456789';
-        transCode.innerText = 'ABC8982193';
-        transTime.innerText = '2026-03-03';
-        depositAmount.innerText = '6.000.000';
-        transFee.innerText = '6.000.000';
-        finalTransAmount.innerText = '6.000.000';
+        const countdownText = document.getElementById("countdown-end-trans");
+
+        const data = '{"countdown":120,"deposit_successful_info":{"receive_acccount_name":"Nguyen Van Teo","receive_info":"09123456789","transaction_code":"ABC8982193","transaction_time":"2026-03-03","deposit_amount":"6.000.000","fee_amount":"6.000.000","final_amount_added":"6.000.000"}}';
+        // const data = $('#input_val').val();
+        const sampleObj = JSON.parse(data);
+
+        accName.innerText = sampleObj.deposit_successful_info.receive_acccount_name;
+        receiverInfo.innerText = sampleObj.deposit_successful_info.receive_info;
+        transCode.innerText = sampleObj.deposit_successful_info.transaction_code;
+        transTime.innerText = sampleObj.deposit_successful_info.transaction_time;
+        depositAmount.innerText = sampleObj.deposit_successful_info.deposit_amount;
+        transFee.innerText = sampleObj.deposit_successful_info.fee_amount;
+        finalTransAmount.innerText = sampleObj.deposit_successful_info.final_amount_added;
+
+        countdownText.innerText = `Giao dịch kết thúc sau ${sampleObj.countdown}s`
+        const timer = setInterval(() => {
+            sampleObj.countdown--;
+
+            countdownText.innerText = `Giao dịch kết thúc sau ${sampleObj.countdown}s` ;
+
+            if (sampleObj.countdown <= 0) {
+                clearInterval(timer);
+            }
+        }, 1000);
 
     })
 </script>

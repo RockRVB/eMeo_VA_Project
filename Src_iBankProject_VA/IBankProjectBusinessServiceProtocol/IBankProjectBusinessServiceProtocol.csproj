@@ -86,6 +86,10 @@
       <HintPath>..\..\Execute\GeneralService\LogProcessorService.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\Execute\GeneralService\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="SessionRecordServiceProtocol">
       <HintPath>..\..\Execute\Protocol\StandardFeature\SessionRecordServiceProtocol.dll</HintPath>
       <Private>False</Private>

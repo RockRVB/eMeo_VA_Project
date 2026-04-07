@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Workflow name="QR_CashWithdrawal">
-	<Head type="GRGWorkflow" author="" timeStamp="" comment="The workflow design is for BVB_CWD_QR_verify"/>
+<Workflow name="VAB_NoCard_CashWithdrawal">
+	<Head type="GRGWorkflow" author="rocky" timeStamp="" comment="The workflow design is for NoCard_CashWithdrawal"/>
 	<DataPool></DataPool>
 	<Activities>
 		<Start ID="0" comment="Start" callVisible="0" endflag="1">
 			<Forward event="OnConfirm" targetID="ID_CheckTotalRemain"/>
 		</Start>
-		<BVB_CWDCheckRemain ID="ID_CheckTotalRemain" UI="" comment="">
+		<VAB_CWDCheckRemain ID="ID_CheckTotalRemain" UI="" comment="">
 			<States>
 				<State name="CRMNotAvailable" UI="UI_VAB_CRMNotAvailable" />
 			</States>
 			<Forward event="OnContinue" targetID="ID_CDMGetDevStatusCWD" />
 			<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
-		</BVB_CWDCheckRemain>
+		</VAB_CWDCheckRemain>
 		<GetDevStatusEx ID="ID_CDMGetDevStatusCWD" UI="" comment="Get device status" devType="CDM" callVisible="0">
 			<States>
 				<State name="GetDevStatusExError" UI="UI_VAB_CRMNotAvailable" />
@@ -21,38 +21,19 @@
 			<Forward event="OnWarn" targetID="ID_TransactionFlowStart" />
 			<Forward event="OnFail" targetID="ID_InvokeCloseTransWorkflow" />
 		</GetDevStatusEx>
-		<WriteEJLog ID="ID_TransactionFlowStart" LogData ="***==================================================*;   TRANSACTION START: CASH WITHDRAWAL BY QR CODE">
+		<WriteEJLog ID="ID_TransactionFlowStart" LogData ="***==================================================*;   TRANSACTION START: CASH WITHDRAWAL NO CARD">
 			<Forward event="OnConfirm" targetID="ID_SetTransType"/>
 		</WriteEJLog>
 		<VAB_CreateSessionIDNumber ID="ID_CreateSessionIDNumber">
 			<Forward event="OnNext" targetID="ID_SetTransType" />
 		</VAB_CreateSessionIDNumber>
-		<SetData ID="ID_SetTransType" saveBuffer="{VTM_TransTypeName,1}" value="CWDQR">
-			<Forward event="OnConfirm" targetID="ID_CheckTotalRemain"/>
+		<SetData ID="ID_SetTransType" saveBuffer="{VTM_TransTypeName,1}" value="CWD_NoCard">
+			<Forward event="OnConfirm" targetID="ID_InvokeVerifyCustomerWorkflow"/>
 		</SetData>
-		<RequestTransViaRestful ID="ID_VAB_RestfulGenQR" UI="UI_VAB_QRCWDProcessing" transType="GetQRString" transFormat="json" timeout="60000">
-			<States>
-				<State name="PackFail" UI="UI_VAB_QRCWDSystemError"/>
-				<State name="ConnectFail" UI="UI_VAB_QRCWDSystemError"/>
-				<State name="SendFail" UI="UI_VAB_QRCWDSystemError"/>
-				<State name="ReceiveFail" UI="UI_VAB_QRCWDSystemError"/>
-				<State name="ReceiveTimeout" UI="UI_VAB_QRCWDSystemError"/>
-				<State name="NetworkFail" UI="UI_VAB_QRCWDSystemError"/>
-				<State name="UnpackFail" UI="UI_VAB_QRCWDSystemError"/>
-				<State name="HardwareError" UI="UI_VAB_QRCWDSystemError"/>
-				<State name="HostRefuse" UI="UI_VAB_QRCWDSystemError"/>
-			</States>
-			<Forward event="OnConfirm" targetID="ID_BVB_RestfulConfirmQRCWD"/>
-			<Forward event="OnHostBankRefuse" targetID="ID_InvokeCloseTransWorkflow"/>
-			<Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
-			<Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
-			<Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
-			<Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
-			<Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
-			<Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
-			<Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
-			<Forward event="OnHostRefuse" targetID="ID_InvokeCloseTransWorkflow"/>
-		</RequestTransViaRestful>
+		<InvokeWorkflow ID="ID_InvokeVerifyCustomerWorkflow" name="VAB_VerifyCustomer" comment="Invoke VAB_VerifyCustomer workflow">
+			<Forward event="OnConfirm" targetID="9999"/>
+		</InvokeWorkflow>
+		
 		
 		
 		

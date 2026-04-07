@@ -13,15 +13,15 @@ using IBankProjectBusinessServiceProtocol;
 
 namespace IBankProjectBusinessActivity
 {
-    [GrgActivity("{E2D80BE9-E130-4FB6-810D-51C16E325FE1}",
-                     Name = "VAB_ShowQR",
-                     NodeNameOfConfiguration = "VAB_ShowQR",
+    [GrgActivity("{5889480B-0392-4D59-A896-9375CA930EA6}",
+                     Name = "VAB_SelectFunction",
+                     NodeNameOfConfiguration = "VAB_SelectFunction",
                      Author = "rocky",
                      ForwardTargets = new string[] { EventDictionary.s_EventConfirm, EventDictionary.s_EventFail, EventDictionary.s_EventCancel })]
-    public class VAB_ShowQR : IBankProjectActivityBase
+    public class VAB_SelectFunction : IBankProjectActivityBase
     {
 
-        public VAB_ShowQR()
+        public VAB_SelectFunction()
         {
 
         }
@@ -30,7 +30,7 @@ namespace IBankProjectBusinessActivity
         [GrgCreateFunction("create")]
         public static IBusinessActivity Create()
         {
-            return new VAB_ShowQR();
+            return new VAB_SelectFunction();
         }
         #endregion
 
@@ -45,6 +45,7 @@ namespace IBankProjectBusinessActivity
                 VTMContext.NextCondition = EventDictionary.s_EventFail;
                 return emRet;
             }
+            
 
             SwitchUIState(VTMContext.MainUI, DataDictionary.s_DefaultUIState);
             emWaitSignalResult_t emWaitResult = WaitPopu == 1 ? VTMWaitSignal() : WaitSignal();

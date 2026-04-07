@@ -13,7 +13,7 @@
 <div class="stm-layout">
     <!-- Header -->
 
-    <stm-auth-task-header></stm-auth-task-header>
+    <stm-auth-task-header id="auth-task-header"></stm-auth-task-header>
 
     <!-- Body -->
     <main class="stm-body confirm-deposit-body">
@@ -59,7 +59,7 @@
 
                 <div class="statement-btns-container">
                     <div class="dialog-actions">
-                        <button class="btn-dialog-secondary" id="confirm_deposit_info" tag="confirm_deposit_info">
+                        <button class="btn-dialog-secondary" id="confirm_deposit_info" tag="confirm_deposit_info" type="button">
                             <span ids="ids_VAB_rt_04_confirm_withdraw_btn">Xác nhận</span>
                         </button>
                     </div>
@@ -70,8 +70,10 @@
     </main>
 
     <stm-footer></stm-footer>
-    <input style="display: none;" id="input-val" value='{}' />
-    <input style="display: none;" id="output-val" value='{}'/>
+    <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
+    <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
 </div>
 <script src="../../../js/VA/scale.js"></script>
 <script>
@@ -81,11 +83,42 @@
         const withdrawVaue = document.getElementById("withdraw-value");
         const feeValue = document.getElementById("fee-value");
         const subtractToValue = document.getElementById("subtract-to-value");
-        accName.innerText = 'Nguyen Van Teo';
-        accNum.innerText = '09123456789';
-        withdrawVaue.innerText = '6.000.000';
-        feeValue.innerText = '2.200';
-        subtractToValue.innerText = '6.000.000';
+        const header = document.getElementById("auth-task-header");
+
+        const withdrawData = '{"countdown":120, "countdownCancelTrans" : 60,"confirm_withdraw_info":{"account_name":"Nguyen Van Teo","account_num":"09123456789","withdraw_value":"6.000.000","fee_value":"2.200","substract_to_val":"6.000.000"}}';
+        const sampleObj = JSON.parse(withdrawData);
+        // const countdownData = $('#input_val').val();
+        header.countdownTime = sampleObj.countdown;
+        header.countdownCancel = sampleObj.countdownCancelTrans;
+
+        accName.innerText = sampleObj.confirm_withdraw_info.account_name;
+        accNum.innerText = sampleObj.confirm_withdraw_info.account_num;
+        withdrawVaue.innerText = sampleObj.confirm_withdraw_info.withdraw_value;
+        feeValue.innerText = sampleObj.confirm_withdraw_info.fee_value;
+        subtractToValue.innerText = sampleObj.confirm_withdraw_info.substract_to_val;
+
+
+        // const outOfTransactionTime = document.getElementById("outof-transaction-time");
+        //
+        // outOfTransactionTime.openDialog = true;
+        // outOfTransactionTime.titleText = `Đã hết thời gian giao dịch <br>Vui lòng xác nhận để tiếp tục thực hiện giao dịch.`
+        // outOfTransactionTime.btnTitle = 'Tiếp tục giao dịch'
+        // outOfTransactionTime.isBtnPrimary = false;
+        // outOfTransactionTime.idsBtn = 'ids_VAB_rt_04_continue_trans_btn';
+        // outOfTransactionTime.idsTitle = 'ids_VAB_rt_04_out_of_trans_time_title';
+        // outOfTransactionTime.idsSubTitle = 'ids_VAB_rt_04_out_of_trans_time_subtitle';
+        //
+        // let timeLeft = 60;
+        // outOfTransactionTime.subTitle = `Đóng thông báo trong ${timeLeft}s`
+        // const timer = setInterval(() => {
+        //     timeLeft--;
+        //
+        //     outOfTransactionTime.subTitle = `Đóng thông báo trong ${timeLeft}s` ;
+        //
+        //     if (timeLeft <= 0) {
+        //         clearInterval(timer);
+        //     }
+        // }, 1000);
     })
 </script>
 </body>

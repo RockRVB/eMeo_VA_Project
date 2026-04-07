@@ -22,7 +22,7 @@ namespace IBankProjectBankInterface
         Name = "IBankProjectBankInterface",
         Bank = "Ibank"
     )]
-    public class IBankProjectBankInterface : VTMBankInterface
+    public partial class IBankProjectBankInterface : VTMBankInterface
     {
         private IBankProjectBusinessServiceContext ProjVTMContext;
 
@@ -55,28 +55,34 @@ namespace IBankProjectBankInterface
 
         public override emRetCode AfterUnpackRestMessage(string argType, string resultCode, string argResponse)
         {
-            Log.BusinessService.LogDebugFormat("AfterUnpackRestMessage respCode: {0}", resultCode);
+            Log.BusinessService.LogDebugFormat("AfterUnpackRestMessage argResponse: {0}", argResponse);
             JObject dataObj = null;
             dataObj = JObject.Parse(argResponse);
-            Log.Project.LogDebug("begin to get the data from dataObj");
-            if (!string.IsNullOrEmpty(dataObj["errorCode"]?.ToString()))
+            bool RC_Success = false;
+            try
             {
-                //corebank msg
-               // ProjVTMContext.BankErrorCode = dataObj["errorCode"]?.ToString();
+                WriteJournalLogAfter(argType, resultCode, dataObj, ref RC_Success);
+                if (RC_Success == false)
+                    return emRetCode.False;
+
+                switch (argType)
+                {
+                    case "QueryCustomerInfo":
+                        UnpackQueryCustomerInfo(dataObj);
+                        break;
+                    case "GetQRString":
+                        UnpackGetQRString(dataObj);
+                        break;
+                    default:
+                        break;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                //FB msg
-              //  ProjVTMContext.BankErrorCode = dataObj["code"]?.ToString();
+                Log.XdcTrace.LogFatal("Exception: AfterUnpackRestMessage Error!" + ex.Message);
+                return emRetCode.Default;
             }
-            switch (argType)
-            {
-                case "QueryCustomerInfo":
-                    UnpackQueryCustomerInfo(dataObj);
-                    break;
-                default:
-                    break;
-            }
+            
              
             return emRetCode.Default;
         }
@@ -189,34 +195,7 @@ namespace IBankProjectBankInterface
 
             return true;
         }
-        private void UnpackQueryCustomerInfo(JObject dataObj)
-        {
-            try
-            {
-                CustomerInfo customerInfo = new CustomerInfo();
-                customerInfo.Accounts.Clear();
-                customerInfo.CIF = dataObj["cif_information"]["customerId"]?.ToString();
-                customerInfo.FullName = dataObj["cif_information"]["fullName"]?.ToString();
-
-                foreach (var item in dataObj["accounts"])
-                {
-                    Account account = new Account();
-
-                    account.AccountName = item["accountName"]?.ToString();
-                    account.AccountNumber = item["accountNumber"]?.ToString();
-                    account.AvailableBalance = item["availableBalance"]?.ToString();
-                    account.AccountStatus = item["accountStatus"]?.ToString();
-                    account.Currency = item["currency"]?.ToString();
-
-                    customerInfo.Accounts.Add(account);
-                }
-                ProjVTMContext.TransactionDataCache.Set("VAB_CustomerInfo", customerInfo, GetType());
-            }
-            catch 
-            { 
-                ProjVTMContext.TransactionDataCache.Set("VAB_CustomerInfo", null, GetType());
-            }
-        }
+        
         
         
     }

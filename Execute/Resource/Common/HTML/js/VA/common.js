@@ -1,3 +1,5 @@
+const COUNTDOWN_SHOW_OUTOFTRANS_POPUP = 10;
+
 class Header extends HTMLElement {
     constructor() {
         super();
@@ -42,6 +44,69 @@ class OnlyLogoHeader extends HTMLElement {
       <header class="stm-header transfer-header">
             <div class="header-logo">
                 <img src="../../../images/VA/logo.svg" alt="Logo" class="logo-img">
+            </div>
+        </header>
+    `;
+    }
+}
+
+
+class LogoAndCountdownHeader extends HTMLElement {
+    constructor() {
+        super()
+        this.timer = null;
+        this.countdownValue = null;
+        // this.attachShadow({ mode: 'open' });
+    }
+
+    connectedCallback() {
+        this.render();
+        this.startCountdown();
+    }
+
+    disconnectedCallback() {
+        if (this.timer) {
+            clearInterval(this.timer);
+        }
+    }
+
+    // Setter để cập nhật thời gian từ bên ngoài
+    set countdownVal(time) {
+        this.countdownValue = parseInt(time) || 0;
+        this.updateCountdownUI(); // Chỉ cập nhật đúng cái span, không render lại cả header
+    }
+
+    // Hàm cập nhật riêng cho phần hiển thị số giây
+    updateCountdownUI() {
+        const countdownElement = this.querySelector('.header-countdown');
+        if (countdownElement) {
+            countdownElement.textContent = `Thao tác nộp thêm sẽ kết thúc sau ${this.countdownValue} s`;
+        }
+    }
+
+    startCountdown() {
+        // Xóa timer cũ nếu có để tránh chạy đè nhiều timer
+        if (this.timer) clearInterval(this.timer);
+
+        this.timer = setInterval(() => {
+            if (this.countdownValue > 0) {
+                this.countdownValue--;
+                this.updateCountdownUI();
+            } else {
+                clearInterval(this.timer);
+            }
+        }, 1000);
+    }
+
+    render() {
+        this.innerHTML = `
+      <header class="stm-header transfer-header">
+            <div class="header-logo">
+                <img src="../../../images/VA/logo.svg" alt="Logo" class="logo-img">
+            </div>
+            
+            <div class="header-actions">
+                <span class="header-countdown" ids="ids_VAB_end_deposit_in_seconds">Thao tác nộp thêm sẽ kết thúc sau ${this.countdownValue}s</span>
             </div>
         </header>
     `;
@@ -157,7 +222,8 @@ class AuthTaskHeader extends HTMLElement {
     constructor() {
         super();
         this.timer = null;
-        this.countdownValue = 120;
+        this.countdownValue = null;
+        this.countdownCancelTrans = null;
         this._cancelTransOnClick = null;
         // this.attachShadow({ mode: 'open' });
     }
@@ -171,6 +237,16 @@ class AuthTaskHeader extends HTMLElement {
         if (this.timer) {
             clearInterval(this.timer);
         }
+    }
+
+    set countdownTime(time) {
+        this.countdownValue = time;
+        this.render();
+    }
+
+    set countdownCancel(time) {
+        this.countdownCancelTrans = time;
+        this.render();
     }
 
     set onCancelTransBtnClick(handler) {
@@ -187,17 +263,38 @@ class AuthTaskHeader extends HTMLElement {
 
     startCountdown() {
         const countdownElement = this.querySelector('.header-countdown');
+        let closePopup = false;
         if (!countdownElement) return;
 
         this.timer = setInterval(() => {
             this.countdownValue--;
-
-            if (this.countdownValue >= 0) {
-                // Cập nhật nội dung thẻ span
-                countdownElement.textContent = `Giao dịch kết thúc sau ${this.countdownValue} s`;
-            } else {
-                // Dừng đếm ngược khi về 0
+            if (this.countdownValue < 0) {
                 clearInterval(this.timer);
+                return;
+            }
+
+            // Query lại MỖI LẦN thay vì dùng tham chiếu cũ
+            const countdownElement = this.querySelector('.header-countdown');
+            if (countdownElement) {
+                countdownElement.textContent = `Giao dịch kết thúc sau ${this.countdownValue} s`;
+            }
+            // Hiện popup khi dưới ngưỡng (ví dụ: 10 giây)
+            if (this.countdownValue <= COUNTDOWN_SHOW_OUTOFTRANS_POPUP && !closePopup) {
+                const outOfTransactionDialog = document.getElementById("outof-transaction-time");
+                if (outOfTransactionDialog) {
+                    outOfTransactionDialog.openDialog = true;
+                    outOfTransactionDialog.titleText = `Sắp hết thời gian giao dịch <br>Vui lòng xác nhận để tiếp tục thực hiện giao dịch.`;
+                    outOfTransactionDialog.btnTitle = 'Tiếp tục giao dịch';
+                    outOfTransactionDialog.isBtnPrimary = false;
+                    outOfTransactionDialog.idsBtn = 'ids_VAB_dialog_outoftranstime_continue_trans_btn';
+                    outOfTransactionDialog.idsTitle = 'ids_VAB_dialog_outoftranstime_title';
+                    outOfTransactionDialog.idsSubTitle = 'ids_VAB_dialog_outoftranstime_subtitle';
+                    outOfTransactionDialog.subTitle = `Phiên giao dịch sẽ hết hạn sau ${this.countdownValue}s`;
+                    outOfTransactionDialog.onPrimaryClick = function() {
+                        outOfTransactionDialog.openDialog = false;
+                        closePopup = true;
+                    };
+                }
             }
         }, 1000);
     }
@@ -218,6 +315,13 @@ class AuthTaskHeader extends HTMLElement {
             </div>
         </header>
     `;
+
+        const btnCancelTrans = document.getElementById("header-cancel-trans-btn");
+        const cancelTransDialog = document.getElementById("cancel-trans-dialog");
+        btnCancelTrans.addEventListener('click', () => {
+            cancelTransDialog.openDialog = true;
+            cancelTransDialog.countdownVal = this.countdownCancelTrans;
+        })
     }
 }
 
@@ -226,7 +330,8 @@ class AuthHeader extends HTMLElement {
     constructor() {
         super();
         this.timer = null;
-        this.countdownValue = 120;
+        this.countdownValue = null;
+        this.countdownCancelTrans = null;
         // this.attachShadow({ mode: 'open' });
     }
 
@@ -240,44 +345,66 @@ class AuthHeader extends HTMLElement {
             clearInterval(this.timer);
         }
     }
+    // Setter để cập nhật thời gian từ bên ngoài
+    set countdownVal(time) {
+        this.countdownValue = parseInt(time) || 0;
+        this.updateCountdownUI(); // Chỉ cập nhật đúng cái span, không render lại cả header
+    }
+
+    set countdownCancel(time) {
+        this.countdownCancelTrans = time;
+        this.render();
+    }
+
+    // Hàm cập nhật riêng cho phần hiển thị số giây
+    updateCountdownUI() {
+        const countdownElement = this.querySelector('.header-countdown');
+        if (countdownElement) {
+            countdownElement.textContent = `Giao dịch kết thúc sau ${this.countdownValue} s`;
+        }
+    }
 
     startCountdown() {
-        const countdownElement = this.querySelector('.header-countdown');
-        if (!countdownElement) return;
+        // Xóa timer cũ nếu có để tránh chạy đè nhiều timer
+        if (this.timer) clearInterval(this.timer);
 
         this.timer = setInterval(() => {
-            this.countdownValue--;
-
-            if (this.countdownValue >= 0) {
-                // Cập nhật nội dung thẻ span
-                countdownElement.textContent = `Giao dịch kết thúc sau ${this.countdownValue} s`;
+            if (this.countdownValue > 0) {
+                this.countdownValue--;
+                this.updateCountdownUI();
             } else {
-                // Dừng đếm ngược khi về 0
                 clearInterval(this.timer);
             }
         }, 1000);
     }
 
     render() {
+        // Chỉ vẽ khung HTML
         this.innerHTML = `
-      <header class="stm-header-two">
+        <header class="stm-header-two">
             <div class="header-logo">
                 <img src="../../../images/VA/logo.svg" alt="Logo" class="logo-img">
             </div>
             
             <div class="header-title">
-                <h2 ids="ids_VAB_hello_customer" id="hello-customer-name">Xin chào NGUYEN VAN TEO</h2>
+                <h2 id="hello-customer-name">Xin chào NGUYEN VAN TEO</h2>
             </div>
             
             <div class="header-actions">
-                <span class="header-countdown" ids="ids_VAB_end_transaction_in_seconds">Giao dịch kết thúc sau ${this.countdownValue} s</span>
-                <button class="btn-cancel-transaction" tag="onCloseAll">
+                <span class="header-countdown">Giao dịch kết thúc sau ${this.countdownValue} s</span>
+                <button class="btn-cancel-transaction">
                     <img src="../../../images/VA/close-circle.svg">
-                    <span ids="ids_VAB_auth_header_close_btn">Đóng</span>
+                    <span>Đóng</span>
                 </button>
             </div>
-        </header>
-    `;
+        </header>`;
+
+        const btnCancelTrans = document.getElementById("header-cancel-trans-btn");
+        const cancelTransDialog = document.getElementById("cancel-trans-dialog");
+        btnCancelTrans.addEventListener('click', () => {
+            cancelTransDialog.openDialog = true;
+            cancelTransDialog.countdownVal = this.countdownCancelTrans;
+        })
     }
 }
 
@@ -286,7 +413,7 @@ class AuthHeaderNoCusName extends HTMLElement {
     constructor() {
         super();
         this.timer = null;
-        this.countdownValue = 120;
+        this.countdownValue = null;
         // this.attachShadow({ mode: 'open' });
     }
 
@@ -301,18 +428,28 @@ class AuthHeaderNoCusName extends HTMLElement {
         }
     }
 
-    startCountdown() {
+    // Setter để cập nhật thời gian từ bên ngoài
+    set countdownVal(time) {
+        this.countdownValue = parseInt(time) || 0;
+        this.updateCountdownUI(); // Chỉ cập nhật đúng cái span, không render lại cả header
+    }
+
+    // Hàm cập nhật riêng cho phần hiển thị số giây
+    updateCountdownUI() {
         const countdownElement = this.querySelector('.header-countdown');
-        if (!countdownElement) return;
+        if (countdownElement) {
+            countdownElement.textContent = `Giao dịch kết thúc sau ${this.countdownValue} s`;
+        }
+    }
+
+    startCountdown() {
+        if (this.timer) clearInterval(this.timer);
 
         this.timer = setInterval(() => {
-            this.countdownValue--;
-
-            if (this.countdownValue >= 0) {
-                // Cập nhật nội dung thẻ span
-                countdownElement.textContent = `Giao dịch kết thúc sau ${this.countdownValue} s`;
+            if (this.countdownValue > 0) {
+                this.countdownValue--;
+                this.updateCountdownUI();
             } else {
-                // Dừng đếm ngược khi về 0
                 clearInterval(this.timer);
             }
         }, 1000);
@@ -342,7 +479,7 @@ class AuthHeaderNoCusName_BackToHome extends HTMLElement {
     constructor() {
         super();
         this.timer = null;
-        this.countdownValue = 120;
+        this.countdownValue = null;
         // this.attachShadow({ mode: 'open' });
     }
 
@@ -357,18 +494,28 @@ class AuthHeaderNoCusName_BackToHome extends HTMLElement {
         }
     }
 
-    startCountdown() {
+    set countdownVal(time) {
+        this.countdownValue = parseInt(time) || 0;
+        this.updateCountdownUI(); // Chỉ cập nhật đúng cái span, không render lại cả header
+    }
+
+    // Hàm cập nhật riêng cho phần hiển thị số giây
+    updateCountdownUI() {
         const countdownElement = this.querySelector('.header-countdown');
-        if (!countdownElement) return;
+        if (countdownElement) {
+            countdownElement.textContent = `Tự động về trang chủ sau ${this.countdownValue} s`;
+        }
+    }
+
+    startCountdown() {
+        // Xóa timer cũ nếu có để tránh chạy đè nhiều timer
+        if (this.timer) clearInterval(this.timer);
 
         this.timer = setInterval(() => {
-            this.countdownValue--;
-
-            if (this.countdownValue >= 0) {
-                // Cập nhật nội dung thẻ span
-                countdownElement.textContent = `Tự động về trang chủ sau ${this.countdownValue} s`;
+            if (this.countdownValue > 0) {
+                this.countdownValue--;
+                this.updateCountdownUI();
             } else {
-                // Dừng đếm ngược khi về 0
                 clearInterval(this.timer);
             }
         }, 1000);
@@ -419,11 +566,11 @@ class StmCard extends HTMLElement {
         const iconUrl = this.getAttribute('icon-url') || '';
         const title = this.getAttribute('title') || 'default-title';
         const ids = this.getAttribute('ids') || '';
-		
-		if (this.hasAttribute('ids')) {
-          this.removeAttribute('ids');
-		}
-		
+
+        if (this.hasAttribute('ids')) {
+            this.removeAttribute('ids');
+        }
+
         // Gắn cấu trúc HTML vào component
         this.innerHTML = `
                 <div class="card-icon-wrap">
@@ -439,7 +586,7 @@ class CancelTransOrNotDialog extends HTMLElement {
     constructor() {
         super();
         this.timer = null;
-        this.countdownValue = 60;
+        this.countdownValue = null;
         this._isOpen = false;
         // this.attachShadow({ mode: 'open' });
     }
@@ -454,6 +601,32 @@ class CancelTransOrNotDialog extends HTMLElement {
         }
     }
 
+    set countdownVal(time) {
+        this.countdownValue = parseInt(time) || 0;
+        this.updateCountdownUI(); // Chỉ cập nhật đúng cái span, không render lại cả header
+    }
+
+    // Hàm cập nhật riêng cho phần hiển thị số giây
+    updateCountdownUI() {
+        const countdownElement = this.querySelector('#count-down-back-home');
+        if (countdownElement) {
+            countdownElement.textContent = `Tự động về màn hình Trang chủ trong ${this.countdownValue} s`;
+        }
+    }
+
+    startCountdown() {
+        if (this.timer) clearInterval(this.timer);
+
+        this.timer = setInterval(() => {
+            if (this.countdownValue > 0) {
+                this.countdownValue--;
+                this.updateCountdownUI();
+            } else {
+                clearInterval(this.timer);
+            }
+        }, 1000);
+    }
+
     stopTimer() {
         if (this.timer) {
             clearInterval(this.timer);
@@ -464,33 +637,12 @@ class CancelTransOrNotDialog extends HTMLElement {
     set openDialog(isOpen){
         this._isOpen = isOpen;
         if (isOpen) {
-            this.countdownValue = 60;
             this.render();
             this.startCountdown();
         } else {
             this.stopTimer();
             this.render();
         }
-    }
-
-    startCountdown() {
-        this.stopTimer();
-
-        if (!this._isOpen) return;
-
-        const countdownElement = this.querySelector('#count-down-back-home');
-        if (!countdownElement) return;
-
-        this.timer = setInterval(() => {
-
-            if (this.countdownValue <= 0) {
-                this.stopTimer();
-                return;
-            }
-
-            this.countdownValue--;
-            countdownElement.textContent = `Tự động về màn hình Trang chủ trong ${this.countdownValue} s`;
-        }, 1000);
     }
 
     goToHome(){
@@ -544,16 +696,63 @@ class CancelTransOrNotDialog extends HTMLElement {
 class ServiceNotAvailableDialog extends HTMLElement {
     constructor() {
         super();
+        this.timer = null;
+        this.countdownValue = null;
+        this._isOpen = false;
         // this.attachShadow({ mode: 'open' });
     }
 
     connectedCallback() {
         this.render();
+        this.startCountdown();
+    }
+
+    disconnectedCallback() {
+        if (this.timer) {
+            clearInterval(this.timer);
+        }
+    }
+
+    set countdownVal(time) {
+        this.countdownValue = parseInt(time) || 0;
+        this.updateCountdownUI();
+    }
+
+    set openDialog(isOpen){
+        this._isOpen = isOpen;
+        if (isOpen) {
+            this.render();
+            this.startCountdown();
+        } else {
+            this.stopTimer();
+            this.render();
+        }
+    }
+
+    updateCountdownUI() {
+        if (!this._isOpen) return;
+        const countdownElement = this.querySelector('#not-avail-countdown');
+        if (countdownElement) {
+            countdownElement.textContent = `Tự động về màn hình Trang chủ trong ${this.countdownValue} s`;
+        }
+    }
+
+    startCountdown() {
+        if (this.timer) clearInterval(this.timer);
+
+        this.timer = setInterval(() => {
+            if (this.countdownValue > 0) {
+                this.countdownValue--;
+                this.updateCountdownUI();
+            } else {
+                clearInterval(this.timer);
+            }
+        }, 1000);
     }
 
     render() {
         this.innerHTML = `
-      <main class="stm-dialog-container">
+      <main class="stm-dialog-container" style="display: ${this._isOpen === true ? 'flex' : 'none'}">
             <div class="stm-dialog">
                 <div class="dialog-icon-wrap">
                     <img src="../../../images/VA/caution-circle.svg">
@@ -563,16 +762,21 @@ class ServiceNotAvailableDialog extends HTMLElement {
                 
                 <div class="dialog-actions-container">
                     <div class="dialog-actions">
-                        <button class="btn-dialog-primary" tag="backToHome">
-                            <span ids="ids_VAB_return_home_btn">Quay về trang chủ</span>
+                        <button class="btn-dialog-primary" tag="backToHome" id="back-home-btn">
+                            <span ids="ids_VAB_return_home_btn">Đóng</span>
                         </button>
                     </div>
                     
-                    <p class="dialog-helper-text" ids="ids_VAB_return_home_after_seconds">Tự động về màn hình Trang chủ trong 60 s</p>
+                    <p class="dialog-helper-text" id="not-avail-countdown" ids="ids_VAB_return_home_after_seconds">Tự động về màn hình Trang chủ trong ${this.countdownValue} s</p>
                 </div>
             </div>
         </main>
     `;
+
+        const backHomeBtn = document.getElementById("back-home-btn");
+        backHomeBtn.addEventListener('click', () => {
+            this.openDialog(false)
+        })
     }
 }
 
@@ -587,6 +791,8 @@ class OneButtonDialog extends HTMLElement {
         this._idsBtn = "";
         this._idsTitle = "";
         this._idsSubTitle = "";
+        this._isOpen = false;
+        this._isPrimaryButton = false;
         // this.attachShadow({ mode: 'open' });
     }
 
@@ -605,8 +811,13 @@ class OneButtonDialog extends HTMLElement {
         this.render();
     }
 
-    set subBtnTitle(text) {
+    set btnTitle(text) {
         this._buttonTitle = text;
+        this.render();
+    }
+
+    set isBtnPrimary(val) {
+        this._isPrimaryButton = val;
         this.render();
     }
 
@@ -636,10 +847,15 @@ class OneButtonDialog extends HTMLElement {
         }
     }
 
+    set openDialog(isOpen){
+        this._isOpen = isOpen;
+        this.render();
+    }
+
     render() {
 
         this.innerHTML = `
-      <main class="stm-dialog-container">
+      <main class="stm-dialog-container" style="display: ${this._isOpen === true ? 'flex' : 'none'}">
             <div class="stm-dialog">
                 <div class="dialog-icon-wrap">
                     <img src="../../../images/VA/caution-circle.svg">
@@ -649,7 +865,7 @@ class OneButtonDialog extends HTMLElement {
                 
                 <div class="dialog-actions-container">
                     <div class="dialog-actions">
-                        <button class="btn-dialog-primary" id="one-btn">
+                        <button class="${this._isPrimaryButton === true ? 'btn-dialog-primary' : 'btn-dialog-secondary'}" id="one-btn">
                             <span ids="${this._idsBtn}">${this._buttonTitle}</span>
                         </button>
                     </div>
@@ -678,6 +894,7 @@ class YesOrNoDialog extends HTMLElement {
         this._idsSubTitle = "";
         this._idsYesBtnTitle = "";
         this._idsNoBtnTitle = "";
+        this._isOpen = false;
         // this.attachShadow({ mode: 'open' });
     }
 
@@ -735,6 +952,11 @@ class YesOrNoDialog extends HTMLElement {
         this.render();
     }
 
+    set openDialog(isOpen){
+        this._isOpen = isOpen;
+        this.render();
+    }
+
     updateYesBtnClickEvent() {
         const btn = this.querySelector('#btn-yes');
         if (btn && this._yesOnClick) {
@@ -752,7 +974,7 @@ class YesOrNoDialog extends HTMLElement {
     render() {
 
         this.innerHTML = `
-      <main class="stm-dialog-container">
+      <main class="stm-dialog-container" style="display: ${this._isOpen === true ? 'flex' : 'none'}">
             <div class="stm-dialog">
                 <div class="dialog-icon-wrap">
                     <img src="../../../images/VA/caution-circle.svg">
@@ -844,6 +1066,7 @@ class StmProgressBar extends HTMLElement {
 class StmList extends HTMLElement {
     constructor() {
         super();
+        this._isRendered = false;
     }
 
     static get observedAttributes() {
@@ -854,14 +1077,42 @@ class StmList extends HTMLElement {
         this.render();
     }
 
-    attributeChangedCallback() {
-        this.render();
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue === newValue) return;
+        // Nếu chỉ đổi active-id thì không gọi render() toàn bộ mà chỉ cập nhật trạng thái
+        if (name === 'active-id') {
+            const listContainer = this.querySelector('.stm-account-cards-list');
+            if (listContainer) {
+                this.updateActiveState(newValue);
+            } else {
+                this.render();
+            }
+        } else {
+            // Chỉ render lại toàn bộ khi danh sách tài khoản hoặc header thay đổi
+            this.render();
+        }
     }
 
     getSelectedAccount() {
         const accounts = JSON.parse(this.getAttribute('accounts') || '[]');
         const activeId = this.getAttribute('active-id');
         return accounts.find(acc => acc.id === activeId) || null;
+    }
+
+    updateActiveState(activeId) {
+        const cards = this.querySelectorAll('.stm-account-card');
+        cards.forEach(card => {
+            const isSelected = card.getAttribute('data-id') === activeId;
+            const img = card.querySelector('.account-radio-icon img');
+
+            if (isSelected) {
+                card.classList.add('active');
+                img.src = '../../../images/VA/radio-on.svg';
+            } else {
+                card.classList.remove('active');
+                img.src = '../../../images/VA/radio-off.svg';
+            }
+        });
     }
 
     render() {
@@ -884,7 +1135,7 @@ class StmList extends HTMLElement {
             const iconSrc = isActive ? '../../../images/VA/radio-on.svg' : '../../../images/VA/radio-off.svg';
 
             listHtml += `
-                <div class="${cardClass}" id="account-card-list">
+                <div class="${cardClass}" data-id="${acc.id}">
                     <div class="account-radio-icon">
                         <img src="${iconSrc}" alt="${isActive ? 'Selected' : 'Unselected'}">
                     </div>
@@ -899,11 +1150,12 @@ class StmList extends HTMLElement {
         listHtml += `</div>`;
         this.innerHTML = headerHtml + listHtml;
 
-        const cards = this.querySelectorAll('#account-card-list');
-        cards.forEach((card, index) => {
+        const cards = this.querySelectorAll('.stm-account-card');
+        cards.forEach((card) => {
             card.onclick = () => {
-                const acc = accounts[index]; // Lấy đúng object dựa trên index
-                this.onAccountSelect(acc.id, acc);
+                const id = card.getAttribute('data-id');
+                const account = accounts.find(a => a.id === id);
+                this.onAccountSelect(id, account);
             };
         });
     }
@@ -966,8 +1218,133 @@ class CustomTable extends HTMLElement {
 }
 
 
+class NumberKeyboard extends HTMLElement {
+    constructor() {
+        super();
+        this._activeInput = null; // Biến lưu trữ input đang focus
+        this._handleFocusIn = this.handleFocusIn.bind(this);
+        // this.attachShadow({ mode: 'open' });
+    }
+
+    connectedCallback() {
+        this.render();
+        this.initEvents();
+        // Lắng nghe sự kiện focus trên toàn bộ document
+        document.addEventListener('focusin', this._handleFocusIn);
+    }
+
+    handleFocusIn(e) {
+        // Chỉ nhận các element là INPUT hoặc TEXTAREA
+        console.log(e.target);
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+            this._activeInput = e.target;
+            // Thay vì render() lại toàn bộ, chỉ hiện keyboard lên
+            const container = this.querySelector('.number-keyboard-grid');
+            if (container) container.style.visibility = 'visible';
+
+            this._activeInput.addEventListener('keydown', (e) => e.preventDefault(), { once: true });
+        }
+    }
+
+
+    initEvents() {
+        const container = this.querySelector('.number-keyboard-grid');
+
+        container.addEventListener('mousedown', (e) => {
+            const btn = e.target.closest('.number-key-new');
+            if (!btn || !this._activeInput) return;
+
+            let currentVal = this._activeInput.value;
+            const btnText = btn.innerText.trim();
+
+            const isDeleteOne = btn.id === 'btn-delete-number' || btn.querySelector('img');
+            const isDeleteAll = btn.id === 'btn-delete-all';
+
+            if (isDeleteAll) {
+                currentVal = "";
+            } else if (isDeleteOne) {
+                currentVal = currentVal.slice(0, -1);
+            } else if (btnText !== "") {
+                currentVal += btnText;
+            }
+
+            this._activeInput.value = currentVal;
+
+            // Phát sự kiện 'input' để các listener khác (nếu có) biết giá trị đã thay đổi
+            this._activeInput.dispatchEvent(new Event('input', { bubbles: true }));
+        });
+    }
+
+    render() {
+        this.innerHTML = `
+      <div class="number-keyboard-grid">
+                    <button class="number-key-new">1</button>
+                    <button class="number-key-new">2</button>
+                    <button class="number-key-new">3</button>
+                    <button class="number-key-new">4</button>
+                    <button class="number-key-new">5</button>
+                    <button class="number-key-new">6</button>
+                    <button class="number-key-new">7</button>
+                    <button class="number-key-new">8</button>
+                    <button class="number-key-new">9</button>
+                    <button class="number-key-new" id="btn-delete-number">
+                        <img src="../../../images/VA/icon-delete.svg">
+                    </button>
+                    <button class="number-key-new">0</button>
+                    <button class="number-key-new" ids="ids_VAB_numkeyboard_clear_all" style="color: #F04438;" id="btn-delete-all">Xóa hết</button>
+      </div>
+    `;
+    }
+}
+
+
+class SimpleDialog extends HTMLElement {
+    constructor() {
+        super();
+        this._isOpen = false;
+        this._htmlEle = null;
+        this._countdownVal = null;
+        // this.attachShadow({ mode: 'open' });
+    }
+
+    connectedCallback() {
+        this.render();
+    }
+
+    attributeChangedCallback() {
+        this.render();
+    }
+
+    set htmlEle(ele) {
+        this._htmlEle = ele;
+        this.render();
+    }
+
+    set countdownVal(time) {
+        this._countdownVal = time;
+        this.render();
+    }
+
+    set openDialog(isOpen){
+        this._isOpen = isOpen;
+        this.render();
+    }
+
+    render() {
+        this.innerHTML = `
+        <main class="stm-dialog-container" style="display: ${this._isOpen === true ? 'flex' : 'none'}">
+            <div class="simple-dialog">
+                ${this._htmlEle || ''}
+            </div>
+        </main>
+        `;
+    }
+}
+
+
 customElements.define('stm-header', Header);
 customElements.define('stm-only-logo-header', OnlyLogoHeader);
+customElements.define('stm-logo-countdown-header', LogoAndCountdownHeader);
 customElements.define('stm-card', StmCard);
 customElements.define('stm-footer', Footer);
 customElements.define('stm-footer-continue', FooterWithContinueBtn);
@@ -983,3 +1360,5 @@ customElements.define('stm-list', StmList);
 customElements.define('stm-one-btn-dialog', OneButtonDialog);
 customElements.define('stm-yes-no-dialog', YesOrNoDialog);
 customElements.define('stm-table', CustomTable);
+customElements.define('stm-num-keyboard', NumberKeyboard);
+customElements.define('stm-simple-dialog', SimpleDialog);

@@ -357,6 +357,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\VAB_CreateSessionIDNumber.cs" />
+    <Compile Include="Common\VAB_SelectFunction.cs" />
     <Compile Include="Common\WriteEJLog.cs" />
     <Compile Include="Deposit\VAB_DepositSelectAccount.cs" />
     <Compile Include="Deposit\VAB_GeneralQueryCIFAPI4Deposit.cs" />
@@ -454,14 +455,14 @@
     <Compile Include="LocalFace\FaceRecognize.cs" />
     <Compile Include="LocalFace\FacialRecognition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QR_CashWithdrawal\VAB_CWDCheckRemain.cs" />
-    <Compile Include="QR_CashWithdrawal\VAB_ShowQR.cs" />
+    <Compile Include="NoCard_CashWithdrawal\VAB_CWDCheckRemain.cs" />
     <Compile Include="TwinScreen\BusinessActivityLocalTotalsEx.cs" />
     <Compile Include="TwinScreen\DisorderCardModule\ClearDisorderCard.cs" />
     <Compile Include="TwinScreen\DisorderCardModule\DepositCardToSlot.cs" />
     <Compile Include="TwinScreen\DisorderCardModule\DisorderCardAdd.cs" />
     <Compile Include="TwinScreen\DisorderCardModule\PrintTotalForCardUnit.cs" />
     <Compile Include="UserLoginFB.cs" />
+    <Compile Include="VAB_VerifyCustomer\VAB_ShowQR.cs" />
     <Compile Include="VTMCheckCardState.cs" />
     <Compile Include="VTMInputWithdrawAmount.cs" />
     <Compile Include="VTMShowBalance.cs" />

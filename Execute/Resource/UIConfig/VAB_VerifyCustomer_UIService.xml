@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+  <Screen name="UI_VAB_SelecTQROrCCCD" uri="VA\authen-qr\XT-QR-01.html" cache="0"></Screen>
+  <Screen name="UI_VAB_ShowQR" uri="VA\authen-qr\XT-QR-02.html" cache="0"></Screen>
+
+</Screens>
+
+
+
+
+

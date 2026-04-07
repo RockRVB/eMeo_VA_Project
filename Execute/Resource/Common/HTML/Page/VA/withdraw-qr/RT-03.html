@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../../../css/VA/style.css">
     <script src="../../../js/coreScript.js"></script>
     <script src="../../../js/VA/common.js"></script>
+    <script src="../../../js/VA/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <div class="stm-layout">
@@ -31,7 +32,7 @@
                 <div class="statement-actions-wrap">
                     <h2 class="section-title" ids="ids_VAB_rt_03_pls_input_cash_value">Vui lòng nhập số tiền cần rút</h2>
 
-                    <span class="text-alert-red" style="font-size: 30px;" id="invalid-message" ids="ids_VAB_rt_03_multiple_of_50k">Số tiền phải là bội số của 50,000</span>
+                    <span class="text-alert-red" style="font-size: 30px;" id="invalid-message" ids="ids_VAB_rt_03_multiple_of_20k">Số tiền phải là bội số của 20,000</span>
                     <input class="withdraw_value_input" id="withdraw-input">
                     <span class="text-alert-red" id="invalid-submessage" style="visibility: hidden;" ids="ids_VAB_rt_03_cash_value_invalid">Số tiền không hợp lệ</span>
                     <div class="number-keyboard-grid" style="margin-top: 20px;">
@@ -54,7 +55,7 @@
 
                 <div class="statement-btns-container" style="padding-bottom: 7px;">
                     <div class="dialog-actions">
-                        <button class="btn-dialog-secondary" id="confirm_deposit_btn" tag="confirm_deposit">
+                        <button class="btn-dialog-secondary" id="confirm_deposit_btn" tag="confirm_deposit" type="button">
                             <span ids="ids_VAB_rt_03_confirm_withdraw_cash_value">Xác nhận</span>
                         </button>
                     </div>
@@ -65,70 +66,81 @@
     </main>
 
     <stm-footer-previous></stm-footer-previous>
+    <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
     <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
 </div>
 <script src="../../../js/VA/scale.js"></script>
 <script>
-    const headerElement = document.getElementById("auth-task-header");
-    const cancelTransDialog = document.getElementById("cancel-trans-dialog");
-    const confirmBtn = document.getElementById("confirm_deposit_btn");
-    const subMessage = document.getElementById("invalid-submessage");
+    $(document).ready(function (){
+        const headerElement = document.getElementById("auth-task-header");
+        // const cancelTransDialog = document.getElementById("cancel-trans-dialog");
+        const confirmBtn = document.getElementById("confirm_deposit_btn");
+        const subMessage = document.getElementById("invalid-submessage");
 
-    headerElement.onCancelTransBtnClick = function() {
-        cancelTransDialog.openDialog = true
-    };
+        // headerElement.onCancelTransBtnClick = function() {
+        //     cancelTransDialog.openDialog = true
+        // };
 
-    const inputField = document.querySelector('.withdraw_value_input');
-    const keys = document.querySelectorAll('.number-key');
+        const countdownData = '{"countdown" : 120, "countdownCancelTrans" : 60}'
+        const sampleObj = JSON.parse(countdownData);
+        // const countdownData = $('#input_val').val();
+        headerElement.countdownTime = sampleObj.countdown;
+        headerElement.countdownCancel = sampleObj.countdownCancelTrans;
 
-    function formatNumber(value) {
-        const number = value.replace(/\D/g, '');
-        return number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+        const inputField = document.querySelector('.withdraw_value_input');
+        const keys = document.querySelectorAll('.number-key');
 
-    function validateNumber(num){
-        const numValue = Number(num);
-        return numValue % 50000 === 0;
-    }
+        function formatNumber(value) {
+            const number = value.replace(/\D/g, '');
+            return number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
 
-    keys.forEach(key => {
-        key.addEventListener('click', () => {
-            inputField.style.color = 'black';
-            subMessage.style.display = 'none';
-            // Lấy giá trị hiện tại (xóa hết dấu phẩy để lấy chuỗi thuần)
-            let currentVal = inputField.value.replace(/\D/g, '');
-            const btnText = key.innerText.trim();
-            const isDelete = key.querySelector('img') || key.id === 'btn-delete-number';
+        function validateNumber(num){
+            const numValue = Number(num);
+            return numValue % 20000 === 0;
+        }
 
-            if (isDelete) {
-                // Xử lý nút Xóa
-                currentVal = inputField.value.slice(0, -1);
-            } else {
-                // Chặn nhập số 0 ở đầu
-                if (currentVal === "" && (btnText === "0" || btnText === "000")) return;
+        keys.forEach(key => {
+            key.addEventListener('click', () => {
+                inputField.style.color = 'black';
+                // Lấy giá trị hiện tại (xóa hết dấu phẩy để lấy chuỗi thuần)
+                let currentVal = inputField.value.replace(/\D/g, '');
+                const btnText = key.innerText.trim();
+                const isDelete = key.querySelector('img') || key.id === 'btn-delete-number';
 
-                currentVal += btnText;
-            }
+                if (isDelete) {
+                    // Xử lý nút Xóa
+                    currentVal = inputField.value.slice(0, -1);
+                    subMessage.style.visibility = 'hidden';
+                } else {
+                    // Chặn nhập số 0 ở đầu
+                    if (currentVal === "" && (btnText === "0" || btnText === "000")) return;
 
-            inputField.value = formatNumber(currentVal);
-            inputField.focus();
+                    currentVal += btnText;
+                }
+
+                inputField.value = formatNumber(currentVal);
+                inputField.focus();
+            });
         });
-    });
 
-    inputField.addEventListener('keydown', (e) => {
-        if (!/^[0-9]$/.test(e.key)) {
-            e.preventDefault();
-        }
-    });
+        inputField.addEventListener('keydown', (e) => {
+            if (!/^[0-9]$/.test(e.key)) {
+                e.preventDefault();
+            }
+        });
 
-    confirmBtn.addEventListener('click', () => {
-        const withdrawInput = document.getElementById("withdraw-input");
-        if(!validateNumber(withdrawInput.value.replace(/\D/g, ''))){
-            message.style.display = 'inline-block';
-            inputField.style.color = 'red';
-            subMessage.style.display = 'inline-block';
-        }
-    });
+        confirmBtn.addEventListener('click', () => {
+            const withdrawInput = document.getElementById("withdraw-input");
+            if(!validateNumber(withdrawInput.value.replace(/\D/g, ''))){
+                inputField.style.color = 'red';
+                subMessage.style.visibility = 'visible';
+                // $('#output_val').val(withdrawInput.value.replace(/\D/g, ''));
+            }
+        });
+    })
 </script>
 </body>
 </html>

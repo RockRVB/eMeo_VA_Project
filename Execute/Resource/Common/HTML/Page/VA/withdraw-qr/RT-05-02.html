@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Deposit Slip</title>
+    <link rel="stylesheet" href="../../../css/VA/style.css">
+    <script src="../../../js/coreScript.js"></script>
+    <script src="../../../js/VA/common.js"></script>
+    <script src="../../../js/VA/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="stm-layout">
+    <!-- Header -->
+
+    <stm-auth-task-header id="auth-task-header"></stm-auth-task-header>
+
+    <!-- Body -->
+    <main class="stm-body confirm-deposit-body">
+        <div class="stm-content">
+            <stm-progress-bar
+                    current-step="3"
+                    steps='[
+                        {"label": "Xác thực", "ids" : "ids_VAB_withdraw_qr_step_1"},
+                        {"label": "Chọn tài khoản", "ids" : "ids_VAB_withdraw_qr_step_2"},
+                        {"label": "Rút tiền", "ids" : "ids_VAB_withdraw_qr_step_3"},
+                        {"label": "Hoàn tất", "ids" : "ids_VAB_withdraw_qr_step_4"}
+                    ]'>
+            </stm-progress-bar>
+
+            <div class="statement-actions-container">
+                <div class="statement-actions-wrap">
+                    <h2 class="section-title" ids="ids_VAB_rt_14_title">Quý khách vui lòng nhập mã xác thực OTP</h2>
+                    <div class="otp-input-container" style="margin-top: -10px;">
+                        <input type="number" class="otp-input" id="first-otp-input">
+                        <input type="number" class="otp-input" id="second-otp-input">
+                        <input type="number" class="otp-input" id="third-otp-input">
+                        <input type="number" class="otp-input" id="fourth-otp-input">
+                        <input type="number" class="otp-input" id="fifth-otp-input">
+                        <input type="number" class="otp-input" id="sixth-otp-input">
+                    </div>
+                    <span class="text-alert-red" id="invalid-otp-message" style="font-size: 21px;" ids="ids_VAB_rt_14_otp_invalid">Mã xác thực OTP quý khách nhập không đúng. Vui lòng thử lại!</span>
+                    <span class="resend-otp-message" id="resend-otp-message" ids="ids_VAB_rt_14_resend_otp">Gửi lại mã OTP <strong class="resend-otp-countdown-time" style="cursor: none;" id="resend-otp-countdown">(01:00)</strong></span>
+                    <div class="number-keyboard-grid">
+                        <button class="number-key-otp">1</button>
+                        <button class="number-key-otp">2</button>
+                        <button class="number-key-otp">3</button>
+                        <button class="number-key-otp">4</button>
+                        <button class="number-key-otp">5</button>
+                        <button class="number-key-otp">6</button>
+                        <button class="number-key-otp">7</button>
+                        <button class="number-key-otp">8</button>
+                        <button class="number-key-otp">9</button>
+                        <button class="number-key-otp" id="btn-delete-number">
+                            <img src="../../../images/VA/icon-delete.svg">
+                        </button>
+                        <button class="number-key-otp">0</button>
+                        <button class="number-key-otp" ids="ids_VAB_rt_14_otp_clear_all" style="color: #F04438;" id="btn-delete-all">Xóa hết</button>
+                    </div>
+                </div>
+
+                <div class="statement-btns-container" style="padding-bottom: 7px;">
+                    <div class="dialog-actions">
+                        <button class="btn-dialog-secondary" id="confirm_otp_btn" tag="confirmOtp" type="button">
+                            <span ids="ids_VAB_rt_14_confirm_otp">Xác nhận</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <stm-footer></stm-footer>
+    <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
+    <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
+</div>
+<script src="../../../js/VA/scale.js"></script>
+<script>
+    $(document).ready(function(){
+        const headerElement = document.getElementById("auth-task-header");
+        const resendOtpBtn = document.getElementById("resend-otp-message");
+        const countdownDisplay = document.getElementById('resend-otp-countdown');
+        const otpInputs = document.querySelectorAll('.otp-input');
+        const keys = document.querySelectorAll('.number-key-otp');
+        const confirmOtpBtn = document.getElementById('confirm_otp_btn');
+
+
+        const countdownData = '{"countdown" : 120, "countdownCancelTrans" : 60}'
+        const sampleObj = JSON.parse(countdownData);
+        // const countdownData = $('#input_val').val();
+        headerElement.countdownTime = sampleObj.countdown;
+        headerElement.countdownCancel = sampleObj.countdownCancelTrans;
+
+        let currentIndex = 0;
+
+        // 1. Lắng nghe sự kiện click hoặc touch vào các ô input để biết người dùng đang trỏ vào ô nào
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('focus', () => {
+                // Tìm vị trí của ô trống đầu tiên từ trái sang phải
+                let firstEmptyIndex = Array.from(otpInputs).findIndex(inp => inp.value === "");
+
+                // Nếu có ô trống VÀ người dùng đang click vào một ô nằm sau ô trống đó
+                if (firstEmptyIndex !== -1 && index > firstEmptyIndex) {
+                    // Ép con trỏ quay về ô trống đầu tiên
+                    otpInputs[firstEmptyIndex].focus();
+                    currentIndex = firstEmptyIndex;
+                } else {
+                    // Hợp lệ: Cho phép focus vào ô trống tiếp theo hoặc các ô đã có số (để sửa lại)
+                    currentIndex = index;
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                e.preventDefault();
+            });
+        });
+
+        // 2. Xử lý sự kiện khi bấm vào các nút trên bàn phím ảo
+        keys.forEach(key => {
+            key.addEventListener('click', function(e) {
+                e.preventDefault(); // Ngăn chặn form submit nếu bàn phím nằm trong <form>
+
+                // Nút xóa từng số
+                if (this.id === 'btn-delete-number') {
+                    handleBackspace();
+                    return;
+                }
+
+                // Nút "Xóa hết"
+                if (this.getAttribute('id') === 'btn-delete-all') {
+                    handleClearAll();
+                    return;
+                }
+
+                // Các nút Số (0-9)
+                const number = this.textContent.trim();
+                if (number && !isNaN(number)) {
+                    handleNumber(number);
+                }
+            });
+        });
+
+        // Hàm xử lý nhập số
+        function handleNumber(number) {
+            if (currentIndex < otpInputs.length) {
+                // Điền số vào ô hiện tại
+                otpInputs[currentIndex].value = number;
+
+                // Nếu chưa phải là ô cuối cùng -> Tự động focus sang ô tiếp theo
+                if (currentIndex < otpInputs.length - 1) {
+                    currentIndex++;
+                    otpInputs[currentIndex].focus();
+                } else {
+                    // Đã nhập ô cuối cùng -> Bỏ focus để ẩn bàn phím (hoặc gọi hàm submit form ở đây)
+                    otpInputs[currentIndex].blur();
+
+                    // Gọi hàm kiểm tra mã OTP tại đây
+                    // verifyOTP();
+                }
+            }
+        }
+
+        // Hàm xử lý nút Xóa (Backspace)
+        function handleBackspace() {
+            if (otpInputs[currentIndex].value !== "") {
+                // Nếu ô hiện tại đang có số -> Xóa số ở ô hiện tại
+                otpInputs[currentIndex].value = "";
+            } else if (currentIndex > 0) {
+                // Nếu ô hiện tại trống -> Lùi về ô trước đó và xóa số
+                currentIndex--;
+                otpInputs[currentIndex].focus();
+                otpInputs[currentIndex].value = "";
+            }
+        }
+
+        // Hàm xử lý nút Xóa hết
+        function handleClearAll() {
+            otpInputs.forEach(input => input.value = "");
+            currentIndex = 0;
+            otpInputs[0].focus();
+        }
+
+        // 3. Tự động focus vào ô đầu tiên khi vừa tải xong giao diện
+        if (otpInputs.length > 0) {
+            otpInputs[0].focus();
+        }
+
+        let timer = null;
+        let isCounting = false; // Biến trạng thái để chặn click trùng lặp
+
+        resendOtpBtn.addEventListener('click', function() {
+            // Nếu đang trong quá trình đếm ngược thì không cho click
+            if (isCounting) return;
+
+            // Bắt đầu logic đếm ngược
+            startCountdown(60); // 60 giây = 1 phút
+        });
+
+        function startCountdown(seconds) {
+            isCounting = true;
+            resendOtpBtn.style.color = '#A0A0A0';
+            resendOtpBtn.style.cursor = "not-allowed";
+
+            let timeLeft = seconds;
+
+            // Xóa timer cũ nếu có
+            if (timer) clearInterval(timer);
+
+            timer = setInterval(() => {
+                timeLeft--;
+
+                if (timeLeft <= 0) {
+                    // Kết thúc đếm ngược
+                    clearInterval(timer);
+                    countdownDisplay.textContent = "(01:00)"; // Reset hiển thị
+                    resendOtpBtn.style.color = '#06AED4';
+                    resendOtpBtn.style.cursor = "pointer";
+                    isCounting = false;
+
+                    // Bạn có thể thêm thông báo "Sẵn sàng gửi lại" ở đây
+                    return;
+                }
+
+                // Định dạng hiển thị mm:ss
+                const minutes = Math.floor(timeLeft / 60);
+                const remainingSeconds = timeLeft % 60;
+
+                // Format thành 00:00 (sử dụng padStart để thêm số 0 phía trước)
+                const displayMinutes = String(minutes).padStart(2, '0');
+                const displaySeconds = String(remainingSeconds).padStart(2, '0');
+
+                countdownDisplay.textContent = `(${displayMinutes}:${displaySeconds})`;
+            }, 1000);
+
+            // Gọi logic gửi OTP
+        }
+
+        confirmOtpBtn.addEventListener('click', () => {
+            let otp = '';
+            otpInputs.forEach((input) => {
+                otp += input.value;
+            })
+            // $('#output_val').val(otp);
+        })
+    })
+</script>
+</body>
+</html>

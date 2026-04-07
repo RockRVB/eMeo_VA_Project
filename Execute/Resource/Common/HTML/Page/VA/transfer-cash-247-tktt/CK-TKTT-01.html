@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TKTT List</title>
+    <link rel="stylesheet" href="../../../css/VA/style.css">
+    <script src="../../../js/coreScript.js"></script>
+    <script src="../../../js/VA/common.js"></script>
+    <script src="../../../js/VA/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="stm-layout">
+    <!-- Header -->
+
+    <stm-auth-task-header id="auth-task-header"></stm-auth-task-header>
+
+    <!-- Body -->
+    <main class="stm-body account-list-body">
+        <div class="stm-content account-content">
+
+            <stm-progress-bar
+                    current-step="2"
+                    steps='[
+                        {"label": "Xác thực", "ids" : "ids_VAB_transfer_tktt_step_1"},
+                        {"label": "Chọn tài khoản", "ids" : "ids_VAB_transfer_tktt_step_2"},
+                        {"label": "Chuyển tiền", "ids" : "ids_VAB_transfer_tktt_step_3"},
+                        {"label": "Hoàn tất", "ids" : "ids_VAB_transfer_tktt_step_4"}
+                    ]'>
+            </stm-progress-bar>
+
+            <div class="account-sections">
+                <!-- Customer Info Section -->
+                <div class="customer-info-section">
+                    <h2 class="section-title" ids="ids_VAB_ck_tktt_01_cus_info">Thông tin khách hàng</h2>
+                    <div class="stm-info-card">
+                        <div class="info-field">
+                            <span class="info-label" ids="ids_VAB_ck_tktt_01_cus_name">Tên khách hàng:</span>
+                            <span class="info-value" id="cus-name"></span>
+                        </div>
+<!--                        <div class="info-field">-->
+<!--                            <span class="info-label" ids="ids_VAB_ck_tktt_01_cccd">Số CCCD/CC:</span>-->
+<!--                            <span class="info-value" id="cccd"></span>-->
+<!--                        </div>-->
+                        <div class="info-field">
+                            <span class="info-label" ids="ids_VAB_ck_tktt_01_cif">Số CIF:</span>
+                            <span class="info-value" id="cif"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Selection Layout -->
+                <div class="account-selection-section">
+                    <h2 class="section-title" ids="ids_VAB_ck_tktt_01_select_account_title">Vui lòng chọn TKTT nguồn</h2>
+                    <stm-list id="account-list">
+                    </stm-list>
+                </div>
+            </div>
+
+
+            <div class="statement-btns-container">
+                <div class="dialog-actions" style="justify-content: center; margin-top: 50px;">
+                    <button class="btn-dialog-secondary" id="confirm-transfer" tag="confirmTransfer" type="button">
+                        <span ids="ids_VAB_ck_tktt_01_confirm_transfer_btn">Xác nhận</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <stm-footer></stm-footer>
+    <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
+    <input style="display: none;" id="input_val" value='{}' />
+    <input style="display: none;" id="output_val" value='{}'/>
+</div>
+<script src="../../../js/VA/scale.js"></script>
+<script>
+    $(document).ready(function() {
+        const headerElement = document.getElementById("auth-task-header");
+        const confirmTransferBtn = document.getElementById("confirm-transfer");
+
+        const accList = document.getElementById('account-list');
+        const cusName = document.getElementById('cus-name');
+        // const cccd = document.getElementById('cccd');
+        const cif = document.getElementById('cif');
+
+        const masterData = '{"countdown":120,"countdownCancelTrans" : 60, "cus_info":{"cus_name":"ABC","cif":"Số CIF"},"header_list":[{"label":"Số tài khoản","ids":"ids_VAB_ck_tktt_01_account_num"},{"label":"Số dư","ids":"ids_VAB_ck_tktt_01_avail_balance"}],"acc_list":[{"id":"123456789000","accountNumber":"123456789000","balance":"100 000"},{"id":"987654321111","accountNumber":"987654321111","balance":"500 000"},{"id":"555566667777","accountNumber":"555566667777","balance":"250 000"},{"id":"898989328489","accountNumber":"898989328489","balance":"250 000"},{"id":"489384843278","accountNumber":"489384843278","balance":"250 000"},{"id":"973987291832","accountNumber":"973987291832","balance":"250 000"}]}';
+        <!-- const masterData = $('#input_val').val(); -->
+        const masterObj = JSON.parse(masterData);
+        const accountsArray = masterObj.acc_list;
+
+        headerElement.countdownTime = masterObj.countdown;
+        headerElement.countdownCancel = masterObj.countdownCancelTrans;
+
+        accList.setAttribute('active-id', accountsArray[0].id);
+        accList.setAttribute('headers', JSON.stringify(masterObj.header_list));
+        accList.setAttribute('accounts', JSON.stringify(masterObj.acc_list))
+
+        cusName.innerText = masterObj.cus_info.cus_name;
+        // cccd.innerText = 'Số CCCD';
+        cif.innerText = masterObj.cus_info.cif;
+
+        $('#output_val').val(JSON.stringify(accList.getSelectedAccount()));
+        headerElement.onCancelTransBtnClick = function() {
+            cancelTransDialog.openDialog = true
+        };
+
+        accList.addEventListener('change', (event) => {
+            const selected = event.detail.account;
+            $('#output_val').val(JSON.stringify(selected));
+        })
+
+
+        confirmTransferBtn.addEventListener('click', () => {
+            console.log($('#output_val').val());
+        })
+    })
+</script>
+<!--<script>-->
+<!--    const myDialog = document.createElement('stm-one-btn-dialog');-->
+
+<!--    myDialog.titleText = "Hệ thống đang bảo trì";-->
+<!--    myDialog._buttonTitle = "btn ne";-->
+
+<!--    myDialog.onPrimaryClick = function() {-->
+<!--        console.log("lam cai gi do...");-->
+<!--        // window.location.href = '/dashboard';-->
+<!--    };-->
+
+<!--    let timeLeft = 120;-->
+<!--    myDialog.subTitle = `Tự động về màn hình Trang chủ trong ${timeLeft}s`-->
+<!--    const timer = setInterval(() => {-->
+<!--        timeLeft&#45;&#45;;-->
+
+<!--        // Truyền giá trị vào component-->
+<!--        myDialog.subTitle = `Tự động về màn hình Trang chủ trong ${timeLeft}s` ;-->
+
+<!--        if (timeLeft <= 0) {-->
+<!--            clearInterval(timer);-->
+<!--            // console.log("Hết thời gian, thực hiện hành động...");-->
+<!--            // Ví dụ: myDialog.onPrimaryClick();-->
+<!--        }-->
+<!--    }, 1000);-->
+
+<!--    document.body.appendChild(myDialog);-->
+<!--</script>-->
+<!--<script>-->
+<!--    const myDialog = document.createElement('stm-yes-no-dialog');-->
+
+<!--    myDialog.titleText = "Hệ thống đang bảo trì";-->
+<!--    myDialog._yesBtnTitle = "Yes";-->
+<!--    myDialog._noBtnTitle = "No";-->
+
+<!--    myDialog.onYesClick = function() {-->
+<!--        console.log("Yes ne...");-->
+<!--        // window.location.href = '/dashboard';-->
+<!--    };-->
+
+<!--    myDialog.onNoClick = function() {-->
+<!--        console.log("No ne...");-->
+<!--        // window.location.href = '/dashboard';-->
+<!--    };-->
+
+<!--    // LOGIC ĐẾM NGƯỢC Ở NGOÀI-->
+<!--    let timeLeft = 120;-->
+<!--    myDialog.subTitle = `Tự động về màn hình Trang chủ trong ${timeLeft}s`-->
+<!--    const timer = setInterval(() => {-->
+<!--        timeLeft&#45;&#45;;-->
+
+<!--        // Truyền giá trị vào component-->
+<!--        myDialog.subTitle = `Tự động về màn hình Trang chủ trong ${timeLeft}s` ;-->
+
+<!--        if (timeLeft <= 0) {-->
+<!--            clearInterval(timer);-->
+<!--            // console.log("Hết thời gian, thực hiện hành động...");-->
+<!--            // Ví dụ: myDialog.onPrimaryClick();-->
+<!--        }-->
+<!--    }, 1000);-->
+
+<!--    document.body.appendChild(myDialog);-->
+<!--</script>-->
+</body>
+</html>

@@ -73,11 +73,11 @@
 
                 <div class="statement-btns-container">
                     <div class="dialog-actions">
-                        <button class="btn-dialog-primary" id="extra_deposit" tag="extra_deposit">
+                        <button class="btn-dialog-primary" id="extra_deposit" tag="extra_deposit" type="button">
                             <span ids="ids_VAB_nt_04_add_on_deposit">Nộp thêm</span>
                         </button>
 
-                        <button class="btn-dialog-secondary" id="confirm_deposit" tag="confirm_deposit">
+                        <button class="btn-dialog-secondary" id="confirm_deposit" tag="confirm_deposit" type="button">
                             <span ids="ids_VAB_nt_04_confirm_deposit">Xác nhận</span>
                         </button>
                     </div>
@@ -88,15 +88,17 @@
     </main>
 
     <stm-footer></stm-footer>
+    <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
     <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
-    <input style="display: none;" id="input-val" value='{}' />
-    <input style="display: none;" id="output-val" value='{}'/>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
 </div>
 <script src="../../../js/VA/scale.js"></script>
 <script>
     $(document).ready(function (){
         const container = document.getElementById('table-data');
         const totalSpan = document.getElementById('total-value');
+        const header = document.getElementById("auth-task-header");
 
         function calculateGrandTotal(dataArray) {
             const grandTotal = dataArray.reduce((accumulator, item) => {
@@ -106,16 +108,11 @@
             return grandTotal.toLocaleString('vi-VN') + " VNĐ";
         }
 
-        const data = [
-            { price: "20,000 VNĐ", quantity: "5", total: "100,000 VNĐ" },
-            { price: "50,000 VNĐ", quantity: "5", total: "250,000 VNĐ" },
-            { price: "100,000 VNĐ", quantity: "5", total: "500,000 VNĐ" },
-            { price: "200,000 VNĐ", quantity: "5", total: "1,000,000 VNĐ" },
-            { price: "500,000 VNĐ", quantity: "5", total: "2,500,000 VNĐ" }
-        ];
+        const data = JSON.parse('{"countdown":120,"cash_slip":[{"price":"20,000 VNĐ","quantity":"5","total":"100,000 VNĐ"},{"price":"50,000 VNĐ","quantity":"5","total":"250,000 VNĐ"},{"price":"100,000 VNĐ","quantity":"5","total":"500,000 VNĐ"},{"price":"200,000 VNĐ","quantity":"5","total":"1,000,000 VNĐ"},{"price":"500,000 VNĐ","quantity":"5","total":"2,500,000 VNĐ"}]}');        console.log(data);
+        // const data = $('#input_val').val();
+        header.countdownTime = data.countdown;
 
-
-        data.forEach(item => {
+        data.cash_slip.forEach(item => {
             // Tạo div class "statement-row"
             const row = document.createElement('div');
             row.className = 'statement-row';
@@ -131,14 +128,14 @@
             container.appendChild(row);
         });
 
-        totalSpan.innerText = calculateGrandTotal(data);
+        totalSpan.innerText = calculateGrandTotal(data.cash_slip);
 
         const headerElement = document.getElementById("auth-task-header");
-        const cancelTransDialog = document.getElementById("cancel-trans-dialog");
-
-        headerElement.onCancelTransBtnClick = function() {
-            cancelTransDialog.openDialog = true
-        };
+        const countdownData = '{"countdown" : 120, "countdownCancelTrans" : 60}'
+        const sampleObj = JSON.parse(countdownData);
+        // const countdownData = $('#input_val').val();
+        headerElement.countdownTime = sampleObj.countdown;
+        headerElement.countdownCancel = sampleObj.countdownCancelTrans;
     })
 </script>
 </body>

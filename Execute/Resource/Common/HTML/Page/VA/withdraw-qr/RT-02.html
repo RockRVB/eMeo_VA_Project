@@ -64,24 +64,40 @@
                     </div>
                 </div>
             </div>
+
+            <div class="statement-btns-container">
+                <div class="dialog-actions" style="justify-content: center; margin-top: 50px;">
+                    <button class="btn-dialog-secondary" id="confirm-withdraw" tag="confirmWithdraw" type="button">
+                        <span ids="ids_VAB_withdraw_qr_confirm_withdraw_btn">Xác nhận</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </main>
 
     <stm-footer></stm-footer>
+    <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
     <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
 </div>
 <script src="../../../js/VA/scale.js"></script>
 <script>
     $(document).ready(function (){
         const headerElement = document.getElementById("auth-task-header");
-        const cancelTransDialog = document.getElementById("cancel-trans-dialog");
-
-        headerElement.onCancelTransBtnClick = function() {
-            cancelTransDialog.openDialog = true
-        };
-
+        // const cancelTransDialog = document.getElementById("cancel-trans-dialog");
         const accNum = document.getElementById("account-num");
-        accNum.innerText = "8938xxxxxxxx092";
+
+        // headerElement.onCancelTransBtnClick = function() {
+        //     cancelTransDialog.openDialog = true
+        // };
+
+        const data = '{"countdown":120, "countdownCancelTrans" : 60, "withdraw_source_info":{"account_num":"8938xxxxxxxx092"}}';
+        const sampleObj = JSON.parse(data);
+        // const countdownData = $('#input_val').val();
+        headerElement.countdownTime = sampleObj.countdown;
+        headerElement.countdownCancel = sampleObj.countdownCancelTrans;
+        accNum.innerText = sampleObj.withdraw_source_info.account_num;
     })
 </script>
 </body>

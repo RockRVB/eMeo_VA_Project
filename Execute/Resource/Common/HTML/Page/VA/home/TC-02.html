@@ -13,7 +13,7 @@
     <div class="stm-layout">
         <!-- Header -->
 
-        <stm-auth-task-header></stm-auth-task-header>
+        <stm-auth-task-header id="auth-task-header"></stm-auth-task-header>
 
         <!-- Body -->
         <main class="stm-body transfer-body">
@@ -26,7 +26,7 @@
                     <!-- Card 1 -->
                     <div class="stm-card-lg" id="tien-mat">
                         <stm-card
-                                icon-url="../../../images/VA/card-add.png"
+                                icon-url="../../../images/VA/cash.svg"
                                 title="Tiền mặt"
                                 ids="ids_VAB_transfer_type_cash"
                         >
@@ -34,7 +34,7 @@
                     </div>
                     <div class="stm-card-lg" id="tk-thanh-toan">
                         <stm-card
-                                icon-url="../../../images/VA/card-add.png"
+                                icon-url="../../../images/VA/tktt.svg"
                                 title="Tài khoản thanh toán"
                                 ids="ids_VAB_transfer_type_account"
                         >
@@ -46,11 +46,24 @@
         </main>
 
         <stm-footer></stm-footer>
+        <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
+        <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
+        <input style="display: none;" id="input_val" value='{Replace input_val}' />
+        <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
     </div>
 </body>
 <script src="../../../js/VA/scale.js"></script>
 <script>
     $(document).ready(function() {
+        const header = document.getElementById("auth-task-header");
+
+        const countdownData = '{"countdown" : 120, "countdownCancelTrans" : 60}'
+        const sampleObj = JSON.parse(countdownData);
+        // const countdownData = $('#input_val').val();
+        header.countdownTime = sampleObj.countdown;
+        header.countdownCancel = sampleObj.countdownCancelTrans;
+
+
 
     })
 </script>

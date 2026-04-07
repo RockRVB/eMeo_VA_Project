@@ -49,7 +49,7 @@
 
 		<XDCInService ID="ID_ZeroState" UI="UI_index" timeout="0" comment="Zero state" changeLanguageInCurrentPage="1" >
 			<Forward event="OnStart" targetID="ID_VTMMainMenu"/>
-			<Forward event="OnQRCWD" targetID="ID_InvokeQRCWDFlow"/>
+			<Forward event="OnCashWithdrawalNoATMCard" targetID="ID_InvokeCWD_NoCardFlow"/>
 			<Forward event="OnNoCardTrans" targetID="ID_NoCardDepositForFBFlow" />
 			<Forward event="OnMaintenance" targetID="ID_InvokeMaintenanceWorkflow"/>
 			<Forward event="OnOutOfService" targetID="ID_InvokeOutOfServiceWorkflow"/>
@@ -140,7 +140,7 @@
 			<DefaultForward targetID="ID_SelectFunction4Biometrics" />
 		</ControlDigitalHuman>
 		
-		<InvokeWorkflow ID="ID_InvokeQRCWDFlow" name="QR_CashWithdrawal" comment="QR_CashWithdrawal workflow">
+		<InvokeWorkflow ID="ID_InvokeCWD_NoCardFlow" name="VAB_NoCard_CashWithdrawal" comment="VAB_NoCard_CashWithdrawal workflow">
 			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
 		</InvokeWorkflow>
 		

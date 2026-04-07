@@ -38,10 +38,10 @@
                             <span class="info-label" ids="ids_VAB_cash_deposit_qr_cus_name">Tên khách hàng:</span>
                             <span class="info-value" id="cus-name"></span>
                         </div>
-                        <div class="info-field">
-                            <span class="info-label" ids="ids_VAB_cash_deposit_qr_cccd">Số CCCD/CC:</span>
-                            <span class="info-value" id="cccd"></span>
-                        </div>
+<!--                        <div class="info-field">-->
+<!--                            <span class="info-label" ids="ids_VAB_cash_deposit_qr_cccd">Số CCCD/CC:</span>-->
+<!--                            <span class="info-value" id="cccd"></span>-->
+<!--                        </div>-->
                         <div class="info-field">
                             <span class="info-label" ids="ids_VAB_cash_deposit_qr_cif">Số CIF:</span>
                             <span class="info-value" id="cif"></span>
@@ -56,59 +56,71 @@
                     </stm-list>
                 </div>
             </div>
+
+            <div class="statement-btns-container">
+                <div class="dialog-actions" style="justify-content: center; margin-top: 50px;">
+                    <button class="btn-dialog-secondary" id="continue-deposit-btn" tag="continueDepositBtn" type="button">
+                        <span ids="ids_VAB_cash_deposit_qr_continue_deposit_btn">Tiếp tục</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </main>
 
-<!--    <stm-footer></stm-footer>-->
-    <stm-footer-continue id="footer-continue"></stm-footer-continue>
+    <stm-footer></stm-footer>
+<!--    <stm-footer-continue id="footer-continue"></stm-footer-continue>-->
+    <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
     <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
-    <input style="display: none;" id="input-val" value='{}' />
-    <input style="display: none;" id="output-val" value='{}'/>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
 </div>
 <script src="../../../js/VA/scale.js"></script>
 <script>
     $(document).ready(function() {
         const headerElement = document.getElementById("auth-task-header");
-        const cancelTransDialog = document.getElementById("cancel-trans-dialog");
+        // const cancelTransDialog = document.getElementById("cancel-trans-dialog");
+        const continueDepositBtn = document.getElementById("continue-deposit-btn");
 
         const accList = document.getElementById('account-list');
-        const footer = document.getElementById('footer-continue');
+        // const footer = document.getElementById('footer-continue');
         const cusName = document.getElementById('cus-name');
-        const cccd = document.getElementById('cccd');
+        // const cccd = document.getElementById('cccd');
         const cif = document.getElementById('cif');
 
-        accList.setAttribute('active-id', '123456789000');
-        accList.setAttribute('headers', JSON.stringify([
-            {"label": "Số tài khoản", "ids": "ids_VAB_cash_deposit_qr_account_num"},
-            {"label": "Số dư khả dụng", "ids": "ids_VAB_cash_deposit_qr_avail_balance"}
-        ]));
-        accList.setAttribute('accounts', JSON.stringify([
-            {"id": "123456789000", "accountNumber": "123456789000", "balance": "100 000"},
-            {"id": "987654321111", "accountNumber": "987654321111", "balance": "500 000"},
-            {"id": "555566667777", "accountNumber": "555566667777", "balance": "250 000"},
-            {"id": "898989328489", "accountNumber": "898989328489", "balance": "250 000"},
-            {"id": "489384843278", "accountNumber": "489384843278", "balance": "250 000"},
-            {"id": "973987291832", "accountNumber": "973987291832", "balance": "250 000"}
-        ]))
 
-        cusName.innerText = 'ABC';
-        cccd.innerText = 'Số CCCD';
-        cif.innerText = 'Số CIF';
 
-        $('#output-val').val(JSON.stringify(accList.getSelectedAccount()));
-        headerElement.onCancelTransBtnClick = function() {
-            cancelTransDialog.openDialog = true
-        };
+        const masterData = '{"countdown":120, "countdownCancelTrans" : 60, "cus_info":{"cus_name":"ABC","cif":"Số CIF"},"header_list":[{"label":"Số tài khoản","ids":"ids_VAB_cash_deposit_qr_account_num"},{"label":"Số dư khả dụng","ids":"ids_VAB_cash_deposit_qr_avail_balance"}],"acc_list":[{"id":"123456789000","accountNumber":"123456789000","balance":"100 000"},{"id":"987654321111","accountNumber":"987654321111","balance":"500 000"},{"id":"555566667777","accountNumber":"555566667777","balance":"250 000"},{"id":"898989328489","accountNumber":"898989328489","balance":"250 000"},{"id":"489384843278","accountNumber":"489384843278","balance":"250 000"},{"id":"973987291832","accountNumber":"973987291832","balance":"250 000"}]}';
+        <!-- const masterData = $('#input_val').val(); -->
+
+
+        const masterObj = JSON.parse(masterData);
+        const accountsArray = masterObj.acc_list;
+
+        headerElement.countdownTime = masterObj.countdown;
+        headerElement.countdownCancel = masterObj.countdownCancelTrans;
+
+        accList.setAttribute('active-id', accountsArray[0].id);
+        accList.setAttribute('headers', JSON.stringify(masterObj.header_list));
+        accList.setAttribute('accounts', JSON.stringify(masterObj.acc_list))
+
+        cusName.innerText = masterObj.cus_info.cus_name;
+        // cccd.innerText = 'Số CCCD';
+        cif.innerText = masterObj.cus_info.cif;
+
+        $('#output_val').val(JSON.stringify(accList.getSelectedAccount()));
+        // headerElement.onCancelTransBtnClick = function() {
+        //     cancelTransDialog.openDialog = true
+        // };
 
         accList.addEventListener('change', (event) => {
             const selected = event.detail.account;
-            $('#output-val').val(JSON.stringify(selected));
+            $('#output_val').val(JSON.stringify(selected));
         })
 
 
-        footer.onContinueBtnClick = function () {
-            console.log($('#output-val').val())
-        }
+        continueDepositBtn.addEventListener('click', () => {
+            console.log($('#output_val').val())
+        })
     })
 </script>
 <!--<script>-->

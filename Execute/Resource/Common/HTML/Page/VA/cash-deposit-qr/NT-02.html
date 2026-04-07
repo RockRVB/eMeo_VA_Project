@@ -34,9 +34,15 @@
                 <div class="customer-info-section">
                     <h2 class="section-title" ids="ids_VAB_nt_02_qdnt">Quy định nộp tiền</h2>
                     <div class="stm-info-card">
-                        <span class="info-value" ids="ids_VAB_nt_02_qdnt_1">Chỉ chấp nhận tiền polymer Việt Nam mệnh giá từ 50,000 VNĐ.</span>
+                        <span class="info-value" ids="ids_VAB_nt_02_qdnt_1">Chỉ chấp nhận tiền polymer Việt Nam mệnh giá từ 20,000 VNĐ.</span>
                         <span class="info-value" ids="ids_VAB_nt_02_qdnt_2">Số tờ nộp tối đa 200 tờ/ lần.</span>
-                        <span class="info-value" ids="ids_VAB_nt_02_qdnt_3">Vui lòng loại bỏ các vật thể không phải là tiền</span>
+<!--                        <span class="info-value" ids="ids_VAB_nt_02_qdnt_3">Vui lòng loại bỏ các vật thể không phải là tiền</span>-->
+
+                        <span class="info-value" ids="ids_VAB_nt_11_qdnt_4">Mệnh giá được chấp nhận</span>
+
+                        <div class="accepted-deposit-value-container">
+                            <img src="../../../images/VA/accepted-deposit-value.png">
+                        </div>
                     </div>
                 </div>
 
@@ -95,18 +101,48 @@
 
     <stm-footer></stm-footer>
     <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
-    <input style="display: none;" id="input-val" value='{}' />
-    <input style="display: none;" id="output-val" value='{}'/>
+    <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
 </div>
 <script src="../../../js/VA/scale.js"></script>
 <script>
     $(document).ready(function (){
         const headerElement = document.getElementById("auth-task-header");
-        const cancelTransDialog = document.getElementById("cancel-trans-dialog");
+        // const cancelTransDialog = document.getElementById("cancel-trans-dialog");
+        // const outOfTransactionTime = document.getElementById("outof-transaction-time");
 
-        headerElement.onCancelTransBtnClick = function() {
-            cancelTransDialog.openDialog = true
-        };
+        // headerElement.onCancelTransBtnClick = function() {
+        //     cancelTransDialog.openDialog = true
+        // };
+
+        const countdownData = '{"countdown" : 120, "countdownCancelTrans" : 60}'
+        const sampleObj = JSON.parse(countdownData);
+        // header.countdownTime = $('#input_val').val();
+        headerElement.countdownTime = sampleObj.countdown;
+        headerElement.countdownCancel = sampleObj.countdownCancelTrans;
+
+
+        // outOfTransactionTime.openDialog = true;
+        // outOfTransactionTime.titleText = `Đã hết thời gian giao dịch <br>Vui lòng xác nhận để tiếp tục thực hiện giao dịch.`
+        // outOfTransactionTime.btnTitle = 'Tiếp tục giao dịch'
+        // outOfTransactionTime.isBtnPrimary = false;
+        // outOfTransactionTime.idsBtn = 'ids_VAB_nt_02_continue_trans_btn';
+        // outOfTransactionTime.idsTitle = 'ids_VAB_nt_02_out_of_trans_time_title';
+        // outOfTransactionTime.idsSubTitle = 'ids_VAB_nt_02_out_of_trans_time_subtitle';
+        //
+        // let timeLeft = 60;
+        // outOfTransactionTime.subTitle = `Đóng thông báo trong ${timeLeft}s`
+        // const timer = setInterval(() => {
+        //     timeLeft--;
+        //
+        //     outOfTransactionTime.subTitle = `Đóng thông báo trong ${timeLeft}s` ;
+        //
+        //     if (timeLeft <= 0) {
+        //         clearInterval(timer);
+        //     }
+        // }, 1000);
+
     })
 </script>
 </body>

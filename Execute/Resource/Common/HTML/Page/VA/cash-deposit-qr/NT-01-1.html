@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Error</title>
+    <link rel="stylesheet" href="../../../css/VA/style.css">
+    <script src="../../../js/coreScript.js"></script>
+    <script src="../../../js/VA/common.js"></script>
+    <script src="../../../js/VA/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="stm-layout">
+    <!-- Header -->
+
+    <stm-only-logo-header></stm-only-logo-header>
+
+    <!-- Body -->
+    <main class="stm-body confirm-deposit-body">
+        <div class="stm-content">
+            <div class="cash-deposit-error-wrap">
+                <div class="error-deposit-img-container">
+                    <img src="../../../images/VA/icon-error.svg" width="128" height="128" style="margin: auto;">
+                </div>
+
+                <h2 class="cash-deposit-error-title" ids="ids_VAB_nt_12_title">Không tồn tại tài khoản thanh toán hợp lệ</h2>
+                <div>
+                    <span class="cash-deposit-message" id="error-message" ids="ids_VAB_nt_12_error_message"></span>
+                </div>
+
+                <span style="font-size: 25px; margin-top: 180px;" id="countdown-backto-home" ids="ids_VAB_nt_12_countdown_backhome"></span>
+
+                <div class="statement-btns-container" style="margin-top: 30px;">
+                    <div class="dialog-actions">
+                        <button class="btn-dialog-secondary" id="backhome-btn" tag="backhomeBtn" type="button">
+                            <span ids="ids_VAB_nt_12_back_home_btn">Trang chủ</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <stm-footer></stm-footer>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
+</div>
+<script src="../../../js/VA/scale.js"></script>
+<script>
+    $(document).ready(function (){
+        const message = document.getElementById("error-message");
+        message.innerText = 'Vui lòng quay về Trang chủ để mở tài khoản hoặc thực hiện giao dịch khác.';
+
+
+        const countdownMessage = document.getElementById('countdown-backto-home');
+        const countdownData = '{"countdown" : 120}'
+        const sampleObj = JSON.parse(countdownData);
+        // const countdownData = $('#input_val').val();
+
+        countdownMessage.innerText = `Tự động về trang chủ sau ${sampleObj.countdown}s`
+        const timer = setInterval(() => {
+            sampleObj.countdown--;
+
+            countdownMessage.innerText = `Tự động về trang chủ sau ${sampleObj.countdown}s` ;
+
+            if (sampleObj.countdown <= 0) {
+                clearInterval(timer);
+            }
+        }, 1000);
+    })
+</script>
+</body>
+</html>

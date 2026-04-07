@@ -13,7 +13,7 @@
     <div class="stm-layout">
         <!-- Header -->
 
-        <stm-auth-header></stm-auth-header>
+        <stm-auth-header id="auth-header"></stm-auth-header>
 
         <!-- Body -->
         <main class="stm-body">
@@ -117,13 +117,17 @@
 <!--        <stm-service-not-avail-dialog></stm-service-not-avail-dialog>-->
 <!--        <stm-cancel-trans-dialog></stm-cancel-trans-dialog>-->
     </div>
-    <input style="display: none;" id="input-val" value='{}'/>
-    <input style="display: none;" id="output-val" value='{}'/>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
 </body>
 <script src="../../../js/VA/scale.js"></script>
 <script>
     $(document).ready(function() {
-
+        const authHeader = document.getElementById("auth-header");
+        const countdownData = '{"countdown" : 120}'
+        const sampleObj = JSON.parse(countdownData);
+        // const countdownData = $('#input_val').val();
+        authHeader.countdownVal = sampleObj.countdown;
     })
 </script>
 </html>

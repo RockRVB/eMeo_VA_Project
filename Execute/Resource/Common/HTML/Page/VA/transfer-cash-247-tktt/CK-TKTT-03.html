@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TKTT List</title>
+    <link rel="stylesheet" href="../../../css/VA/style.css">
+    <script src="../../../js/coreScript.js"></script>
+    <script src="../../../js/VA/common.js"></script>
+    <script src="../../../js/VA/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="stm-layout">
+    <!-- Header -->
+
+    <stm-auth-task-header id="auth-task-header"></stm-auth-task-header>
+
+    <!-- Body -->
+    <main class="stm-body account-list-body">
+        <div class="stm-content transfer-content">
+
+            <stm-progress-bar
+                    current-step="2"
+                    steps='[
+                        {"label": "Xác thực", "ids" : "ids_VAB_transfer_tktt_step_1"},
+                        {"label": "Chọn tài khoản", "ids" : "ids_VAB_transfer_tktt_step_2"},
+                        {"label": "Chuyển tiền", "ids" : "ids_VAB_transfer_tktt_step_3"},
+                        {"label": "Hoàn tất", "ids" : "ids_VAB_transfer_tktt_step_4"}
+                    ]'>
+            </stm-progress-bar>
+            <h2 class="section-title" ids="ids_VAB_ck_tktt_02_title">Vui lòng nhập tài khoản nhận tiền</h2>
+            <div class="transfer-cash-grid">
+                <!-- Customer Info Section -->
+                <div class="receive-bank-container">
+                    <span class="transfer-cash-label" ids="ids_VAB_ck_tktt_02_select_bank_label">Chọn ngân hàng thụ hưởng <span class="required-red">*</span></span>
+                    <div class="receive-bank">
+                        <div class="bank-icon-container">
+                            <img src="../../../images/VA/icon-bank-sample.svg">
+                        </div>
+                        <div class="receive-bank-title-subtitle">
+                            <span class="bank-title" id="selected-bank-shortname">ABC</span>
+                            <span class="bank-sub-title" id="selected-bank-fullname">Ngân hàng ABC</span>
+                        </div>
+                        <div class="chevron-right-container">
+                            <button class="open-bank-list-btn" type="button" id="open-bank-list-btn">
+                                <img src="../../../images/VA/chevron-right.svg">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Selection Layout -->
+                <div class="receive-account-container">
+                    <span class="transfer-cash-label" ids="ids_VAB_ck_tktt_02_receive_account">Tài khoản thụ hưởng <span class="required-red">*</span></span>
+                    <div class="stm-input-group" id="inputGroup">
+                        <input type="text" class="stm-input" id="receiveAccountInput" autofocus>
+                    </div>
+                </div>
+            </div>
+
+            <div class="statement-actions-wrap">
+               <div style="margin-top: 60px;">
+                   <stm-num-keyboard></stm-num-keyboard>
+               </div>
+            </div>
+
+            <div class="statement-btns-container">
+                <div class="dialog-actions" style="justify-content: center; margin-top: 20px;">
+                    <button class="btn-dialog-secondary" id="confirm-transfer" tag="confirmTransfer" type="button">
+                        <span ids="ids_VAB_ck_tktt_02_confirm_bank_receive_account_btn">Xác nhận</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <stm-footer></stm-footer>
+    <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
+    <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
+    <stm-simple-dialog id="bank-list-dialog"></stm-simple-dialog>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
+</div>
+<script src="../../../js/VA/scale.js"></script>
+<script>
+    $(document).ready(function() {
+        const headerElement = document.getElementById("auth-task-header");
+        // const cancelTransDialog = document.getElementById("cancel-trans-dialog");
+        const bankListDialog = document.getElementById("bank-list-dialog");
+        const confirmTransferBtn = document.getElementById("confirm-transfer");
+        const openBankListBtn = document.getElementById("open-bank-list-btn");
+        const selectedBankShortName = document.getElementById("selected-bank-shortname");
+        const selectedBankFullName = document.getElementById("selected-bank-fullname");
+        const receiveAccInput = document.getElementById("receiveAccountInput");
+
+        const countdownData = '{"countdown" : 120, "countdownCancelTrans" : 60}'
+        const sampleObj = JSON.parse(countdownData);
+        // const countdownData = $('#input_val').val();
+        headerElement.countdownTime = sampleObj.countdown;
+        headerElement.countdownCancel = sampleObj.countdownCancelTrans;
+
+        const vietnameseBanks = [
+            { id: 1, shortName: "Vietcombank", fullName: "Ngân hàng TMCP Ngoại thương Việt Nam" },
+            { id: 2, shortName: "VietinBank", fullName: "Ngân hàng TMCP Công Thương Việt Nam" },
+            { id: 3, shortName: "BIDV", fullName: "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam" },
+            { id: 4, shortName: "Agribank", fullName: "Ngân hàng Nông nghiệp và Phát triển Nông thôn Việt Nam" },
+            { id: 5, shortName: "MBBank", fullName: "Ngân hàng TMCP Quân đội" },
+            { id: 6, shortName: "Techcombank", fullName: "Ngân hàng TMCP Kỹ thương Việt Nam" },
+            { id: 7, shortName: "ACB", fullName: "Ngân hàng TMCP Á Châu" },
+            { id: 8, shortName: "VPBank", fullName: "Ngân hàng TMCP Thịnh vượng và Phát triển" },
+            { id: 9, shortName: "TPBank", fullName: "Ngân hàng TMCP Tiên Phong" },
+            { id: 10, shortName: "Sacombank", fullName: "Ngân hàng TMCP Sài Gòn Thương Tín" },
+            { id: 11, shortName: "HDBank", fullName: "Ngân hàng TMCP Phát triển Thành phố Hồ Chí Minh" },
+            { id: 12, shortName: "VIB", fullName: "Ngân hàng TMCP Quốc tế Việt Nam" },
+            { id: 13, shortName: "SHB", fullName: "Ngân hàng TMCP Sài Gòn - Hà Nội" },
+            { id: 14, shortName: "MSB", fullName: "Ngân hàng TMCP Hàng hải Việt Nam" },
+            { id: 15, shortName: "SeABank", fullName: "Ngân hàng TMCP Đông Nam Á" },
+            { id: 16, shortName: "OCB", fullName: "Ngân hàng TMCP Phương Đông" },
+            { id: 17, shortName: "Eximbank", fullName: "Ngân hàng TMCP Xuất Nhập khẩu Việt Nam" },
+            { id: 18, shortName: "LienVietPostBank", fullName: "Ngân hàng TMCP Bưu điện Liên Việt" },
+            { id: 19, shortName: "Bac A Bank", fullName: "Ngân hàng TMCP Bắc Á" },
+            { id: 20, shortName: "Nam A Bank", fullName: "Ngân hàng TMCP Nam Á" }
+        ];
+
+        // headerElement.onCancelTransBtnClick = function() {
+        //     cancelTransDialog.openDialog = true
+        // };
+
+
+        confirmTransferBtn.addEventListener('click', () => {
+
+        })
+
+        function handleSelectBank(shortName, fullName){
+            bankListDialog.openDialog = false;
+            selectedBankShortName.innerText = shortName;
+            selectedBankFullName.innerText = fullName;
+            receiveAccInput.focus();
+        }
+
+        openBankListBtn.addEventListener('click', () => {
+            receiveAccInput.blur();
+
+            let bankCardsHTML = '';
+
+            for (let i = 0; i < vietnameseBanks.length; i++) {
+                bankCardsHTML += `
+                    <div class="bank-card" id="bank-${vietnameseBanks[i].id}"
+                            data-shortname="${vietnameseBanks[i].shortName}"
+                            data-fullname="${vietnameseBanks[i].fullName}">
+                        <div class="bank-card-logo-and-name">
+                            <div class="bank-card-logo">
+                                <img src="../../../images/VA/icon-bank-sample.svg">
+                            </div>
+                            <div class="bank-code-name-container">
+                                <span class="bank-code-name">${vietnameseBanks[i].shortName}</span>
+                            </div>
+                        </div>
+                        <span class="bank-card-name">${vietnameseBanks[i].fullName}</span>
+                    </div>
+                `;
+            }
+
+            // 3. Ráp toàn bộ vào cấu trúc dialog của bạn
+            bankListDialog.htmlEle = `
+                <div style="width: 100%;">
+                    <h2 class="dialog-title" ids="ids_VAB_ck_tktt_02_select_bank_dialog_title">Chọn ngân hàng thụ hưởng</h2>
+                    <input type="text" readonly class="stm-input" id="search-bank-input" placeholder="Nhập ngân hàng cần tìm kiếm" ids="ids_VAB_ck_tktt_02_select_bank_dialog_placeholder">
+                    <div class="bank-list-grid" style="margin-top: 20px;" id="bank-list-grid">
+                        ${bankCardsHTML}
+                    </div>
+
+                    <!-- On-Screen Keyboard -->
+                    <div class="osk-container" id="oskContainer" style="display: none;">
+                        <!-- Row 1: q-p + backspace -->
+                        <div class="osk-row">
+                            <button class="osk-key" data-key="q">q</button>
+                            <button class="osk-key" data-key="w">w</button>
+                            <button class="osk-key" data-key="e">e</button>
+                            <button class="osk-key" data-key="r">r</button>
+                            <button class="osk-key" data-key="t">t</button>
+                            <button class="osk-key" data-key="y">y</button>
+                            <button class="osk-key" data-key="u">u</button>
+                            <button class="osk-key" data-key="i">i</button>
+                            <button class="osk-key" data-key="o">o</button>
+                            <button class="osk-key" data-key="p">p</button>
+                            <button class="osk-key osk-key-backspace" data-action="backspace">⌫</button>
+                        </div>
+
+                        <!-- Row 2: a-l + enter -->
+                        <div class="osk-row">
+                            <button class="osk-key" data-key="a">a</button>
+                            <button class="osk-key" data-key="s">s</button>
+                            <button class="osk-key" data-key="d">d</button>
+                            <button class="osk-key" data-key="f">f</button>
+                            <button class="osk-key" data-key="g">g</button>
+                            <button class="osk-key" data-key="h">h</button>
+                            <button class="osk-key" data-key="j">j</button>
+                            <button class="osk-key" data-key="k">k</button>
+                            <button class="osk-key" data-key="l">l</button>
+                            <button class="osk-key osk-key-enter" data-action="enter">↵ Tiếp tục</button>
+                        </div>
+
+                        <!-- Row 3: shift + z-m + , . @ -->
+                        <div class="osk-row">
+                            <button class="osk-key osk-key-shift" data-action="shift" id="shiftKey">⇧</button>
+                            <button class="osk-key" data-key="z">z</button>
+                            <button class="osk-key" data-key="x">x</button>
+                            <button class="osk-key" data-key="c">c</button>
+                            <button class="osk-key" data-key="v">v</button>
+                            <button class="osk-key" data-key="b">b</button>
+                            <button class="osk-key" data-key="n">n</button>
+                            <button class="osk-key" data-key="m">m</button>
+                            <button class="osk-key" data-key=",">,</button>
+                            <button class="osk-key" data-key=".">.</button>
+                            <button class="osk-key" data-key="@">@</button>
+                        </div>
+
+                        <!-- Row 4: ?123 + - + _ + space + .com + hide -->
+                        <div class="osk-row">
+                            <button class="osk-key osk-key-mode" data-action="mode" id="modeKey">?123</button>
+                            <button class="osk-key" data-key="-">-</button>
+                            <button class="osk-key" data-key="_">_</button>
+                            <button class="osk-key osk-key-space" data-action="space"></button>
+                            <button class="osk-key osk-key-dotcom" data-key=".com">.com</button>
+                            <button class="osk-key osk-key-hide" data-action="hide">
+                                <div style="display: flex; flex-direction: column;">
+                                    <span style="display: block; font-size: 24px;">⌨</span>
+                                    <span style="display: block; font-size: 12px;">▼</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            bankListDialog.openDialog = true;
+
+            const searchBankInput = document.getElementById("search-bank-input");
+            const oskContainer = document.getElementById('oskContainer');
+            const shiftKey = document.getElementById('shiftKey');
+            const modeKey = document.getElementById('modeKey');
+
+            let isShift = false;
+            let isNumMode = false;
+
+            const alphaKeys = 'qwertyuiopasdfghjklzxcvbnm'.split('');
+            const numSymbols = {
+                'q': '1', 'w': '2', 'e': '3', 'r': '4', 't': '5',
+                'y': '6', 'u': '7', 'i': '8', 'o': '9', 'p': '0',
+                'a': '!', 's': '#', 'd': '$', 'f': '%', 'g': '&',
+                'h': '*', 'j': '(', 'k': ')', 'l': '/',
+                'z': '+', 'x': '=', 'c': '^', 'v': '~', 'b': '`',
+                'n': '{', 'm': '}'
+            };
+
+
+            // Hàm re-render danh sách ngân hàng theo keyword
+            function renderBankList(keyword) {
+                const query = keyword.toLowerCase().trim();
+                const filtered = vietnameseBanks.filter(bank => {
+                    if (!query) return true;
+                    return bank.shortName.toLowerCase().includes(query)
+                        || bank.fullName.toLowerCase().includes(query);
+                });
+                let bankCardsHTML = '';
+                filtered.forEach(bank => {
+                    bankCardsHTML += `
+                <div class="bank-card" id="bank-${bank.id}"
+                        data-shortname="${bank.shortName}"
+                        data-fullname="${bank.fullName}">
+                    <div class="bank-card-logo-and-name">
+                        <div class="bank-card-logo">
+                            <img src="../../../images/VA/icon-bank-sample.svg">
+                        </div>
+                        <div class="bank-code-name-container">
+                            <span class="bank-code-name">${bank.shortName}</span>
+                        </div>
+                    </div>
+                    <span class="bank-card-name">${bank.fullName}</span>
+                </div>
+            `;
+                });
+                if (filtered.length === 0) {
+                    bankCardsHTML = '<div style="grid-column: span 5; text-align: center;"><p style="color: rgba(255,255,255,0.5); font-size: 23px; padding: 32px 0;">Không tìm thấy ngân hàng phù hợp</p></div>';
+                }
+                const bankListGrid = document.querySelector('.bank-list-grid');
+                if (bankListGrid) {
+                    bankListGrid.innerHTML = bankCardsHTML;
+                }
+            }
+
+            // Show keyboard khi click vào ô input
+            searchBankInput.addEventListener('click', () => {
+                oskContainer.style.display = 'flex';
+            });
+
+            // Xử lí khi click vào các nút
+            oskContainer.addEventListener('click', (e) => {
+                const btn = e.target.closest('.osk-key');
+                if (!btn) return;
+
+                const key = btn.getAttribute('data-key');
+                const action = btn.getAttribute('data-action');
+
+                if (key) {
+                    // Character key
+                    let char = key;
+                    if (key.length === 1 && alphaKeys.includes(key.toLowerCase())) {
+                        if (isNumMode) {
+                            char = numSymbols[key.toLowerCase()] || key;
+                        } else if (isShift) {
+                            char = key.toUpperCase();
+                        }
+                    }
+                    searchBankInput.value += char;
+                    renderBankList(searchBankInput.value)
+
+                    // Auto-release shift after one press
+                    if (isShift && !isNumMode) {
+                        isShift = false;
+                        shiftKey.classList.remove('osk-active');
+                        updateKeyLabels();
+                    }
+                } else if (action) {
+                    switch (action) {
+                        case 'backspace':
+                            searchBankInput.value = searchBankInput.value.slice(0, -1);
+                            renderBankList(searchBankInput.value);
+                            break;
+                        case 'space':
+                            searchBankInput.value += ' ';
+                            renderBankList(searchBankInput.value);
+                            break;
+                        case 'enter':
+                            // Ẩn bàn phím khi bấm Tiếp tục
+                            oskContainer.style.display = 'none';
+                            break;
+                        case 'shift':
+                            isShift = !isShift;
+                            shiftKey.classList.toggle('osk-active', isShift);
+                            updateKeyLabels();
+                            break;
+                        case 'mode':
+                            isNumMode = !isNumMode;
+                            modeKey.textContent = isNumMode ? 'ABC' : '?123';
+                            modeKey.classList.toggle('osk-active', isNumMode);
+                            updateKeyLabels();
+                            break;
+                        case 'hide':
+                            oskContainer.style.display = 'none';
+                            break;
+                    }
+                }
+            });
+
+            function updateKeyLabels() {
+                const keys = oskContainer.querySelectorAll('.osk-key[data-key]');
+                keys.forEach(btn => {
+                    const baseKey = btn.getAttribute('data-key');
+                    if (baseKey.length === 1 && alphaKeys.includes(baseKey.toLowerCase())) {
+                        if (isNumMode) {
+                            btn.textContent = numSymbols[baseKey.toLowerCase()] || baseKey;
+                        } else if (isShift) {
+                            btn.textContent = baseKey.toUpperCase();
+                        } else {
+                            btn.textContent = baseKey.toLowerCase();
+                        }
+                    }
+                });
+            }
+
+            document.getElementById("bank-list-grid").addEventListener('click', (event) => {
+                // Tìm thẻ .bank-card gần nhất từ vị trí click
+                const card = event.target.closest('.bank-card');
+
+                if (card) {
+                    const shortName = card.dataset.shortname;
+                    const fullName = card.dataset.fullname;
+                    handleSelectBank(shortName, fullName);
+                }
+            });
+        })
+
+    })
+</script>
+<!--<script>-->
+<!--    const myDialog = document.createElement('stm-one-btn-dialog');-->
+
+<!--    myDialog.titleText = "Hệ thống đang bảo trì";-->
+<!--    myDialog._buttonTitle = "btn ne";-->
+
+<!--    myDialog.onPrimaryClick = function() {-->
+<!--        console.log("lam cai gi do...");-->
+<!--        // window.location.href = '/dashboard';-->
+<!--    };-->
+
+<!--    let timeLeft = 120;-->
+<!--    myDialog.subTitle = `Tự động về màn hình Trang chủ trong ${timeLeft}s`-->
+<!--    const timer = setInterval(() => {-->
+<!--        timeLeft&#45;&#45;;-->
+
+<!--        // Truyền giá trị vào component-->
+<!--        myDialog.subTitle = `Tự động về màn hình Trang chủ trong ${timeLeft}s` ;-->
+
+<!--        if (timeLeft <= 0) {-->
+<!--            clearInterval(timer);-->
+<!--            // console.log("Hết thời gian, thực hiện hành động...");-->
+<!--            // Ví dụ: myDialog.onPrimaryClick();-->
+<!--        }-->
+<!--    }, 1000);-->
+
+<!--    document.body.appendChild(myDialog);-->
+<!--</script>-->
+<!--<script>-->
+<!--    const myDialog = document.createElement('stm-yes-no-dialog');-->
+
+<!--    myDialog.titleText = "Hệ thống đang bảo trì";-->
+<!--    myDialog._yesBtnTitle = "Yes";-->
+<!--    myDialog._noBtnTitle = "No";-->
+
+<!--    myDialog.onYesClick = function() {-->
+<!--        console.log("Yes ne...");-->
+<!--        // window.location.href = '/dashboard';-->
+<!--    };-->
+
+<!--    myDialog.onNoClick = function() {-->
+<!--        console.log("No ne...");-->
+<!--        // window.location.href = '/dashboard';-->
+<!--    };-->
+
+<!--    // LOGIC ĐẾM NGƯỢC Ở NGOÀI-->
+<!--    let timeLeft = 120;-->
+<!--    myDialog.subTitle = `Tự động về màn hình Trang chủ trong ${timeLeft}s`-->
+<!--    const timer = setInterval(() => {-->
+<!--        timeLeft&#45;&#45;;-->
+
+<!--        // Truyền giá trị vào component-->
+<!--        myDialog.subTitle = `Tự động về màn hình Trang chủ trong ${timeLeft}s` ;-->
+
+<!--        if (timeLeft <= 0) {-->
+<!--            clearInterval(timer);-->
+<!--            // console.log("Hết thời gian, thực hiện hành động...");-->
+<!--            // Ví dụ: myDialog.onPrimaryClick();-->
+<!--        }-->
+<!--    }, 1000);-->
+
+<!--    document.body.appendChild(myDialog);-->
+<!--</script>-->
+</body>
+</html>

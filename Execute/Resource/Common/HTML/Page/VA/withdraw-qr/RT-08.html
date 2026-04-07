@@ -13,7 +13,7 @@
 <div class="stm-layout">
     <!-- Header -->
 
-    <stm-auth-header-no-cus-name></stm-auth-header-no-cus-name>
+    <stm-auth-header-no-cus-name id="header-no-cusname"></stm-auth-header-no-cus-name>
 
     <!-- Body -->
     <main class="stm-body confirm-deposit-body">
@@ -70,16 +70,16 @@
 
                 <div class="statement-btns-container">
                     <div class="dialog-actions">
-                        <button class="btn-dialog-secondary" id="do_another_task_btn" tag="do_another_task_btn">
+                        <button class="btn-dialog-secondary" id="do_another_task_btn" tag="do_another_task_btn" type="button">
                             <span ids="ids_VAB_rt_08_do_another_transaction">Thực hiện giao dịch khác</span>
                         </button>
 
-                        <button class="btn-dialog-primary" id="print_trans_bill_btn" tag="print_trans_bill_btn">
-                            <img src="../../../images/VA/icon-printer.svg" style="margin-right: 10px;">
-                            <span ids="ids_VAB_rt_08_print_trans_bill">IN BIÊN LAI GIAO DỊCH</span>
-                        </button>
+<!--                        <button class="btn-dialog-primary" id="print_trans_bill_btn" tag="print_trans_bill_btn">-->
+<!--                            <img src="../../../images/VA/icon-printer.svg" style="margin-right: 10px;">-->
+<!--                            <span ids="ids_VAB_rt_08_print_trans_bill">IN BIÊN LAI GIAO DỊCH</span>-->
+<!--                        </button>-->
 
-                        <button class="btn-dialog-secondary" id="end_transaction_btn" tag="end_transaction_btn">
+                        <button class="btn-dialog-secondary" id="end_transaction_btn" tag="end_transaction_btn" type="button">
                             <span ids="ids_VAB_rt_08_end_trans">Kết thúc giao dịch</span>
                         </button>
                     </div>
@@ -90,8 +90,8 @@
     </main>
 
     <stm-footer></stm-footer>
-    <input style="display: none;" id="input-val" value='{}' />
-    <input style="display: none;" id="output-val" value='{}'/>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
 </div>
 <script src="../../../js/VA/scale.js"></script>
 <script>
@@ -103,13 +103,20 @@
         const withdrawAmount = document.getElementById("withdraw-amount");
         const transFee = document.getElementById("transaction-fee");
         const subtract = document.getElementById("subtract-to-value");
-        accNum.innerText = 'Nguyen Van Teo';
-        accInfo.innerText = '09123456789 jksjdkasjk';
-        transCode.innerText = 'ABC8982193';
-        transTime.innerText = '2026-03-03';
-        withdrawAmount.innerText = '6.000.000';
-        transFee.innerText = '0';
-        subtract.innerText = '6.000.000';
+        const header = document.getElementById("header-no-cusname");
+
+        const data = '{"countdown":120,"withdraw_successful_info":{"account_num":"09123456789","account_info":"09123456789 jksjdkasjk","transaction_code":"ABC8982193","transaction_time":"2026-03-03","withdraw_amount":"6.000.000","fee_amount":"0","substract_to_account":"6.000.000"}}';
+        // const data = $('#input_val').val();
+        const sampleObj = JSON.parse(data);
+        header.countdownVal = sampleObj.countdown;
+
+        accNum.innerText = sampleObj.withdraw_successful_info.account_num;
+        accInfo.innerText = sampleObj.withdraw_successful_info.account_info;
+        transCode.innerText = sampleObj.withdraw_successful_info.transaction_code;
+        transTime.innerText = sampleObj.withdraw_successful_info.transaction_time;
+        withdrawAmount.innerText = sampleObj.withdraw_successful_info.withdraw_amount;
+        transFee.innerText = sampleObj.withdraw_successful_info.fee_amount;
+        subtract.innerText = sampleObj.withdraw_successful_info.substract_to_account;
     })
 </script>
 </body>

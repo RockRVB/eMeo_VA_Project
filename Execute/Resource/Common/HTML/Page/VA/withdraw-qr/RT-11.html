@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counting Money...</title>
+    <link rel="stylesheet" href="../../../css/VA/style.css">
+    <script src="../../../js/coreScript.js"></script>
+    <script src="../../../js/VA/common.js"></script>
+    <script src="../../../js/VA/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="stm-layout">
+    <!-- Header -->
+
+    <stm-only-logo-header></stm-only-logo-header>
+
+    <!-- Body -->
+    <main class="stm-body counting-body">
+        <div class="counting-container">
+            <div class="counting-icon-wrap">
+                <img src="../../../images/VA/loading.svg" class="rotating-icon">
+            </div>
+            <h2 class="counting-status-text" ids="ids_VAB_rt_11_title">Hệ thống đang xử lý ....<br>Quý khách vui lòng đợi trong giây lát</h2>
+        </div>
+    </main>
+
+    <stm-footer></stm-footer>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
+</div>
+<script src="../../../js/VA/scale.js"></script>
+<script>
+    $(document).ready(function (){
+
+    })
+</script>
+</body>
+</html>

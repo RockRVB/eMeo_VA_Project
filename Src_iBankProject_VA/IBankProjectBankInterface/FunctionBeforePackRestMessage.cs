@@ -14,14 +14,13 @@ namespace IBankProjectBankInterface
                 switch (argTransType)
                 {
                     case "GetQRString":
-                        header = string.Format("x-request-id={0};x-request-timeout={1}", Guid.NewGuid().ToString(), "30000");
                         break;
                     
                     default:
                         break;
                 }
-                Log.Project.LogDebugFormat("[{0}][{1}] proj_header : {2}", GetType(), System.Reflection.MethodBase.GetCurrentMethod().Name, header);
-                ProjVTMContext.TransactionDataCache.Set("proj_header", header, GetType());
+                //Log.Project.LogDebugFormat("[{0}][{1}] proj_header : {2}", GetType(), System.Reflection.MethodBase.GetCurrentMethod().Name, header);
+                //ProjVTMContext.TransactionDataCache.Set("proj_header", header, GetType());
             }
             catch (Exception ex)
             {
@@ -33,7 +32,6 @@ namespace IBankProjectBankInterface
             try
             {
                 object value = null;
-                string strAmt = "";
                 ProjVTMContext.LogJournal("TRANSACTION REQUEST [" + argTransType + "]");
                 switch (argTransType)
                 {
@@ -77,11 +75,11 @@ namespace IBankProjectBankInterface
                 ProjVTMContext.CardHolderDataCache.Get("VTM_TransTypeName", out value,GetType());
                 if (value != null)
                 {
-                    
+                    if (value.ToString() == "CWD_NoCard")
+                        ProjVTMContext.TransactionDataCache.Set("proj_TransType", value.ToString(), GetType());
                 }
             }
             catch { }
-
             return;
         }
         private void SetQueryCustomerInfo()
