@@ -12,9 +12,9 @@
 <body>
     <div class="stm-layout">
         <!-- Header -->
-
+			
         <stm-auth-task-header id="auth-task-header"></stm-auth-task-header>
-
+		<!-- <span id="Counter" type="countdown" content="{Binding Count mode=2}" visible="{Binding CounterVisible mode=2}"></span> -->
         <!-- Body -->
         <main class="stm-body transfer-body">
             <div class="stm-content">
@@ -56,10 +56,13 @@
 <script>
     $(document).ready(function() {
         const header = document.getElementById("auth-task-header");
-        const countdownData = '{"countdown" : 60, "countdownCancelTrans" : 60}'
-        const sampleObj = JSON.parse(countdownData);
-        // const countdownData = $('#input_val').val();
-        header.countdownTime = sampleObj.countdown;
+        const countdownData = '{"countdown" : 60, "countdownCancelTrans" : 60}';
+		
+        <!-- const countdownData = $('#input_val').val(); -->
+		console.log("debug");
+		console.log(countdownData);
+		const sampleObj = JSON.parse(countdownData);
+        header.countdownTime = countdownData;
         header.countdownCancel = sampleObj.countdownCancelTrans;
     })
 </script>

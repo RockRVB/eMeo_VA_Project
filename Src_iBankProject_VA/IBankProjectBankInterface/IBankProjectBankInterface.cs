@@ -55,16 +55,16 @@ namespace IBankProjectBankInterface
 
         public override emRetCode AfterUnpackRestMessage(string argType, string resultCode, string argResponse)
         {
-            Log.BusinessService.LogDebugFormat("AfterUnpackRestMessage argResponse: {0}", argResponse);
+            Log.BusinessService.LogDebugFormat($"AfterUnpackRestMessage argType: {argType}; resultCode: {resultCode} ; argResponse: {argResponse}");
             JObject dataObj = null;
             dataObj = JObject.Parse(argResponse);
-            bool RC_Success = false;
+            ProjVTMContext.LogJournal("TRANSACTION RESPONSE [" + argType + "]");
+            ProjVTMContext.LogJournal("Response Code [" + dataObj["resCode"]?.ToString() + "]");
+            ProjVTMContext.LogJournal("Response Desc [" + dataObj["resDesc"]?.ToString().ConvertToEngUpChar() + "]");
+            if (resultCode != "0") return emRetCode.Default;
             try
             {
-                WriteJournalLogAfter(argType, resultCode, dataObj, ref RC_Success);
-                if (RC_Success == false)
-                    return emRetCode.False;
-
+                WriteJournalLogAfter(argType, resultCode, dataObj);
                 switch (argType)
                 {
                     case "QueryCustomerInfo":
@@ -72,6 +72,9 @@ namespace IBankProjectBankInterface
                         break;
                     case "GetQRString":
                         UnpackGetQRString(dataObj);
+                        break;
+                    case "VerifyQR":
+                        UnpackVerifyQR(dataObj);
                         break;
                     default:
                         break;

@@ -25,15 +25,18 @@
 			<Forward event="OnConfirm" targetID="ID_SetTransType"/>
 		</WriteEJLog>
 		<VAB_CreateSessionIDNumber ID="ID_CreateSessionIDNumber">
-			<Forward event="OnNext" targetID="ID_SetTransType" />
+			<Forward event="OnNext" targetID="ID_InvokeLoginWorkflow" />
 		</VAB_CreateSessionIDNumber>
-		<SetData ID="ID_SetTransType" saveBuffer="{VTM_TransTypeName,1}" value="CWD_NoCard">
-			<Forward event="OnConfirm" targetID="ID_InvokeVerifyCustomerWorkflow"/>
+		<SetData ID="ID_SetTransType" saveBuffer="{VTM_TransTypeName,1}" value="CashWithdrawal_NoCard">
+			<Forward event="OnConfirm" targetID="ID_CreateSessionIDNumber"/>
 		</SetData>
-		<InvokeWorkflow ID="ID_InvokeVerifyCustomerWorkflow" name="VAB_VerifyCustomer" comment="Invoke VAB_VerifyCustomer workflow">
+		<InvokeWorkflow ID="ID_InvokeLoginWorkflow" name="VAB_VerifyCustomer" comment="Invoke VAB_VerifyCustomer workflow">
 			<Forward event="OnConfirm" targetID="9999"/>
 		</InvokeWorkflow>
-		
+		<VAB_SelectFunction ID="ID_VAB_CWDSelectAccount" UI="UI_VAB_CWDSelectAccount" comment="">
+			<Forward event="OnQR" targetID="ID_VAB_RestfulGenQR"/>
+			<Forward event="OnCCCD" targetID="ID_InvokeCloseTransWorkflow"/>
+		</VAB_SelectFunction>
 		
 		
 		

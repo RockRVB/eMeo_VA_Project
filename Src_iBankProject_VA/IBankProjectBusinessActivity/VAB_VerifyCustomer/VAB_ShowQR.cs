@@ -2,14 +2,17 @@
 using BusinessServiceProtocol;
 using eCATBusinessServiceProtocol;
 using IBankProjectBusinessActivityBase;
+using IBankProjectBusinessServiceProtocol;
 using LogProcessorService;
 using Newtonsoft.Json.Linq;
 using RemoteTellerServiceProtocol;
+using RestfulServiceProtocol;
 using System;
 using System.Linq;
-using VTMBusinessActivityBase;
+using System.Threading;
+using System.Threading.Tasks;
 using UIServiceProtocol;
-using IBankProjectBusinessServiceProtocol;
+using VTMBusinessActivityBase;
 
 namespace IBankProjectBusinessActivity
 {
@@ -20,7 +23,30 @@ namespace IBankProjectBusinessActivity
                      ForwardTargets = new string[] { EventDictionary.s_EventConfirm, EventDictionary.s_EventFail, EventDictionary.s_EventCancel })]
     public class VAB_ShowQR : IBankProjectActivityBase
     {
-
+        private string m_input_val = string.Empty;
+        [GrgBindTarget("input_val", Type = TargetType.String, Access = AccessRight.ReadAndWrite)]
+        public string input_val
+        {
+            get { return m_input_val; }
+            set
+            {
+                m_input_val = value;
+                OnPropertyChanged("input_val");
+            }
+        }
+        private string m_TimerResentVerifyQRl = String.Empty;
+        [GrgBindTarget("TimerResentVerifyQR", Access = AccessRight.ReadAndWrite, Type = TargetType.String)]
+        public string TimerResentVerifyQR
+        {
+            get
+            {
+                return m_TimerResentVerifyQRl;
+            }
+            set
+            {
+                m_TimerResentVerifyQRl = value;
+            }
+        }
         public VAB_ShowQR()
         {
 
@@ -35,6 +61,8 @@ namespace IBankProjectBusinessActivity
         #endregion
 
         #region override methods of base
+        private static volatile bool _stopVerifyQRPolling = false;
+
         protected override emBusActivityResult_t InnerRun(BusinessContext argContext)
         {
             Log.Action.LogDebugFormat("Enter action: {0}", GetType());
@@ -45,9 +73,68 @@ namespace IBankProjectBusinessActivity
                 VTMContext.NextCondition = EventDictionary.s_EventFail;
                 return emRet;
             }
+            //
+            object value = null;
+            ProjVTMContext.TransactionDataCache.Get("VAB_QRData", out value, GetType());
+            if (value != null)
+            {
+                var HTMLJson_input = new
+                {
+                    QR_Code = value.ToString()
+                };
+                input_val = HTMLJson_input.ToJSON();
+            }
+            else goto outActivity;
 
             SwitchUIState(VTMContext.MainUI, DataDictionary.s_DefaultUIState);
+            _stopVerifyQRPolling = false;
+
+            // Check verify QR song song trong lúc màn hình đang chờ thao tác.
+            int resentQR = Int32.Parse(TimerResentVerifyQR);
+            Task.Run(() =>
+            {
+                try
+                {
+                    int countReset = 0;
+                    int timeoutReset = 0;
+
+                    while (!_stopVerifyQRPolling)
+                    {
+                        string responseCode = string.Empty;
+                        emRestfulServiceResult sendResult = ProjVTMContext.RestfulService.SendMessage("VerifyQR", out responseCode, MessageFormat.JSON);
+
+                        if (sendResult == emRestfulServiceResult.Success && responseCode == "0")
+                        {
+                            Log.Project.LogDebug("VerifyQR success. Stop polling and continue workflow.");
+                            _stopVerifyQRPolling = true;
+                            VTMContext.NextCondition = "OnConfirm";
+                            SignalCancel();
+                            break;
+                        }
+
+                        countReset++;
+                        Log.Project.LogDebug($"VerifyQR not success. resend time: {countReset}, sendResult: {sendResult}, responseCode: {responseCode}");
+
+                        Thread.Sleep(resentQR);
+                        timeoutReset += resentQR;
+
+                        if (timeoutReset >= CountDown)
+                        {
+                            Log.Project.LogDebug("VerifyQR polling timeout by page timeout. Stop polling.");
+                            _stopVerifyQRPolling = true;
+                            break;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Project.LogDebug($"RestfulService sent verify QR failed: {ex}");
+                }
+            });
+
             emWaitSignalResult_t emWaitResult = WaitPopu == 1 ? VTMWaitSignal() : WaitSignal();
+            _stopVerifyQRPolling = true;
+
 
             if (emWaitResult == emWaitSignalResult_t.Timeout)
             {
@@ -55,21 +142,26 @@ namespace IBankProjectBusinessActivity
                 VTMContext.ActionResult = emBusActivityResult_t.Timeout;
                 VTMContext.NextCondition = EventDictionary.s_EventTimeout;
             }
+
+            Log.Action.LogDebugFormat("Leave Action: {0}", GetType());
+            return emBusActivityResult_t.Success;
+        outActivity:
             Log.Action.LogDebugFormat("Leave Action: {0}", GetType());
             return emBusActivityResult_t.Success;
         }
 
         protected override emBusiCallbackResult_t InnerOnUIEvtHandle(IUIService iUI, UIEventArg argUIEvent)
         {
-			// Xử lý button khi click vào sự kiện
-			// Ví dụ string strKeyOther = argUIEvent.Key as string; strKeyOther sẽ bằng OnBack hoặc OnConfirm dựa theo html định nghĩa. Mọi xử lý nhấn button đều đưa về hàm này xử ly
-			
+            // Xử lý button khi click vào sự kiện
+            // Ví dụ string strKeyOther = argUIEvent.Key as string; strKeyOther sẽ bằng OnBack hoặc OnConfirm dựa theo html định nghĩa. Mọi xử lý nhấn button đều đưa về hàm này xử ly
+
             if (argUIEvent.EventName == UIPropertyKey.s_clickKey)
             {
-				// ProjVTMContext.MainUI.ExecuteCustomCommand(UIServiceCommands.s_updateData); nó có nhiệm vụ đồng bộ lại data binding giửa C# và html
-				ProjVTMContext.MainUI.ExecuteCustomCommand(UIServiceCommands.s_updateData);
-				
+                // ProjVTMContext.MainUI.ExecuteCustomCommand(UIServiceCommands.s_updateData); nó có nhiệm vụ đồng bộ lại data binding giửa C# và html
+                ProjVTMContext.MainUI.ExecuteCustomCommand(UIServiceCommands.s_updateData);
+
                 string strKeyOther = argUIEvent.Key as string;
+                _stopVerifyQRPolling = true;
                 VTMContext.NextCondition = strKeyOther;
                 SignalCancel();
                 return emBusiCallbackResult_t.Swallowd;

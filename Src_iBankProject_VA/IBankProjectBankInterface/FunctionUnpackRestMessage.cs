@@ -18,24 +18,23 @@ namespace IBankProjectBankInterface
 {
     public partial class IBankProjectBankInterface : VTMBankInterface
     {
-        private void WriteJournalLogAfter(string argTransType, string resultTransCode, JObject dataObj, ref bool RC_success)
+        private void WriteJournalLogAfter(string argTransType, string resultTransCode, JObject dataObj)
         {
             try
             {
-                ProjVTMContext.LogJournal("TRANSACTION RESPONSE [" + argTransType + "]");
                 switch (argTransType)
                 {
+                    case "VerifyQR":
+                        ProjVTMContext.LogJournal($"Customer Name: {dataObj["data"]["customerName"]?.ToString()}");
+                        ProjVTMContext.LogJournal($"Customer CIF: {dataObj["data"]["customerId"]?.ToString()}");
+                        break;
                     default:
-                        ProjVTMContext.LogJournal("Response Code [" + dataObj["resCode"]?.ToString() + "]");
-                        ProjVTMContext.LogJournal("Response Desc [" + dataObj["resDesc"]?.ToString().ConvertToEngUpChar() + "]");
                         break;
                 }
-                RC_success = true;
             }
             catch (Exception ex)
             {
                 Log.XdcTrace.LogFatal("Exception: WriteJournalLogAfter Error!" + ex.Message);
-                RC_success = false;
             }
         }
 
@@ -77,6 +76,25 @@ namespace IBankProjectBankInterface
             catch
             {
                 Log.XdcTrace.LogFatal("Exception: UnpackGetQRString Error!");
+            }
+        }
+        private void UnpackVerifyQR(JObject dataObj)
+        {
+            try
+            {
+                if (dataObj["resCode"]?.ToString() == "0")
+                { 
+
+                }
+                CustomerInfo customerInfo = new CustomerInfo();
+                customerInfo.Accounts.Clear();
+                customerInfo.CIF = dataObj["data"]["customerId"]?.ToString();
+                customerInfo.FullName = dataObj["data"]["customerName"]?.ToString();
+                ProjVTMContext.TransactionDataCache.Set("VAB_CustomerInfo", customerInfo, GetType());
+            }
+            catch
+            {
+                Log.XdcTrace.LogFatal("Exception: UnpackVerifyQR Error!");
             }
         }
         private static void GenerateImageQRImage(string QRdata)

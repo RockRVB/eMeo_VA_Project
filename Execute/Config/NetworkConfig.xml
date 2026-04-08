@@ -146,7 +146,7 @@
         <Connection autoRecovery="1" autoRecoveryInterval="6000" mode="0" autoConnectAfterOpen="0" />
         <Packet headPattern="L2L1" headIncluded="0" />
       </Session>
-      <Session name="RESTFUL" type="http" enable="1" default="1" keepAlive="10" protocol="xml/json" comment="RESTFUL" descrip="RESTFUL Server">
+      <Session name="RESTFUL" type="http" enable="0" default="1" keepAlive="10" protocol="xml/json" comment="RESTFUL" descrip="RESTFUL Server">
         <Address remote="10.1.24.86:8089" method="POST" defaultServicePath="/FeelGateway/entry" contentType="application/json" />
         <Connection autoRecovery="0" autoRecoveryInterval="60000" mode="1" autoConnectAfterOpen="1" />
         <Packet headPattern="NoHeader" headIncluded="0" />

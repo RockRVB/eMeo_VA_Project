@@ -2,14 +2,15 @@
 using BusinessServiceProtocol;
 using eCATBusinessServiceProtocol;
 using IBankProjectBusinessActivityBase;
+using IBankProjectBusinessServiceProtocol;
 using LogProcessorService;
 using Newtonsoft.Json.Linq;
 using RemoteTellerServiceProtocol;
 using System;
 using System.Linq;
-using VTMBusinessActivityBase;
+using System.Web.Script.Serialization;
 using UIServiceProtocol;
-using IBankProjectBusinessServiceProtocol;
+using VTMBusinessActivityBase;
 
 namespace IBankProjectBusinessActivity
 {
@@ -20,7 +21,18 @@ namespace IBankProjectBusinessActivity
                      ForwardTargets = new string[] { EventDictionary.s_EventConfirm, EventDictionary.s_EventFail, EventDictionary.s_EventCancel })]
     public class VAB_SelectFunction : IBankProjectActivityBase
     {
-
+        private bool ResetTimer = false;
+        private string m_input_val = string.Empty;
+        [GrgBindTarget("input_val", Type = TargetType.String, Access = AccessRight.ReadAndWrite)]
+        public string input_val
+        {
+            get { return m_input_val; }
+            set
+            {
+                m_input_val = value;
+                OnPropertyChanged("input_val");
+            }
+        }
         public VAB_SelectFunction()
         {
 
@@ -45,11 +57,18 @@ namespace IBankProjectBusinessActivity
                 VTMContext.NextCondition = EventDictionary.s_EventFail;
                 return emRet;
             }
+            //Before UI HTML Show
             
-
+            //Show UI HTML
             SwitchUIState(VTMContext.MainUI, DataDictionary.s_DefaultUIState);
             emWaitSignalResult_t emWaitResult = WaitPopu == 1 ? VTMWaitSignal() : WaitSignal();
-
+            //After UI HTML show
+            while (ResetTimer)
+            {
+                ResetTimeOut();
+                ResetTimer = false;
+                emWaitResult = WaitPopu == 1 ? VTMWaitSignal() : WaitSignal();
+            }
             if (emWaitResult == emWaitSignalResult_t.Timeout)
             {
                 VTMContext.CurrentTransactionResult = TransactionResult.Cancel;
@@ -71,7 +90,12 @@ namespace IBankProjectBusinessActivity
 				ProjVTMContext.MainUI.ExecuteCustomCommand(UIServiceCommands.s_updateData);
 				
                 string strKeyOther = argUIEvent.Key as string;
-                VTMContext.NextCondition = strKeyOther;
+                if (strKeyOther == "OnResetTimer")
+                {
+                    ResetTimer = true;
+                }
+                else
+                    VTMContext.NextCondition = strKeyOther;
                 SignalCancel();
                 return emBusiCallbackResult_t.Swallowd;
             }

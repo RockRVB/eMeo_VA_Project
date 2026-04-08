@@ -44,7 +44,7 @@
       "desc": "VAB Gateway",
       "encoding": "utf-8",
       "server": {
-        "host": "192.168.11.9",
+        "host": "192.168.11.7",
         "port": "8089",
         "protocol": "https"
       },
@@ -69,8 +69,28 @@
           "name": "GetQRStringResponse",
           "SuccessCode": "0",
           "body": {
-            "resCode": "{ResponseCode}",
-            "resDesc": "{proj_rMsg}",
+            "resCode": "{this.responsecode}",
+            "resDesc": "{this.errordesc}",
+            "data": "{proj_response}"
+          }
+        },
+		{
+          "name": "VerifyQR",
+		  "method": "post",
+          "url": "/api/BankService/VerifyQR",
+          "response": "VerifyQRResponse",
+          "body": {
+		    "deviceId":"{binding=context.TerminalConfig.Terminal.ATMNumber}",
+			"transactionType":"{proj_TransType}",
+			"sessionId":"{VAB_SessionID}"
+		  }
+        },
+        {
+          "name": "VerifyQRResponse",
+          "SuccessCode": "0",
+          "body": {
+            "resCode": "{this.responsecode}",
+            "resDesc": "{this.errordesc}",
             "data": "{proj_response}"
           }
         }

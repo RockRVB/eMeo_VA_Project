@@ -662,7 +662,7 @@ class CancelTransOrNotDialog extends HTMLElement {
                     
                     <div class="dialog-actions-container">
                         <div class="dialog-actions">
-                            <button class="btn-dialog-primary" tag="cancelAndBackHome" id="cancel-and-back-home-btn">
+                            <button class="btn-dialog-primary" tag="OnExit" id="cancel-and-back-home-btn" type="button">
                                 <span ids="ids_VAB_cancel_trans">Hủy giao dịch</span>
                             </button>
                             
@@ -680,9 +680,9 @@ class CancelTransOrNotDialog extends HTMLElement {
 
         const btnCancel = this.querySelector('#cancel-and-back-home-btn');
         const btnContinue = this.querySelector('#continue-task-btn');
-        if (btnCancel) {
-            btnCancel.addEventListener('click', () => this.goToHome());
-        }
+        // if (btnCancel) {
+            // btnCancel.addEventListener('click', () => this.goToHome());
+        // }
         if (btnContinue) {
             btnContinue.addEventListener('click', () => {
                 this._isOpen = false;

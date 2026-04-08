@@ -13,9 +13,6 @@ namespace IBankProjectBankInterface
                 string header = string.Empty;
                 switch (argTransType)
                 {
-                    case "GetQRString":
-                        break;
-                    
                     default:
                         break;
                 }
@@ -58,6 +55,7 @@ namespace IBankProjectBankInterface
                         SetQueryCustomerInfo();
                         break;
                     case "GetQRString":
+                    case "VerifyQR":
                         SetGetQRString();
                         break;
                     default:
