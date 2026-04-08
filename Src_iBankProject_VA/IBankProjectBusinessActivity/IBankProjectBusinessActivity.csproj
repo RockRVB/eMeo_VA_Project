@@ -312,6 +312,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Tamir.SharpSSH, Version=1.1.1.13, Culture=neutral, PublicKeyToken=e8bc019b4cbfeb49, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Execute\Business\Activity\Tamir.SharpSSH.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="TwinScreen, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e8bc019b4cbfeb49, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Execute\Business\Activity\TwinScreen.dll</HintPath>
@@ -354,11 +359,27 @@
       <HintPath>..\..\Execute\Protocol\XDC\XDCBusinessServiceProtocol.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="XDCDataDefinitionProtocol">
+      <HintPath>..\..\Execute\Protocol\XDC\XDCDataDefinitionProtocol.dll</HintPath>
+    </Reference>
+    <Reference Include="XDCInstance">
+      <HintPath>..\..\Execute\GeneralService\XDCInstance.dll</HintPath>
+    </Reference>
+    <Reference Include="XDCServiceAppProtocol">
+      <HintPath>..\..\Execute\Protocol\XDC\XDCServiceAppProtocol.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\IBankProjSelectFunction.cs" />
+    <Compile Include="Common\PublicFunction.cs" />
+    <Compile Include="Common\VAB_CheckTimesReTry.cs" />
     <Compile Include="Common\VAB_CreateSessionIDNumber.cs" />
+    <Compile Include="Common\VAB_InputOTP.cs" />
+    <Compile Include="Common\VAB_ResetRetryCounting.cs" />
     <Compile Include="Common\VAB_SelectFunction.cs" />
     <Compile Include="Common\WriteEJLog.cs" />
+    <Compile Include="Deposit\VAB_AskPrintReceipt.cs" />
+    <Compile Include="Deposit\VAB_CashInShowResult.cs" />
     <Compile Include="Deposit\VAB_DepositSelectAccount.cs" />
     <Compile Include="Deposit\VAB_GeneralQueryCIFAPI4Deposit.cs" />
     <Compile Include="DisorderCardDispenser\MoveCard.cs" />
@@ -368,6 +389,7 @@
     <Compile Include="DisorderCardDispenser\RequestTransViaRestfulSEM.cs" />
     <Compile Include="DisorderCardDispenser\SlotDispenseCard.cs" />
     <Compile Include="DisorderCardDispenser\UpdateDisorderCardInfo.cs" />
+    <Compile Include="EKYCTest\ExitMaintainMode.cs" />
     <Compile Include="Exhibition\CRDPrintReceipt.cs" />
     <Compile Include="Exhibition\CRDPrintReceiptImg.cs" />
     <Compile Include="Exhibition\SetAddCardFailedTimes4Exhibition.cs" />

@@ -36,6 +36,29 @@
             "msg": "{this.errordesc}",
             "data": "{FB_jsonrevdata}"
           }
+        },
+		{
+          "name": "QueryTransFee",
+		  "method": "post",
+          "url": "",
+          "response": "QueryTransFeeResponse",
+          "body": {
+		    "sessionId":"{VAB_SessionID}",
+			"customerId":"{VAB_CustomerId}",
+			"accountNumber":"{proj_AccountNumber}}",
+			"amount":"{proj_Amount}}",
+			"transactionType":"{proj_TransType}",
+			"currency":"VND",
+		  }
+        },
+        {
+          "name": "QueryTransFeeResponse",
+          "SuccessCode": "0",
+          "body": {
+            "code": "{this.responsecode}",
+            "msg": "{this.errordesc}",
+            "data": "{FB_jsonrevdata}"
+          }
         }
       ]
     },

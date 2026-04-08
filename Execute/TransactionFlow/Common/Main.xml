@@ -48,7 +48,7 @@
 		</ControlDigitalHuman>
 
 		<XDCInService ID="ID_ZeroState" UI="UI_index" timeout="0" comment="Zero state" changeLanguageInCurrentPage="1" >
-			<Forward event="OnStart" targetID="ID_VTMMainMenu"/>
+			<Forward event="OnCashDeposit" targetID="ID_InvokeCashDepositWorkflow"/>
 			<Forward event="OnCashWithdrawalNoATMCard" targetID="ID_InvokeCWD_NoCardFlow"/>
 			<Forward event="OnNoCardTrans" targetID="ID_NoCardDepositForFBFlow" />
 			<Forward event="OnMaintenance" targetID="ID_InvokeMaintenanceWorkflow"/>
@@ -337,6 +337,10 @@
 		<ICMoreAppSelect ID="ID_ICMoreAppSelectForMainMenu" UI="UI_ICMoreAppSelect" comment="">
 			<Forward event="OnConfirm" targetID="ID_CheckCardType"/>
 		</ICMoreAppSelect>
+		
+		<InvokeWorkflow ID="ID_InvokeCashDepositWorkflow" name="VAB_Deposit" comment="Invoke inquiry workflow">
+			<Forward event="OnConfirm" targetID="ID_CheckCardType"/>
+		</InvokeWorkflow>
 		<InvokeWorkflow ID="ID_InvokeInquiryWorkflow" name="Inquiry" comment="Invoke inquiry workflow">
 			<Forward event="OnConfirm" targetID="ID_CheckCardType"/>
 		</InvokeWorkflow>

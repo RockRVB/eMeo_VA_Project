@@ -119,6 +119,7 @@ namespace IBankProjectBusinessServiceProtocol
         public string AvailableBalance { get; set; }
         public string Currency { get; set; }
         public string AccountStatus { get; set; }
+        public string BranchCode { get; set; }
         public Account()
         {
             AccountNumber = string.Empty;
@@ -126,6 +127,30 @@ namespace IBankProjectBusinessServiceProtocol
             AvailableBalance = string.Empty;
             Currency = string.Empty;
             AccountStatus = string.Empty;
+            BranchCode = string.Empty;
         }
+    }
+    public class Fee
+    {
+        public string FeeCode { get; set; }
+        public string FeeAmount { get; set; }
+        public string TaxAmount { get; set; }
+        public string Currency { get; set; }
+        public Fee()
+        {
+            FeeCode = string.Empty;
+            FeeAmount = string.Empty;
+            TaxAmount = string.Empty;
+            Currency = string.Empty;
+        }
+    }
+    [Serializable]
+    public class VTMDepositDetail
+    {
+        public string Denomination { get; set; }
+
+        public int NoteNumber { get; set; }
+
+        public string Amount { get; set; }
     }
 }

@@ -8,6 +8,9 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+using System.Text.RegularExpressions;
+using IBankProjectBusinessServiceProtocol;
 using VTMBusinessActivity.VTMBankInterface;
 using ZXing;
 using ZXing.Common;
@@ -18,6 +21,48 @@ namespace IBankProjectBankInterface
 {
     public partial class IBankProjectBankInterface : VTMBankInterface
     {
+		private bool UnpackJsonData(string argTransType, string resultCode, string argResponse)
+        {
+            Log.Action.LogDebugFormat("TransType: {0}", argTransType);
+            JObject dataObj = null;
+            dataObj = JObject.Parse(argResponse);
+            WriteJournalLogAfter(argTransType, resultCode, dataObj);
+            Log.Project.LogDebug("begin to get the data from dataObj");
+            if (!string.IsNullOrEmpty(dataObj["errorCode"]?.ToString()))
+            {
+                //corebank msg
+                // ProjVTMContext.BankErrorCode = dataObj["errorCode"]?.ToString();
+            }
+            else
+            {
+                //FB msg
+                //  ProjVTMContext.BankErrorCode = dataObj["code"]?.ToString();
+            }
+            try
+            {
+                string terminalID = ProjVTMContext.TerminalConfig.Terminal.ATMNumber;
+
+                switch (argTransType)
+                {
+                    case "QueryCustomerInfo":
+                        UnpackQueryCustomerInfo(dataObj);
+                        break;
+                    case "QueryTransFee":
+                        UnpackQueryTransFee(dataObj);
+                        break;
+					case "GetQRString":
+                        UnpackGetQRString(dataObj);
+                        break;
+                    case "VerifyQR":
+                        UnpackVerifyQR(dataObj);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch { }
+            return true;
+        }
         private void WriteJournalLogAfter(string argTransType, string resultTransCode, JObject dataObj)
         {
             try
@@ -59,11 +104,38 @@ namespace IBankProjectBankInterface
 
                     customerInfo.Accounts.Add(account);
                 }
+                if (customerInfo.Accounts.Count == 0)
+                {
+                    ProjVTMContext.TransactionDataCache.Set("VAB_ExistAccount", "Y", GetType());
+                }
                 ProjVTMContext.TransactionDataCache.Set("VAB_CustomerInfo", customerInfo, GetType());
             }
             catch
             {
                 ProjVTMContext.TransactionDataCache.Set("VAB_CustomerInfo", null, GetType());
+            }
+        }
+        private void UnpackQueryTransFee(JObject dataObj)
+        {
+            try
+            {
+                List<Fee> lstFee = new List<Fee>();
+                lstFee.Clear();
+                foreach (var item in dataObj["data"])
+                {
+                    Fee fee = new Fee();
+                    fee.FeeCode = item["feeCode"]?.ToString();
+                    fee.FeeAmount = item["amount"]?.ToString();
+                    fee.TaxAmount = item["tax"]?.ToString();
+                    fee.Currency = item["currency"]?.ToString();
+                    lstFee.Add(fee);
+                }
+
+                ProjVTMContext.TransactionDataCache.Set("VAB_Fee", lstFee, GetType());
+            }
+            catch
+            {
+                ProjVTMContext.TransactionDataCache.Set("VAB_Fee", null, GetType());
             }
         }
         private void UnpackGetQRString(JObject dataObj)

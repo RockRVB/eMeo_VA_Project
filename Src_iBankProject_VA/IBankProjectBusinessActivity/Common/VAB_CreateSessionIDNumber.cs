@@ -66,7 +66,7 @@ namespace IBankProjectBusinessActivity
             try
             {
                 string vtmno = VTMContext.TerminalConfig.Terminal.ATMNumber;
-                string sessionID = string.Format("{0}{1}", vtmno, DateTimeOffset.Now.ToUnixTimeSeconds());
+                string sessionID = string.Format("STM{0}{1}", vtmno, DateTimeOffset.Now.ToUnixTimeSeconds());
                 ProjVTMContext.TransactionDataCache.Set("VAB_SessionID", sessionID, GetType());
                 string journalString = "- SessionID   = [{0}]";
                 ProjVTMContext.LogJournal(string.Format(journalString, sessionID));

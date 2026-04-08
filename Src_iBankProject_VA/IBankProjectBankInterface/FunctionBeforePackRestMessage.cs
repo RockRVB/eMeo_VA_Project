@@ -1,7 +1,9 @@
 using LogProcessorService;
 using System;
 using VTMBusinessActivity.VTMBankInterface;
-
+using System.Text.RegularExpressions;
+using Newtonsoft.Json.Linq;
+using IBankProjectBusinessServiceProtocol;
 namespace IBankProjectBankInterface
 {
     public partial class IBankProjectBankInterface : VTMBankInterface
@@ -54,6 +56,9 @@ namespace IBankProjectBankInterface
                     case "QueryCustomerInfo":
                         SetQueryCustomerInfo();
                         break;
+                    case "QueryTransFee":
+                        SetQueryTransFee();
+                        break;
                     case "GetQRString":
                     case "VerifyQR":
                         SetGetQRString();
@@ -84,10 +89,44 @@ namespace IBankProjectBankInterface
         {
             try
             {
+                object value = null;
+                ProjVTMContext.TransactionDataCache.Set("VAB_ExistAccount", "N", GetType());
+                ProjVTMContext.CardHolderDataCache.Get("VTM_TransTypeName", out value, GetType());
+                if (value != null)
+                {
+                    ProjVTMContext.TransactionDataCache.Set("proj_TransType", value?.ToString(), GetType());
+                }
             }
             catch { }
 
             return;
+        }
+        private void SetQueryTransFee()
+        {
+            try
+            {
+                ProjVTMContext.TransactionDataCache.Set("proj_AccountNumber", "", GetType());
+                ProjVTMContext.TransactionDataCache.Set("proj_AccountNumber", "", GetType());
+                ProjVTMContext.TransactionDataCache.Set("proj_TransType", "CASH_DEPOSIT", GetType());
+                object objAmount = null;
+                ProjVTMContext.TransactionDataCache.Get("core_OriginalDepositAmount", out objAmount, GetType());
+                if (objAmount != null)
+                {
+                    ProjVTMContext.TransactionDataCache.Set("proj_Amount", objAmount.ToString(), GetType());
+                }
+                object Account = null;
+                ProjVTMContext.TransactionDataCache.Get("VAB_SelectedAccount", out Account, GetType());
+                Log.Action.LogDebugFormat("VAB_SelectedAccount: {0}", Account);
+                if (!string.IsNullOrEmpty(Account.ToString()))
+                {
+                    JObject oJson = JObject.Parse(Account.ToString());
+                    ProjVTMContext.TransactionDataCache.Set("proj_AccountNumber", oJson["accountNumber"]?.ToString(), GetType());
+                }
+            }
+            catch { }
+
+            return;
+
         }
     }
 }

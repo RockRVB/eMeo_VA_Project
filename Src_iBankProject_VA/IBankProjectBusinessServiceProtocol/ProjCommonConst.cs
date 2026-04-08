@@ -16,4 +16,7 @@ namespace IBankProjectBusinessServiceProtocol
         public const string CreateAccountList = "CreateAccountList";
         public const string CardIssueList = "CardIssueList";
     }
+    public class ProjConst
+    {
+    }
 }

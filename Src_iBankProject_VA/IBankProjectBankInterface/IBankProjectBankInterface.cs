@@ -62,30 +62,9 @@ namespace IBankProjectBankInterface
             ProjVTMContext.LogJournal("Response Code [" + dataObj["resCode"]?.ToString() + "]");
             ProjVTMContext.LogJournal("Response Desc [" + dataObj["resDesc"]?.ToString().ConvertToEngUpChar() + "]");
             if (resultCode != "0") return emRetCode.Default;
-            try
-            {
-                WriteJournalLogAfter(argType, resultCode, dataObj);
-                switch (argType)
-                {
-                    case "QueryCustomerInfo":
-                        UnpackQueryCustomerInfo(dataObj);
-                        break;
-                    case "GetQRString":
-                        UnpackGetQRString(dataObj);
-                        break;
-                    case "VerifyQR":
-                        UnpackVerifyQR(dataObj);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.XdcTrace.LogFatal("Exception: AfterUnpackRestMessage Error!" + ex.Message);
-                return emRetCode.Default;
-            }
             
+            
+            UnpackJsonData(argType, resultCode, argResponse);
              
             return emRetCode.Default;
         }

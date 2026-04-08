@@ -19,14 +19,15 @@ using IBankProjectBusinessServiceProtocol;
 namespace IBankProjectBusinessActivity
 {
     [GrgActivity("{56E2B465-B33D-470B-A472-25E0E72A0F3B}",
-                     Name = "BAB_DepositSelectAccount",
-                     NodeNameOfConfiguration = "BAB_DepositSelectAccount",
+                     Name = "VAB_DepositSelectAccount",
+                     NodeNameOfConfiguration = "VAB_DepositSelectAccount",
                      Author = "Louis")]
-    public class BusinessActivityBAB_DepositSelectAccount : IBankProjectActivityBase
+    public class VAB_DepositSelectAccount : IBankProjectActivityBase
     {
-
+        private bool simulator = true;
+        private bool resettimer = false;
         #region constructor
-        private BusinessActivityBAB_DepositSelectAccount()
+        private VAB_DepositSelectAccount()
         {
         }
         #endregion
@@ -35,30 +36,36 @@ namespace IBankProjectBusinessActivity
         [GrgCreateFunction("create")]
         public static IBusinessActivity Create()
         {
-            return new BusinessActivityBAB_DepositSelectAccount();
+            return new VAB_DepositSelectAccount();
         }
         #endregion
-        private string m_BindingData = "";
-        [GrgBindTarget("bindingData", Type = TargetType.String, Access = AccessRight.ReadAndWrite)]
-        public string bindingData
+        private string m_InputVal = string.Empty;
+        [GrgBindTarget("input_val", Type = TargetType.String, Access = AccessRight.ReadAndWrite)]
+        public string input_val
         {
-            get { return m_BindingData; }
+            get
+            {
+                return m_InputVal;
+            }
             set
             {
-                m_BindingData = value;
-                OnPropertyChanged("bindingData");
+                m_InputVal = value;
+                OnPropertyChanged("input_val");
             }
         }
-
-        private string m_AccountNo = "";
-        [GrgBindTarget("AccountNo", Type = TargetType.String, Access = AccessRight.ReadAndWrite)]
-        public string AccountNo
+        private string m_OutputVal = string.Empty;
+        [GrgBindTarget("output_val", Type = TargetType.String, Access = AccessRight.ReadAndWrite)]
+        public string output_val
         {
-            get { return m_AccountNo; }
+            get
+            {
+                return m_OutputVal;
+            }
             set
             {
-                m_AccountNo = value;
-                OnPropertyChanged("AccountNo");
+                m_OutputVal = value;
+
+                OnPropertyChanged("output_val");
             }
         }
 
@@ -83,40 +90,40 @@ namespace IBankProjectBusinessActivity
             ProjVTMContext.TransactionDataCache.Set("proj_DepSelectedAccount", null, GetType());
             object objCustomerInfo = null;
             ProjVTMContext.TransactionDataCache.Get("VAB_CustomerInfo", out objCustomerInfo, GetType());
-
-            if (objCustomerInfo == null)
-            {
-                m_objContext.NextCondition = EventDictionary.s_EventFail;
-                return emBusActivityResult_t.Success;
-            }
-
             CustomerInfo customerInfo = new CustomerInfo();
-            List<DEPAccountShowing> accListShowing = new List<DEPAccountShowing>();
-            accListShowing.Clear();
-            customerInfo = objCustomerInfo as CustomerInfo;
-            //accList = DataTest();
-            foreach (var item in customerInfo.Accounts)
+            DEPAccountShowing data = new DEPAccountShowing();
+            if (simulator == true)
             {
-                DEPAccountShowing tmp = new DEPAccountShowing();
-                tmp.name = item.AccountName;
-                tmp.account = item.AccountNumber;
-                tmp.amountAvailable = item.AvailableBalance;
-                Log.Action.LogDebugFormat("data: {0}, {1}, {2}, {3}", tmp.name, tmp.account, tmp.amountAvailable);
-                accListShowing.Add(tmp);
+                data = DataTest();
             }
-            if (accListShowing.Count == 0)
+            else
             {
-                Log.Action.LogDebug("acclist count is 0");
-                ProjVTMContext.NextCondition = EventDictionary.s_EventFail;
-                return emBusActivityResult_t.Success;
+                if (objCustomerInfo == null)
+                {
+                    m_objContext.NextCondition = EventDictionary.s_EventFail;
+                    return emBusActivityResult_t.Success;
+                }
+                
+                customerInfo = objCustomerInfo as CustomerInfo;
+                data.countdown =  (ProjVTMContext.ActionTimeout/1000).ToString();
+                data.cus_info.cif = customerInfo.CIF;
+                data.cus_info.cus_name = customerInfo.FullName;
+                foreach (var item in customerInfo.Accounts)
+                {
+                    Acct acc = new Acct();
+                    acc.id = item.AccountNumber;
+                    acc.accountNumber = item.AccountNumber;
+                    acc.balance = CommonClass.ConvertMoney2(item.AvailableBalance);
+                    data.acc_list.Add(acc);
+                }
+                 
             }
-            ProjVTMContext.TransactionDataCache.Set("VAB_SelectedAccount", accListShowing[0], GetType());
-
-            bindingData = new JavaScriptSerializer().Serialize(accListShowing);
-            Log.Action.LogDebugFormat("bindingData: {0}", bindingData);
+            input_val = new JavaScriptSerializer().Serialize(data);
+            Log.Action.LogDebugFormat("bindingData: {0}", input_val);
             SwitchUIState(VTMContext.MainUI, DataDictionary.s_DefaultUIState);
 
             emWaitSignalResult_t emWaitResult;
+            Log.Action.LogDebug("Start WaitSignal 1");
             if (WaitPopu == 1)
             {
                 emWaitResult = VTMWaitSignal();
@@ -125,6 +132,15 @@ namespace IBankProjectBusinessActivity
             {
                 emWaitResult = WaitSignal();
             }
+            
+            while (resettimer == true)
+            {
+                resettimer = false;
+                ResetTimeOut(ProjVTMContext.ActionTimeout);
+                emWaitResult = WaitSignal();
+                if (resettimer == false) break;
+            }
+            
             if (emWaitResult == emWaitSignalResult_t.Timeout)
             {
                 ProjVTMContext.CurrentTransactionResult = TransactionResult.Cancel;
@@ -145,28 +161,36 @@ namespace IBankProjectBusinessActivity
             {
 
                 ProjVTMContext.MainUI.ExecuteCustomCommand(UIServiceCommands.s_updateData);
-                string strKey = m_AccountNo;
-                Log.Action.LogDebugFormat("Selected Account: {0}", m_AccountNo);
-                ProjVTMContext.TransactionDataCache.Set("BAB_SelectedAccount", m_AccountNo, GetType());
-                if (!string.IsNullOrWhiteSpace(strKey))
+                //string strKey = m_AccountNo;
+                Log.Action.LogDebugFormat("Selected Account: {0}", output_val);
+                ProjVTMContext.TransactionDataCache.Set("VAB_SelectedAccount", output_val, GetType());
+                /*if (!string.IsNullOrWhiteSpace(strKey))
                 {
                     //ProjVTMContext.NextCondition = "OnNext";
                     //SignalCancel();
                     //return emBusiCallbackResult_t.Swallowd;
-                }
+                }*/
                 string strKeyOther = argUIEvent.Key as string;
                 Log.Action.LogDebugFormat("strKeyOther:{0}", strKeyOther);
-                if (strKeyOther == "OnYes")
-                {
-                    ProjVTMContext.NextCondition = "OnYes";
-                    SignalCancel();
-                }
-                else if (strKeyOther == "OnNext")
+                
+                if (strKeyOther == "continueDepositBtn")
                 {
                     ProjVTMContext.NextCondition = "OnNext";
-                    SignalCancel();
                 }
-                else if (strKeyOther == "OnBack")
+                else if (strKeyOther == "OnResetTimer")
+                {
+                    resettimer = true;
+                }
+                else if (strKeyOther.ToUpper() == "ONEXIT" || strKeyOther.ToUpper() == "CANCELANDBACKHOME")
+                {
+                    ProjVTMContext.NextCondition = "OnExit";
+                }
+                else
+                {
+                    m_objContext.NextCondition = strKeyOther;
+                }
+
+                /*else if (strKeyOther == "OnBack")
                 {
                     
                     ProjVTMContext.NextCondition = "OnBack";
@@ -177,52 +201,79 @@ namespace IBankProjectBusinessActivity
                     Log.Action.LogDebug("Button Click s_EventCancel.");
                     m_objContext.NextCondition = strKeyOther;
                     SignalCancel();
-                }
+                }*/
+                SignalCancel();
                 return emBusiCallbackResult_t.Swallowd;
             }
             return base.InnerOnUIEvtHandle(iUI, argUIEvent);
         }
 
-     /*   private List<AccountInfo> DataTest()
+        public DEPAccountShowing DataTest()
         {
-            ProjVTMContext.CustomerInfo.FullName = "Test Name";
-            List<AccountInfo> accList = new List<AccountInfo>();
-            accList.Clear();
-            ///Test
-            AccountInfo account = new AccountInfo();
-            account.AccountNumber = "060001060002517";
-            account.Status = "ACTIVE";
-            account.AccountType = "CURRENT";
-            account.ProductCode = "020";
-            account.BranchCode = "050";
-            account.OpenDate = "10/10/2010";
-            account.Balance = "10000000";
-            account.AvalBalance = "8000000";
-            account.HoldBalance = "2000000";
-            account.ClosedDate = "10/10/2010";
-            accList.Add(account);
-            AccountInfo account1 = new AccountInfo();
-            account1.AccountNumber = "054001060000977";
-            account1.Status = "ACTIVE";
-            account1.AccountType = "CURRENT";
-            account1.ProductCode = "020";
-            account1.BranchCode = "050";
-            account1.OpenDate = "10/10/2010";
-            account1.Balance = "10000000";
-            account1.AvalBalance = "8000000";
-            account1.HoldBalance = "2000000";
-            account1.ClosedDate = "10/10/2010";
-            accList.Add(account1);
-            VTMContext.TransactionDataCache.Set("BAB_CustomerAccountList", accList, GetType());
-            return accList;
+            DEPAccountShowing data = new DEPAccountShowing();
+            data.countdown = (ProjVTMContext.ActionTimeout/1000).ToString(); //"120";
+            data.cus_info.cif = "123";
+            data.cus_info.cus_name = "Tran Van Lam";
+            
+            Header head1 = new Header();
+            head1.label = "Số tài khoản";
+            head1.ids = "ids_VAB_cash_deposit_qr_account_num";
+
+            Header head2 = new Header();
+            head2.label = "Số dư khả dụng";
+            head2.ids = "ids_VAB_cash_deposit_qr_avail_balance";
+            
+            data.header_list.Add(head1);
+            data.header_list.Add(head2);
+
+            Acct acc1 = new Acct();
+            acc1.id = "123456789000";
+            acc1.accountNumber = "123456789000";
+            acc1.balance = CommonClass.ConvertMoney2("20000000");
+
+            Acct acc2 = new Acct();
+            acc2.id = "123456789001";
+            acc2.accountNumber = "123456789001";
+            acc2.balance = CommonClass.ConvertMoney2("20000000");
+
+            data.acc_list.Add(acc1);
+            data.acc_list.Add(acc2);
+
+            return data;
         }
-     */
         #endregion
     }
+    
     public class DEPAccountShowing
     {
-        public string name { get; set; }
-        public string account { get; set; }
-        public string amountAvailable { get; set; }
+        public string countdown { get; set; }
+        public CustomerIfo cus_info { get; set; }
+        public List<Header> header_list = null;
+        public List<Acct> acc_list = null;
+        public DEPAccountShowing()
+        {
+            countdown = string.Empty;
+            cus_info = new CustomerIfo();
+            header_list = new List<Header>();
+            header_list.Clear();
+            acc_list = new List<Acct>();
+            acc_list.Clear();
+        }
+    }
+    public class CustomerIfo 
+    {
+        public string cus_name { get; set; }
+        public string cif { get; set; }
+    }
+    public class Header
+    {
+        public string label { get; set; }
+        public string ids { get; set; }
+    }
+    public class Acct
+    {
+        public string id { get; set; }
+        public string accountNumber { get; set; }
+        public string balance { get; set; }
     }
 }

@@ -22,14 +22,7 @@
 			</EventTrigger>
 		</Triggers>
 	</Screen>
-	<Screen name="UI_Proximity" uri="common-VAB\index.html" cache="0">
-			<Triggers>
-				<EventTrigger condition="Voice_Hello">
-					<PlaySound source=""/>
-				</EventTrigger>
-			</Triggers>
-		</Screen>
-	<Screen name="UI_VAB_Processing" uri="common-VAB\system_processing.html" cache="0">
+	<Screen name="UI_VAB_Processing" uri="VA\common\system-waiting.html" cache="0">
 		<Triggers>
 			<EventTrigger condition="show">
 				<PlaySound source=""/>
@@ -39,7 +32,7 @@
 			</EventTrigger>
 		</Triggers>
 	</Screen>
-	<Screen name="UI_VAB_ChooseMethod" uri="common-VAB\choose_method.html" cache="0">
+	<Screen name="UI_VAB_ChooseMethod" uri="\VA\authen-qr\XT-QR-01.html" cache="0">
 		<Triggers>
 			<EventTrigger condition="show">
 				<PlaySound source=""/>
