@@ -5,21 +5,21 @@
       "desc": "VAB Gateway",
       "encoding": "utf-8",
       "server": {
-        "host": "10.1.10.33",
-        "port": "9999",
+        "host": "192.168.11.7",
+        "port": "8089",
         "protocol": "https"
       },
       "head": {
         "method": "post",
         "contentType": "application/json",
         "requestTimeout": "30000",
-        "Headers": "authorization={FB_accessToken};Scenes-key={FB_sceneKey}"
+        "Headers": "Authorization= Basic ZXptb2JpbGU6VmFiMjAyNEA="
       },
       "transactions": [     
 		{
           "name": "QueryCustomerInfo",
 		  "method": "post",
-          "url": "",
+          "url": "/api/BankService/QueryCustomerInfo",
           "response": "QueryCustomerInfoResponse",
           "body": {
 		    "sessionId":"{VAB_SessionID}",
@@ -40,7 +40,7 @@
 		{
           "name": "QueryTransFee",
 		  "method": "post",
-          "url": "",
+          "url": "/api/BankService/QueryTransFee",
           "response": "QueryTransFeeResponse",
           "body": {
 		    "sessionId":"{VAB_SessionID}",
@@ -59,24 +59,7 @@
             "msg": "{this.errordesc}",
             "data": "{FB_jsonrevdata}"
           }
-        }
-      ]
-    },
-	{
-      "name": "VAB Gateway",
-      "desc": "VAB Gateway",
-      "encoding": "utf-8",
-      "server": {
-        "host": "192.168.11.7",
-        "port": "8089",
-        "protocol": "https"
-      },
-      "head": {
-        "method": "post",
-        "contentType": "application/json",
-        "requestTimeout": "30000"
-      },
-      "transactions": [     
+        },
 		{
           "name": "GetQRString",
 		  "method": "post",
@@ -110,6 +93,34 @@
         },
         {
           "name": "VerifyQRResponse",
+          "SuccessCode": "0",
+          "body": {
+            "resCode": "{this.responsecode}",
+            "resDesc": "{this.errordesc}",
+            "data": "{proj_response}"
+          }
+        },
+		{
+          "name": "CashWithdrawalNoCardConfirm",
+		  "method": "post",
+          "url": "/api/BankService/CashWithdrawalNoCardConfirm",
+          "response": "CashWithdrawalNoCardConfirmResponse",
+          "body": {
+			"sessionId":"{VAB_SessionID}",
+			"customerId":"{VAB_CustomerId}",
+			"accountNumber":"{proj_AccountNumber}}",
+			"amount":"{proj_Amount}}",
+			"currency":"VND",
+			"narrative":"Rut tien mat tu tai khoan",
+			"branchCode":"{proj_BranchCode}",
+			"fee":"{proj_Fee}",
+			"tax":"{proj_Tax}",
+			"transactionType":"{proj_TransType}",
+			"deviceId":"{binding=context.TerminalConfig.Terminal.ATMNumber}"
+		  }
+        },
+        {
+          "name": "CashWithdrawalNoCardConfirmResponse",
           "SuccessCode": "0",
           "body": {
             "resCode": "{this.responsecode}",

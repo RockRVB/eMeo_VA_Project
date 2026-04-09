@@ -73,7 +73,7 @@
   <!--InputInfo输入账号时的清除方式，1为全部清除，0只删除1个-->
   <ClearAll value="1" />
   <!--币种设置-->
-  <Currency value="CNY" />
+  <Currency value="VND" />
   <!--最大放钞次数-->
   <ContinueInterposeCashTimes value="3" />
   <!--语言设置

@@ -75,12 +75,15 @@ namespace IBankProjectBusinessActivity
             }
             //
             object value = null;
+            object value2 = null;
             ProjVTMContext.TransactionDataCache.Get("VAB_QRData", out value, GetType());
-            if (value != null)
+            ProjVTMContext.CardHolderDataCache.Get("VTM_TransTypeName", out value2, GetType());
+            if (value != null && value2 != null )
             {
                 var HTMLJson_input = new
                 {
-                    QR_Code = value.ToString()
+                    QR_Code = value.ToString(),
+                    transaction_type =  value2.ToString()
                 };
                 input_val = HTMLJson_input.ToJSON();
             }

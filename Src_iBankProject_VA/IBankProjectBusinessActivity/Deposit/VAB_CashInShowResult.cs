@@ -163,6 +163,35 @@ namespace VTMBusinessActivity
             }
         }
         */
+        private string m_InputVal = string.Empty;
+        [GrgBindTarget("input_val", Type = TargetType.String, Access = AccessRight.ReadAndWrite)]
+        public string input_val
+        {
+            get
+            {
+                return m_InputVal;
+            }
+            set
+            {
+                m_InputVal = value;
+                OnPropertyChanged("input_val");
+            }
+        }
+        private string m_OutputVal = string.Empty;
+        [GrgBindTarget("output_val", Type = TargetType.String, Access = AccessRight.ReadAndWrite)]
+        public string output_val
+        {
+            get
+            {
+                return m_OutputVal;
+            }
+            set
+            {
+                m_OutputVal = value;
+
+                OnPropertyChanged("output_val");
+            }
+        }
         /// <summary>
         /// 存款明细
         /// </summary>
@@ -189,43 +218,39 @@ namespace VTMBusinessActivity
             object value = null;
             Int64 intToal = 0;
             Int64 intInput = 0;
-            m_objContext.TransactionDataCache.Get("core_OriginalDepositAmount", out value, GetType());
-            if (null != value && !string.IsNullOrEmpty(value.ToString()))
+            if (ProjConst.simulator == true)
             {
-                totalAmount = value.ToString();
-                Log.Project.LogDebug("core_OriginalDepositAmount is :" + value.ToString());
-                m_objContext.TransactionDataCache.Set("proj_DEPAmount", value.ToString(), GetType());
-                intToal = Int64.Parse(totalAmount);
-                /*if (intToal == 0)
+                input_val = new JavaScriptSerializer().Serialize(DataTest());
+            }
+            else {
+                m_objContext.TransactionDataCache.Get("core_OriginalDepositAmount", out value, GetType());
+                if (null != value && !string.IsNullOrEmpty(value.ToString()))
                 {
-                    DepositConfirm = false;
-                }*/
-                totalAmount = intToal.ToString("N");
-                //int len = totalAmount.Length;
-                //totalAmount = totalAmount.Replace(".00", " ₫");
-                //AmountTotalString = totalAmount;
-                //Log.Project.LogDebug("core_FormatDepositAmount is :"+ totalAmount);
-                m_objContext.TransactionDataCache.Set("core_FormatDepositAmount", totalAmount, GetType());
-                Log.Project.LogDebug("core_FormatDepositAmount is :" + totalAmount);
-            }
-            string inputAmount = string.Empty;
-            object valueInput = null;
-            m_objContext.TransactionDataCache.Get("core_OriginalOtherAmount", out valueInput, GetType());
-            if (null != valueInput && !string.IsNullOrEmpty(valueInput.ToString()))
-            {
-                Log.Project.LogDebug("core_OriginalOtherAmount is :" + valueInput.ToString());
-                inputAmount = valueInput.ToString();
+                    totalAmount = value.ToString();
+                    Log.Project.LogDebug("core_OriginalDepositAmount is :" + value.ToString());
+                    m_objContext.TransactionDataCache.Set("proj_DEPAmount", value.ToString(), GetType());
+                    intToal = Int64.Parse(totalAmount);
 
-                intInput = Int64.Parse(inputAmount);
-                inputAmount = intInput.ToString("N");
-                //int len = inputAmount.Length;
-                //inputAmount = inputAmount.Replace(".00", " ₫");
-                //AmountInputString = inputAmount;
-                Log.Project.LogDebug("core_FormatDepositAmount2 is :" + inputAmount);
-                m_objContext.TransactionDataCache.Set("core_FormatDepositAmount", inputAmount, GetType());
+                    totalAmount = intToal.ToString("N");
+                    m_objContext.TransactionDataCache.Set("core_FormatDepositAmount", totalAmount, GetType());
+                    Log.Project.LogDebug("core_FormatDepositAmount is :" + totalAmount);
+                }
+                string inputAmount = string.Empty;
+                object valueInput = null;
+                m_objContext.TransactionDataCache.Get("core_OriginalOtherAmount", out valueInput, GetType());
+                if (null != valueInput && !string.IsNullOrEmpty(valueInput.ToString()))
+                {
+                    Log.Project.LogDebug("core_OriginalOtherAmount is :" + valueInput.ToString());
+                    inputAmount = valueInput.ToString();
+
+                    intInput = Int64.Parse(inputAmount);
+                    inputAmount = intInput.ToString("N");
+                    Log.Project.LogDebug("core_FormatDepositAmount2 is :" + inputAmount);
+                    m_objContext.TransactionDataCache.Set("core_FormatDepositAmount", inputAmount, GetType());
+                }
+
+                input_val = GetDepositDataList();
             }
-            
-            SavDepositDetailList = GetDepositDataList();
             HandleShowCashInResult(argContext);
        //     OCRNumberSerial oCRNumberSerial = new OCRNumberSerial();
        //     oCRNumberSerial.PrintOcrInfo();
@@ -235,8 +260,64 @@ namespace VTMBusinessActivity
         #endregion
 
         #region define function
+        string GetDepositDataList()
+        {
+            Log.Action.LogDebug("Enter InputInfoMess SetDepositData()");
+            string res = string.Empty;
+            try
+            {
+                CountingResult data = new CountingResult();
+                object objDepositDetail = null;
+                Dictionary<int, int> depositDetail = new Dictionary<int, int>();
+                m_objContext.DatabaseCache.Get(DataDictionary.s_coreDepositCountDetails, out objDepositDetail, GetType());
+                if (objDepositDetail == null)
+                {
+                    m_objContext.TransactionDataCache.Get("core_DepositCountDetails", out objDepositDetail);
+                    Log.Action.LogDebug("Datacache depositcount is null");
+                }
+                if (objDepositDetail != null)
+                {
+                    depositDetail = objDepositDetail as Dictionary<int, int>;
 
-        List<VTMDepositDetail> GetDepositDataList()
+                    List<int> denomination = new List<int> { 500, 200, 100, 50, 20, 10 };
+
+                    foreach (var deno in denomination)
+                    {
+                        string depositCount = "deposit_count_VND" + (deno * 1000).ToString();
+                        string depositAmount = "deposit_amount_VND" + (deno * 1000).ToString();
+                        Log.Project.LogDebugFormat("depositCount is:{0}, depositAmount is:{1}", depositCount, depositAmount);
+                        object objDepositCount = null, objDepositAmount = null;
+
+                        m_objContext.TransactionDataCache.Get(depositCount, out objDepositCount, GetType());
+                        m_objContext.TransactionDataCache.Get(depositAmount, out objDepositAmount, GetType());
+
+                        Log.Action.LogDebugFormat(" Deno is:{0}, Count is:{1}, Amount is:{2}", (deno * 1000).ToString("n0"), objDepositCount, objDepositAmount);
+
+                        if (objDepositCount != null && objDepositAmount != null)
+                        {
+                            int NoteNum = 0;
+                            long amountInt = 0;
+                            int.TryParse(objDepositCount.ToString(), out NoteNum);
+                            Int64.TryParse(objDepositAmount.ToString(), out amountInt);
+                            
+                            cash cash = new cash();
+                            cash.price = CommonClass.ConvertMoney2((deno * 1000).ToString()) + " VND";
+                            cash.quantity = NoteNum.ToString();
+                            cash.total = CommonClass.ConvertMoney2(amountInt.ToString()) + " VND";
+
+                            data.cash_slip.Add(cash);
+                        }
+                    }
+                    res = new JavaScriptSerializer().Serialize(data);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Log.Action.LogDebugFormat("InputInfoMess SetDepositData()-->Exception:{0}", ex);
+            }
+            return res;
+        }
+        List<VTMDepositDetail> GetDepositDataList1()
         {
             Log.Action.LogDebug("Enter InputInfoMess SetDepositData()");
             List<VTMDepositDetail> vtmDepositDetailList = new List<VTMDepositDetail>();
@@ -458,7 +539,42 @@ namespace VTMBusinessActivity
                 }
             }
         }
+        public CountingResult DataTest()
+        {
+            CountingResult data = new CountingResult();
+            cash cash1 = new cash();
+            cash1.price = CommonClass.ConvertMoney2("20000") + " VND";
+            cash1.quantity = "5";
+            cash1.total = CommonClass.ConvertMoney2("100000") + " VND";
 
-        #endregion
+            cash cash2 = new cash();
+            cash2.price = CommonClass.ConvertMoney2("50000") + " VND";
+            cash2.quantity = "5";
+            cash2.total = CommonClass.ConvertMoney2("250000") + " VND";
+
+            return data;
+        }
+            #endregion
+        }
+    public class CountingResult
+    {
+        public List<cash> cash_slip = null;
+        public CountingResult()
+        {
+            cash_slip = new List<cash>();
+            cash_slip.Clear();
+        }
+    }
+    public class cash
+    {
+        public string price { get; set; }
+        public string quantity { get; set; }
+        public string total { get; set; }
+        public cash()
+        {
+            price = string.Empty;
+            quantity = string.Empty;
+            total = string.Empty;
+        }
     }
 }

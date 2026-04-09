@@ -31,119 +31,150 @@
 			<Forward event="OnConfirm" targetID="ID_CreateSessionIDNumber"/>
 		</SetData>
 		<InvokeWorkflow ID="ID_InvokeLoginWorkflow" name="VAB_VerifyCustomer" comment="Invoke VAB_VerifyCustomer workflow">
-			<Forward event="OnConfirm" targetID="9999"/>
+			<Forward event="OnConfirm" targetID="ID_QueryCIFInfo"/>
 		</InvokeWorkflow>
-		<VAB_SelectFunction ID="ID_VAB_CWDSelectAccount" UI="UI_VAB_CWDSelectAccount" comment="">
-			<Forward event="OnQR" targetID="ID_VAB_RestfulGenQR"/>
-			<Forward event="OnCCCD" targetID="ID_InvokeCloseTransWorkflow"/>
-		</VAB_SelectFunction>
-		
-		
-		
-		<!-- <BVB_CWDInputWithdrawAmount ID="ID_InputWithdrawalAmount_Showtimeout" UI="UI_BVB_InputWithdrawalAmount" comment="Input withdrawal amount" maxWithdrawalAmount="5000000" keyValueMap="[F1,10000000][F2,5000000][F3,3000000][F4,2000000][F5,1000000][F6,500000]" maxRetryTimes="0" homeVisible="1" timeOut="60000"> -->
-			<!-- <Forward event="OnConfirm" targetID="ID_IsAlreadyDenominated"/> -->
-			<!-- <Forward event="OnExitConfirm" targetID="ID_AskExitTxn"/> -->
-			<!-- <Forward event="OnNoChangeState" targetID="ID_InputWithdrawalAmount_Showtimeout"/> -->
-			<!-- <Forward event="OnContinue" targetID="ID_InputWithdrawalAmount2_Showtimeout"/> -->
-		<!-- </BVB_CWDInputWithdrawAmount> -->
-		<!-- <BVB_CWDInputWithdrawAmount ID="ID_InputWithdrawalAmount2_Showtimeout" UI="UI_BVB_InputWithdrawalAmount2" comment="Input withdrawal amount" maxWithdrawalAmount="10000000" keyValueMap="[F1,10000000][F2,5000000][F3,3000000][F4,2000000][F5,1000000][F6,500000]" maxRetryTimes="0" homeVisible="1" timeOut="60000"> -->
-			<!-- <Forward event="OnConfirm" targetID="ID_IsAlreadyDenominated"/> -->
-			<!-- <Forward event="OnNoChangeState" targetID="ID_InputWithdrawalAmount2_Showtimeout"/> -->
-			<!-- <Forward event="OnContinue" targetID="ID_InputWithdrawalAmount2_Showtimeout"/> -->
-		<!-- </BVB_CWDInputWithdrawAmount> -->
-		<!-- <SetData ID="ID_IsAlreadyDenominated" comment="" saveBufferBool="{core_IsAlreadyDenominated}" value="true"> -->
-			<!-- <Forward event="OnConfirm" targetID="ID_IsAlreadySentWithdrawalRequest"/> -->
-		<!-- </SetData>	 -->
-		<!-- <SetData ID="ID_IsAlreadySentWithdrawalRequest" comment="" saveBufferBool="{core_IsAlreadySentWithdrawalRequest}" value="true"> -->
-			<!-- <Forward event="OnConfirm" targetID="ID_IsAlreadyUnpackedWithdrawalTrans"/> -->
-		<!-- </SetData>	 -->
-		<!-- <SetData ID="ID_IsAlreadyUnpackedWithdrawalTrans" comment="" saveBufferBool="{core_IsAlreadyUnpackedWithdrawalTrans}" value="true"> -->
-			<!-- <Forward event="OnConfirm" targetID="ID_GetDevStatusRPTR"/> -->
-		<!-- </SetData> -->
-		<!-- <GetDevStatus ID="ID_GetDevStatusRPTR" comment="Get device status" devType="RPTR"> -->
-			<!-- <Forward event="OnNormal" targetID="ID_AskPrintReceipt_Showtimeout"/> -->
-			<!-- <Forward event="OnWarn" targetID="ID_AskPrintReceipt_Showtimeout"/> -->
-			<!-- <Forward event="OnFail" targetID="ID_CannotPrintReceiptForNoCardTrans_Showtimeout"/> -->
-		<!-- </GetDevStatus> -->
-		<!-- <BVB_CWDSelectPrintReceipt ID="ID_AskPrintReceipt_Showtimeout" UI="UI_BVB_CWDAskPrintReceipt" comment=""> -->
-			<!-- <Forward event="OnYes" targetID="ID_BVB_RestfulGenQRCWD"/> -->
-			<!-- <Forward event="OnNo" targetID="ID_BVB_RestfulGenQRCWD"/> -->
-			<!-- <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/> -->
-		<!-- </BVB_CWDSelectPrintReceipt> -->
-		<!-- <BVB_CWDSelectPrintReceipt ID="ID_CannotPrintReceiptForNoCardTrans_Showtimeout" UI="UI_BVB_CWDCannotPrintReceiptForNoCardTrans" comment="cannot print receipt"> -->
-			<!-- <Forward event="OnNo" targetID="ID_BVB_RestfulGenQRCWD"/> -->
-			<!-- <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/> -->
-		<!-- </BVB_CWDSelectPrintReceipt> -->
-		
-		<!-- <RequestTransViaRestful ID="ID_BVB_RestfulConfirmQRCWD" UI="UI_BVB_ShowQR" transType="getDeferredResult" transFormat="json" timeout="120000"> -->
-			<!-- <States> -->
-				<!-- <State name="PackFail" UI="UI_BVB_ThankYou"/> -->
-				<!-- <State name="ConnectFail" UI="UI_BVB_ThankYou"/> -->
-				<!-- <State name="SendFail" UI="UI_BVB_ThankYou"/> -->
-				<!-- <State name="ReceiveFail" UI="UI_BVB_ThankYou"/> -->
-				<!-- <State name="ReceiveTimeout" UI="UI_BVB_ThankYou"/> -->
-				<!-- <State name="NetworkFail" UI="UI_BVB_ThankYou"/> -->
-				<!-- <State name="UnpackFail" UI="UI_BVB_ThankYou"/> -->
-				<!-- <State name="HardwareError" UI="UI_BVB_ThankYou"/> -->
-				<!-- <State name="HostRefuse" UI="UI_BVB_ThankYou"/> -->
-			<!-- </States> -->
-			<!-- <Forward event="OnConfirm" targetID="ID_InvokeBVB_CWD_QR_Workflow"/> -->
-			<!-- <Forward event="OnHostBankRefuse" targetID="ID_BVB_RestfulCancelQRCWD"/> -->
-			<!-- <Forward event="OnPackFail" targetID="ID_BVB_RestfulCancelQRCWD"/> -->
-			<!-- <Forward event="OnConnectFail" targetID="ID_BVB_RestfulCancelQRCWD"/> -->
-			<!-- <Forward event="OnSendFail" targetID="ID_BVB_RestfulCancelQRCWD"/> -->
-			<!-- <Forward event="OnReceiveFail" targetID="ID_BVB_RestfulCancelQRCWD"/> -->
-			<!-- <Forward event="OnReceiveTimeout" targetID="ID_BVB_RestfulCancelQRCWD"/> -->
-			<!-- <Forward event="OnNetworkFail" targetID="ID_BVB_RestfulCancelQRCWD"/> -->
-			<!-- <Forward event="OnUnpackFail" targetID="ID_BVB_RestfulCancelQRCWD"/> -->
-			<!-- <Forward event="OnHostRefuse" targetID="ID_BVB_RestfulCancelQRCWD"/> -->
-			<!-- <Forward event="OnNotMatchData" targetID="ID_BVB_RestfulCancelQRCWD"/> -->
-			<!-- <Forward event="OnRequestCanceled" targetID="ID_BVB_RestfulCancelQRCWD"/> -->
-		<!-- </RequestTransViaRestful> -->
-		<!-- <RequestTransViaRestful ID="ID_BVB_RestfulCancelQRCWD" UI="UI_BVB_ThankYou" transType="cancelQR" transFormat="json" timeout="60000"> -->
-			<!-- <States> -->
-				<!-- <State name="PackFail" UI="UI_BVB_ThankYou"/> -->
-				<!-- <State name="ConnectFail" UI="UI_BVB_ThankYou"/> -->
-				<!-- <State name="SendFail" UI="UI_BVB_ThankYou"/> -->
-				<!-- <State name="ReceiveFail" UI="UI_BVB_ThankYou"/> -->
-				<!-- <State name="ReceiveTimeout" UI="UI_BVB_ThankYou"/> -->
-				<!-- <State name="NetworkFail" UI="UI_BVB_ThankYou"/> -->
-				<!-- <State name="UnpackFail" UI="UI_BVB_ThankYou"/> -->
-				<!-- <State name="HardwareError" UI="UI_BVB_ThankYou"/> -->
-				<!-- <State name="HostRefuse" UI="UI_BVB_ThankYou"/> -->
-			<!-- </States> -->
-			<!-- <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/> -->
-			<!-- <Forward event="OnHostBankRefuse" targetID="ID_InvokeCloseTransWorkflow"/> -->
-			<!-- <Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/> -->
-			<!-- <Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/> -->
-			<!-- <Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/> -->
-			<!-- <Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/> -->
-			<!-- <Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/> -->
-			<!-- <Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/> -->
-			<!-- <Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/> -->
-			<!-- <Forward event="OnHostRefuse" targetID="ID_InvokeCloseTransWorkflow"/> -->
-		<!-- </RequestTransViaRestful>		 -->
-		<!-- <InvokeWorkflow ID="ID_InvokeBVB_CWD_QR_Workflow" name="BVB_CWD_QR" comment="Invoke BVB_CWD_QR workflow"> -->
-			<!-- <Forward event="OnConfirm" targetID="9999"/> -->
-		<!-- </InvokeWorkflow> -->
-		<!-- <BVB_CheckTimeoutState ID="ID_CheckTimeoutState" UI="" comment=""> -->
-			<!-- <Forward event="OnConfirm" targetID="ID_AskContinueTxn" /> -->
-			<!-- <Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/> -->
-		<!-- </BVB_CheckTimeoutState> -->
-		<!-- <BVB_ShowStateContinueTXN ID="ID_AskContinueTxn" UI="UI_BVB_AskContinueTXN" comment="" timeout="10000"> -->
-			<!-- <Forward event="On_ID_InputWithdrawalAmount_Showtimeout" targetID="ID_InputWithdrawalAmount_Showtimeout"/> -->
-			<!-- <Forward event="On_ID_InputWithdrawalAmount2_Showtimeout" targetID="ID_InputWithdrawalAmount2_Showtimeout"/> -->
-			<!-- <Forward event="On_ID_AskPrintReceipt_Showtimeout" targetID="ID_AskPrintReceipt_Showtimeout"/> -->
-			<!-- <Forward event="On_ID_CannotPrintReceiptForNoCardTrans_Showtimeout" targetID="ID_CannotPrintReceiptForNoCardTrans_Showtimeout"/> -->
-			<!-- <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/> -->
-		<!-- </BVB_ShowStateContinueTXN> -->
-		<!-- <BVB_ShowStateAskExitTXN ID="ID_AskExitTxn" UI="UI_BVB_AskExitTXN" comment="" timeout="10000"> -->
-			<!-- <Forward event="On_ID_InputWithdrawalAmount_Showtimeout" targetID="ID_InputWithdrawalAmount_Showtimeout"/> -->
-			<!-- <Forward event="On_ID_InputWithdrawalAmount2_Showtimeout" targetID="ID_InputWithdrawalAmount2_Showtimeout"/> -->
-			<!-- <Forward event="On_ID_AskPrintReceipt_Showtimeout" targetID="ID_AskPrintReceipt_Showtimeout"/> -->
-			<!-- <Forward event="On_ID_CannotPrintReceiptForNoCardTrans_Showtimeout" targetID="ID_CannotPrintReceiptForNoCardTrans_Showtimeout"/> -->
-			<!-- <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/> -->
-		<!-- </BVB_ShowStateAskExitTXN> -->
+		<RequestTransViaRestful ID="ID_QueryCIFInfo" UI="UI_VAB_Processing" transType="QueryCustomerInfo" transFormat="json" timeout="60000">
+			<States>
+				<State name="PackFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="ConnectFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="SendFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="ReceiveFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="ReceiveTimeout" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="NetworkFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="UnpackFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="HardwareError" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="HostRefuse" UI="UI_VAB_QRCWDSystemError"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_CheckExistAccount"/>
+			<Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnNetworkFail" targetID="ID_CheckExistAccount"/>
+			<Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnHostRefuse" targetID="ID_TransactionfailAndfindAnotherMethod"/>
+		</RequestTransViaRestful>
+		<CompareData ID="ID_CheckExistAccount" compareBuffer="{VAB_ExistAccount}" comment="Check customer have account to do transaction?">
+			<Forward event="OnEqualY" targetID="ID_VAB_CWDSelectAccount"/>
+            <Forward event="OnEqualN" targetID="ID_InvokeCloseTransWorkflow"/>
+			<DefaultForward targetID="ID_InvokeCloseTransWorkflow"/>
+		</CompareData>
+		<VAB_CWDSelectAccount ID="ID_VAB_CWDSelectAccount" UI="UI_VAB_CWDSelectAccount" comment="">
+			<Forward event="OnContinueWithdraw" targetID="ID_VABSelectWithdrawalAmount"/>
+		</VAB_CWDSelectAccount>
+		<VAB_InputWithdrawAmount ID="ID_VABSelectWithdrawalAmount" UI="UI_VABSelectWithdrawalAmount" comment="" maxWithdrawalAmount="5000000"  maxRetryTimes="0" homeVisible="1" timeOut="60000">
+			<Forward event="OnConfirm" targetID="ID_IsAlreadyDenominated"/>
+			<Forward event="OnExit" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnAnotherCashValue" targetID="ID_VABInputWithdrawalAmount"/>
+			<Forward event="OnContinue" targetID="ID_VABInputWithdrawalAmount"/>
+		</VAB_InputWithdrawAmount>
+		<VAB_InputWithdrawAmount ID="ID_VABInputWithdrawalAmount" UI="UI_VABInputWithdrawalAmount" comment="Input withdrawal amount" maxWithdrawalAmount="5000000"  maxRetryTimes="0" homeVisible="1" timeOut="60000">
+			<Forward event="OnConfirm" targetID="ID_IsAlreadyDenominated"/>
+			<Forward event="OnExit" targetID="ID_InvokeCloseTransWorkflow"/>
+		</VAB_InputWithdrawAmount>
+		<SetData ID="ID_IsAlreadyDenominated" comment="" saveBufferBool="{core_IsAlreadyDenominated}" value="true">
+			<Forward event="OnConfirm" targetID="ID_IsAlreadySentWithdrawalRequest"/>
+		</SetData>	
+		<SetData ID="ID_IsAlreadySentWithdrawalRequest" comment="" saveBufferBool="{core_IsAlreadySentWithdrawalRequest}" value="true">
+			<Forward event="OnConfirm" targetID="ID_IsAlreadyUnpackedWithdrawalTrans"/>
+		</SetData>	
+		<SetData ID="ID_IsAlreadyUnpackedWithdrawalTrans" comment="" saveBufferBool="{core_IsAlreadyUnpackedWithdrawalTrans}" value="true">
+			<Forward event="OnConfirm" targetID="ID_QueryTransFee"/>
+		</SetData>
+		<RequestTransViaRestful ID="ID_QueryTransFee" UI="UI_VAB_Processing" transType="QueryTransFee" transFormat="json" timeout="60000">
+			<States>
+				<State name="PackFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="ConnectFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="SendFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="ReceiveFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="ReceiveTimeout" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="NetworkFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="UnpackFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="HardwareError" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="HostRefuse" UI="UI_VAB_QRCWDSystemError"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_GetReceiptDevStatus"/>
+			<Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnHostRefuse" targetID="ID_TransactionfailAndfindAnotherMethod"/>
+		</RequestTransViaRestful>
+		<GetDevStatus ID="ID_GetReceiptDevStatus" comment="" devType="RPTR">
+			<Forward event="OnNormal" targetID="ID_VABAskPrintReceipt"/>
+			<Forward event="OnWarn" targetID="ID_VABAskPrintReceipt"/>
+			<Forward event="OnFail" targetID="ID_SetFlagNoPrintReceipt"/>
+		</GetDevStatus>
+		<VAB_AskPrintReceiptCWD ID="ID_VABAskPrintReceipt" UI="UI_VABAskPrintReceiptCWD" comment="">
+			<Forward event="OnNotPrintBillWithdraw" targetID="ID_SetFlagNoPrintReceipt"/>
+			<Forward event="OnPrintBillWithdraw" targetID="ID_SetFlagPrintReceipt"/>
+		</VAB_AskPrintReceiptCWD>
+		<SetData ID="ID_SetFlagPrintReceipt" saveBuffer="{VTM_CWDNoCardReceipt}" value="1">
+			<Forward event="OnConfirm" targetID="ID_RequestCWD_NoCard"/>
+		</SetData>
+		<SetData ID="ID_SetFlagNoPrintReceipt" saveBuffer="{VTM_CWDNoCardReceipt}" value="0">
+			<Forward event="OnConfirm" targetID="ID_RequestCWD_NoCard"/>
+		</SetData>
+		<RequestTransViaRestful ID="ID_RequestCWD_NoCard" UI="UI_VAB_Processing" transType="CashWithdrawalNoCardConfirm" transFormat="json" timeout="60000">
+			<States>
+				<State name="PackFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="ConnectFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="SendFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="ReceiveFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="ReceiveTimeout" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="NetworkFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="UnpackFail" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="HardwareError" UI="UI_VAB_QRCWDSystemError"/>
+				<State name="HostRefuse" UI="UI_VAB_QRCWDSystemError"/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_DispenseCash"/>
+			<Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+			<Forward event="OnHostRefuse" targetID="ID_TransactionfailAndfindAnotherMethod"/>
+		</RequestTransViaRestful>
+		<DispenseCash ID="ID_DispenseCash" UI="" comment="Dispense cash">
+		  <States>
+			<State name="DispenseAmountError" UI="UI_VAB_QRCWDSystemError"/>
+			<State name="RejectingCash" UI="UI_VAB_QRCWDSystemError"/>
+			<State name="RejectCashForHardwareError" UI="UI_VAB_QRCWDSystemError"/>
+			<State name="RejectCashFail" UI="UI_VAB_QRCWDSystemError"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_PresentCash"/>
+		  <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+		</DispenseCash>
+		<PresentCash ID="ID_PresentCash" UI="" comment="Present cash">
+		  <States>
+			<State name="TakeCash" UI="UI_VAB_QRCWDSystemError"/>
+			<State name="RetractingCash" UI="UI_VAB_QRCWDSystemError"/>
+			<State name="RetractCashForTimeout" UI="UI_VAB_QRCWDSystemError"/>
+			<State name="RetractCashForHardwareError" UI="UI_VAB_QRCWDSystemError"/>
+			<State name="RetractNoCash" UI="UI_VAB_QRCWDSystemError"/>
+			<State name="RetractCashFail" UI="UI_VAB_QRCWDSystemError"/>
+		  </States>
+		  <Forward event="OnConfirm" targetID="ID_VAB_CheckFlagPrintReceipt"/>
+		  <Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+		</PresentCash>
+		<CompareData ID="ID_VAB_CheckFlagPrintReceipt" compareBuffer="{VTM_CWDNoCardReceipt}">
+			<Forward event="OnEqual1" targetID="ID_PrintReceiptCWDNocard" />
+			<Forward event="OnEqualNull" targetID="ID_InvokeCloseTransWorkflow" />
+			<DefaultForward targetID="ID_InvokeCloseTransWorkflow"/>
+		</CompareData>
+		<PrintReceipt ID="ID_PrintReceiptCWDNocard" UI="" formName="ReceiptFormCWDNonCard" showTime="2000">
+			<States>
+				<State name="PrintReceiptSuccess" UI=""/>
+				<State name="PrintReceiptFail" UI=""/>
+			</States>
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</PrintReceipt>
 		<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
 			<Forward event="OnConfirm" targetID="9999"/>
 		</InvokeWorkflow>

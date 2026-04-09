@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow name="VAB_OTPVerification">
+	<Head type="GRGWorkflow" author="HXL" timeStamp="2012/04/12 19:15:12" comment="The workflow design is for OTP Verify"/>
+	<DataPool>
+	</DataPool>
+  <Activities>
+    <Start ID="0" comment="Start">
+      <Forward event="OnConfirm" targetID="ID_ResetTimesCounting"/>
+    </Start>
+
+	<VAB_ResetRetryCounting ID="ID_ResetTimesCounting" comment="reset input otp times to 0">
+		<Forward event="OnConfirm" targetID="ID_CreateOTP"/>
+	</VAB_ResetRetryCounting>
+
+    <RequestTransViaRestful ID="ID_CreateOTP" UI="UI_VAB_Processing" transType="OTPRequest"  transFormat="json" timeout="20000">
+		<States>
+			<State name="PackFail" UI=""/>
+			<State name="ConnectFail" UI=""/>
+			<State name="SendFail" UI=""/>
+			<State name="ReceiveFail" UI=""/>
+			<State name="ReceiveTimeout" UI=""/>
+			<State name="NetworkFail" UI=""/>
+			<State name="UnpackFail" UI=""/>
+			<State name="HardwareError" UI=""/>
+		</States>
+		<Forward event="OnConfirm" targetID="ID_InputOTP"/>
+		<Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHostRefuse" targetID="ID_InputOTP"/>
+		<Forward event="OnNoPhoneOTP" targetID="ID_NoPhoneOTP"/>
+		<Forward event="OnLockedOTP" targetID="ID_LockedOTP"/>
+    </RequestTransViaRestful>	
+
+	<VAB_InputOTP ID="ID_InputOTP" UI="UI_CWDInputOTP" timeout="300000" comment="">
+		<Forward event="OnConfirm" targetID="ID_Confirm"/>
+		<Forward event="sendOtp" targetID="ID_CreateOTP"/>
+		<Forward event="OnBack" targetID="ID_Back"/> 	
+		<Forward event="OnTimeout" targetID="ID_SetTransResult"/>	
+		<Forward event="OnYes" targetID="ID_SetTransResult"/>	
+		<Forward event="OnEnd" targetID="ID_SetTransResult"/>		
+	</VAB_InputOTP>	
+	<SetData ID="ID_Back" saveBuffer="{VTM_TransBack,1}" value="TRUE">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </SetData>
+	<SetData ID="ID_Confirm" saveBuffer="{VTM_TransBack,1}" value="FALSE">
+      <Forward event="OnConfirm" targetID="ID_VerifyOTP"/>
+    </SetData>
+
+    <RequestTransViaRestful ID="ID_VerifyOTP" UI="UI_VAB_Processing" transType="OTPVerification" transFormat="json"  timeout="60000">
+		<States>
+			<State name="PackFail" UI=""/>
+			<State name="ConnectFail" UI=""/>
+			<State name="SendFail" UI=""/>
+			<State name="ReceiveFail" UI=""/>
+			<State name="ReceiveTimeout" UI=""/>
+			<State name="NetworkFail" UI=""/>
+			<State name="UnpackFail" UI=""/>
+			<State name="HardwareError" UI=""/>
+		</States>
+		<Forward event="OnConfirm" targetID="ID_CheckOTPResponse"/>
+		<Forward event="OnPackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnConnectFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnSendFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnReceiveFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnReceiveTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnNetworkFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHostRefuse" targetID="ID_CheckTimesReTry"/>
+		<Forward event="OnFail" targetID="ID_CheckTimesReTry"/>
+    </RequestTransViaRestful>	
+	<CompareData ID="ID_CheckOTPResponse" compareBuffer="{BAB_OTPVerifyResult}" comment="" >
+      <Forward event="OnEqualSUCCESS" targetID="9999" />
+      <Forward event="OnEqualFAILED" targetID="ID_CheckTimesReTry" />
+      <DefaultForward targetID="ID_CheckTimesReTry" />
+    </CompareData>
+	<VAB_CheckTimesReTry ID="ID_CheckTimesReTry" TypeReTry="OTP" comment="">
+		<Forward event="OnTryAgain" targetID="ID_InputOTP"/>
+		<Forward event="OnTimesOverLimit" targetID="ID_Overlimit"/>
+		<Forward event="OnTimesOverResendLimit" targetID="ID_InputOTPTimeout"/>
+	</VAB_CheckTimesReTry>
+	<IBankProjSelectFunction ID="ID_NoPhoneOTP" UI="UI_CWDNoPhoneOTP" comment="" timeout="30000">
+      <Forward event="OnNext" targetID="ID_Back" />
+      <Forward event="OnCancel" targetID="ID_SetTransResult" />
+	  <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+    </IBankProjSelectFunction>
+	<IBankProjSelectFunction ID="ID_LockedOTP" UI="UI_CWDLockedOTP" comment="" timeout="30000">
+      <Forward event="OnNext" targetID="ID_Back" />
+      <Forward event="OnCancel" targetID="ID_SetTransResult" />
+	  <Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow" />
+    </IBankProjSelectFunction>
+    <WaitSleep ID="ID_Overlimit" UI="UI_OTPOverlimit" comment="" timeout="10000">
+	  <Forward event="OnContinue" targetID="ID_SetTransResult" />
+    </WaitSleep>
+	<SetData ID="ID_SetTransResult" saveBuffer="{VTM_TransResult,1}" value="TRUE">
+      <Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+    </SetData>
+	<WaitSleep ID="ID_InputOTPTimeout" UI="UI_CWDInputOTPTimeout" timeout="10000">
+      <Forward event="OnContinue" targetID="ID_SetTransResult" />
+    </WaitSleep>
+	<InvokeWorkflow ID="ID_InvokeCloseTransWorkflow" name="CloseTrans" comment="Invoke close trans workflow">
+      <Forward event="OnConfirm" targetID="9999"/>
+    </InvokeWorkflow>
+	
+    <End ID="9999" comment="End">
+    </End>
+  </Activities>
+	<DefaultForward>
+		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnTimeout" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnKeyError" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="OnHardwareError" targetID="ID_InvokeCloseTransWorkflow"/>
+	</DefaultForward>
+</Workflow>

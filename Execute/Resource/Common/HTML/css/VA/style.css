@@ -53,7 +53,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 70px 15px 60px;
+    padding: 15px 50px 15px 50px;
     flex-shrink: 0;
 }
 
@@ -605,7 +605,7 @@ body {
     align-items: center;
     gap: 12px;
     position: relative;
-    width: 140px;
+    width: 44px;
 }
 
 .step-icon {
@@ -627,6 +627,10 @@ body {
     color: #FFFFFF;
     text-align: center;
     white-space: nowrap;
+    /*position: absolute;*/
+    /*top: 56px;*/
+    /*left: 50%;*/
+    /*transform: translateX(-50%);*/
 }
 
 /* States */
@@ -1571,6 +1575,12 @@ input[type=number] {
     text-align: left
 }
 
+.transfer-cash-value {
+    font-family: 'SVN-Gilroy', 'Inter', sans-serif;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
 .transfer-content {
     gap: 10px;
 }
@@ -1583,7 +1593,7 @@ input[type=number] {
 .receive-bank-container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
 }
 
 .receive-bank {
@@ -2096,4 +2106,118 @@ input[type=number] {
 .osk-key.osk-active {
     background-color: #22CCEE;
     color: #FFFFFF;
+}
+
+
+.transfer-amount-content-input-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.keyboard-stack-container {
+    position: relative;
+    width: 100%;
+    margin-top: 30px;
+    /* Chiều cao cố định bằng bàn phím cao nhất */
+    min-height: 400px;
+}
+
+
+.keyboard-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.number-keyboard-grid-new {
+    display: grid;
+    grid-template-columns: max-content max-content max-content;
+    justify-content: center;
+    gap: 12px;
+}
+
+
+
+/* --- Transaction Confirm --- */
+.transaction-confirm-container {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.transaction-card {
+    background-color: rgba(0, 0, 0, 0.24);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    border-radius: 32px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    height: 580px;
+}
+
+.transaction-section-title {
+    font-family: 'Calibri', 'Inter', sans-serif;
+    font-size: 37px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin: 0 0 16px 0;
+}
+
+.transaction-row {
+    display: grid;
+    grid-template-columns: max-content 270px;
+    gap: 16px;
+    width: 100%;
+}
+
+.transaction-label {
+    font-family: 'SVN-Gilroy', 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-align: left
+}
+
+.transaction-value {
+    font-family: 'SVN-Gilroy', 'Inter', sans-serif;
+    font-size: 26px;
+    color: #FFFFFF;
+    word-wrap: break-word;
+}
+
+.transaction-value.bold {
+    font-weight: 700;
+}
+
+.transaction-divider {
+    height: 1px;
+    background-color: #088AB2; /* Branding/Secondary/600 */
+    width: 100%;
+    margin: 8px 0;
+    border: none;
+}
+
+.transaction-action-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.transaction-confirm-transfer247-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.rcv-account-required {
+    font-size: 21px;
+    text-align: left;
+    visibility: hidden;
 }

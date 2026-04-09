@@ -56,6 +56,9 @@ namespace IBankProjectBankInterface
                     case "VerifyQR":
                         UnpackVerifyQR(dataObj);
                         break;
+                    case "DepositConfirm":
+                        UnpackDepositConfirm(dataObj);
+                        break;
                     default:
                         break;
                 }
@@ -89,29 +92,34 @@ namespace IBankProjectBankInterface
             {
                 CustomerInfo customerInfo = new CustomerInfo();
                 customerInfo.Accounts.Clear();
-                customerInfo.CIF = dataObj["cif_information"]["customerId"]?.ToString();
-                customerInfo.FullName = dataObj["cif_information"]["fullName"]?.ToString();
+                customerInfo.CIF = dataObj["data"]["cif_information"]["customerId"]?.ToString();
+                customerInfo.FullName = dataObj["data"]["cif_information"]["fullName"]?.ToString();
 
-                foreach (var item in dataObj["accounts"])
+                foreach (var item in dataObj["data"]["accounts"])
                 {
                     Account account = new Account();
 
                     account.AccountName = item["accountName"]?.ToString();
                     account.AccountNumber = item["accountNumber"]?.ToString();
                     account.AvailableBalance = item["availableBalance"]?.ToString();
-                    account.AccountStatus = item["accountStatus"]?.ToString();
+                    account.BranchCode = item["branchCode"]?.ToString();
                     account.Currency = item["currency"]?.ToString();
 
                     customerInfo.Accounts.Add(account);
                 }
-                if (customerInfo.Accounts.Count == 0)
+                if (customerInfo.Accounts.Count > 0)
                 {
                     ProjVTMContext.TransactionDataCache.Set("VAB_ExistAccount", "Y", GetType());
+                }
+                else
+                {
+                    ProjVTMContext.TransactionDataCache.Set("VAB_ExistAccount", "N", GetType());
                 }
                 ProjVTMContext.TransactionDataCache.Set("VAB_CustomerInfo", customerInfo, GetType());
             }
             catch
             {
+                ProjVTMContext.TransactionDataCache.Set("VAB_ExistAccount", "N", GetType());
                 ProjVTMContext.TransactionDataCache.Set("VAB_CustomerInfo", null, GetType());
             }
         }
@@ -129,13 +137,43 @@ namespace IBankProjectBankInterface
                     fee.TaxAmount = item["tax"]?.ToString();
                     fee.Currency = item["currency"]?.ToString();
                     lstFee.Add(fee);
+                    Log.Action.LogDebugFormat(
+                          "FeeCode={0}, FeeAmount={1}, TaxAmount={2}, Currency={3}",
+                          fee.FeeCode,
+                          fee.FeeAmount,
+                          fee.TaxAmount,
+                          fee.Currency
+                      );
                 }
-
+                
                 ProjVTMContext.TransactionDataCache.Set("VAB_Fee", lstFee, GetType());
             }
             catch
             {
                 ProjVTMContext.TransactionDataCache.Set("VAB_Fee", null, GetType());
+            }
+        }
+        private void UnpackDepositConfirm(JObject dataObj)
+        {
+            try
+            {
+                List<Fee> lstFee = new List<Fee>();
+                lstFee.Clear();
+                foreach (var item in dataObj["data"])
+                {
+                    Fee fee = new Fee();
+                    fee.FeeCode = item["feeCode"]?.ToString();
+                    fee.FeeAmount = item["amount"]?.ToString();
+                    fee.TaxAmount = item["tax"]?.ToString();
+                    fee.Currency = item["currency"]?.ToString();
+                    lstFee.Add(fee);
+                }
+
+                ProjVTMContext.TransactionDataCache.Set("VAB_DepositResutl", dataObj, GetType());
+            }
+            catch
+            {
+                ProjVTMContext.TransactionDataCache.Set("VAB_DepositResutl", null, GetType());
             }
         }
         private void UnpackGetQRString(JObject dataObj)
@@ -158,11 +196,7 @@ namespace IBankProjectBankInterface
                 { 
 
                 }
-                CustomerInfo customerInfo = new CustomerInfo();
-                customerInfo.Accounts.Clear();
-                customerInfo.CIF = dataObj["data"]["customerId"]?.ToString();
-                customerInfo.FullName = dataObj["data"]["customerName"]?.ToString();
-                ProjVTMContext.TransactionDataCache.Set("VAB_CustomerInfo", customerInfo, GetType());
+                ProjVTMContext.TransactionDataCache.Set("VAB_CustomerId", dataObj["data"]["customerId"]?.ToString(), GetType());
             }
             catch
             {

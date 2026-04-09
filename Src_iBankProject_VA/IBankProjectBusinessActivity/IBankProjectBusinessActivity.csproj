@@ -476,6 +476,10 @@
     <Compile Include="LocalFace\FaceMatching.cs" />
     <Compile Include="LocalFace\FaceRecognize.cs" />
     <Compile Include="LocalFace\FacialRecognition.cs" />
+    <Compile Include="NoCard_CashWithdrawal\VAB_AskPrintReceiptCWD.cs" />
+    <Compile Include="NoCard_CashWithdrawal\VAB_CWDSelectAccount.cs" />
+    <Compile Include="NoCard_CashWithdrawal\VAB_CWDSuccess.cs" />
+    <Compile Include="NoCard_CashWithdrawal\VAB_InputWithdrawAmount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NoCard_CashWithdrawal\VAB_CWDCheckRemain.cs" />
     <Compile Include="TwinScreen\BusinessActivityLocalTotalsEx.cs" />

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+  <Screen name="UI_VAB_CRMNotAvailable" uri="VA\withdraw\CDMError.html" cache="0"></Screen>
+  <Screen name="UI_VAB_QRCWDSystemError" uri="VA\withdraw\SystemError.html" cache="0"></Screen>
+  <Screen name="UI_VAB_CWDSelectAccount" uri="VA\withdraw\RT-01.html" cache="0"></Screen>
+  <Screen name="UI_VABInputWithdrawalAmount" uri="VA\withdraw\RT-03.html" cache="0"></Screen>
+  <Screen name="UI_VABSelectWithdrawalAmount" uri="VA\withdraw\RT-02.html" cache="0"></Screen>
+  <Screen name="UI_VABAskPrintReceiptCWD" uri="VA\withdraw\RT-10.html" cache="0"></Screen>
+  <Screen name="UI_VABCWDSuccess" uri="VA\withdraw\RT-08.html" cache="0"></Screen>
+
+</Screens>
+
+
+
+
+

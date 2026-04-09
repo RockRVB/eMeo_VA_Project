@@ -33,6 +33,17 @@ namespace IBankProjectBusinessActivity
                 OnPropertyChanged("input_val");
             }
         }
+        private string m_output_val = string.Empty;
+        [GrgBindTarget("output_val", Type = TargetType.String, Access = AccessRight.ReadAndWrite)]
+        public string output_val
+        {
+            get { return m_output_val; }
+            set
+            {
+                m_output_val = value;
+                OnPropertyChanged("output_val");
+            }
+        }
         public VAB_SelectFunction()
         {
 

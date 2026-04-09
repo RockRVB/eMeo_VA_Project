@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Deposit Slip</title>
+    <link rel="stylesheet" href="../../../css/VA/style.css">
+    <script src="../../../js/coreScript.js"></script>
+    <script src="../../../js/VA/common.js"></script>
+    <script src="../../../js/VA/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="stm-layout">
+    <!-- Header -->
+    <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
+    <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
+    <stm-auth-task-header id="auth-task-header"></stm-auth-task-header>
+
+    <!-- Body -->
+    <main class="stm-body confirm-deposit-body">
+        <div class="stm-content">
+            <stm-progress-bar
+                    current-step="3"
+                    steps='[
+                        {"label": "Xác thực", "ids" : "ids_VAB_withdraw_qr_step_1"},
+                        {"label": "Chọn tài khoản", "ids" : "ids_VAB_withdraw_qr_step_2"},
+                        {"label": "Rút tiền", "ids" : "ids_VAB_withdraw_qr_step_3"},
+                        {"label": "Hoàn tất", "ids" : "ids_VAB_withdraw_qr_step_4"}
+                    ]'>
+            </stm-progress-bar>
+
+            <div class="statement-actions-container">
+                <div class="statement-actions-wrap" style="justify-content: center;">
+                    <div class="bill-icon-container">
+                        <img src="../../../images/VA/icon-bill.png">
+                    </div>
+                    <span class="section-title" ids="ids_VAB_rt_10_title">Quý khách có muốn in biên lai không</span>
+                    <span class="info-value" ids="ids_VAB_rt_10_subtitle">Phí in biên lai là <strong style="color: #F97066;">1,100 VNĐ</strong></span>
+                </div>
+
+                <div class="statement-btns-container">
+                    <div class="dialog-actions">
+                        <button class="btn-dialog-primary" id="not_print_bill_btn" tag="OnNotPrintBillWithdraw" type="button">
+                            <span ids="ids_VAB_rt_10_not_print_bill_btn">Không in biên lai</span>
+                        </button>
+
+                        <button class="btn-dialog-secondary" id="print_bill_btn" tag="OnPrintBillWithdraw" type="button">
+                            <span ids="ids_VAB_rt_10_print_bill_btn">In biên lai</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <stm-footer></stm-footer>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
+</div>
+<script src="../../../js/VA/scale.js"></script>
+<script>
+    $(document).ready(function (){
+        // const countdownData = $('#input_val').val();
+    })
+</script>
+</body>
+</html>

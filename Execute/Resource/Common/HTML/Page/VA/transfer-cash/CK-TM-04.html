@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Deposit Slip</title>
+    <link rel="stylesheet" href="../../../css/VA/style.css">
+    <script src="../../../js/coreScript.js"></script>
+    <script src="../../../js/VA/common.js"></script>
+    <script src="../../../js/VA/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="stm-layout">
+    <!-- Header -->
+    <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
+    <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
+    <stm-auth-task-header id="auth-task-header"></stm-auth-task-header>
+
+    <!-- Body -->
+    <main class="stm-body confirm-deposit-body">
+        <div class="stm-content">
+            <stm-progress-bar
+                    current-step="3"
+                    steps='[
+                        {"label": "Xác thực", "ids" : "ids_VAB_transfer_tm_step_1"},
+                        {"label": "Chọn tài khoản", "ids" : "ids_VAB_transfer_tm_step_2"},
+                        {"label": "Nộp tiền", "ids" : "ids_VAB_transfer_tm_step_3"},
+                        {"label": "Chuyển tiền", "ids" : "ids_VAB_transfer_tm_step_4"},
+                        {"label": "Hoàn tất", "ids" : "ids_VAB_transfer_tm_step_5"}
+                    ]'>
+            </stm-progress-bar>
+
+            <div class="statement-actions-container">
+                <div class="statement-actions-wrap">
+                    <h2 class="section-title" ids="ids_VAB_ck_tm_04_title">Vui lòng xác nhận bảng kê</h2>
+                    <div class="statement-card">
+                        <div class="statement-table statement-header">
+                            <div class="statement-row">
+                                <span class="statement-col" ids="ids_VAB_ck_tm_04_menh_gia">Mệnh giá</span>
+                                <span class="statement-col" ids="ids_VAB_ck_tm_04_sl">Số lượng</span>
+                                <span class="statement-col" ids="ids_VAB_ck_tm_04_thanh_tien">Thành tiền</span>
+                            </div>
+                        </div>
+                        <div class="statement-table statement-data" id="table-data">
+                        </div>
+
+                        <div class="statement-divider"></div>
+
+                        <div class="statement-table statement-total">
+                            <div class="statement-row">
+                                <span class="statement-col" ids="ids_VAB_ck_tm_04_total_label">Tổng</span>
+                                <span class="statement-col"></span>
+                                <span class="statement-col" id="total-value"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="statement-btns-container">
+                    <div class="dialog-actions">
+                        <button class="btn-dialog-primary" id="extra_deposit" tag="OnExtraDeposit" type="button">
+                            <span ids="ids_VAB_ck_tm_04_add_on_deposit">Nộp thêm</span>
+                        </button>
+
+                        <button class="btn-dialog-secondary" id="confirm_deposit" tag="OnConfirmDeposit" type="button">
+                            <span ids="ids_VAB_ck_tm_04_confirm_deposit">Xác nhận</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <stm-footer></stm-footer>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
+</div>
+<script src="../../../js/VA/scale.js"></script>
+<script>
+    $(document).ready(function (){
+        const container = document.getElementById('table-data');
+        const totalSpan = document.getElementById('total-value');
+        //
+        // function calculateGrandTotal(dataArray) {
+        //     const grandTotal = dataArray.reduce((accumulator, item) => {
+        //         const numericValue = parseInt(item.total.replace(/,/g, '').replace(' VNĐ', ''));
+        //         return accumulator + numericValue;
+        //     }, 0);
+        //     return grandTotal.toLocaleString('vi-VN') + " VNĐ";
+        // }
+
+        const data = JSON.parse('{"final_total" : 4350000, "cash_slip":[{"price":20000,"quantity":5,"total":100000},{"price":50000,"quantity":5,"total":250000},{"price":100000,"quantity":5,"total":500000},{"price":200000,"quantity":5,"total":1000000},{"price":500000,"quantity":5,"total":2500000}]}');
+        // const data = $('#input_val').val();
+
+        data.cash_slip.forEach(item => {
+            // Tạo div class "statement-row"
+            const row = document.createElement('div');
+            row.className = 'statement-row';
+            const price = formatVND(item.price) + " VNĐ";
+            const total = formatVND(item.price) + " VNĐ";
+            const cols = [price, item.quantity, total];
+
+            cols.forEach(text => {
+                const span = document.createElement('span');
+                span.className = 'statement-col';
+                span.textContent = text;
+                row.appendChild(span);
+            });
+
+            container.appendChild(row);
+        });
+
+        totalSpan.innerText = formatVND(data.final_total) + " VNĐ";
+        // const countdownData = $('#input_val').val();
+    })
+</script>
+</body>
+</html>

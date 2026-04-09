@@ -24,7 +24,7 @@ namespace IBankProjectBusinessActivity
                      Author = "Louis")]
     public class VAB_DepositSelectAccount : IBankProjectActivityBase
     {
-        private bool simulator = true;
+       // private bool simulator = true;
         private bool resettimer = false;
         #region constructor
         private VAB_DepositSelectAccount()
@@ -92,7 +92,7 @@ namespace IBankProjectBusinessActivity
             ProjVTMContext.TransactionDataCache.Get("VAB_CustomerInfo", out objCustomerInfo, GetType());
             CustomerInfo customerInfo = new CustomerInfo();
             DEPAccountShowing data = new DEPAccountShowing();
-            if (simulator == true)
+            if (ProjConst.simulator == true)
             {
                 data = DataTest();
             }

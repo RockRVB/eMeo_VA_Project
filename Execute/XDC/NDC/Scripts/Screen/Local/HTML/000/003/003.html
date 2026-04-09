@@ -8,6 +8,7 @@
     <script src="../../../../../../../../Resource/Common/HTML/js/coreScript.js"></script>
     <script src="common.js"></script>
     <script src="../../../../../../../../Resource/Common/HTML/js/VA/jquery-3.3.1.min.js"></script>
+	
 </head>
 <body>
     <div class="stm-layout">
@@ -33,7 +34,7 @@
                 <div class="stm-cards-grid">
                     <div class="stm-cards-row">
                         <!-- Card 1 -->
-                        <div class="stm-card" id="mo-tai-khoan">
+                        <div class="stm-card" id="mo-tai-khoan" type="button" tag="OnOpenAccount">
                             <stm-card
                                     icon-url="../../../../../../../../Resource/Common/HTML/images/VA/icon-open-account.png"
                                     title="Mở tài khoản"
@@ -43,7 +44,7 @@
                             </stm-card>
                         </div>
                         <!-- Card 2 -->
-                        <div class="stm-card" id="nop-tien">
+                        <div class="stm-card" id="nop-tien" type="button" tag="OnDeposit">
                             <stm-card
                                     icon-url="../../../../../../../../Resource/Common/HTML/images/VA/icon-money.png"
                                     title="Nộp tiền"
@@ -52,7 +53,7 @@
                             </stm-card>
                         </div>
                         <!-- Card 3 -->
-                        <div class="stm-card" id="rut-tien">
+                        <div class="stm-card" id="rut-tien" type="button" tag="OnWithdraw">
                             <stm-card
                                     icon-url="../../../../../../../../Resource/Common/HTML/images/VA/icon-withdraw.png"
                                     title="Rút tiền"
@@ -61,7 +62,7 @@
                             </stm-card>
                         </div>
                         <!-- Card 4 -->
-                        <div class="stm-card" id="chuyen-khoan">
+                        <div class="stm-card" id="chuyen-khoan" type="button" tag="OnTransfer">
                             <stm-card
                                     icon-url="../../../../../../../../Resource/Common/HTML/images/VA/icon-transfer.png"
                                     title="Chuyển khoản"
@@ -73,7 +74,7 @@
 
                     <div class="stm-cards-row">
                         <!-- Card 5 -->
-                        <div class="stm-card" id="tktk">
+                        <div class="stm-card" id="tktk" type="button" tag="OnSavingsAccount">
                             <stm-card
                                     icon-url="../../../../../../../../Resource/Common/HTML/images/VA/icon-savings.png"
                                     title="Tài khoản tiết kiệm"
@@ -82,7 +83,7 @@
                             </stm-card>
                         </div>
                         <!-- Card 6 -->
-                        <div class="stm-card" id="dk-vay">
+                        <div class="stm-card" id="dk-vay" type="button" tag="OnRegisLoan">
                             <stm-card
                                     icon-url="../../../../../../../../Resource/Common/HTML/images/VA/icon-loan.png"
                                     title="Đăng ký vay"
@@ -91,7 +92,7 @@
                             </stm-card>
                         </div>
                         <!-- Card 7 -->
-                        <div class="stm-card" id="dk-ph-the">
+                            <div class="stm-card" id="dk-ph-the" type="button" tag="OnRegisCCI">
                             <stm-card
                                     icon-url="../../../../../../../../Resource/Common/HTML/images/VA/icon-card.png"
                                     title="Đăng ký phát hành thẻ"
@@ -100,7 +101,7 @@
                             </stm-card>
                         </div>
                         <!-- Card 8 -->
-                        <div class="stm-card card-disabled" id="dich-vu-khac">
+                        <div class="stm-card" id="dich-vu-khac" type="button" tag="OnPayingBill">
                             <stm-card
                                     icon-url="../../../../../../../../Resource/Common/HTML/images/VA/icon-other.png"
                                     title="Dịch vụ khác"
@@ -114,11 +115,48 @@
         </main>
 
         <stm-footer></stm-footer>
+        <stm-one-btn-dialog id="feature-not-avail"></stm-one-btn-dialog>
+        <input style="display: none;" id="input_val" value='{Replace input_val}' />
+        <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
     </div>
 </body>
 <script src="../../../../../../../../Resource/Common/HTML/js/VA/scale.js"></script>
 <script>
     $(document).ready(function() {
+        const notAvail = document.getElementById("feature-not-avail");
+        const developing = document.getElementById("dich-vu-khac");
+        let timer = null
+
+        notAvail.titleText = `Tính năng đang phát triển`;
+        notAvail.btnTitle = 'Đóng';
+        notAvail.isBtnPrimary = true
+        notAvail.idsTitle = 'ids_VAB_feature_not_avail';
+        notAvail.onPrimaryClick = function() {
+            notAvail.openDialog = false;
+            if(timer != null) {
+                clearInterval(timer)
+            }
+        };
+
+        developing.addEventListener('click', () => {
+            notAvail.openDialog = true;
+
+            let timeLeft = 5;
+            // const data = $('#input_val').val();
+
+            notAvail.subTitle = `<span ids="ids_VAB_return_home_after_seconds">Tự động về màn hình trang chủ trong </span>${timeLeft}s`
+             timer = setInterval(() => {
+                timeLeft--;
+
+                if(notAvail._isOpen) notAvail.subTitle = `Tự động về màn hình trang chủ trong ${timeLeft}s` ;
+
+                if (timeLeft <= 0) {
+                    notAvail.openDialog = false;
+                    clearInterval(timer);
+                }
+            }, 1000);
+        })
+
 
     })
 </script>

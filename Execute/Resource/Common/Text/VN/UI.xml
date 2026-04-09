@@ -428,21 +428,22 @@
 	<item key="ids_VAB_tktk" value="Tài khoản tiết kiệm" />
 	<item key="ids_VAB_dang_ky_vay" value="Đăng ký vay" />
 	<item key="ids_VAB_card_publish" value="Đăng ký phát hành thẻ" />
-	<item key="ids_VAB_other_service" value="Dịch vụ khác" />
+	<item key="ids_VAB_other_service" value="Thanh toán hóa đơn" />
 	<item key="ids_VAB_end_transaction_in_seconds" value="Giao dịch kết thúc sau 120s" />
 	<item key="ids_VAB_end_transaction" value="Hủy giao dịch" />
-	<item key="ids_VAB_select_transfer_type" value="Quý khách vui lòng chọn hình thức chuyển khoản" />
+	<item key="ids_VAB_select_transfer_type" value="Quý khách vui lòng chọn nguồn tiền" />
 	<item key="ids_VAB_select_exchange_type" value="Quý khách vui lòng chọn loại giao dịch" />
 	<item key="ids_VAB_transfer_type_cash" value="Tiền mặt" />
 	<item key="ids_VAB_transfer_type_account" value="Tài khoản thanh toán" />
 	<item key="ids_VAB_open_saving_acc_by_cash" value="Mở tài khoản tiết kiệm bằng tiền mặt" />
+	<item key="ids_VAB_full_settlement" value="Tất toán tài khoản tiết kiệm" />
 	<item key="ids_VAB_partial_settlement" value="Tất toán toàn phần" />
 	<item key="ids_VAB_auth_header_close_btn" value="Đóng" />
 	<item key="ids_VAB_hello_customer" value="Xin chào" />
 	<item key="ids_VAB_cancel_trans_question" value="Bạn có chắc chắn muốn hủy giao dịch này không?" />
 	<item key="ids_VAB_cancel_trans" value="Hủy giao dịch" />
 	<item key="ids_VAB_continue_trans" value="Tiếp tục giao dịch" />
-	<item key="ids_VAB_return_home_after_seconds" value="Tự động về màn hình Trang chủ trong 60 " />
+	<item key="ids_VAB_return_home_after_seconds" value="Tự động về màn hình Trang chủ trong " />
 	<item key="ids_VAB_service_not_avail" value="Dịch vụ tạm thời không khả dụng" />
 	<item key="ids_VAB_return_home_btn" value="Quay về trang chủ" />
 	<item key="ids_VAB_cash_deposit_qr_step_1" value="Xác thực" />
@@ -461,6 +462,7 @@
 	<item key="ids_VAB_nt_02_qdnt_1" value="Chỉ chấp nhận tiền polymer Việt Nam mệnh giá từ 20,000 VNĐ." />
 	<item key="ids_VAB_nt_02_qdnt_2" value="Số tờ nộp tối đa 200 tờ/ lần." />
 	<item key="ids_VAB_nt_02_qdnt_3" value="Vui lòng loại bỏ các vật thể không phải là tiền" />
+	<item key="ids_VAB_nt_02_qdnt_4" value="Mệnh giá được chấp nhận" />
 	<item key="ids_VAB_nt_02_pls_input_money" value="Vui lòng đưa tiền vào khoang&lt;br&gt;(Tối đa 200 tờ)" />
 	<item key="ids_VAB_nt_02_alert" value="Lưu ý: Các điều kiện tiền không được chấp nhận" />
 	<item key="ids_VAB_nt_02_gap_mep" value="Gấp mép" />
@@ -478,7 +480,6 @@
 	<item key="ids_VAB_nt_02_cif" value="Số CIF" />
 	<item key="ids_VAB_nt_02_cus_name_value" value="" />
 	<item key="ids_VAB_nt_02_cccd_value" value="" />
-	<item key="ids_VAB_nt_02_cif_value" value="" />
 	<item key="ids_VAB_nt_02_cif_value" value="" />
 	<item key="ids_VAB_nt_03_loading_title" value="Máy đang kiểm đếm ....&lt;br&gt;Quý khách vui lòng đợi trong giây lát" />
 	<item key="ids_VAB_nt_04_confirm_deposit" value="Xác nhận" />
@@ -672,5 +673,146 @@
 	<item key="ids_VAB_system_waiting_title" value="Hệ thống đang xử lý ....&lt;br&gt;Quý khách vui lòng đợi trong giây lát" />
 	<item key="ids_VAB_nt_tb_03_deposit_error_title" value="Thông báo nhận lại tiền không hợp lệ&lt;br&gt;Quý khách vui lòng nhận lại tiền được trả ra từ khe nhận tiền" />
 	<item key="ids_VAB_nt_tb_03_cash_deposit_message" value="Hộc tiền sẽ tự động đóng sau 120s và toàn bộ tiền sẽ bị giữ lại" />
+	<item key="ids_VAB_ck_tktt_03_title" value="Vui lòng nhập tài khoản nhận tiền" />
+	<item key="ids_VAB_ck_tktt_03_select_bank_label" value="Chọn ngân hàng thụ hưởng" />
+	<item key="ids_VAB_ck_tktt_03_receive_account" value="Số tài khoản:" />
+	<item key="ids_VAB_ck_tktt_03_receiver_name" value="Tên người thụ hưởng: " />
+	<item key="ids_VAB_ck_tktt_03_transfer_amount" value="Số tiền cần chuyển" />
+	<item key="ids_VAB_ck_tktt_03_transfer_content" value="Nội dung chuyển tiền" />
+	<item key="ids_VAB_ck_tktt_03_confirm_transfer" value="Xác nhận" />
+	<item key="ids_VAB_ck_tktt_04_title" value="Xác nhận thông tin giao dịch" />
+	<item key="ids_VAB_ck_tktt_04_from_section_title" value="Từ" />
+	<item key="ids_VAB_ck_tktt_04_from_bank" value="Ngân hàng:" />
+	<item key="ids_VAB_ck_tktt_04_from_account" value="Tài khoản nguồn:" />
+	<item key="ids_VAB_ck_tktt_04_from_account_name" value="Tên tài khoản:" />
+	<item key="ids_VAB_ck_tktt_04_to_section_title" value="Đến" />
+	<item key="ids_VAB_ck_tktt_04_to_bank" value="Ngân hàng thụ hưởng:" />
+	<item key="ids_VAB_ck_tktt_04_to_account" value="Tài khoản thụ hưởng:" />
+	<item key="ids_VAB_ck_tktt_04_to_account_name" value="Tên người thụ hưởng:" />
+	<item key="ids_VAB_ck_tktt_04_transfer_content" value="Nội dung chuyển tiền:" />
+	<item key="ids_VAB_ck_tktt_04_transfer_amount" value="Số tiền chuyển:" />
+	<item key="ids_VAB_ck_tktt_04_fee" value="Phí giao dịch:" />
+	<item key="ids_VAB_ck_tktt_04_final_amount" value="Tổng số tiền giao dịch:" />
+	<item key="ids_VAB_ck_tktt_04_confirm_transfer" value="Xác nhận" />
+	<item key="ids_VAB_ck_tktt_04_currency" value="Loại tiền giao dịch:" />
+	<item key="ids_VAB_ck_xt_02_title" value="Xác thực thất bại" />
+	<item key="ids_VAB_ck_xt_02_subtitle" value="Vui lòng thực hiện xác thực lại" />
+	<item key="ids_VAB_ck_xt_02_auto_back_home_countdown" value="Giao dịch kết thúc sau" />
+	<item key="ids_VAB_ck_xt_02_end_transaction" value="Kết thúc giao dịch" />
+	<item key="ids_VAB_ck_xt_02_re_authentication" value="Xác thực lại" />
+	<item key="ids_VAB_ck_xt_02_otp_invalid" value="Mã xác thực OTP quý khách nhập không đúng. Vui lòng thử lại!" />
+	<item key="ids_VAB_ck_xt_02_resend_otp" value="Gửi lại mã OTP" />
+	<item key="ids_VAB_ck_xt_02_otp_clear_all" value="Xóa hết" />
+	<item key="ids_VAB_ck_xt_02_confirm_otp" value="Xác nhận" />
+	<item key="ids_VAB_ck_xt_03_look_into_cam_title" value="Quý khách vui lòng nhìn vào Camera phía trên" />
+	<item key="ids_VAB_ck_xt_03_face_authen_instruc_title" value="Hướng dẫn chụp ảnh" />
+	<item key="ids_VAB_ck_xt_03_take_off_mask" value="Tháo khẩu trang" />
+	<item key="ids_VAB_ck_xt_03_take_off_glasses" value="Tháo mắt kính" />
+	<item key="ids_VAB_ck_xt_03_take_off_helmet" value="Tháo mũ bảo hiểm" />
+	<item key="ids_VAB_ck_xt_03_start_face_authen" value="Bắt đầu xác thực" />
+	<item key="ids_VAB_ck_xt_03_face_authenting" value="Đang xác thực..." />
+	<item key="ids_VAB_ck_tktt_05_title" value="Lỗi" />
+	<item key="ids_VAB_ck_tktt_05_countdown" value="Giao dịch kết thúc sau" />
+	<item key="ids_VAB_ck_tktt_05_end_trans" value="Kết thúc giao dịch" />
+	<item key="ids_VAB_ck_tktt_06_title" value="Xác nhận thông tin giao dịch" />
+	<item key="ids_VAB_ck_tktt_06_from_section_title" value="Từ" />
+	<item key="ids_VAB_ck_tktt_06_from_bank" value="Ngân hàng:" />
+	<item key="ids_VAB_ck_tktt_06_from_account" value="Tài khoản nguồn:" />
+	<item key="ids_VAB_ck_tktt_06_from_account_name" value="Tên tài khoản:" />
+	<item key="ids_VAB_ck_tktt_06_to_section_title" value="Đến" />
+	<item key="ids_VAB_ck_tktt_06_to_bank" value="Ngân hàng thụ hưởng:" />
+	<item key="ids_VAB_ck_tktt_06_to_account" value="Tài khoản thụ hưởng:" />
+	<item key="ids_VAB_ck_tktt_06_to_account_name" value="Tên người thụ hưởng:" />
+	<item key="ids_VAB_ck_tktt_06_transfer_content" value="Nội dung chuyển tiền:" />
+	<item key="ids_VAB_ck_tktt_06_transfer_amount" value="Số tiền chuyển:" />
+	<item key="ids_VAB_ck_tktt_06_fee" value="Phí giao dịch:" />
+	<item key="ids_VAB_ck_tktt_06_final_amount" value="Tổng số tiền giao dịch:" />
+	<item key="ids_VAB_ck_tktt_06_do_another_task" value="Thực hiện giao dịch khác" />
+	<item key="ids_VAB_ck_tktt_06_end_task" value="Kết thúc giao dịch" />
+	<item key="ids_VAB_ck_tktt_tb_01_account_valid_not_exist" value="Không tồn tại tài khoản thanh toán hợp lệ" />
+	<item key="ids_VAB_ck_tktt_tb_01_account_valid_not_exist_submsg" value="Vui lòng quay về Trang chủ để mở tài khoản hoặc thực hiện giao dịch khác." />
+	<item key="ids_VAB_ck_tktt_tb_01_auto_back_home_countdown" value="Tự động về màn hình Trang chủ sau" />
+	<item key="ids_VAB_ck_tktt_tb_01_back_home_btn" value="Trang chủ" />
+	<item key="ids_VAB_ck_tktt_tb_02_title" value="Hệ thống đang xử lý ....&lt;br&gt;Quý khách vui lòng đợi trong giây lát" />
+	<item key="ids_VAB_ck_tktt_07_title" value="Quý khách có muốn in biên lai không" />
+	<item key="ids_VAB_ck_tktt_07_subtitle" value="Phí in biên lai là " />
+	<item key="ids_VAB_ck_tktt_07_not_print_bill_btn" value="Không in biên lai" />
+	<item key="ids_VAB_ck_tktt_07_print_bill_btn" value="In biên lai" />
+	<item key="ids_VAB_transfer_tm_step_1" value="Xác thực" />
+	<item key="ids_VAB_transfer_tm_step_2" value="Chọn tài khoản" />
+	<item key="ids_VAB_transfer_tm_step_3" value="Nộp tiền" />
+	<item key="ids_VAB_transfer_tm_step_4" value="Chuyển tiền" />
+	<item key="ids_VAB_transfer_tm_step_5" value="Hoàn tất" />
+	<item key="ids_VAB_ck_tm_01_cus_info_title" value="Thông tin khách hàng" />
+	<item key="ids_VAB_ck_tm_01_cus_name" value="Tên khách hàng:" />
+	<item key="ids_VAB_ck_tm_01_cif" value="Số CIF:" />
+	<item key="ids_VAB_ck_tm_01_select_account_title" value="Vui lòng chọn TKTT để nộp tiền" />
+	<item key="ids_VAB_ck_tm_01_account_num" value="Số tài khoản" />
+	<item key="ids_VAB_ck_tm_01_balance" value="Số dư" />
+	<item key="ids_VAB_ck_tm_01_confirm_btn" value="Xác nhận" />
+	<item key="ids_VAB_ck_tm_02_qdnt" value="Quy định nộp tiền" />
+	<item key="ids_VAB_ck_tm_02_qdnt_1" value="Chỉ chấp nhận tiền polymer Việt Nam mệnh giá từ 20,000 VNĐ." />
+	<item key="ids_VAB_ck_tm_02_qdnt_2" value="Số tờ nộp tối đa 200 tờ/ lần." />
+	<item key="ids_VAB_ck_tm_02_qdnt_3" value="Mệnh giá được chấp nhận" />
+	<item key="ids_VAB_ck_tm_02_pls_input_money" value="Vui lòng đưa tiền vào khoang&lt;br&gt;(Tối đa 200 tờ)" />
+	<item key="ids_VAB_ck_tm_02_alert" value="Lưu ý: Các điều kiện tiền không được chấp nhận" />
+	<item key="ids_VAB_ck_tm_02_gap_mep" value="Gấp mép" />
+	<item key="ids_VAB_ck_tm_02_gap_tien" value="Gấp tiền" />
+	<item key="ids_VAB_ck_tm_02_xo_lech" value="Xô lệch&lt;br&gt;Dính nhau" />
+	<item key="ids_VAB_ck_tm_02_nhan_nheo" value="Nhăn nheo" />
+	<item key="ids_VAB_ck_tm_02_rach" value="Rách, thủng" />
+	<item key="ids_VAB_ck_tm_02_dat_doc" value="Đặt dọc" />
+	<item key="ids_VAB_ck_tm_02_niem_phong" value="Buộc,&lt;br&gt;niêm phong" />
+	<item key="ids_VAB_ck_tm_02_cuon" value="Cuộn" />
+	<item key="ids_VAB_ck_tm_02_kem_di_vat" value="Kèm&lt;br&gt;dị vật" />
+	<item key="ids_VAB_ck_tm_03_counting_money" value="Máy đang kiểm đếm ....&lt;br&gt;Quý khách vui lòng đợi trong giây lát" />
+	<item key="ids_VAB_ck_tm_tb_01_title" value="Hệ thống đang xử lý ....&lt;br&gt;Quý khách vui lòng đợi trong giây lát" />
+	<item key="ids_VAB_ck_tm_04_confirm_deposit" value="Xác nhận" />
+	<item key="ids_VAB_ck_tm_04_add_on_deposit" value="Nộp thêm" />
+	<item key="ids_VAB_ck_tm_04_count_down_text" value="Giao dịch kết thúc sau" />
+	<item key="ids_VAB_ck_tm_04_title" value="Vui lòng xác nhận bảng kê" />
+	<item key="ids_VAB_ck_tm_04_menh_gia" value="Mệnh giá" />
+	<item key="ids_VAB_ck_tm_04_sl" value="Số lượng" />
+	<item key="ids_VAB_ck_tm_04_thanh_tien" value="Thành tiền" />
+	<item key="ids_VAB_ck_tm_04_total_label" value="Tổng" />
+	<item key="ids_VAB_ck_tm_11_qdnt" value="Quy định nộp tiền" />
+	<item key="ids_VAB_ck_tm_11_qdnt_1" value="Chỉ chấp nhận tiền polymer Việt Nam mệnh giá từ 20,000 VNĐ." />
+	<item key="ids_VAB_ck_tm_11_qdnt_2" value="Số tờ nộp tối đa 200 tờ/ lần." />
+	<item key="ids_VAB_ck_tm_11_qdnt_3" value="Mệnh giá được chấp nhận" />
+	<item key="ids_VAB_ck_tm_11_cancel_deposit_btn" value="Hủy nộp thêm" />
+	<item key="ids_VAB_ck_tm_11_pls_input_money" value="Vui lòng đưa tiền vào khoang&lt;br&gt;(Tối đa 200 tờ)" />
+	<item key="ids_VAB_ck_tm_11_alert" value="Lưu ý: Các điều kiện tiền không được chấp nhận" />
+	<item key="ids_VAB_ck_tm_11_gap_mep" value="Gấp mép" />
+	<item key="ids_VAB_ck_tm_11_gap_tien" value="Gấp tiền" />
+	<item key="ids_VAB_ck_tm_11_xo_lech" value="Xô lệch&lt;br&gt;Dính nhau" />
+	<item key="ids_VAB_ck_tm_11_nhan_nheo" value="Nhăn nheo" />
+	<item key="ids_VAB_ck_tm_11_rach" value="Rách, thủng" />
+	<item key="ids_VAB_ck_tm_11_dat_doc" value="Đặt dọc" />
+	<item key="ids_VAB_ck_tm_11_niem_phong" value="Buộc,&lt;br&gt;niêm phong" />
+	<item key="ids_VAB_ck_tm_11_cuon" value="Cuộn" />
+	<item key="ids_VAB_ck_tm_11_kem_di_vat" value="Kèm&lt;br&gt;dị vật" />
+	<item key="ids_VAB_ck_tm_12_title" value="Xác nhận thông tin nộp tiền" />
+	<item key="ids_VAB_ck_tm_12_confirm_deposit_info" value="Xác nhận" />
+	<item key="ids_VAB_ck_tm_12_account_name" value="Tên tài khoản thụ hưởng" />
+	<item key="ids_VAB_ck_tm_12_account_num" value="Số tài khoản thụ hưởng" />
+	<item key="ids_VAB_ck_tm_12_deposit_amount" value="Số tiền nạp" />
+	<item key="ids_VAB_ck_tm_12_fee_amount" value="Số tiền phí" />
+	<item key="ids_VAB_ck_tm_12_final_amount" value="Số tiền nạp vào tài khoản" />
+	<item key="ids_VAB_ck_tm_05_select_bank_label" value="Chọn ngân hàng thụ hưởng" />
+	<item key="ids_VAB_ck_tm_05_title" value="Vui lòng nhập tài khoản nhận tiền" />
+	<item key="ids_VAB_ck_tm_05_receive_account" value="Tài khoản thụ hưởng" />
+	<item key="ids_VAB_ck_tm_05_confirm_bank_receive_account_btn" value="Xác nhận" />
+	<item key="ids_VAB_ck_tm_05_select_bank_dialog_title" value="Chọn ngân hàng thụ hưởng" />
+	<item key="ids_VAB_ck_tm_05_select_bank_dialog_placeholder" value="Nhập ngân hàng cần tìm kiếm" />
+	<item key="ids_VAB_ck_tm_05_rcv_account_required" value="Trường này là trường bắt buộc" />
+	<item key="ids_VAB_ck_tm_05_rcv_bank_required" value="Cần chọn ngân hàng thụ hưởng" />
+	<item key="ids_VAB_ck_tb_07_title" value="In biên lai thất bại" />
+	<item key="ids_VAB_ck_tb_07_subtitle" value="Vui lòng liên hệ ngân hàng để được hỗ trợ." />
+	<item key="ids_VAB_ck_tb_07_auto_back_home_countdown" value="Giao dịch kết thúc sau" />
+	<item key="ids_VAB_ck_tb_07_do_another_task" value="Thực hiện giao dịch khách" />
+	<item key="ids_VAB_ck_tb_07_end_trans" value="Kết thúc giao dịch" />
+	<item key="ids_VAB_feature_not_avail" value="Tính năng đang phát triển" />
+	<item key="ids_VAB_nt_05_cancel_deposit_message_before" value="Hộc tiền sẽ tự động đóng sau " />
+	<item key="ids_VAB_nt_05_cancel_deposit_message_after" value=" và toàn bộ tiền sẽ bị giữ lại" />
 	<item key="ids_VAB_Hello" value="XIN CHÀO" />
 </config>

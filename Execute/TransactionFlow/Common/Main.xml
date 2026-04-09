@@ -11,9 +11,9 @@
 		<Start ID="0" comment="Start">
 			<Forward event="OnConfirm" targetID="ID_RecoverDev"/>
 		</Start>
-		<RecoverDev ID="ID_RecoverDev" UI="UI_out_of_service" comment="Recover device" recoverMap="[JPTR][TTU][PIN][SIU][IDC][RPTR][CDM][CIM][CRD][IDCardReader]">
+		<RecoverDev ID="ID_RecoverDev" UI="UI_VAB_Processing" comment="Recover device" recoverMap="[JPTR][TTU][PIN][SIU][IDC][RPTR][CDM][CIM][CRD][IDCardReader]">
 			<States>
-				<State name="RecoveringDev" UI="UI_out_of_service"/>
+				<State name="RecoveringDev" UI="UI_VAB_Processing"/>
 			</States>
 			<Forward event="OnConfirm" targetID="ID_QueryDeviceStatus"/>
 			<DefaultForward targetID="ID_QueryDeviceStatus" />
@@ -49,7 +49,7 @@
 
 		<XDCInService ID="ID_ZeroState" UI="UI_index" timeout="0" comment="Zero state" changeLanguageInCurrentPage="1" >
 			<Forward event="OnCashDeposit" targetID="ID_InvokeCashDepositWorkflow"/>
-			<Forward event="OnCashWithdrawalNoATMCard" targetID="ID_InvokeCWD_NoCardFlow"/>
+			<Forward event="OnWithdraw" targetID="ID_InvokeCWD_NoCardFlow"/>
 			<Forward event="OnNoCardTrans" targetID="ID_NoCardDepositForFBFlow" />
 			<Forward event="OnMaintenance" targetID="ID_InvokeMaintenanceWorkflow"/>
 			<Forward event="OnOutOfService" targetID="ID_InvokeOutOfServiceWorkflow"/>

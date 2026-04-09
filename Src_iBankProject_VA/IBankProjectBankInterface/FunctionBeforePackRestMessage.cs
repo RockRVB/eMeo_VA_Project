@@ -1,9 +1,11 @@
-using LogProcessorService;
-using System;
-using VTMBusinessActivity.VTMBankInterface;
-using System.Text.RegularExpressions;
-using Newtonsoft.Json.Linq;
+using eCATBusinessServiceProtocol;
 using IBankProjectBusinessServiceProtocol;
+using LogProcessorService;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using VTMBusinessActivity.VTMBankInterface;
 namespace IBankProjectBankInterface
 {
     public partial class IBankProjectBankInterface : VTMBankInterface
@@ -44,6 +46,24 @@ namespace IBankProjectBankInterface
                 Log.XdcTrace.LogFatal("Exception: WriteJournalLogBefore Error!" + ex.Message);
             }
         }
+        public bool GenerateRequestIDNumber()
+        {
+            bool result = false;
+            try
+            {
+                string vtmno = ProjVTMContext.TerminalConfig.Terminal.ATMNumber;
+                string requestId = string.Format("{0}{1}", vtmno, DateTimeOffset.Now.ToUnixTimeSeconds());
+                ProjVTMContext.TransactionDataCache.Set("proj_RequestId ", requestId, GetType());
+                string journalString = "- requestId    = [{0}]";
+                ProjVTMContext.LogJournal(string.Format(journalString, requestId));
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                Log.Action.LogError(ex.Message);
+            }
+            return result;
+        }
         private bool SetJsonData(string argTransType)
         {
             Log.Action.LogDebugFormat("TransType: {0}", argTransType);
@@ -63,6 +83,12 @@ namespace IBankProjectBankInterface
                     case "VerifyQR":
                         SetGetQRString();
                         break;
+                    case "DepositConfirm":
+                        SetDepositConfirm();
+                        break;
+                    case "CashWithdrawalNoCardConfirm":
+                        SetCashWithdrawalNoCardConfirm();
+                        break;
                     default:
                         break;
                 }
@@ -78,8 +104,7 @@ namespace IBankProjectBankInterface
                 ProjVTMContext.CardHolderDataCache.Get("VTM_TransTypeName", out value,GetType());
                 if (value != null)
                 {
-                    if (value.ToString() == "CWD_NoCard")
-                        ProjVTMContext.TransactionDataCache.Set("proj_TransType", value.ToString(), GetType());
+                    ProjVTMContext.TransactionDataCache.Set("proj_TransType", value.ToString(), GetType());
                 }
             }
             catch { }
@@ -105,6 +130,45 @@ namespace IBankProjectBankInterface
         {
             try
             {
+                object value = null;
+                ProjVTMContext.CardHolderDataCache.Get("VTM_TransTypeName", out value, GetType());
+                if (value != null)
+                {
+                    ProjVTMContext.TransactionDataCache.Set("proj_TransType", value?.ToString(), GetType());
+                    if (value.ToString() == "CASH_DEPOSIT")
+                    {
+                        ProjVTMContext.TransactionDataCache.Get("core_OriginalDepositAmount", out value, GetType());
+                        if (value != null)
+                        {
+                            ProjVTMContext.TransactionDataCache.Set("proj_Amount", value.ToString(), GetType());
+                        }
+                    }
+                    else if (value.ToString() == "CashWithdrawal_NoCard")
+                    {
+                        ProjVTMContext.TransactionDataCache.Get(DataDictionary.s_coreOriginalWithdrawalAmount, out value, GetType());
+                        if (value != null)
+                        {
+                            ProjVTMContext.TransactionDataCache.Set("proj_Amount", value.ToString(), GetType());
+                        }
+                    }
+                }
+                object Account = null;
+                ProjVTMContext.TransactionDataCache.Get("VAB_SelectedAccount", out Account, GetType());
+                Log.Action.LogDebugFormat("VAB_SelectedAccount: {0}", Account);
+                if (!string.IsNullOrEmpty(Account.ToString()))
+                {
+                    JObject oJson = JObject.Parse(Account.ToString());
+                    ProjVTMContext.TransactionDataCache.Set("proj_AccountNumber", oJson["accountNumber"]?.ToString(), GetType());
+                }
+            }
+            catch { }
+
+            return;
+        }
+        private void SetDepositConfirm()
+        {
+            try
+            {
                 ProjVTMContext.TransactionDataCache.Set("proj_AccountNumber", "", GetType());
                 ProjVTMContext.TransactionDataCache.Set("proj_AccountNumber", "", GetType());
                 ProjVTMContext.TransactionDataCache.Set("proj_TransType", "CASH_DEPOSIT", GetType());
@@ -121,12 +185,154 @@ namespace IBankProjectBankInterface
                 {
                     JObject oJson = JObject.Parse(Account.ToString());
                     ProjVTMContext.TransactionDataCache.Set("proj_AccountNumber", oJson["accountNumber"]?.ToString(), GetType());
+                    object objCustomerInfo = null;
+                    ProjVTMContext.TransactionDataCache.Get("VAB_CustomerInfo", out objCustomerInfo, GetType());
+                    CustomerInfo customerInfo = new CustomerInfo();
+                    if (objCustomerInfo != null)
+                    {
+                        customerInfo = objCustomerInfo as CustomerInfo;
+                        foreach (var item in customerInfo.Accounts)
+                        {
+                            if (oJson["accountNumber"]?.ToString() == item.AccountNumber)
+                            {
+                                ProjVTMContext.TransactionDataCache.Set("proj_BranchCode", item.BranchCode, GetType());
+                                break;
+                            }
+                        }
+                    }
+                }
+                List<Fee> lstFee = new List<Fee>();
+                lstFee.Clear();
+                object objFee = null;
+                ProjVTMContext.TransactionDataCache.Get("VAB_Fee", out objFee, GetType());
+                if (objFee != null)
+                {
+                    lstFee = objFee as List<Fee>;
+                    object value = null;
+                    ProjVTMContext.CardHolderDataCache.Get("VAB_ComfirmDepositTimeout", out value, GetType());
+                    if (value != null && value?.ToString() == "TRUE")//no receipt
+                    {
+                        foreach (var item in lstFee)
+                        {
+                            if (item.FeeCode == "TRANS_FEE")
+                            {
+                                ProjVTMContext.TransactionDataCache.Set("proj_Fee", item.FeeAmount, GetType());
+                                ProjVTMContext.TransactionDataCache.Set("proj_Tax", item.TaxAmount, GetType());
+                                break;
+                            }
+                        }
+                        
+                    }
+                    else
+                    {
+                        int fee1, fee2, fee;
+                        int.TryParse(lstFee[0].FeeAmount, out fee1);
+                        int.TryParse(lstFee[1].FeeAmount, out fee2);
+                        fee = fee1 + fee2;
+
+                        int tax1, tax2, tax;
+                        int.TryParse(lstFee[0].TaxAmount, out tax1);
+                        int.TryParse(lstFee[1].TaxAmount, out tax2);
+                        tax = tax1 + tax2;
+                        ProjVTMContext.TransactionDataCache.Set("proj_Fee", fee.ToString(), GetType());
+                        ProjVTMContext.TransactionDataCache.Set("proj_Tax", tax.ToString(), GetType());
+                    }
+                }
+                ProjVTMContext.TransactionDataCache.Set("proj_STMID", ProjVTMContext.TerminalConfig.Terminal.ATMNumber, GetType());
+            }
+            catch { }
+
+            return;
+        }
+        private void SetCashWithdrawalNoCardConfirm()
+        {
+            try
+            {
+                object value = null;
+                ProjVTMContext.CardHolderDataCache.Get("VTM_TransTypeName", out value, GetType());
+                if (value != null)
+                {
+                    ProjVTMContext.TransactionDataCache.Set("proj_TransType", value?.ToString(), GetType());
+                    if (value.ToString() == "CASH_DEPOSIT")
+                    {
+                        ProjVTMContext.TransactionDataCache.Get("core_OriginalDepositAmount", out value, GetType());
+                        if (value != null)
+                        {
+                            ProjVTMContext.TransactionDataCache.Set("proj_Amount", value.ToString(), GetType());
+                        }
+                    }
+                    else if (value.ToString() == "CashWithdrawal_NoCard")
+                    {
+                        ProjVTMContext.TransactionDataCache.Get(DataDictionary.s_coreOriginalWithdrawalAmount, out value, GetType());
+                        if (value != null)
+                        {
+                            ProjVTMContext.TransactionDataCache.Set("proj_Amount", value.ToString(), GetType());
+                        }
+                    }
+                }
+                object Account = null;
+                ProjVTMContext.TransactionDataCache.Get("VAB_SelectedAccount", out Account, GetType());
+                Log.Action.LogDebugFormat("VAB_SelectedAccount: {0}", Account);
+                if (!string.IsNullOrEmpty(Account.ToString()))
+                {
+                    JObject oJson = JObject.Parse(Account.ToString());
+                    ProjVTMContext.TransactionDataCache.Set("proj_AccountNumber", oJson["accountNumber"]?.ToString(), GetType());
+                    object objCustomerInfo = null;
+                    ProjVTMContext.TransactionDataCache.Get("VAB_CustomerInfo", out objCustomerInfo, GetType());
+                    CustomerInfo customerInfo = new CustomerInfo();
+                    if (objCustomerInfo != null)
+                    {
+                        customerInfo = objCustomerInfo as CustomerInfo;
+                        foreach (var item in customerInfo.Accounts)
+                        {
+                            if (oJson["accountNumber"]?.ToString() == item.AccountNumber)
+                            {
+                                ProjVTMContext.TransactionDataCache.Set("proj_BranchCode", item.BranchCode, GetType());
+                                break;
+                            }
+                        }
+                    }
+                }
+                List<Fee> lstFee = new List<Fee>();
+                lstFee.Clear();
+                object objFee = null;
+                ProjVTMContext.TransactionDataCache.Get("VAB_Fee", out objFee, GetType());
+                if (objFee != null)
+                {
+                    lstFee = objFee as List<Fee>;
+                    ProjVTMContext.TransactionDataCache.Get("VTM_CWDNoCardReceipt", out value, GetType());
+                    if (value != null && value?.ToString() == "0")//no receipt
+                    {
+                        foreach (var item in lstFee)
+                        {
+                            if (item.FeeCode == "TRANS_FEE")
+                            {
+                                ProjVTMContext.TransactionDataCache.Set("proj_Fee", item.FeeAmount, GetType());
+                                ProjVTMContext.TransactionDataCache.Set("proj_Tax", item.TaxAmount, GetType());
+                                break;
+                            }
+                        }
+
+                    }
+                    else if (value != null && value?.ToString() == "1") // have receipt
+                        {
+                        int fee1, fee2, fee;
+                        int.TryParse(lstFee[0].FeeAmount, out fee1);
+                        int.TryParse(lstFee[1].FeeAmount, out fee2);
+                        fee = fee1 + fee2;
+
+                        int tax1, tax2, tax;
+                        int.TryParse(lstFee[0].TaxAmount, out tax1);
+                        int.TryParse(lstFee[1].TaxAmount, out tax2);
+                        tax = tax1 + tax2;
+                        ProjVTMContext.TransactionDataCache.Set("proj_Fee", fee.ToString(), GetType());
+                        ProjVTMContext.TransactionDataCache.Set("proj_Tax", tax.ToString(), GetType());
+                    }
                 }
             }
             catch { }
 
             return;
-
         }
     }
 }

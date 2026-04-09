@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Rules</title>
+    <link rel="stylesheet" href="../../../css/VA/style.css">
+    <script src="../../../js/coreScript.js"></script>
+    <script src="../../../js/VA/common.js"></script>
+    <script src="../../../js/VA/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="stm-layout">
+    <!-- Header -->
+    <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
+    <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
+    <stm-auth-task-header id="auth-task-header"></stm-auth-task-header>
+
+    <!-- Body -->
+    <main class="stm-body account-list-body">
+        <div class="stm-content account-content">
+
+            <stm-progress-bar
+                    current-step="3"
+                    steps='[
+                        {"label": "Xác thực", "ids" : "ids_VAB_withdraw_qr_step_1"},
+                        {"label": "Chọn tài khoản", "ids" : "ids_VAB_withdraw_qr_step_2"},
+                        {"label": "Rút tiền", "ids" : "ids_VAB_withdraw_qr_step_3"},
+                        {"label": "Hoàn tất", "ids" : "ids_VAB_withdraw_qr_step_4"}
+                    ]'>
+            </stm-progress-bar>
+
+            <div class="account-sections">
+                <div class="customer-info-section">
+                    <div class="stm-info-card" style="height: 550px;">
+                        <span class="section-title" ids="ids_VAB_rt_02_withdraw_source_title">Nguồn rút</span>
+                        <div>
+                            <span class="info-label" style="font-size: 28px;" ids="ids_VAB_rt_02_withdraw_source_account_num_label">Số tài khoản: </span>
+                            <span class="info-value" style="font-size: 28px;" id="account-num"></span>
+                        </div>
+                        <span class="text-alert-red" ids="ids_VAB_rt_02_withdraw_source_attention" style="font-size: 30px;">Lưu ý:</span>
+                        <ul class="main-list">
+                            <li class="text-alert-red-left">Phí giao dịch được áp dụng theo biểu phí hiện hành của VAB.</li>
+                            <li class="text-alert-red-left">
+                                Hạn mức giao dịch của Quý khách:
+                                <ul class="sub-list">
+                                    <li class="text-alert-red-left">Số tiền rút tối đa cho mỗi giao dịch: <strong>10.000.000 VND</strong></li>
+                                    <li class="text-alert-red-left">Số tiền rút tối đa trong ngày: <strong>300.000.000 VND</strong>/ngày</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="account-selection-section" style="gap: 20px;">
+                    <h2 class="section-title" ids="ids_VAB_rt_02_choose_cash_value_title">Chọn số tiền cần rút</h2>
+
+                    <div class="cash-value-grid">
+                        <button class="cash-value-card" ids="ids_VAB_rt_02_500k_cash" id="500k-cash-btn">500,000</button>
+                        <button class="cash-value-card" ids="ids_VAB_rt_02_1000k_cash" id="1000k-cash-btn">1,000,000</button>
+                        <button class="cash-value-card" ids="ids_VAB_rt_02_2000k_cash" id="2000k-cash-btn">2,000,000</button>
+                        <button class="cash-value-card" ids="ids_VAB_rt_02_3000k_cash" id="3000k-cash-btn">3,000,000</button>
+                        <button class="cash-value-card" ids="ids_VAB_rt_02_5000k_cash" id="5000k-cash-btn">5,000,000</button>
+                        <button class="other-cash-value-card" ids="ids_VAB_rt_02_other_cash_value" tag="OnAnotherCashValue" id="another-cash-value-btn">Số tiền khác</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="statement-btns-container">
+                <div class="dialog-actions" style="justify-content: center; margin-top: 50px;">
+                    <button class="btn-dialog-secondary" id="confirm-withdraw" tag="OnConfirmWithdraw" type="button">
+                        <span ids="ids_VAB_withdraw_qr_confirm_withdraw_btn">Xác nhận</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <stm-footer></stm-footer>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
+</div>
+<script src="../../../js/VA/scale.js"></script>
+<script>
+    $(document).ready(function (){
+		const confirmWithdraw = document.getElementById("confirm-withdraw");
+        const accNum = document.getElementById("account-num");
+        const data = '{"withdraw_source_info":{"account_num":"8938xxxxxxxx092"}}';
+        const sampleObj = JSON.parse(data);
+        // const countdownData = $('#input_val').val();
+        accNum.innerText = sampleObj.withdraw_source_info.account_num;
+		confirmWithdraw.addEventListener('click', () => {
+			var str_test = "500000";
+			$('#output_val').val(str_test);
+            console.log($('#output_val').val())
+        })
+    })
+</script>
+</body>
+</html>

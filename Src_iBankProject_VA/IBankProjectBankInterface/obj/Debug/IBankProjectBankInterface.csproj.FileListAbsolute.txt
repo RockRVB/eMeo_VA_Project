@@ -1,0 +1,6 @@
+D:\GrgBanking\Src_iBankProject_VietABank\IBankProjectBankInterface\obj\Debug\IBankProjectBankInterface.csproj.AssemblyReference.cache
+D:\GrgBanking\Src_iBankProject_VietABank\IBankProjectBankInterface\obj\Debug\IBankProjectBankInterface.csproj.CoreCompileInputs.cache
+D:\GrgBanking\Execute\Business\Activity\IBankProjectBankInterface.dll
+D:\GrgBanking\Execute\Business\Activity\IBankProjectBankInterface.pdb
+D:\GrgBanking\Src_iBankProject_VietABank\IBankProjectBankInterface\obj\Debug\IBankProjectBankInterface.dll
+D:\GrgBanking\Src_iBankProject_VietABank\IBankProjectBankInterface\obj\Debug\IBankProjectBankInterface.pdb

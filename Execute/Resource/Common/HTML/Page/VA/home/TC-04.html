@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auth Home</title>
+    <title>Transfer Group</title>
     <link rel="stylesheet" href="../../../css/VA/style.css">
     <script src="../../../js/coreScript.js"></script>
     <script src="../../../js/VA/common.js"></script>
@@ -12,122 +12,50 @@
 <body>
     <div class="stm-layout">
         <!-- Header -->
-
-        <stm-auth-header id="auth-header"></stm-auth-header>
+        <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
+        <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
+        <stm-auth-task-header id="auth-task-header"></stm-auth-task-header>
 
         <!-- Body -->
-        <main class="stm-body">
+        <main class="stm-body transfer-body">
             <div class="stm-content">
-                
-                <!-- Insert Card Banner -->
-                <div class="insert-card-wrapper">
-                    <div class="insert-card-inner">
-                        <p ids="ids_VAB_pls_insert_card">Please insert your card.</p>
+
+                <h2 class="stm-subtitle" ids="ids_VAB_select_transfer_type">Quý khách vui lòng chọn nguồn tiền</h2>
+
+                <!-- Large Cards Flex Container -->
+                <div class="stm-large-cards">
+                    <!-- Card 1 -->
+                    <div class="stm-card-lg" id="tien-mat" type="button" tag="OnCashMethod">
+                        <stm-card
+                                icon-url="../../../images/VA/cash.svg"
+                                title="Tiền mặt"
+                                ids="ids_VAB_transfer_type_cash"
+                        >
+                        </stm-card>
+                    </div>
+                    <div class="stm-card-lg" id="tk-thanh-toan" type="button" tag="OnAccountMethod">
+                        <stm-card
+                                icon-url="../../../images/VA/tktt.svg"
+                                title="Tài khoản thanh toán"
+                                ids="ids_VAB_transfer_type_account"
+                        >
+                        </stm-card>
                     </div>
                 </div>
 
-                <!-- Call to action -->
-                <h2  ids="ids_VAB_home_title" class="stm-subtitle">Quý khách vui lòng chọn 01 giao dịch bên dưới</h2>
-
-                <!-- Cards Grid -->
-                <div class="stm-cards-grid">
-                    <div class="stm-cards-row">
-                        <!-- Card 1 -->
-                        <div class="stm-card" id="mo-tai-khoan">
-                            <stm-card
-                                    icon-url="../../../images/VA/icon-open-account.png"
-                                    title="Mở tài khoản"
-                                    ids="ids_VAB_open_account"
-                            >
-                            </stm-card>
-                        </div>
-                        <!-- Card 2 -->
-                        <div class="stm-card" id="nop-tien">
-                            <stm-card
-                                    icon-url="../../../images/VA/icon-money.png"
-                                    title="Nộp tiền"
-                                    ids="ids_VAB_deposit"
-                            >
-                            </stm-card>
-                        </div>
-                        <!-- Card 3 -->
-                        <div class="stm-card" id="rut-tien">
-                            <stm-card
-                                    icon-url="../../../images/VA/icon-withdraw.png"
-                                    title="Rút tiền"
-                                    ids="ids_VAB_withdraw"
-                            >
-                            </stm-card>
-                        </div>
-                        <!-- Card 4 -->
-                        <div class="stm-card" id="chuyen-khoan">
-                            <stm-card
-                                    icon-url="../../../images/VA/icon-transfer.png"
-                                    title="Chuyển khoản"
-                                    ids="ids_VAB_transfer"
-                            >
-                            </stm-card>
-                        </div>
-                    </div>
-                    
-                    <div class="stm-cards-row">
-                        <!-- Card 5 -->
-                        <div class="stm-card" id="tktk">
-                            <stm-card
-                                    icon-url="../../../images/VA/icon-savings.png"
-                                    title="Tài khoản tiết kiệm"
-                                    ids="ids_VAB_tktk"
-                            >
-                            </stm-card>
-                        </div>
-                        <!-- Card 6 -->
-                        <div class="stm-card" id="dk-vay">
-                            <stm-card
-                                    icon-url="../../../images/VA/icon-loan.png"
-                                    title="Đăng ký vay"
-                                    ids="ids_VAB_dang_ky_vay"
-                            >
-                            </stm-card>
-                        </div>
-                        <!-- Card 7 -->
-                        <div class="stm-card" id="dk-ph-the">
-                            <stm-card
-                                    icon-url="../../../images/VA/icon-card.png"
-                                    title="Đăng ký phát hành thẻ"
-                                    ids="ids_VAB_card_publish"
-                            >
-                            </stm-card>
-                        </div>
-                        <!-- Card 8 -->
-                        <div class="stm-card card-disabled" id="dich-vu-khac">
-                            <stm-card
-                                    icon-url="../../../images/VA/icon-other.png"
-                                    title="Dịch vụ khác"
-                                    ids="ids_VAB_other_service"
-                            >
-                            </stm-card>
-                        </div>
-                    </div>
-                </div>
             </div>
         </main>
 
         <stm-footer></stm-footer>
-
-<!--        <stm-service-not-avail-dialog></stm-service-not-avail-dialog>-->
-<!--        <stm-cancel-trans-dialog></stm-cancel-trans-dialog>-->
+        <input style="display: none;" id="input_val" value='{Replace input_val}' />
+        <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
     </div>
-    <input style="display: none;" id="input_val" value='{Replace input_val}' />
-    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
 </body>
 <script src="../../../js/VA/scale.js"></script>
 <script>
     $(document).ready(function() {
-        const authHeader = document.getElementById("auth-header");
-        const countdownData = '{"countdown" : 120}'
-        const sampleObj = JSON.parse(countdownData);
         // const countdownData = $('#input_val').val();
-        authHeader.countdownVal = sampleObj.countdown;
+
     })
 </script>
 </html>

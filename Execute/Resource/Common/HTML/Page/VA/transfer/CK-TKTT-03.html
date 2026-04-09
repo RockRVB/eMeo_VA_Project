@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TKTT List</title>
+    <link rel="stylesheet" href="../../../css/VA/style.css">
+    <script src="../../../js/coreScript.js"></script>
+    <script src="../../../js/VA/common.js"></script>
+    <script src="../../../js/VA/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="stm-layout">
+    <!-- Header -->
+    <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
+    <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
+    <stm-simple-dialog id="bank-list-dialog"></stm-simple-dialog>
+    <stm-auth-task-header id="auth-task-header"></stm-auth-task-header>
+
+    <!-- Body -->
+    <main class="stm-body account-list-body">
+        <div class="stm-content" style="gap: 0px;">
+
+            <stm-progress-bar
+                    current-step="3"
+                    steps='[
+                        {"label": "Xác thực", "ids" : "ids_VAB_transfer_tktt_step_1"},
+                        {"label": "Chọn tài khoản", "ids" : "ids_VAB_transfer_tktt_step_2"},
+                        {"label": "Chuyển tiền", "ids" : "ids_VAB_transfer_tktt_step_3"},
+                        {"label": "Hoàn tất", "ids" : "ids_VAB_transfer_tktt_step_4"}
+                    ]'>
+            </stm-progress-bar>
+            <h2 class="section-title" ids="ids_VAB_ck_tktt_03_title">Vui lòng nhập tài khoản nhận tiền</h2>
+            <div class="transfer-cash-grid">
+                <!-- Customer Info Section -->
+                <div class="receive-bank-container">
+                    <span class="transfer-cash-label" ids="ids_VAB_ck_tktt_03_select_bank_label">Chọn ngân hàng thụ hưởng <span class="required-red">*</span></span>
+                    <div class="receive-bank">
+                        <div class="bank-icon-container">
+                            <img src="../../../images/VA/icon-bank-sample.svg">
+                        </div>
+                        <div class="receive-bank-title-subtitle">
+                            <span class="bank-title" id="selected-bank-shortname">ABC</span>
+                            <span class="bank-sub-title" id="selected-bank-fullname">Ngân hàng ABC</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Selection Layout -->
+                <div class="receive-account-container" style="gap: 30px;">
+                    <div class="info-field" style="grid-template-columns: max-content 1fr;">
+                        <span class="transfer-cash-label" ids="ids_VAB_ck_tktt_03_receive_account">Số tài khoản: </span>
+                        <span class="transfer-cash-value" id="account_num">123456789</span>
+                    </div>
+                    <div class="info-field" style="grid-template-columns: max-content 1fr;">
+                        <span class="transfer-cash-label" ids="ids_VAB_ck_tktt_03_receiver_name">Tên người thụ hưởng: </span>
+                        <span class="transfer-cash-value" id="account_name">Ten gi do</span>
+                    </div>
+<!--                    <div class="stm-input-group" id="inputGroup">-->
+<!--                        <input type="text" class="stm-input" id="receiveAccountInput" autofocus>-->
+<!--                    </div>-->
+                </div>
+            </div>
+
+            <div class="transfer-amount-content-input-group">
+                <div class="receive-account-container">
+                    <span class="transfer-cash-label" ids="ids_VAB_ck_tktt_03_transfer_amount">Số tiền cần chuyển <span class="required-red">*</span></span>
+                    <div class="stm-input-group">
+                        <input type="text" class="stm-input" id="transferAmountInput">
+                    </div>
+                </div>
+
+                <div class="receive-account-container">
+                    <span class="transfer-cash-label" ids="ids_VAB_ck_tktt_03_transfer_content">Nội dung chuyển tiền</span>
+                    <div class="stm-input-group" style="margin-top: 7px;">
+                        <input type="text" class="stm-input" id="transferContentInput">
+                    </div>
+                </div>
+            </div>
+
+            <div class="statement-actions-wrap">
+               <div class="keyboard-stack-container" style="margin-top: 30px;">
+                   <div class="number-keyboard-grid-new keyboard-layer" id="money_keyboard" style="visibility: hidden;">
+                       <button class="number-key" ids="ids_VAB_rt_03_key_num_1">1</button>
+                       <button class="number-key" ids="ids_VAB_rt_03_key_num_2">2</button>
+                       <button class="number-key" ids="ids_VAB_rt_03_key_num_3">3</button>
+                       <button class="number-key" ids="ids_VAB_rt_03_key_num_4">4</button>
+                       <button class="number-key" ids="ids_VAB_rt_03_key_num_5">5</button>
+                       <button class="number-key" ids="ids_VAB_rt_03_key_num_6">6</button>
+                       <button class="number-key" ids="ids_VAB_rt_03_key_num_7">7</button>
+                       <button class="number-key" ids="ids_VAB_rt_03_key_num_8">8</button>
+                       <button class="number-key" ids="ids_VAB_rt_03_key_num_9">9</button>
+                       <button class="number-key" id="btn-delete-number">
+                           <img src="../../../images/VA/icon-delete.svg">
+                       </button>
+                       <button class="number-key" ids="ids_VAB_rt_03_key_num_0">0</button>
+                       <button class="number-key" ids="ids_VAB_rt_03_key_num_000">000</button>
+                   </div>
+
+                   <div class="osk-container keyboard-layer" id="text_keyboard" style="visibility: hidden;">
+                       <!-- Row 1: q-p + backspace -->
+                       <div class="osk-row">
+                           <button class="osk-key" data-key="q">q</button>
+                           <button class="osk-key" data-key="w">w</button>
+                           <button class="osk-key" data-key="e">e</button>
+                           <button class="osk-key" data-key="r">r</button>
+                           <button class="osk-key" data-key="t">t</button>
+                           <button class="osk-key" data-key="y">y</button>
+                           <button class="osk-key" data-key="u">u</button>
+                           <button class="osk-key" data-key="i">i</button>
+                           <button class="osk-key" data-key="o">o</button>
+                           <button class="osk-key" data-key="p">p</button>
+                           <button class="osk-key osk-key-backspace" data-action="backspace">⌫</button>
+                       </div>
+
+                       <!-- Row 2: a-l + enter -->
+                       <div class="osk-row">
+                           <button class="osk-key" data-key="a">a</button>
+                           <button class="osk-key" data-key="s">s</button>
+                           <button class="osk-key" data-key="d">d</button>
+                           <button class="osk-key" data-key="f">f</button>
+                           <button class="osk-key" data-key="g">g</button>
+                           <button class="osk-key" data-key="h">h</button>
+                           <button class="osk-key" data-key="j">j</button>
+                           <button class="osk-key" data-key="k">k</button>
+                           <button class="osk-key" data-key="l">l</button>
+                           <button class="osk-key osk-key-enter" data-action="enter">↵ Tiếp tục</button>
+                       </div>
+
+                       <!-- Row 3: shift + z-m + , . @ -->
+                       <div class="osk-row">
+                           <button class="osk-key osk-key-shift" data-action="shift" id="shiftKey">⇧</button>
+                           <button class="osk-key" data-key="z">z</button>
+                           <button class="osk-key" data-key="x">x</button>
+                           <button class="osk-key" data-key="c">c</button>
+                           <button class="osk-key" data-key="v">v</button>
+                           <button class="osk-key" data-key="b">b</button>
+                           <button class="osk-key" data-key="n">n</button>
+                           <button class="osk-key" data-key="m">m</button>
+                           <button class="osk-key" data-key=",">,</button>
+                           <button class="osk-key" data-key=".">.</button>
+                           <button class="osk-key" data-key="@">@</button>
+                       </div>
+
+                       <!-- Row 4: ?123 + - + _ + space + .com + hide -->
+                       <div class="osk-row">
+                           <button class="osk-key osk-key-mode" data-action="mode" id="modeKey">?123</button>
+                           <button class="osk-key" data-key="-">-</button>
+                           <button class="osk-key" data-key="_">_</button>
+                           <button class="osk-key osk-key-space" data-action="space"></button>
+                           <button class="osk-key osk-key-dotcom" data-key=".com">.com</button>
+                           <button class="osk-key osk-key-hide" data-action="hide">
+                               <div style="display: flex; flex-direction: column;">
+                                   <span style="display: block; font-size: 24px;">⌨</span>
+                                   <span style="display: block; font-size: 12px;">▼</span>
+                               </div>
+                           </button>
+                       </div>
+                   </div>
+               </div>
+            </div>
+
+            <div class="statement-btns-container">
+                <div class="dialog-actions" style="justify-content: center; margin-top: 20px;">
+                    <button class="btn-dialog-secondary" id="confirm-transfer"  type="button">
+                        <span ids="ids_VAB_ck_tktt_03_confirm_transfer">Xác nhận</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <stm-footer></stm-footer>
+    <button style="display: none;" id="OnConfirmInfoTransfer" tag="OnConfirmInfoTransfer" ></button>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
+</div>
+<script src="../../../js/VA/scale.js"></script>
+<script>
+    $(document).ready(function() {
+        const selectedBankShortName = document.getElementById("selected-bank-shortname");
+        const selectedBankFullName = document.getElementById("selected-bank-fullname");
+        const transferAmountInput = document.getElementById("transferAmountInput");
+        const transferContentInput = document.getElementById("transferContentInput");
+        const accountNum = document.getElementById("account_num");
+        const accountName = document.getElementById("account_name");
+        const moneyKeyboard = document.getElementById("money_keyboard");
+        const textKeyboard = document.getElementById("text_keyboard");
+        const BtnOnConfirmInfoTransfer = document.getElementById("OnConfirmInfoTransfer");
+        const confirmTransferBtn = document.getElementById("confirm-transfer");
+        confirmTransferBtn.onclick = function() {
+            $("#output_val").val(JSON.stringify({
+                amount: transferAmountInput.value,
+                narrative: transferAmountInput.value,
+            }))
+            BtnOnConfirmInfoTransfer.click();
+        }
+
+        transferAmountInput.addEventListener('focus', () => {
+            moneyKeyboard.style.visibility = 'visible';
+            textKeyboard.style.visibility = 'hidden';
+        })
+        transferContentInput.addEventListener('focus', () => {
+            moneyKeyboard.style.visibility = 'hidden';
+            textKeyboard.style.visibility = 'visible';
+        })
+
+        const countdownData = '{"receive_account_info":{"bank_shortname":"ABC","bank_fullname":"Ngân hàng ABC","account_num":"2138912839128","account_name":"NGUYEN VAN TEO"}}';
+        const sampleObj = JSON.parse(countdownData);
+        // const countdownData = $('#input_val').val();
+
+        selectedBankShortName.innerText = sampleObj.receive_account_info.bank_shortname;
+        selectedBankFullName.innerText = sampleObj.receive_account_info.bank_fullname;
+        accountNum.innerText = sampleObj.receive_account_info.account_num;
+        accountName.innerText = sampleObj.receive_account_info.account_name;
+
+
+        function formatNumber(value) {
+            const number = value.replace(/\D/g, '');
+            return number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function initTextKeyboard() {
+
+            const shiftKey = document.getElementById('shiftKey');
+            const modeKey = document.getElementById('modeKey');
+
+            let isShift = false;
+            let isNumMode = false;
+
+            const alphaKeys = 'qwertyuiopasdfghjklzxcvbnm'.split('');
+            const numSymbols = {
+                'q': '1', 'w': '2', 'e': '3', 'r': '4', 't': '5',
+                'y': '6', 'u': '7', 'i': '8', 'o': '9', 'p': '0',
+                'a': '!', 's': '#', 'd': '$', 'f': '%', 'g': '&',
+                'h': '*', 'j': '(', 'k': ')', 'l': '/',
+                'z': '+', 'x': '=', 'c': '^', 'v': '~', 'b': '`',
+                'n': '{', 'm': '}'
+            };
+
+            // Xử lí khi click vào các nút
+            textKeyboard.addEventListener('click', (e) => {
+                const btn = e.target.closest('.osk-key');
+                if (!btn) return;
+
+                const key = btn.getAttribute('data-key');
+                const action = btn.getAttribute('data-action');
+
+                if (key) {
+                    // Character key
+                    let char = key;
+                    if (key.length === 1 && alphaKeys.includes(key.toLowerCase())) {
+                        if (isNumMode) {
+                            char = numSymbols[key.toLowerCase()] || key;
+                        } else if (isShift) {
+                            char = key.toUpperCase();
+                        }
+                    }
+                    transferContentInput.value += char;
+
+                    // Auto-release shift after one press
+                    if (isShift && !isNumMode) {
+                        isShift = false;
+                        shiftKey.classList.remove('osk-active');
+                        updateKeyLabels();
+                    }
+                } else if (action) {
+                    switch (action) {
+                        case 'backspace':
+                            transferContentInput.value = transferContentInput.value.slice(0, -1);
+                            break;
+                        case 'space':
+                            transferContentInput.value += ' ';
+                            break;
+                        case 'enter':
+                            // Ẩn bàn phím khi bấm Tiếp tục
+                            textKeyboard.style.visibility = 'hidden';
+                            break;
+                        case 'shift':
+                            isShift = !isShift;
+                            shiftKey.classList.toggle('osk-active', isShift);
+                            updateKeyLabels();
+                            break;
+                        case 'mode':
+                            isNumMode = !isNumMode;
+                            modeKey.textContent = isNumMode ? 'ABC' : '?123';
+                            modeKey.classList.toggle('osk-active', isNumMode);
+                            updateKeyLabels();
+                            break;
+                        case 'hide':
+                            textKeyboard.style.visibility = 'hidden';
+                            break;
+                    }
+                }
+            });
+
+            function updateKeyLabels() {
+                const keys = textKeyboard.querySelectorAll('.osk-key[data-key]');
+                keys.forEach(btn => {
+                    const baseKey = btn.getAttribute('data-key');
+                    if (baseKey.length === 1 && alphaKeys.includes(baseKey.toLowerCase())) {
+                        if (isNumMode) {
+                            btn.textContent = numSymbols[baseKey.toLowerCase()] || baseKey;
+                        } else if (isShift) {
+                            btn.textContent = baseKey.toUpperCase();
+                        } else {
+                            btn.textContent = baseKey.toLowerCase();
+                        }
+                    }
+                });
+            }
+        }
+
+        function initNumKeyboard() {
+            const container = document.querySelector('.number-keyboard-grid-new');
+
+            container.addEventListener('mousedown', (e) => {
+                const btn = e.target.closest('.number-key');
+                if (!btn || !transferAmountInput) return;
+
+                let currentVal = transferAmountInput.value;
+                const btnText = btn.innerText.trim();
+
+                const isDeleteOne = btn.id === 'btn-delete-number' || btn.querySelector('img');
+                const isDeleteAll = btn.id === 'btn-delete-all';
+
+                if (isDeleteAll) {
+                    currentVal = "";
+                } else if (isDeleteOne) {
+                    currentVal = currentVal.slice(0, -1);
+                } else if (btnText !== "") {
+                    currentVal += btnText;
+                }
+
+                transferAmountInput.value = formatNumber(currentVal);
+            });
+        }
+
+        initTextKeyboard();
+        initNumKeyboard();
+    })
+</script>
+</body>
+</html>

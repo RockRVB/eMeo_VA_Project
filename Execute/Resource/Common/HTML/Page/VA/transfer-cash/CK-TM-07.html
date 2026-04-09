@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TKTT List</title>
+    <link rel="stylesheet" href="../../../css/VA/style.css">
+    <script src="../../../js/coreScript.js"></script>
+    <script src="../../../js/VA/common.js"></script>
+    <script src="../../../js/VA/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="stm-layout">
+    <!-- Header -->
+    <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
+    <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
+    <stm-auth-task-header id="auth-task-header"></stm-auth-task-header>
+
+    <!-- Body -->
+    <main class="stm-body account-list-body" style="padding-right: 30px; padding-left: 30px;">
+        <div class="stm-content" style="gap: 0px;">
+
+            <stm-progress-bar
+                    current-step="3"
+                    steps='[
+                        {"label": "Xác thực", "ids" : "ids_VAB_transfer_tktt_step_1"},
+                        {"label": "Chọn tài khoản", "ids" : "ids_VAB_transfer_tktt_step_2"},
+                        {"label": "Chuyển tiền", "ids" : "ids_VAB_transfer_tktt_step_3"},
+                        {"label": "Hoàn tất", "ids" : "ids_VAB_transfer_tktt_step_4"}
+                    ]'>
+            </stm-progress-bar>
+            <h2 class="section-title" ids="ids_VAB_ck_tktt_04_title">Xác nhận thông tin giao dịch</h2>
+
+                    <!-- Giao diện xác nhận chuyển khoản -->
+                    <div class="transaction-confirm-container">
+                        <!-- Thẻ Glassmorphism -->
+                        <div class="transaction-card">
+
+                            <div class="transaction-confirm-transfer247-container">
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <!-- Block: Thông tin người chuyển (Từ) -->
+                                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                                        <h2 class="transaction-section-title" style="margin-bottom: 0;" ids="ids_VAB_ck_tktt_04_from_section_title">Từ</h2>
+                                        <div class="transaction-row">
+                                            <div class="transaction-label" ids="ids_VAB_ck_tktt_04_from_bank">Ngân hàng:</div>
+                                            <div class="transaction-value" id="from_bank"></div>
+                                        </div>
+                                        <div class="transaction-row">
+                                            <div class="transaction-label" ids="ids_VAB_ck_tktt_04_from_account">Tài khoản nguồn:</div>
+                                            <div class="transaction-value" id="from_account_num"></div>
+                                        </div>
+                                        <div class="transaction-row">
+                                            <div class="transaction-label" ids="ids_VAB_ck_tktt_04_from_account_name">Tên tài khoản:</div>
+                                            <div class="transaction-value" id="from_account_name"></div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="transaction-divider">
+
+                                    <!-- Block: Thông tin người nhận (Đến) -->
+                                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                                        <h2 class="transaction-section-title" style="margin-bottom: 0;" ids="ids_VAB_ck_tktt_04_to_section_title">Đến</h2>
+                                        <div class="transaction-row">
+                                            <div class="transaction-label" ids="ids_VAB_ck_tktt_04_to_bank">Ngân hàng thụ hưởng:</div>
+                                            <div class="transaction-value" id="receive_bank"></div>
+                                        </div>
+                                        <div class="transaction-row">
+                                            <div class="transaction-label" ids="ids_VAB_ck_tktt_04_to_account">Tài khoản thụ hưởng:</div>
+                                            <div class="transaction-value" id="receive_account_num"></div>
+                                        </div>
+                                        <div class="transaction-row">
+                                            <div class="transaction-label" ids="ids_VAB_ck_tktt_04_to_account_name">Tên người thụ hưởng:</div>
+                                            <div class="transaction-value" id="receive_account_name"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; flex-direction: column; gap: 20px;">
+                                    <!-- Block: Chi tiết số tiền -->
+                                    <div class="transaction-row">
+                                        <div class="transaction-label" ids="ids_VAB_ck_tktt_04_transfer_content">Nội dung chuyển tiền:</div>
+                                        <div class="transaction-value" id="transfer_content"></div>
+                                    </div>
+                                    <div class="transaction-row">
+                                        <div class="transaction-label" ids="ids_VAB_ck_tktt_04_transfer_amount">Số tiền chuyển:</div>
+                                        <div class="transaction-value bold" id="transfer_amount"></div>
+                                    </div>
+                                    <div class="transaction-row">
+                                        <div class="transaction-label" ids="ids_VAB_ck_tktt_04_fee">Phí giao dịch:</div>
+                                        <div class="transaction-value" id="transaction_fee"></div>
+                                    </div>
+                                    <div class="transaction-row">
+                                        <div class="transaction-label" ids="ids_VAB_ck_tktt_04_final_amount">Tổng số tiền giao dịch:</div>
+                                        <div class="transaction-value bold" id="final_amount"></div>
+                                    </div>
+                                    <div class="transaction-row">
+                                        <div class="transaction-label" ids="ids_VAB_ck_tktt_04_currency">Loại tiền giao dịch:</div>
+                                        <div class="transaction-value bold" id="currency"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Nút Xác nhận ở dưới cùng -->
+                        <div class="transaction-action-row">
+                            <button class="btn-dialog-secondary" id="confirm-transfer" tag="OnConfirmInfoTransferFinal" type="button">
+                                <span ids="ids_VAB_ck_tktt_04_confirm_transfer">Xác nhận</span>
+                            </button>
+                        </div>
+
+                    </div>
+        </div>
+    </main>
+
+    <stm-footer></stm-footer>
+    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
+</div>
+<script src="../../../js/VA/scale.js"></script>
+<script>
+    $(document).ready(function() {
+        const fromBank = document.getElementById("from_bank");
+        const fromAccount = document.getElementById("from_account_num");
+        const fromAccountName = document.getElementById("from_account_name");
+        const receiveBank = document.getElementById("receive_bank");
+        const receiveAccount = document.getElementById("receive_account_num");
+        const receiveAccountName = document.getElementById("receive_account_name");
+        const transferContent = document.getElementById("transfer_content");
+        const transferAmount = document.getElementById("transfer_amount");
+        const transferFee = document.getElementById("transaction_fee");
+        const finalAmount = document.getElementById("final_amount");
+        const currency = document.getElementById("currency");
+
+        const countdownData = '{"confirm_transaction_info":{"from_bank":"Ngân hàng nguồn","from_account_num":"123456789","from_account_name":"NGUYEN VAN A","receive_bank":"Ngân hàng thụ hưởng","receive_account_num":"9876543210","receive_account_name":"NGUYEN VAN B","transfer_content":"NGUYEN VAN A CHUYEN KHOAN","transfer_amount":1000000,"transaction_fee":1000,"final_amount":1001000, "currency":"VND"}}'
+        const sampleObj = JSON.parse(countdownData);
+        // const countdownData = $('#input_val').val();
+        fromBank.innerText = sampleObj.confirm_transaction_info.from_bank;
+        fromAccount.innerText = sampleObj.confirm_transaction_info.from_account_num;
+        fromAccountName.innerText = sampleObj.confirm_transaction_info.from_account_name;
+        receiveBank.innerText = sampleObj.confirm_transaction_info.receive_bank;
+        receiveAccount.innerText = sampleObj.confirm_transaction_info.receive_account_num;
+        receiveAccountName.innerText = sampleObj.confirm_transaction_info.receive_account_name;
+        transferContent.innerText = sampleObj.confirm_transaction_info.transfer_content;
+        transferAmount.innerText = formatVND(sampleObj.confirm_transaction_info.transfer_amount);
+        transferFee.innerText = formatVND(sampleObj.confirm_transaction_info.transaction_fee);
+        finalAmount.innerText = formatVND(sampleObj.confirm_transaction_info.final_amount);
+        currency.innerText = sampleObj.confirm_transaction_info.currency;
+
+    })
+</script>
+</body>
+</html>

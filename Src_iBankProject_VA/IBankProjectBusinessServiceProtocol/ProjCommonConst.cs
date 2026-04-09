@@ -18,5 +18,6 @@ namespace IBankProjectBusinessServiceProtocol
     }
     public class ProjConst
     {
+        public const bool simulator = true;
     }
 }

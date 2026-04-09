@@ -12,7 +12,7 @@
 		</VAB_SelectFunction>
 		
 		<!-- VerifyQR -->
-		<RequestTransViaRestful ID="ID_VAB_RestfulGenQR" UI="UI_VAB_QRCWDProcessing" transType="GetQRString" transFormat="json" timeout="60000">
+		<RequestTransViaRestful ID="ID_VAB_RestfulGenQR" UI="UI_VAB_Processing" transType="GetQRString" transFormat="json" timeout="60000">
 			<States>
 				<State name="PackFail" UI="UI_VAB_QRCWDSystemError"/>
 				<State name="ConnectFail" UI="UI_VAB_QRCWDSystemError"/>
