@@ -13,27 +13,33 @@
         "method": "post",
         "contentType": "application/json",
         "requestTimeout": "30000",
-        "Headers": "Authorization= Basic ZXptb2JpbGU6VmFiMjAyNEA="
+        "headers": "Authorization= Basic ZXptb2JpbGU6VmFiMjAyNEA="
       },
       "transactions": [     
 		{
           "name": "QueryCustomerInfo",
 		  "method": "post",
-          "url": "/api/BankService/QueryCustomerInfo",
+          "url": "/evobank/account/v1/query-list-by-cif",
           "response": "QueryCustomerInfoResponse",
           "body": {
-		    "sessionId":"{VAB_SessionID}",
-			"customerId":"{VAB_CustomerId}",
-			"transactionType":"{proj_TransType}",
-			"currency":"VND",
-		  }
+			  "requestId":"{proj_RequestId}",
+			  "requestTime":"{proj_RequestTime}",
+		      "sessionId":"{VAB_SessionID}",
+			  "userId":"{VAB_CustomerId}",
+			  "deviceId":"{proj_DeviceId}",
+			  "ipAddress":"{proj_IpAddress}",
+			  "cifNumber": "{VAB_CustomerId}",
+			  "hasSalary": true,
+			  "hasOverdraft": true,
+			  "hasHouseHold": true
+			}
         },
         {
           "name": "QueryCustomerInfoResponse",
-          "SuccessCode": "0",
+          "SuccessCode": "200000",
           "body": {
             "code": "{this.responsecode}",
-            "msg": "{this.errordesc}",
+            "message": "{this.errordesc}",
             "data": "{FB_jsonrevdata}"
           }
         },
@@ -43,20 +49,24 @@
           "url": "/api/BankService/QueryTransFee",
           "response": "QueryTransFeeResponse",
           "body": {
+		  	"requestId":"{proj_RequestId}",
+			"requestTime":"{proj_RequestTime}",
 		    "sessionId":"{VAB_SessionID}",
-			"customerId":"{VAB_CustomerId}",
-			"accountNumber":"{proj_AccountNumber}}",
+			"userId":"{VAB_CustomerId}",
+			"deviceId":"{proj_DeviceId}",
+			"ipAddress":"{proj_IpAddress}",
+			"srcAccountNo":"{proj_AccountNumber}}",
+			"srcBranch":"{proj_BranchCode}",
 			"amount":"{proj_Amount}}",
-			"transactionType":"{proj_TransType}",
-			"currency":"VND",
+			"method":"{proj_TransType}"
 		  }
         },
         {
           "name": "QueryTransFeeResponse",
-          "SuccessCode": "0",
+          "SuccessCode": "200000",
           "body": {
             "code": "{this.responsecode}",
-            "msg": "{this.errordesc}",
+            "message": "{this.errordesc}",
             "data": "{FB_jsonrevdata}"
           }
         },
@@ -73,10 +83,10 @@
         },
         {
           "name": "GetQRStringResponse",
-          "SuccessCode": "0",
+          "SuccessCode": "200000",
           "body": {
-            "resCode": "{this.responsecode}",
-            "resDesc": "{this.errordesc}",
+            "code": "{this.responsecode}",
+            "message": "{this.errordesc}",
             "data": "{proj_response}"
           }
         },
@@ -93,10 +103,10 @@
         },
         {
           "name": "VerifyQRResponse",
-          "SuccessCode": "0",
+          "SuccessCode": "200000",
           "body": {
-            "resCode": "{this.responsecode}",
-            "resDesc": "{this.errordesc}",
+            "code": "{this.responsecode}",
+            "message": "{this.errordesc}",
             "data": "{proj_response}"
           }
         },
@@ -121,11 +131,42 @@
         },
         {
           "name": "CashWithdrawalNoCardConfirmResponse",
-          "SuccessCode": "0",
+          "SuccessCode": "200000",
           "body": {
-            "resCode": "{this.responsecode}",
-            "resDesc": "{this.errordesc}",
+            "code": "{this.responsecode}",
+            "message": "{this.errordesc}",
             "data": "{proj_response}"
+          }
+        },
+		{
+          "name": "DepositConfirm",
+		  "method": "post",
+          "url": "",
+          "response": "DepositConfirmResponse",
+          "body": {
+			"requestId":"{proj_RequestId}",
+			"requestTime":"{proj_RequestTime}",
+		    "sessionId":"{VAB_SessionID}",
+			"userId":"{VAB_CustomerId}",
+			"deviceId":"{proj_DeviceId}",
+			"ipAddress":"{proj_IpAddress}",
+			"stmID":"{proj_STMID}",
+			"branchCode":"{proj_BranchCode}",
+			"accountNo":"{proj_AccountNumber}}",
+			"description":"{proj_Description}",
+			"amount":"{proj_Amount}}",
+			"feeAmt":"{proj_Fee}",
+			"vatAmt":"{proj_Tax}",
+			"transactionType":"{proj_TransType}"
+		  }
+        },
+        {
+          "name": "DepositConfirmResponse",
+          "SuccessCode": "200000",
+          "body": {
+            "code": "{this.responsecode}",
+            "message": "{this.errordesc}",
+            "data": "{FB_jsonrevdata}"
           }
         }
       ]

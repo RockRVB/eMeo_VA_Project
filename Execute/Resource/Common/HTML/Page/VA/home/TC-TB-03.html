@@ -32,9 +32,14 @@
 
 
                 <div class="statement-btns-container" style="margin-top: 20vh;">
-                    <span style="font-size: 25px; margin-top: 180px;" ids="ids_VAB_rt_14_auto_back_home_countdown" id="countdown-end-trans">
-                        Giao dịch kết thúc sau <span id="Counter" type="countdown" content="{Binding Count mode=2}" visible="{Binding CounterVisible mode=2}"></span>s
+                     <span style="font-size: 25px; margin-top: 180px;" ids="ids_VAB_rt_13_auto_back_home_countdown" id="countdown-backto-home">
+                        Giao dịch kết thúc sau
                     </span>
+                    <span style="font-size: 25px;">
+                        <span style="color: #67E3F9;" id="Counter" type="countdown" content="{Binding Count mode=2}" visible="{Binding CounterVisible mode=2}"></span>
+                        <span>s</span>
+                    </span>
+
                     <div class="dialog-actions" style="margin-top: 60px;">
                         <button class="btn-dialog-primary" id="end-trans" tag="ONEXIT" type="button">
                             <span ids="ids_VAB_rt_14_end_transaction">Kết thúc giao dịch</span>

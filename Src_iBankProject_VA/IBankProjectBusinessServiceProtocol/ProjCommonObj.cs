@@ -8,6 +8,12 @@ namespace IBankProjectBusinessServiceProtocol
 {
     public class CustomerInfo
     {
+        public string Code { get; set; }
+        public string Message { get; set; }
+        public string Success { get; set; }
+        public string RequestId { get; set; }
+        public string ResponseTime { get; set; }
+        public string TransReference { get; set; }
         public string CIF { get; set; }
         public string FullName { get; set; }
         public string DOB { get; set; }
@@ -64,6 +70,12 @@ namespace IBankProjectBusinessServiceProtocol
 
         public CustomerInfo()
         {
+            Code = string.Empty;
+            Message = string.Empty;
+            Success = string.Empty;
+            RequestId = string.Empty;
+            ResponseTime = string.Empty;
+            TransReference = string.Empty;
             CIF = string.Empty;
             Status = string.Empty;
             OpenCifDate = string.Empty;
@@ -142,6 +154,35 @@ namespace IBankProjectBusinessServiceProtocol
             FeeAmount = string.Empty;
             TaxAmount = string.Empty;
             Currency = string.Empty;
+        }
+    }
+    public class DepositResutl
+    {
+        public string Code { get; set; }
+        public string Message { get; set; }
+        public string Success { get; set; }
+        public string RequestId { get; set; }
+        public string ResponseTime { get; set; }
+        public string TransReference { get; set; }
+        public string CifNumber { get; set; }
+        public string AccountNumber { get; set; }
+        public string AccountName { get; set; }
+        public string AvailableBalance { get; set; }
+        public string Currency { get; set; }
+        public string BranchCode { get; set; }
+        public DepositResutl()
+        {
+            Code = string.Empty;
+            Message = string.Empty;
+            RequestId = string.Empty;
+            ResponseTime = string.Empty;
+            TransReference = string.Empty;
+            CifNumber = string.Empty;
+            AccountNumber = string.Empty;
+            AccountName = string.Empty;
+            AvailableBalance = string.Empty;
+            Currency = string.Empty;
+            BranchCode = string.Empty;
         }
     }
     [Serializable]

@@ -23,6 +23,7 @@ namespace IBankProjectBusinessActivity
                      ForwardTargets = new string[] { EventDictionary.s_EventConfirm, EventDictionary.s_EventFail, EventDictionary.s_EventCancel })]
     public class VAB_ShowQR : IBankProjectActivityBase
     {
+        private bool ResetTimer = false;
         private string m_input_val = string.Empty;
         [GrgBindTarget("input_val", Type = TargetType.String, Access = AccessRight.ReadAndWrite)]
         public string input_val
@@ -106,7 +107,7 @@ namespace IBankProjectBusinessActivity
                         string responseCode = string.Empty;
                         emRestfulServiceResult sendResult = ProjVTMContext.RestfulService.SendMessage("VerifyQR", out responseCode, MessageFormat.JSON);
 
-                        if (sendResult == emRestfulServiceResult.Success && responseCode == "0")
+                        if (sendResult == emRestfulServiceResult.Success && (responseCode == "200000" || responseCode == "0" || responseCode == "200" || responseCode == "00"))
                         {
                             Log.Project.LogDebug("VerifyQR success. Stop polling and continue workflow.");
                             _stopVerifyQRPolling = true;
@@ -136,6 +137,12 @@ namespace IBankProjectBusinessActivity
             });
 
             emWaitSignalResult_t emWaitResult = WaitPopu == 1 ? VTMWaitSignal() : WaitSignal();
+            while (ResetTimer)
+            {
+                ResetTimeOut();
+                ResetTimer = false;
+                emWaitResult = WaitPopu == 1 ? VTMWaitSignal() : WaitSignal();
+            }
             _stopVerifyQRPolling = true;
 
 
@@ -164,8 +171,15 @@ namespace IBankProjectBusinessActivity
                 ProjVTMContext.MainUI.ExecuteCustomCommand(UIServiceCommands.s_updateData);
 
                 string strKeyOther = argUIEvent.Key as string;
-                _stopVerifyQRPolling = true;
-                VTMContext.NextCondition = strKeyOther;
+                if (strKeyOther == "OnResetTimer")
+                {
+                    ResetTimer = true;
+                }
+                else
+                {
+                    _stopVerifyQRPolling = true;
+                    VTMContext.NextCondition = strKeyOther;
+                }
                 SignalCancel();
                 return emBusiCallbackResult_t.Swallowd;
             }

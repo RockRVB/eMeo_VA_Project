@@ -40,7 +40,7 @@
                         <input type="number" class="otp-input" id="fifth-otp-input">
                         <input type="number" class="otp-input" id="sixth-otp-input">
                     </div>
-                    <span class="text-alert-red" id="invalid-otp-message" style="font-size: 21px;" ids="ids_VAB_rt_14_otp_invalid">Mã xác thực OTP quý khách nhập không đúng. Vui lòng thử lại!</span>
+                    <span class="text-alert-red" id="invalid-otp-message" style="font-size: 21px; visibility: hidden" ids="ids_VAB_rt_14_otp_invalid">Mã xác thực OTP quý khách nhập không đúng. Vui lòng thử lại!</span>
                     <span class="resend-otp-message" id="resend-otp-message" tag="OnReSendOTP" ids="ids_VAB_rt_14_resend_otp">Gửi lại mã OTP <strong class="resend-otp-countdown-time" style="cursor: none;" id="resend-otp-countdown">(60)</strong></span>
                     <div class="number-keyboard-grid">
                         <button class="number-key-otp">1</button>
@@ -62,7 +62,7 @@
 
                 <div class="statement-btns-container" style="padding-bottom: 7px;">
                     <div class="dialog-actions">
-                        <button class="btn-dialog-secondary" id="confirm_otp_btn" tag="OnConfirmOtp" type="button">
+                        <button class="btn-dialog-secondary" id="confirm_otp_btn" type="button">
                             <span ids="ids_VAB_rt_14_confirm_otp">Xác nhận</span>
                         </button>
                     </div>
@@ -73,6 +73,7 @@
     </main>
 
     <stm-footer></stm-footer>
+    <button style="display: none;" id="OnConfirmOtp" tag="OnConfirmOtp" type="button"></button>
     <input style="display: none;" id="input_val" value='{Replace input_val}' />
     <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
 </div>
@@ -84,6 +85,8 @@
         const otpInputs = document.querySelectorAll('.otp-input');
         const keys = document.querySelectorAll('.number-key-otp');
         const confirmOtpBtn = document.getElementById('confirm_otp_btn');
+        const btnOnConfirmOtp = document.getElementById('OnConfirmOtp');
+        const errorMessage = document.getElementById('invalid-otp-message');
 
         // const countdownData = $('#input_val').val();
 
@@ -236,7 +239,14 @@
             otpInputs.forEach((input) => {
                 otp += input.value;
             })
-            // $('#output_val').val(otp);
+            if(otp.length < 6){
+                errorMessage.style.visibility = 'visible';
+                return;
+            } else {
+                errorMessage.style.visibility = 'hidden';
+            }
+            $('#output_val').val(otp);
+            btnOnConfirmOtp.click();
         })
     })
 </script>

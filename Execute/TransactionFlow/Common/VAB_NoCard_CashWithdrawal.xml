@@ -181,6 +181,7 @@
 		<End ID="9999" comment="End"></End>
 	</Activities>
 	<DefaultForward>
+		<Forward event="ONEXIT" targetID="ID_InvokeCloseTransWorkflow"/>
 		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
 		<Forward event="OnExitConfirm" targetID="ID_AskExitTxn"/>
 		<Forward event="OnTimeout" targetID="ID_CheckTimeoutState"/>

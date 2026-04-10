@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Screens>
 
-	<Screen name="UI_VABChooseDepositAccount" uri="VA\cash-deposit-qr\NT-01.html" cache="0">
+	<Screen name="UI_VABChooseDepositAccount" uri="VA\cash-deposit\NT-01.html" cache="0">
 		<Triggers>
 			<EventTrigger condition="show">
 				<PlaySound source=""/>
@@ -11,7 +11,7 @@
 			</EventTrigger>
 		</Triggers>
 	</Screen>
-	<Screen name="UI_VABCustomerHvNotAccount" uri="VA\cash-deposit-qr\NT-01-1.html" cache="0">
+	<Screen name="UI_VABCustomerHvNotAccount" uri="VA\cash-deposit\NT-01-1.html" cache="0">
 		<Triggers>
 			<EventTrigger condition="show">
 				<PlaySound source=""/>
@@ -21,7 +21,7 @@
 			</EventTrigger>
 		</Triggers>
 	</Screen>
-	<Screen name="UI_VABCashInWaitForNoteInsert" uri="VA\cash-deposit-qr\NT-02.html" cache="0">
+	<Screen name="UI_VABCashInWaitForNoteInsert" uri="VA\cash-deposit\NT-02.html" cache="0">
 		<Triggers>
 			<EventTrigger condition="show">
 				<PlaySound source=""/>
@@ -31,7 +31,7 @@
 			</EventTrigger>
 		</Triggers>
 	</Screen>
-	<Screen name="UI_VABCountingNote" uri="VA\cash-deposit-qr\NT-03.html" cache="0">
+	<Screen name="UI_VABCountingNote" uri="VA\cash-deposit\NT-03.html" cache="0">
 		<Triggers>
 			<EventTrigger condition="show">
 				<PlaySound source=""/>
@@ -41,7 +41,7 @@
 			</EventTrigger>
 		</Triggers>
 	</Screen>
-	<Screen name="UI_VABCashInRollback" uri="VA\cash-deposit-qr\NT-13-01.html" cache="0">
+	<Screen name="UI_VABCashInRollback" uri="VA\cash-deposit\NT-13-01.html" cache="0">
 		<Triggers>
 			<EventTrigger condition="show">
 				<PlaySound source=""/>
@@ -51,7 +51,47 @@
 			</EventTrigger>
 		</Triggers>
 	</Screen>
-	<Screen name="UI_VABCashInRetract" uri="VA\cash-deposit-qr\NT-TB-TIME-03.html" cache="0">
+	<Screen name="UI_VABCashInRetract" uri="VA\cash-deposit\NT-TB-TIME-03.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source=""/>
+			</EventTrigger>
+			<EventTrigger condition="">
+				<PlaySound source=""/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+	<Screen name="UI_VABCashInShowResult" uri="VA\cash-deposit\NT-04.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source=""/>
+			</EventTrigger>
+			<EventTrigger condition="">
+				<PlaySound source=""/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+	<Screen name="UI_VABTransFailRetract" uri="VA\cash-deposit\NT-13-04.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source=""/>
+			</EventTrigger>
+			<EventTrigger condition="">
+				<PlaySound source=""/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+	<Screen name="UI_VABAskPrintReceipt" uri="VA\cash-deposit\NT-12.html" cache="0">
+		<Triggers>
+			<EventTrigger condition="show">
+				<PlaySound source=""/>
+			</EventTrigger>
+			<EventTrigger condition="">
+				<PlaySound source=""/>
+			</EventTrigger>
+		</Triggers>
+	</Screen>
+	<Screen name="UI_VABConfirmDeposit" uri="VA\cash-deposit\NT-06.html" cache="0">
 		<Triggers>
 			<EventTrigger condition="show">
 				<PlaySound source=""/>

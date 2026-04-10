@@ -5,6 +5,8 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Net;
+using System.Net.Sockets;
 using VTMBusinessActivity.VTMBankInterface;
 namespace IBankProjectBankInterface
 {
@@ -22,6 +24,11 @@ namespace IBankProjectBankInterface
                 }
                 //Log.Project.LogDebugFormat("[{0}][{1}] proj_header : {2}", GetType(), System.Reflection.MethodBase.GetCurrentMethod().Name, header);
                 //ProjVTMContext.TransactionDataCache.Set("proj_header", header, GetType());
+                GenerateRequestIDNumber();
+                GetCurrentTimestamp();
+                GetDeviceId();
+                GetLocalIPAddress();
+                ProjVTMContext.TransactionDataCache.Set("proj_STMID", ProjVTMContext.TerminalConfig.Terminal.ATMNumber, GetType());
             }
             catch (Exception ex)
             {
@@ -63,6 +70,52 @@ namespace IBankProjectBankInterface
                 Log.Action.LogError(ex.Message);
             }
             return result;
+        }
+        private void GetDeviceId()
+        {
+            string deviceId = "";
+            try
+            {
+                ProjVTMContext.TransactionDataCache.Set("proj_DeviceId ", ProjVTMContext.TerminalConfig.Terminal.ATMNumber, GetType());
+               /* ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT UUID FROM Win32_ComputerSystemProduct");
+                foreach (ManagementObject obj in searcher.Get())
+                {
+                    deviceId = obj["UUID"].ToString();
+                    if (!String.IsNullOrEmpty(deviceId))
+                    {
+                        ProjVTMContext.TransactionDataCache.Set("proj_DeviceId ", deviceId, GetType());
+                    }
+
+                    break;
+                }*/
+            }
+            catch
+            {
+            }
+        }
+        private void GetLocalIPAddress()
+        {
+            ProjVTMContext.TransactionDataCache.Set("proj_IpAddress ", "", GetType());
+            try
+            {
+                var host = Dns.GetHostEntry(Dns.GetHostName());
+                foreach (var ip in host.AddressList)
+                {
+                    if (ip.AddressFamily == AddressFamily.InterNetwork)
+                    {
+                        ProjVTMContext.TransactionDataCache.Set("proj_IpAddress ", ip.ToString(), GetType());
+                        break;
+                    }
+                }
+            }
+            catch
+            {
+            }
+        }
+        private void GetCurrentTimestamp()
+        {
+            ProjVTMContext.TransactionDataCache.Set("proj_RequestTime", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"), GetType());
+           // return DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff");
         }
         private bool SetJsonData(string argTransType)
         {
@@ -126,58 +179,33 @@ namespace IBankProjectBankInterface
 
             return;
         }
-        private void SetQueryTransFee()
+         private void SetQueryTransFee()
         {
             try
             {
+                //TransType vs amount
                 object value = null;
                 ProjVTMContext.CardHolderDataCache.Get("VTM_TransTypeName", out value, GetType());
-                if (value != null)
-                {
-                    ProjVTMContext.TransactionDataCache.Set("proj_TransType", value?.ToString(), GetType());
-                    if (value.ToString() == "CASH_DEPOSIT")
-                    {
-                        ProjVTMContext.TransactionDataCache.Get("core_OriginalDepositAmount", out value, GetType());
-                        if (value != null)
-                        {
-                            ProjVTMContext.TransactionDataCache.Set("proj_Amount", value.ToString(), GetType());
-                        }
-                    }
-                    else if (value.ToString() == "CashWithdrawal_NoCard")
-                    {
-                        ProjVTMContext.TransactionDataCache.Get(DataDictionary.s_coreOriginalWithdrawalAmount, out value, GetType());
-                        if (value != null)
-                        {
-                            ProjVTMContext.TransactionDataCache.Set("proj_Amount", value.ToString(), GetType());
-                        }
-                    }
-                }
-                object Account = null;
-                ProjVTMContext.TransactionDataCache.Get("VAB_SelectedAccount", out Account, GetType());
-                Log.Action.LogDebugFormat("VAB_SelectedAccount: {0}", Account);
-                if (!string.IsNullOrEmpty(Account.ToString()))
-                {
-                    JObject oJson = JObject.Parse(Account.ToString());
-                    ProjVTMContext.TransactionDataCache.Set("proj_AccountNumber", oJson["accountNumber"]?.ToString(), GetType());
-                }
-            }
-            catch { }
-
-            return;
-        }
-        private void SetDepositConfirm()
-        {
-            try
-            {
+                ProjVTMContext.TransactionDataCache.Set("proj_TransType", value?.ToString(), GetType());
+				if (value.ToString() == "DEPOSIT")
+				{
+					ProjVTMContext.TransactionDataCache.Get("core_OriginalDepositAmount", out value, GetType());
+					if (value != null)
+					{
+						ProjVTMContext.TransactionDataCache.Set("proj_Amount", value.ToString(), GetType());
+					}
+				}
+				else if (value.ToString() == "CashWithdrawal_NoCard")
+				{
+					ProjVTMContext.TransactionDataCache.Get(DataDictionary.s_coreOriginalWithdrawalAmount, out value, GetType());
+					if (value != null)
+					{
+						ProjVTMContext.TransactionDataCache.Set("proj_Amount", value.ToString(), GetType());
+					}
+				}
+				//End TransType vs amount
+                //branchcode vs AccountNumber
                 ProjVTMContext.TransactionDataCache.Set("proj_AccountNumber", "", GetType());
-                ProjVTMContext.TransactionDataCache.Set("proj_AccountNumber", "", GetType());
-                ProjVTMContext.TransactionDataCache.Set("proj_TransType", "CASH_DEPOSIT", GetType());
-                object objAmount = null;
-                ProjVTMContext.TransactionDataCache.Get("core_OriginalDepositAmount", out objAmount, GetType());
-                if (objAmount != null)
-                {
-                    ProjVTMContext.TransactionDataCache.Set("proj_Amount", objAmount.ToString(), GetType());
-                }
                 object Account = null;
                 ProjVTMContext.TransactionDataCache.Get("VAB_SelectedAccount", out Account, GetType());
                 Log.Action.LogDebugFormat("VAB_SelectedAccount: {0}", Account);
@@ -201,6 +229,52 @@ namespace IBankProjectBankInterface
                         }
                     }
                 }
+                //end branchcode vs AccountNumber
+            }
+            catch { }
+
+            return;
+        }
+        private void SetDepositConfirm()
+        {
+            try
+            {   
+                //branchcode vs AccountNumber
+                object Account = null;
+                ProjVTMContext.TransactionDataCache.Get("VAB_SelectedAccount", out Account, GetType());
+                Log.Action.LogDebugFormat("VAB_SelectedAccount: {0}", Account);
+                if (!string.IsNullOrEmpty(Account.ToString()))
+                {
+                    JObject oJson = JObject.Parse(Account.ToString());
+                    ProjVTMContext.TransactionDataCache.Set("proj_AccountNumber", oJson["accountNumber"]?.ToString(), GetType());
+                    object objCustomerInfo = null;
+                    ProjVTMContext.TransactionDataCache.Get("VAB_CustomerInfo", out objCustomerInfo, GetType());
+                    CustomerInfo customerInfo = new CustomerInfo();
+                    if (objCustomerInfo != null)
+                    {
+                        customerInfo = objCustomerInfo as CustomerInfo;
+                        foreach (var item in customerInfo.Accounts)
+                        {
+                            if (oJson["accountNumber"]?.ToString() == item.AccountNumber)
+                            {
+                                ProjVTMContext.TransactionDataCache.Set("proj_BranchCode", item.BranchCode, GetType());
+                                break;
+                            }
+                        }
+                    }
+                }
+                //end branchcode vs AccountNumber
+                
+                ProjVTMContext.TransactionDataCache.Set("proj_Description", "Nop tien mat vao tai khoan", GetType());
+                //Amount
+                object objAmount = null;
+                ProjVTMContext.TransactionDataCache.Get("core_OriginalDepositAmount", out objAmount, GetType());
+                if (objAmount != null)
+                {
+                    ProjVTMContext.TransactionDataCache.Set("proj_Amount", objAmount.ToString(), GetType());
+                }
+                //end amount
+                //Fee
                 List<Fee> lstFee = new List<Fee>();
                 lstFee.Clear();
                 object objFee = null;
@@ -208,9 +282,9 @@ namespace IBankProjectBankInterface
                 if (objFee != null)
                 {
                     lstFee = objFee as List<Fee>;
-                    object value = null;
-                    ProjVTMContext.CardHolderDataCache.Get("VAB_ComfirmDepositTimeout", out value, GetType());
-                    if (value != null && value?.ToString() == "TRUE")//no receipt
+                    object objValue = null;
+                    ProjVTMContext.CardHolderDataCache.Get("VAB_ComfirmDepositTimeout", out objValue, GetType());
+                    if (objValue != null && objValue?.ToString() == "TRUE")//no receipt
                     {
                         foreach (var item in lstFee)
                         {
@@ -238,7 +312,15 @@ namespace IBankProjectBankInterface
                         ProjVTMContext.TransactionDataCache.Set("proj_Tax", tax.ToString(), GetType());
                     }
                 }
-                ProjVTMContext.TransactionDataCache.Set("proj_STMID", ProjVTMContext.TerminalConfig.Terminal.ATMNumber, GetType());
+                //End Fee
+                //TransType
+                object value = null;
+                ProjVTMContext.CardHolderDataCache.Get("VTM_TransTypeName", out value, GetType());
+                if (value != null)
+                {
+                    ProjVTMContext.TransactionDataCache.Set("proj_TransType", value?.ToString(), GetType());
+                }
+                //End TransType
             }
             catch { }
 
@@ -253,7 +335,7 @@ namespace IBankProjectBankInterface
                 if (value != null)
                 {
                     ProjVTMContext.TransactionDataCache.Set("proj_TransType", value?.ToString(), GetType());
-                    if (value.ToString() == "CASH_DEPOSIT")
+                    if (value.ToString() == "DEPOSIT")
                     {
                         ProjVTMContext.TransactionDataCache.Get("core_OriginalDepositAmount", out value, GetType());
                         if (value != null)

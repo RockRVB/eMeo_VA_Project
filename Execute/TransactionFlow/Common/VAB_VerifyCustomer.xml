@@ -6,7 +6,7 @@
 		<Start ID="0" comment="Start" callVisible="0" endflag="1">
 			<Forward event="OnConfirm" targetID="ID_SelecTQROrCCCD"/>
 		</Start>
-		<VAB_SelectFunction ID="ID_SelecTQROrCCCD" UI="UI_VAB_SelecTQROrCCCD" comment="">
+		<VAB_SelectFunction ID="ID_SelecTQROrCCCD" UI="UI_VAB_SelecTQROrCCCD" comment="" timeout="20000">
 			<Forward event="OnQR" targetID="ID_VAB_RestfulGenQR"/>
 			<Forward event="OnCCCD" targetID="ID_InvokeCloseTransWorkflow"/>
 		</VAB_SelectFunction>
@@ -35,7 +35,7 @@
 			<Forward event="OnUnpackFail" targetID="ID_InvokeCloseTransWorkflow"/>
 			<Forward event="OnHostRefuse" targetID="ID_InvokeCloseTransWorkflow"/>
 		</RequestTransViaRestful>
-		<VAB_ShowQR ID="ID_ShowQR" UI="UI_VAB_ShowQR" comment=""  timeout="300000" TimerResentVerifyQR="5000">
+		<VAB_ShowQR ID="ID_ShowQR" UI="UI_VAB_ShowQR" comment=""  timeout="20000" TimerResentVerifyQR="5000">
 			<Forward event="OnConfirm" targetID="9999"/>
 			<Forward event="OnCCCD" targetID="ID_InvokeCloseTransWorkflow"/>
 		</VAB_ShowQR>
@@ -53,6 +53,7 @@
 	</Activities>
 	<DefaultForward>
 		<Forward event="OnExit" targetID="ID_InvokeCloseTransWorkflow"/>
+		<Forward event="ONEXIT" targetID="ID_InvokeCloseTransWorkflow"/>
 		<Forward event="OnCancel" targetID="ID_InvokeCloseTransWorkflow"/>
 		<Forward event="OnExitConfirm" targetID="ID_AskExitTxn"/>
 		<Forward event="OnTimeout" targetID="ID_CheckTimeoutState"/>

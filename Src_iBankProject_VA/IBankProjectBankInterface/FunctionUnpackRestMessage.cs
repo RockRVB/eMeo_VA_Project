@@ -92,18 +92,21 @@ namespace IBankProjectBankInterface
             {
                 CustomerInfo customerInfo = new CustomerInfo();
                 customerInfo.Accounts.Clear();
-                customerInfo.CIF = dataObj["data"]["cif_information"]["customerId"]?.ToString();
-                customerInfo.FullName = dataObj["data"]["cif_information"]["fullName"]?.ToString();
+                customerInfo.Code = dataObj["code"]?.ToString();
+                customerInfo.Message = dataObj["message"]?.ToString();
+                customerInfo.Success = dataObj["success"]?.ToString();
+                customerInfo.RequestId = dataObj["requestId"]?.ToString();
+                customerInfo.ResponseTime = dataObj["responseTime"]?.ToString();
 
-                foreach (var item in dataObj["data"]["accounts"])
+                customerInfo.CIF = dataObj["cifNumber"]?.ToString();
+                customerInfo.FullName = dataObj["customerName"]?.ToString();
+
+                foreach (var item in dataObj["records"])
                 {
                     Account account = new Account();
-
-                    account.AccountName = item["accountName"]?.ToString();
                     account.AccountNumber = item["accountNumber"]?.ToString();
-                    account.AvailableBalance = item["availableBalance"]?.ToString();
+                    account.AvailableBalance = item["availBalance"]?.ToString();
                     account.BranchCode = item["branchCode"]?.ToString();
-                    account.Currency = item["currency"]?.ToString();
 
                     customerInfo.Accounts.Add(account);
                 }
@@ -157,19 +160,21 @@ namespace IBankProjectBankInterface
         {
             try
             {
-                List<Fee> lstFee = new List<Fee>();
-                lstFee.Clear();
-                foreach (var item in dataObj["data"])
-                {
-                    Fee fee = new Fee();
-                    fee.FeeCode = item["feeCode"]?.ToString();
-                    fee.FeeAmount = item["amount"]?.ToString();
-                    fee.TaxAmount = item["tax"]?.ToString();
-                    fee.Currency = item["currency"]?.ToString();
-                    lstFee.Add(fee);
-                }
+                DepositResutl depositResutl = new DepositResutl();
+                depositResutl.Code = dataObj["code"]?.ToString();
+                depositResutl.Message = dataObj["message"]?.ToString();
+                depositResutl.Success = dataObj["success"]?.ToString();
+                depositResutl.RequestId = dataObj["requestId"]?.ToString();
+                depositResutl.ResponseTime = dataObj["responseTime"]?.ToString();
+                depositResutl.TransReference = dataObj["transReference"]?.ToString();
+                depositResutl.CifNumber = dataObj["cifNumber"]?.ToString();
+                depositResutl.AccountNumber = dataObj["accountNumber"]?.ToString();
+                depositResutl.AccountName = dataObj["accountName"]?.ToString();
+                depositResutl.AvailableBalance = dataObj["availableBalance"]?.ToString();
+                depositResutl.Currency = dataObj["currency"]?.ToString();
+                depositResutl.BranchCode = dataObj["branchCode"]?.ToString();
 
-                ProjVTMContext.TransactionDataCache.Set("VAB_DepositResutl", dataObj, GetType());
+                ProjVTMContext.TransactionDataCache.Set("VAB_DepositResutl", depositResutl, GetType());
             }
             catch
             {

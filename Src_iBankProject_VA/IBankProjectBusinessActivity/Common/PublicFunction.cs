@@ -425,6 +425,19 @@ namespace IBankProjectBusinessActivity
             catch { }
             return res;
         }
+        public static string ConvertDateTime(string strDateTime)
+        {
+            string res = strDateTime;
+
+            try
+            {
+                DateTime date = DateTime.ParseExact(strDateTime, "dd/MM/yyyy HH:mm:ss.fff", CultureInfo.InvariantCulture);
+                res = date.ToString("yyyy-MM-dd");
+            }
+            catch { }
+            return res;
+        }
+        
     }
 
     public class OCRNumberSerial : IBankProjectActivityBase

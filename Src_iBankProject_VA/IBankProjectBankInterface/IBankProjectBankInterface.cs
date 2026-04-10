@@ -59,12 +59,10 @@ namespace IBankProjectBankInterface
             JObject dataObj = null;
             dataObj = JObject.Parse(argResponse);
             ProjVTMContext.LogJournal("TRANSACTION RESPONSE [" + argType + "]");
-            ProjVTMContext.LogJournal("Response Code [" + dataObj["resCode"]?.ToString() + "]");
-            ProjVTMContext.LogJournal("Response Desc [" + dataObj["resDesc"]?.ToString().ConvertToEngUpChar() + "]");
-            if (resultCode != "0") return emRetCode.Default;
-            
-            
-            UnpackJsonData(argType, resultCode, argResponse);
+            ProjVTMContext.LogJournal("Response Code [" + dataObj["code"]?.ToString() + "]");
+            ProjVTMContext.LogJournal("Response Desc [" + dataObj["message"]?.ToString().ConvertToEngUpChar() + "]");
+            if (resultCode == "200000" || resultCode == "0" || resultCode == "200" || resultCode == "00")
+                UnpackJsonData(argType, resultCode, argResponse);
              
             return emRetCode.Default;
         }

@@ -19,6 +19,8 @@ using InputOrSelect;
 using UIServiceProtocol;
 using EPPKeypadDeviceProtocol;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json.Linq;
+using IBankProjectBusinessServiceProtocol;
 
 namespace IBankProjectBusinessActivity
 {
@@ -28,6 +30,9 @@ namespace IBankProjectBusinessActivity
                  Author = "rocky")]
     public class VAB_InputWithdrawAmount : BusinessActivityInputWithdrawalAmount
     {
+        private const int MaxPerTrans = 10000000;
+        private const int MaxPerDay = 300000000;
+        private static readonly int[] QuickWithdrawAmounts = new int[] { 500000, 1000000, 2000000, 3000000, 5000000 };
         private bool ResetTimer = false;
         private string m_input_val = string.Empty;
         [GrgBindTarget("input_val", Type = TargetType.String, Access = AccessRight.ReadAndWrite)]
@@ -132,41 +137,7 @@ namespace IBankProjectBusinessActivity
                 }
                 else
                 {
-                    foreach (CashUnitInfo item in listCashUnitInfo)
-                    {
-                        if (item.DenoValue == 500000 && (item.Status != CashUnitStatus.EMPTY) && (item.Status != CashUnitStatus.MISSING) && (item.Status != CashUnitStatus.INOP))
-                        {
-                            totalremain = totalremain + item.Count * item.DenoValue;
-                            continue;
-                        }
-                        if (item.DenoValue == 200000 && (item.Status != CashUnitStatus.EMPTY) && (item.Status != CashUnitStatus.MISSING) && (item.Status != CashUnitStatus.INOP))
-                        {
-                            totalremain = totalremain + item.Count * item.DenoValue;
-                            continue;
-                        }
-                        if (item.DenoValue == 100000 && (item.Status != CashUnitStatus.EMPTY) && (item.Status != CashUnitStatus.MISSING) && (item.Status != CashUnitStatus.INOP))
-                        {
-                            totalremain = totalremain + item.Count * item.DenoValue;
-                            continue;
-                        }
-                        if (item.DenoValue == 50000 && (item.Status != CashUnitStatus.EMPTY) && (item.Status != CashUnitStatus.MISSING) && (item.Status != CashUnitStatus.INOP))
-                        {
-                            totalremain = totalremain + item.Count * item.DenoValue;
-
-                            continue;
-                        }
-                        if (item.DenoValue == 20000 && (item.Status != CashUnitStatus.EMPTY) && (item.Status != CashUnitStatus.MISSING) && (item.Status != CashUnitStatus.INOP))
-                        {
-                            totalremain = totalremain + item.Count * item.DenoValue;
-
-                            continue;
-                        }
-                        if (item.DenoValue == 10000 && (item.Status != CashUnitStatus.EMPTY) && (item.Status != CashUnitStatus.MISSING) && (item.Status != CashUnitStatus.INOP))
-                        {
-                            totalremain = totalremain + item.Count * item.DenoValue;
-                            continue;
-                        }
-                    }
+                    totalremain = GetTotalRemain(listCashUnitInfo);
                     Log.Project.LogDebug("total remain = " + totalremain.ToString());
                 }
                 Log.Project.LogDebug("output_val = " + output_val);
@@ -390,15 +361,130 @@ namespace IBankProjectBusinessActivity
             return cassetteinfo;
         }
 
+        private long GetTotalRemain(List<CashUnitInfo> listCashUnitInfo)
+        {
+            long totalremain = 0;
+            foreach (CashUnitInfo item in listCashUnitInfo)
+            {
+                if ((item.DenoValue == 500000
+                    || item.DenoValue == 200000
+                    || item.DenoValue == 100000
+                    || item.DenoValue == 50000
+                    || item.DenoValue == 20000
+                    || item.DenoValue == 10000)
+                    && (item.Status != CashUnitStatus.EMPTY)
+                    && (item.Status != CashUnitStatus.MISSING)
+                    && (item.Status != CashUnitStatus.INOP))
+                {
+                    totalremain += item.Count * item.DenoValue;
+                }
+            }
+            return totalremain;
+        }
+
+        private CassetteInfo[] GetDispensableCassetteInfos(out int totalCassette)
+        {
+            List<CashUnitInfo> argUintInfo = new List<CashUnitInfo>();
+            m_objContext.CashDispenser.GetCashUnitInfo(out argUintInfo);
+
+            totalCassette = argUintInfo.Count(item => item.DenoValue != 0);
+            CassetteInfo[] cassetteinfo = new CassetteInfo[totalCassette];
+            int i = 0;
+
+            foreach (CashUnitInfo item in argUintInfo)
+            {
+                if (i >= totalCassette)
+                {
+                    break;
+                }
+
+                if (item.UseType == CashUnitType.BILL || CashUnitType.RECYCLING == item.UseType)
+                {
+                    int remain = (item.Status == CashUnitStatus.EMPTY || item.Status == CashUnitStatus.INOP || item.Status == CashUnitStatus.MISSING)
+                        ? 0
+                        : item.Count;
+
+                    cassetteinfo[i].InputInfo(item.UnitID, item.DenoValue, remain);
+                    Log.Project.LogDebug("cassette InputInfo = " + item.UnitID + " " + item.DenoValue.ToString() + " " + remain.ToString());
+                    i++;
+                }
+            }
+
+            return SortArray(cassetteinfo);
+        }
+
+        private List<int> BuildAvailableAmountList()
+        {
+            List<int> amountList = new List<int>();
+            int totalCassette = 0;
+            CassetteInfo[] cassetteInfo = GetDispensableCassetteInfos(out totalCassette);
+            if (cassetteInfo == null || cassetteInfo.Length == 0 || totalCassette == 0)
+            {
+                return amountList;
+            }
+
+            foreach (int amount in QuickWithdrawAmounts)
+            {
+                if (amount > MaxPerTrans)
+                {
+                    continue;
+                }
+
+                Dictionary<string, int> cassetteDispenseCount = CalculatorNotes(amount, cassetteInfo, totalCassette);
+                if (cassetteDispenseCount.Count > 0 && checkCalculatorNote(cassetteDispenseCount, amount))
+                {
+                    amountList.Add(amount);
+                }
+            }
+
+            return amountList;
+        }
+
         protected override emBusActivityResult_t InnerPreRun(BusinessContext argContext)
         {
 
             base.InnerPreRun(argContext);
             m_objContext = (eCATContext)argContext;
             Log.Project.LogDebug("Enter action: InnerPreRun VAB_InputWithdrawAmount");
-            object value = null;
-            // set value selectaccount and show on HTML
-            //set value CWDDenoAvailable and show on HTML
+            object selectedAccountObj = null;
+            object customerInfoObj = null;
+
+            m_objContext.TransactionDataCache.Get("VAB_SelectedAccount", out selectedAccountObj, GetType());
+            m_objContext.TransactionDataCache.Get("VAB_CustomerInfo", out customerInfoObj, GetType());
+
+            if (selectedAccountObj != null && customerInfoObj != null)
+            {
+                CustomerInfo customerInfo = customerInfoObj as CustomerInfo;
+                if (customerInfo != null && !string.IsNullOrEmpty(selectedAccountObj.ToString()))
+                {
+                    JObject selectedAccountJson = JObject.Parse(selectedAccountObj.ToString());
+                    string accountNumber = selectedAccountJson["accountNumber"] != null
+                        ? selectedAccountJson["accountNumber"].ToString()
+                        : string.Empty;
+
+                    Account selectedAccount = customerInfo.Accounts.FirstOrDefault(item => item.AccountNumber == accountNumber);
+                    if (selectedAccount != null)
+                    {
+                        long availableBalance = 0;
+                        long.TryParse(selectedAccount.AvailableBalance.CleanStringOfNonDigits(), out availableBalance);
+
+                        var htmlJsonInput = new
+                        {
+                            withdraw_source_info = new
+                            {
+                                account_num = selectedAccount.AccountNumber.ProcessMaskData(),
+                                max_per_trans = MaxPerTrans,
+                                max_per_day = MaxPerDay,
+                                avail_balance = availableBalance,
+                                amount_list = BuildAvailableAmountList()
+                            }
+                        };
+
+                        input_val = htmlJsonInput.ToJSON();
+                        Log.Project.LogDebug("InnerPreRun input_val = " + input_val);
+                    }
+                }
+            }
 
             Log.Project.LogDebug("Leave action: InnerPreRun VAB_InputWithdrawAmount");
             return emBusActivityResult_t.Success;

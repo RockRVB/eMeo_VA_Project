@@ -1,5 +1,7 @@
 const COUNTDOWN_SHOW_OUTOFTRANS_POPUP = 10;
-
+const VA_MULTIPLE = 20000;
+const VA_MAXIMUM_AMOUNT_WITHDRAW = 100000000; // 200 tờ 500K = 100.000.000
+const VA_MAXIMUM_AMOUNT_TRANSFER = 999999999999;
 class Header extends HTMLElement {
     constructor() {
         super();
@@ -106,7 +108,9 @@ class LogoAndCountdownHeader extends HTMLElement {
             </div>
             
             <div class="header-actions">
-                <span class="header-countdown" ids="ids_VAB_end_deposit_in_seconds">Thao tác nộp thêm sẽ kết thúc sau <span id="Counter" type="countdown" content="{Binding Count mode=2}" visible="{Binding CounterVisible mode=2}"></span>s</span>
+                <span class="header-countdown" ids="ids_VAB_end_deposit_in_seconds">Thao tác nộp thêm sẽ kết thúc sau </span>
+                <span class="header-countdown-time" id="Counter" type="countdown" content="{Binding Count mode=2}" visible="{Binding CounterVisible mode=2}"></span>
+                <span class="header-countdown" style="margin-left: -10px;">s</span>
             </div>
         </header>
     `;
@@ -255,6 +259,10 @@ class AuthTaskHeader extends HTMLElement {
         this.updateClickEvent();
     }
 
+    onGetTimer(){
+        return this.countdownValue
+    }
+
     updateClickEvent() {
         const btn = this.querySelector('#header-cancel-trans-btn');
         if (btn && this._cancelTransOnClick) {
@@ -353,7 +361,9 @@ class AuthTaskHeader extends HTMLElement {
             </div>
             
             <div class="header-actions">
-                <span class="header-countdown" ids="ids_VAB_end_transaction_in_seconds">Giao dịch kết thúc sau <span id="Counter" type="countdown" content="{Binding Count mode=2}" visible="{Binding CounterVisible mode=2}"></span>s</span>
+                <span class="header-countdown" ids="ids_VAB_end_transaction_in_seconds">Giao dịch kết thúc sau </span>
+                <span class="header-countdown-time" id="Counter" type="countdown" content="{Binding Count mode=2}" visible="{Binding CounterVisible mode=2}"></span>
+                <span class="header-countdown" style="margin-left: -10px;">s</span>
                 <button class="btn-cancel-transaction" id="header-cancel-trans-btn" tag="ONEXIT">
                     <img src="../../../images/VA/close-circle.svg">
                     <span ids="ids_VAB_end_transaction">Hủy giao dịch</span>
@@ -497,7 +507,9 @@ class AuthHeader extends HTMLElement {
             </div>
             
             <div class="header-actions">
-                <span class="header-countdown">Giao dịch kết thúc sau <span id="Counter" type="countdown" content="{Binding Count mode=2}" visible="{Binding CounterVisible mode=2}"></span>s</span>
+                <span class="header-countdown">Giao dịch kết thúc sau </span>
+                <span class="header-countdown-time" id="Counter" type="countdown" content="{Binding Count mode=2}" visible="{Binding CounterVisible mode=2}"></span>
+                <span class="header-countdown" style="margin-left: -10px;">s</span>
                 <button class="btn-cancel-transaction" id="header-cancel-trans-btn" tag="ONEXIT">
                     <img src="../../../images/VA/close-circle.svg">
                     <span ids="ids_VAB_end_transaction">Hủy giao dịch</span>
@@ -564,7 +576,9 @@ class AuthHeaderNoCusName extends HTMLElement {
             </div>
             
             <div class="header-actions">
-                <span class="header-countdown" ids="ids_VAB_end_transaction_in_seconds">Giao dịch kết thúc sau <span id="Counter" type="countdown" content="{Binding Count mode=2}" visible="{Binding CounterVisible mode=2}"></span>s</span>
+                <span class="header-countdown" ids="ids_VAB_end_transaction_in_seconds">Giao dịch kết thúc sau </span>
+                <span class="header-countdown-time" id="Counter" type="countdown" content="{Binding Count mode=2}" visible="{Binding CounterVisible mode=2}"></span>
+                <span class="header-countdown" style="margin-left: -10px;">s</span>
                 <!-- <button class="btn-cancel-transaction" tag="onCloseAll">
                     <img src="../../../images/VA/close-circle.svg">
                     <span ids="ids_VAB_auth_header_close_btn">Đóng</span>
@@ -604,7 +618,16 @@ class AuthHeaderNoCusName_BackToHome extends HTMLElement {
     updateCountdownUI() {
         const countdownElement = this.querySelector('.header-countdown');
         if (countdownElement) {
-            countdownElement.textContent = `Tự động về trang chủ sau ${this.countdownValue} s`;
+            // countdownElement.textContent = `Tự động về trang chủ sau ${this.countdownValue} s`;
+            countdownElement.innerHTML = ""; // clear
+            const textNode = document.createTextNode("Tự động về trang chủ sau ");
+
+            const timeSpan = document.createElement("span");
+            timeSpan.className = "header-countdown-time";
+            timeSpan.textContent = `${this.countdownValue}s`;
+
+            countdownElement.appendChild(textNode);
+            countdownElement.appendChild(timeSpan);
         }
     }
 
@@ -1328,29 +1351,40 @@ class CustomTable extends HTMLElement {
 class NumberKeyboard extends HTMLElement {
     constructor() {
         super();
+        this._isOpen = false;
         this._activeInput = null; // Biến lưu trữ input đang focus
-        this._handleFocusIn = this.handleFocusIn.bind(this);
+        // this._handleFocusIn = this.handleFocusIn.bind(this);
         // this.attachShadow({ mode: 'open' });
     }
 
     connectedCallback() {
         this.render();
-        this.initEvents();
         // Lắng nghe sự kiện focus trên toàn bộ document
-        document.addEventListener('focusin', this._handleFocusIn);
+        // document.addEventListener('focusin', this._handleFocusIn);
     }
 
-    handleFocusIn(e) {
-        // Chỉ nhận các element là INPUT hoặc TEXTAREA
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-            this._activeInput = e.target;
-            // Thay vì render() lại toàn bộ, chỉ hiện keyboard lên
-            const container = this.querySelector('.number-keyboard-grid');
-            if (container) container.style.visibility = 'visible';
-
-            this._activeInput.addEventListener('keydown', (e) => e.preventDefault(), { once: true });
-        }
+    set openKeyboard(value){
+        this._isOpen = value;
+        this.render();
     }
+
+    set bindingInput(inputEle) {
+        this._activeInput = inputEle;
+        this.render();
+        this.initEvents();
+    }
+
+    // handleFocusIn(e) {
+    //     // Chỉ nhận các element là INPUT hoặc TEXTAREA
+    //     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+    //         this._activeInput = e.target;
+    //         // Thay vì render() lại toàn bộ, chỉ hiện keyboard lên
+    //         const container = this.querySelector('.number-keyboard-grid');
+    //         if (container) container.style.visibility = 'visible';
+    //
+    //         this._activeInput.addEventListener('keydown', (e) => e.preventDefault(), { once: true });
+    //     }
+    // }
 
 
     initEvents() {
@@ -1383,7 +1417,7 @@ class NumberKeyboard extends HTMLElement {
 
     render() {
         this.innerHTML = `
-      <div class="number-keyboard-grid">
+      <div class="number-keyboard-grid" style="visibility: ${this._isOpen === true ? 'visible' : 'hidden'}">
                     <button class="number-key-new">1</button>
                     <button class="number-key-new">2</button>
                     <button class="number-key-new">3</button>
@@ -1447,6 +1481,48 @@ class SimpleDialog extends HTMLElement {
     }
 }
 
+class ViewContentDialog extends HTMLElement {
+    constructor() {
+        super();
+        this._isOpen = false;
+        this._htmlEle = null;
+        this._countdownVal = null;
+        // this.attachShadow({ mode: 'open' });
+    }
+
+    connectedCallback() {
+        this.render();
+    }
+
+    attributeChangedCallback() {
+        this.render();
+    }
+
+    set htmlEle(ele) {
+        this._htmlEle = ele;
+        this.render();
+    }
+
+    set countdownVal(time) {
+        this._countdownVal = time;
+        this.render();
+    }
+
+    set openDialog(isOpen){
+        this._isOpen = isOpen;
+        this.render();
+    }
+
+    render() {
+        this.innerHTML = `
+        <main class="stm-dialog-container" style="display: ${this._isOpen === true ? 'flex' : 'none'}">
+            <div class="ekyc-content-dialog">
+                ${this._htmlEle || ''}
+            </div>
+        </main>
+        `;
+    }
+}
 
 class TimerSpan extends HTMLElement {
     constructor() {
@@ -1483,12 +1559,192 @@ class TimerSpan extends HTMLElement {
 }
 
 
+
+class TextKeyboard extends HTMLElement {
+    constructor() {
+        super();
+        this._isOpen = false;
+        this._inputElement = null;
+    }
+
+    connectedCallback() {
+        this.render();
+    }
+
+    set openKeyboard(value) {
+        this._isOpen = value;
+    }
+
+    set bindingInput(inputEle) {
+        this._inputElement = inputEle;
+        this.render();
+        this.initTextKeyboardEvent();
+    }
+
+    initTextKeyboardEvent() {
+            const shiftKey = document.getElementById('shiftKey');
+            const modeKey = document.getElementById('modeKey');
+            const textKeyboard = document.getElementById("text_keyboard");
+
+            let isShift = false;
+            let isNumMode = false;
+
+            const alphaKeys = 'qwertyuiopasdfghjklzxcvbnm'.split('');
+            const numSymbols = {
+                'q': '1', 'w': '2', 'e': '3', 'r': '4', 't': '5',
+                'y': '6', 'u': '7', 'i': '8', 'o': '9', 'p': '0',
+                'a': '!', 's': '#', 'd': '$', 'f': '%', 'g': '&',
+                'h': '*', 'j': '(', 'k': ')', 'l': '/',
+                'z': '+', 'x': '=', 'c': '^', 'v': '~', 'b': '`',
+                'n': '{', 'm': '}'
+            };
+
+            // Xử lí khi click vào các nút
+            textKeyboard.addEventListener('click', (e) => {
+                const btn = e.target.closest('.osk-key');
+                if (!btn) return;
+
+                const key = btn.getAttribute('data-key');
+                const action = btn.getAttribute('data-action');
+
+                if (key) {
+                    // Character key
+                    let char = key;
+                    if (key.length === 1 && alphaKeys.includes(key.toLowerCase())) {
+                        if (isNumMode) {
+                            char = numSymbols[key.toLowerCase()] || key;
+                        } else if (isShift) {
+                            char = key.toUpperCase();
+                        }
+                    }
+                    this._inputElement.value += char;
+
+                    // Auto-release shift after one press
+                    if (isShift && !isNumMode) {
+                        isShift = false;
+                        shiftKey.classList.remove('osk-active');
+                        updateKeyLabels();
+                    }
+                } else if (action) {
+                    switch (action) {
+                        case 'backspace':
+                            this._inputElement.value = this._inputElement.value.slice(0, -1);
+                            break;
+                        case 'space':
+                            this._inputElement.value += ' ';
+                            break;
+                        case 'enter':
+                            // Ẩn bàn phím khi bấm Tiếp tục
+                            textKeyboard.style.visibility = 'hidden';
+                            break;
+                        case 'shift':
+                            isShift = !isShift;
+                            shiftKey.classList.toggle('osk-active', isShift);
+                            updateKeyLabels();
+                            break;
+                        case 'mode':
+                            isNumMode = !isNumMode;
+                            modeKey.textContent = isNumMode ? 'ABC' : '?123';
+                            modeKey.classList.toggle('osk-active', isNumMode);
+                            updateKeyLabels();
+                            break;
+                        case 'hide':
+                            textKeyboard.style.visibility = 'hidden';
+                            break;
+                    }
+                }
+            });
+
+            function updateKeyLabels() {
+                const keys = textKeyboard.querySelectorAll('.osk-key[data-key]');
+                keys.forEach(btn => {
+                    const baseKey = btn.getAttribute('data-key');
+                    if (baseKey.length === 1 && alphaKeys.includes(baseKey.toLowerCase())) {
+                        if (isNumMode) {
+                            btn.textContent = numSymbols[baseKey.toLowerCase()] || baseKey;
+                        } else if (isShift) {
+                            btn.textContent = baseKey.toUpperCase();
+                        } else {
+                            btn.textContent = baseKey.toLowerCase();
+                        }
+                    }
+                });
+            }
+    }
+
+
+    render() {
+        this.innerHTML = `
+          <div class="osk-container keyboard-layer" style="visibility: ${this._isOpen === true ? 'visible' : 'hidden'}" id="text_keyboard">
+                            <!-- Row 1: q-p + backspace -->
+                            <div class="osk-row">
+                                <button class="osk-key" data-key="q">q</button>
+                                <button class="osk-key" data-key="w">w</button>
+                                <button class="osk-key" data-key="e">e</button>
+                                <button class="osk-key" data-key="r">r</button>
+                                <button class="osk-key" data-key="t">t</button>
+                                <button class="osk-key" data-key="y">y</button>
+                                <button class="osk-key" data-key="u">u</button>
+                                <button class="osk-key" data-key="i">i</button>
+                                <button class="osk-key" data-key="o">o</button>
+                                <button class="osk-key" data-key="p">p</button>
+                                <button class="osk-key osk-key-backspace" data-action="backspace">⌫</button>
+                            </div>
+
+                            <!-- Row 2: a-l + enter -->
+                            <div class="osk-row">
+                                <button class="osk-key" data-key="a">a</button>
+                                <button class="osk-key" data-key="s">s</button>
+                                <button class="osk-key" data-key="d">d</button>
+                                <button class="osk-key" data-key="f">f</button>
+                                <button class="osk-key" data-key="g">g</button>
+                                <button class="osk-key" data-key="h">h</button>
+                                <button class="osk-key" data-key="j">j</button>
+                                <button class="osk-key" data-key="k">k</button>
+                                <button class="osk-key" data-key="l">l</button>
+                                <button class="osk-key osk-key-enter" data-action="enter">↵ Tiếp tục</button>
+                            </div>
+
+                            <!-- Row 3: shift + z-m + , . @ -->
+                            <div class="osk-row">
+                                <button class="osk-key osk-key-shift" data-action="shift" id="shiftKey">⇧</button>
+                                <button class="osk-key" data-key="z">z</button>
+                                <button class="osk-key" data-key="x">x</button>
+                                <button class="osk-key" data-key="c">c</button>
+                                <button class="osk-key" data-key="v">v</button>
+                                <button class="osk-key" data-key="b">b</button>
+                                <button class="osk-key" data-key="n">n</button>
+                                <button class="osk-key" data-key="m">m</button>
+                                <button class="osk-key" data-key=",">,</button>
+                                <button class="osk-key" data-key=".">.</button>
+                                <button class="osk-key" data-key="@">@</button>
+                            </div>
+
+                            <!-- Row 4: ?123 + - + _ + space + .com + hide -->
+                            <div class="osk-row">
+                                <button class="osk-key osk-key-mode" data-action="mode" id="modeKey">?123</button>
+                                <button class="osk-key" data-key="-">-</button>
+                                <button class="osk-key" data-key="_">_</button>
+                                <button class="osk-key osk-key-space" data-action="space"></button>
+                                <button class="osk-key osk-key-dotcom" data-key=".com">.com</button>
+                                <button class="osk-key osk-key-hide" data-action="hide">
+                                    <div style="display: flex; flex-direction: column;">
+                                        <span style="display: block; font-size: 24px;">⌨</span>
+                                        <span style="display: block; font-size: 12px;">▼</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+        `;
+    }
+}
+
 function formatVND(value) {
     // Chuyển về chuỗi và chỉ giữ lại các chữ số (đề phòng đầu vào có ký tự lạ)
     const number = String(value).replace(/\D/g, '');
 
     // Nếu đầu vào trống hoặc không phải số thì trả về 0 hoặc chuỗi rỗng tùy bạn
-    if (!number) return "0";
+    if (!number) return "";
 
     // Format dấu phẩy hàng nghìn
     return number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -1516,3 +1772,5 @@ customElements.define('stm-table', CustomTable);
 customElements.define('stm-num-keyboard', NumberKeyboard);
 customElements.define('stm-simple-dialog', SimpleDialog);
 customElements.define('stm-timer-span', TimerSpan);
+customElements.define('stm-content-dialog', ViewContentDialog);
+customElements.define('stm-text-keyboard', TextKeyboard);

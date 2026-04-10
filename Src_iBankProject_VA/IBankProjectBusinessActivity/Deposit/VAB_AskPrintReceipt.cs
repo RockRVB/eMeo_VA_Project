@@ -101,9 +101,21 @@ namespace IBankProjectBusinessActivity
             FeeShowing feeShowing = new FeeShowing();
             Fee fee = new Fee();
             object objFee = null;
+            List<Fee> lstFee = new List<Fee>();
+            lstFee.Clear();
             ProjVTMContext.TransactionDataCache.Get("VAB_Fee", out objFee, GetType());
-            fee = objFee as Fee;
-            feeShowing.fee = fee.FeeAmount;
+            if (objFee != null)
+            {
+                lstFee = objFee as List<Fee>;
+                foreach (var item in lstFee)
+                {
+                    if (item.FeeCode == "RECEIPT_FEE")
+                    {
+                        feeShowing.fee = fee.FeeAmount;
+                        break;
+                    }
+                }
+            }
             input_val = new JavaScriptSerializer().Serialize(feeShowing);
 
             SwitchUIState(m_objContext.MainUI, DataDictionary.s_DefaultUIState);

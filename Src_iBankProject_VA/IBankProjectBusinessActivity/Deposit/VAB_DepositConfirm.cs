@@ -14,20 +14,21 @@ using RemoteTellerServiceProtocol;
 using UIServiceProtocol;
 using VTMModelLibrary;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json.Linq;
 using IBankProjectBusinessServiceProtocol;
 
 namespace IBankProjectBusinessActivity
 {
-    [GrgActivity("{56E2B465-B33D-470B-A472-25E0E72A0F3B}",
-                     Name = "VAB_DepositSelectAccount",
-                     NodeNameOfConfiguration = "VAB_DepositSelectAccount",
+[GrgActivity("{47BCE22F-E6F5-448A-80F0-E527E081D880}",
+                     Name = "VAB_DepositConfirm",
+                     NodeNameOfConfiguration = "VAB_DepositConfirm",
                      Author = "Louis")]
-    public class VAB_DepositSelectAccount : IBankProjectActivityBase
+    public class VAB_DepositConfirm : IBankProjectActivityBase
     {
-       // private bool simulator = true;
+        // private bool simulator = true;
         private bool resettimer = false;
         #region constructor
-        private VAB_DepositSelectAccount()
+        private VAB_DepositConfirm()
         {
         }
         #endregion
@@ -36,7 +37,7 @@ namespace IBankProjectBusinessActivity
         [GrgCreateFunction("create")]
         public static IBusinessActivity Create()
         {
-            return new VAB_DepositSelectAccount();
+            return new VAB_DepositConfirm();
         }
         #endregion
         private string m_InputVal = string.Empty;
@@ -87,36 +88,81 @@ namespace IBankProjectBusinessActivity
                 ProjVTMContext.NextCondition = EventDictionary.s_EventFail;
                 return emRet;
             }
-            ProjVTMContext.TransactionDataCache.Set("proj_DepSelectedAccount", null, GetType());
             object objCustomerInfo = null;
             ProjVTMContext.TransactionDataCache.Get("VAB_CustomerInfo", out objCustomerInfo, GetType());
             CustomerInfo customerInfo = new CustomerInfo();
-            DEPAccountShowing data = new DEPAccountShowing();
-            if (ProjConst.simulator == true)
+            DepositConfirm data = new DepositConfirm();
+            if (ProjConst.simulator == false)
             {
                 data = DataTest();
             }
             else
-            {
+            {   
                 if (objCustomerInfo == null)
                 {
                     m_objContext.NextCondition = EventDictionary.s_EventFail;
                     return emBusActivityResult_t.Success;
                 }
-                
                 customerInfo = objCustomerInfo as CustomerInfo;
-                data.countdown =  (ProjVTMContext.ActionTimeout/1000).ToString();
-                data.cus_info.cif = customerInfo.CIF;
-                data.cus_info.cus_name = customerInfo.FullName;
-                foreach (var item in customerInfo.Accounts)
+
+                data.confirm_deposit_info.account_name = customerInfo.FullName;
+
+                object Account = null;
+                ProjVTMContext.TransactionDataCache.Get("VAB_SelectedAccount", out Account, GetType());
+                Log.Action.LogDebugFormat("VAB_SelectedAccount: {0}", Account);
+                if (!string.IsNullOrEmpty(Account.ToString()))
                 {
-                    Acct acc = new Acct();
-                    acc.id = item.AccountNumber;
-                    acc.accountNumber = item.AccountNumber;
-                    acc.balance = CommonClass.ConvertMoney2(item.AvailableBalance);
-                    data.acc_list.Add(acc);
+                    JObject oJson = JObject.Parse(Account.ToString());
+                    data.confirm_deposit_info.account_num = oJson["accountNumber"]?.ToString();
                 }
-                 
+                object objAmount = null;
+                int amount = 0;
+                ProjVTMContext.TransactionDataCache.Get("core_OriginalDepositAmount", out objAmount, GetType());
+                if (objAmount != null)
+                {
+                    int.TryParse(objAmount?.ToString(), out amount);
+                    data.confirm_deposit_info.deposit_value = CommonClass.ConvertMoney2(objAmount?.ToString());
+                }
+                
+                List<Fee> lstFee = new List<Fee>();
+                lstFee.Clear();
+                object objFee = null;
+                int feeTotal = 0;
+                ProjVTMContext.TransactionDataCache.Get("VAB_Fee", out objFee, GetType());
+                if (objFee != null)
+                {
+                    lstFee = objFee as List<Fee>;
+                    object value = null;
+                    ProjVTMContext.CardHolderDataCache.Get("VAB_ComfirmDepositTimeout", out value, GetType());
+                    if (value != null && value?.ToString() == "TRUE")//no receipt
+                    {
+                        foreach (var item in lstFee)
+                        {
+                            if (item.FeeCode == "TRANS_FEE")
+                            {
+                                int feeVal = 0, taxVal = 0;
+                                int.TryParse(item.FeeAmount, out feeVal);
+                                int.TryParse(item.TaxAmount, out taxVal);
+                                feeTotal = feeVal + taxVal;
+                                break;
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        int fee1, fee2, tax1, tax2;
+                        int.TryParse(lstFee[0].FeeAmount, out fee1);
+                        int.TryParse(lstFee[1].FeeAmount, out fee2);
+                        int.TryParse(lstFee[0].TaxAmount, out tax1);
+                        int.TryParse(lstFee[1].TaxAmount, out tax2);
+                        feeTotal = fee1 + fee2 + tax1 + tax2;
+                    }
+                }
+                ProjVTMContext.TransactionDataCache.Set("proj_FeeTotal", feeTotal.ToString(), GetType());
+                ProjVTMContext.TransactionDataCache.Set("proj_final_deposit_val", (amount - feeTotal).ToString(), GetType());
+                data.confirm_deposit_info.fee_value = CommonClass.ConvertMoney2(feeTotal.ToString());
+                data.confirm_deposit_info.final_deposit_val = CommonClass.ConvertMoney2((amount - feeTotal).ToString());
             }
             input_val = new JavaScriptSerializer().Serialize(data);
             Log.Action.LogDebugFormat("bindingData: {0}", input_val);
@@ -132,7 +178,7 @@ namespace IBankProjectBusinessActivity
             {
                 emWaitResult = WaitSignal();
             }
-            
+
             while (resettimer == true)
             {
                 resettimer = false;
@@ -140,7 +186,7 @@ namespace IBankProjectBusinessActivity
                 emWaitResult = WaitSignal();
                 if (resettimer == false) break;
             }
-            
+
             if (emWaitResult == emWaitSignalResult_t.Timeout)
             {
                 ProjVTMContext.CurrentTransactionResult = TransactionResult.Cancel;
@@ -172,7 +218,7 @@ namespace IBankProjectBusinessActivity
                 }*/
                 string strKeyOther = argUIEvent.Key as string;
                 Log.Action.LogDebugFormat("strKeyOther:{0}", strKeyOther);
-                
+
                 if (strKeyOther == "continueDepositBtn")
                 {
                     ProjVTMContext.NextCondition = "OnNext";
@@ -189,91 +235,79 @@ namespace IBankProjectBusinessActivity
                 {
                     m_objContext.NextCondition = strKeyOther;
                 }
-
-                /*else if (strKeyOther == "OnBack")
-                {
-                    
-                    ProjVTMContext.NextCondition = "OnBack";
-                    SignalCancel();
-                }
-                else if (strKeyOther.Equals(EventDictionary.s_EventCancel, StringComparison.OrdinalIgnoreCase))
-                {
-                    Log.Action.LogDebug("Button Click s_EventCancel.");
-                    m_objContext.NextCondition = strKeyOther;
-                    SignalCancel();
-                }*/
                 SignalCancel();
                 return emBusiCallbackResult_t.Swallowd;
             }
             return base.InnerOnUIEvtHandle(iUI, argUIEvent);
         }
 
-        private DEPAccountShowing DataTest()
+        private DepositConfirm DataTest()
         {
-            DEPAccountShowing data = new DEPAccountShowing();
-            data.countdown = (ProjVTMContext.ActionTimeout/1000).ToString(); //"120";
-            data.cus_info.cif = "123";
-            data.cus_info.cus_name = "Tran Van Lam";
-            
-            Header head1 = new Header();
-            head1.label = "Số tài khoản";
-            head1.ids = "ids_VAB_cash_deposit_qr_account_num";
-
-            Header head2 = new Header();
-            head2.label = "Số dư khả dụng";
-            head2.ids = "ids_VAB_cash_deposit_qr_avail_balance";
-            
-            data.header_list.Add(head1);
-            data.header_list.Add(head2);
-
-            Acct acc1 = new Acct();
-            acc1.id = "123456789000";
-            acc1.accountNumber = "123456789000";
-            acc1.balance = CommonClass.ConvertMoney2("20000000");
-
-            Acct acc2 = new Acct();
-            acc2.id = "123456789001";
-            acc2.accountNumber = "123456789001";
-            acc2.balance = CommonClass.ConvertMoney2("20000000");
-
-            data.acc_list.Add(acc1);
-            data.acc_list.Add(acc2);
+            DepositConfirm data = new DepositConfirm();
+            data.confirm_deposit_info.account_name = "Tran Van Lam";
+            data.confirm_deposit_info.account_num = "09123456789";
+            data.confirm_deposit_info.deposit_value = CommonClass.ConvertMoney2("20002000");
+            data.confirm_deposit_info.fee_value = CommonClass.ConvertMoney2("2000");
+            data.confirm_deposit_info.final_deposit_val = CommonClass.ConvertMoney2("20000000");
 
             return data;
         }
         #endregion
     }
-    
-    public class DEPAccountShowing
+    public class DepositConfirm
     {
-        public string countdown { get; set; }
-        public CustomerIfo cus_info { get; set; }
-        public List<Header> header_list = null;
-        public List<Acct> acc_list = null;
-        public DEPAccountShowing()
+        public DepositInfo confirm_deposit_info { get; set; }
+
+        public DepositConfirm()
         {
-            countdown = string.Empty;
-            cus_info = new CustomerIfo();
-            header_list = new List<Header>();
-            header_list.Clear();
-            acc_list = new List<Acct>();
-            acc_list.Clear();
+            confirm_deposit_info = new DepositInfo();
         }
     }
-    public class CustomerIfo 
+    public class DepositInfo
     {
-        public string cus_name { get; set; }
-        public string cif { get; set; }
+        public string account_name { get; set; }
+        public string account_num { get; set; }
+        public string deposit_value { get; set; }
+        public string fee_value { get; set; }
+        public string final_deposit_val { get; set; }
+        public DepositInfo()
+        {
+            account_name = string.Empty;
+            account_num = string.Empty;
+            deposit_value = string.Empty;
+            fee_value = string.Empty;
+            final_deposit_val = string.Empty;
+        }
     }
-    public class Header
-    {
-        public string label { get; set; }
-        public string ids { get; set; }
-    }
-    public class Acct
-    {
-        public string id { get; set; }
-        public string accountNumber { get; set; }
-        public string balance { get; set; }
-    }
+    /* public class DepositConfirm
+     {
+         public DepositInfo deposit_successful_info { get; set; }
+
+         public DepositConfirm()
+         {
+             deposit_successful_info = new DepositInfo();
+         }
+     }
+     public class DepositInfo
+     {
+         public string receive_acccount_name { get; set; }
+         public string receive_info { get; set; }
+         public string transaction_code { get; set; }
+         public string transaction_time { get; set; }
+         public string deposit_amount { get; set; }
+         public string fee_amount { get; set; }
+         public string final_amount_added { get; set; }
+         public DepositInfo()
+         {
+             receive_acccount_name = string.Empty;
+             receive_info = string.Empty;
+             transaction_code = string.Empty;
+             transaction_time = string.Empty;
+             deposit_amount = string.Empty;
+             fee_amount = string.Empty;
+             final_amount_added = string.Empty;
+         }
+     }*/
+
 }
+

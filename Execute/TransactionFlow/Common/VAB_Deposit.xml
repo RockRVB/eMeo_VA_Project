@@ -10,7 +10,7 @@
 		<WriteEJLog ID="ID_TransactionFlowStart" LogData ="***==================================================*;   TRANSACTION START: DEPOSIT" >
 			<Forward event="OnConfirm" targetID="ID_SetTransType"/>		
 		</WriteEJLog>
-		<SetData ID="ID_SetTransType" saveBuffer="{VTM_TransTypeName,1}" value="CASH_DEPOSIT">
+		<SetData ID="ID_SetTransType" saveBuffer="{VTM_TransTypeName,1}" value="DEPOSIT">
 		   <Forward event="OnConfirm" targetID="ID_CreateSessionIDNumber"/>
 		</SetData>
 		<VAB_CreateSessionIDNumber ID="ID_CreateSessionIDNumber">
@@ -321,10 +321,10 @@
 			<Forward event="OnEqualTRUE" targetID="ID_RequestDepositTrans"/>
 			<DefaultForward targetID="ID_AskPrintReceipt"/>
 		</CompareData>
-		<VAB_AskPrintReceipt ID="ID_AskPrintReceipt" UI="UI_AskPrintReceipt" timeout="120000" >
+		<VAB_AskPrintReceipt ID="ID_AskPrintReceipt" UI="UI_VABAskPrintReceipt" timeout="120000" >
 		  <Forward event="OnYes" targetID="ID_SetPrintReceiptToTrue" />
 		  <Forward event="OnNo" targetID="ID_SetPrintReceiptToFalse" />
-		  <Forward event="OnCancel" targetID="ID_ReplaceCard" />
+		  <Forward event="OnExit" targetID="ID_CashInRollback" />
 		</VAB_AskPrintReceipt>
 		<SetData ID="ID_SetPrintReceiptToTrue" saveBuffer="{VAB_PrintReceipt,1}" value="TRUE">
 			<Forward event="OnConfirm" targetID="ID_ConfirmDeposit"/>
@@ -332,11 +332,11 @@
 		<SetData ID="ID_SetPrintReceiptToFalse" saveBuffer="{VAB_PrintReceipt,1}" value="FALSE">
 			<Forward event="OnConfirm" targetID="ID_ConfirmDeposit"/>
 		</SetData>
-		<IBankProjSelectFunction ID="ID_ConfirmDeposit" UI="UI_ConfirmDeposit" timeout="120000">
-		  <Forward event="OnYes" targetID="ID_RequestDepositTrans" />
+		<VAB_DepositConfirm ID="ID_ConfirmDeposit" UI="UI_VABConfirmDeposit" timeout="120000">
+		  <Forward event="OnConfirmDepositInfo" targetID="ID_RequestDepositTrans" />
 		  <Forward event="OnNo" targetID="ID_CashInRollback" />
-		  <Forward event="OnCancel" targetID="ID_CashInRollback" />
-		</IBankProjSelectFunction>
+		  <Forward event="OnExit" targetID="ID_CashInRollback" />
+		</VAB_DepositConfirm>
 		<RequestTransViaRestful ID="ID_RequestDepositTrans" UI="UI_VAB_Processing" transType="DepositConfirm" transFormat="json" timeout="60000">
 			<States>
 				<State name="PackFail" UI=""/>
@@ -348,8 +348,7 @@
 				<State name="UnpackFail" UI=""/>
 				<State name="HardwareError" UI=""/>
 			</States>
-			<Forward event="OnDepositPassiveSuccess" targetID="ID_CashInEndForPassive"/>
-			<!--Forward event="OnDepositPassiveFail" targetID="ID_HostRefuseAndCashInEnd"/-->
+			<Forward event="OnDepositPassiveSuccess" targetID="ID_CashInEnd"/>
 			<Forward event="OnDepositPassiveFail" targetID="ID_CompareComfirmDepositTimeout1"/>
 			<Forward event="OnConfirm" targetID="ID_CashInEnd"/>
 			<Forward event="OnPackFail" targetID="ID_CompareComfirmDepositTimeout1"/>
@@ -367,7 +366,7 @@
 			<Forward event="OnICAppLoadedFail" targetID="ID_CompareComfirmDepositTimeout1"/>
 		</RequestTransViaRestful>
 		<CompareData ID="ID_CompareComfirmDepositTimeout1" compareBuffer="{VAB_ComfirmDepositTimeout}" comment="">
-			<Forward event="OnEqualTRUE" targetID="ID_HandleHostRefuse"/>
+			<Forward event="OnEqualTRUE" targetID="ID_HostRefuseAndCashInEnd"/>
 			<DefaultForward targetID="ID_CashInRollback"/>
 		</CompareData>
 		<!-- 主机拒绝处理 -->
@@ -432,19 +431,32 @@
 			<Forward event="OnRetract" targetID="ID_CashInRetractForError"/>
 		</CashInRollback>
 		<!-- 存钞 -->
-		<CashInEnd ID="ID_CashInEnd" UI="UI_CashInEnd" timeout="5000">
+		<CashInEnd ID="ID_CashInEnd" UI="UI_VAB_Processing" timeout="5000">
 			<States>
-				<State name="CashInEndSuccess" UI="UI_CashInEndSuccess"/>
+				<State name="CashInEndSuccess" UI=""/>
 			</States>
-			<Forward event="OnConfirm" targetID="ID_GetDevStatus"/>
+			<Forward event="OnConfirm" targetID="ID_CompareComfirmDepositTimeout2"/>
 		</CashInEnd>
+		
+		<CompareData ID="ID_CompareComfirmDepositTimeout2" compareBuffer="{VAB_ComfirmDepositTimeout}" comment="">
+			<Forward event="OnEqualTRUE" targetID="ID_DepositSuccess"/>
+			<DefaultForward targetID="ID_GetDevStatus"/>
+		</CompareData>
 		<!-- 非主动确认存钞（超时） -->
-		<CashInEnd ID="ID_CashInEndForPassive" UI="UI_CashInEnd" timeout="5000">
+		<CashInEnd ID="ID_CashInEndForPassive" UI="UI_VAB_Processing" timeout="5000">
 			<States>
-				<State name="CashInEndSuccess" UI="UI_CashInEndSuccess"/>
+				<State name="CashInEndSuccess" UI=""/>
 			</States>
 			<Forward event="OnConfirm" targetID="ID_GetDevStatusForCloseTrans"/>
 		</CashInEnd>
+		<VAB_DepositSuccess ID="ID_DepositSuccess" UI="UI_VABDepositSuccess" timeout="120000">
+		  <Forward event="OnExit" targetID="ID_InvokeCloseTransWorkflow" />
+		  <Forward event="OnDoAnotherTask" targetID="ID_SetDoAnotherTask" />
+		  <DefaultForward targetID="ID_InvokeCloseTransWorkflow"/>
+		</VAB_DepositSuccess>
+		<SetData ID="ID_SetDoAnotherTask" saveBuffer="{VAB_InSession,1}" value="Y">
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
+		</SetData>
 		<!-- 无卡存款，主动确认存钞（超时） -->
 		<CashInEnd ID="ID_CashInEndForPassiveNoCard" UI="UI_CashInEndForPassiveNoCard" timeout="5000">
 			<Forward event="OnConfirm" targetID="ID_GetDevStatusForCloseTrans"/>
@@ -454,13 +466,13 @@
 			<States>
 				<State name="CashInEndSuccess" UI=""/>
 			</States>
-			<Forward event="OnConfirm" targetID="ID_GetDevStatusForCloseTrans"/>
+			<Forward event="OnConfirm" targetID="ID_InvokeCloseTransWorkflow"/>
 		</CashInEnd>
 		<!-- 检查凭条状态 -->
 		<GetDevStatus ID="ID_GetDevStatus" comment="Get device status" devType="RPTR">
-			<Forward event="OnNormal" targetID="ID_CompareIsCardInserted"/>
-			<Forward event="OnWarn" targetID="ID_CompareIsCardInserted"/>
-			<Forward event="OnFail" targetID="9999"/>
+			<Forward event="OnNormal" targetID="ID_PrintReceipt"/>
+			<Forward event="OnWarn" targetID="ID_PrintReceipt"/>
+			<Forward event="OnFail" targetID="ID_DepositSuccess"/>
 		</GetDevStatus>
 		<!-- 检查是否是无卡存款 -->
 		<CompareData ID="ID_CompareIsCardInserted" compareBuffer="{core_CardInserted}" comment="是否有卡存款">
@@ -490,7 +502,7 @@
 				<State name="PrintReceiptSuccess" UI="UI_PrintReceiptSuccess"/>
 				<State name="PrintReceiptFail" UI="UI_PrintReceiptFail"/>
 			</States>
-			<Forward event="OnConfirm" targetID="ID_CompareIsCardInserted"/>
+			<Forward event="OnConfirm" targetID="ID_DepositSuccess"/>
 		</PrintReceipt>
 		<!-- 开始打印冠字号凭条 -->
 		<PrintOCRInfo ID="ID_PrintReceiptOCR" UI="UI_PrintingOCRReceipt" showTime="2000">

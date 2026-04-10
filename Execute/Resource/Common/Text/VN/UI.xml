@@ -429,7 +429,7 @@
 	<item key="ids_VAB_dang_ky_vay" value="Đăng ký vay" />
 	<item key="ids_VAB_card_publish" value="Đăng ký phát hành thẻ" />
 	<item key="ids_VAB_other_service" value="Thanh toán hóa đơn" />
-	<item key="ids_VAB_end_transaction_in_seconds" value="Giao dịch kết thúc sau 120s" />
+	<item key="ids_VAB_end_transaction_in_seconds" value="Giao dịch kết thúc sau" />
 	<item key="ids_VAB_end_transaction" value="Hủy giao dịch" />
 	<item key="ids_VAB_select_transfer_type" value="Quý khách vui lòng chọn nguồn tiền" />
 	<item key="ids_VAB_select_exchange_type" value="Quý khách vui lòng chọn loại giao dịch" />
@@ -533,6 +533,13 @@
 	<item key="ids_VAB_rt_02_3000k_cash" value="3,000,000" />
 	<item key="ids_VAB_rt_02_5000k_cash" value="5,000,000" />
 	<item key="ids_VAB_rt_02_other_cash_value" value="Số tiền khác" />
+	<item key="ids_VAB_rt_02_desc_01" value="Phí giao dịch được áp dụng theo biểu phí hiện hành của VAB." />
+	<item key="ids_VAB_rt_02_desc_02" value="Hạn mức giao dịch của Quý khách: " />
+	<item key="ids_VAB_rt_02_desc_03" value="Số tiền rút tối đa cho mỗi giao dịch: " />
+	<item key="ids_VAB_rt_02_desc_04" value="Số tiền rút tối đa trong ngày: " />
+	<item key="ids_VAB_rt_02_desc_05" value="/ngày" />
+
+
 	<item key="ids_VAB_rt_03_pls_input_cash_value" value="Vui lòng nhập số tiền cần rút" />
 	<item key="ids_VAB_rt_03_multiple_of_20k" value="Số tiền phải là bội số của 20,000" />
 	<item key="ids_VAB_rt_03_cash_value_invalid" value="Số tiền không hợp lệ" />
@@ -670,6 +677,9 @@
 	<item key="ids_VAB_ck_tktt_02_confirm_bank_receive_account_btn" value="Xác nhận" />
 	<item key="ids_VAB_ck_tktt_02_select_bank_dialog_title" value="Chọn ngân hàng thụ hưởng" />
 	<item key="ids_VAB_ck_tktt_02_select_bank_dialog_placeholder" value="Nhập ngân hàng cần tìm kiếm" />
+	<item key="ids_VAB_ck_tktt_02_err_account_number" value="Vui lòng nhập số tài khoản" />
+
+
 	<item key="ids_VAB_system_waiting_title" value="Hệ thống đang xử lý ....&lt;br&gt;Quý khách vui lòng đợi trong giây lát" />
 	<item key="ids_VAB_nt_tb_03_deposit_error_title" value="Thông báo nhận lại tiền không hợp lệ&lt;br&gt;Quý khách vui lòng nhận lại tiền được trả ra từ khe nhận tiền" />
 	<item key="ids_VAB_nt_tb_03_cash_deposit_message" value="Hộc tiền sẽ tự động đóng sau 120s và toàn bộ tiền sẽ bị giữ lại" />
@@ -680,6 +690,8 @@
 	<item key="ids_VAB_ck_tktt_03_transfer_amount" value="Số tiền cần chuyển" />
 	<item key="ids_VAB_ck_tktt_03_transfer_content" value="Nội dung chuyển tiền" />
 	<item key="ids_VAB_ck_tktt_03_confirm_transfer" value="Xác nhận" />
+	<item key="ids_VAB_ck_tktt_03_error_01" value="Vui lòng nhập số tiền cần chuyển" />
+
 	<item key="ids_VAB_ck_tktt_04_title" value="Xác nhận thông tin giao dịch" />
 	<item key="ids_VAB_ck_tktt_04_from_section_title" value="Từ" />
 	<item key="ids_VAB_ck_tktt_04_from_bank" value="Ngân hàng:" />
@@ -815,4 +827,96 @@
 	<item key="ids_VAB_nt_05_cancel_deposit_message_before" value="Hộc tiền sẽ tự động đóng sau " />
 	<item key="ids_VAB_nt_05_cancel_deposit_message_after" value=" và toàn bộ tiền sẽ bị giữ lại" />
 	<item key="ids_VAB_Hello" value="XIN CHÀO" />
+    <item key="ids_VAB_ekyc_step_1" value="Xác thực" />
+    <item key="ids_VAB_ekyc_step_2" value="OTP" />
+    <item key="ids_VAB_ekyc_step_3" value="Xác thực khách hàng" />
+    <item key="ids_VAB_ekyc_step_4" value="Hoàn tất" />
+    <item key="ids_VAB_ekyc_01_title" value="Để tiếp tục quá trình mở tài khoản và sử dụng dịch vụ tại VAB.&lt;br&gt;Quý khách vui lòng đọc và xác nhận các nội dung dưới đây." />
+    <item key="ids_VAB_ekyc_01_content_title_1" value="Xác nhận tuân thủ FATCA" />
+    <item key="ids_VAB_ekyc_01_content_title_2" value="" />
+    <item key="ids_VAB_ekyc_01_content_title_3" value="" />
+    <item key="ids_VAB_ekyc_01_content_content_1" value="Tôi cam kết mình không phải là đối tượng chịu thuế của Hoa Kỳ theo quy định của Đạo luật FATCA" />
+    <item key="ids_VAB_ekyc_01_content_content_2" value="" />
+    <item key="ids_VAB_ekyc_01_content_content_3" value="" />
+    <item key="ids_VAB_ekyc_01_content_view_detail" value="Xem tại đây" />
+    <item key="ids_VAB_ekyc_02_title" value="Vui lòng nhập số điện thoại" />
+    <item key="ids_VAB_ekyc_02_value_invalid" value="Số điện thoại không hợp lệ" />
+    <item key="ids_VAB_ekyc_02_key_num_1" value="1" />
+    <item key="ids_VAB_ekyc_02_key_num_2" value="2" />
+    <item key="ids_VAB_ekyc_02_key_num_3" value="3" />
+    <item key="ids_VAB_ekyc_02_key_num_4" value="4" />
+    <item key="ids_VAB_ekyc_02_key_num_5" value="5" />
+    <item key="ids_VAB_ekyc_02_key_num_6" value="6" />
+    <item key="ids_VAB_ekyc_02_key_num_7" value="7" />
+    <item key="ids_VAB_ekyc_02_key_num_8" value="8" />
+    <item key="ids_VAB_ekyc_02_key_num_9" value="9" />
+    <item key="ids_VAB_ekyc_02_key_num_0" value="0" />
+    <item key="ids_VAB_ekyc_02_key_num_000" value="Xóa hết" />
+    <item key="ids_VAB_ekyc_02_confirm_value" value="Xác nhận" />
+    <item key="ids_VAB_ekyc_10_error" value="Lỗi" />
+    <item key="ids_VAB_ekyc_10_error_message" value="Lỗi" />
+    <item key="ids_VAB_ekyc_10_error_message_note" value="Vui lòng nhận lại thẻ CCCD trước khi rời khỏi vị trí." />
+    <item key="ids_VAB_ekyc_04_title" value="Quý khách vui lòng nhập mã xác thực OTP" />
+    <item key="ids_VAB_ekyc_04_otp_invalid" value="Mã xác thực OTP quý khách nhập không đúng. Vui lòng thử lại!" />
+    <item key="ids_VAB_ekyc_04_resend_otp" value="Gửi lại mã OTP " />
+    <item key="ids_VAB_ekyc_04_otp_clear_all" value="Xóa hết" />
+    <item key="ids_VAB_ekyc_04_confirm_otp" value="Xác nhận" />
+    <item key="ids_VAB_ekyc_05_cccd" value="Vui lòng đặt thẻ CCCD vào khe đọc" />
+    <item key="ids_VAB_ekyc_05_CCCD_title" value="Hướng dẫn đặt thẻ CCCD" />
+    <item key="ids_VAB_ekyc_05_take_off_mask" value="Đặt mặt trước của thẻ lên trên bề mặt cảm biến của thiết bị, như ảnh minh họa." />
+    <item key="ids_VAB_ekyc_05_note" value="Lưu ý:" />
+    <item key="ids_VAB_ekyc_05_note_content" value="Nếu thiết bị không đọc được thông tin trên thẻ, hãy thử đặt lại thẻ hoặc vệ sinh thẻ." />
+    <item key="ids_VAB_ekyc_05_face_authenting" value="Đang đọc thông tin..." />
+    <item key="ids_VAB_ekyc_06_sth" value="Quý khách vui lòng nhìn vào Camera phía trên" />
+    <item key="ids_VAB_ekyc_06_face_authen_instruc_title" value="Hướng dẫn chụp ảnh" />
+    <item key="ids_VAB_ekyc_06_take_off_mask" value="Tháo khẩu trang" />
+    <item key="ids_VAB_ekyc_06_take_off_glasses" value="Tháo mắt kính" />
+    <item key="ids_VAB_ekyc_06_take_off_helmet" value="Tháo mũ bảo hiểm" />
+    <item key="ids_VAB_ekyc_06_start_face_authen" value="Bắt đầu xác thực" />
+    <item key="ids_VAB_ekyc_06_face_authenting" value="Đang xác thực..." />
+    <item key="ids_VAB_ekyc_07_title" value="Vui lòng bổ sung các thông tin" />
+    <item key="ids_VAB_ekyc_07_content_content" value="Nơi ở hiện tại trùng với nơi cư trú" />
+    <item key="ids_VAB_ekyc_07_address" value="Nơi ở hiện tại " />
+    <item key="ids_VAB_ekyc_07_employee" value="Nghề nghiệp " />
+    <item key="ids_VAB_ekyc_07_tax" value="Mã số thuế" />
+    <item key="ids_VAB_ekyc_07_email" value="Email" />
+    <item key="ids_VAB_ekyc_08_title" value="Xác nhận thông tin" />
+    <item key="ids_VAB_ekyc_08_account_name" value="Họ tên:" />
+    <item key="ids_VAB_ekyc_08_birth_day" value="Ngày sinh:" />
+    <item key="ids_VAB_ekyc_08_sex" value="Giới tính:" />
+    <item key="ids_VAB_ekyc_08_cccd" value="Số CCCD:" />
+    <item key="ids_VAB_ekyc_08_dateofissues" value="Ngày cấp:" />
+    <item key="ids_VAB_ekyc_08_dateexpire" value="Ngày hết hạn:" />
+    <item key="ids_VAB_ekyc_08_placeofissues" value="Nơi cấp:" />
+    <item key="ids_VAB_ekyc_08_phone" value="Số điện thoại:" />
+    <item key="ids_VAB_ekyc_08_res" value="Nơi cư trú:" />
+    <item key="ids_VAB_ekyc_08_address" value="Nơi ở hiện tại:" />
+    <item key="ids_VAB_ekyc_08_employee" value="Nghề nghiệp:" />
+    <item key="ids_VAB_ekyc_08_tax" value="Mã số thuế:" />
+    <item key="ids_VAB_ekyc_08_email" value="Email:" />
+    <item key="ids_VAB_ekyc_08_confirm" value="Xác nhận" />
+    <item key="ids_VAB_ekyc_09_title" value="Giao dịch thành công" />
+    <item key="ids_VAB_ekyc_09_trans_code" value="Mã giao dịch:" />
+    <item key="ids_VAB_ekyc_09_customer_code" value="Mã khách hàng:" />
+    <item key="ids_VAB_ekyc_09_account" value="Số tài khoản:" />
+    <item key="ids_VAB_ekyc_09_name" value="Tên khách hàng:" />
+    <item key="ids_VAB_ekyc_09_time" value="Thời gian:" />
+    <item key="ids_VAB_ekyc_09_branch" value="Chi nhánh:" />
+    <item key="ids_VAB_ekyc_09_note" value="Vui lòng nhận lại thẻ CCCD trước khi rời khỏi vị trí." />
+    <item key="ids_VAB_ekyc_09_end_transaction" value="Kết thúc giao dịch" />
+    <item key="ids_VAB_ekyc_09_end_transaction" value="Kết thúc giao dịch" />
+    <item key="ids_VAB_ekyc_11_title" value="Vui lòng kiểm tra và xác nhận thông tin" />
+    <item key="ids_VAB_ekyc_11_name" value="Họ tên" />
+    <item key="ids_VAB_ekyc_11_birthdate" value="Ngày sinh" />
+    <item key="ids_VAB_ekyc_11_sex" value="Giới tính" />
+    <item key="ids_VAB_ekyc_11_nationality" value="Quốc tịch" />
+    <item key="ids_VAB_ekyc_11_country" value="Quê quán" />
+    <item key="ids_VAB_ekyc_11_nation" value="Dân tộc" />
+    <item key="ids_VAB_ekyc_11_religion" value="Tôn giáo" />
+    <item key="ids_VAB_ekyc_11_cccd" value="Số CCCD/CC" />
+    <item key="ids_VAB_ekyc_11_dateofissues" value="Ngày cấp" />
+    <item key="ids_VAB_ekyc_11_dateexpire" value="Ngày hết hạn" />
+    <item key="ids_VAB_ekyc_11_placeofissues" value="Nơi cấp" />
+    <item key="ids_VAB_ekyc_11_address" value="Nơi cư trú" />
+    <item key="ids_VAB_ekyc_11_confirm" value="Xác nhận" />
 </config>

@@ -40,12 +40,23 @@
                         </div>
                         <span class="text-alert-red" ids="ids_VAB_rt_02_withdraw_source_attention" style="font-size: 30px;">Lưu ý:</span>
                         <ul class="main-list">
-                            <li class="text-alert-red-left">Phí giao dịch được áp dụng theo biểu phí hiện hành của VAB.</li>
+                            <li class="text-alert-red-left" ids="ids_VAB_rt_02_desc_01">Phí giao dịch được áp dụng theo biểu phí hiện hành của VAB.</li>
                             <li class="text-alert-red-left">
-                                Hạn mức giao dịch của Quý khách:
+                                <span ids="ids_VAB_rt_02_desc_02">Hạn mức giao dịch của Quý khách:</span>
                                 <ul class="sub-list">
-                                    <li class="text-alert-red-left">Số tiền rút tối đa cho mỗi giao dịch: <strong>10.000.000 VND</strong></li>
-                                    <li class="text-alert-red-left">Số tiền rút tối đa trong ngày: <strong>300.000.000 VND</strong>/ngày</li>
+                                    <li class="text-alert-red-left">
+                                        <span ids="ids_VAB_rt_02_desc_03">Số tiền rút tối đa cho mỗi giao dịch: </span>
+                                        <strong id="max-per-trans">10.000.000</strong>
+                                        <strong>VND</strong>
+                                    </li>
+                                    <li class="text-alert-red-left">
+                                        <span ids="ids_VAB_rt_02_desc_04">
+                                            Số tiền rút tối đa trong ngày:
+                                        </span>
+                                        <strong id="max-per-day">300.000.000</strong>
+                                        <strong>VND</strong>
+                                        <span ids="ids_VAB_rt_02_desc_05">/ngày</span>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -55,13 +66,13 @@
                 <div class="account-selection-section" style="gap: 20px;">
                     <h2 class="section-title" ids="ids_VAB_rt_02_choose_cash_value_title">Chọn số tiền cần rút</h2>
 
-                    <div class="cash-value-grid">
-                        <button class="cash-value-card" ids="ids_VAB_rt_02_500k_cash" id="500k-cash-btn">500,000</button>
-                        <button class="cash-value-card" ids="ids_VAB_rt_02_1000k_cash" id="1000k-cash-btn">1,000,000</button>
-                        <button class="cash-value-card" ids="ids_VAB_rt_02_2000k_cash" id="2000k-cash-btn">2,000,000</button>
-                        <button class="cash-value-card" ids="ids_VAB_rt_02_3000k_cash" id="3000k-cash-btn">3,000,000</button>
-                        <button class="cash-value-card" ids="ids_VAB_rt_02_5000k_cash" id="5000k-cash-btn">5,000,000</button>
-                        <button class="other-cash-value-card" ids="ids_VAB_rt_02_other_cash_value" tag="OnAnotherCashValue" id="another-cash-value-btn">Số tiền khác</button>
+                    <div class="cash-value-grid" id="cash-grid">
+<!--                        <button class="cash-value-card" ids="ids_VAB_rt_02_500k_cash" id="500k-cash-btn">500,000</button>-->
+<!--                        <button class="cash-value-card cash-value-card-selected" ids="ids_VAB_rt_02_1000k_cash" id="1000k-cash-btn">1,000,000</button>-->
+<!--                        <button class="cash-value-card" ids="ids_VAB_rt_02_2000k_cash" id="2000k-cash-btn" disabled>2,000,000</button>-->
+<!--                        <button class="cash-value-card" ids="ids_VAB_rt_02_3000k_cash" id="3000k-cash-btn" disabled>3,000,000</button>-->
+<!--                        <button class="cash-value-card" ids="ids_VAB_rt_02_5000k_cash" id="5000k-cash-btn" disabled>5,000,000</button>-->
+<!--                        <button class="cash-value-card" ids="ids_VAB_rt_02_other_cash_value" tag="OnAnotherCashValue" id="another-cash-value-btn">Số tiền khác</button>-->
                     </div>
                 </div>
             </div>
@@ -77,22 +88,47 @@
     </main>
 
     <stm-footer></stm-footer>
-    <input style="display: none;" id="input_val" value='{Replace input_val}' />
+    <input style="display: none;" id="input_val" value='{Replace input_val}'/>
     <input style="display: none;" id="output_val" content='{Binding output_val mode=2}'/>
 </div>
 <script src="../../../js/VA/scale.js"></script>
 <script>
     $(document).ready(function (){
-		const confirmWithdraw = document.getElementById("confirm-withdraw");
+        const cashGrid = document.getElementById('cash-grid');
         const accNum = document.getElementById("account-num");
-        const data = '{"withdraw_source_info":{"account_num":"8938xxxxxxxx092"}}';
-        const sampleObj = JSON.parse(data);
-        // const countdownData = $('#input_val').val();
-        accNum.innerText = sampleObj.withdraw_source_info.account_num;
-		confirmWithdraw.addEventListener('click', () => {
-			var str_test = "500000";
-			$('#output_val').val(str_test);
-            console.log($('#output_val').val())
+        const maxPerTrans = document.getElementById("max-per-trans");
+        const maxPerDay = document.getElementById("max-per-day");
+        const input = document.getElementById("input_val");
+        const output = document.getElementById("output_val");
+
+        // const data = input.value;
+        const sampleObjData = JSON.parse('{"withdraw_source_info": { "account_num": "8938xxxxxxxx092", "max_per_trans": 10000000, "max_per_day": 300000000, "avail_balance": 3500000, "amount_list": [ 1000000,  3000000, 5000000]}}');
+        const sampleObj = sampleObjData.withdraw_source_info
+        accNum.innerText = sampleObj.account_num;
+        maxPerTrans.innerText = formatVND(sampleObj.max_per_trans);
+        maxPerDay.innerText = formatVND(sampleObj.max_per_day);
+        sampleObj.amount_list.forEach(element => {
+            const btn = document.createElement('button')
+            btn.innerText = formatVND(element);
+            btn.classList.add('cash-value-card');
+            btn.setAttribute('amount', element);
+            if(sampleObj.avail_balance < element) {
+                btn.setAttribute('disabled', 'disabled')
+            }
+            cashGrid.appendChild(btn);
+        })
+
+        const btnAnother = document.createElement('button')
+        btnAnother.innerText = "Số tiền khác";
+        btnAnother.setAttribute("ids", "ids_VAB_rt_02_other_cash_value")
+        btnAnother.setAttribute("amount", "another");
+        btnAnother.classList.add('cash-value-card');
+        cashGrid.appendChild(btnAnother);
+
+        $(".cash-value-card").on("click", function (){
+            $(".cash-value-card").removeClass("cash-value-card-selected");
+            this.classList.add('cash-value-card-selected');
+            output.value = this.getAttribute("amount")
         })
     })
 </script>

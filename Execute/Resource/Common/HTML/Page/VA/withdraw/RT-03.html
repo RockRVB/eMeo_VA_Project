@@ -77,6 +77,11 @@
     $(document).ready(function (){
         const confirmBtn = document.getElementById("confirm_deposit_btn");
         const subMessage = document.getElementById("invalid-submessage");
+        const input = document.getElementById("input_val");
+
+        const data = JSON.parse('{"max_amt": 1000000}');
+        const maxAmount = Number(data.max_amt);
+
         const OnConfirmWithdraw = document.getElementById("OnConfirmWithdraw");
 
         // const countdownData = $('#input_val').val();
@@ -86,7 +91,7 @@
 
         function validateNumber(num){
             const numValue = Number(num);
-            return numValue % 20000 === 0;
+            return numValue % VA_MULTIPLE === 0;
         }
 
         keys.forEach(key => {
@@ -106,6 +111,7 @@
                     if (currentVal === "" && (btnText === "0" || btnText === "000")) return;
 
                     currentVal += btnText;
+                    if(parseFloat(currentVal) > VA_MAXIMUM_AMOUNT_WITHDRAW) return;
                 }
 
                 inputField.value = formatVND(currentVal);
@@ -122,7 +128,8 @@
         confirmBtn.addEventListener('click', () => {
             const withdrawInput = document.getElementById("withdraw-input");
             const validNumber = withdrawInput.value.replace(/\D/g, '');
-            if(!validateNumber(validNumber)){
+
+            if(!validateNumber(validNumber) || validNumber > maxAmount){
                 inputField.style.color = 'red';
                 subMessage.style.visibility = 'visible';
                 // $('#output_val').val(withdrawInput.value.replace(/\D/g, ''));

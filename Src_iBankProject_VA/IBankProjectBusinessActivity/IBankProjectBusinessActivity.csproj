@@ -380,7 +380,9 @@
     <Compile Include="Common\WriteEJLog.cs" />
     <Compile Include="Deposit\VAB_AskPrintReceipt.cs" />
     <Compile Include="Deposit\VAB_CashInShowResult.cs" />
+    <Compile Include="Deposit\VAB_DepositConfirm.cs" />
     <Compile Include="Deposit\VAB_DepositSelectAccount.cs" />
+    <Compile Include="Deposit\VAB_DepositSuccess.cs" />
     <Compile Include="Deposit\VAB_GeneralQueryCIFAPI4Deposit.cs" />
     <Compile Include="DisorderCardDispenser\MoveCard.cs" />
     <Compile Include="DisorderCardDispenser\CheckAddCardCondition.cs" />

@@ -12,10 +12,9 @@
 <body>
     <div class="stm-layout">
         <!-- Header -->
-
+        <stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
         <stm-one-btn-dialog id="outof-transaction-time"></stm-one-btn-dialog>
-		<stm-cancel-trans-dialog id="cancel-trans-dialog"></stm-cancel-trans-dialog>
-		<stm-auth-task-header id="auth-task-header"></stm-auth-task-header>
+        <stm-auth-task-header id="auth-task-header"></stm-auth-task-header>
 
         <!-- Body -->
         <main class="stm-body transfer-body">
@@ -26,7 +25,7 @@
                 <!-- Large Cards Flex Container -->
                 <div class="stm-large-cards" style="margin-top: 150px;">
                     <!-- Card 1 -->
-                    <div class="stm-card-lg" id="qr-code-method" tag="OnQR" type="button">
+                    <div class="stm-card-lg" id="qr-code-method" type="button" tag="OnQR">
                         <stm-card
                                 icon-url="../../../images/VA/qr.svg"
                                 title="QR Code"
@@ -34,7 +33,7 @@
                         >
                         </stm-card>
                     </div>
-                    <div class="stm-card-lg" id="cccd-method" tag="OnCCCD" type="button">
+                    <div class="stm-card-lg" id="cccd-method" type="button" tag="OnCCCD">
                         <stm-card
                                 icon-url="../../../images/VA/id-card.png"
                                 title="Căn cước công dân"
